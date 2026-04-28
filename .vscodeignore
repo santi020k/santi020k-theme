@@ -6,8 +6,11 @@
 node_modules/**
 website/**
 scripts/**
+tests/**
 CONTRIBUTING.md
 AGENTS.md
 eslint.config.mjs
 llms.txt
+favicon.svg
+icon.svg
 .gitignore

@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
 const themeFiles = [
   'themes/santi020k-dark-color-theme.json',
@@ -101,40 +102,46 @@ const validateHexMap = (file, colors) => {
   }
 }
 
-for (const file of themeFiles) {
-  const raw = readFileSync(file, 'utf8')
-  const theme = JSON.parse(raw)
-  const duplicateColorKeys = findDuplicateColorKeys(raw)
+export const validateThemes = (files = themeFiles) => {
+  for (const file of files) {
+    const raw = readFileSync(file, 'utf8')
+    const theme = JSON.parse(raw)
+    const duplicateColorKeys = findDuplicateColorKeys(raw)
 
-  if (!theme.name || !theme.type || !theme.colors || !theme.tokenColors) {
-    throw new Error(`${file} is missing required theme sections`)
-  }
+    if (!theme.name || !theme.type || !theme.colors || !theme.tokenColors) {
+      throw new Error(`${file} is missing required theme sections`)
+    }
 
-  if (duplicateColorKeys.length > 0) {
-    throw new Error(`${file} has duplicate color keys: ${duplicateColorKeys.join(', ')}`)
-  }
+    if (duplicateColorKeys.length > 0) {
+      throw new Error(`${file} has duplicate color keys: ${duplicateColorKeys.join(', ')}`)
+    }
 
-  if (theme.semanticHighlighting !== true) {
-    throw new Error(`${file} must enable semanticHighlighting`)
-  }
+    if (theme.semanticHighlighting !== true) {
+      throw new Error(`${file} must enable semanticHighlighting`)
+    }
 
-  validateHexMap(file, theme.colors)
+    validateHexMap(file, theme.colors)
 
-  for (const key of requiredColorKeys) {
-    if (!theme.colors[key]) {
-      throw new Error(`${file} is missing colors.${key}`)
+    for (const key of requiredColorKeys) {
+      if (!theme.colors[key]) {
+        throw new Error(`${file} is missing colors.${key}`)
+      }
+    }
+
+    for (const [foregroundKey, backgroundKey, minimumRatio] of contrastPairs) {
+      const ratio = contrastRatio(theme.colors[foregroundKey], theme.colors[backgroundKey])
+
+      if (ratio < minimumRatio) {
+        throw new Error(
+          `${file} ${foregroundKey} on ${backgroundKey} contrast is ${ratio.toFixed(2)}; expected ${minimumRatio}`
+        )
+      }
     }
   }
 
-  for (const [foregroundKey, backgroundKey, minimumRatio] of contrastPairs) {
-    const ratio = contrastRatio(theme.colors[foregroundKey], theme.colors[backgroundKey])
-
-    if (ratio < minimumRatio) {
-      throw new Error(
-        `${file} ${foregroundKey} on ${backgroundKey} contrast is ${ratio.toFixed(2)}; expected ${minimumRatio}`
-      )
-    }
-  }
+  return files.length
 }
 
-console.log(`Validated ${themeFiles.length} theme files`)
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  console.log(`Validated ${validateThemes()} theme files`)
+}
