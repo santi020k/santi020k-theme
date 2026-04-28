@@ -37,3 +37,4 @@ Open this repository in VS Code and press `F5` to launch an Extension Developmen
 - Merge feature PRs with changesets into `main`
 - Merge the generated release PR
 - The release workflow publishes the new version to the VS Code Marketplace with `VSCE_PAT`
+- The release workflow publishes the same VSIX to Open VSX with `OVSX_PAT`
