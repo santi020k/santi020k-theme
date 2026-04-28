@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theme Accessibility Auditor"
+  short_description: "Audit theme accessibility risks."
+  default_prompt: "Use this skill to review a theme or website for contrast, readability, focus, and accessibility risks."

@@ -29,9 +29,19 @@ const requiredPackageFields = [
 const requiredIgnorePatterns = [
   '.github/**',
   '.changeset/**',
+  '.agents/**',
   'node_modules/**',
   'website/**',
-  'scripts/**'
+  'scripts/**',
+  'AGENTS.md',
+  'llms.txt'
+]
+
+const requiredAgentSkillFiles = [
+  '.agents/skills/vscode-theme-maintainer/SKILL.md',
+  '.agents/skills/marketplace-release-manager/SKILL.md',
+  '.agents/skills/theme-accessibility-auditor/SKILL.md',
+  '.agents/skills/repo-ci-triager/SKILL.md'
 ]
 
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'))
@@ -39,6 +49,12 @@ const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'))
 for (const file of requiredFiles) {
   if (!existsSync(file)) {
     throw new Error(`Missing required marketplace file: ${file}`)
+  }
+}
+
+for (const file of requiredAgentSkillFiles) {
+  if (!existsSync(file)) {
+    throw new Error(`Missing repo-local agent skill: ${file}`)
   }
 }
 

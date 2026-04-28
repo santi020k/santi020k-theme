@@ -1,8 +1,11 @@
 .github/**
+.agents/**
 .changeset/**
 .vscode/**
 node_modules/**
 website/**
 scripts/**
 CONTRIBUTING.md
+AGENTS.md
+llms.txt
 .gitignore

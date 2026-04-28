@@ -1,0 +1,38 @@
+# santi020k Theme
+
+> A VS Code color theme extension with coordinated dark and light variants, a preview website, Changesets releases, Visual Studio Marketplace publishing, and Open VSX publishing.
+
+## Important Files
+
+- `package.json`: Extension manifest, scripts, marketplace metadata, theme contributions.
+- `themes/santi020k-dark-color-theme.json`: Dark VS Code theme.
+- `themes/santi020k-light-color-theme.json`: Light VS Code theme.
+- `scripts/validate-themes.mjs`: Theme JSON, token coverage, hex, duplicate-key, and contrast validation.
+- `scripts/check-marketplace-readiness.mjs`: Marketplace package preflight checks.
+- `scripts/publish-registries.mjs`: Idempotent publisher for Visual Studio Marketplace and Open VSX.
+- `.changeset/config.json`: Changesets release configuration.
+- `.github/workflows/validate.yml`: CI validation.
+- `.github/workflows/release.yml`: Release PR and publish workflow.
+- `.github/workflows/changeset-check.yml`: Pull request changeset guard.
+- `website/`: Vite website source and public assets.
+- `.vscodeignore`: Controls VSIX contents.
+- `AGENTS.md`: Instructions for AI coding agents.
+
+## Common Commands
+
+```bash
+npm run validate:themes
+npm run validate:marketplace
+npm run validate
+npm run package -- --no-dependencies
+npm run changeset
+npm run release
+```
+
+## Agent Notes
+
+- Keep both theme variants in sync unless asked otherwise.
+- Preserve theme identity: dark indigo surfaces, purple/violet accents, calm contrast.
+- Add changesets for user-visible changes.
+- Validate before release.
+- Publishing requires `VSCE_PAT` for Visual Studio Marketplace and `OVSX_PAT` for Open VSX.
