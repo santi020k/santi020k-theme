@@ -1,0 +1,87 @@
+import { existsSync, readFileSync } from 'node:fs'
+
+const requiredFiles = [
+  'README.md',
+  'CHANGELOG.md',
+  'LICENSE',
+  'icon.png',
+  '.vscodeignore',
+  'themes/santi020k-dark-color-theme.json',
+  'themes/santi020k-light-color-theme.json'
+]
+
+const requiredPackageFields = [
+  'name',
+  'displayName',
+  'description',
+  'version',
+  'publisher',
+  'homepage',
+  'repository',
+  'bugs',
+  'license',
+  'engines',
+  'categories',
+  'icon',
+  'contributes'
+]
+
+const requiredIgnorePatterns = [
+  '.github/**',
+  '.changeset/**',
+  'node_modules/**',
+  'website/**',
+  'scripts/**'
+]
+
+const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'))
+
+for (const file of requiredFiles) {
+  if (!existsSync(file)) {
+    throw new Error(`Missing required marketplace file: ${file}`)
+  }
+}
+
+const pkg = readJson('package.json')
+const lock = readJson('package-lock.json')
+
+for (const field of requiredPackageFields) {
+  if (!pkg[field]) {
+    throw new Error(`package.json is missing ${field}`)
+  }
+}
+
+if (pkg.license !== 'MIT') {
+  throw new Error('package.json license must be MIT')
+}
+
+if (lock.version !== pkg.version || lock.packages?.['']?.version !== pkg.version) {
+  throw new Error('package-lock.json version does not match package.json')
+}
+
+if (!pkg.contributes?.themes || pkg.contributes.themes.length !== 2) {
+  throw new Error('package.json must contribute exactly two themes')
+}
+
+const vscodeIgnore = readFileSync('.vscodeignore', 'utf8')
+
+for (const pattern of requiredIgnorePatterns) {
+  if (!vscodeIgnore.includes(pattern)) {
+    throw new Error(`.vscodeignore should exclude ${pattern}`)
+  }
+}
+
+const icon = readFileSync(pkg.icon)
+
+if (icon.readUInt32BE(0) !== 0x89504e47) {
+  throw new Error(`${pkg.icon} must be a PNG file`)
+}
+
+const iconWidth = icon.readUInt32BE(16)
+const iconHeight = icon.readUInt32BE(20)
+
+if (iconWidth !== 128 || iconHeight !== 128) {
+  throw new Error(`${pkg.icon} must be 128x128; found ${iconWidth}x${iconHeight}`)
+}
+
+console.log('Marketplace readiness checks passed')
