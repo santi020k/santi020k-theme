@@ -45,6 +45,12 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+.button:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 4px;
+}
+
 .site-shell {
   width: min(1120px, calc(100% - 32px));
   margin-inline: auto;
