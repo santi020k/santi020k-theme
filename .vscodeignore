@@ -1,4 +1,5 @@
 .github/**
+.changeset/**
 .vscode/**
 node_modules/**
 website/**
