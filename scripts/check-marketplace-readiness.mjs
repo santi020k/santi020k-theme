@@ -21,6 +21,8 @@ const requiredPackageFields = [
   'bugs',
   'license',
   'engines',
+  'extensionKind',
+  'capabilities',
   'categories',
   'icon',
   'contributes'
@@ -30,10 +32,12 @@ const requiredIgnorePatterns = [
   '.github/**',
   '.changeset/**',
   '.agents/**',
+  '.npmrc',
   'node_modules/**',
   'website/**',
   'scripts/**',
   'AGENTS.md',
+  'eslint.config.mjs',
   'llms.txt'
 ]
 
@@ -44,7 +48,7 @@ const requiredAgentSkillFiles = [
   '.agents/skills/repo-ci-triager/SKILL.md'
 ]
 
-const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'))
+const readJson = path => JSON.parse(readFileSync(path, 'utf8'))
 
 for (const file of requiredFiles) {
   if (!existsSync(file)) {
@@ -69,6 +73,26 @@ for (const field of requiredPackageFields) {
 
 if (pkg.license !== 'MIT') {
   throw new Error('package.json license must be MIT')
+}
+
+if (!pkg.engines?.vscode) {
+  throw new Error('package.json must declare engines.vscode')
+}
+
+const expectedExtensionKinds = ['ui', 'workspace']
+
+for (const extensionKind of expectedExtensionKinds) {
+  if (!pkg.extensionKind.includes(extensionKind)) {
+    throw new Error(`package.json extensionKind must include ${extensionKind}`)
+  }
+}
+
+if (pkg.capabilities?.untrustedWorkspaces?.supported !== true) {
+  throw new Error('package.json must declare support for untrusted workspaces')
+}
+
+if (pkg.capabilities?.virtualWorkspaces !== true) {
+  throw new Error('package.json must declare support for virtual workspaces')
 }
 
 if (lock.version !== pkg.version || lock.packages?.['']?.version !== pkg.version) {

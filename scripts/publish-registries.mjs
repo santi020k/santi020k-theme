@@ -1,9 +1,10 @@
 import { execFileSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 
 const pkg = JSON.parse(readFileSync('package.json', 'utf8'))
 const extensionId = `${pkg.publisher}.${pkg.name}`
 const vsixPath = `${pkg.name}-${pkg.version}.vsix`
+const isCI = process.env.CI === 'true'
 
 const run = (command, args, options = {}) => {
   execFileSync(command, args, {
@@ -12,7 +13,7 @@ const run = (command, args, options = {}) => {
   })
 }
 
-const readJsonUrl = async (url) => {
+const readJsonUrl = async url => {
   const response = await fetch(url)
 
   if (response.status === 404) {
@@ -32,8 +33,10 @@ const getMarketplaceVersions = () => {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe']
     })
+
     const extension = JSON.parse(output)
-    return new Set(extension.versions?.map((version) => version.version) ?? [])
+
+    return new Set(extension.versions?.map(version => version.version) ?? [])
   } catch {
     return new Set()
   }
@@ -42,16 +45,25 @@ const getMarketplaceVersions = () => {
 const getOpenVsxVersions = async () => {
   try {
     const extension = await readJsonUrl(`https://open-vsx.org/api/${pkg.publisher}/${pkg.name}`)
+
     return new Set(extension?.allVersions ? Object.keys(extension.allVersions) : [])
   } catch (error) {
     console.warn(`Unable to check Open VSX versions: ${error.message}`)
+
     return new Set()
   }
 }
 
 const publishMarketplace = () => {
   if (!process.env.VSCE_PAT) {
-    console.log('VSCE_PAT is not set. Skipping Visual Studio Marketplace publish.')
+    const message = 'VSCE_PAT is not set. Skipping Visual Studio Marketplace publish.'
+
+    if (isCI) {
+      throw new Error(message)
+    }
+
+    console.log(message)
+
     return
   }
 
@@ -60,7 +72,14 @@ const publishMarketplace = () => {
 
 const publishOpenVsx = () => {
   if (!process.env.OVSX_PAT) {
-    console.log('OVSX_PAT is not set. Skipping Open VSX publish.')
+    const message = 'OVSX_PAT is not set. Skipping Open VSX publish.'
+
+    if (isCI) {
+      throw new Error(message)
+    }
+
+    console.log(message)
+
     return
   }
 
@@ -74,19 +93,22 @@ const shouldPublishOpenVsx = !openVsxVersions.has(pkg.version)
 
 if (!shouldPublishMarketplace && !shouldPublishOpenVsx) {
   console.log(`${extensionId}@${pkg.version} is already published to both registries.`)
-  process.exit(0)
-}
-
-run('npm', ['run', 'validate'])
-
-if (shouldPublishMarketplace) {
-  publishMarketplace()
 } else {
-  console.log(`${extensionId}@${pkg.version} is already published to Visual Studio Marketplace.`)
-}
+  run('npm', ['run', 'validate'])
 
-if (shouldPublishOpenVsx) {
-  publishOpenVsx()
-} else {
-  console.log(`${extensionId}@${pkg.version} is already published to Open VSX.`)
+  if (!existsSync(vsixPath)) {
+    throw new Error(`Expected packaged VSIX at ${vsixPath}`)
+  }
+
+  if (shouldPublishMarketplace) {
+    publishMarketplace()
+  } else {
+    console.log(`${extensionId}@${pkg.version} is already published to Visual Studio Marketplace.`)
+  }
+
+  if (shouldPublishOpenVsx) {
+    publishOpenVsx()
+  } else {
+    console.log(`${extensionId}@${pkg.version} is already published to Open VSX.`)
+  }
 }

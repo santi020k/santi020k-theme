@@ -39,8 +39,9 @@ const contrastPairs = [
 
 const hexColorPattern = /^#(?:[0-9a-f]{6}|[0-9a-f]{8})$/i
 
-const parseHex = (hex) => {
+const parseHex = hex => {
   const value = hex.slice(1, 7)
+
   return [
     Number.parseInt(value.slice(0, 2), 16),
     Number.parseInt(value.slice(2, 4), 16),
@@ -48,9 +49,10 @@ const parseHex = (hex) => {
   ]
 }
 
-const luminance = (hex) => {
-  const [red, green, blue] = parseHex(hex).map((channel) => {
+const luminance = hex => {
+  const [red, green, blue] = parseHex(hex).map(channel => {
     const value = channel / 255
+
     return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4
   })
 
@@ -60,10 +62,11 @@ const luminance = (hex) => {
 const contrastRatio = (foreground, background) => {
   const lighter = Math.max(luminance(foreground), luminance(background))
   const darker = Math.min(luminance(foreground), luminance(background))
+
   return (lighter + 0.05) / (darker + 0.05)
 }
 
-const findDuplicateColorKeys = (raw) => {
+const findDuplicateColorKeys = raw => {
   const colorsBlock = raw.match(/"colors"\s*:\s*\{([\s\S]*?)\n\s*\},\n\s*"(?:semanticHighlighting|tokenColors)"/)
 
   if (!colorsBlock) {
@@ -79,6 +82,7 @@ const findDuplicateColorKeys = (raw) => {
     if (seen.has(match[1])) {
       duplicates.add(match[1])
     }
+
     seen.add(match[1])
   }
 

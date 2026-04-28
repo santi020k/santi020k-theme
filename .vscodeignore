@@ -1,11 +1,13 @@
 .github/**
 .agents/**
 .changeset/**
+.npmrc
 .vscode/**
 node_modules/**
 website/**
 scripts/**
 CONTRIBUTING.md
 AGENTS.md
+eslint.config.mjs
 llms.txt
 .gitignore
