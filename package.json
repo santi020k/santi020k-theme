@@ -1,0 +1,65 @@
+{
+  "name": "santi020k-theme",
+  "displayName": "santi020k Theme",
+  "description": "Dark and light themes with a deep indigo-black palette and muted violet accents — inspired by the Antigravity wallpaper.",
+  "version": "1.0.0",
+  "publisher": "santi020k",
+  "author": {
+    "name": "Santiago Molina",
+    "url": "https://santi020k.com"
+  },
+  "homepage": "https://theme.santi020k.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santi020k/santi020k-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/santi020k/santi020k-theme/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "dark",
+    "light",
+    "purple",
+    "indigo",
+    "antigravity",
+    "santi020k"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#120c1e",
+    "theme": "dark"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "santi020k dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/santi020k-dark-color-theme.json"
+      },
+      {
+        "label": "santi020k light",
+        "uiTheme": "vs",
+        "path": "./themes/santi020k-light-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "publish:pre": "vsce publish --pre-release",
+    "site:dev": "cd website && npm run dev",
+    "site:build": "cd website && npm run build",
+    "site:preview": "cd website && npm run preview"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.9.1"
+  }
+}

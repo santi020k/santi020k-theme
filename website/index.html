@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="santi020k Theme is a purple-forward VS Code theme with coordinated dark and light variants."
+    />
+    <meta name="theme-color" content="#120c1e" />
+    <meta property="og:title" content="santi020k Theme" />
+    <meta
+      property="og:description"
+      content="A calm, purple-forward VS Code theme with dark and light variants."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://theme.santi020k.com" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>santi020k Theme</title>
+  </head>
+  <body>
+    <header class="site-shell site-header" aria-label="Site header">
+      <a class="brand" href="#top" aria-label="santi020k Theme home">
+        <img src="/favicon.svg" alt="" width="36" height="36" />
+        <span>santi020k Theme</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#variants">Variants</a>
+        <a href="#palette">Palette</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme">Marketplace</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="site-shell hero">
+        <div class="hero-copy">
+          <p class="eyebrow">VS Code color theme</p>
+          <h1>Calm editor surfaces. Clear purple focus.</h1>
+          <p class="lede">
+            A dark and light theme pair built from the santi020k brand language: indigo-black depth, violet
+            accents, and syntax colors that stay expressive without shouting over the code.
+          </p>
+          <div class="actions" aria-label="Theme actions">
+            <a class="button button-primary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme">
+              Install theme
+            </a>
+            <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme">
+              View source
+            </a>
+          </div>
+        </div>
+
+        <div class="editor-preview" aria-label="Preview of the santi020k dark theme">
+          <div class="preview-topbar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <strong>santi020k-dark-color-theme.json</strong>
+          </div>
+          <div class="preview-body">
+            <aside aria-hidden="true">
+              <span class="active">01</span>
+              <span>02</span>
+              <span>03</span>
+              <span>04</span>
+              <span>05</span>
+              <span>06</span>
+              <span>07</span>
+            </aside>
+            <pre><code><span class="muted">// focused without glare</span>
+<span class="keyword">const</span> theme = {
+  name: <span class="string">'santi020k dark'</span>,
+  background: <span class="string">'#120c1e'</span>,
+  accent: <span class="string">'#c090ff'</span>,
+  mood: <span class="function">compose</span>(<span class="string">'calm'</span>, <span class="string">'precise'</span>)
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="variants" class="site-shell section-grid">
+        <div>
+          <p class="eyebrow">Variants</p>
+          <h2>Two surfaces, one visual rhythm.</h2>
+        </div>
+        <div class="variant-grid">
+          <article class="variant-card variant-dark">
+            <p>Dark</p>
+            <h3>santi020k dark</h3>
+            <span>#120c1e</span>
+          </article>
+          <article class="variant-card variant-light">
+            <p>Light</p>
+            <h3>santi020k light</h3>
+            <span>#f8f6fd</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="palette" class="site-shell palette-section">
+        <div>
+          <p class="eyebrow">Palette</p>
+          <h2>Violets for focus, soft contrast for long sessions.</h2>
+        </div>
+        <div class="swatches" aria-label="Core theme colors">
+          <span style="--swatch: #120c1e">Indigo black</span>
+          <span style="--swatch: #170f25">Sidebar</span>
+          <span style="--swatch: #6b3fa8">Control</span>
+          <span style="--swatch: #c090ff">Focus</span>
+          <span style="--swatch: #d4a8ff">String</span>
+          <span style="--swatch: #f8f6fd">Light canvas</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-shell site-footer">
+      <span>Built by Santiago Molina.</span>
+      <a href="https://santi020k.com">santi020k.com</a>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
