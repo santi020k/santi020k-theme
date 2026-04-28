@@ -63,7 +63,7 @@
   },
   "scripts": {
     "validate": "npm run test && npm run lint && npm run site:install && npm run site:build && npm run package -- --no-dependencies",
-    "test": "node --test tests/*.test.mjs",
+    "test": "vitest run",
     "validate:themes": "node scripts/validate-themes.mjs",
     "validate:marketplace": "node scripts/check-marketplace-readiness.mjs",
     "lint": "eslint .",
@@ -85,6 +85,7 @@
     "@santi020k/eslint-config-basic": "^1.5.0",
     "@types/node": "^22.19.17",
     "@vscode/vsce": "^3.9.1",
-    "ovsx": "^0.10.11"
+    "ovsx": "^0.10.11",
+    "vitest": "^3.2.4"
   }
 }

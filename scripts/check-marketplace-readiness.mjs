@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const requiredFiles = [
@@ -34,6 +35,7 @@ const requiredIgnorePatterns = [
   '.changeset/**',
   '.agents/**',
   '.npmrc',
+  '.env*',
   'node_modules/**',
   'website/**',
   'scripts/**',
@@ -52,17 +54,18 @@ const requiredAgentSkillFiles = [
   '.agents/skills/repo-ci-triager/SKILL.md'
 ]
 
-export const checkMarketplaceReadiness = () => {
-  const readJson = path => JSON.parse(readFileSync(path, 'utf8'))
+export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
+  const resolvePath = path => join(rootDir, path)
+  const readJson = path => JSON.parse(readFileSync(resolvePath(path), 'utf8'))
 
   for (const file of requiredFiles) {
-    if (!existsSync(file)) {
+    if (!existsSync(resolvePath(file))) {
       throw new Error(`Missing required marketplace file: ${file}`)
     }
   }
 
   for (const file of requiredAgentSkillFiles) {
-    if (!existsSync(file)) {
+    if (!existsSync(resolvePath(file))) {
       throw new Error(`Missing repo-local agent skill: ${file}`)
     }
   }
@@ -108,7 +111,7 @@ export const checkMarketplaceReadiness = () => {
     throw new Error('package.json must contribute exactly two themes')
   }
 
-  const vscodeIgnore = readFileSync('.vscodeignore', 'utf8')
+  const vscodeIgnore = readFileSync(resolvePath('.vscodeignore'), 'utf8')
 
   for (const pattern of requiredIgnorePatterns) {
     if (!vscodeIgnore.includes(pattern)) {
@@ -116,7 +119,7 @@ export const checkMarketplaceReadiness = () => {
     }
   }
 
-  const icon = readFileSync(pkg.icon)
+  const icon = readFileSync(resolvePath(pkg.icon))
 
   if (icon.readUInt32BE(0) !== 0x89504e47) {
     throw new Error(`${pkg.icon} must be a PNG file`)

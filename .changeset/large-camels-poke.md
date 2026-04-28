@@ -2,4 +2,4 @@
 "santi020k-theme": minor
 ---
 
-Tighten VSIX packaging exclusions and add Node test coverage for release validation.
+Refresh the extension logo, tighten VSIX packaging exclusions, and add Vitest coverage for release validation.

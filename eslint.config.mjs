@@ -25,5 +25,12 @@ export default [
       'security/detect-non-literal-fs-filename': 'off',
       'security/detect-object-injection': 'off'
     }
+  },
+  {
+    files: ['tests/*.test.mjs'],
+    rules: {
+      'n/no-unpublished-import': 'off',
+      'security/detect-non-literal-fs-filename': 'off'
+    }
   }
 ]
