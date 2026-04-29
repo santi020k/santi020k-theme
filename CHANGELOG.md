@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1
+
+### Patch Changes
+
+- [`878fef8`](https://github.com/santi020k/santi020k-theme/commit/878fef8f411cffa07b7da7f2b047743daf94f694) Thanks [@santi020k](https://github.com/santi020k)! - Sync package-lock.json with package.json to fix marketplace readiness validation error.
+
 ## 1.2.0
 
 ### Minor Changes
