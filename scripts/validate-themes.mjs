@@ -220,18 +220,41 @@ const validateTokenContrast = (file, theme) => {
 }
 
 const findDuplicateColorKeys = raw => {
-  const colorsBlock = raw.match(/"colors"\s*:\s*\{([\s\S]*?)\n\s*\},\n\s*"(?:semanticHighlighting|tokenColors)"/)
+  const colorsMatch = raw.match(/"colors"\s*:\s*\{/)
 
-  if (!colorsBlock) {
-    return []
+  if (!colorsMatch) return []
+
+  // Walk the raw text from the opening { of the colors object, tracking brace
+  // depth while skipping over string contents so escaped braces inside values
+  // or comments don't corrupt the depth count.
+  let i = colorsMatch.index + colorsMatch[0].length
+  let depth = 1
+
+  while (i < raw.length && depth > 0) {
+    if (raw[i] === '"') {
+      i++
+
+      while (i < raw.length && raw[i] !== '"') {
+        if (raw[i] === '\\') i++
+
+        i++
+      }
+    } else if (raw[i] === '{') {
+      depth++
+    } else if (raw[i] === '}') {
+      depth--
+    }
+
+    i++
   }
 
+  const colorsBlock = raw.slice(colorsMatch.index + colorsMatch[0].length, i - 1)
   const seen = new Set()
   const duplicates = new Set()
   const keyPattern = /^\s*"([^"]+)"\s*:/gm
   let match
 
-  while ((match = keyPattern.exec(colorsBlock[1]))) {
+  while ((match = keyPattern.exec(colorsBlock))) {
     if (seen.has(match[1])) {
       duplicates.add(match[1])
     }
@@ -257,8 +280,11 @@ const validateHexMap = (file, colors) => {
 export const validateThemes = (files = themeFiles) => {
   for (const file of files) {
     const raw = readFileSync(file, 'utf8')
-    // Strip comments before parsing
-    const cleanRaw = raw.replace(/^\s*\/\/.*$/gm, '')
+
+    const cleanRaw = raw
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^\s*\/\/.*$/gm, '')
+
     const theme = JSON.parse(cleanRaw)
     const duplicateColorKeys = findDuplicateColorKeys(raw)
 

@@ -50,8 +50,11 @@ const categories = [
 
 const formatTheme = file => {
   const raw = readFileSync(file, 'utf8')
-  // Strip comments before parsing
-  const cleanRaw = raw.replace(/^\s*\/\/.*$/gm, '')
+
+  const cleanRaw = raw
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/^\s*\/\/.*$/gm, '')
+
   const content = JSON.parse(cleanRaw)
   // 1. Sort Colors by Category and then Alphabetically
   const colors = content.colors

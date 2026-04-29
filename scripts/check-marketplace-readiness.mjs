@@ -32,7 +32,7 @@ const requiredPackageFields = [
   'contributes'
 ]
 
-const requiredIgnorePatterns = [
+export const requiredIgnorePatterns = [
   '.github/**',
   '.changeset/**',
   '.agents/**',
