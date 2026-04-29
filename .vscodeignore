@@ -1,5 +1,11 @@
 .github/**
 .agents/**
+.agent/**
+.claude/**
+.cursor/**
+.windsurf/**
+.copilot/**
+.aider/**
 .changeset/**
 .npmrc
 .env*

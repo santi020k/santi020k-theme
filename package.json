@@ -82,7 +82,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.6.0",
     "@changesets/cli": "^2.31.0",
-    "@santi020k/eslint-config-basic": "^1.5.0",
+    "@santi020k/eslint-config-basic": "^1.6.0",
     "@types/node": "^22.19.17",
     "@vscode/vsce": "^3.9.1",
     "ovsx": "^0.10.11",
