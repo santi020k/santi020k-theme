@@ -7,12 +7,28 @@ export default [
       '**/*.md',
       '**/*.yml',
       '**/*.yaml',
+      'scratch/**',
       'website/dist/**'
     ]
   },
   ...eslintConfig({
     runtime: Runtime.Node
   }),
+  {
+    files: ['website/src/**/*.js'],
+    languageOptions: {
+      globals: {
+        document: 'readonly',
+        localStorage: 'readonly',
+        requestAnimationFrame: 'readonly',
+        setTimeout: 'readonly',
+        window: 'readonly'
+      }
+    },
+    rules: {
+      'n/no-missing-import': 'off'
+    }
+  },
   {
     files: ['eslint.config.mjs'],
     rules: {

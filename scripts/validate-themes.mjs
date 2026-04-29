@@ -22,13 +22,21 @@ const requiredColorKeys = [
   'input.foreground',
   'button.background',
   'button.foreground',
+  'button.secondaryBackground',
+  'button.secondaryForeground',
   'quickInput.background',
   'quickInput.foreground',
   'notifications.background',
   'notifications.foreground',
   'textLink.foreground',
   'checkbox.background',
-  'dropdown.background'
+  'dropdown.background',
+  'statusBar.background',
+  'statusBar.foreground',
+  'tab.activeBackground',
+  'tab.activeForeground',
+  'terminal.background',
+  'terminal.foreground'
 ]
 
 const modernSurfaceColorKeys = [
@@ -83,23 +91,60 @@ const contrastPairs = [
   ['input.foreground', 'input.background', 4.5],
   ['button.foreground', 'button.background', 4.5],
   ['quickInput.foreground', 'quickInput.background', 4.5],
-  ['notifications.foreground', 'notifications.background', 4.5]
+  ['notifications.foreground', 'notifications.background', 4.5],
+  ['terminal.foreground', 'terminal.background', 4.5],
+  ['statusBar.foreground', 'statusBar.background', 4.5],
+  ['tab.activeForeground', 'tab.activeBackground', 4.5],
+  ['button.secondaryForeground', 'button.secondaryBackground', 4.5]
 ]
+
+// Minimum contrast for syntax token foreground against editor.background.
+// Decorative tokens (comments, punctuation) get a lower floor since they are
+// intentionally de-emphasised; all other syntax tokens must meet WCAG AA.
+const DECORATIVE_TOKEN_MIN_RATIO = 3
+const SYNTAX_TOKEN_MIN_RATIO = 4.5
+
+const isDecorativeScope = scope => (
+  scope === 'comment' ||
+  scope.startsWith('comment.') ||
+  scope === 'punctuation' ||
+  scope.startsWith('punctuation.') ||
+  // Blockquotes are intentionally secondary content in markdown editors
+  scope === 'markup.quote' ||
+  // Deprecated markers rely on strikethrough as their primary visual signal
+  scope === 'invalid.deprecated'
+)
 
 const hexColorPattern = /^#(?:[0-9a-f]{6}|[0-9a-f]{8})$/i
 
 const parseHex = hex => {
   const value = hex.slice(1, 7)
+  const alpha = hex.length === 9 ? Number.parseInt(hex.slice(7, 9), 16) / 255 : 1
 
-  return [
-    Number.parseInt(value.slice(0, 2), 16),
-    Number.parseInt(value.slice(2, 4), 16),
-    Number.parseInt(value.slice(4, 6), 16)
-  ]
+  return {
+    alpha,
+    rgb: [
+      Number.parseInt(value.slice(0, 2), 16),
+      Number.parseInt(value.slice(2, 4), 16),
+      Number.parseInt(value.slice(4, 6), 16)
+    ]
+  }
 }
 
-const luminance = hex => {
-  const [red, green, blue] = parseHex(hex).map(channel => {
+const compositeRgb = (foreground, background) => foreground.rgb.map((channel, index) => (
+  Math.round(channel * foreground.alpha + background.rgb[index] * (1 - foreground.alpha))
+))
+
+const resolveRgb = (foreground, background) => {
+  if (foreground.alpha === 1) {
+    return foreground.rgb
+  }
+
+  return compositeRgb(foreground, background)
+}
+
+const luminance = rgb => {
+  const [red, green, blue] = rgb.map(channel => {
     const value = channel / 255
 
     return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4
@@ -109,25 +154,107 @@ const luminance = hex => {
 }
 
 const contrastRatio = (foreground, background) => {
-  const lighter = Math.max(luminance(foreground), luminance(background))
-  const darker = Math.min(luminance(foreground), luminance(background))
+  const backgroundColor = parseHex(background)
+
+  const resolvedBackground = {
+    alpha: 1,
+    rgb: resolveRgb(backgroundColor, { alpha: 1, rgb: [255, 255, 255] })
+  }
+
+  const resolvedForeground = resolveRgb(parseHex(foreground), resolvedBackground)
+  const lighter = Math.max(luminance(resolvedForeground), luminance(resolvedBackground.rgb))
+  const darker = Math.min(luminance(resolvedForeground), luminance(resolvedBackground.rgb))
 
   return (lighter + 0.05) / (darker + 0.05)
 }
 
-const findDuplicateColorKeys = raw => {
-  const colorsBlock = raw.match(/"colors"\s*:\s*\{([\s\S]*?)\n\s*\},\n\s*"(?:semanticHighlighting|tokenColors)"/)
+const validateTokenContrast = (file, theme) => {
+  const bg = theme.colors['editor.background']
+  const errors = []
 
-  if (!colorsBlock) {
-    return []
+  for (const rule of (theme.tokenColors || [])) {
+    const fg = rule.settings?.foreground
+
+    if (!fg || !hexColorPattern.test(fg)) continue
+
+    let scopes
+
+    if (Array.isArray(rule.scope)) {
+      scopes = rule.scope
+    } else if (rule.scope) {
+      scopes = [rule.scope]
+    } else {
+      scopes = []
+    }
+
+    const decorative = scopes.length > 0 && scopes.every(s => isDecorativeScope(s))
+    const minRatio = decorative ? DECORATIVE_TOKEN_MIN_RATIO : SYNTAX_TOKEN_MIN_RATIO
+    const ratio = contrastRatio(fg, bg)
+
+    if (ratio < minRatio) {
+      errors.push(
+        `"${rule.name || scopes.join(', ')}" foreground ${fg}: ${ratio.toFixed(2)} (min ${minRatio})`
+      )
+    }
   }
 
+  for (const [token, value] of Object.entries(theme.semanticTokenColors || {})) {
+    const fg = typeof value === 'string' ? value : value?.foreground
+
+    if (!fg || !hexColorPattern.test(fg)) continue
+
+    const decorative = isDecorativeScope(token)
+    const minRatio = decorative ? DECORATIVE_TOKEN_MIN_RATIO : SYNTAX_TOKEN_MIN_RATIO
+    const ratio = contrastRatio(fg, bg)
+
+    if (ratio < minRatio) {
+      errors.push(
+        `semantic "${token}" foreground ${fg}: ${ratio.toFixed(2)} (min ${minRatio})`
+      )
+    }
+  }
+
+  if (errors.length > 0) {
+    throw new Error(`${file} has token contrast violations:\n  ${errors.join('\n  ')}`)
+  }
+}
+
+const findDuplicateColorKeys = raw => {
+  const colorsMatch = raw.match(/"colors"\s*:\s*\{/)
+
+  if (!colorsMatch) return []
+
+  // Walk the raw text from the opening { of the colors object, tracking brace
+  // depth while skipping over string contents so escaped braces inside values
+  // or comments don't corrupt the depth count.
+  let i = colorsMatch.index + colorsMatch[0].length
+  let depth = 1
+
+  while (i < raw.length && depth > 0) {
+    if (raw[i] === '"') {
+      i++
+
+      while (i < raw.length && raw[i] !== '"') {
+        if (raw[i] === '\\') i++
+
+        i++
+      }
+    } else if (raw[i] === '{') {
+      depth++
+    } else if (raw[i] === '}') {
+      depth--
+    }
+
+    i++
+  }
+
+  const colorsBlock = raw.slice(colorsMatch.index + colorsMatch[0].length, i - 1)
   const seen = new Set()
   const duplicates = new Set()
   const keyPattern = /^\s*"([^"]+)"\s*:/gm
   let match
 
-  while ((match = keyPattern.exec(colorsBlock[1]))) {
+  while ((match = keyPattern.exec(colorsBlock))) {
     if (seen.has(match[1])) {
       duplicates.add(match[1])
     }
@@ -153,8 +280,11 @@ const validateHexMap = (file, colors) => {
 export const validateThemes = (files = themeFiles) => {
   for (const file of files) {
     const raw = readFileSync(file, 'utf8')
-    // Strip comments before parsing
-    const cleanRaw = raw.replace(/^\s*\/\/.*$/gm, '')
+
+    const cleanRaw = raw
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^\s*\/\/.*$/gm, '')
+
     const theme = JSON.parse(cleanRaw)
     const duplicateColorKeys = findDuplicateColorKeys(raw)
 
@@ -179,6 +309,12 @@ export const validateThemes = (files = themeFiles) => {
     }
 
     for (const [foregroundKey, backgroundKey, minimumRatio] of contrastPairs) {
+      if (!theme.colors[foregroundKey] || !theme.colors[backgroundKey]) {
+        throw new Error(
+          `${file} is missing colors required for contrast check: ${[foregroundKey, backgroundKey].filter(k => !theme.colors[k]).join(', ')}`
+        )
+      }
+
       const ratio = contrastRatio(theme.colors[foregroundKey], theme.colors[backgroundKey])
 
       if (ratio < minimumRatio) {
@@ -187,6 +323,8 @@ export const validateThemes = (files = themeFiles) => {
         )
       }
     }
+
+    validateTokenContrast(file, theme)
   }
 
   return files.length
