@@ -1,0 +1,4 @@
+interface:
+  display_name: "Marketplace Release Manager"
+  short_description: "Release VS Code extensions safely."
+  default_prompt: "Use this skill to prepare, validate, publish, or debug an automated VS Code extension release."

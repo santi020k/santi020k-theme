@@ -1,8 +1,20 @@
 # santi020k Theme
 
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
+[![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX)](https://open-vsx.org/extension/santi020k/santi020k-theme)
+[![Validate](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
+
 A pair of VS Code color themes built around a deep indigo-black palette with muted violet accents — inspired by the Antigravity wallpaper. Available in dark and light variants, both sharing the same purple-forward color language.
 
 **→ [theme.santi020k.com](https://theme.santi020k.com)**
+
+---
+
+## Preview
+
+![santi020k dark theme preview](assets/preview-dark.png)
+
+![santi020k light theme preview](assets/preview-light.png)
 
 ---
 
@@ -51,6 +63,10 @@ Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving al
 3. Search for **santi020k Theme**
 4. Click **Install**
 5. Open **Preferences: Color Theme** (`Cmd+K Cmd+T`) and select **santi020k dark** or **santi020k light**
+
+### From Open VSX
+
+Install from [Open VSX](https://open-vsx.org/extension/santi020k/santi020k-theme) in editors that use the Open VSX registry, then select **santi020k dark** or **santi020k light** from the color theme picker.
 
 ### Manual install (`.vsix`)
 
@@ -125,10 +141,10 @@ Use the [VS Code Accessibility: Color Contrast Ratio Checker](https://marketplac
 
 ```bash
 npm run package
-# → generates santi020k-theme-1.0.0.vsix
+# → generates santi020k-theme-x.y.z.vsix
 
 # Install in VS Code
-code --install-extension santi020k-theme-1.0.0.vsix
+code --install-extension santi020k-theme-x.y.z.vsix
 ```
 
 ---
@@ -141,32 +157,28 @@ code --install-extension santi020k-theme-1.0.0.vsix
 2. Go to [marketplace.visualstudio.com/manage](https://marketplace.visualstudio.com/manage) and create a publisher with ID `santi020k`
 3. In Azure DevOps → User Settings → [Personal Access Tokens](https://dev.azure.com), generate a token with **Marketplace → Manage** scope
 4. Add the token as a secret named `VSCE_PAT` in your GitHub repository settings
+5. Create an [Open VSX](https://open-vsx.org) access token and add it as a GitHub Actions secret named `OVSX_PAT`
+6. Make sure the `santi020k` namespace exists in Open VSX before the first publish
 
-### Manual publish
-
-```bash
-# Make sure you're logged in
-npx vsce login santi020k
-
-# Bump version first (edit package.json + CHANGELOG.md)
-npm run publish
-```
-
-### Automated publish via GitHub Actions
-
-The workflow at `.github/workflows/publish.yml` triggers automatically when you push a version tag:
+### Changeset releases
 
 ```bash
-git tag v1.1.0
-git push origin v1.1.0
+npm run changeset
 ```
 
-This runs `vsce publish` using the `VSCE_PAT` secret and publishes the new version to the VS Code Marketplace.
+Merge feature branches with changesets into `main`. GitHub Actions will create a release PR that bumps the package version and changelog. Merge that release PR to publish the new version to the VS Code Marketplace and Open VSX.
+
+The publish workflow uses the `VSCE_PAT` and `OVSX_PAT` repository secrets.
 
 ### Release checklist
 
-- [ ] Version bumped in `package.json`
-- [ ] `CHANGELOG.md` updated with what changed
+- [ ] Changeset added for user-visible changes
 - [ ] `icon.png` present (128×128 PNG, required by the Marketplace)
-- [ ] Tested locally with `npm run package` and installed via VSIX
-- [ ] Tag pushed to trigger the publish workflow
+- [ ] Tested locally with `npm run validate`
+- [ ] Release PR merged after feature branches land on `main`
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE).

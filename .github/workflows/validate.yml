@@ -5,21 +5,43 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:
     name: Validate theme and website
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            website/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Validate
         run: npm run validate
+
+      - name: Upload packaged extension
+        uses: actions/upload-artifact@v4
+        with:
+          name: santi020k-theme-vsix
+          path: '*.vsix'
+          if-no-files-found: error
+          retention-days: 7

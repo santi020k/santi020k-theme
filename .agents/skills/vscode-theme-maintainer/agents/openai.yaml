@@ -1,0 +1,4 @@
+interface:
+  display_name: "VS Code Theme Maintainer"
+  short_description: "Maintain VS Code themes safely."
+  default_prompt: "Use this skill to modify or review a VS Code theme extension while preserving theme quality, validation, and release readiness."

@@ -17,6 +17,12 @@ npm run validate
 
 This checks both theme JSON files, builds the website, and packages the extension locally.
 
+For a faster package metadata check, run:
+
+```bash
+npm run validate:marketplace
+```
+
 ## Changesets
 
 For user-visible changes, add a changeset:
@@ -37,3 +43,5 @@ Open this repository in VS Code and press `F5` to launch an Extension Developmen
 - Merge feature PRs with changesets into `main`
 - Merge the generated release PR
 - The release workflow publishes the new version to the VS Code Marketplace with `VSCE_PAT`
+- The release workflow publishes the same VSIX to Open VSX with `OVSX_PAT`
+- The website deploys to Cloudflare Pages with `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, and `CLOUDFLARE_PAGES_PROJECT_NAME`
