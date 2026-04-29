@@ -21,7 +21,8 @@ const requiredIgnorePatterns = [
   'eslint.config.mjs',
   'llms.txt',
   'favicon.svg',
-  'icon.svg'
+  'icon.svg',
+  'assets/*.svg'
 ]
 
 const packageJson = {
@@ -101,6 +102,8 @@ const createFixturePackage = ({
     'README.md',
     'CHANGELOG.md',
     'LICENSE',
+    'assets/preview-dark.png',
+    'assets/preview-light.png',
     'themes/santi020k-dark-color-theme.json',
     'themes/santi020k-light-color-theme.json',
     '.agents/skills/vscode-theme-maintainer/SKILL.md',

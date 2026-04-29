@@ -1,8 +1,20 @@
 # santi020k Theme
 
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
+[![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX)](https://open-vsx.org/extension/santi020k/santi020k-theme)
+[![Validate](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
+
 A pair of VS Code color themes built around a deep indigo-black palette with muted violet accents — inspired by the Antigravity wallpaper. Available in dark and light variants, both sharing the same purple-forward color language.
 
 **→ [theme.santi020k.com](https://theme.santi020k.com)**
+
+---
+
+## Preview
+
+![santi020k dark theme preview](assets/preview-dark.png)
+
+![santi020k light theme preview](assets/preview-light.png)
 
 ---
 
@@ -51,6 +63,10 @@ Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving al
 3. Search for **santi020k Theme**
 4. Click **Install**
 5. Open **Preferences: Color Theme** (`Cmd+K Cmd+T`) and select **santi020k dark** or **santi020k light**
+
+### From Open VSX
+
+Install from [Open VSX](https://open-vsx.org/extension/santi020k/santi020k-theme) in editors that use the Open VSX registry, then select **santi020k dark** or **santi020k light** from the color theme picker.
 
 ### Manual install (`.vsix`)
 

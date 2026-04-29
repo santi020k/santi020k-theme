@@ -10,6 +10,8 @@ const requiredColorKeys = [
   'foreground',
   'descriptionForeground',
   'errorForeground',
+  'window.activeBorder',
+  'window.inactiveBorder',
   'editor.background',
   'editor.foreground',
   'editorWidget.background',
@@ -27,6 +29,52 @@ const requiredColorKeys = [
   'textLink.foreground',
   'checkbox.background',
   'dropdown.background'
+]
+
+const modernSurfaceColorKeys = [
+  'multiDiffEditor.background',
+  'multiDiffEditor.headerBackground',
+  'multiDiffEditor.border',
+  'mergeEditor.change.background',
+  'mergeEditor.change.word.background',
+  'mergeEditor.conflict.unhandledUnfocused.border',
+  'mergeEditor.conflict.unhandledFocused.border',
+  'mergeEditor.conflict.handledUnfocused.border',
+  'mergeEditor.conflict.handledFocused.border',
+  'mergeEditor.conflictingLines.background',
+  'terminal.inactiveSelectionBackground',
+  'terminal.findMatchBackground',
+  'terminal.findMatchBorder',
+  'terminal.findMatchHighlightBackground',
+  'terminal.findMatchHighlightBorder',
+  'terminal.tab.activeBorder',
+  'terminalStickyScroll.background',
+  'terminalStickyScroll.border',
+  'terminalStickyScrollHover.background',
+  'inlineChat.foreground',
+  'inlineChatInput.background',
+  'inlineChatInput.border',
+  'inlineChatInput.focusBorder',
+  'inlineChatDiff.inserted',
+  'inlineChatDiff.removed',
+  'chat.avatarBackground',
+  'chat.avatarForeground',
+  'chat.linesAddedForeground',
+  'chat.linesRemovedForeground',
+  'chat.requestBubbleBackground',
+  'chat.requestBubbleHoverBackground',
+  'interactive.activeCodeBorder',
+  'interactive.inactiveCodeBorder',
+  'notebook.editorBackground',
+  'notebook.cellBorderColor',
+  'notebook.cellEditorBackground',
+  'notebook.focusedCellBorder',
+  'notebook.focusedEditorBorder',
+  'notebook.outputContainerBackgroundColor',
+  'notebook.outputContainerBorderColor',
+  'notebookStatusErrorIcon.foreground',
+  'notebookStatusRunningIcon.foreground',
+  'notebookStatusSuccessIcon.foreground'
 ]
 
 const contrastPairs = [
@@ -122,7 +170,7 @@ export const validateThemes = (files = themeFiles) => {
 
     validateHexMap(file, theme.colors)
 
-    for (const key of requiredColorKeys) {
+    for (const key of [...requiredColorKeys, ...modernSurfaceColorKeys]) {
       if (!theme.colors[key]) {
         throw new Error(`${file} is missing colors.${key}`)
       }

@@ -7,6 +7,8 @@ const requiredFiles = [
   'CHANGELOG.md',
   'LICENSE',
   'icon.png',
+  'assets/preview-dark.png',
+  'assets/preview-light.png',
   '.vscodeignore',
   'themes/santi020k-dark-color-theme.json',
   'themes/santi020k-light-color-theme.json'
@@ -44,7 +46,8 @@ const requiredIgnorePatterns = [
   'eslint.config.mjs',
   'llms.txt',
   'favicon.svg',
-  'icon.svg'
+  'icon.svg',
+  'assets/*.svg'
 ]
 
 const requiredAgentSkillFiles = [
