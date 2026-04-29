@@ -156,6 +156,8 @@ On click, `main.js` fires a circular clip-path animation that expands from the b
 - `twitter:card` is `summary_large_image`; `twitter:site` and `twitter:creator` both set to `@santi020k`
 - `<link rel="canonical">` points to `https://theme.santi020k.com/`
 - `robots` meta allows full indexing with large image preview
+- `robots.txt` present in `/public` to guide crawlers
+- `sitemap.xml` present in `/public` for faster indexing
 - JSON-LD `SoftwareApplication` schema with `downloadUrl`, `offers` (free), and `author`
 - Dual `theme-color` meta tags (one per `prefers-color-scheme` media query)
 
