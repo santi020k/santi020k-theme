@@ -1062,6 +1062,46 @@
       }
     },
     {
+      "name": "Rust lifetimes",
+      "scope": [
+        "entity.name.lifetime.rust",
+        "punctuation.definition.lifetime.rust"
+      ],
+      "settings": {
+        "foreground": "#e8b44a",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Rust attributes",
+      "scope": [
+        "meta.attribute.rust",
+        "punctuation.definition.attribute.rust"
+      ],
+      "settings": {
+        "foreground": "#9070c0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Go built-in functions",
+      "scope": [
+        "support.function.builtin.go"
+      ],
+      "settings": {
+        "foreground": "#89b8c8"
+      }
+    },
+    {
+      "name": "Go package names",
+      "scope": [
+        "entity.name.package.go"
+      ],
+      "settings": {
+        "foreground": "#b890f0"
+      }
+    },
+    {
       "name": "Reset embedded language foreground",
       "scope": [
         "meta.embedded",

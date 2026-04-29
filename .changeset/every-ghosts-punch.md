@@ -13,6 +13,13 @@ Add semantic token modifiers and new VS Code workbench tokens.
 
 All new foreground colors pass WCAG AA (≥ 4.5:1) against their respective editor backgrounds.
 
+**Language-specific TextMate rules (both variants)**
+
+- Rust lifetimes (`entity.name.lifetime.rust`, `punctuation.definition.lifetime.rust`) — amber/italic, making `'a`, `'static` and friends immediately recognisable
+- Rust attributes (`meta.attribute.rust`, `punctuation.definition.attribute.rust`) — muted purple/italic, consistent with decorator styling in other languages
+- Go built-in functions (`support.function.builtin.go`) — teal, distinguishing `make`, `len`, `append` from user-defined functions
+- Go package names (`entity.name.package.go`) — namespace purple, aligning with the existing namespace semantic token
+
 **New workbench tokens (both variants)**
 
 - `editorHoverWidget.highlightForeground` — accent color for matched text inside hover documentation widgets
