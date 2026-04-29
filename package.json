@@ -73,7 +73,7 @@
     "publish:pre": "npm run validate && vsce publish --pre-release",
     "release": "node scripts/publish-registries.mjs",
     "changeset": "changeset",
-    "version-packages": "changeset version",
+    "version-packages": "changeset version && npm install --package-lock-only",
     "site:install": "npm --prefix website ci",
     "site:dev": "cd website && npm run dev",
     "site:build": "cd website && npm run build",
