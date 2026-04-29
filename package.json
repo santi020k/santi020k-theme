@@ -1,7 +1,7 @@
 {
   "name": "santi020k-theme",
   "displayName": "Santi020k Theme",
-  "description": "Dark and light themes with a deep indigo-black palette and muted violet accents — inspired by the Antigravity wallpaper.",
+  "description": "A deep indigo-black dark theme and a purple-tinted light theme for VS Code. Muted violet accents, validated contrast, and semantic highlighting — built for long sessions.",
   "version": "1.2.1",
   "publisher": "santi020k",
   "author": {
@@ -35,11 +35,18 @@
   ],
   "keywords": [
     "theme",
+    "color-theme",
     "dark",
+    "dark-theme",
     "light",
+    "light-theme",
     "purple",
+    "violet",
     "indigo",
     "antigravity",
+    "minimal",
+    "accessibility",
+    "semantic",
     "santi020k"
   ],
   "icon": "icon.png",
