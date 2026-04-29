@@ -30,6 +30,14 @@ const completeColors = {
   'textLink.foreground': '#a78bfa',
   'checkbox.background': '#111827',
   'dropdown.background': '#111827',
+  'button.secondaryBackground': '#261d3a',
+  'button.secondaryForeground': '#c8b8e8',
+  'statusBar.background': '#0e0919',
+  'statusBar.foreground': '#b8a8d8',
+  'tab.activeBackground': '#120c1e',
+  'tab.activeForeground': '#e8e0f0',
+  'terminal.background': '#0e0919',
+  'terminal.foreground': '#e8e0f0',
   'multiDiffEditor.background': '#020617',
   'multiDiffEditor.headerBackground': '#0f172a',
   'multiDiffEditor.border': '#334155',
@@ -148,6 +156,25 @@ describe('theme validation', () => {
     )
 
     expect(() => validateThemes([file])).toThrow(/editor\.foreground on editor\.background contrast/)
+  })
+
+  test('rejects missing color required for contrast check with a descriptive error', () => {
+    const colors = { ...completeColors }
+
+    delete colors['statusBar.foreground']
+
+    expect(() => validateThemes([writeTheme('missing-contrast-color', { ...makeTheme(), colors })])).toThrow(
+      /missing colors\.statusBar\.foreground/
+    )
+  })
+
+  test('applies decorative floor to semantic punctuation tokens', () => {
+    // #686868 on #020617 is ~3.6:1 — passes the 3.0 decorative floor but not the 4.5 WCAG AA floor
+    const theme = makeTheme({ 'editor.background': '#020617', 'editor.foreground': '#f8fafc' })
+
+    theme.semanticTokenColors = { punctuation: '#686868' }
+
+    expect(() => validateThemes([writeTheme('semantic-punctuation', theme)])).not.toThrow()
   })
 
   test('rejects duplicate workbench color keys before JSON parsing hides them', () => {

@@ -22,13 +22,21 @@ const requiredColorKeys = [
   'input.foreground',
   'button.background',
   'button.foreground',
+  'button.secondaryBackground',
+  'button.secondaryForeground',
   'quickInput.background',
   'quickInput.foreground',
   'notifications.background',
   'notifications.foreground',
   'textLink.foreground',
   'checkbox.background',
-  'dropdown.background'
+  'dropdown.background',
+  'statusBar.background',
+  'statusBar.foreground',
+  'tab.activeBackground',
+  'tab.activeForeground',
+  'terminal.background',
+  'terminal.foreground'
 ]
 
 const modernSurfaceColorKeys = [
@@ -195,7 +203,7 @@ const validateTokenContrast = (file, theme) => {
 
     if (!fg || !hexColorPattern.test(fg)) continue
 
-    const decorative = token === 'comment' || token.startsWith('comment.')
+    const decorative = isDecorativeScope(token)
     const minRatio = decorative ? DECORATIVE_TOKEN_MIN_RATIO : SYNTAX_TOKEN_MIN_RATIO
     const ratio = contrastRatio(fg, bg)
 
@@ -275,6 +283,12 @@ export const validateThemes = (files = themeFiles) => {
     }
 
     for (const [foregroundKey, backgroundKey, minimumRatio] of contrastPairs) {
+      if (!theme.colors[foregroundKey] || !theme.colors[backgroundKey]) {
+        throw new Error(
+          `${file} is missing colors required for contrast check: ${[foregroundKey, backgroundKey].filter(k => !theme.colors[k]).join(', ')}`
+        )
+      }
+
       const ratio = contrastRatio(theme.colors[foregroundKey], theme.colors[backgroundKey])
 
       if (ratio < minimumRatio) {

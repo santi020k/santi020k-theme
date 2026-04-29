@@ -77,9 +77,9 @@ const formatTheme = file => {
     const semanticTokenColors = content.semanticTokenColors
     const sortedSemantic = {}
 
-    Object.keys(semanticTokenColors).sort().forEach(key => {
+    for (const key of Object.keys(semanticTokenColors).sort()) {
       sortedSemantic[key] = semanticTokenColors[key]
-    })
+    }
 
     content.semanticTokenColors = sortedSemantic
   }
@@ -132,4 +132,6 @@ const formatTheme = file => {
   console.log(`Formatted ${file}`)
 }
 
-themeFiles.forEach(formatTheme)
+for (const file of themeFiles) {
+  formatTheme(file)
+}
