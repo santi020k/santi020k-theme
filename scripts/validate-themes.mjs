@@ -83,8 +83,29 @@ const contrastPairs = [
   ['input.foreground', 'input.background', 4.5],
   ['button.foreground', 'button.background', 4.5],
   ['quickInput.foreground', 'quickInput.background', 4.5],
-  ['notifications.foreground', 'notifications.background', 4.5]
+  ['notifications.foreground', 'notifications.background', 4.5],
+  ['terminal.foreground', 'terminal.background', 4.5],
+  ['statusBar.foreground', 'statusBar.background', 4.5],
+  ['tab.activeForeground', 'tab.activeBackground', 4.5],
+  ['button.secondaryForeground', 'button.secondaryBackground', 4.5]
 ]
+
+// Minimum contrast for syntax token foreground against editor.background.
+// Decorative tokens (comments, punctuation) get a lower floor since they are
+// intentionally de-emphasised; all other syntax tokens must meet WCAG AA.
+const DECORATIVE_TOKEN_MIN_RATIO = 3
+const SYNTAX_TOKEN_MIN_RATIO = 4.5
+
+const isDecorativeScope = scope => (
+  scope === 'comment' ||
+  scope.startsWith('comment.') ||
+  scope === 'punctuation' ||
+  scope.startsWith('punctuation.') ||
+  // Blockquotes are intentionally secondary content in markdown editors
+  scope === 'markup.quote' ||
+  // Deprecated markers rely on strikethrough as their primary visual signal
+  scope === 'invalid.deprecated'
+)
 
 const hexColorPattern = /^#(?:[0-9a-f]{6}|[0-9a-f]{8})$/i
 
@@ -113,6 +134,57 @@ const contrastRatio = (foreground, background) => {
   const darker = Math.min(luminance(foreground), luminance(background))
 
   return (lighter + 0.05) / (darker + 0.05)
+}
+
+const validateTokenContrast = (file, theme) => {
+  const bg = theme.colors['editor.background']
+  const errors = []
+
+  for (const rule of (theme.tokenColors || [])) {
+    const fg = rule.settings?.foreground
+
+    if (!fg || !hexColorPattern.test(fg)) continue
+
+    let scopes
+
+    if (Array.isArray(rule.scope)) {
+      scopes = rule.scope
+    } else if (rule.scope) {
+      scopes = [rule.scope]
+    } else {
+      scopes = []
+    }
+
+    const decorative = scopes.length > 0 && scopes.every(s => isDecorativeScope(s))
+    const minRatio = decorative ? DECORATIVE_TOKEN_MIN_RATIO : SYNTAX_TOKEN_MIN_RATIO
+    const ratio = contrastRatio(fg, bg)
+
+    if (ratio < minRatio) {
+      errors.push(
+        `"${rule.name || scopes.join(', ')}" foreground ${fg}: ${ratio.toFixed(2)} (min ${minRatio})`
+      )
+    }
+  }
+
+  for (const [token, value] of Object.entries(theme.semanticTokenColors || {})) {
+    const fg = typeof value === 'string' ? value : value?.foreground
+
+    if (!fg || !hexColorPattern.test(fg)) continue
+
+    const decorative = token === 'comment' || token.startsWith('comment.')
+    const minRatio = decorative ? DECORATIVE_TOKEN_MIN_RATIO : SYNTAX_TOKEN_MIN_RATIO
+    const ratio = contrastRatio(fg, bg)
+
+    if (ratio < minRatio) {
+      errors.push(
+        `semantic "${token}" foreground ${fg}: ${ratio.toFixed(2)} (min ${minRatio})`
+      )
+    }
+  }
+
+  if (errors.length > 0) {
+    throw new Error(`${file} has token contrast violations:\n  ${errors.join('\n  ')}`)
+  }
 }
 
 const findDuplicateColorKeys = raw => {
@@ -187,6 +259,8 @@ export const validateThemes = (files = themeFiles) => {
         )
       }
     }
+
+    validateTokenContrast(file, theme)
   }
 
   return files.length

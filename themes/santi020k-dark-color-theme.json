@@ -596,7 +596,7 @@
     },
     "class": "#c090ff",
     "comment": {
-      "foreground": "#584878",
+      "foreground": "#7060a8",
       "italic": true
     },
     "decorator": "#c090ff",
@@ -630,7 +630,7 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#584878",
+        "foreground": "#7060a8",
         "fontStyle": "italic"
       }
     },
@@ -837,6 +837,24 @@
       ],
       "settings": {
         "foreground": "#b890f0"
+      }
+    },
+    {
+      "name": "JSON string values",
+      "scope": [
+        "string.quoted.double.json"
+      ],
+      "settings": {
+        "foreground": "#89b8c8"
+      }
+    },
+    {
+      "name": "JSON numbers",
+      "scope": [
+        "constant.numeric.json"
+      ],
+      "settings": {
+        "foreground": "#e8b44a"
       }
     },
     {

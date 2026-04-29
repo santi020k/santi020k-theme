@@ -840,6 +840,24 @@
       }
     },
     {
+      "name": "JSON string values",
+      "scope": [
+        "string.quoted.double.json"
+      ],
+      "settings": {
+        "foreground": "#1a6a3e"
+      }
+    },
+    {
+      "name": "JSON numbers",
+      "scope": [
+        "constant.numeric.json"
+      ],
+      "settings": {
+        "foreground": "#b05500"
+      }
+    },
+    {
       "name": "Regex",
       "scope": [
         "string.regexp"
