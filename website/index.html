@@ -2,24 +2,74 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Anti-FOUC: sets data-theme before CSS renders to prevent a flash -->
+    <script>
+      (function () {
+        var s = localStorage.getItem('theme')
+        var pref = s === 'light' || s === 'dark'
+          ? s
+          : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        document.documentElement.setAttribute('data-theme', pref)
+      })()
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="santi020k Theme is a purple-forward VS Code theme with coordinated dark and light variants."
-    />
-    <meta name="theme-color" content="#120c1e" />
-    <meta property="og:title" content="santi020k Theme" />
-    <meta
-      property="og:description"
-      content="A calm, purple-forward VS Code theme with dark and light variants."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://theme.santi020k.com" />
-    <meta property="og:image" content="https://theme.santi020k.com/icon-512.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:image" content="https://theme.santi020k.com/icon-512.png" />
+    <title>santi020k Theme — VS Code Color Theme</title>
+    <!-- Primary meta -->
+    <meta name="description" content="A purple-forward VS Code color theme with dark and light variants. Deep indigo-black depth, violet accents, and syntax colors built for long sessions. Free on the VS Code Marketplace." />
+    <meta name="author" content="Santiago Molina" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://theme.santi020k.com/" />
+    <!-- Icons -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>santi020k Theme</title>
+    <!-- Theme color — separate media queries so the browser chrome matches -->
+    <meta name="theme-color" content="#120c1e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://theme.santi020k.com/" />
+    <meta property="og:site_name" content="santi020k Theme" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="santi020k Theme — VS Code Color Theme" />
+    <meta property="og:description" content="A purple-forward VS Code color theme with dark and light variants. Deep indigo-black depth, violet accents, and syntax that stays expressive without shouting. Free." />
+    <meta property="og:image" content="https://theme.santi020k.com/icon-512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="santi020k Theme — terminal mark logo in purple on dark background" />
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@santi020k" />
+    <meta name="twitter:creator" content="@santi020k" />
+    <meta name="twitter:url" content="https://theme.santi020k.com/" />
+    <meta name="twitter:title" content="santi020k Theme — VS Code Color Theme" />
+    <meta name="twitter:description" content="A purple-forward VS Code color theme with dark and light variants. Free on the VS Code Marketplace." />
+    <meta name="twitter:image" content="https://theme.santi020k.com/icon-512.png" />
+    <meta name="twitter:image:alt" content="santi020k Theme logo" />
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "santi020k Theme",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Color Theme",
+      "operatingSystem": "Windows, macOS, Linux",
+      "softwareVersion": "1.1.0",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme",
+      "url": "https://theme.santi020k.com",
+      "description": "A purple-forward VS Code color theme with dark and light variants built around a deep indigo-black palette and muted violet accents.",
+      "screenshot": "https://theme.santi020k.com/icon-512.png",
+      "author": {
+        "@type": "Person",
+        "name": "Santiago Molina",
+        "url": "https://santi020k.com",
+        "sameAs": ["https://github.com/santi020k", "https://twitter.com/santi020k"]
+      }
+    }
+    </script>
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
@@ -31,6 +81,15 @@
         <a href="#variants">Variants</a>
         <a href="#palette">Palette</a>
         <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
+        <button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
       </nav>
     </header>
 
@@ -53,12 +112,12 @@
           </div>
         </div>
 
-        <div class="editor-preview" aria-label="Preview of the santi020k dark theme">
+        <div class="editor-preview" aria-label="Preview of the santi020k theme">
           <div class="preview-topbar">
             <span></span>
             <span></span>
             <span></span>
-            <strong>santi020k-dark-color-theme.json</strong>
+            <strong class="preview-filename">santi020k-dark-color-theme.json</strong>
           </div>
           <div class="preview-body">
             <aside aria-hidden="true">
@@ -72,9 +131,9 @@
             </aside>
             <pre><code><span class="muted">// focused without glare</span>
 <span class="keyword">const</span> theme = {
-  name: <span class="string">'santi020k dark'</span>,
-  background: <span class="string">'#120c1e'</span>,
-  accent: <span class="string">'#c090ff'</span>,
+  name: <span class="string preview-theme-name">'santi020k dark'</span>,
+  background: <span class="string preview-bg-color">'#120c1e'</span>,
+  accent: <span class="string preview-accent-color">'#c090ff'</span>,
   mood: <span class="function">compose</span>(<span class="string">'calm'</span>, <span class="string">'precise'</span>)
 }</code></pre>
           </div>
