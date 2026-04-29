@@ -3,33 +3,9 @@ import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { afterEach, describe, expect, test } from 'vitest'
 
-import { checkMarketplaceReadiness } from '../scripts/check-marketplace-readiness.mjs'
+import { checkMarketplaceReadiness, requiredIgnorePatterns } from '../scripts/check-marketplace-readiness.mjs'
 
 const tempDirs = []
-
-const requiredIgnorePatterns = [
-  '.github/**',
-  '.changeset/**',
-  '.agents/**',
-  '.agent/**',
-  '.claude/**',
-  '.cursor/**',
-  '.windsurf/**',
-  '.copilot/**',
-  '.aider/**',
-  '.npmrc',
-  '.env*',
-  'node_modules/**',
-  'website/**',
-  'scripts/**',
-  'tests/**',
-  'AGENTS.md',
-  'eslint.config.mjs',
-  'llms.txt',
-  'favicon.svg',
-  'icon.svg',
-  'assets/*.svg'
-]
 
 const packageJson = {
   name: 'santi020k-theme',
@@ -120,6 +96,10 @@ const createFixturePackage = ({
     writeFile(root, file)
   }
 
+  writeFile(
+    root, 'website/index.html', `<script type="application/ld+json">{ "softwareVersion": "${pkg.version}" }</script>`
+  )
+
   writeFile(root, '.vscodeignore', `${ignorePatterns.join('\n')}\n`)
 
   writeFile(root, 'package.json', JSON.stringify(pkg, null, 2))
@@ -171,6 +151,18 @@ describe('marketplace readiness', () => {
   test('rejects mismatched package-lock versions', () => {
     expect(() => checkMarketplaceReadiness(createFixturePackage({ lockVersion: '1.1.0' }))).toThrow(
       /package-lock\.json version does not match package\.json/
+    )
+  })
+
+  test('rejects mismatched website structured-data version', () => {
+    const root = createFixturePackage()
+
+    writeFile(
+      root, 'website/index.html', '<script type="application/ld+json">{ "softwareVersion": "0.0.0" }</script>'
+    )
+
+    expect(() => checkMarketplaceReadiness(root)).toThrow(
+      /website JSON-LD softwareVersion must match package\.json version/
     )
   })
 
