@@ -1,6 +1,6 @@
 # Santi020k Theme
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme?label=VS%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
+[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version-short/santi020k.santi020k-theme.svg)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
 [![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX)](https://open-vsx.org/extension/santi020k/santi020k-theme)
 [![Validate](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
 
