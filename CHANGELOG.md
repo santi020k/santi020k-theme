@@ -1,5 +1,51 @@
 # Changelog
 
+## 1.3.0
+
+### Minor Changes
+
+- [#5](https://github.com/santi020k/santi020k-theme/pull/5) [`19cefc9`](https://github.com/santi020k/santi020k-theme/commit/19cefc973f544443318284767e3ee9a45ca2a334) Thanks [@santi020k](https://github.com/santi020k)! - Add automated token contrast validation and fix accessibility issues.
+
+  - **validate-themes**: token contrast check — all `tokenColors` and `semanticTokenColors` foregrounds are now checked against `editor.background` at runtime (3:1 for comments/punctuation/blockquotes, 4.5:1 for all other syntax tokens)
+  - **validate-themes**: expand workbench contrast pairs to include `terminal`, `statusBar`, `tab.active`, and `button.secondary` foreground/background pairs
+  - **Dark theme comments**: raise from `[#584878](https://github.com/santi020k/santi020k-theme/issues/584878)` (2.38:1) to `#7060a8` (3.58:1) so they pass the 3:1 floor and are readable in long sessions
+  - **JSON color differentiation** (both themes): string values and numbers now use distinct hues instead of the same purple family — dark: strings → cyan `#89b8c8`, numbers → amber `#e8b44a`; light: strings → forest green `#1a6a3e`, numbers → burnt amber `#b05500`; keys retain their purple
+
+- [#5](https://github.com/santi020k/santi020k-theme/pull/5) [`19cefc9`](https://github.com/santi020k/santi020k-theme/commit/19cefc973f544443318284767e3ee9a45ca2a334) Thanks [@santi020k](https://github.com/santi020k)! - 1.3.0 — Contrast corrections and expanded token coverage
+
+  **Contrast fixes (WCAG)**
+
+  - Dark: raise `activityBar.inactiveForeground` from [#584878](https://github.com/santi020k/santi020k-theme/issues/584878) to #6b5a90 (2.44→3.0:1 on activity bar bg)
+  - Dark: raise `terminal.ansiBlack` from #6b5a90 to #7868a0 for readable ANSI output
+  - Light: raise `tab.inactiveForeground`, `activityBar.inactiveForeground`, `breadcrumb.foreground` from #9880c0 to #7a5fb0 (2.60→3.1:1 on lavender surfaces)
+  - Light: raise `panelTitle.inactiveForeground` from #9880c0 to #7060a8 (2.94→3.1:1)
+
+  **New workbench token coverage**
+
+  - `editorSuggestWidget.selectedForeground` (both variants)
+  - `chat.responseCodeBackground` — themed code blocks in Copilot chat
+  - `scm.historyItemHover{Additions,Deletions,Label}Foreground` — SCM graph hover (VS Code 1.89+)
+  - `textBlockQuote.{background,border}` — Markdown preview blockquotes
+  - `welcomePage.progress.{background,foreground}` + `walkthrough.stepTitle.foreground`
+  - `list.focusOutline` / `list.inactiveFocusOutline` — keyboard focus indicators
+  - `testing.messageContentForeground` — test output panel text
+  - `editorGhostText.border` — explicit transparent border for inline suggestions
+
+  **Syntax / TextMate improvements**
+
+  - `markup.strikethrough` — styled in both variants
+  - `variable.other.constant` — non-semantic constant fallback (italic accent)
+  - TOML / INI section header scopes
+  - `meta.embedded` reset rule for correct embedded-language foreground
+
+### Patch Changes
+
+- [#5](https://github.com/santi020k/santi020k-theme/pull/5) [`19cefc9`](https://github.com/santi020k/santi020k-theme/commit/19cefc973f544443318284767e3ee9a45ca2a334) Thanks [@santi020k](https://github.com/santi020k)! - Improve release validation by syncing website structured-data versions during release versioning, enforcing package/website version parity, cleaning up lint configuration, making alpha-aware contrast checks more accurate, and making npm audit blocking consistently.
+
+- [`22d170d`](https://github.com/santi020k/santi020k-theme/commit/22d170de5fd00b58e6f47dd80ceb749e550cca5f) Thanks [@santi020k](https://github.com/santi020k)! - Fix brand casing across README, website metadata, and extension display name. Update icons and favicons with correct branding labels.
+
+- [`16483d0`](https://github.com/santi020k/santi020k-theme/commit/16483d017b7d42702f57a69cf907009b94a7e99d) Thanks [@santi020k](https://github.com/santi020k)! - chore: improve theme JSON readability with categorization, sorting, and comments
+
 ## 1.2.1
 
 ### Patch Changes
