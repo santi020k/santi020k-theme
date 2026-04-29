@@ -139,6 +139,17 @@ describe('theme validation', () => {
     expect(() => validateThemes([file])).toThrow(/editor\.foreground on editor\.background contrast/)
   })
 
+  test('rejects low contrast after alpha foreground compositing', () => {
+    const file = writeTheme(
+      'low-contrast-alpha', makeTheme({
+        'editor.background': '#ffffff',
+        'editor.foreground': '#00000020'
+      })
+    )
+
+    expect(() => validateThemes([file])).toThrow(/editor\.foreground on editor\.background contrast/)
+  })
+
   test('rejects duplicate workbench color keys before JSON parsing hides them', () => {
     const file = writeTheme('duplicate-color', makeTheme())
 

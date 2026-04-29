@@ -48,7 +48,7 @@ const categories = [
   { name: 'Other', pattern: /.*/ }
 ]
 
-function formatTheme(file) {
+const formatTheme = file => {
   const raw = readFileSync(file, 'utf8')
   // Strip comments before parsing
   const cleanRaw = raw.replace(/^\s*\/\/.*$/gm, '')
@@ -106,12 +106,14 @@ function formatTheme(file) {
 
         for (const key of categoryKeys) {
           // Find the exact line in the stringified JSON
-          const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-          const lineRegex = new RegExp(`^\\s*"${escapedKey}"\\s*:.*$`, 'm')
-          const lineMatch = colorsBlock.match(lineRegex)
+          const serializedKey = JSON.stringify(key)
+
+          const lineMatch = colorsBlock
+            .split('\n')
+            .find(line => line.trimStart().startsWith(`${serializedKey}:`))
 
           if (lineMatch) {
-            newColorsBlock += `    ${lineMatch[0].trim().replace(/,$/, '')},\n`
+            newColorsBlock += `    ${lineMatch.trim().replace(/,$/, '')},\n`
           }
 
           usedKeysInBlock.add(key)

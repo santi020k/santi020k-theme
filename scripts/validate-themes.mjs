@@ -111,16 +111,32 @@ const hexColorPattern = /^#(?:[0-9a-f]{6}|[0-9a-f]{8})$/i
 
 const parseHex = hex => {
   const value = hex.slice(1, 7)
+  const alpha = hex.length === 9 ? Number.parseInt(hex.slice(7, 9), 16) / 255 : 1
 
-  return [
-    Number.parseInt(value.slice(0, 2), 16),
-    Number.parseInt(value.slice(2, 4), 16),
-    Number.parseInt(value.slice(4, 6), 16)
-  ]
+  return {
+    alpha,
+    rgb: [
+      Number.parseInt(value.slice(0, 2), 16),
+      Number.parseInt(value.slice(2, 4), 16),
+      Number.parseInt(value.slice(4, 6), 16)
+    ]
+  }
 }
 
-const luminance = hex => {
-  const [red, green, blue] = parseHex(hex).map(channel => {
+const compositeRgb = (foreground, background) => foreground.rgb.map((channel, index) => (
+  Math.round(channel * foreground.alpha + background.rgb[index] * (1 - foreground.alpha))
+))
+
+const resolveRgb = (foreground, background) => {
+  if (foreground.alpha === 1) {
+    return foreground.rgb
+  }
+
+  return compositeRgb(foreground, background)
+}
+
+const luminance = rgb => {
+  const [red, green, blue] = rgb.map(channel => {
     const value = channel / 255
 
     return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4
@@ -130,8 +146,16 @@ const luminance = hex => {
 }
 
 const contrastRatio = (foreground, background) => {
-  const lighter = Math.max(luminance(foreground), luminance(background))
-  const darker = Math.min(luminance(foreground), luminance(background))
+  const backgroundColor = parseHex(background)
+
+  const resolvedBackground = {
+    alpha: 1,
+    rgb: resolveRgb(backgroundColor, { alpha: 1, rgb: [255, 255, 255] })
+  }
+
+  const resolvedForeground = resolveRgb(parseHex(foreground), resolvedBackground)
+  const lighter = Math.max(luminance(resolvedForeground), luminance(resolvedBackground.rgb))
+  const darker = Math.min(luminance(resolvedForeground), luminance(resolvedBackground.rgb))
 
   return (lighter + 0.05) / (darker + 0.05)
 }

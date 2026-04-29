@@ -120,6 +120,10 @@ const createFixturePackage = ({
     writeFile(root, file)
   }
 
+  writeFile(
+    root, 'website/index.html', `<script type="application/ld+json">{ "softwareVersion": "${pkg.version}" }</script>`
+  )
+
   writeFile(root, '.vscodeignore', `${ignorePatterns.join('\n')}\n`)
 
   writeFile(root, 'package.json', JSON.stringify(pkg, null, 2))
@@ -171,6 +175,18 @@ describe('marketplace readiness', () => {
   test('rejects mismatched package-lock versions', () => {
     expect(() => checkMarketplaceReadiness(createFixturePackage({ lockVersion: '1.1.0' }))).toThrow(
       /package-lock\.json version does not match package\.json/
+    )
+  })
+
+  test('rejects mismatched website structured-data version', () => {
+    const root = createFixturePackage()
+
+    writeFile(
+      root, 'website/index.html', '<script type="application/ld+json">{ "softwareVersion": "0.0.0" }</script>'
+    )
+
+    expect(() => checkMarketplaceReadiness(root)).toThrow(
+      /website JSON-LD softwareVersion must match package\.json version/
     )
   })
 

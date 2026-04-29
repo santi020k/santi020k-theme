@@ -63,6 +63,12 @@ const requiredAgentSkillFiles = [
   '.agents/skills/repo-ci-triager/SKILL.md'
 ]
 
+const getWebsiteSoftwareVersion = html => {
+  const match = html.match(/"softwareVersion"\s*:\s*"([^"]+)"/)
+
+  return match?.[1]
+}
+
 export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
   const resolvePath = path => join(rootDir, path)
   const readJson = path => JSON.parse(readFileSync(resolvePath(path), 'utf8'))
@@ -81,6 +87,7 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
 
   const pkg = readJson('package.json')
   const lock = readJson('package-lock.json')
+  const websiteIndex = readFileSync(resolvePath('website/index.html'), 'utf8')
 
   for (const field of requiredPackageFields) {
     if (!pkg[field]) {
@@ -114,6 +121,10 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
 
   if (lock.version !== pkg.version || lock.packages?.['']?.version !== pkg.version) {
     throw new Error('package-lock.json version does not match package.json')
+  }
+
+  if (getWebsiteSoftwareVersion(websiteIndex) !== pkg.version) {
+    throw new Error('website JSON-LD softwareVersion must match package.json version')
   }
 
   if (!pkg.contributes?.themes || pkg.contributes.themes.length !== 2) {
