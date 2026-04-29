@@ -153,7 +153,9 @@ const validateHexMap = (file, colors) => {
 export const validateThemes = (files = themeFiles) => {
   for (const file of files) {
     const raw = readFileSync(file, 'utf8')
-    const theme = JSON.parse(raw)
+    // Strip comments before parsing
+    const cleanRaw = raw.replace(/^\s*\/\/.*$/gm, '')
+    const theme = JSON.parse(cleanRaw)
     const duplicateColorKeys = findDuplicateColorKeys(raw)
 
     if (!theme.name || !theme.type || !theme.colors || !theme.tokenColors) {
