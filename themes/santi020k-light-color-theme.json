@@ -51,6 +51,7 @@
     // Editor Widgets
     "editorHoverWidget.background": "#f0edf9",
     "editorHoverWidget.border": "#d3cde6",
+    "editorHoverWidget.highlightForeground": "#6319be",
     "editorSuggestWidget.background": "#f0edf9",
     "editorSuggestWidget.border": "#d3cde6",
     "editorSuggestWidget.foreground": "#302e36",
@@ -61,6 +62,11 @@
     "editorWidget.border": "#d3cde6",
     "editorWidget.foreground": "#302e36",
     "editorWidget.resizeBorder": "#6319be",
+    // Editor Action List
+    "editorActionList.background": "#f0edf9",
+    "editorActionList.focusBackground": "#e3dff0",
+    "editorActionList.focusForeground": "#302e36",
+    "editorActionList.foreground": "#403850",
     // Editor Sticky Scroll
     "editorStickyScroll.background": "#f8f6fd",
     "editorStickyScroll.border": "#d3cde6",
@@ -599,14 +605,26 @@
   },
   "semanticHighlighting": true,
   "semanticTokenColors": {
+    "*.abstract": {
+      "italic": true
+    },
+    "*.async": {
+      "foreground": "#0870a0"
+    },
     "*.declaration": {
       "bold": true
+    },
+    "*.defaultLibrary": {
+      "foreground": "#4a1a98"
     },
     "*.deprecated": {
       "strikethrough": true
     },
     "*.readonly": {
       "italic": true
+    },
+    "*.static": {
+      "bold": true
     },
     "class": "#5a18a8",
     "comment": {
