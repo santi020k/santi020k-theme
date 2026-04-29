@@ -135,11 +135,9 @@ if (toggle) {
 
     isAnimating = true
 
-    syncToggle(toggle)
-
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setTheme(newTheme)
-
+      syncToggle(toggle)
       updatePreview()
 
       isAnimating = false
@@ -148,7 +146,7 @@ if (toggle) {
     }
 
     circularReveal(toggle, isDark, newTheme)
-
+    syncToggle(toggle)
     updatePreview()
 
     setTimeout(() => {
