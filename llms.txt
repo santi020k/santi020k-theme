@@ -1,4 +1,4 @@
-# santi020k Theme
+# Santi020k Theme
 
 > A VS Code color theme extension with coordinated dark and light variants, a preview website, Changesets releases, Visual Studio Marketplace publishing, and Open VSX publishing.
 

@@ -33,7 +33,7 @@ const requiredIgnorePatterns = [
 
 const packageJson = {
   name: 'santi020k-theme',
-  displayName: 'santi020k Theme',
+  displayName: 'Santi020k Theme',
   description: 'Fixture package',
   version: '1.2.0',
   publisher: 'santi020k',

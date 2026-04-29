@@ -1,4 +1,4 @@
-# santi020k Theme
+# Santi020k Theme
 
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
 [![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX)](https://open-vsx.org/extension/santi020k/santi020k-theme)
@@ -60,7 +60,7 @@ Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving al
 
 1. Open VS Code (or any compatible fork)
 2. Go to **Extensions** (`Cmd+Shift+X`)
-3. Search for **santi020k Theme**
+3. Search for **Santi020k Theme**
 4. Click **Install**
 5. Open **Preferences: Color Theme** (`Cmd+K Cmd+T`) and select **santi020k dark** or **santi020k light**
 
