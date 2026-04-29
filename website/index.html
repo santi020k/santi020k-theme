@@ -56,7 +56,7 @@
       "applicationCategory": "DeveloperApplication",
       "applicationSubCategory": "Color Theme",
       "operatingSystem": "Windows, macOS, Linux",
-      "softwareVersion": "1.1.0",
+      "softwareVersion": "1.2.0",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme",
       "url": "https://theme.santi020k.com",
@@ -79,8 +79,13 @@
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#variants">Variants</a>
+        <a href="#screenshots">Preview</a>
+        <a href="#why">Why</a>
+        <a href="#editors">Editors</a>
         <a href="#palette">Palette</a>
         <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
+        <span class="separator" aria-hidden="true"></span>
+        <a href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer">Open VSX</a>
         <button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
           <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="4"/>
@@ -104,10 +109,13 @@
           </p>
           <div class="actions" aria-label="Theme actions">
             <a class="button button-primary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">
-              Install theme
+              VS Marketplace
+            </a>
+            <a class="button button-primary" href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer">
+              Open VSX
             </a>
             <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">
-              View source
+              GitHub
             </a>
           </div>
         </div>
@@ -156,6 +164,94 @@
             <h3>santi020k light</h3>
             <span>#f8f6fd</span>
           </article>
+        </div>
+      </section>
+
+      <section id="screenshots" class="site-shell screenshots-section">
+        <div>
+          <p class="eyebrow">Preview</p>
+          <h2>See every surface, both modes.</h2>
+          <p class="section-lede">Real editor layout — activity bar, sidebar, tabs, minimap, and terminal — styled exactly as they appear in VS Code.</p>
+        </div>
+        <div class="screenshot-frame">
+          <img class="screenshot-img screenshot-dark" src="/preview-dark.png" alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1280" height="720" loading="lazy" />
+          <img class="screenshot-img screenshot-light" src="/preview-light.png" alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1280" height="720" loading="lazy" />
+        </div>
+      </section>
+
+      <section id="why" class="site-shell why-section">
+        <div>
+          <p class="eyebrow">Philosophy</p>
+          <h2>Designed for hours, not screenshots.</h2>
+          <p class="section-lede">Every decision in the palette came from a question: does this help you read code faster?</p>
+        </div>
+        <div class="why-grid">
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+            </div>
+            <h3>No neon</h3>
+            <p>Saturated syntax colors destroy contrast at 2 AM. Every hue is pulled back until it guides the eye without demanding attention.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+            </div>
+            <h3>Keywords recede</h3>
+            <p>Control-flow keywords are muted italic — present but quiet. Your identifiers and values carry the visual weight because they carry the logic.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>Semantic-aware</h3>
+            <p>Semantic highlighting is on by default. Class names, type parameters, and mutable variables get distinct shades — no extra config needed.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><polyline points="7 8 12 13 17 8"/></svg>
+            </div>
+            <h3>Terminal included</h3>
+            <p>The 16 ANSI colors are calibrated to the same violet palette. Shell output reads like part of the editor, not an afterthought.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="editors" class="site-shell editors-section">
+        <div>
+          <p class="eyebrow">Works with</p>
+          <h2>Every VS Code-based editor.</h2>
+          <p class="section-lede">Install once from the Marketplace or Open VSX — the theme loads in all editors built on VS Code's extension API.</p>
+        </div>
+        <div class="editor-chips">
+          <a class="editor-chip" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer" aria-label="Install in Visual Studio Code">
+            <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+            <span>VS Code</span>
+          </a>
+          <a class="editor-chip" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer" aria-label="Install in Cursor">
+            <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M4.5 2.5L12 21.5L19.5 2.5H16L12 13.5L8 2.5H4.5Z"/></svg>
+            <span>Cursor</span>
+          </a>
+          <a class="editor-chip" href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer" aria-label="Install in VSCodium">
+            <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M17.061.852a1.495 1.495 0 0 0-1.225.266L6.01 9.272l-4.137-3.13a1.009 1.009 0 0 0-1.278.057L.33 7.387a1.01 1.01 0 0 0 0 1.49L3.906 12 .33 15.123a1.01 1.01 0 0 0 0 1.49l.264.188a1.009 1.009 0 0 0 1.278.057l4.137-3.13 9.826 8.153a1.494 1.494 0 0 0 1.705.29l4.942-2.386A1.507 1.507 0 0 0 23.332 18V6a1.507 1.507 0 0 0-.85-1.355L17.54.975a1.46 1.46 0 0 0-.48-.123zm-1.09 16.32L9.208 12l6.764-5.172z"/></svg>
+            <span>VSCodium</span>
+          </a>
+          <a class="editor-chip" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer" aria-label="Install in Windsurf">
+            <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18c3-6 7-10 12-10 2 0 4 .8 5 2"/><path d="M3 18c2-3 5-5 9-5 3 0 6 1 8 3"/><circle cx="12" cy="4" r="2"/></svg>
+            <span>Windsurf</span>
+          </a>
+          <a class="editor-chip" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer" aria-label="Install in GitHub Codespaces">
+            <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Codespaces</span>
+          </a>
+          <a class="editor-chip" href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer" aria-label="Install in Gitpod">
+            <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M23.988 11.774A12.148 12.148 0 0 0 12.045 0 12.06 12.06 0 0 0 1.726 6.302L8.89 19.335a3.64 3.64 0 0 0 6.356-.009l1.591-2.882L9.79 5.375a6.522 6.522 0 0 1 6.523.05 6.455 6.455 0 0 1 3.235 5.597 6.455 6.455 0 0 1-6.44 6.47c-.04 0-.084-.002-.126-.004l-1.575 2.854a9.406 9.406 0 0 0 .839.038c5.515 0 9.986-4.472 9.986-9.988 0-.206-.006-.41-.018-.613l-.006-.005Z"/></svg>
+            <span>Gitpod</span>
+          </a>
+          <a class="editor-chip" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer" aria-label="Install in Positron">
+            <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <span>Positron</span>
+          </a>
         </div>
       </section>
 

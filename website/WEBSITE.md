@@ -113,6 +113,15 @@ Decorative code widget in the hero. Always shows the active theme variant (filen
 ### `.variant-card`
 Shows the dark and light theme thumbnails side-by-side. Always styled with their respective theme colors — `.variant-dark` is always dark, `.variant-light` is always light, regardless of the current site theme. Both have hardcoded color overrides that override the inherited `var(--brand)` eyebrow color.
 
+### `.screenshots-section`
+Two-column grid (left: heading, right: screenshot frame). The frame stacks `.screenshot-dark` (default visible) and `.screenshot-light` (position: absolute, opacity: 0) on top of each other. CSS switches visibility based on `[data-theme]` on `<html>` — no JS required. Images (`preview-dark.png`, `preview-light.png`, 1280×720) live in `website/public/`.
+
+### `.why-grid`
+A 2×2 grid of `.why-card` articles inside the `#why` section. Each card has a `.why-icon` (44×44 rounded square, brand color), an `h3`, and a short `p`. Cards show the `--brand` border on hover.
+
+### `.editor-chips`
+Flex-wrap row of `.editor-chip` anchors inside the `#editors` section. Each chip has an inline SVG icon (28×28) and a text label. Chips link to Marketplace or Open VSX depending on which registry the IDE supports. Current editors: VS Code, Cursor, VSCodium (Open VSX), Windsurf, GitHub Codespaces, Gitpod (Open VSX), Positron.
+
 ### `.swatches`
 A row of pill-shaped color chips. Each chip uses a CSS variable `--swatch` (set inline) for the circle fill. The pill border and text use theme tokens, the circle border uses `--swatch-circle-border`.
 

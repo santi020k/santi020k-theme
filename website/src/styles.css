@@ -143,6 +143,13 @@ a:focus-visible,
   font-weight: 700;
 }
 
+.nav-links .separator {
+  width: 1px;
+  height: 14px;
+  background: var(--line);
+  opacity: 0.5;
+}
+
 .nav-links a:hover,
 .site-footer a:hover {
   color: var(--brand);
@@ -282,7 +289,7 @@ h3 {
 
 .button-primary {
   background: var(--brand-solid);
-  color: var(--ink);
+  color: #ffffff;
 }
 
 .button-primary:hover {
@@ -393,6 +400,160 @@ pre {
 .function {
   color: var(--preview-function);
   transition: color 0.3s;
+}
+
+/* ─── Section lede ───────────────────────────────────────────────────────── */
+.section-lede {
+  max-width: 580px;
+  margin-top: 12px;
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  line-height: 1.7;
+}
+
+/* ─── Screenshots ─────────────────────────────────────────────────────────── */
+.screenshots-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  padding-block: 80px;
+  border-top: 1px solid var(--section-divider);
+}
+
+.screenshot-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 20px 60px rgb(5 2 10 / 0.32);
+}
+
+.screenshot-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.4s ease;
+}
+
+.screenshot-dark {
+  position: relative;
+}
+
+.screenshot-light {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+:root[data-theme="light"] .screenshot-dark {
+  opacity: 0;
+}
+
+:root[data-theme="light"] .screenshot-light {
+  opacity: 1;
+}
+
+/* ─── Why section ─────────────────────────────────────────────────────────── */
+.why-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  padding-block: 80px;
+  border-top: 1px solid var(--section-divider);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.why-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  background: var(--surface);
+  transition: border-color 0.2s;
+}
+
+.why-card:hover {
+  border-color: var(--brand);
+}
+
+.why-icon {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--surface-strong);
+  color: var(--brand);
+  margin-bottom: 16px;
+}
+
+.why-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.why-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+/* ─── Editors section ─────────────────────────────────────────────────────── */
+.editors-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  padding-block: 80px;
+  border-top: 1px solid var(--section-divider);
+}
+
+.editor-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-content: start;
+}
+
+.editor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0 18px 0 14px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.editor-chip svg {
+  flex-shrink: 0;
+  color: var(--ink-muted);
+  transition: color 0.2s;
+}
+
+.editor-chip:hover {
+  border-color: var(--brand);
+  color: var(--ink);
+  background: var(--surface-strong);
+}
+
+.editor-chip:hover svg {
+  color: var(--brand);
 }
 
 /* ─── Sections ────────────────────────────────────────────────────────────── */
@@ -522,7 +683,10 @@ pre {
 
   .hero,
   .section-grid,
-  .palette-section {
+  .palette-section,
+  .screenshots-section,
+  .why-section,
+  .editors-section {
     grid-template-columns: 1fr;
   }
 
@@ -537,7 +701,8 @@ pre {
     width: min(100% - 24px, 1120px);
   }
 
-  .variant-grid {
+  .variant-grid,
+  .why-grid {
     grid-template-columns: 1fr;
   }
 
@@ -567,7 +732,11 @@ pre {
   .editor-preview,
   .preview-topbar,
   .preview-body aside,
-  .preview-body aside .active {
+  .preview-body aside .active,
+  .screenshot-img,
+  .why-card,
+  .editor-chip,
+  .editor-chip svg {
     transition: none;
   }
 }
