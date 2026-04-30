@@ -77,15 +77,12 @@
         <img src="/favicon.svg" alt="" width="36" height="36" />
         <span>Santi020k Theme</span>
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#variants">Variants</a>
-        <a href="#screenshots">Preview</a>
-        <a href="#why">Why</a>
-        <a href="#editors">Editors</a>
-        <a href="#palette">Palette</a>
-        <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
-        <span class="separator" aria-hidden="true"></span>
-        <a href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer">Open VSX</a>
+      <div class="header-actions">
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+          <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
         <button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
           <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="4"/>
@@ -95,6 +92,16 @@
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
+      </div>
+      <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
+        <a href="#variants">Variants</a>
+        <a href="#screenshots">Preview</a>
+        <a href="#why">Why</a>
+        <a href="#editors">Editors</a>
+        <a href="#palette">Palette</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
+        <span class="separator" aria-hidden="true"></span>
+        <a href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer">Open VSX</a>
       </nav>
     </header>
 
@@ -178,9 +185,19 @@
           <h2>See every surface, across modes.</h2>
           <p class="section-lede">Real editor layout — activity bar, sidebar, tabs, minimap, and terminal — styled exactly as they appear in VS Code.</p>
         </div>
-        <div class="screenshot-frame">
-          <img class="screenshot-img screenshot-dark" src="/preview-dark.png" alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1280" height="720" loading="lazy" />
-          <img class="screenshot-img screenshot-light" src="/preview-light.png" alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1280" height="720" loading="lazy" />
+        <div class="screenshot-grid">
+          <figure class="screenshot-card">
+            <img class="screenshot-img" src="/preview-dark.png" alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1280" height="720" loading="lazy" />
+            <figcaption>santi020k dark</figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img class="screenshot-img" src="/preview-light.png" alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1280" height="720" loading="lazy" />
+            <figcaption>santi020k light</figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img class="screenshot-img" src="/preview-hc-dark.png" alt="santi020k high contrast dark theme applied in VS Code — near-black surfaces with vivid purple and amber accents" width="1280" height="720" loading="lazy" />
+            <figcaption>santi020k hc dark</figcaption>
+          </figure>
         </div>
       </section>
 

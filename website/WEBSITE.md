@@ -105,7 +105,10 @@ The code preview widget uses its own token set so it can adapt between showing t
 Flexbox, `justify-content: space-between`. Contains `.brand` (logo + wordmark) and `.nav-links` (navigation + theme toggle). Min-height `80px`.
 
 ### `.theme-toggle`
-44×44 px circular button at the end of `.nav-links`. Holds `.icon-sun` and `.icon-moon` absolutely positioned, toggled by `data-theme` on `<html>`. Clicking triggers the circular-reveal animation (see `main.js`). Respects `prefers-reduced-motion` and skips the clip-path animation on touch devices.
+44×44 px circular button in `.header-actions`. Holds `.icon-sun` and `.icon-moon` absolutely positioned, toggled by `data-theme` on `<html>`. Clicking triggers the circular-reveal animation (see `main.js`). Respects `prefers-reduced-motion` and skips the clip-path animation on touch devices.
+
+### `.nav-toggle`
+44×44 px mobile-only navigation button in `.header-actions`. It toggles `data-nav-open` on `.site-header`, which reveals `.nav-links` as a two-column grid below 860px. Desktop keeps the links inline.
 
 ### `.editor-preview`
 Decorative code widget in the hero. Always shows the active theme variant (filename, variable name, background color update via JS). Dark editor surface with topbar, line-number gutter, and syntax-highlighted code. All colors are driven by `--preview-*` tokens so they adapt when the site theme changes.
@@ -114,7 +117,7 @@ Decorative code widget in the hero. Always shows the active theme variant (filen
 Shows the dark, light, and high-contrast theme thumbnails side-by-side. Always styled with their respective theme colors — `.variant-dark` is always dark, `.variant-light` is always light, and `.variant-hc` is always high contrast, regardless of the current site theme. All three have hardcoded color overrides that override the inherited `var(--brand)` eyebrow color.
 
 ### `.screenshots-section`
-Two-column grid (left: heading, right: screenshot frame). The frame stacks `.screenshot-dark` (default visible) and `.screenshot-light` (position: absolute, opacity: 0) on top of each other. CSS switches visibility based on `[data-theme]` on `<html>` — no JS required. Images (`preview-dark.png`, `preview-light.png`, 1280×720) live in `website/public/`.
+Two-column grid (left: heading, right: screenshot cards). The cards show all shipped variants with real preview assets. Images (`preview-dark.png`, `preview-light.png`, `preview-hc-dark.png`, 1280×720) live in `website/public/`.
 
 ### `.why-grid`
 A 2×2 grid of `.why-card` articles inside the `#why` section. Each card has a `.why-icon` (44×44 rounded square, brand color), an `h3`, and a short `p`. Cards show the `--brand` border on hover.

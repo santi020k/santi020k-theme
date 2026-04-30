@@ -14,6 +14,8 @@ A deep indigo-black dark, a purple-tinted light, and a near-black high contrast 
 
 ![santi020k light theme preview](assets/preview-light.png)
 
+![santi020k high contrast dark theme preview](assets/preview-hc-dark.png)
+
 ---
 
 ## Why this theme

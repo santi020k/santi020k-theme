@@ -109,6 +109,7 @@ const createFixturePackage = ({
     'CHANGELOG.md',
     'LICENSE',
     'assets/preview-dark.png',
+    'assets/preview-hc-dark.png',
     'assets/preview-light.png',
     'themes/santi020k-dark-color-theme.json',
     'themes/santi020k-hc-dark-color-theme.json',

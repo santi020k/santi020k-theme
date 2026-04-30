@@ -8,6 +8,7 @@ const requiredFiles = [
   'LICENSE',
   'icon.png',
   'assets/preview-dark.png',
+  'assets/preview-hc-dark.png',
   'assets/preview-light.png',
   '.vscodeignore',
   'themes/santi020k-dark-color-theme.json',

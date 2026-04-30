@@ -98,6 +98,7 @@ a {
 
 a:focus-visible,
 .button:focus-visible,
+.nav-toggle:focus-visible,
 .theme-toggle:focus-visible {
   outline: 3px solid var(--brand);
   outline-offset: 4px;
@@ -114,6 +115,7 @@ a:focus-visible,
 .site-footer,
 .nav-links,
 .brand,
+.header-actions,
 .actions,
 .swatches {
   display: flex;
@@ -121,6 +123,8 @@ a:focus-visible,
 }
 
 .site-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   min-height: 80px;
   justify-content: space-between;
   gap: 24px;
@@ -137,10 +141,18 @@ a:focus-visible,
 }
 
 .nav-links {
+  grid-column: 2;
+  justify-content: end;
   gap: 22px;
   color: var(--ink-soft);
   font-size: 0.92rem;
   font-weight: 700;
+}
+
+.header-actions {
+  grid-column: 3;
+  justify-self: end;
+  gap: 10px;
 }
 
 .nav-links .separator {
@@ -152,6 +164,27 @@ a:focus-visible,
 
 .nav-links a:hover,
 .site-footer a:hover {
+  color: var(--brand);
+}
+
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--btn-secondary-bg);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.nav-toggle:hover,
+.nav-toggle[aria-expanded="true"] {
+  border-color: var(--brand);
+  background: var(--surface-strong);
   color: var(--brand);
 }
 
@@ -415,45 +448,50 @@ pre {
 /* ─── Screenshots ─────────────────────────────────────────────────────────── */
 .screenshots-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.45fr) minmax(0, 1fr);
   gap: 32px;
   align-items: start;
   padding-block: 80px;
   border-top: 1px solid var(--section-divider);
 }
 
-.screenshot-frame {
-  position: relative;
+.screenshot-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.screenshot-card {
   overflow: hidden;
+  margin: 0;
   border: 1px solid var(--line);
-  border-radius: 20px;
+  border-radius: 16px;
   background: var(--surface);
-  box-shadow: 0 20px 60px rgb(5 2 10 / 0.32);
+  box-shadow: 0 22px 60px rgb(5 2 10 / 0.26);
 }
 
 .screenshot-img {
   display: block;
   width: 100%;
   height: auto;
-  transition: opacity 0.4s ease;
 }
 
-.screenshot-dark {
-  position: relative;
+.screenshot-card figcaption {
+  border-top: 1px solid var(--line);
+  padding: 12px 14px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
-.screenshot-light {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-}
+@media (min-width: 1040px) {
+  .screenshot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-:root[data-theme="light"] .screenshot-dark {
-  opacity: 0;
-}
-
-:root[data-theme="light"] .screenshot-light {
-  opacity: 1;
+  .screenshot-card:first-child {
+    grid-column: 1 / -1;
+  }
 }
 
 /* ─── Why section ─────────────────────────────────────────────────────────── */
@@ -678,16 +716,58 @@ pre {
 
 /* ─── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
-  .site-header,
+  .site-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    min-height: 72px;
+    padding-block: 12px;
+  }
+
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
   }
 
+  .header-actions {
+    grid-column: 2;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
   .nav-links {
-    flex-wrap: wrap;
-    gap: 14px;
+    display: none;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 10px;
+    justify-content: stretch;
+    padding: 10px 0 4px;
+  }
+
+  .site-header[data-nav-open="true"] .nav-links {
+    display: grid;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--btn-secondary-bg);
+  }
+
+  .nav-links a:hover {
+    border-color: var(--brand);
+    background: var(--surface-strong);
+  }
+
+  .nav-links .separator {
+    display: none;
   }
 
   .hero,
