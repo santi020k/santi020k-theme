@@ -115,8 +115,8 @@ afterEach(() => {
 })
 
 describe('theme validation', () => {
-  test('accepts the checked-in dark and light themes', () => {
-    expect(validateThemes()).toBe(2)
+  test('accepts the checked-in dark, light, and hc dark themes', () => {
+    expect(validateThemes()).toBe(3)
   })
 
   test('rejects missing required color coverage', () => {
