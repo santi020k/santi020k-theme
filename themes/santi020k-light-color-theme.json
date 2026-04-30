@@ -72,6 +72,8 @@
     "editorOverviewRuler.errorForeground": "#c0392b80",
     "editorOverviewRuler.findMatchForeground": "#6319be",
     "editorOverviewRuler.infoForeground": "#6319be80",
+    "editorOverviewRuler.inlineChatInserted": "#28a74580",
+    "editorOverviewRuler.inlineChatRemoved": "#c0392b80",
     "editorOverviewRuler.modifiedForeground": "#6319be80",
     "editorOverviewRuler.selectionHighlightForeground": "#6319be50",
     "editorOverviewRuler.warningForeground": "#c07a1080",
@@ -146,6 +148,7 @@
     "list.inactiveSelectionForeground": "#403850",
     "list.inactiveSelectionIconForeground": "#403850",
     "list.warningForeground": "#c07a10",
+    "tree.inactiveIndentGuidesStroke": "#e3dff0",
     "tree.indentGuidesStroke": "#d3cde6",
     // Editor Groups & Tabs
     "editorGroup.border": "#d3cde6",
@@ -198,9 +201,11 @@
     "menu.border": "#d3cde6",
     "menu.foreground": "#403850",
     "menu.selectionBackground": "#e3dff0",
+    "menu.selectionBorder": "#6319be60",
     "menu.selectionForeground": "#302e36",
     "menu.separatorBackground": "#d3cde6",
     "menubar.selectionBackground": "#ddd8f0",
+    "menubar.selectionBorder": "#6319be60",
     "menubar.selectionForeground": "#302e36",
     "titleBar.activeBackground": "#e3dff0",
     "titleBar.activeForeground": "#302e36",
@@ -210,6 +215,7 @@
     // Panel
     "panel.background": "#f0edf9",
     "panel.border": "#d3cde6",
+    "panelInput.border": "#d3cde6",
     "panelSection.border": "#d3cde6",
     "panelSection.dropBackground": "#6319be18",
     "panelSectionHeader.background": "#e3dff0",
@@ -1108,6 +1114,167 @@
       ],
       "settings": {
         "foreground": "#302e36"
+      }
+    },
+    {
+      "name": "YAML keys and anchors",
+      "scope": [
+        "entity.name.tag.yaml",
+        "support.type.property-name.yaml",
+        "variable.other.anchor.yaml",
+        "variable.other.alias.yaml"
+      ],
+      "settings": {
+        "foreground": "#6020b8"
+      }
+    },
+    {
+      "name": "YAML tags and directives",
+      "scope": [
+        "entity.other.document.begin.yaml",
+        "keyword.control.directive.yaml",
+        "storage.type.tag-handle.yaml",
+        "storage.type.tag-suffix.yaml"
+      ],
+      "settings": {
+        "foreground": "#5a1ab0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Dockerfile instructions",
+      "scope": [
+        "keyword.other.special-method.dockerfile",
+        "keyword.control.dockerfile",
+        "storage.modifier.dockerfile"
+      ],
+      "settings": {
+        "foreground": "#5a1ab0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Shell commands and options",
+      "scope": [
+        "support.function.builtin.shell",
+        "support.function.utility.shell",
+        "variable.other.option.shell",
+        "variable.other.normal.shell"
+      ],
+      "settings": {
+        "foreground": "#0870a0"
+      }
+    },
+    {
+      "name": "SQL keywords and functions",
+      "scope": [
+        "keyword.other.DML.sql",
+        "keyword.other.DDL.sql",
+        "keyword.other.sql",
+        "storage.type.sql",
+        "support.function.aggregate.sql",
+        "support.function.scalar.sql"
+      ],
+      "settings": {
+        "foreground": "#5a1ab0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "SQL identifiers",
+      "scope": [
+        "entity.name.function.sql",
+        "entity.name.type.sql",
+        "support.type.sql"
+      ],
+      "settings": {
+        "foreground": "#6020b8"
+      }
+    },
+    {
+      "name": "GraphQL schema and operations",
+      "scope": [
+        "entity.name.type.graphql",
+        "entity.name.function.graphql",
+        "support.type.builtin.graphql",
+        "variable.graphql"
+      ],
+      "settings": {
+        "foreground": "#6020b8"
+      }
+    },
+    {
+      "name": "PHP variables and members",
+      "scope": [
+        "variable.other.php",
+        "punctuation.definition.variable.php",
+        "support.class.php",
+        "support.function.construct.php"
+      ],
+      "settings": {
+        "foreground": "#403860"
+      }
+    },
+    {
+      "name": "Python magic and special members",
+      "scope": [
+        "support.function.magic.python",
+        "support.variable.magic.python",
+        "variable.language.special.self.python",
+        "variable.language.special.cls.python"
+      ],
+      "settings": {
+        "foreground": "#0870a0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "C# attributes and namespaces",
+      "scope": [
+        "entity.name.type.namespace.cs",
+        "entity.name.type.class.cs",
+        "entity.name.type.interface.cs",
+        "meta.attribute.cs",
+        "storage.type.cs"
+      ],
+      "settings": {
+        "foreground": "#6020b8"
+      }
+    },
+    {
+      "name": "Ruby and Elixir symbols",
+      "scope": [
+        "constant.other.symbol.ruby",
+        "constant.other.symbol.hashkey.ruby",
+        "constant.other.symbol.elixir",
+        "constant.other.atom.elixir"
+      ],
+      "settings": {
+        "foreground": "#8030c8"
+      }
+    },
+    {
+      "name": "Lua library calls",
+      "scope": [
+        "support.function.library.lua",
+        "support.function.lua",
+        "support.type.lua"
+      ],
+      "settings": {
+        "foreground": "#0870a0"
+      }
+    },
+    {
+      "name": "Terraform / HCL blocks and variables",
+      "scope": [
+        "entity.name.type.terraform",
+        "entity.name.function.terraform",
+        "variable.other.terraform",
+        "support.type.property-name.terraform",
+        "support.type.property-name.hcl"
+      ],
+      "settings": {
+        "foreground": "#6020b8"
       }
     }
   ]

@@ -196,4 +196,22 @@ describe('theme validation', () => {
 
     expect(() => validateThemes([file])).toThrow(/duplicate color keys: foreground/)
   })
+
+  test('rejects color key drift across variants', () => {
+    const base = writeTheme('base', makeTheme())
+
+    const driftedColors = {
+      ...completeColors,
+      'custom.extraColor': '#ffffff'
+    }
+
+    const drifted = writeTheme('drifted', {
+      ...makeTheme(),
+      colors: driftedColors
+    })
+
+    expect(() => validateThemes([base, drifted])).toThrow(
+      /drifted\.json colors must match .*base\.json: extra custom\.extraColor/
+    )
+  })
 })
