@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a rendering, contrast, packaging, or website issue.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the visible problem and what you expected instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - Theme colors
+        - Syntax highlighting
+        - Semantic highlighting
+        - Website
+        - Marketplace / Open VSX package
+        - Release automation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: variant
+    attributes:
+      label: Theme variant
+      placeholder: "santi020k dark, santi020k light, or santi020k hc dark"
+  - type: input
+    id: editor
+    attributes:
+      label: Editor and version
+      placeholder: "VS Code 1.xx, Cursor, Windsurf, VSCodium..."
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or sample code
+      description: Add screenshots, language snippets, or file types that show the issue.
+

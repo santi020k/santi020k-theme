@@ -115,8 +115,8 @@ afterEach(() => {
 })
 
 describe('theme validation', () => {
-  test('accepts the checked-in dark and light themes', () => {
-    expect(validateThemes()).toBe(2)
+  test('accepts the checked-in dark, light, and hc dark themes', () => {
+    expect(validateThemes()).toBe(3)
   })
 
   test('rejects missing required color coverage', () => {
@@ -195,5 +195,23 @@ describe('theme validation', () => {
     writeFileSync(file, raw)
 
     expect(() => validateThemes([file])).toThrow(/duplicate color keys: foreground/)
+  })
+
+  test('rejects color key drift across variants', () => {
+    const base = writeTheme('base', makeTheme())
+
+    const driftedColors = {
+      ...completeColors,
+      'custom.extraColor': '#ffffff'
+    }
+
+    const drifted = writeTheme('drifted', {
+      ...makeTheme(),
+      colors: driftedColors
+    })
+
+    expect(() => validateThemes([base, drifted])).toThrow(
+      /drifted\.json colors must match .*base\.json: extra custom\.extraColor/
+    )
   })
 })

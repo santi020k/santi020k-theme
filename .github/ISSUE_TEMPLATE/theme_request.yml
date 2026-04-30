@@ -1,0 +1,37 @@
+name: Theme improvement
+description: Request color coverage, language highlighting, or accessibility improvements.
+title: "theme: "
+labels:
+  - theme
+  - enhancement
+body:
+  - type: textarea
+    id: request
+    attributes:
+      label: What should improve?
+      description: Name the UI surface, token, language, grammar, or file format.
+    validations:
+      required: true
+  - type: dropdown
+    id: variant
+    attributes:
+      label: Theme variant
+      options:
+        - All variants
+        - santi020k dark
+        - santi020k light
+        - santi020k hc dark
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples
+      description: Add screenshots, token names, TextMate scopes, or sample code if available.
+  - type: checkboxes
+    id: accessibility
+    attributes:
+      label: Accessibility
+      options:
+        - label: This request involves readability, contrast, focus states, or high-contrast behavior.
+

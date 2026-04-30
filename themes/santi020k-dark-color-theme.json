@@ -51,6 +51,7 @@
     // Editor Widgets
     "editorHoverWidget.background": "#170f25",
     "editorHoverWidget.border": "#3a2556",
+    "editorHoverWidget.highlightForeground": "#c090ff",
     "editorSuggestWidget.background": "#170f25",
     "editorSuggestWidget.border": "#3a2556",
     "editorSuggestWidget.foreground": "#e8e0f0",
@@ -71,6 +72,8 @@
     "editorOverviewRuler.errorForeground": "#ea696280",
     "editorOverviewRuler.findMatchForeground": "#6b3fa8",
     "editorOverviewRuler.infoForeground": "#a06ee680",
+    "editorOverviewRuler.inlineChatInserted": "#7daea380",
+    "editorOverviewRuler.inlineChatRemoved": "#ea696280",
     "editorOverviewRuler.modifiedForeground": "#d4a8ff80",
     "editorOverviewRuler.selectionHighlightForeground": "#4a2d6e80",
     "editorOverviewRuler.warningForeground": "#e8b44a80",
@@ -145,6 +148,7 @@
     "list.inactiveSelectionForeground": "#c8b8e8",
     "list.inactiveSelectionIconForeground": "#c8b8e8",
     "list.warningForeground": "#e8b44a",
+    "tree.inactiveIndentGuidesStroke": "#1e1530",
     "tree.indentGuidesStroke": "#3a2556",
     // Editor Groups & Tabs
     "editorGroup.border": "#3a2556",
@@ -197,9 +201,11 @@
     "menu.border": "#3a2556",
     "menu.foreground": "#c8b8e8",
     "menu.selectionBackground": "#261d3a",
+    "menu.selectionBorder": "#8b52d660",
     "menu.selectionForeground": "#e8e0f0",
     "menu.separatorBackground": "#3a2556",
     "menubar.selectionBackground": "#261d3a",
+    "menubar.selectionBorder": "#8b52d660",
     "menubar.selectionForeground": "#e8e0f0",
     "titleBar.activeBackground": "#0e0919",
     "titleBar.activeForeground": "#c8b8e8",
@@ -209,6 +215,7 @@
     // Panel
     "panel.background": "#0e0919",
     "panel.border": "#3a2556",
+    "panelInput.border": "#3a2556",
     "panelSection.border": "#3a2556",
     "panelSection.dropBackground": "#4a2d6e30",
     "panelSectionHeader.background": "#1e1530",
@@ -529,6 +536,10 @@
     "editor.selectionHighlightBackground": "#4a2d6e30",
     "editor.wordHighlightBackground": "#4a2d6e40",
     "editor.wordHighlightStrongBackground": "#6b3fa850",
+    "editorActionList.background": "#170f25",
+    "editorActionList.focusBackground": "#261d3a",
+    "editorActionList.focusForeground": "#e8e0f0",
+    "editorActionList.foreground": "#c8b8e8",
     "editorCodeLens.foreground": "#7868a0",
     "editorGhostText.border": "#00000000",
     "editorGhostText.foreground": "#7868a088",
@@ -599,14 +610,26 @@
   },
   "semanticHighlighting": true,
   "semanticTokenColors": {
+    "*.abstract": {
+      "italic": true
+    },
+    "*.async": {
+      "foreground": "#89b8c8"
+    },
     "*.declaration": {
       "bold": true
+    },
+    "*.defaultLibrary": {
+      "foreground": "#a0c8e0"
     },
     "*.deprecated": {
       "strikethrough": true
     },
     "*.readonly": {
       "italic": true
+    },
+    "*.static": {
+      "bold": true
     },
     "class": "#c090ff",
     "comment": {
@@ -1044,6 +1067,46 @@
       }
     },
     {
+      "name": "Rust lifetimes",
+      "scope": [
+        "entity.name.lifetime.rust",
+        "punctuation.definition.lifetime.rust"
+      ],
+      "settings": {
+        "foreground": "#e8b44a",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Rust attributes",
+      "scope": [
+        "meta.attribute.rust",
+        "punctuation.definition.attribute.rust"
+      ],
+      "settings": {
+        "foreground": "#9070c0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Go built-in functions",
+      "scope": [
+        "support.function.builtin.go"
+      ],
+      "settings": {
+        "foreground": "#89b8c8"
+      }
+    },
+    {
+      "name": "Go package names",
+      "scope": [
+        "entity.name.package.go"
+      ],
+      "settings": {
+        "foreground": "#b890f0"
+      }
+    },
+    {
       "name": "Reset embedded language foreground",
       "scope": [
         "meta.embedded",
@@ -1051,6 +1114,167 @@
       ],
       "settings": {
         "foreground": "#e8e0f0"
+      }
+    },
+    {
+      "name": "YAML keys and anchors",
+      "scope": [
+        "entity.name.tag.yaml",
+        "support.type.property-name.yaml",
+        "variable.other.anchor.yaml",
+        "variable.other.alias.yaml"
+      ],
+      "settings": {
+        "foreground": "#b890f0"
+      }
+    },
+    {
+      "name": "YAML tags and directives",
+      "scope": [
+        "entity.other.document.begin.yaml",
+        "keyword.control.directive.yaml",
+        "storage.type.tag-handle.yaml",
+        "storage.type.tag-suffix.yaml"
+      ],
+      "settings": {
+        "foreground": "#a06ee6",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Dockerfile instructions",
+      "scope": [
+        "keyword.other.special-method.dockerfile",
+        "keyword.control.dockerfile",
+        "storage.modifier.dockerfile"
+      ],
+      "settings": {
+        "foreground": "#a06ee6",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Shell commands and options",
+      "scope": [
+        "support.function.builtin.shell",
+        "support.function.utility.shell",
+        "variable.other.option.shell",
+        "variable.other.normal.shell"
+      ],
+      "settings": {
+        "foreground": "#89b8c8"
+      }
+    },
+    {
+      "name": "SQL keywords and functions",
+      "scope": [
+        "keyword.other.DML.sql",
+        "keyword.other.DDL.sql",
+        "keyword.other.sql",
+        "storage.type.sql",
+        "support.function.aggregate.sql",
+        "support.function.scalar.sql"
+      ],
+      "settings": {
+        "foreground": "#a06ee6",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "SQL identifiers",
+      "scope": [
+        "entity.name.function.sql",
+        "entity.name.type.sql",
+        "support.type.sql"
+      ],
+      "settings": {
+        "foreground": "#b890f0"
+      }
+    },
+    {
+      "name": "GraphQL schema and operations",
+      "scope": [
+        "entity.name.type.graphql",
+        "entity.name.function.graphql",
+        "support.type.builtin.graphql",
+        "variable.graphql"
+      ],
+      "settings": {
+        "foreground": "#b890f0"
+      }
+    },
+    {
+      "name": "PHP variables and members",
+      "scope": [
+        "variable.other.php",
+        "punctuation.definition.variable.php",
+        "support.class.php",
+        "support.function.construct.php"
+      ],
+      "settings": {
+        "foreground": "#d8c8f0"
+      }
+    },
+    {
+      "name": "Python magic and special members",
+      "scope": [
+        "support.function.magic.python",
+        "support.variable.magic.python",
+        "variable.language.special.self.python",
+        "variable.language.special.cls.python"
+      ],
+      "settings": {
+        "foreground": "#89b8c8",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "C# attributes and namespaces",
+      "scope": [
+        "entity.name.type.namespace.cs",
+        "entity.name.type.class.cs",
+        "entity.name.type.interface.cs",
+        "meta.attribute.cs",
+        "storage.type.cs"
+      ],
+      "settings": {
+        "foreground": "#b890f0"
+      }
+    },
+    {
+      "name": "Ruby and Elixir symbols",
+      "scope": [
+        "constant.other.symbol.ruby",
+        "constant.other.symbol.hashkey.ruby",
+        "constant.other.symbol.elixir",
+        "constant.other.atom.elixir"
+      ],
+      "settings": {
+        "foreground": "#e8b4ff"
+      }
+    },
+    {
+      "name": "Lua library calls",
+      "scope": [
+        "support.function.library.lua",
+        "support.function.lua",
+        "support.type.lua"
+      ],
+      "settings": {
+        "foreground": "#89b8c8"
+      }
+    },
+    {
+      "name": "Terraform / HCL blocks and variables",
+      "scope": [
+        "entity.name.type.terraform",
+        "entity.name.function.terraform",
+        "variable.other.terraform",
+        "support.type.property-name.terraform",
+        "support.type.property-name.hcl"
+      ],
+      "settings": {
+        "foreground": "#b890f0"
       }
     }
   ]
