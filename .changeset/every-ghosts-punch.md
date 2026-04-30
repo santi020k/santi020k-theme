@@ -24,3 +24,14 @@ All new foreground colors pass WCAG AA (≥ 4.5:1) against their respective edit
 
 - `editorHoverWidget.highlightForeground` — accent color for matched text inside hover documentation widgets
 - `editorActionList.background / foreground / focusBackground / focusForeground` — the floating refactor / code-action picker that appears inline in VS Code 1.90+
+
+**New variant: santi020k hc dark**
+
+A high contrast dark variant (`hc-black` uiTheme) built on the same purple-indigo palette:
+- Backgrounds shifted toward near-black (`#0c0818` editor, `#080514` panels)
+- Foreground lifted to near-white (`#f0e8ff`)
+- Borders use vivid purple (`#6030b8`) instead of the muted `#3a2556`
+- All accent colors fully saturated — e.g. teal `#60c8e0`, amber `#ffc060`, red `#ff7070`
+- Indent guides made visible (`#6030b840` / `#6030b820`)
+- Unused-code border shown (`#a860f040`)
+- All token colors validated at WCAG AA (≥ 4.5:1) against the darker editor background

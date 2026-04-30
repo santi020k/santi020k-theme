@@ -21,6 +21,9 @@ const packageJson = {
   bugs: {
     url: 'https://github.com/santi020k/santi020k-theme/issues'
   },
+  sponsor: {
+    url: 'https://github.com/sponsors/santi020k'
+  },
   license: 'MIT',
   engines: {
     vscode: '^1.75.0'
@@ -33,7 +36,23 @@ const packageJson = {
     virtualWorkspaces: true
   },
   categories: ['Themes'],
+  keywords: [
+    'theme',
+    'color-theme',
+    'dark',
+    'dark-theme',
+    'light',
+    'light-theme',
+    'high-contrast',
+    'purple',
+    'indigo',
+    'semantic'
+  ],
   icon: 'icon.png',
+  galleryBanner: {
+    color: '#120c1e',
+    theme: 'dark'
+  },
   contributes: {
     themes: [
       {
