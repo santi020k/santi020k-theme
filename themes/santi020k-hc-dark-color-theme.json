@@ -62,11 +62,6 @@
     "editorWidget.border": "#6030b8",
     "editorWidget.foreground": "#f0e8ff",
     "editorWidget.resizeBorder": "#8840e0",
-    // Editor Action List
-    "editorActionList.background": "#100b1e",
-    "editorActionList.focusBackground": "#201640",
-    "editorActionList.focusForeground": "#f0e8ff",
-    "editorActionList.foreground": "#d8c8f8",
     // Editor Sticky Scroll
     "editorStickyScroll.background": "#0c0818",
     "editorStickyScroll.border": "#1a1230",
@@ -535,6 +530,10 @@
     "editor.selectionHighlightBackground": "#5010a830",
     "editor.wordHighlightBackground": "#5010a840",
     "editor.wordHighlightStrongBackground": "#7020c850",
+    "editorActionList.background": "#100b1e",
+    "editorActionList.focusBackground": "#201640",
+    "editorActionList.focusForeground": "#f0e8ff",
+    "editorActionList.foreground": "#d8c8f8",
     "editorCodeLens.foreground": "#9070c8",
     "editorGhostText.border": "#00000000",
     "editorGhostText.foreground": "#9070c888",
