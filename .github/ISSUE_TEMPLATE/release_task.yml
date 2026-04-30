@@ -1,0 +1,30 @@
+name: Release task
+description: Track marketplace, Open VSX, Changesets, or validation release work.
+title: "release: "
+labels:
+  - release
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Release goal
+      description: Describe what needs to ship or what failed.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Changeset is present for user-visible changes.
+        - label: `npm run validate` passes.
+        - label: VSIX contents were checked.
+        - label: Visual Studio Marketplace publish was checked.
+        - label: Open VSX publish was checked.
+        - label: Release tag exists or will be created by automation.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Include workflow links, registry versions, logs, or follow-up tasks.
+
