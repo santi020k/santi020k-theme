@@ -19,7 +19,7 @@ The site is a single marketing page with no routing, no content collections, and
 
 ## Design tokens (`src/styles.css`)
 
-All colors are CSS custom properties set on `:root`. Two theme variants are defined: `dark` (default) and `light`, selected via `data-theme` on `<html>`.
+All colors are CSS custom properties set on `:root`. Two website color modes are defined: `dark` (default) and `light`, selected via `data-theme` on `<html>`.
 
 ### Dark theme
 
@@ -111,7 +111,7 @@ Flexbox, `justify-content: space-between`. Contains `.brand` (logo + wordmark) a
 Decorative code widget in the hero. Always shows the active theme variant (filename, variable name, background color update via JS). Dark editor surface with topbar, line-number gutter, and syntax-highlighted code. All colors are driven by `--preview-*` tokens so they adapt when the site theme changes.
 
 ### `.variant-card`
-Shows the dark and light theme thumbnails side-by-side. Always styled with their respective theme colors — `.variant-dark` is always dark, `.variant-light` is always light, regardless of the current site theme. Both have hardcoded color overrides that override the inherited `var(--brand)` eyebrow color.
+Shows the dark, light, and high-contrast theme thumbnails side-by-side. Always styled with their respective theme colors — `.variant-dark` is always dark, `.variant-light` is always light, and `.variant-hc` is always high contrast, regardless of the current site theme. All three have hardcoded color overrides that override the inherited `var(--brand)` eyebrow color.
 
 ### `.screenshots-section`
 Two-column grid (left: heading, right: screenshot frame). The frame stacks `.screenshot-dark` (default visible) and `.screenshot-light` (position: absolute, opacity: 0) on top of each other. CSS switches visibility based on `[data-theme]` on `<html>` — no JS required. Images (`preview-dark.png`, `preview-light.png`, 1280×720) live in `website/public/`.

@@ -11,6 +11,7 @@ const requiredFiles = [
   'assets/preview-light.png',
   '.vscodeignore',
   'themes/santi020k-dark-color-theme.json',
+  'themes/santi020k-hc-dark-color-theme.json',
   'themes/santi020k-light-color-theme.json'
 ]
 
@@ -37,6 +38,7 @@ const requiredPackageFields = [
 
 const requiredThemeContributions = [
   './themes/santi020k-dark-color-theme.json',
+  './themes/santi020k-hc-dark-color-theme.json',
   './themes/santi020k-light-color-theme.json'
 ]
 

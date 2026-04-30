@@ -64,6 +64,11 @@ const packageJson = {
         label: 'santi020k light',
         uiTheme: 'vs',
         path: './themes/santi020k-light-color-theme.json'
+      },
+      {
+        label: 'santi020k hc dark',
+        uiTheme: 'hc-black',
+        path: './themes/santi020k-hc-dark-color-theme.json'
       }
     ]
   }
@@ -106,6 +111,7 @@ const createFixturePackage = ({
     'assets/preview-dark.png',
     'assets/preview-light.png',
     'themes/santi020k-dark-color-theme.json',
+    'themes/santi020k-hc-dark-color-theme.json',
     'themes/santi020k-light-color-theme.json',
     '.agents/skills/vscode-theme-maintainer/SKILL.md',
     '.agents/skills/marketplace-release-manager/SKILL.md',
@@ -170,6 +176,19 @@ describe('marketplace readiness', () => {
   test('rejects mismatched package-lock versions', () => {
     expect(() => checkMarketplaceReadiness(createFixturePackage({ lockVersion: '1.1.0' }))).toThrow(
       /package-lock\.json version does not match package\.json/
+    )
+  })
+
+  test('rejects missing high contrast theme contribution', () => {
+    const pkg = {
+      ...packageJson,
+      contributes: {
+        themes: packageJson.contributes.themes.filter(theme => theme.uiTheme !== 'hc-black')
+      }
+    }
+
+    expect(() => checkMarketplaceReadiness(createFixturePackage({ pkg }))).toThrow(
+      /package\.json must contribute \.\/themes\/santi020k-hc-dark-color-theme\.json/
     )
   })
 
