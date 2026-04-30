@@ -8,9 +8,11 @@ const requiredFiles = [
   'LICENSE',
   'icon.png',
   'assets/preview-dark.png',
+  'assets/preview-hc-dark.png',
   'assets/preview-light.png',
   '.vscodeignore',
   'themes/santi020k-dark-color-theme.json',
+  'themes/santi020k-hc-dark-color-theme.json',
   'themes/santi020k-light-color-theme.json'
 ]
 
@@ -28,8 +30,17 @@ const requiredPackageFields = [
   'extensionKind',
   'capabilities',
   'categories',
+  'keywords',
   'icon',
+  'galleryBanner',
+  'sponsor',
   'contributes'
+]
+
+const requiredThemeContributions = [
+  './themes/santi020k-dark-color-theme.json',
+  './themes/santi020k-hc-dark-color-theme.json',
+  './themes/santi020k-light-color-theme.json'
 ]
 
 export const requiredIgnorePatterns = [
@@ -119,6 +130,18 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
     throw new Error('package.json must declare support for virtual workspaces')
   }
 
+  if (pkg.sponsor?.url !== 'https://github.com/sponsors/santi020k') {
+    throw new Error('package.json must declare the GitHub Sponsors URL')
+  }
+
+  if (!pkg.galleryBanner.color || !pkg.galleryBanner.theme) {
+    throw new Error('package.json must declare a complete galleryBanner')
+  }
+
+  if (!Array.isArray(pkg.keywords) || pkg.keywords.length < 10) {
+    throw new Error('package.json must declare at least 10 marketplace keywords')
+  }
+
   if (lock.version !== pkg.version || lock.packages?.['']?.version !== pkg.version) {
     throw new Error('package-lock.json version does not match package.json')
   }
@@ -127,8 +150,26 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
     throw new Error('website JSON-LD softwareVersion must match package.json version')
   }
 
-  if (!pkg.contributes?.themes || pkg.contributes.themes.length !== 2) {
-    throw new Error('package.json must contribute exactly two themes')
+  if (!Array.isArray(pkg.contributes?.themes) || pkg.contributes.themes.length < 2) {
+    throw new Error('package.json must contribute at least the dark and light themes')
+  }
+
+  const themePaths = new Set(pkg.contributes.themes.map(theme => theme.path))
+
+  for (const themePath of requiredThemeContributions) {
+    if (!themePaths.has(themePath)) {
+      throw new Error(`package.json must contribute ${themePath}`)
+    }
+  }
+
+  for (const theme of pkg.contributes.themes) {
+    if (!theme.label || !theme.uiTheme || !theme.path) {
+      throw new Error('Each contributed theme must declare label, uiTheme, and path')
+    }
+
+    if (!existsSync(resolvePath(theme.path))) {
+      throw new Error(`Contributed theme file does not exist: ${theme.path}`)
+    }
   }
 
   const vscodeIgnore = readFileSync(resolvePath('.vscodeignore'), 'utf8')

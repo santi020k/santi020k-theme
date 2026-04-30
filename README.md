@@ -1,10 +1,10 @@
 # Santi020k Theme
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme?label=VS%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
+[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version-short/santi020k.santi020k-theme.svg)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
 [![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX)](https://open-vsx.org/extension/santi020k/santi020k-theme)
 [![Validate](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
 
-A deep indigo-black dark theme and a purple-tinted light theme for VS Code — built for long sessions, not just screenshots.
+A deep indigo-black dark, a purple-tinted light, and a near-black high contrast dark theme for VS Code — built for long sessions, not just screenshots.
 
 **→ [theme.santi020k.com](https://theme.santi020k.com)**
 
@@ -14,12 +14,14 @@ A deep indigo-black dark theme and a purple-tinted light theme for VS Code — b
 
 ![santi020k light theme preview](assets/preview-light.png)
 
+![santi020k high contrast dark theme preview](assets/preview-hc-dark.png)
+
 ---
 
 ## Why this theme
 
 - **Purple-forward, not purple-loud.** Every accent — cursor, brackets, active borders — comes from a single violet ramp. Nothing neon, nothing clashing.
-- **Dark and light that actually match.** Both variants share the same color language so switching feels like flipping a light switch, not changing editors.
+- **Three variants, one color language.** Dark, light, and high contrast all share the same violet palette so switching between them feels intentional, not jarring.
 - **Built for readability.** Contrast ratios are validated automatically on every commit. Keywords are italic, comments are softened, JSON keys / values / numbers use distinct hues so structure is obvious at a glance.
 - **Works everywhere.** VS Code, Cursor, Windsurf, VSCodium — any editor built on the VS Code extension API.
 
@@ -32,7 +34,7 @@ A deep indigo-black dark theme and a purple-tinted light theme for VS Code — b
 1. Open VS Code → Extensions (`Cmd+Shift+X` / `Ctrl+Shift+X`)
 2. Search **Santi020k Theme**
 3. Click **Install**
-4. Open the theme picker (`Cmd+K Cmd+T`) and choose **santi020k dark** or **santi020k light**
+4. Open the theme picker (`Cmd+K Cmd+T`) and choose **santi020k dark**, **santi020k light**, or **santi020k hc dark**
 
 **Open VSX** — for Cursor, VSCodium, and other compatible editors:
 
@@ -74,11 +76,31 @@ Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving al
 | Comments | `#9880c0` italic |
 | Primary text | `#302e36` |
 
+### santi020k hc dark
+
+Near-black (`#0c0818`) backgrounds with vivid purple borders (`#6030b8`) replacing the subtle ones from the dark variant. All accent colors are fully saturated — teal `#60c8e0`, amber `#ffc060`, red `#ff7070` — so every signal reads clearly at a glance. Indent guides are made visible. Built for screens with limited contrast, accessibility requirements, or anyone who prefers maximum separation between UI elements.
+
+| Role | Color |
+|---|---|
+| Editor background | `#0c0818` |
+| Activity / Status bar | `#080514` |
+| Sidebar | `#100b1e` |
+| Borders | `#6030b8` |
+| Cursor / active border | `#c080ff` |
+| Strings | `#e0a0ff` |
+| Keywords | `#a860f0` italic |
+| Comments | `#8868c8` italic |
+| Primary text | `#f0e8ff` |
+
 ---
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, editing themes, validation, and the release workflow.
+
+## Support
+
+If this theme makes your editor a nicer place to live, you can support ongoing maintenance through [GitHub Sponsors](https://github.com/sponsors/santi020k).
 
 ---
 

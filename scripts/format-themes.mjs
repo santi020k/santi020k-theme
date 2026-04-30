@@ -2,7 +2,8 @@ import { readFileSync, writeFileSync } from 'node:fs'
 
 const themeFiles = [
   'themes/santi020k-dark-color-theme.json',
-  'themes/santi020k-light-color-theme.json'
+  'themes/santi020k-light-color-theme.json',
+  'themes/santi020k-hc-dark-color-theme.json'
 ]
 
 const categories = [
