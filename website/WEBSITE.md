@@ -108,7 +108,7 @@ Flexbox, `justify-content: space-between`. Contains `.brand` (logo + wordmark) a
 44×44 px circular button in `.header-actions`. Holds `.icon-sun` and `.icon-moon` absolutely positioned, toggled by `data-theme` on `<html>`. Clicking triggers the circular-reveal animation (see `main.js`). Respects `prefers-reduced-motion` and skips the clip-path animation on touch devices.
 
 ### `.nav-toggle`
-44×44 px mobile-only navigation button in `.header-actions`. It toggles `data-nav-open` on `.site-header`, which reveals `.nav-links` as a two-column grid below 860px. Desktop keeps the links inline.
+44×44 px mobile/tablet navigation button in `.header-actions`. It toggles `data-nav-open` on `.site-header`, which reveals `.nav-links` as a two-column grid below 941px. Wider desktop keeps the links inline.
 
 ### `.editor-preview`
 Decorative code widget in the hero. Always shows the active theme variant (filename, variable name, background color update via JS). Dark editor surface with topbar, line-number gutter, and syntax-highlighted code. All colors are driven by `--preview-*` tokens so they adapt when the site theme changes.

@@ -110,6 +110,7 @@ const toggle = document.querySelector('.theme-toggle')
 const header = document.querySelector('.site-header')
 const navToggle = document.querySelector('.nav-toggle')
 const navLinks = document.querySelectorAll('.nav-links a')
+const desktopNavQuery = window.matchMedia('(min-width: 941px)')
 
 syncToggle(toggle)
 
@@ -141,6 +142,10 @@ for (const link of navLinks) {
 
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') setNavOpen(false)
+})
+
+desktopNavQuery.addEventListener('change', event => {
+  if (event.matches) setNavOpen(false)
 })
 
 // Respect OS-level theme changes (only when user has no stored preference)
