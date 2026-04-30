@@ -17,7 +17,7 @@ body:
       label: Checklist
       options:
         - label: Changeset is present for user-visible changes.
-        - label: `npm run validate` passes.
+        - label: "'npm run validate' passes."
         - label: VSIX contents were checked.
         - label: Visual Studio Marketplace publish was checked.
         - label: Open VSX publish was checked.
@@ -27,4 +27,3 @@ body:
     attributes:
       label: Notes
       description: Include workflow links, registry versions, logs, or follow-up tasks.
-
