@@ -101,6 +101,7 @@
     "publish": "node scripts/publish-registries.mjs",
     "publish:pre": "npm run validate && vsce publish --pre-release",
     "release": "node scripts/publish-registries.mjs",
+    "release:tag": "node scripts/ensure-release-tag.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version && npm install --package-lock-only && npm run sync:website-version",
     "site:install": "npm --prefix website ci",
