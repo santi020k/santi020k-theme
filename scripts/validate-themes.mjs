@@ -3,7 +3,8 @@ import { fileURLToPath } from 'node:url'
 
 const themeFiles = [
   'themes/santi020k-dark-color-theme.json',
-  'themes/santi020k-light-color-theme.json'
+  'themes/santi020k-light-color-theme.json',
+  'themes/santi020k-hc-dark-color-theme.json'
 ]
 
 const requiredColorKeys = [
@@ -277,7 +278,31 @@ const validateHexMap = (file, colors) => {
   }
 }
 
+const validateThemeColorParity = themes => {
+  if (themes.length < 2) return
+
+  const [baseTheme] = themes
+  const baseKeys = new Set(Object.keys(baseTheme.theme.colors))
+
+  for (const { file, theme } of themes.slice(1)) {
+    const keys = new Set(Object.keys(theme.colors))
+    const missing = [...baseKeys].filter(key => !keys.has(key)).sort()
+    const extra = [...keys].filter(key => !baseKeys.has(key)).sort()
+
+    if (missing.length > 0 || extra.length > 0) {
+      const details = [
+        missing.length > 0 ? `missing ${missing.join(', ')}` : '',
+        extra.length > 0 ? `extra ${extra.join(', ')}` : ''
+      ].filter(Boolean).join('; ')
+
+      throw new Error(`${file} colors must match ${baseTheme.file}: ${details}`)
+    }
+  }
+}
+
 export const validateThemes = (files = themeFiles) => {
+  const parsedThemes = []
+
   for (const file of files) {
     const raw = readFileSync(file, 'utf8')
 
@@ -287,6 +312,8 @@ export const validateThemes = (files = themeFiles) => {
 
     const theme = JSON.parse(cleanRaw)
     const duplicateColorKeys = findDuplicateColorKeys(raw)
+
+    parsedThemes.push({ file, theme })
 
     if (!theme.name || !theme.type || !theme.colors || !theme.tokenColors) {
       throw new Error(`${file} is missing required theme sections`)
@@ -326,6 +353,8 @@ export const validateThemes = (files = themeFiles) => {
 
     validateTokenContrast(file, theme)
   }
+
+  validateThemeColorParity(parsedThemes)
 
   return files.length
 }

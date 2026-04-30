@@ -1,0 +1,65 @@
+theme:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'themes/**'
+          - 'scripts/validate-themes.mjs'
+          - 'tests/theme-validation.test.mjs'
+
+website:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'website/**'
+
+release:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.changeset/**'
+          - 'scripts/publish-registries.mjs'
+          - 'scripts/ensure-release-tag.mjs'
+          - 'scripts/sync-website-version.mjs'
+          - '.github/workflows/release.yml'
+
+marketplace:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'README.md'
+          - 'CHANGELOG.md'
+          - 'icon.png'
+          - 'assets/**'
+          - 'scripts/check-marketplace-readiness.mjs'
+          - 'tests/marketplace-readiness.test.mjs'
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**'
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '*.md'
+          - 'website/WEBSITE.md'
+          - 'llms.txt'
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'tests/**'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'package-lock.json'
+          - 'website/package.json'
+          - 'website/package-lock.json'
+
+skip-changelog:
+  - head-branch:
+      - 'chore/*'
+      - 'ci/*'
+      - 'docs/*'
+      - 'renovate/*'
+      - 'dependabot/*'
+

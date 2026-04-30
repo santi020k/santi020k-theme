@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Theme — VS Code Color Theme</title>
     <!-- Primary meta -->
-    <meta name="description" content="A purple-forward VS Code color theme with dark and light variants. Deep indigo-black depth, violet accents, and syntax colors built for long sessions. Free on the VS Code Marketplace." />
+    <meta name="description" content="A purple-forward VS Code color theme with dark, light, and high-contrast variants. Deep indigo-black depth, violet accents, and syntax colors built for long sessions. Free on the VS Code Marketplace." />
     <meta name="author" content="Santiago Molina" />
     <meta name="language" content="en" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -33,20 +33,20 @@
     <meta property="og:site_name" content="Santi020k Theme" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Santi020k Theme — VS Code Color Theme" />
-    <meta property="og:description" content="A purple-forward VS Code color theme with dark and light variants. Deep indigo-black depth, violet accents, and syntax that stays expressive without shouting. Free." />
+    <meta property="og:description" content="A purple-forward VS Code color theme with dark, light, and high-contrast variants. Deep indigo-black depth, violet accents, and syntax that stays expressive without shouting. Free." />
     <meta property="og:image" content="https://theme.santi020k.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Santi020k Theme — Dark and light VS Code variants showcased in a split view" />
+    <meta property="og:image:alt" content="Santi020k Theme — Dark, light, and high-contrast VS Code variants" />
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@santi020k" />
     <meta name="twitter:creator" content="@santi020k" />
     <meta name="twitter:url" content="https://theme.santi020k.com/" />
     <meta name="twitter:title" content="Santi020k Theme — VS Code Color Theme" />
-    <meta name="twitter:description" content="A purple-forward VS Code color theme with dark and light variants. Free on the VS Code Marketplace." />
+    <meta name="twitter:description" content="A purple-forward VS Code color theme with dark, light, and high-contrast variants. Free on the VS Code Marketplace." />
     <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
-    <meta name="twitter:image:alt" content="Santi020k Theme - Dark and Light Mode" />
+    <meta name="twitter:image:alt" content="Santi020k Theme - Dark, Light, and High Contrast" />
     <!-- JSON-LD: SoftwareApplication -->
     <script type="application/ld+json">
     {
@@ -60,7 +60,7 @@
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme",
       "url": "https://theme.santi020k.com",
-      "description": "A purple-forward VS Code color theme with dark and light variants built around a deep indigo-black palette and muted violet accents.",
+      "description": "A purple-forward VS Code color theme with dark, light, and high-contrast variants built around a deep indigo-black palette and muted violet accents.",
       "screenshot": "https://theme.santi020k.com/og-image.png",
       "author": {
         "@type": "Person",
@@ -77,15 +77,12 @@
         <img src="/favicon.svg" alt="" width="36" height="36" />
         <span>Santi020k Theme</span>
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#variants">Variants</a>
-        <a href="#screenshots">Preview</a>
-        <a href="#why">Why</a>
-        <a href="#editors">Editors</a>
-        <a href="#palette">Palette</a>
-        <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
-        <span class="separator" aria-hidden="true"></span>
-        <a href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer">Open VSX</a>
+      <div class="header-actions">
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+          <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
         <button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
           <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="4"/>
@@ -95,6 +92,16 @@
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
+      </div>
+      <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
+        <a href="#variants">Variants</a>
+        <a href="#screenshots">Preview</a>
+        <a href="#why">Why</a>
+        <a href="#editors">Editors</a>
+        <a href="#palette">Palette</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
+        <span class="separator" aria-hidden="true"></span>
+        <a href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer">Open VSX</a>
       </nav>
     </header>
 
@@ -104,8 +111,8 @@
           <p class="eyebrow">VS Code color theme</p>
           <h1>Calm editor surfaces. Clear purple focus.</h1>
           <p class="lede">
-            A dark and light theme pair built from the santi020k brand language: indigo-black depth, violet
-            accents, and syntax colors that stay expressive without shouting over the code.
+            Dark, light, and high-contrast themes built from the santi020k brand language: indigo-black
+            depth, violet accents, and syntax colors that stay expressive without shouting over the code.
           </p>
           <div class="actions" aria-label="Theme actions">
             <a class="button button-primary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">
@@ -151,7 +158,7 @@
       <section id="variants" class="site-shell section-grid">
         <div>
           <p class="eyebrow">Variants</p>
-          <h2>Two surfaces, one visual rhythm.</h2>
+          <h2>Three surfaces, one visual rhythm.</h2>
         </div>
         <div class="variant-grid">
           <article class="variant-card variant-dark">
@@ -164,18 +171,33 @@
             <h3>santi020k light</h3>
             <span>#f8f6fd</span>
           </article>
+          <article class="variant-card variant-hc">
+            <p>High Contrast</p>
+            <h3>santi020k hc dark</h3>
+            <span>#0c0818</span>
+          </article>
         </div>
       </section>
 
       <section id="screenshots" class="site-shell screenshots-section">
         <div>
           <p class="eyebrow">Preview</p>
-          <h2>See every surface, both modes.</h2>
+          <h2>See every surface, across modes.</h2>
           <p class="section-lede">Real editor layout — activity bar, sidebar, tabs, minimap, and terminal — styled exactly as they appear in VS Code.</p>
         </div>
-        <div class="screenshot-frame">
-          <img class="screenshot-img screenshot-dark" src="/preview-dark.png" alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1280" height="720" loading="lazy" />
-          <img class="screenshot-img screenshot-light" src="/preview-light.png" alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1280" height="720" loading="lazy" />
+        <div class="screenshot-grid">
+          <figure class="screenshot-card">
+            <img class="screenshot-img" src="/preview-dark.png" alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1280" height="720" loading="lazy" />
+            <figcaption>santi020k dark</figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img class="screenshot-img" src="/preview-light.png" alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1280" height="720" loading="lazy" />
+            <figcaption>santi020k light</figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img class="screenshot-img" src="/preview-hc-dark.png" alt="santi020k high contrast dark theme applied in VS Code — near-black surfaces with vivid purple and amber accents" width="1280" height="720" loading="lazy" />
+            <figcaption>santi020k hc dark</figcaption>
+          </figure>
         </div>
       </section>
 

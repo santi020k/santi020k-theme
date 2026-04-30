@@ -107,10 +107,46 @@ const circularReveal = (button, isDark, newTheme) => {
 // We just need to sync the toggle button state and preview content.
 
 const toggle = document.querySelector('.theme-toggle')
+const header = document.querySelector('.site-header')
+const navToggle = document.querySelector('.nav-toggle')
+const navLinks = document.querySelectorAll('.nav-links a')
+const desktopNavQuery = window.matchMedia('(min-width: 941px)')
 
 syncToggle(toggle)
 
 updatePreview()
+
+const setNavOpen = isOpen => {
+  if (!header || !navToggle) return
+
+  if (isOpen) {
+    header.setAttribute('data-nav-open', 'true')
+  } else {
+    header.removeAttribute('data-nav-open')
+  }
+
+  navToggle.setAttribute('aria-expanded', String(isOpen))
+}
+
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navToggle.getAttribute('aria-expanded') === 'true'
+
+    setNavOpen(!isOpen)
+  })
+}
+
+for (const link of navLinks) {
+  link.addEventListener('click', () => setNavOpen(false))
+}
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') setNavOpen(false)
+})
+
+desktopNavQuery.addEventListener('change', event => {
+  if (event.matches) setNavOpen(false)
+})
 
 // Respect OS-level theme changes (only when user has no stored preference)
 window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
