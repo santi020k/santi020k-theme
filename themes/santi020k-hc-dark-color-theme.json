@@ -1355,6 +1355,40 @@
       "settings": {
         "foreground": "#955ff2"
       }
+    },
+    {
+      "name": "Tailwind CSS class names",
+      "scope": [
+        "support.constant.color.tailwind",
+        "entity.other.attribute-name.class.tailwind"
+      ],
+      "settings": {
+        "foreground": "#60c8e0"
+      }
+    },
+    {
+      "name": "Prisma schema",
+      "scope": [
+        "keyword.control.prisma",
+        "storage.type.prisma",
+        "entity.name.type.model.prisma",
+        "variable.other.property.prisma"
+      ],
+      "settings": {
+        "foreground": "#955ff2"
+      }
+    },
+    {
+      "name": "Testing frameworks (Jest, Vitest, Cypress)",
+      "scope": [
+        "support.function.test.js",
+        "support.function.test.ts",
+        "entity.name.function.test"
+      ],
+      "settings": {
+        "foreground": "#a677f8",
+        "fontStyle": "italic"
+      }
     }
   ]
 }

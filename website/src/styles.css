@@ -695,6 +695,18 @@ pre {
   box-shadow: 0 12px 32px rgb(var(--glow-rgb) / 0.16);
 }
 
+.lang-tag-more {
+  border-style: dashed;
+  color: var(--ink-muted);
+  opacity: 0.8;
+}
+
+.lang-tag-more:hover {
+  border-style: solid;
+  opacity: 1;
+}
+
+
 
 /* ─── Variant cards ───────────────────────────────────────────────────────── */
 .variant-grid {
