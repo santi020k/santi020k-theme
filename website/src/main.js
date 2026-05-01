@@ -19,8 +19,8 @@ const PREVIEW_DATA = {
   dark: {
     filename: 'santi020k-dark-color-theme.json',
     name: '\'santi020k dark\'',
-    bg: '\'#120c1e\'',
-    accent: '\'#c090ff\''
+    bg: '\'#110c1d\'',
+    accent: '\'#945df4\''
   },
   light: {
     filename: 'santi020k-light-color-theme.json',
@@ -76,7 +76,7 @@ const circularReveal = (button, isDark, newTheme) => {
     inset: '0',
     zIndex: '99999',
     pointerEvents: 'none',
-    backgroundColor: isDark ? '#120c1e' : '#f8f6fd',
+    backgroundColor: isDark ? '#110c1d' : '#f8f6fd',
     clipPath: `circle(${maxRadius}px at ${x}px ${y}px)`,
     willChange: 'clip-path'
   })
