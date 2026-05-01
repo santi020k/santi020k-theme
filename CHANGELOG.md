@@ -1,11 +1,5 @@
 # Changelog
 
-## 1.5.0
-
-### Minor Changes
-
-- c82227b: Refactor dark theme color palette and adjust UI accent tones for improved consistency and aesthetics.
-
 ## 1.4.0
 
 ### Minor Changes
