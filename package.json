@@ -25,7 +25,8 @@
     "url": "https://github.com/sponsors/santi020k"
   },
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.75.0",
+    "node": ">=22.18.0"
   },
   "extensionKind": [
     "ui",
