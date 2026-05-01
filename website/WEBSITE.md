@@ -25,25 +25,25 @@ All colors are CSS custom properties set on `:root`. Two website color modes are
 
 | Token | Value | Usage |
 |---|---|---|
-| `--theme-bg` | `#120c1e` | Page background |
-| `--surface` | `#170f25` | Card / widget surface |
-| `--surface-muted` | `#1e1530` | Slightly lighter surface |
-| `--surface-strong` | `#261d3a` | Hover / selected state bg |
-| `--line` | `#3a2556` | Borders, dividers |
-| `--ink` | `#e8e0f0` | Primary text |
-| `--ink-soft` | `#c8b8e8` | Secondary text, nav links |
-| `--ink-muted` | `#7868a0` | Tertiary text, placeholders |
-| `--brand` | `#c090ff` | Accent, active states, cursor |
-| `--brand-solid` | `#6b3fa8` | Button fill, badges |
-| `--brand-hover` | `#8b52d6` | Button hover fill |
-| `--accent` | `#d4a8ff` | Strings, softer accent |
+| `--theme-bg` | `#110c1d` | Page background |
+| `--surface` | `#1c1528` | Card / widget surface |
+| `--surface-muted` | `#231d30` | Slightly lighter surface |
+| `--surface-strong` | `#322b40` | Hover / selected state bg |
+| `--line` | `#494158` | Borders, dividers |
+| `--ink` | `#dfdde3` | Primary text |
+| `--ink-soft` | `#b6b2bd` | Secondary text, nav links |
+| `--ink-muted` | `#8d8896` | Tertiary text, placeholders |
+| `--brand` | `#945df4` | Accent, active states, cursor |
+| `--brand-solid` | `#5a0fdb` | Button fill, badges |
+| `--brand-hover` | `#752df0` | Button hover fill |
+| `--accent` | `#b48df7` | Strings, softer accent |
 | `--success` | `#7daea3` | Added / success indicators |
 | `--warning` | `#e8b44a` | Warning indicators |
 | `--danger` | `#ea6962` | Error / delete indicators |
-| `--glow-rgb` | `192 144 255` | Body grid + radial gradient |
-| `--btn-secondary-bg` | `rgb(23 15 37 / 0.72)` | Ghost button background |
-| `--section-divider` | `rgb(58 37 86 / 0.7)` | Section `border-top` |
-| `--swatch-circle-border` | `rgb(232 224 240 / 0.22)` | Color swatch circle border |
+| `--glow-rgb` | `154 102 244` | Body grid + radial gradient |
+| `--btn-secondary-bg` | `rgb(28 21 40 / 0.72)` | Ghost button background |
+| `--section-divider` | `rgb(73 65 88 / 0.7)` | Section `border-top` |
+| `--swatch-circle-border` | `rgb(223 221 227 / 0.22)` | Color swatch circle border |
 
 ### Light theme
 
@@ -74,15 +74,15 @@ The code preview widget uses its own token set so it can adapt between showing t
 
 | Token | Dark value | Light value |
 |---|---|---|
-| `--preview-bg` | `#0e0919` | `#f8f6fd` |
-| `--preview-topbar-border` | `#1e1530` | `#d3cde6` |
-| `--preview-gutter-color` | `#584878` | `#c4bdd8` |
-| `--preview-gutter-active` | `#c090ff` | `#6319be` |
-| `--preview-pre-color` | `#e8e0f0` | `#302e36` |
-| `--preview-muted` | `#584878` | `#9880c0` |
-| `--preview-keyword` | `#a06ee6` | `#5a1ab0` |
-| `--preview-string` | `#d4a8ff` | `#7030b0` |
-| `--preview-function` | `#c090ff` | `#6319be` |
+| `--preview-bg` | `#0b0712` | `#f8f6fd` |
+| `--preview-topbar-border` | `#231d30` | `#d3cde6` |
+| `--preview-gutter-color` | `#5e576b` | `#c4bdd8` |
+| `--preview-gutter-active` | `#945df4` | `#6319be` |
+| `--preview-pre-color` | `#dfdde3` | `#302e36` |
+| `--preview-muted` | `#5e576b` | `#9880c0` |
+| `--preview-keyword` | `#8445f2` | `#5a1ab0` |
+| `--preview-string` | `#b48df7` | `#7030b0` |
+| `--preview-function` | `#945df4` | `#6319be` |
 
 ---
 
@@ -174,14 +174,14 @@ The theme JSON files live in `themes/`. Both variants share the same CSS-variabl
 
 | Website token | Dark theme hex | Light theme hex | VS Code role |
 |---|---|---|---|
-| `--theme-bg` | `#120c1e` | `#f8f6fd` | `editor.background` |
-| `--surface` | `#170f25` | `#f0edf9` | `sideBar.background` |
-| `--surface-muted` | `#1e1530` | `#eae7f5` | Various hover/selected |
-| `--line` | `#3a2556` | `#d3cde6` | Borders throughout |
-| `--ink` | `#e8e0f0` | `#302e36` | `editor.foreground` |
-| `--brand` | `#c090ff` | `#6319be` | Cursor, active tab indicator |
-| `--brand-solid` | `#6b3fa8` | `#5a14b0` | `button.background`, badges |
-| `--accent` | `#d4a8ff` | `#7030b0` | String syntax color |
+| `--theme-bg` | `#110c1d` | `#f8f6fd` | `editor.background` |
+| `--surface` | `#1c1528` | `#f0edf9` | `sideBar.background` |
+| `--surface-muted` | `#231d30` | `#eae7f5` | Various hover/selected |
+| `--line` | `#494158` | `#d3cde6` | Borders throughout |
+| `--ink` | `#dfdde3` | `#302e36` | `editor.foreground` |
+| `--brand` | `#945df4` | `#6319be` | Cursor, active tab indicator |
+| `--brand-solid` | `#5a0fdb` | `#5a14b0` | `button.background`, badges |
+| `--accent` | `#b48df7` | `#7030b0` | String syntax color |
 | `--success` | `#7daea3` | `#28a745` | Git added decoration |
 | `--warning` | `#e8b44a` | `#c07a10` | Git conflict, warnings |
 | `--danger` | `#ea6962` | `#c0392b` | Git deleted, errors |

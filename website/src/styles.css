@@ -2,33 +2,33 @@
 :root,
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --theme-bg: #120c1e;
-  --surface: #170f25;
-  --surface-muted: #1e1530;
-  --surface-strong: #261d3a;
-  --line: #3a2556;
-  --ink: #e8e0f0;
-  --ink-soft: #c8b8e8;
-  --ink-muted: #7868a0;
-  --brand: #c090ff;
-  --brand-solid: #6b3fa8;
-  --brand-hover: #8b52d6;
-  --accent: #d4a8ff;
+  --theme-bg: #110c1d;
+  --surface: #1c1528;
+  --surface-muted: #231d30;
+  --surface-strong: #322b40;
+  --line: #494158;
+  --ink: #dfdde3;
+  --ink-soft: #b6b2bd;
+  --ink-muted: #8d8896;
+  --brand: #945df4;
+  --brand-solid: #5a0fdb;
+  --brand-hover: #752df0;
+  --accent: #b48df7;
   --success: #7daea3;
   --warning: #e8b44a;
   --danger: #ea6962;
-  --glow-rgb: 192 144 255;
-  --btn-secondary-bg: rgb(23 15 37 / 0.72);
-  --section-divider: rgb(58 37 86 / 0.7);
-  --swatch-circle-border: rgb(232 224 240 / 0.22);
+  --glow-rgb: 154 102 244;
+  --btn-secondary-bg: rgb(28 21 40 / 0.72);
+  --section-divider: rgb(73 65 88 / 0.7);
+  --swatch-circle-border: rgb(223 221 227 / 0.22);
   /* Editor preview (always dark surface, adapts via class overrides in light mode) */
-  --preview-bg: #0e0919;
-  --preview-topbar-border: #1e1530;
-  --preview-gutter-color: #584878;
+  --preview-bg: #0b0712;
+  --preview-topbar-border: #231d30;
+  --preview-gutter-color: #5e576b;
   --preview-gutter-active: var(--brand);
   --preview-pre-color: var(--ink);
-  --preview-muted: #584878;
-  --preview-keyword: #a06ee6;
+  --preview-muted: #5e576b;
+  --preview-keyword: #8445f2;
   --preview-string: var(--accent);
   --preview-function: var(--brand);
   font-family: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
@@ -640,12 +640,12 @@ pre {
 }
 
 .variant-dark {
-  background: linear-gradient(145deg, #170f25, #0e0919);
-  color: #e8e0f0;
+  background: linear-gradient(145deg, #1c1528, #0b0712);
+  color: #dfdde3;
 }
 
 .variant-dark p {
-  color: #c090ff;
+  color: #945df4;
 }
 
 .variant-light {
@@ -658,8 +658,8 @@ pre {
 }
 
 .variant-hc {
-  background: linear-gradient(145deg, #100b1e, #080514);
-  color: #f0e8ff;
+  background: linear-gradient(145deg, #140b22, #090410);
+  color: #f0ebfa;
 }
 
 .variant-hc p {

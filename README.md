@@ -46,19 +46,19 @@ Install from [open-vsx.org/extension/santi020k/santi020k-theme](https://open-vsx
 
 ### santi020k dark
 
-Deep indigo-black (`#120c1e`) backgrounds with a layered surface hierarchy. Accent colors are muted violets pulled directly from the wallpaper geometry — nothing neon, nothing loud. Keywords and storage modifiers are italic; comments are softened but readable. The cursor and active tab indicator glow in `#c090ff`.
+Deep indigo-black (`#110c1d`) backgrounds with a layered surface hierarchy. Accent colors are muted violets pulled directly from the wallpaper geometry — nothing neon, nothing loud. Keywords and storage modifiers are italic; comments are softened but readable. The cursor and active tab indicator glow in `#945df4`.
 
 | Role | Color |
 |---|---|
-| Editor background | `#120c1e` |
-| Activity / Status bar | `#0e0919` |
-| Sidebar | `#170f25` |
-| Cursor / active border | `#c090ff` |
-| Buttons / badges | `#6b3fa8` |
-| Strings | `#d4a8ff` |
-| Keywords | `#a06ee6` italic |
-| Comments | `#7060a8` italic |
-| Primary text | `#e8e0f0` |
+| Editor background | `#110c1d` |
+| Activity / Status bar | `#0b0712` |
+| Sidebar | `#1c1528` |
+| Cursor / active border | `#945df4` |
+| Buttons / badges | `#5a0fdb` |
+| Strings | `#b48df7` |
+| Keywords | `#8445f2` italic |
+| Comments | `#71569f` italic |
+| Primary text | `#dfdde3` |
 
 ### santi020k light
 
@@ -78,19 +78,19 @@ Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving al
 
 ### santi020k hc dark
 
-Near-black (`#0c0818`) backgrounds with vivid purple borders (`#6030b8`) replacing the subtle ones from the dark variant. All accent colors are fully saturated — teal `#60c8e0`, amber `#ffc060`, red `#ff7070` — so every signal reads clearly at a glance. Indent guides are made visible. Built for screens with limited contrast, accessibility requirements, or anyone who prefers maximum separation between UI elements.
+Near-black (`#0d0718`) backgrounds with vivid purple borders (`#602cba`) replacing the subtle ones from the dark variant. All accent colors are fully saturated — teal `#60c8e0`, amber `#ffc060`, red `#ff7070` — so every signal reads clearly at a glance. Indent guides are made visible. Built for screens with limited contrast, accessibility requirements, or anyone who prefers maximum separation between UI elements.
 
 | Role | Color |
 |---|---|
-| Editor background | `#0c0818` |
-| Activity / Status bar | `#080514` |
-| Sidebar | `#100b1e` |
-| Borders | `#6030b8` |
-| Cursor / active border | `#c080ff` |
-| Strings | `#e0a0ff` |
-| Keywords | `#a860f0` italic |
-| Comments | `#8868c8` italic |
-| Primary text | `#f0e8ff` |
+| Editor background | `#0d0718` |
+| Activity / Status bar | `#090410` |
+| Sidebar | `#140b22` |
+| Borders | `#602cba` |
+| Cursor / active border | `#a570ff` |
+| Strings | `#c5a3ff` |
+| Keywords | `#955ff2` italic |
+| Comments | `#8264b4` italic |
+| Primary text | `#f0ebfa` |
 
 ---
 
