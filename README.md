@@ -1,8 +1,8 @@
 # Santi020k Theme
 
-[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version-short/santi020k.santi020k-theme.svg)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
-[![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX)](https://open-vsx.org/extension/santi020k/santi020k-theme)
-[![Validate](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
+[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version-short/santi020k.santi020k-theme.png)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
+[![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX&format=png)](https://open-vsx.org/extension/santi020k/santi020k-theme)
+[![Validate](https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml?label=Validate&format=png)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
 
 A deep indigo-black dark, a purple-tinted light, and high contrast variants for VS Code — built for long sessions, not just screenshots. Available in 12 fine-tuned variants (Dark, Light, HC Dark, HC Light) across Base, Bold, and Italic styles.
 
