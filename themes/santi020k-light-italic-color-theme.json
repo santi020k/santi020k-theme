@@ -30,11 +30,11 @@
     "editorRuler.foreground": "#e3dff0",
     "editorWhitespace.foreground": "#d3cde6",
     "editorBracketHighlight.foreground1": "#6319be",
-    "editorBracketHighlight.foreground2": "#7730b8",
-    "editorBracketHighlight.foreground3": "#8b52d6",
-    "editorBracketHighlight.foreground4": "#5a1ab0",
-    "editorBracketHighlight.foreground5": "#7730b8",
-    "editorBracketHighlight.foreground6": "#9050c8",
+    "editorBracketHighlight.foreground2": "#1080a0",
+    "editorBracketHighlight.foreground3": "#c07a10",
+    "editorBracketHighlight.foreground4": "#6319be",
+    "editorBracketHighlight.foreground5": "#1080a0",
+    "editorBracketHighlight.foreground6": "#c07a10",
     "editorBracketHighlight.unexpectedBracket.foreground": "#c0392b",
     "editorBracketMatch.background": "#6319be20",
     "editorBracketMatch.border": "#6319be",
@@ -597,6 +597,7 @@
       "italic": true
     },
     "*.readonly": {
+      "foreground": "#302e36cc",
       "italic": true
     },
     "*.static": {

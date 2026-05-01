@@ -36,11 +36,11 @@
     "editorWhitespace.foreground": "#372e47",
     // Editor Brackets
     "editorBracketHighlight.foreground1": "#945df4",
-    "editorBracketHighlight.foreground2": "#9b69f6",
-    "editorBracketHighlight.foreground3": "#752df0",
-    "editorBracketHighlight.foreground4": "#b48df7",
-    "editorBracketHighlight.foreground5": "#c3a4f9",
-    "editorBracketHighlight.foreground6": "#a475f5",
+    "editorBracketHighlight.foreground2": "#89b8c8",
+    "editorBracketHighlight.foreground3": "#e8b44a",
+    "editorBracketHighlight.foreground4": "#945df4",
+    "editorBracketHighlight.foreground5": "#89b8c8",
+    "editorBracketHighlight.foreground6": "#e8b44a",
     "editorBracketHighlight.unexpectedBracket.foreground": "#ea6962",
     "editorBracketMatch.background": "#32195d40",
     "editorBracketMatch.border": "#752df0",
@@ -631,6 +631,7 @@
       "underline": true
     },
     "*.readonly": {
+      "foreground": "#dfdde3b0",
       "italic": true
     },
     "*.static": {
