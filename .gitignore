@@ -3,3 +3,4 @@ website/dist/
 website/node_modules/
 *.vsix
 .env
+themes/*-bold-color-theme.json

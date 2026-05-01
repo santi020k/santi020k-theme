@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import { readFileSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 const configs = [
     {
@@ -22,10 +22,10 @@ function boldify(style) {
 }
 
 configs.forEach(config => {
-    const themePath = path.join(process.cwd(), config.input);
-    const outputPath = path.join(process.cwd(), config.output);
+    const themePath = join(process.cwd(), config.input);
+    const outputPath = join(process.cwd(), config.output);
 
-    const raw = fs.readFileSync(themePath, 'utf8');
+    const raw = readFileSync(themePath, 'utf8');
     const cleanRaw = raw
         .replace(/\/\*[\s\S]*?\*\//g, '')
         .replace(/^\s*\/\/.*$/gm, '');
@@ -57,6 +57,6 @@ configs.forEach(config => {
         });
     }
 
-    fs.writeFileSync(outputPath, JSON.stringify(theme, null, 2));
+    writeFileSync(outputPath, JSON.stringify(theme, null, 2));
     console.log('Bold theme generated at:', outputPath);
 });
