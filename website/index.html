@@ -14,6 +14,10 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Theme — VS Code Color Theme</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- Primary meta -->
     <meta name="description" content="A purple-forward VS Code color theme with dark, light, and high-contrast variants. Deep indigo-black depth, violet accents, and syntax colors built for long sessions. Free on the VS Code Marketplace." />
     <meta name="author" content="Santiago Molina" />
@@ -25,7 +29,7 @@
     <!-- Icons -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <!-- Theme color — separate media queries so the browser chrome matches -->
-    <meta name="theme-color" content="#120c1e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -111,8 +115,7 @@
           <p class="eyebrow">VS Code color theme</p>
           <h1>Calm editor surfaces. Clear purple focus.</h1>
           <p class="lede">
-            Dark, light, and high-contrast themes built from the santi020k brand language: indigo-black
-            depth, violet accents, and syntax colors that stay expressive without shouting over the code.
+            Available in 12 fine-tuned variants (Dark, Light, HC Dark, HC Light) across Base, Bold, and Italic styles — all built around the deep indigo-black depth and violet accents of the santi020k brand.
           </p>
           <div class="actions" aria-label="Theme actions">
             <a class="button button-primary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">
@@ -125,13 +128,50 @@
               GitHub
             </a>
           </div>
+          <div class="install-action">
+            <button class="button-copy-install" type="button" aria-label="Copy installation command">
+              <span class="command">ext install santi020k.santi020k-theme</span>
+              <span class="copy-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
         </div>
 
         <div class="editor-preview" aria-label="Preview of the Santi020k Theme">
           <div class="preview-topbar">
-            <span></span>
-            <span></span>
-            <span></span>
+            <div class="preview-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="preview-controls">
+              <select class="preview-lang-select" aria-label="Select preview language">
+                <option value="json">JSON</option>
+                <option value="ts">TypeScript</option>
+                <option value="js">JavaScript</option>
+                <option value="react">React</option>
+                <option value="rust">Rust</option>
+                <option value="go">Go</option>
+                <option value="prisma">Prisma</option>
+                <option value="java">Java</option>
+                <option value="cpp">C++</option>
+                <option value="elixir">Elixir</option>
+                <option value="tailwind">Tailwind CSS</option>
+              </select>
+              <select class="preview-theme-select" aria-label="Select preview theme">
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="hc">HC Dark</option>
+                <option value="hclight">HC Light</option>
+              </select>
+              <select class="preview-variant-select" aria-label="Select preview variant">
+                <option value="normal">Normal (Default)</option>
+                <option value="bold">Bold</option>
+                <option value="italic">Italic</option>
+              </select>
+            </div>
             <strong class="preview-filename">santi020k-dark-color-theme.json</strong>
           </div>
           <div class="preview-body">
@@ -144,13 +184,7 @@
               <span>06</span>
               <span>07</span>
             </aside>
-            <pre><code><span class="muted">// focused without glare</span>
-<span class="keyword">const</span> theme = {
-  name: <span class="string preview-theme-name">'santi020k dark'</span>,
-  background: <span class="string preview-bg-color">'#120c1e'</span>,
-  accent: <span class="string preview-accent-color">'#c090ff'</span>,
-  mood: <span class="function">compose</span>(<span class="string">'calm'</span>, <span class="string">'precise'</span>)
-}</code></pre>
+            <pre><code class="preview-code"></code></pre>
           </div>
         </div>
       </section>
@@ -164,7 +198,7 @@
           <article class="variant-card variant-dark">
             <p>Dark</p>
             <h3>santi020k dark</h3>
-            <span>#120c1e</span>
+            <span>#110c1d</span>
           </article>
           <article class="variant-card variant-light">
             <p>Light</p>
@@ -172,9 +206,14 @@
             <span>#f8f6fd</span>
           </article>
           <article class="variant-card variant-hc">
-            <p>High Contrast</p>
+            <p>HC Dark</p>
             <h3>santi020k hc dark</h3>
-            <span>#0c0818</span>
+            <span>#0d0718</span>
+          </article>
+          <article class="variant-card variant-hc-light">
+            <p>HC Light</p>
+            <h3>santi020k hc light</h3>
+            <span>#ffffff</span>
           </article>
         </div>
       </section>
@@ -277,17 +316,45 @@
         </div>
       </section>
 
+      <section id="languages" class="site-shell languages-section">
+        <div>
+          <p class="eyebrow">Supported Technologies</p>
+          <h2>Deep coverage for your stack.</h2>
+          <p class="section-lede">Optimized TextMate and Semantic tokens for 20+ languages, frameworks, and tools — built to stay expressive over long sessions.</p>
+        </div>
+        <div class="language-grid">
+          <div class="lang-tag"><span>TypeScript</span></div>
+          <div class="lang-tag"><span>JavaScript</span></div>
+          <div class="lang-tag"><span>React / Next.js</span></div>
+          <div class="lang-tag"><span>Tailwind CSS</span></div>
+          <div class="lang-tag"><span>Prisma</span></div>
+          <div class="lang-tag"><span>Elixir</span></div>
+          <div class="lang-tag"><span>Node.js / Vite</span></div>
+          <div class="lang-tag"><span>Python</span></div>
+          <div class="lang-tag"><span>Rust</span></div>
+          <div class="lang-tag"><span>Go</span></div>
+          <div class="lang-tag"><span>SQL / PostgreSQL</span></div>
+          <div class="lang-tag"><span>HTML / CSS</span></div>
+          <div class="lang-tag"><span>Svelte / Vue</span></div>
+          <div class="lang-tag"><span>Shell / Docker</span></div>
+          <div class="lang-tag lang-tag-more"><span>+50 more</span></div>
+        </div>
+
+
+
+      </section>
+
       <section id="palette" class="site-shell palette-section">
         <div>
           <p class="eyebrow">Palette</p>
           <h2>Violets for focus, soft contrast for long sessions.</h2>
         </div>
         <div class="swatches" aria-label="Core theme colors">
-          <span style="--swatch: #120c1e">Indigo black</span>
-          <span style="--swatch: #170f25">Sidebar</span>
-          <span style="--swatch: #6b3fa8">Control</span>
-          <span style="--swatch: #c090ff">Focus</span>
-          <span style="--swatch: #d4a8ff">String</span>
+          <span style="--swatch: #110c1d">Indigo black</span>
+          <span style="--swatch: #1c1528">Sidebar</span>
+          <span style="--swatch: #5a0fdb">Control</span>
+          <span style="--swatch: #945df4">Focus</span>
+          <span style="--swatch: #b48df7">String</span>
           <span style="--swatch: #f8f6fd">Light canvas</span>
         </div>
       </section>

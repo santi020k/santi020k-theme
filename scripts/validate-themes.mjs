@@ -4,7 +4,16 @@ import { fileURLToPath } from 'node:url'
 const themeFiles = [
   'themes/santi020k-dark-color-theme.json',
   'themes/santi020k-light-color-theme.json',
-  'themes/santi020k-hc-dark-color-theme.json'
+  'themes/santi020k-hc-dark-color-theme.json',
+  'themes/santi020k-hc-light-color-theme.json',
+  'themes/santi020k-dark-bold-color-theme.json',
+  'themes/santi020k-light-bold-color-theme.json',
+  'themes/santi020k-hc-dark-bold-color-theme.json',
+  'themes/santi020k-hc-light-bold-color-theme.json',
+  'themes/santi020k-dark-italic-color-theme.json',
+  'themes/santi020k-light-italic-color-theme.json',
+  'themes/santi020k-hc-dark-italic-color-theme.json',
+  'themes/santi020k-hc-light-italic-color-theme.json'
 ]
 
 const requiredColorKeys = [
@@ -83,7 +92,18 @@ const modernSurfaceColorKeys = [
   'notebook.outputContainerBorderColor',
   'notebookStatusErrorIcon.foreground',
   'notebookStatusRunningIcon.foreground',
-  'notebookStatusSuccessIcon.foreground'
+  'notebookStatusSuccessIcon.foreground',
+  'commandCenter.background',
+  'commandCenter.activeBackground',
+  'commandCenter.border',
+  'editorStickyScroll.background',
+  'editorStickyScroll.border',
+  'settings.headerForeground',
+  'settings.modifiedItemIndicator',
+  'editorMultiCursor.primary.foreground',
+  'editorMultiCursor.secondary.foreground',
+  'editorIndentGuide.background1',
+  'editorIndentGuide.activeBackground1'
 ]
 
 const contrastPairs = [

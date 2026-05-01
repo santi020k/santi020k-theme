@@ -17,34 +17,149 @@ const setTheme = theme => {
 
 const PREVIEW_DATA = {
   dark: {
-    filename: 'santi020k-dark-color-theme.json',
-    name: '\'santi020k dark\'',
-    bg: '\'#120c1e\'',
-    accent: '\'#c090ff\''
+    normal: { filename: 'santi020k-dark-color-theme.json', themeName: 'santi020k dark' },
+    bold: { filename: 'santi020k-dark-bold-color-theme.json', themeName: 'santi020k dark bold' },
+    italic: { filename: 'santi020k-dark-italic-color-theme.json', themeName: 'santi020k dark italic' }
   },
   light: {
-    filename: 'santi020k-light-color-theme.json',
-    name: '\'santi020k light\'',
-    bg: '\'#f8f6fd\'',
-    accent: '\'#6319be\''
+    normal: { filename: 'santi020k-light-color-theme.json', themeName: 'santi020k light' },
+    bold: { filename: 'santi020k-light-bold-color-theme.json', themeName: 'santi020k light bold' },
+    italic: { filename: 'santi020k-light-italic-color-theme.json', themeName: 'santi020k light italic' }
+  },
+  hc: {
+    normal: { filename: 'santi020k-hc-dark-color-theme.json', themeName: 'santi020k hc dark' },
+    bold: { filename: 'santi020k-hc-dark-bold-color-theme.json', themeName: 'santi020k hc dark bold' },
+    italic: { filename: 'santi020k-hc-dark-italic-color-theme.json', themeName: 'santi020k hc dark italic' }
+  },
+  hclight: {
+    normal: { filename: 'santi020k-hc-light-color-theme.json', themeName: 'santi020k hc light' },
+    bold: { filename: 'santi020k-hc-light-bold-color-theme.json', themeName: 'santi020k hc light bold' },
+    italic: { filename: 'santi020k-hc-light-italic-color-theme.json', themeName: 'santi020k hc light italic' }
   }
 }
 
-const updatePreview = () => {
-  const data = PREVIEW_DATA[rootInDarkMode() ? 'dark' : 'light']
-  const el = cls => document.querySelector(cls)
-  const filename = el('.preview-filename')
-  const name = el('.preview-theme-name')
-  const bg = el('.preview-bg-color')
-  const accent = el('.preview-accent-color')
+const SNIPPETS = {
+  json: data => `<span class="muted">// focused without glare</span>
+{
+  <span class="property">"name"</span>: <span class="string">"${data.themeName}"</span>,
+  <span class="property">"type"</span>: <span class="string">"dark"</span>,
+  <span class="property">"semanticHighlighting"</span>: <span class="keyword">true</span>
+}`,
+  ts: () => `<span class="muted">// Type-safe logic</span>
+<span class="keyword">interface</span> <span class="function">Config</span> {
+  <span class="property">id</span>: <span class="keyword">string</span>;
+  <span class="property">active</span>: <span class="keyword">boolean</span>;
+}
 
-  if (filename) filename.textContent = data.filename
+<span class="keyword">function</span> <span class="function">setup</span>(config: <span class="function">Config</span>)
+    : <span class="keyword">void</span> {
+  console.<span class="function">log</span>(config.id);
+}`,
+  js: () => `<span class="muted">// Standard JS</span>
+<span class="keyword">export async function</span> <span class="function">fetchData</span>(url) {
+  <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="function">fetch</span>(url);
+  <span class="keyword">const</span> { <span class="property">data</span> } = <span class="keyword">await</span> res
+    .<span class="function">json</span>();
+  <span class="keyword">return</span> data;
+}`,
+  rust: () => `<span class="muted">// Precise lifetimes</span>
+<span class="keyword">impl</span>&lt;<span class="string">'a</span>&gt; Parser&lt;<span class="string">'a</span>&gt; {
+  <span class="keyword">pub fn</span> <span class="function">new</span>(input: <span class="keyword">&'a</span> str)
+    -&gt; <span class="keyword">Self</span> {
+    <span class="keyword">Self</span> { input }
+  }
+}`,
+  go: () => `<span class="muted">// Clear built-ins</span>
+<span class="keyword">func</span> <span class="function">main</span>() {
+  items := <span class="function">make</span>([]<span class="keyword">string</span>, <span class="number">0</span>)
+  <span class="keyword">if</span> <span class="function">len</span>(items) == <span class="number">0</span> {
+    <span class="function">println</span>(<span class="string">"Empty"</span>)
+  }
+}`,
+  react: () => `<span class="muted">// Interactive components</span>
+<span class="keyword">export const</span> <span class="function">Button</span> = ({ children, onClick }) =&gt; {
+  <span class="keyword">const</span> [count, setCount] = <span class="function">useState</span>(
+    <span class="number">0</span>
+  );
 
-  if (name) name.textContent = data.name
+  <span class="keyword">return</span> (
+    &lt;<span class="keyword">button</span>
+      <span class="function">className</span>=<span class="string">"p-4 bg-brand"</span>
+      <span class="function">onClick</span>={onClick}
+    &gt;
+      {children}
+    &lt;/<span class="keyword">button</span>&gt;
+  );
+}`,
+  prisma: () => `<span class="muted">// Type-safe schemas</span>
+<span class="keyword">model</span> <span class="function">User</span> {
+  <span class="property">id</span>    <span class="keyword">Int</span>     @id @default(autoincrement())
+  <span class="property">email</span> <span class="keyword">String</span>  @unique
+  <span class="property">name</span>  <span class="keyword">String</span>?
+  <span class="property">posts</span> <span class="function">Post</span>[]
+}`,
+  java: () => `<span class="muted">// Typed and structured</span>
+<span class="keyword">public class</span> <span class="function">Service</span> {
+  <span class="keyword">private final</span> <span class="keyword">String</span> name;
+  <span class="keyword">public</span> <span class="function">Service</span>(<span class="keyword">String</span> name) {
+    <span class="keyword">this</span>.name = name;
+  }
+}`,
+  cpp: () => `<span class="muted">// Memory managed</span>
+<span class="keyword">auto</span> <span class="function">main</span>() -&gt; <span class="keyword">int</span> {
+  <span class="keyword">auto</span> ptr = std::make_unique&lt;Data&gt;();
+  <span class="keyword">return</span> <span class="number">0</span>;
+}`,
+  elixir: () => `<span class="muted">// Functional Elixir</span>
+<span class="keyword">defmodule</span> <span class="function">App</span> <span class="keyword">do</span>
+  <span class="keyword">def</span> <span class="function">start</span>(<span class="property">_type</span>, <span class="property">_args</span>) <span class="keyword">do</span>
+    <span class="function">Supervisor</span>.start_link([], strategy: :one_for_one)
+  <span class="keyword">end</span>
+<span class="keyword">end</span>`,
+  tailwind: () => `<span class="muted">// Utility-first CSS</span>
+&lt;<span class="keyword">div</span> <span class="function">class</span>=<span class="string">"flex items-center justify-between p-6 bg-indigo-900/20 border-b border-indigo-500/30"</span>&gt;
+  &lt;<span class="keyword">h1</span> <span class="function">class</span>=<span class="string">"text-2xl font-bold text-violet-400"</span>&gt;
+    Aurora UI
+  &lt;/<span class="keyword">h1</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;`
+}
 
-  if (bg) bg.textContent = data.bg
+let currentPreviewLang = 'json'
+let currentPreviewTheme = 'dark'
+let currentPreviewVariant = 'normal'
 
-  if (accent) accent.textContent = data.accent
+const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
+  currentPreviewLang = lang
+
+  currentPreviewTheme = theme
+
+  currentPreviewVariant = variant
+
+  // eslint-disable-next-line security/detect-object-injection
+  const data = PREVIEW_DATA[theme][variant]
+  const container = document.querySelector('.editor-preview')
+  const codeEl = document.querySelector('.preview-code')
+  const filenameEl = document.querySelector('.preview-filename')
+  const langSelect = document.querySelector('.preview-lang-select')
+  const themeSelect = document.querySelector('.preview-theme-select')
+  const variantSelect = document.querySelector('.preview-variant-select')
+
+  if (container) {
+    container.setAttribute('data-preview-theme', theme)
+
+    container.setAttribute('data-preview-variant', variant)
+  }
+
+  if (filenameEl) filenameEl.textContent = data.filename
+
+  // eslint-disable-next-line security/detect-object-injection
+  if (codeEl) codeEl.innerHTML = SNIPPETS[lang](data)
+
+  if (langSelect) langSelect.value = lang
+
+  if (themeSelect) themeSelect.value = theme
+
+  if (variantSelect) variantSelect.value = variant
 }
 
 const syncToggle = toggle => {
@@ -76,7 +191,7 @@ const circularReveal = (button, isDark, newTheme) => {
     inset: '0',
     zIndex: '99999',
     pointerEvents: 'none',
-    backgroundColor: isDark ? '#120c1e' : '#f8f6fd',
+    backgroundColor: isDark ? '#110c1d' : '#f8f6fd',
     clipPath: `circle(${maxRadius}px at ${x}px ${y}px)`,
     willChange: 'clip-path'
   })
@@ -114,7 +229,40 @@ const desktopNavQuery = window.matchMedia('(min-width: 941px)')
 
 syncToggle(toggle)
 
-updatePreview()
+const langSelect = document.querySelector('.preview-lang-select')
+const themeSelect = document.querySelector('.preview-theme-select')
+const variantSelect = document.querySelector('.preview-variant-select')
+let manualPreviewTheme = false
+
+if (langSelect) {
+  langSelect.addEventListener('change', e => {
+    updatePreview(e.target.value, currentPreviewTheme, currentPreviewVariant)
+  })
+}
+
+if (themeSelect) {
+  themeSelect.addEventListener('change', e => {
+    manualPreviewTheme = true
+
+    updatePreview(currentPreviewLang, e.target.value, currentPreviewVariant)
+  })
+}
+
+if (variantSelect) {
+  variantSelect.addEventListener('change', e => {
+    updatePreview(currentPreviewLang, currentPreviewTheme, e.target.value)
+  })
+}
+
+const syncPreviewWithSite = () => {
+  if (!manualPreviewTheme) {
+    updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light', currentPreviewVariant)
+  } else {
+    updatePreview()
+  }
+}
+
+syncPreviewWithSite()
 
 const setNavOpen = isOpen => {
   if (!header || !navToggle) return
@@ -155,7 +303,7 @@ window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e 
 
     syncToggle(toggle)
 
-    updatePreview()
+    syncPreviewWithSite()
   }
 })
 
@@ -176,7 +324,7 @@ if (toggle) {
 
       syncToggle(toggle)
 
-      updatePreview()
+      syncPreviewWithSite()
 
       isAnimating = false
 
@@ -187,10 +335,63 @@ if (toggle) {
 
     syncToggle(toggle)
 
-    updatePreview()
+    syncPreviewWithSite()
 
     setTimeout(() => {
       isAnimating = false
     }, 800)
   })
 }
+// Clipboard handlers
+const setupClipboard = () => {
+  const installBtn = document.querySelector('.button-copy-install')
+  const settingsBtn = document.querySelector('.button-copy-settings')
+
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      const command = 'ext install santi020k.santi020k-theme'
+
+      try {
+        await navigator.clipboard.writeText(command)
+
+        const originalText = installBtn.innerHTML
+
+        installBtn.innerHTML = '<span class="command">Copied to clipboard!</span>'
+
+        setTimeout(() => {
+          installBtn.innerHTML = originalText
+        }, 2000)
+      } catch (err) {
+        console.error('Failed to copy: ', err)
+      }
+    })
+  }
+
+  if (settingsBtn) {
+    settingsBtn.addEventListener('click', async () => {
+      const settings = {
+        'editor.fontFamily': "'Fira Code', 'Montserrat', monospace",
+        'editor.fontLigatures': true,
+        'editor.fontWeight': '500',
+        'editor.lineHeight': 1.9,
+        'editor.letterSpacing': -0.2
+      }
+
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(settings, null, 2))
+
+        const originalHtml = settingsBtn.innerHTML
+
+        settingsBtn.innerHTML = '<span>Copied!</span>'
+
+        setTimeout(() => {
+          settingsBtn.innerHTML = originalHtml
+        }, 2000)
+      } catch (err) {
+        console.error('Failed to copy settings: ', err)
+      }
+    })
+  }
+}
+
+setupClipboard()
