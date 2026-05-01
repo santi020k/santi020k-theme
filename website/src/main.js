@@ -27,10 +27,6 @@ const PREVIEW_DATA = {
   hc: {
     filename: 'santi020k-hc-dark-color-theme.json',
     themeName: 'santi020k hc dark'
-  },
-  bold: {
-    filename: 'santi020k-dark-bold-color-theme.json',
-    themeName: 'santi020k dark bold'
   }
 }
 

@@ -90,6 +90,11 @@
         "label": "santi020k dark bold",
         "uiTheme": "vs-dark",
         "path": "./themes/santi020k-dark-bold-color-theme.json"
+      },
+      {
+        "label": "santi020k light bold",
+        "uiTheme": "vs",
+        "path": "./themes/santi020k-light-bold-color-theme.json"
       }
     ]
   },

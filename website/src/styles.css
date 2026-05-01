@@ -48,22 +48,6 @@
   --preview-function: #945df4;
 }
 
-.editor-preview[data-preview-theme="bold"] {
-  --preview-bg: #0b0712;
-  --preview-topbar-border: #231d30;
-  --preview-gutter-color: #5e576b;
-  --preview-gutter-active: #945df4;
-  --preview-pre-color: #dfdde3;
-  --preview-muted: #5e576b;
-  --preview-keyword: #8445f2;
-  --preview-string: #b48df7;
-  --preview-function: #945df4;
-}
-
-.editor-preview[data-preview-theme="bold"] pre {
-  font-weight: 700;
-}
-
 .editor-preview[data-preview-theme="hc"] {
   --preview-bg: #0d0718;
   --preview-topbar-border: #602cba;

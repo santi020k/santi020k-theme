@@ -83,6 +83,16 @@ The "website preview" version of the dark theme. It shares the exact same palett
 | Keywords | **Bold Italic** |
 | Function Names | **Bold** |
 
+### santi020k light bold
+
+The bold counterpart to the light theme. It applies a global bold override to all syntax tokens, making the violet ramp even more prominent against the soft lavender backgrounds.
+
+| Role | Style |
+|---|---|
+| Palette | Identical to `santi020k light` |
+| Syntax Tokens | **Bold** |
+| Keywords | **Bold Italic** |
+
 ### santi020k light
 
 Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving all interactive elements. The status bar flips to solid brand purple, making workspace context immediately readable. Syntax uses a single-hue violet ramp so the light variant feels like a natural counterpart to the dark one.
