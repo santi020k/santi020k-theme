@@ -374,6 +374,67 @@ h3 {
   line-height: 1.72;
 }
 
+.install-action {
+  margin-top: 32px;
+}
+
+.button-copy-install {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 440px;
+  min-height: 52px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0 16px;
+  background: var(--surface-muted);
+  color: var(--ink-soft);
+  font-family: "Fira Code", monospace;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-copy-install:hover {
+  border-color: var(--brand);
+  background: var(--surface-strong);
+  color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgb(var(--glow-rgb) / 0.12);
+}
+
+.button-copy-install .command {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button-copy-install .copy-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--brand);
+  transition: all 0.2s;
+}
+
+.button-copy-install:hover .copy-icon {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.button-copy-install:active {
+  transform: translateY(0);
+}
+
 /* ─── Buttons ─────────────────────────────────────────────────────────────── */
 .actions {
   flex-wrap: wrap;
@@ -473,6 +534,37 @@ h3 {
 .preview-controls select:hover {
   border-color: var(--brand);
   color: var(--ink);
+}
+
+.button-copy-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 10px;
+  background: var(--surface-muted);
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button-copy-settings:hover {
+  border-color: var(--brand);
+  background: var(--surface-strong);
+  color: var(--ink);
+}
+
+.button-copy-settings svg {
+  color: var(--brand);
+}
+
+.button-copy-settings:active {
+  transform: scale(0.96);
 }
 
 .preview-topbar strong {

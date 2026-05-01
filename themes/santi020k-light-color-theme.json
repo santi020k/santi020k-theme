@@ -21,9 +21,14 @@
     "window.inactiveBorder": "#d3cde6",
     // Editor
     "editor.background": "#f8f6fd",
+    "editor.focusedStackFrameHighlightBackground": "#6319be30",
     "editor.foreground": "#302e36",
+    "editor.inlineValuesBackground": "#e3dff060",
+    "editor.inlineValuesForeground": "#8d8896",
     "editor.lineHighlightBackground": "#00000000",
     "editor.lineHighlightBorder": "#00000000",
+    "editor.linkedEditingBackground": "#6319be20",
+    "editor.stackFrameHighlightBackground": "#6319be20",
     // Editor Cursor & Line Numbers
     "editorCursor.background": "#f8f6fd",
     "editorCursor.foreground": "#6319be",
@@ -309,6 +314,7 @@
     "settings.numberInputForeground": "#302e36",
     "settings.rowHoverBackground": "#eae7f5",
     "settings.sashBorder": "#d3cde6",
+    "settings.settingsHeaderHoverForeground": "#302e36",
     "settings.textInputBackground": "#ffffff",
     "settings.textInputBorder": "#d3cde6",
     "settings.textInputForeground": "#302e36",
@@ -802,6 +808,36 @@
       ],
       "settings": {
         "foreground": "#302e36"
+      }
+    },
+    {
+      "name": "Tailwind CSS",
+      "scope": [
+        "entity.other.attribute-name.class.tailwind",
+        "support.constant.color.tailwind"
+      ],
+      "settings": {
+        "foreground": "#0a6e8a"
+      }
+    },
+    {
+      "name": "Prisma",
+      "scope": [
+        "entity.name.type.model.prisma",
+        "support.type.primitive.prisma"
+      ],
+      "settings": {
+        "foreground": "#6319be"
+      }
+    },
+    {
+      "name": "Elixir",
+      "scope": [
+        "variable.other.readwrite.module.elixir",
+        "punctuation.section.embedded.elixir"
+      ],
+      "settings": {
+        "foreground": "#752df0"
       }
     },
     {

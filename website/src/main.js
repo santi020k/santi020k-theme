@@ -51,18 +51,21 @@ const SNIPPETS = {
   <span class="property">active</span>: <span class="keyword">boolean</span>;
 }
 
-<span class="keyword">function</span> <span class="function">setup</span>(config: <span class="function">Config</span>): <span class="keyword">void</span> {
+<span class="keyword">function</span> <span class="function">setup</span>(config: <span class="function">Config</span>)
+    : <span class="keyword">void</span> {
   console.<span class="function">log</span>(config.id);
 }`,
   js: () => `<span class="muted">// Standard JS</span>
 <span class="keyword">export async function</span> <span class="function">fetchData</span>(url) {
   <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="function">fetch</span>(url);
-  <span class="keyword">const</span> { <span class="property">data</span> } = <span class="keyword">await</span> res.<span class="function">json</span>();
+  <span class="keyword">const</span> { <span class="property">data</span> } = <span class="keyword">await</span> res
+    .<span class="function">json</span>();
   <span class="keyword">return</span> data;
 }`,
   rust: () => `<span class="muted">// Precise lifetimes</span>
 <span class="keyword">impl</span>&lt;<span class="string">'a</span>&gt; Parser&lt;<span class="string">'a</span>&gt; {
-  <span class="keyword">pub fn</span> <span class="function">new</span>(input: <span class="keyword">&'a</span> str) -&gt; <span class="keyword">Self</span> {
+  <span class="keyword">pub fn</span> <span class="function">new</span>(input: <span class="keyword">&'a</span> str)
+    -&gt; <span class="keyword">Self</span> {
     <span class="keyword">Self</span> { input }
   }
 }`,
@@ -75,10 +78,15 @@ const SNIPPETS = {
 }`,
   react: () => `<span class="muted">// Interactive components</span>
 <span class="keyword">export const</span> <span class="function">Button</span> = ({ children, onClick }) =&gt; {
-  <span class="keyword">const</span> [count, setCount] = <span class="function">useState</span>(<span class="number">0</span>);
+  <span class="keyword">const</span> [count, setCount] = <span class="function">useState</span>(
+    <span class="number">0</span>
+  );
 
   <span class="keyword">return</span> (
-    &lt;<span class="keyword">button</span> <span class="function">className</span>=<span class="string">"p-4 bg-brand"</span> <span class="function">onClick</span>={onClick}&gt;
+    &lt;<span class="keyword">button</span>
+      <span class="function">className</span>=<span class="string">"p-4 bg-brand"</span>
+      <span class="function">onClick</span>={onClick}
+    &gt;
       {children}
     &lt;/<span class="keyword">button</span>&gt;
   );
@@ -101,8 +109,19 @@ const SNIPPETS = {
 <span class="keyword">auto</span> <span class="function">main</span>() -&gt; <span class="keyword">int</span> {
   <span class="keyword">auto</span> ptr = std::make_unique&lt;Data&gt;();
   <span class="keyword">return</span> <span class="number">0</span>;
-}`
-
+}`,
+  elixir: () => `<span class="muted">// Functional Elixir</span>
+<span class="keyword">defmodule</span> <span class="function">App</span> <span class="keyword">do</span>
+  <span class="keyword">def</span> <span class="function">start</span>(<span class="property">_type</span>, <span class="property">_args</span>) <span class="keyword">do</span>
+    <span class="function">Supervisor</span>.start_link([], strategy: :one_for_one)
+  <span class="keyword">end</span>
+<span class="keyword">end</span>`,
+  tailwind: () => `<span class="muted">// Utility-first CSS</span>
+&lt;<span class="keyword">div</span> <span class="function">class</span>=<span class="string">"flex items-center justify-between p-6 bg-indigo-900/20 border-b border-indigo-500/30"</span>&gt;
+  &lt;<span class="keyword">h1</span> <span class="function">class</span>=<span class="string">"text-2xl font-bold text-violet-400"</span>&gt;
+    Aurora UI
+  &lt;/<span class="keyword">h1</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;`
 }
 
 let currentPreviewLang = 'json'
@@ -323,3 +342,56 @@ if (toggle) {
     }, 800)
   })
 }
+// Clipboard handlers
+const setupClipboard = () => {
+  const installBtn = document.querySelector('.button-copy-install')
+  const settingsBtn = document.querySelector('.button-copy-settings')
+
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      const command = 'ext install santi020k.santi020k-theme'
+
+      try {
+        await navigator.clipboard.writeText(command)
+
+        const originalText = installBtn.innerHTML
+
+        installBtn.innerHTML = '<span class="command">Copied to clipboard!</span>'
+
+        setTimeout(() => {
+          installBtn.innerHTML = originalText
+        }, 2000)
+      } catch (err) {
+        console.error('Failed to copy: ', err)
+      }
+    })
+  }
+
+  if (settingsBtn) {
+    settingsBtn.addEventListener('click', async () => {
+      const settings = {
+        'editor.fontFamily': "'Fira Code', 'Montserrat', monospace",
+        'editor.fontLigatures': true,
+        'editor.fontWeight': '500',
+        'editor.lineHeight': 1.9,
+        'editor.letterSpacing': -0.2
+      }
+
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(settings, null, 2))
+
+        const originalHtml = settingsBtn.innerHTML
+
+        settingsBtn.innerHTML = '<span>Copied!</span>'
+
+        setTimeout(() => {
+          settingsBtn.innerHTML = originalHtml
+        }, 2000)
+      } catch (err) {
+        console.error('Failed to copy settings: ', err)
+      }
+    })
+  }
+}
+
+setupClipboard()
