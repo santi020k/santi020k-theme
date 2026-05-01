@@ -24,3 +24,5 @@ assets/*.svg
 .gitignore
 scratch/**
 !themes/*-bold-color-theme.json
+!themes/*-italic-color-theme.json
+!themes/santi020k-hc-light-color-theme.json
