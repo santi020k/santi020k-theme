@@ -37,6 +37,21 @@ const SNIPPETS = {
   <span class="keyword">"type"</span>: <span class="string">"dark"</span>,
   <span class="keyword">"semanticHighlighting"</span>: <span class="keyword">true</span>
 }`,
+  ts: () => `<span class="muted">// Type-safe logic</span>
+<span class="keyword">interface</span> <span class="function">Config</span> {
+  id: <span class="keyword">string</span>;
+  active: <span class="keyword">boolean</span>;
+}
+
+<span class="keyword">function</span> <span class="function">setup</span>(config: <span class="function">Config</span>): <span class="keyword">void</span> {
+  console.<span class="function">log</span>(config.id);
+}`,
+  js: () => `<span class="muted">// Standard JS</span>
+<span class="keyword">export async function</span> <span class="function">fetchData</span>(url) {
+  <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="function">fetch</span>(url);
+  <span class="keyword">const</span> { data } = <span class="keyword">await</span> res.<span class="function">json</span>();
+  <span class="keyword">return</span> data;
+}`,
   rust: () => `<span class="muted">// Precise lifetimes</span>
 <span class="keyword">impl</span>&lt;<span class="string">'a</span>&gt; Parser&lt;<span class="string">'a</span>&gt; {
   <span class="keyword">pub fn</span> <span class="function">new</span>(input: <span class="keyword">&'a</span> str) -&gt; <span class="keyword">Self</span> {
