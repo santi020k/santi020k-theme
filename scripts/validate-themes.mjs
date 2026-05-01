@@ -5,8 +5,15 @@ const themeFiles = [
   'themes/santi020k-dark-color-theme.json',
   'themes/santi020k-light-color-theme.json',
   'themes/santi020k-hc-dark-color-theme.json',
+  'themes/santi020k-hc-light-color-theme.json',
   'themes/santi020k-dark-bold-color-theme.json',
-  'themes/santi020k-light-bold-color-theme.json'
+  'themes/santi020k-light-bold-color-theme.json',
+  'themes/santi020k-hc-dark-bold-color-theme.json',
+  'themes/santi020k-hc-light-bold-color-theme.json',
+  'themes/santi020k-dark-italic-color-theme.json',
+  'themes/santi020k-light-italic-color-theme.json',
+  'themes/santi020k-hc-dark-italic-color-theme.json',
+  'themes/santi020k-hc-light-italic-color-theme.json'
 ]
 
 const requiredColorKeys = [

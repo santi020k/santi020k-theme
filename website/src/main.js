@@ -41,14 +41,14 @@ const PREVIEW_DATA = {
 const SNIPPETS = {
   json: data => `<span class="muted">// focused without glare</span>
 {
-  <span class="keyword">"name"</span>: <span class="string">"${data.themeName}"</span>,
-  <span class="keyword">"type"</span>: <span class="string">"dark"</span>,
-  <span class="keyword">"semanticHighlighting"</span>: <span class="keyword">true</span>
+  <span class="property">"name"</span>: <span class="string">"${data.themeName}"</span>,
+  <span class="property">"type"</span>: <span class="string">"dark"</span>,
+  <span class="property">"semanticHighlighting"</span>: <span class="keyword">true</span>
 }`,
   ts: () => `<span class="muted">// Type-safe logic</span>
 <span class="keyword">interface</span> <span class="function">Config</span> {
-  id: <span class="keyword">string</span>;
-  active: <span class="keyword">boolean</span>;
+  <span class="property">id</span>: <span class="keyword">string</span>;
+  <span class="property">active</span>: <span class="keyword">boolean</span>;
 }
 
 <span class="keyword">function</span> <span class="function">setup</span>(config: <span class="function">Config</span>): <span class="keyword">void</span> {
@@ -57,7 +57,7 @@ const SNIPPETS = {
   js: () => `<span class="muted">// Standard JS</span>
 <span class="keyword">export async function</span> <span class="function">fetchData</span>(url) {
   <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="function">fetch</span>(url);
-  <span class="keyword">const</span> { data } = <span class="keyword">await</span> res.<span class="function">json</span>();
+  <span class="keyword">const</span> { <span class="property">data</span> } = <span class="keyword">await</span> res.<span class="function">json</span>();
   <span class="keyword">return</span> data;
 }`,
   rust: () => `<span class="muted">// Precise lifetimes</span>
@@ -85,10 +85,10 @@ const SNIPPETS = {
 }`,
   prisma: () => `<span class="muted">// Type-safe schemas</span>
 <span class="keyword">model</span> <span class="function">User</span> {
-  id    <span class="keyword">Int</span>     @id @default(autoincrement())
-  email <span class="keyword">String</span>  @unique
-  name  <span class="keyword">String</span>?
-  posts <span class="function">Post</span>[]
+  <span class="property">id</span>    <span class="keyword">Int</span>     @id @default(autoincrement())
+  <span class="property">email</span> <span class="keyword">String</span>  @unique
+  <span class="property">name</span>  <span class="keyword">String</span>?
+  <span class="property">posts</span> <span class="function">Post</span>[]
 }`,
   java: () => `<span class="muted">// Typed and structured</span>
 <span class="keyword">public class</span> <span class="function">Service</span> {
@@ -97,7 +97,6 @@ const SNIPPETS = {
     <span class="keyword">this</span>.name = name;
   }
 }`,
-
   cpp: () => `<span class="muted">// Memory managed</span>
 <span class="keyword">auto</span> <span class="function">main</span>() -&gt; <span class="keyword">int</span> {
   <span class="keyword">auto</span> ptr = std::make_unique&lt;Data&gt;();
@@ -108,7 +107,7 @@ const SNIPPETS = {
 
 let currentPreviewLang = 'json'
 let currentPreviewTheme = 'dark'
-let currentPreviewVariant = 'bold'
+let currentPreviewVariant = 'normal'
 
 const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
   currentPreviewLang = lang

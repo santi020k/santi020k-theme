@@ -524,6 +524,10 @@ pre {
   font-weight: 700;
 }
 
+.editor-preview[data-preview-variant="italic"] pre {
+  font-style: italic;
+}
+
 .muted {
   color: var(--preview-muted);
   font-style: italic;
@@ -543,6 +547,16 @@ pre {
 
 .function {
   color: var(--preview-function);
+  transition: color 0.3s;
+}
+
+.property {
+  color: var(--preview-function); /* properties usually share function/type color in this theme */
+  transition: color 0.3s;
+}
+
+.number {
+  color: var(--accent);
   transition: color 0.3s;
 }
 
@@ -762,7 +776,7 @@ pre {
 /* ─── Variant cards ───────────────────────────────────────────────────────── */
 .variant-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 18px;
 }
 
@@ -803,13 +817,18 @@ pre {
   color: #6319be;
 }
 
-.variant-hc {
-  background: linear-gradient(145deg, #140b22, #090410);
-  color: #f0ebfa;
-}
-
 .variant-hc p {
   color: #ffc060;
+}
+
+.variant-hc-light {
+  background: linear-gradient(145deg, #ffffff, #f0edf9);
+  color: #111111;
+  border: 1px solid #000000;
+}
+
+.variant-hc-light p {
+  color: #5a1ab0;
 }
 
 /* ─── Swatches ────────────────────────────────────────────────────────────── */
