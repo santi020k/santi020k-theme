@@ -2,4 +2,4 @@
 "santi020k-theme": patch
 ---
 
-Expanded theme support to cover the full technical stack from santi020k.com, including Elixir/Phoenix, Ruby on Rails, C#/.NET, Angular, Styled Components, Sanity CMS, and enhanced testing framework coverage. Updated the marketing website to accurately reflect support for 130+ technologies.
+Added specialized syntax highlighting for Tailwind CSS, Prisma, Elixir, Ruby on Rails, C#/.NET, Angular, and more. Updated the marketing website with a more realistic language support count and enhanced the editor preview with React and Prisma snippets.
