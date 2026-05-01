@@ -143,6 +143,9 @@ words:
   - tailwindcss
   - antialiased
   - ligatures
+  - vite
+  - boldify
+
 
 ignorePaths:
   - "node_modules/**"

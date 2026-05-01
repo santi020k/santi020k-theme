@@ -38,6 +38,7 @@ A deep indigo-black dark, a purple-tinted light, and high contrast variants for 
 4. Open the theme picker (`Cmd+K Cmd+T`) and choose from the 12 variants, such as **santi020k dark**, **santi020k light bold**, or **santi020k hc light italic**.
 
 ### Achieving the "Preview Look"
+
 The marketing website is **optimized for ligature-ready fonts** and features **Fira Code** with contextual ligatures enabled. To get that exact look in VS Code, we recommend these settings:
 
 ```json
@@ -63,7 +64,7 @@ Install from [open-vsx.org/extension/santi020k/santi020k-theme](https://open-vsx
 Deep indigo-black (`#110c1d`) backgrounds with a layered surface hierarchy. Accent colors are muted violets pulled directly from the wallpaper geometry — nothing neon, nothing loud. Keywords and storage modifiers are italic; comments are softened but readable. The cursor and active tab indicator glow in `#945df4`.
 
 | Role | Color |
-|---|---|
+| --- | --- |
 | Editor background | `#110c1d` |
 | Activity / Status bar | `#0b0712` |
 | Sidebar | `#1c1528` |
@@ -79,7 +80,7 @@ Deep indigo-black (`#110c1d`) backgrounds with a layered surface hierarchy. Acce
 The "website preview" version of the dark theme. It shares the exact same palette as `santi020k dark` but explicitly sets **bold** weight for every syntax token. When combined with a bold font, it delivers the high-impact, punchy aesthetic seen in the marketing previews.
 
 | Role | Style |
-|---|---|
+| --- | --- |
 | Palette | Identical to `santi020k dark` |
 | Syntax Tokens | **Bold** (global override) |
 | Keywords | **Bold Italic** |
@@ -90,7 +91,7 @@ The "website preview" version of the dark theme. It shares the exact same palett
 The bold counterpart to the light theme. It applies a global bold override to all syntax tokens, making the violet ramp even more prominent against the soft lavender backgrounds.
 
 | Role | Style |
-|---|---|
+| --- | --- |
 | Palette | Identical to `santi020k light` |
 | Syntax Tokens | **Bold** |
 | Keywords | **Bold Italic** |
@@ -100,7 +101,7 @@ The bold counterpart to the light theme. It applies a global bold override to al
 Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving all interactive elements. The status bar flips to solid brand purple, making workspace context immediately readable. Syntax uses a single-hue violet ramp so the light variant feels like a natural counterpart to the dark one.
 
 | Role | Color |
-|---|---|
+| --- | --- |
 | Editor background | `#f8f6fd` |
 | Sidebar | `#f0edf9` |
 | Tab bar | `#e3dff0` |
@@ -116,7 +117,7 @@ Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving al
 Near-black (`#0d0718`) backgrounds with vivid purple borders (`#602cba`) replacing the subtle ones from the dark variant. All accent colors are fully saturated — teal `#60c8e0`, amber `#ffc060`, red `#ff7070` — so every signal reads clearly at a glance. Indent guides are made visible. Built for screens with limited contrast, accessibility requirements, or anyone who prefers maximum separation between UI elements.
 
 | Role | Color |
-|---|---|
+| --- | --- |
 | Editor background | `#0d0718` |
 | Activity / Status bar | `#090410` |
 | Sidebar | `#140b22` |
@@ -132,7 +133,7 @@ Near-black (`#0d0718`) backgrounds with vivid purple borders (`#602cba`) replaci
 Maximum contrast for light theme users. Features a pure white (`#ffffff`) background with stark black borders (`#000000`) and deeply saturated purples and blues for syntax. Built for accessibility, bright environments, or screens where subtle contrast washes out.
 
 | Role | Color |
-|---|---|
+| --- | --- |
 | Editor background | `#ffffff` |
 | Sidebar / Status bar | `#f0edf9` |
 | Borders | `#000000` |

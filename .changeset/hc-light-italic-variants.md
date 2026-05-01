@@ -2,7 +2,9 @@
 "santi020k-theme": minor
 ---
 
-Added High Contrast Light (`santi020k hc light`) theme to provide maximum accessibility and legibility for light theme users. 
+# Added High Contrast Light and Italic Variants
+
+Added High Contrast Light (`santi020k hc light`) theme to provide maximum accessibility and legibility for light theme users.
 
 Introduced Italic variants for all theme profiles (`dark italic`, `light italic`, `hc dark italic`, and `hc light italic`) to offer a typography option with distinctly italicized keywords, parameters, and modifiers.
 
