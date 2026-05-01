@@ -38,12 +38,13 @@ A deep indigo-black dark, a purple-tinted light, and high contrast variants for 
 4. Open the theme picker (`Cmd+K Cmd+T`) and choose from the 12 variants, such as **santi020k dark**, **santi020k light bold**, or **santi020k hc light italic**.
 
 ### Achieving the "Preview Look"
-The marketing website uses **Montserrat** at weight **700 (Bold)** with **1.9 line height**. To get that exact look in VS Code, add these to your `settings.json`:
+The marketing website is **optimized for ligature-ready fonts** and features **Fira Code** with contextual ligatures enabled. To get that exact look in VS Code, we recommend these settings:
 
 ```json
 {
-  "editor.fontFamily": "'Montserrat', 'JetBrains Mono', monospace",
-  "editor.fontWeight": "700",
+  "editor.fontFamily": "'Fira Code', 'Montserrat', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontWeight": "500",
   "editor.lineHeight": 1.9,
   "editor.letterSpacing": -0.2
 }

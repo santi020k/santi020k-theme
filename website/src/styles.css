@@ -496,7 +496,7 @@ h3 {
   border-right: 1px solid var(--preview-topbar-border);
   padding: 24px 0;
   color: var(--preview-gutter-color);
-  font: 500 0.82rem/1.2 "Montserrat", monospace;
+  font: 500 0.82rem/1.2 "Fira Code", monospace;
   text-align: center;
   transition: color 0.3s, border-color 0.3s;
 }
@@ -512,7 +512,8 @@ pre {
   overflow-x: auto;
   padding: 24px;
   color: var(--preview-pre-color);
-  font: 500 0.94rem/1.9 "Montserrat", monospace;
+  font: 500 0.94rem/1.9 "Fira Code", monospace;
+  font-variant-ligatures: contextual;
   transition: color 0.3s;
 }
 

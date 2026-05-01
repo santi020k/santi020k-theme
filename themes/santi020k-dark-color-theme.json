@@ -753,10 +753,12 @@
     {
       "name": "Operators",
       "scope": [
-        "keyword.operator"
+        "keyword.operator",
+        "storage.type.function.arrow"
       ],
       "settings": {
-        "foreground": "#8d6fd1"
+        "foreground": "#8d6fd1",
+        "fontStyle": ""
       }
     },
     {
