@@ -85,6 +85,11 @@
         "label": "santi020k hc dark",
         "uiTheme": "hc-black",
         "path": "./themes/santi020k-hc-dark-color-theme.json"
+      },
+      {
+        "label": "santi020k dark bold",
+        "uiTheme": "vs-dark",
+        "path": "./themes/santi020k-dark-bold-color-theme.json"
       }
     ]
   },

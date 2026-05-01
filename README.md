@@ -34,7 +34,19 @@ A deep indigo-black dark, a purple-tinted light, and a near-black high contrast 
 1. Open VS Code → Extensions (`Cmd+Shift+X` / `Ctrl+Shift+X`)
 2. Search **Santi020k Theme**
 3. Click **Install**
-4. Open the theme picker (`Cmd+K Cmd+T`) and choose **santi020k dark**, **santi020k light**, or **santi020k hc dark**
+4. Open the theme picker (`Cmd+K Cmd+T`) and choose **santi020k dark**, **santi020k dark bold**, **santi020k light**, or **santi020k hc dark**
+
+### Achieving the "Preview Look"
+The marketing website uses **Montserrat** at weight **700 (Bold)** with **1.9 line height**. To get that exact look in VS Code, add these to your `settings.json`:
+
+```json
+{
+  "editor.fontFamily": "'Montserrat', 'JetBrains Mono', monospace",
+  "editor.fontWeight": "700",
+  "editor.lineHeight": 1.9,
+  "editor.letterSpacing": -0.2
+}
+```
 
 **Open VSX** — for Cursor, VSCodium, and other compatible editors:
 
@@ -59,6 +71,17 @@ Deep indigo-black (`#110c1d`) backgrounds with a layered surface hierarchy. Acce
 | Keywords | `#8445f2` italic |
 | Comments | `#71569f` italic |
 | Primary text | `#dfdde3` |
+
+### santi020k dark bold
+
+The "website preview" version of the dark theme. It shares the exact same palette as `santi020k dark` but explicitly sets **bold** weight for every syntax token. When combined with a bold font, it delivers the high-impact, punchy aesthetic seen in the marketing previews.
+
+| Role | Style |
+|---|---|
+| Palette | Identical to `santi020k dark` |
+| Syntax Tokens | **Bold** (global override) |
+| Keywords | **Bold Italic** |
+| Function Names | **Bold** |
 
 ### santi020k light
 
