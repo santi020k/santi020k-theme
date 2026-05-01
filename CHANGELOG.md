@@ -1,5 +1,74 @@
 # Changelog
 
+## 1.5.0
+
+### Minor Changes
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - # Added Bold Theme Variants
+
+  Added new `santi020k dark bold` and `santi020k light bold` theme variants. These variants apply a global bold override to all syntax tokens for a high-impact aesthetic that matches the marketing previews.
+  Also included a "Preview Look" guide in the README with recommended settings for font weight, line height, and letter spacing to achieve the geometric brand aesthetic within VS Code.
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - Added brand-aligned native bracket pair colorization across all variants (using Violet, Teal, and Amber) for deep visual cohesion. Added subtle opacity dimming to `*.readonly` semantic modifiers to instantly distinguish immutable variables, while ensuring existing markdown, inlay hints, and special language variables (`this`, `self`) provide premium Developer Experience (DX).
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - Expanded language support for Java, C/C++, Kotlin, Swift, Dart, Zig, Svelte, and Vue. Added a "Supported Technologies" section to the marketing website and enhanced the editor preview with new language snippets.
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - # Added High Contrast Light and Italic Variants
+
+  Added High Contrast Light (`santi020k hc light`) theme to provide maximum accessibility and legibility for light theme users.
+
+  Introduced Italic variants for all theme profiles (`dark italic`, `light italic`, `hc dark italic`, and `hc light italic`) to offer a typography option with distinctly italicized keywords, parameters, and modifiers.
+
+  Updated the marketing website preview with a variant selector, allowing users to instantly switch between Bold (default), Normal, and Italic previews.
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - Improved selection visibility and UI contrast across all theme variants. Boosted selection background opacity, added a dedicated selection foreground for light/HC themes, and increased contrast for breadcrumbs and word highlights.
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - feat: add high contrast light variant, update validation rules, and enhance website preview
+
+  - Added **High Contrast Light** theme profile (Base, Bold, Italic) for better accessibility.
+  - Expanded automated validation to cover all 12 theme variants and verified contrast ratios.
+  - Updated website "Variants" grid and hero description to showcase the full suite.
+  - Replaced the square OG image with a new 1200x630 landscape version for improved social previews.
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - Accessibility, contrast, and quality improvements across all 12 theme variants:
+
+  **Accessibility (contrast)**
+
+  - Dark: lift comment foreground `#71569f` → `#8d70c0` (~2.3:1 → ~3.8:1 on dark background)
+  - HC-Dark: lift comment foreground `#8264b4` → `#9878cc` for stronger contrast in high-contrast context
+  - Light: improve inactive line number foreground `#8c82a5` → `#786e96` (meets 3:1 threshold)
+  - All variants: increase `focusBorder`, `list.focusOutline`, `menu.selectionBorder`, `menubar.selectionBorder`, and `statusBarItem.focusBorder` opacity from ~38% to ~56% for WCAG 2.1 Non-text Contrast compliance
+  - HC-Light: further increase focus border opacity to ~75% (`c0` alpha) to meet high-contrast expectations
+  - HC-Light: differentiate punctuation color (`#5c4a7a`) from comment color so they are visually distinct in the HC variant
+
+  **Missing token coverage**
+
+  - All variants: add `editorBracketPairGuide.activeBackground1–3` and `background1–3` tokens (VS Code 1.67+) keyed to each theme's bracket highlight palette
+  - All variants: add `editor.wordHighlightTextBackground` (VS Code 1.76+) for read-occurrence highlighting distinct from write-occurrence
+  - All variants: add `statusBarItem.focusBorder` (VS Code 1.71+) for keyboard-focused status bar items
+  - All variants: add `widget.border` token for consistent widget border theming
+
+  **Visual polish**
+
+  - Light & HC-Light: change inactive `breadcrumb.foreground` from fully-saturated accent `#6319be` to muted `[#403850](https://github.com/santi020k/santi020k-theme/issues/403850)`/`#302e36` — the accent is now reserved for `breadcrumb.activeSelectionForeground`
+  - HC-Dark: add `storage.type.function.arrow` to the Operators TextMate rule so `=>` arrow functions receive operator coloring (matches dark and light variants)
+  - All variants: align `terminal.inactiveSelectionBackground` alpha to match `editor.inactiveSelectionBackground` for consistency
+
+  **Architecture / correctness**
+
+  - Dark & Light: remove first duplicate Tailwind CSS TextMate rule (two rules targeted identical scopes; second always won)
+  - Dark & Light: remove first duplicate Elixir TextMate rule with a different color (second consolidated rule is kept)
+  - Dark & Light: remove broad `source.elixir`, `source.ruby`, `source.cs` scope overrides that silently suppressed more specific token rules
+  - HC-Light generator: add explicit post-generation override block for HC-specific color tokens, avoiding the need to hand-edit generated files
+
+### Patch Changes
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - Enhanced the marketing website's editor preview with React and Prisma snippets to showcase specialized framework support for modern TS/JS developers.
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - Added specialized syntax support for Tailwind CSS, Prisma, and Elixir. Enhanced website with interactive installation and settings copy buttons. Updated README badges.
+
+- [#8](https://github.com/santi020k/santi020k-theme/pull/8) [`dd1e93a`](https://github.com/santi020k/santi020k-theme/commit/dd1e93a1c8bd8f1f974e5a20b7875fe194da098f) Thanks [@santi020k](https://github.com/santi020k)! - Added specialized syntax highlighting for Tailwind CSS, Prisma, Elixir, Ruby on Rails, C#/.NET, Angular, and more. Updated the marketing website with a more realistic language support count and enhanced the editor preview with React and Prisma snippets.
+
 ## 1.4.0
 
 ### Minor Changes (v1.4.0)
