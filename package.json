@@ -87,6 +87,11 @@
         "path": "./themes/santi020k-hc-dark-color-theme.json"
       },
       {
+        "label": "santi020k hc light",
+        "uiTheme": "hc-light",
+        "path": "./themes/santi020k-hc-light-color-theme.json"
+      },
+      {
         "label": "santi020k dark bold",
         "uiTheme": "vs-dark",
         "path": "./themes/santi020k-dark-bold-color-theme.json"
@@ -95,6 +100,36 @@
         "label": "santi020k light bold",
         "uiTheme": "vs",
         "path": "./themes/santi020k-light-bold-color-theme.json"
+      },
+      {
+        "label": "santi020k hc dark bold",
+        "uiTheme": "hc-black",
+        "path": "./themes/santi020k-hc-dark-bold-color-theme.json"
+      },
+      {
+        "label": "santi020k hc light bold",
+        "uiTheme": "hc-light",
+        "path": "./themes/santi020k-hc-light-bold-color-theme.json"
+      },
+      {
+        "label": "santi020k dark italic",
+        "uiTheme": "vs-dark",
+        "path": "./themes/santi020k-dark-italic-color-theme.json"
+      },
+      {
+        "label": "santi020k light italic",
+        "uiTheme": "vs",
+        "path": "./themes/santi020k-light-italic-color-theme.json"
+      },
+      {
+        "label": "santi020k hc dark italic",
+        "uiTheme": "hc-black",
+        "path": "./themes/santi020k-hc-dark-italic-color-theme.json"
+      },
+      {
+        "label": "santi020k hc light italic",
+        "uiTheme": "hc-light",
+        "path": "./themes/santi020k-hc-light-italic-color-theme.json"
       }
     ]
   },
@@ -104,7 +139,7 @@
     "test": "vitest run",
     "sync:website-version": "node scripts/sync-website-version.mjs",
     "format:themes": "node scripts/format-themes.mjs",
-    "build:themes": "npm run format:themes && node scripts/generate-bold-themes.mjs",
+    "build:themes": "npm run format:themes && node scripts/generate-hc-light.mjs && node scripts/generate-variants.mjs",
     "validate:themes": "node scripts/validate-themes.mjs",
     "validate:marketplace": "node scripts/check-marketplace-readiness.mjs",
     "lint": "eslint .",
