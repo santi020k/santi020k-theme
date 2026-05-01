@@ -83,7 +83,18 @@ const modernSurfaceColorKeys = [
   'notebook.outputContainerBorderColor',
   'notebookStatusErrorIcon.foreground',
   'notebookStatusRunningIcon.foreground',
-  'notebookStatusSuccessIcon.foreground'
+  'notebookStatusSuccessIcon.foreground',
+  'commandCenter.background',
+  'commandCenter.activeBackground',
+  'commandCenter.border',
+  'editorStickyScroll.background',
+  'editorStickyScroll.border',
+  'settings.headerForeground',
+  'settings.modifiedItemIndicator',
+  'editorMultiCursor.primary.foreground',
+  'editorMultiCursor.secondary.foreground',
+  'editorIndentGuide.background1',
+  'editorIndentGuide.activeBackground1'
 ]
 
 const contrastPairs = [

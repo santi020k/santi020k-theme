@@ -129,9 +129,23 @@
 
         <div class="editor-preview" aria-label="Preview of the Santi020k Theme">
           <div class="preview-topbar">
-            <span></span>
-            <span></span>
-            <span></span>
+            <div class="preview-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="preview-controls">
+              <select class="preview-lang-select" aria-label="Select preview language">
+                <option value="json">JSON</option>
+                <option value="rust">Rust</option>
+                <option value="go">Go</option>
+              </select>
+              <select class="preview-theme-select" aria-label="Select preview theme">
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="hc">HC Dark</option>
+              </select>
+            </div>
             <strong class="preview-filename">santi020k-dark-color-theme.json</strong>
           </div>
           <div class="preview-body">
@@ -144,13 +158,7 @@
               <span>06</span>
               <span>07</span>
             </aside>
-            <pre><code><span class="muted">// focused without glare</span>
-<span class="keyword">const</span> theme = {
-  name: <span class="string preview-theme-name">'santi020k dark'</span>,
-  background: <span class="string preview-bg-color">'#110c1d'</span>,
-  accent: <span class="string preview-accent-color">'#945df4'</span>,
-  mood: <span class="function">compose</span>(<span class="string">'calm'</span>, <span class="string">'precise'</span>)
-}</code></pre>
+            <pre><code class="preview-code"></code></pre>
           </div>
         </div>
       </section>

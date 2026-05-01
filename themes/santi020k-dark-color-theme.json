@@ -29,9 +29,11 @@
     "editorCursor.foreground": "#945df4",
     "editorLineNumber.activeForeground": "#b6b2bd",
     "editorLineNumber.foreground": "#8d8896",
+    "editorMultiCursor.primary.foreground": "#945df4",
+    "editorMultiCursor.secondary.foreground": "#945df480",
     // Editor Indent Guides & Whitespace
-    "editorIndentGuide.activeBackground1": "#00000000",
-    "editorIndentGuide.background1": "#00000000",
+    "editorIndentGuide.activeBackground1": "#752df030",
+    "editorIndentGuide.background1": "#752df015",
     "editorRuler.foreground": "#231d30",
     "editorWhitespace.foreground": "#372e47",
     // Editor Brackets
@@ -618,6 +620,9 @@
     },
     "*.declaration": {
       "bold": true
+    },
+    "*.mutable": {
+      "underline": true
     },
     "*.defaultLibrary": {
       "foreground": "#a0c8e0"

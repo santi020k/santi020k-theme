@@ -31,6 +31,33 @@
   --preview-keyword: #8445f2;
   --preview-string: var(--accent);
   --preview-function: var(--brand);
+}
+
+:root[data-preview-theme="hc"] {
+  --preview-bg: #0d0718;
+  --preview-topbar-border: #602cba;
+  --preview-gutter-color: #8e70c2;
+  --preview-gutter-active: #a570ff;
+  --preview-pre-color: #f0ebfa;
+  --preview-muted: #8264b4;
+  --preview-keyword: #955ff2;
+  --preview-string: #c5a3ff;
+  --preview-function: #a677f8;
+}
+
+:root[data-preview-theme="light"] {
+  --preview-bg: #f8f6fd;
+  --preview-topbar-border: #d3cde6;
+  --preview-gutter-color: #c4bdd8;
+  --preview-gutter-active: #6319be;
+  --preview-pre-color: #302e36;
+  --preview-muted: #9880c0;
+  --preview-keyword: #5a1ab0;
+  --preview-string: #7030b0;
+  --preview-function: #6319be;
+}
+
+:root {
   font-family: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
   background: var(--theme-bg);
   color: var(--ink);
@@ -58,12 +85,6 @@
   --btn-secondary-bg: rgb(248 246 253 / 0.85);
   --section-divider: rgb(211 205 230 / 0.7);
   --swatch-circle-border: rgb(58 37 86 / 0.15);
-  --preview-bg: #f8f6fd;
-  --preview-topbar-border: #d3cde6;
-  --preview-gutter-color: #c4bdd8;
-  --preview-gutter-active: #6319be;
-  --preview-pre-color: #302e36;
-  --preview-muted: #9880c0;
   --preview-keyword: #5a1ab0;
   --preview-string: #7030b0;
   --preview-function: #6319be;
@@ -370,15 +391,46 @@ h3 {
   transition: border-color 0.3s;
 }
 
-.preview-topbar span {
+.preview-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.preview-dots span {
   width: 10px;
   height: 10px;
   border-radius: 999px;
 }
 
-.preview-topbar span:nth-child(1) { background: var(--danger); }
-.preview-topbar span:nth-child(2) { background: var(--warning); }
-.preview-topbar span:nth-child(3) { background: var(--success); }
+.preview-dots span:nth-child(1) { background: var(--danger); }
+.preview-dots span:nth-child(2) { background: var(--warning); }
+.preview-dots span:nth-child(3) { background: var(--success); }
+
+.preview-controls {
+  display: flex;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.preview-controls select {
+  appearance: none;
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.preview-controls select:hover {
+  border-color: var(--brand);
+  color: var(--ink);
+}
 
 .preview-topbar strong {
   margin-left: 8px;

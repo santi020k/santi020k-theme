@@ -18,33 +18,63 @@ const setTheme = theme => {
 const PREVIEW_DATA = {
   dark: {
     filename: 'santi020k-dark-color-theme.json',
-    name: '\'santi020k dark\'',
-    bg: '\'#110c1d\'',
-    accent: '\'#945df4\''
+    themeName: 'santi020k dark'
   },
   light: {
     filename: 'santi020k-light-color-theme.json',
-    name: '\'santi020k light\'',
-    bg: '\'#f8f6fd\'',
-    accent: '\'#6319be\''
+    themeName: 'santi020k light'
+  },
+  hc: {
+    filename: 'santi020k-hc-dark-color-theme.json',
+    themeName: 'santi020k hc dark'
   }
 }
 
-const updatePreview = () => {
-  const data = PREVIEW_DATA[rootInDarkMode() ? 'dark' : 'light']
-  const el = cls => document.querySelector(cls)
-  const filename = el('.preview-filename')
-  const name = el('.preview-theme-name')
-  const bg = el('.preview-bg-color')
-  const accent = el('.preview-accent-color')
+const SNIPPETS = {
+  json: data => `<span class="muted">// focused without glare</span>
+{
+  <span class="keyword">"name"</span>: <span class="string">'${data.themeName}'</span>,
+  <span class="keyword">"type"</span>: <span class="string">'dark'</span>,
+  <span class="keyword">"semanticHighlighting"</span>: <span class="keyword">true</span>
+}`,
+  rust: () => `<span class="muted">// Precise lifetimes</span>
+<span class="keyword">impl</span>&lt;<span class="string">'a</span>&gt; Parser&lt;<span class="string">'a</span>&gt; {
+  <span class="keyword">pub fn</span> <span class="function">new</span>(input: <span class="keyword">&'a</span> str) -&gt; <span class="keyword">Self</span> {
+    <span class="keyword">Self</span> { input }
+  }
+}`,
+  go: () => `<span class="muted">// Clear built-ins</span>
+<span class="keyword">func</span> <span class="function">main</span>() {
+  items := <span class="function">make</span>([]<span class="keyword">string</span>, <span class="number">0</span>)
+  <span class="keyword">if</span> <span class="function">len</span>(items) == <span class="number">0</span> {
+    <span class="function">println</span>(<span class="string">"Empty"</span>)
+  }
+}`
+}
 
-  if (filename) filename.textContent = data.filename
+let currentPreviewLang = 'json'
+let currentPreviewTheme = 'dark'
 
-  if (name) name.textContent = data.name
+const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme) => {
+  currentPreviewLang = lang
+  currentPreviewTheme = theme
 
-  if (bg) bg.textContent = data.bg
+  const data = PREVIEW_DATA[theme]
+  const container = document.querySelector('.editor-preview')
+  const codeEl = document.querySelector('.preview-code')
+  const filenameEl = document.querySelector('.preview-filename')
+  const langSelect = document.querySelector('.preview-lang-select')
+  const themeSelect = document.querySelector('.preview-theme-select')
 
-  if (accent) accent.textContent = data.accent
+  if (container) container.setAttribute('data-preview-theme', theme)
+
+  if (filenameEl) filenameEl.textContent = data.filename
+
+  if (codeEl) codeEl.innerHTML = SNIPPETS[lang](data)
+
+  if (langSelect) langSelect.value = lang
+
+  if (themeSelect) themeSelect.value = theme
 }
 
 const syncToggle = toggle => {
@@ -114,7 +144,32 @@ const desktopNavQuery = window.matchMedia('(min-width: 941px)')
 
 syncToggle(toggle)
 
-updatePreview()
+const langSelect = document.querySelector('.preview-lang-select')
+const themeSelect = document.querySelector('.preview-theme-select')
+let manualPreviewTheme = false
+
+if (langSelect) {
+  langSelect.addEventListener('change', e => {
+    updatePreview(e.target.value, currentPreviewTheme)
+  })
+}
+
+if (themeSelect) {
+  themeSelect.addEventListener('change', e => {
+    manualPreviewTheme = true
+    updatePreview(currentPreviewLang, e.target.value)
+  })
+}
+
+const syncPreviewWithSite = () => {
+  if (!manualPreviewTheme) {
+    updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light')
+  } else {
+    updatePreview()
+  }
+}
+
+syncPreviewWithSite()
 
 const setNavOpen = isOpen => {
   if (!header || !navToggle) return
@@ -155,7 +210,7 @@ window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e 
 
     syncToggle(toggle)
 
-    updatePreview()
+    syncPreviewWithSite()
   }
 })
 
@@ -176,7 +231,7 @@ if (toggle) {
 
       syncToggle(toggle)
 
-      updatePreview()
+      syncPreviewWithSite()
 
       isAnimating = false
 
@@ -187,7 +242,7 @@ if (toggle) {
 
     syncToggle(toggle)
 
-    updatePreview()
+    syncPreviewWithSite()
 
     setTimeout(() => {
       isAnimating = false
