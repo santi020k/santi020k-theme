@@ -51,6 +51,39 @@ if (theme.semanticTokenColors) {
   }
 }
 
+// HC-Light specific overrides: stronger focus affordances and accessibility corrections
+const hcOverrides = {
+  // Stronger focus borders — HC variants need more visible focus rings
+  focusBorder: '#6319bec0',
+  'list.focusOutline': '#6319bec0',
+  'statusBarItem.focusBorder': '#6319bec0',
+  'menu.selectionBorder': '#6319bec0',
+  'menubar.selectionBorder': '#6319bec0',
+  // Stronger peekView border for HC
+  'peekView.border': '#6319be',
+  'peekViewTitle.background': '#d8d0f0',
+  // Breadcrumb inactive foreground — should NOT be accent in HC either
+  'breadcrumb.foreground': '#302e36',
+  // Explicit HC border token
+  'widget.border': '#6319be60'
+}
+
+for (const [key, val] of Object.entries(hcOverrides)) {
+  theme.colors[key] = val
+}
+
+// In HC-light, punctuation should be visually distinct from comments.
+// The generator darkens all token colors uniformly, so we nudge punctuation
+// to a warmer, slightly less purple tone to separate it from italic comments.
+if (theme.tokenColors) {
+  theme.tokenColors.forEach(token => {
+    if (token.name === 'Punctuation' && token.settings?.foreground) {
+      // Shift punctuation toward a warmer grey-purple rather than the comment's cool purple
+      token.settings.foreground = '#5c4a7a'
+    }
+  })
+}
+
 writeFileSync(outputPath, JSON.stringify(theme, null, 2))
 
 console.log('HC Light theme generated at:', outputPath)
