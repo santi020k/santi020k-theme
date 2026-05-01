@@ -49,7 +49,20 @@ const SNIPPETS = {
   <span class="keyword">if</span> <span class="function">len</span>(items) == <span class="number">0</span> {
     <span class="function">println</span>(<span class="string">"Empty"</span>)
   }
+}`,
+  java: () => `<span class="muted">// Typed and structured</span>
+<span class="keyword">public class</span> <span class="function">Service</span> {
+  <span class="keyword">private final</span> <span class="keyword">String</span> name;
+  <span class="keyword">public</span> <span class="function">Service</span>(<span class="keyword">String</span> name) {
+    <span class="keyword">this</span>.name = name;
+  }
+}`,
+  cpp: () => `<span class="muted">// Memory managed</span>
+<span class="keyword">auto</span> <span class="function">main</span>() -&gt; <span class="keyword">int</span> {
+  <span class="keyword">auto</span> ptr = std::make_unique&lt;Data&gt;();
+  <span class="keyword">return</span> <span class="number">0</span>;
 }`
+
 }
 
 let currentPreviewLang = 'json'

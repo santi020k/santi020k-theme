@@ -29,8 +29,6 @@
     "editorCursor.foreground": "#6319be",
     "editorLineNumber.activeForeground": "#9880c0",
     "editorLineNumber.foreground": "#8c82a5",
-    "editorMultiCursor.primary.foreground": "#6319be",
-    "editorMultiCursor.secondary.foreground": "#6319be80",
     // Editor Indent Guides & Whitespace
     "editorIndentGuide.activeBackground1": "#6319be25",
     "editorIndentGuide.background1": "#6319be10",
@@ -555,6 +553,8 @@
     "editorInlayHint.typeForeground": "#5a1ab0",
     "editorLightBulbAi.foreground": "#6319be",
     "editorLightBulbAutoFix.foreground": "#28a745",
+    "editorMultiCursor.primary.foreground": "#6319be",
+    "editorMultiCursor.secondary.foreground": "#6319be80",
     "inlineChat.background": "#f0edf9",
     "inlineChat.border": "#d3cde6",
     "inlineChat.foreground": "#302e36",
@@ -621,14 +621,14 @@
     "*.declaration": {
       "bold": true
     },
-    "*.mutable": {
-      "underline": true
-    },
     "*.defaultLibrary": {
       "foreground": "#4a1a98"
     },
     "*.deprecated": {
       "strikethrough": true
+    },
+    "*.mutable": {
+      "underline": true
     },
     "*.readonly": {
       "italic": true
@@ -1280,6 +1280,80 @@
       ],
       "settings": {
         "foreground": "#6020b8"
+      }
+    },
+    {
+      "name": "Java imports and packages",
+      "scope": [
+        "keyword.other.import.java",
+        "keyword.other.package.java",
+        "storage.modifier.import.java",
+        "storage.modifier.package.java"
+      ],
+      "settings": {
+        "foreground": "#5a1ab0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "C / C++ types",
+      "scope": [
+        "entity.name.type.c",
+        "entity.name.type.cpp",
+        "storage.type.c",
+        "storage.type.cpp",
+        "storage.type.built-in.c",
+        "storage.type.built-in.cpp"
+      ],
+      "settings": {
+        "foreground": "#5a18a8"
+      }
+    },
+    {
+      "name": "Kotlin and Swift keywords",
+      "scope": [
+        "keyword.other.kotlin",
+        "storage.type.kotlin",
+        "keyword.other.declaration-specifier.swift",
+        "storage.type.swift"
+      ],
+      "settings": {
+        "foreground": "#5a1ab0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Dart classes and types",
+      "scope": [
+        "entity.name.type.dart",
+        "support.class.dart"
+      ],
+      "settings": {
+        "foreground": "#5a18a8"
+      }
+    },
+    {
+      "name": "Zig keywords and built-ins",
+      "scope": [
+        "keyword.control.zig",
+        "storage.type.zig",
+        "support.function.zig"
+      ],
+      "settings": {
+        "foreground": "#5a1ab0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Svelte and Vue special tags",
+      "scope": [
+        "entity.name.tag.svelte",
+        "entity.name.tag.vue",
+        "support.class.component.svelte",
+        "support.class.component.vue"
+      ],
+      "settings": {
+        "foreground": "#5a1ab0"
       }
     }
   ]
