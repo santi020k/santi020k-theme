@@ -2,4 +2,4 @@
 "santi020k-theme": patch
 ---
 
-Added specialized syntax highlighting for Tailwind CSS, Prisma, and common JS/TS testing frameworks (Jest, Vitest, Cypress). Updated the marketing website to prioritize core technologies and frameworks in the supported technologies grid.
+Expanded theme support to cover the full technical stack from santi020k.com, including Elixir/Phoenix, Ruby on Rails, C#/.NET, Angular, Styled Components, Sanity CMS, and enhanced testing framework coverage. Updated the marketing website to accurately reflect support for 130+ technologies.

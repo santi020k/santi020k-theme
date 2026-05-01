@@ -50,6 +50,23 @@ const SNIPPETS = {
     <span class="function">println</span>(<span class="string">"Empty"</span>)
   }
 }`,
+  react: () => `<span class="muted">// Interactive components</span>
+<span class="keyword">export const</span> <span class="function">Button</span> = ({ children, onClick }) =&gt; {
+  <span class="keyword">const</span> [count, setCount] = <span class="function">useState</span>(<span class="number">0</span>);
+
+  <span class="keyword">return</span> (
+    &lt;<span class="keyword">button</span> <span class="function">className</span>=<span class="string">"p-4 bg-brand"</span> <span class="function">onClick</span>={onClick}&gt;
+      {children}
+    &lt;/<span class="keyword">button</span>&gt;
+  );
+}`,
+  prisma: () => `<span class="muted">// Type-safe schemas</span>
+<span class="keyword">model</span> <span class="function">User</span> {
+  id    <span class="keyword">Int</span>     @id @default(autoincrement())
+  email <span class="keyword">String</span>  @unique
+  name  <span class="keyword">String</span>?
+  posts <span class="function">Post</span>[]
+}`,
   java: () => `<span class="muted">// Typed and structured</span>
 <span class="keyword">public class</span> <span class="function">Service</span> {
   <span class="keyword">private final</span> <span class="keyword">String</span> name;
@@ -57,6 +74,7 @@ const SNIPPETS = {
     <span class="keyword">this</span>.name = name;
   }
 }`,
+
   cpp: () => `<span class="muted">// Memory managed</span>
 <span class="keyword">auto</span> <span class="function">main</span>() -&gt; <span class="keyword">int</span> {
   <span class="keyword">auto</span> ptr = std::make_unique&lt;Data&gt;();

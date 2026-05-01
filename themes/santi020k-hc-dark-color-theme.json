@@ -1379,15 +1379,102 @@
       }
     },
     {
-      "name": "Testing frameworks (Jest, Vitest, Cypress)",
+      "name": "Testing frameworks (Jest, Vitest, Cypress, Playwright)",
       "scope": [
         "support.function.test.js",
         "support.function.test.ts",
-        "entity.name.function.test"
+        "entity.name.function.test",
+        "support.function.any-method.playwright",
+        "support.function.any-method.cypress"
       ],
       "settings": {
         "foreground": "#a677f8",
         "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Elixir and Phoenix",
+      "scope": [
+        "source.elixir",
+        "keyword.control.elixir",
+        "variable.other.readwrite.module.elixir",
+        "entity.name.type.module.elixir",
+        "punctuation.section.embedded.elixir",
+        "support.function.phoenix"
+      ],
+      "settings": {
+        "foreground": "#955ff2"
+      }
+    },
+    {
+      "name": "Ruby on Rails",
+      "scope": [
+        "source.ruby",
+        "keyword.control.ruby",
+        "support.class.rails",
+        "keyword.other.special-method.ruby",
+        "variable.other.readwrite.instance.ruby"
+      ],
+      "settings": {
+        "foreground": "#955ff2"
+      }
+    },
+    {
+      "name": "C# and .NET",
+      "scope": [
+        "source.cs",
+        "storage.type.cs",
+        "keyword.control.cs",
+        "entity.name.type.cs",
+        "variable.other.object.cs"
+      ],
+      "settings": {
+        "foreground": "#955ff2"
+      }
+    },
+    {
+      "name": "Angular components and directives",
+      "scope": [
+        "entity.other.attribute-name.ng-binding",
+        "entity.other.attribute-name.ng-directive",
+        "support.class.component.angular"
+      ],
+      "settings": {
+        "foreground": "#955ff2"
+      }
+    },
+    {
+      "name": "Styled Components / Emotion",
+      "scope": [
+        "source.js.styled",
+        "source.ts.styled",
+        "source.jsx.styled",
+        "source.tsx.styled",
+        "entity.name.tag.styled"
+      ],
+      "settings": {
+        "foreground": "#60c8e0"
+      }
+    },
+    {
+      "name": "Sanity CMS and Portable Text",
+      "scope": [
+        "entity.name.type.sanity",
+        "support.type.sanity",
+        "variable.other.property.sanity"
+      ],
+      "settings": {
+        "foreground": "#a677f8"
+      }
+    },
+    {
+      "name": "Firebase and Cloud Functions",
+      "scope": [
+        "support.class.firebase",
+        "support.function.firebase"
+      ],
+      "settings": {
+        "foreground": "#955ff2"
       }
     }
   ]
