@@ -72,6 +72,18 @@
   --preview-function: #6319be;
 }
 
+.editor-preview[data-preview-theme="hclight"] {
+  --preview-bg: #ffffff;
+  --preview-topbar-border: #000000;
+  --preview-gutter-color: #5a1ab0;
+  --preview-gutter-active: #302e36;
+  --preview-pre-color: #111111;
+  --preview-muted: #5a1ab0;
+  --preview-keyword: #5a1ab0;
+  --preview-string: #7030b0;
+  --preview-function: #3878d8;
+}
+
 :root {
   font-family: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
   background: var(--theme-bg);
@@ -484,7 +496,7 @@ h3 {
   border-right: 1px solid var(--preview-topbar-border);
   padding: 24px 0;
   color: var(--preview-gutter-color);
-  font: 700 0.82rem/1.2 "Montserrat", monospace;
+  font: 500 0.82rem/1.2 "Montserrat", monospace;
   text-align: center;
   transition: color 0.3s, border-color 0.3s;
 }
@@ -500,8 +512,16 @@ pre {
   overflow-x: auto;
   padding: 24px;
   color: var(--preview-pre-color);
-  font: 700 0.94rem/1.9 "Montserrat", monospace;
+  font: 500 0.94rem/1.9 "Montserrat", monospace;
   transition: color 0.3s;
+}
+
+.editor-preview[data-preview-variant="bold"] aside {
+  font-weight: 700;
+}
+
+.editor-preview[data-preview-variant="bold"] pre {
+  font-weight: 700;
 }
 
 .muted {

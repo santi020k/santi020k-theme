@@ -17,16 +17,24 @@ const setTheme = theme => {
 
 const PREVIEW_DATA = {
   dark: {
-    filename: 'santi020k-dark-color-theme.json',
-    themeName: 'santi020k dark'
+    normal: { filename: 'santi020k-dark-color-theme.json', themeName: 'santi020k dark' },
+    bold: { filename: 'santi020k-dark-bold-color-theme.json', themeName: 'santi020k dark bold' },
+    italic: { filename: 'santi020k-dark-italic-color-theme.json', themeName: 'santi020k dark italic' }
   },
   light: {
-    filename: 'santi020k-light-color-theme.json',
-    themeName: 'santi020k light'
+    normal: { filename: 'santi020k-light-color-theme.json', themeName: 'santi020k light' },
+    bold: { filename: 'santi020k-light-bold-color-theme.json', themeName: 'santi020k light bold' },
+    italic: { filename: 'santi020k-light-italic-color-theme.json', themeName: 'santi020k light italic' }
   },
   hc: {
-    filename: 'santi020k-hc-dark-color-theme.json',
-    themeName: 'santi020k hc dark'
+    normal: { filename: 'santi020k-hc-dark-color-theme.json', themeName: 'santi020k hc dark' },
+    bold: { filename: 'santi020k-hc-dark-bold-color-theme.json', themeName: 'santi020k hc dark bold' },
+    italic: { filename: 'santi020k-hc-dark-italic-color-theme.json', themeName: 'santi020k hc dark italic' }
+  },
+  hclight: {
+    normal: { filename: 'santi020k-hc-light-color-theme.json', themeName: 'santi020k hc light' },
+    bold: { filename: 'santi020k-hc-light-bold-color-theme.json', themeName: 'santi020k hc light bold' },
+    italic: { filename: 'santi020k-hc-light-italic-color-theme.json', themeName: 'santi020k hc light italic' }
   }
 }
 
@@ -100,19 +108,28 @@ const SNIPPETS = {
 
 let currentPreviewLang = 'json'
 let currentPreviewTheme = 'dark'
+let currentPreviewVariant = 'bold'
 
-const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme) => {
+const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
   currentPreviewLang = lang
+
   currentPreviewTheme = theme
 
-  const data = PREVIEW_DATA[theme]
+  currentPreviewVariant = variant
+
+  const data = PREVIEW_DATA[theme][variant]
   const container = document.querySelector('.editor-preview')
   const codeEl = document.querySelector('.preview-code')
   const filenameEl = document.querySelector('.preview-filename')
   const langSelect = document.querySelector('.preview-lang-select')
   const themeSelect = document.querySelector('.preview-theme-select')
+  const variantSelect = document.querySelector('.preview-variant-select')
 
-  if (container) container.setAttribute('data-preview-theme', theme)
+  if (container) {
+    container.setAttribute('data-preview-theme', theme)
+
+    container.setAttribute('data-preview-variant', variant)
+  }
 
   if (filenameEl) filenameEl.textContent = data.filename
 
@@ -121,6 +138,8 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme) =
   if (langSelect) langSelect.value = lang
 
   if (themeSelect) themeSelect.value = theme
+
+  if (variantSelect) variantSelect.value = variant
 }
 
 const syncToggle = toggle => {
@@ -192,24 +211,32 @@ syncToggle(toggle)
 
 const langSelect = document.querySelector('.preview-lang-select')
 const themeSelect = document.querySelector('.preview-theme-select')
+const variantSelect = document.querySelector('.preview-variant-select')
 let manualPreviewTheme = false
 
 if (langSelect) {
   langSelect.addEventListener('change', e => {
-    updatePreview(e.target.value, currentPreviewTheme)
+    updatePreview(e.target.value, currentPreviewTheme, currentPreviewVariant)
   })
 }
 
 if (themeSelect) {
   themeSelect.addEventListener('change', e => {
     manualPreviewTheme = true
-    updatePreview(currentPreviewLang, e.target.value)
+
+    updatePreview(currentPreviewLang, e.target.value, currentPreviewVariant)
+  })
+}
+
+if (variantSelect) {
+  variantSelect.addEventListener('change', e => {
+    updatePreview(currentPreviewLang, currentPreviewTheme, e.target.value)
   })
 }
 
 const syncPreviewWithSite = () => {
   if (!manualPreviewTheme) {
-    updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light')
+    updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light', currentPreviewVariant)
   } else {
     updatePreview()
   }
