@@ -33,8 +33,8 @@ const PREVIEW_DATA = {
 const SNIPPETS = {
   json: data => `<span class="muted">// focused without glare</span>
 {
-  <span class="keyword">"name"</span>: <span class="string">'${data.themeName}'</span>,
-  <span class="keyword">"type"</span>: <span class="string">'dark'</span>,
+  <span class="keyword">"name"</span>: <span class="string">"${data.themeName}"</span>,
+  <span class="keyword">"type"</span>: <span class="string">"dark"</span>,
   <span class="keyword">"semanticHighlighting"</span>: <span class="keyword">true</span>
 }`,
   rust: () => `<span class="muted">// Precise lifetimes</span>

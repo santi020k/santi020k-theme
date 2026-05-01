@@ -21,7 +21,10 @@
   --btn-secondary-bg: rgb(28 21 40 / 0.72);
   --section-divider: rgb(73 65 88 / 0.7);
   --swatch-circle-border: rgb(223 221 227 / 0.22);
-  /* Editor preview (always dark surface, adapts via class overrides in light mode) */
+}
+
+/* Editor preview (shared tokens for inheritance) */
+.editor-preview {
   --preview-bg: #0b0712;
   --preview-topbar-border: #231d30;
   --preview-gutter-color: #5e576b;
@@ -33,7 +36,19 @@
   --preview-function: var(--brand);
 }
 
-:root[data-preview-theme="hc"] {
+.editor-preview[data-preview-theme="dark"] {
+  --preview-bg: #0b0712;
+  --preview-topbar-border: #231d30;
+  --preview-gutter-color: #5e576b;
+  --preview-gutter-active: #945df4;
+  --preview-pre-color: #dfdde3;
+  --preview-muted: #5e576b;
+  --preview-keyword: #8445f2;
+  --preview-string: #b48df7;
+  --preview-function: #945df4;
+}
+
+.editor-preview[data-preview-theme="hc"] {
   --preview-bg: #0d0718;
   --preview-topbar-border: #602cba;
   --preview-gutter-color: #8e70c2;
@@ -45,7 +60,7 @@
   --preview-function: #a677f8;
 }
 
-:root[data-preview-theme="light"] {
+.editor-preview[data-preview-theme="light"] {
   --preview-bg: #f8f6fd;
   --preview-topbar-border: #d3cde6;
   --preview-gutter-color: #c4bdd8;
@@ -85,9 +100,6 @@
   --btn-secondary-bg: rgb(248 246 253 / 0.85);
   --section-divider: rgb(211 205 230 / 0.7);
   --swatch-circle-border: rgb(58 37 86 / 0.15);
-  --preview-keyword: #5a1ab0;
-  --preview-string: #7030b0;
-  --preview-function: #6319be;
 }
 
 /* ─── Reset & base ────────────────────────────────────────────────────────── */
