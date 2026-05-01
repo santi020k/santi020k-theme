@@ -116,6 +116,7 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, v
 
   currentPreviewVariant = variant
 
+  // eslint-disable-next-line security/detect-object-injection
   const data = PREVIEW_DATA[theme][variant]
   const container = document.querySelector('.editor-preview')
   const codeEl = document.querySelector('.preview-code')
@@ -132,6 +133,7 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, v
 
   if (filenameEl) filenameEl.textContent = data.filename
 
+  // eslint-disable-next-line security/detect-object-injection
   if (codeEl) codeEl.innerHTML = SNIPPETS[lang](data)
 
   if (langSelect) langSelect.value = lang

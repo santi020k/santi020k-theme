@@ -8,7 +8,7 @@ const baseThemes = [
   { file: 'themes/santi020k-hc-light-color-theme.json', name: 'santi020k hc light' }
 ]
 
-function addFontStyle(style, newStyle) {
+const addFontStyle = function (style, newStyle) {
   if (!style) return newStyle
 
   if (style.includes(newStyle)) return style

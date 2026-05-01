@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 
-function darkenColor(hex) {
+const darkenColor = function (hex) {
   if (!hex || !hex.startsWith('#')) return hex
 
   let r = parseInt(hex.slice(1, 3), 16)
