@@ -98,7 +98,7 @@ const pngHeader = (width = 128, height = 128) => {
 const createFixturePackage = ({
   ignorePatterns = requiredIgnorePatterns,
   icon = pngHeader(),
-  pnpmLock = "lockfileVersion: '9.0'\n\nimporters:\n\n  .: {}\n",
+  pnpmLock = 'lockfileVersion: \'9.0\'\n\nimporters:\n\n  .: {}\n',
   pkg = packageJson
 } = {}) => {
   const root = mkdtempSync(join(tmpdir(), 'santi-marketplace-'))

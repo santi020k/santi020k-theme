@@ -147,7 +147,7 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
     throw new Error('package.json must declare at least 10 marketplace keywords')
   }
 
-  if (!pnpmLock.includes("lockfileVersion: '9.0'") || !pnpmLock.includes('importers:')) {
+  if (!pnpmLock.includes('lockfileVersion: \'9.0\'') || !pnpmLock.includes('importers:')) {
     throw new Error('pnpm-lock.yaml must be a pnpm v9 lockfile')
   }
 

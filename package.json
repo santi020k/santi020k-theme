@@ -136,7 +136,7 @@
     ]
   },
   "scripts": {
-    "validate": "pnpm run build:themes && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run test && pnpm run lint && pnpm run site:build && pnpm run package -- --no-dependencies",
+    "validate": "pnpm run build:themes && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run test && pnpm run lint && pnpm run site:build && pnpm run package",
     "pretest": "pnpm run build:themes",
     "test": "vitest run",
     "sync:website-version": "node scripts/sync-website-version.mjs",
@@ -146,7 +146,7 @@
     "validate:marketplace": "node scripts/check-marketplace-readiness.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "package": "vsce package",
+    "package": "vsce package --no-dependencies",
     "publish": "node scripts/publish-registries.mjs",
     "publish:pre": "pnpm run validate && vsce publish --pre-release",
     "release": "node scripts/publish-registries.mjs",
