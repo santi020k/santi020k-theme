@@ -12,6 +12,7 @@ const packageJson = {
   displayName: 'Santi020k Theme',
   description: 'Fixture package',
   version: '1.2.0',
+  packageManager: 'pnpm@10.32.1',
   publisher: 'santi020k',
   homepage: 'https://theme.santi020k.com',
   repository: {
@@ -97,7 +98,7 @@ const pngHeader = (width = 128, height = 128) => {
 const createFixturePackage = ({
   ignorePatterns = requiredIgnorePatterns,
   icon = pngHeader(),
-  lockVersion = packageJson.version,
+  pnpmLock = 'lockfileVersion: \'9.0\'\n\nimporters:\n\n  .: {}\n',
   pkg = packageJson
 } = {}) => {
   const root = mkdtempSync(join(tmpdir(), 'santi-marketplace-'))
@@ -130,18 +131,7 @@ const createFixturePackage = ({
 
   writeFile(root, 'package.json', JSON.stringify(pkg, null, 2))
 
-  writeFile(
-    root, 'package-lock.json', JSON.stringify(
-      {
-        version: lockVersion,
-        packages: {
-          '': {
-            version: lockVersion
-          }
-        }
-      }, null, 2
-    )
-  )
+  writeFile(root, 'pnpm-lock.yaml', pnpmLock)
 
   writeFile(root, 'icon.png', icon)
 
@@ -174,9 +164,9 @@ describe('marketplace readiness', () => {
     )
   })
 
-  test('rejects mismatched package-lock versions', () => {
-    expect(() => checkMarketplaceReadiness(createFixturePackage({ lockVersion: '1.1.0' }))).toThrow(
-      /package-lock\.json version does not match package\.json/
+  test('rejects malformed pnpm locks', () => {
+    expect(() => checkMarketplaceReadiness(createFixturePackage({ pnpmLock: 'lockfileVersion: 5.4\n' }))).toThrow(
+      /pnpm-lock\.yaml must be a pnpm v9 lockfile/
     )
   })
 

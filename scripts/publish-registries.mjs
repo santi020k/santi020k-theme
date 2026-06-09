@@ -29,7 +29,7 @@ const readJsonUrl = async url => {
 
 const getMarketplaceVersions = () => {
   try {
-    const output = execFileSync('npx', ['vsce', 'show', extensionId, '--json'], {
+    const output = execFileSync('pnpm', ['exec', 'vsce', 'show', extensionId, '--json'], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe']
     })
@@ -67,7 +67,7 @@ const publishMarketplace = () => {
     return
   }
 
-  run('npx', ['vsce', 'publish', '--packagePath', vsixPath, '--skip-duplicate'])
+  run('pnpm', ['exec', 'vsce', 'publish', '--packagePath', vsixPath, '--skip-duplicate'])
 }
 
 const publishOpenVsx = () => {
@@ -83,7 +83,7 @@ const publishOpenVsx = () => {
     return
   }
 
-  run('npx', ['ovsx', 'publish', vsixPath, '--skip-duplicate', '-p', process.env.OVSX_PAT])
+  run('pnpm', ['exec', 'ovsx', 'publish', vsixPath, '--skip-duplicate', '-p', process.env.OVSX_PAT])
 }
 
 const marketplaceVersions = getMarketplaceVersions()
@@ -94,7 +94,7 @@ const shouldPublishOpenVsx = !openVsxVersions.has(pkg.version)
 if (!shouldPublishMarketplace && !shouldPublishOpenVsx) {
   console.log(`${extensionId}@${pkg.version} is already published to both registries.`)
 } else {
-  run('npm', ['run', 'validate'])
+  run('pnpm', ['run', 'validate'])
 
   if (!existsSync(vsixPath)) {
     throw new Error(`Expected packaged VSIX at ${vsixPath}`)

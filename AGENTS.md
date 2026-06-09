@@ -25,15 +25,15 @@ Use them when the task matches their names. If your agent runtime cannot load sk
 ## Useful Commands
 
 ```bash
-npm run validate:themes
-npm run validate:marketplace
-npm run validate
-npm run package -- --no-dependencies
-npm run release
-npm run changeset
+pnpm run validate:themes
+pnpm run validate:marketplace
+pnpm run validate
+pnpm run package -- --no-dependencies
+pnpm run release
+pnpm run changeset
 ```
 
-Prefer `npm run validate` before finishing any user-visible change. It parses theme JSON, checks marketplace readiness, builds the website, and packages the extension.
+Prefer `pnpm run validate` before finishing any user-visible change. It parses theme JSON, checks marketplace readiness, builds the website, and packages the extension.
 
 ## Theme Editing Rules
 
@@ -46,7 +46,7 @@ Prefer `npm run validate` before finishing any user-visible change. It parses th
 
 ## Release Rules
 
-- Add a changeset for user-visible changes: `npm run changeset`.
+- Add a changeset for user-visible changes: `pnpm run changeset`.
 - Use `patch` for fixes/docs/release automation, `minor` for new theme coverage or significant capability additions, and `major` only for breaking compatibility changes.
 - Do not manually bump `package.json` or `CHANGELOG.md` for normal feature PRs; Changesets handles that in the release PR.
 - The release script is expected to be idempotent and skip already-published versions.
@@ -55,7 +55,7 @@ Prefer `npm run validate` before finishing any user-visible change. It parses th
 ## Website Rules
 
 - Website source is under `website/`.
-- Build with `npm run site:build` from the repo root.
+- Build with `pnpm run site:build` from the repo root.
 - Keep visible focus styles and external-link safety intact.
 - The site is deployed outside the extension package; `.vscodeignore` should continue excluding `website/**`.
 
@@ -63,8 +63,8 @@ Prefer `npm run validate` before finishing any user-visible change. It parses th
 
 Before finalizing code changes, run the narrowest useful check first, then the full validation if feasible.
 
-- Theme-only changes: `npm run validate:themes`
-- Package metadata/release changes: `npm run validate:marketplace`
-- Release-ready changes: `npm run validate`
+- Theme-only changes: `pnpm run validate:themes`
+- Package metadata/release changes: `pnpm run validate:marketplace`
+- Release-ready changes: `pnpm run validate`
 
 If a command cannot be run, state why and what risk remains.
