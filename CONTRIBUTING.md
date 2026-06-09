@@ -3,8 +3,8 @@
 ## Setup
 
 ```bash
-npm ci
-cd website && npm ci
+pnpm install --frozen-lockfile
+pnpm --dir website install --frozen-lockfile
 ```
 
 ## Validate Changes
@@ -12,7 +12,7 @@ cd website && npm ci
 Run the full validation before opening a PR or publishing:
 
 ```bash
-npm run validate
+pnpm run validate
 ```
 
 This checks both theme JSON files, builds the website, and packages the extension locally.
@@ -20,7 +20,7 @@ This checks both theme JSON files, builds the website, and packages the extensio
 For a faster package metadata check, run:
 
 ```bash
-npm run validate:marketplace
+pnpm run validate:marketplace
 ```
 
 ## Changesets
@@ -28,7 +28,7 @@ npm run validate:marketplace
 For user-visible changes, add a changeset:
 
 ```bash
-npm run changeset
+pnpm run changeset
 ```
 
 Use `patch` for fixes, `minor` for new theme coverage or project capabilities, and `major` only for breaking marketplace or compatibility changes.
@@ -39,7 +39,7 @@ Open this repository in VS Code and press `F5` to launch an Extension Developmen
 
 ## Release Checklist
 
-- Run `npm run validate`
+- Run `pnpm run validate`
 - Merge feature PRs with changesets into `main`
 - Merge the generated release PR
 - The release workflow publishes the new version to the VS Code Marketplace with `VSCE_PAT`

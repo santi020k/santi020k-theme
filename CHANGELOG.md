@@ -2,7 +2,7 @@
 
 ## 1.4.0
 
-### Minor Changes
+### Minor Changes (v1.4.0)
 
 - [#6](https://github.com/santi020k/santi020k-theme/pull/6) [`a691ed9`](https://github.com/santi020k/santi020k-theme/commit/a691ed969db476eca7e9ab5d5e867abc1760297e) Thanks [@santi020k](https://github.com/santi020k)! - Add semantic token modifiers and new VS Code workbench tokens.
 
@@ -39,7 +39,7 @@
   - Unused-code border shown (`#a860f040`)
   - All token colors validated at WCAG AA (≥ 4.5:1) against the darker editor background
 
-### Patch Changes
+### Patch Changes (v1.4.0)
 
 - [#6](https://github.com/santi020k/santi020k-theme/pull/6) [`a691ed9`](https://github.com/santi020k/santi020k-theme/commit/a691ed969db476eca7e9ab5d5e867abc1760297e) Thanks [@santi020k](https://github.com/santi020k)! - Ensure release automation creates and pushes a `v<version>` GitHub tag after publishing.
 
@@ -55,7 +55,7 @@
 
 ## 1.3.0
 
-### Minor Changes
+### Minor Changes (v1.3.0)
 
 - [#5](https://github.com/santi020k/santi020k-theme/pull/5) [`19cefc9`](https://github.com/santi020k/santi020k-theme/commit/19cefc973f544443318284767e3ee9a45ca2a334) Thanks [@santi020k](https://github.com/santi020k)! - Add automated token contrast validation and fix accessibility issues.
 
@@ -91,7 +91,7 @@
   - TOML / INI section header scopes
   - `meta.embedded` reset rule for correct embedded-language foreground
 
-### Patch Changes
+### Patch Changes (v1.3.0)
 
 - [#5](https://github.com/santi020k/santi020k-theme/pull/5) [`19cefc9`](https://github.com/santi020k/santi020k-theme/commit/19cefc973f544443318284767e3ee9a45ca2a334) Thanks [@santi020k](https://github.com/santi020k)! - Improve release validation by syncing website structured-data versions during release versioning, enforcing package/website version parity, cleaning up lint configuration, making alpha-aware contrast checks more accurate, and making npm audit blocking consistently.
 
@@ -101,17 +101,17 @@
 
 ## 1.2.1
 
-### Patch Changes
+### Patch Changes (v1.2.1)
 
 - [`878fef8`](https://github.com/santi020k/santi020k-theme/commit/878fef8f411cffa07b7da7f2b047743daf94f694) Thanks [@santi020k](https://github.com/santi020k)! - Sync package-lock.json with package.json to fix marketplace readiness validation error.
 
 ## 1.2.0
 
-### Minor Changes
+### Minor Changes (v1.2.0)
 
 - [#1](https://github.com/santi020k/santi020k-theme/pull/1) [`bac057e`](https://github.com/santi020k/santi020k-theme/commit/bac057e43722bea5bc33e42de36dd0212c2d6de5) Thanks [@santi020k](https://github.com/santi020k)! - Refresh the extension logo, tighten VSIX packaging exclusions, and add Vitest coverage for release validation.
 
-### Patch Changes
+### Patch Changes (v1.2.0)
 
 - [#1](https://github.com/santi020k/santi020k-theme/pull/1) [`8cf2c11`](https://github.com/santi020k/santi020k-theme/commit/8cf2c11d29ab3388d675cea89ddcecf59efa96ff) Thanks [@santi020k](https://github.com/santi020k)! - Publish releases to Open VSX alongside the Visual Studio Marketplace.
 
@@ -137,7 +137,7 @@
 
 ## [1.1.0] — 2026-04-28
 
-### Added
+### Added (v1.1.0)
 
 - Modal, notification, quick input, and shared widget color coverage
 - Semantic highlighting and expanded workbench coverage for newer VS Code surfaces
@@ -146,7 +146,7 @@
 
 ## [1.0.0] — 2026-04-28
 
-### Added
+### Added (v1.0.0)
 
 - Initial release
 - `santi020k dark` — deep indigo-black with muted violet accents

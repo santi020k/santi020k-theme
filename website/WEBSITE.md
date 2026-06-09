@@ -7,7 +7,7 @@ Reference for the theme.santi020k.com marketing site and the VS Code theme color
 ## Stack
 
 - **Runtime**: Vite (plain HTML/CSS/JS, no framework)
-- **Build**: `npm run build` inside `website/`
+- **Build**: `pnpm --dir website run build`
 - **Deploy**: static assets from `website/dist/`
 - **Font**: Montserrat (system fallbacks: Avenir Next → Segoe UI → sans-serif)
 
@@ -195,4 +195,4 @@ When adding new syntax or workbench colors to the theme JSON, pick from this pal
 1. **Token change** → edit the `:root` blocks in `src/styles.css`. Dark and light tokens are adjacent; keep them in sync.
 2. **New section** → add a `<section class="site-shell ...">` to `index.html` and a matching `border-top: 1px solid var(--section-divider)` rule in `styles.css`.
 3. **Version bump** → update `softwareVersion` in the JSON-LD block in `index.html`.
-4. **Build** → `npm run build` from the `website/` directory; output goes to `website/dist/`.
+4. **Build** → `pnpm --dir website run build` from the repo root; output goes to `website/dist/`.

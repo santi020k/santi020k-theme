@@ -21,6 +21,7 @@ const requiredPackageFields = [
   'displayName',
   'description',
   'version',
+  'packageManager',
   'publisher',
   'homepage',
   'repository',
@@ -97,7 +98,7 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
   }
 
   const pkg = readJson('package.json')
-  const lock = readJson('package-lock.json')
+  const pnpmLock = readFileSync(resolvePath('pnpm-lock.yaml'), 'utf8')
   const websiteIndex = readFileSync(resolvePath('website/index.html'), 'utf8')
 
   for (const field of requiredPackageFields) {
@@ -108,6 +109,10 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
 
   if (pkg.license !== 'MIT') {
     throw new Error('package.json license must be MIT')
+  }
+
+  if (!pkg.packageManager.startsWith('pnpm@')) {
+    throw new Error('package.json packageManager must use pnpm')
   }
 
   if (!pkg.engines?.vscode) {
@@ -142,8 +147,8 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
     throw new Error('package.json must declare at least 10 marketplace keywords')
   }
 
-  if (lock.version !== pkg.version || lock.packages?.['']?.version !== pkg.version) {
-    throw new Error('package-lock.json version does not match package.json')
+  if (!pnpmLock.includes('lockfileVersion: \'9.0\'') || !pnpmLock.includes('importers:')) {
+    throw new Error('pnpm-lock.yaml must be a pnpm v9 lockfile')
   }
 
   if (getWebsiteSoftwareVersion(websiteIndex) !== pkg.version) {
