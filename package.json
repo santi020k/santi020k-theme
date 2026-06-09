@@ -136,7 +136,7 @@
     ]
   },
   "scripts": {
-    "validate": "pnpm run build:themes && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run test && pnpm run lint && pnpm run site:install && pnpm run site:build && pnpm run package -- --no-dependencies",
+    "validate": "pnpm run build:themes && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run test && pnpm run lint && pnpm run site:build && pnpm run package -- --no-dependencies",
     "pretest": "pnpm run build:themes",
     "test": "vitest run",
     "sync:website-version": "node scripts/sync-website-version.mjs",
@@ -155,7 +155,7 @@
     "version-packages": "changeset version && pnpm install --lockfile-only && pnpm run sync:website-version",
     "site:install": "pnpm --dir website install --frozen-lockfile",
     "site:dev": "pnpm --dir website run dev",
-    "site:build": "pnpm --dir website run build",
+    "site:build": "pnpm --dir website install --frozen-lockfile && pnpm --dir website run build",
     "site:preview": "pnpm --dir website run preview",
     "lint:spell": "cspell \"**/*.{json,md,js,mjs,css,html}\" --no-progress"
   },
