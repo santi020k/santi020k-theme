@@ -80,7 +80,18 @@ const completeColors = {
   'notebook.outputContainerBorderColor': '#334155',
   'notebookStatusErrorIcon.foreground': '#f87171',
   'notebookStatusRunningIcon.foreground': '#facc15',
-  'notebookStatusSuccessIcon.foreground': '#22c55e'
+  'notebookStatusSuccessIcon.foreground': '#22c55e',
+  'commandCenter.background': '#111827',
+  'commandCenter.activeBackground': '#1f2937',
+  'commandCenter.border': '#334155',
+  'editorStickyScroll.background': '#020617',
+  'editorStickyScroll.border': '#334155',
+  'settings.headerForeground': '#f8fafc',
+  'settings.modifiedItemIndicator': '#8b5cf6',
+  'editorMultiCursor.primary.foreground': '#a78bfa',
+  'editorMultiCursor.secondary.foreground': '#a78bfa80',
+  'editorIndentGuide.background1': '#334155',
+  'editorIndentGuide.activeBackground1': '#475569'
 }
 
 const writeTheme = (name, theme) => {
@@ -115,8 +126,8 @@ afterEach(() => {
 })
 
 describe('theme validation', () => {
-  test('accepts the checked-in dark, light, and hc dark themes', () => {
-    expect(validateThemes()).toBe(3)
+  test('accepts all 12 checked-in theme variants', () => {
+    expect(validateThemes()).toBe(12)
   })
 
   test('rejects missing required color coverage', () => {

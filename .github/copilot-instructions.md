@@ -8,7 +8,7 @@ This repository contains a VS Code color theme extension with dark and light var
 - Keep dark and light theme files aligned.
 - Prefer official VS Code theme color token names.
 - Add release-worthy changesets for user-visible changes.
-- Run or recommend `npm run validate` before release.
+- Run or recommend `pnpm run validate` before release.
 
 ## Key Files
 

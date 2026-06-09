@@ -23,23 +23,29 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: 22
+          cache: pnpm
           cache-dependency-path: |
-            package-lock.json
-            website/package-lock.json
+            pnpm-lock.yaml
+            website/pnpm-lock.yaml
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Create release pull request or publish
         id: changesets
         uses: changesets/action@v1
         with:
-          version: npm run version-packages
-          publish: npm run release
+          version: pnpm run version-packages
+          publish: pnpm run release
           commit: "chore(release): version package"
           title: "chore(release): version package"
           createGithubReleases: true
@@ -51,4 +57,4 @@ jobs:
 
       - name: Ensure GitHub release tag exists
         if: github.ref == 'refs/heads/main' && steps.changesets.outputs.published == 'true'
-        run: npm run release:tag
+        run: pnpm run release:tag
