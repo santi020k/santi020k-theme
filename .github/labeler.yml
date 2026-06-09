@@ -51,9 +51,9 @@ dependencies:
   - changed-files:
       - any-glob-to-any-file:
           - 'package.json'
-          - 'package-lock.json'
+          - 'pnpm-lock.yaml'
           - 'website/package.json'
-          - 'website/package-lock.json'
+          - 'website/pnpm-lock.yaml'
 
 skip-changelog:
   - head-branch:
@@ -62,4 +62,3 @@ skip-changelog:
       - 'docs/*'
       - 'renovate/*'
       - 'dependabot/*'
-

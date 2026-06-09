@@ -23,20 +23,26 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
           cache-dependency-path: |
-            package-lock.json
-            website/package-lock.json
+            pnpm-lock.yaml
+            website/pnpm-lock.yaml
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Validate
-        run: npm run validate
+        run: pnpm run validate
 
       - name: Upload packaged extension
         uses: actions/upload-artifact@v4

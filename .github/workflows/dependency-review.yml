@@ -6,9 +6,9 @@ on:
       - main
     paths:
       - 'package.json'
-      - 'package-lock.json'
+      - 'pnpm-lock.yaml'
       - 'website/package.json'
-      - 'website/package-lock.json'
+      - 'website/pnpm-lock.yaml'
       - '.github/workflows/dependency-review.yml'
   workflow_dispatch:
 
@@ -34,4 +34,3 @@ jobs:
         uses: actions/dependency-review-action@v4
         with:
           fail-on-severity: moderate
-

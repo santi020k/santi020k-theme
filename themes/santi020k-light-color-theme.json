@@ -12,7 +12,7 @@
     "foreground": "#302e36",
     "icon.foreground": "#5f526f",
     "progressBar.background": "#6319be",
-    "selection.background": "#6319be40",
+    "selection.background": "#6319be60",
     "textLink.activeForeground": "#7730b8",
     "textLink.foreground": "#6319be",
     "widget.shadow": "#00000018",
@@ -23,12 +23,12 @@
     "editor.background": "#f8f6fd",
     "editor.focusedStackFrameHighlightBackground": "#6319be30",
     "editor.foreground": "#302e36",
-    "editor.inactiveSelectionBackground": "#6319be18",
+    "editor.inactiveSelectionBackground": "#6319be30",
     "editor.inlineValuesBackground": "#e3dff060",
     "editor.inlineValuesForeground": "#8d8896",
     "editor.lineHighlightBackground": "#00000000",
     "editor.lineHighlightBorder": "#00000000",
-    "editor.linkedEditingBackground": "#6319be20",
+    "editor.linkedEditingBackground": "#6319be35",
     "editor.stackFrameHighlightBackground": "#6319be20",
     // Editor Cursor & Line Numbers
     "editorCursor.background": "#f8f6fd",
@@ -91,7 +91,7 @@
     "editorOverviewRuler.warningForeground": "#c07a1080",
     "editorOverviewRuler.wordHighlightForeground": "#6319be40",
     "editorOverviewRuler.wordHighlightStrongForeground": "#6319be60",
-    "editorOverviewRuler.wordHighlightTextForeground": "#6319be50",
+    "editorOverviewRuler.wordHighlightTextForeground": "#6319be40",
     // Editor Diagnostics
     "editorError.foreground": "#c0392b",
     "editorHint.foreground": "#9880c0",
@@ -263,7 +263,7 @@
     "terminal.foreground": "#302e36",
     "terminal.hoverHighlightBackground": "#6319be18",
     "terminal.inactiveSelectionBackground": "#6319be18",
-    "terminal.selectionBackground": "#6319be40",
+    "terminal.selectionBackground": "#6319be60",
     "terminal.tab.activeBorder": "#6319be",
     "terminalCommandDecoration.defaultBackground": "#9880c0",
     "terminalCommandDecoration.errorBackground": "#c0392b",
@@ -535,7 +535,7 @@
     "editor.findMatchHighlightBackground": "#6319be25",
     "editor.foldBackground": "#6319be10",
     "editor.rangeHighlightBackground": "#6319be12",
-    "editor.selectionBackground": "#6319be40",
+    "editor.selectionBackground": "#6319be60",
     "editor.selectionForeground": "#ffffff",
     "editor.selectionHighlightBackground": "#6319be25",
     "editor.wordHighlightBackground": "#6319be20",
@@ -622,7 +622,8 @@
       "italic": true
     },
     "*.async": {
-      "foreground": "#0870a0"
+      "foreground": "#7030b0",
+      "italic": true
     },
     "*.declaration": {
       "bold": true
@@ -648,25 +649,25 @@
       "foreground": "#9880c0",
       "italic": true
     },
-    "decorator": "#5a18a8",
+    "decorator": "#a06000",
     "enum": "#5a18a8",
     "enumMember": "#8030c8",
-    "event": "#7030b0",
-    "function": "#5a18a8",
+    "event": "#a06000",
+    "function": "#006080",
     "interface": "#6020b8",
     "keyword": {
       "foreground": "#5a1ab0",
       "italic": true
     },
-    "macro": "#7030b0",
-    "method": "#5a18a8",
+    "macro": "#a06000",
+    "method": "#006080",
     "namespace": "#6020b8",
-    "number": "#8030c8",
+    "number": "#006090",
     "operator": "#8b52d6",
     "parameter": "#403860",
     "property": "#6020b8",
-    "regexp": "#8030c8",
-    "string": "#7030b0",
+    "regexp": "#a06000",
+    "string": "#a06000",
     "type": "#6020b8",
     "typeParameter": "#403860",
     "variable": "#302e36"
@@ -693,7 +694,7 @@
         "string.template"
       ],
       "settings": {
-        "foreground": "#7030b0"
+        "foreground": "#a06000"
       }
     },
     {
@@ -712,7 +713,7 @@
         "constant.numeric"
       ],
       "settings": {
-        "foreground": "#8030c8"
+        "foreground": "#006090"
       }
     },
     {
@@ -732,7 +733,7 @@
         "constant.other"
       ],
       "settings": {
-        "foreground": "#8030c8"
+        "foreground": "#006090"
       }
     },
     {
@@ -784,7 +785,7 @@
         "support.function"
       ],
       "settings": {
-        "foreground": "#6020b8"
+        "foreground": "#006080"
       }
     },
     {

@@ -12,13 +12,12 @@
 
 ## Validation
 
-- [ ] `npm run validate:themes`
-- [ ] `npm run validate:marketplace`
-- [ ] `npm run validate`
+- [ ] `pnpm run validate:themes`
+- [ ] `pnpm run validate:marketplace`
+- [ ] `pnpm run validate`
 - [ ] Manual VS Code Extension Development Host check
 - [ ] Website preview checked locally
 
 ## Release Notes
 
 <!-- Link or mention the changeset. Use "skip-changelog" only for non-user-visible work. -->
-

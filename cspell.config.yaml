@@ -92,7 +92,7 @@ words:
   - outline-offset
   - ovsx
   - OVSX_PAT
-  - package-lock
+  - pnpm-lock
   - padding-block
   - PATs
   - pluginutils
@@ -153,7 +153,7 @@ ignorePaths:
   - dist/**
   - .git/**
   - CHANGELOG.md
-  - package-lock.json
+  - pnpm-lock.yaml
   - "*.vsix"
   - .agents/**
   - .changeset/**
