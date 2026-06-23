@@ -27,11 +27,11 @@
 .editor-preview {
   --preview-bg: #0b0712;
   --preview-topbar-border: #231d30;
-  --preview-gutter-color: #5e576b;
+  --preview-gutter-color: #766f82;
   --preview-gutter-active: var(--brand);
   --preview-pre-color: var(--ink);
-  --preview-muted: #5e576b;
-  --preview-keyword: #8445f2;
+  --preview-muted: #766f82;
+  --preview-keyword: #9b69f6;
   --preview-string: var(--accent);
   --preview-function: var(--brand);
 }
@@ -39,11 +39,11 @@
 .editor-preview[data-preview-theme="dark"] {
   --preview-bg: #0b0712;
   --preview-topbar-border: #231d30;
-  --preview-gutter-color: #5e576b;
+  --preview-gutter-color: #766f82;
   --preview-gutter-active: #945df4;
   --preview-pre-color: #dfdde3;
-  --preview-muted: #5e576b;
-  --preview-keyword: #8445f2;
+  --preview-muted: #766f82;
+  --preview-keyword: #9b69f6;
   --preview-string: #b48df7;
   --preview-function: #945df4;
 }
@@ -63,7 +63,7 @@
 .editor-preview[data-preview-theme="light"] {
   --preview-bg: #f8f6fd;
   --preview-topbar-border: #d3cde6;
-  --preview-gutter-color: #c4bdd8;
+  --preview-gutter-color: #8b7aa7;
   --preview-gutter-active: #6319be;
   --preview-pre-color: #302e36;
   --preview-muted: #9880c0;
@@ -81,7 +81,7 @@
   --preview-muted: #5a1ab0;
   --preview-keyword: #5a1ab0;
   --preview-string: #7030b0;
-  --preview-function: #3878d8;
+  --preview-function: #2060c8;
 }
 
 :root {
@@ -1090,6 +1090,9 @@ pre {
 @media (prefers-reduced-motion: reduce) {
   .icon-sun,
   .icon-moon,
+  .button-copy-install,
+  .button-copy-install .copy-icon,
+  .button-copy-settings,
   .muted,
   .keyword,
   .string,

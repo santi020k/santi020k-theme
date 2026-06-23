@@ -160,14 +160,15 @@
     "lint:spell": "cspell \"**/*.{json,md,js,mjs,css,html}\" --no-progress"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/changelog-github": "^0.7.0",
     "@changesets/cli": "^2.31.0",
     "@santi020k/eslint-config-basic": "2.1.0",
     "@types/node": "^25.6.0",
-    "@vscode/vsce": "^3.9.1",
+    "@vscode/vsce": "^3.9.2",
     "cspell": "^10.0.0",
-    "eslint": "^10.2.1",
-    "ovsx": "^0.10.11",
-    "vitest": "^4.1.5"
+    "eslint": "10.2.1",
+    "ovsx": "^1.0.2",
+    "vite": "^8.1.0",
+    "vitest": "^4.1.9"
   }
 }

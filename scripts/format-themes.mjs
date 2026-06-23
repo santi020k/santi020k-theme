@@ -96,7 +96,7 @@ const formatTheme = file => {
 
   if (colorsStart !== -1) {
     const colorsEnd = output.indexOf('}', colorsStart)
-    const colorsBlock = output.substring(colorsStart + colorsHeader.length, colorsEnd)
+    const colorsBlock = output.slice(colorsStart + colorsHeader.length, colorsEnd)
     let newColorsBlock = '\n'
     const usedKeysInBlock = new Set()
 

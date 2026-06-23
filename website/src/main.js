@@ -349,19 +349,26 @@ const setupClipboard = () => {
   const settingsBtn = document.querySelector('.button-copy-settings')
 
   if (installBtn) {
+    const commandText = installBtn.querySelector('.command')
+    const originalText = commandText?.textContent ?? 'ext install santi020k.santi020k-theme'
+
     installBtn.addEventListener('click', async () => {
       const command = 'ext install santi020k.santi020k-theme'
 
       try {
         await navigator.clipboard.writeText(command)
 
-        const originalText = installBtn.innerHTML
+        if (commandText) {
+          commandText.textContent = 'Copied to clipboard!'
 
-        installBtn.innerHTML = '<span class="command">Copied to clipboard!</span>'
+          installBtn.setAttribute('aria-label', 'Installation command copied')
 
-        setTimeout(() => {
-          installBtn.innerHTML = originalText
-        }, 2000)
+          setTimeout(() => {
+            commandText.textContent = originalText
+
+            installBtn.setAttribute('aria-label', 'Copy installation command')
+          }, 2000)
+        }
       } catch (error) {
         console.error('Failed to copy: ', error)
       }

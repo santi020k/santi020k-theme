@@ -17,6 +17,10 @@ tests/**
 CONTRIBUTING.md
 AGENTS.md
 eslint.config.mjs
+cspell.config.yaml
+.nvmrc
+pnpm-lock.yaml
+pnpm-workspace.yaml
 llms.txt
 favicon.svg
 icon.svg

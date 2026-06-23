@@ -73,6 +73,7 @@ const modernSurfaceColorKeys = [
   'inlineChatInput.background',
   'inlineChatInput.border',
   'inlineChatInput.focusBorder',
+  'inlineChatInput.foreground',
   'inlineChatDiff.inserted',
   'inlineChatDiff.removed',
   'chat.avatarBackground',
@@ -116,7 +117,9 @@ const contrastPairs = [
   ['terminal.foreground', 'terminal.background', 4.5],
   ['statusBar.foreground', 'statusBar.background', 4.5],
   ['tab.activeForeground', 'tab.activeBackground', 4.5],
-  ['button.secondaryForeground', 'button.secondaryBackground', 4.5]
+  ['button.secondaryForeground', 'button.secondaryBackground', 4.5],
+  ['editorGhostText.foreground', 'editor.background', 3],
+  ['inlineChatInput.foreground', 'inlineChatInput.background', 4.5]
 ]
 
 // Minimum contrast for syntax token foreground against editor.background.
