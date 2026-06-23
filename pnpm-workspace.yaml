@@ -1,11 +1,32 @@
 packages:
-  - .
+  - "packages/*"
+  - "apps/*"
 
 ignoredBuiltDependencies:
   - '@vscode/vsce-sign'
   - esbuild
   - keytar
   - unrs-resolver
+
+catalog:
+  "@changesets/changelog-github": ^0.7.0
+  "@changesets/cli": ^2.31.0
+  "@commitlint/cli": ^21.0.2
+  "@commitlint/config-conventional": ^21.0.2
+  "@santi020k/eslint-config-basic": ^2.1.1
+  "@types/node": ^26.0.0
+  "@vscode/vsce": ^3.9.2
+  commitizen: ^4.3.2
+  cspell: ^10.0.1
+  cz-conventional-changelog: ^3.3.0
+  eslint: ^10.5.0
+  husky: ^9.1.7
+  knip: ^6.18.0
+  lint-staged: ^17.0.8
+  ovsx: ^1.0.2
+  turbo: ^2.9.18
+  vite: ^8.1.0
+  vitest: ^4.1.9
 
 peerDependencyRules:
   allowedVersions:

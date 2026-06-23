@@ -4,7 +4,6 @@
 
 ```bash
 pnpm install --frozen-lockfile
-pnpm --dir website install --frozen-lockfile
 ```
 
 ## Validate Changes
@@ -15,7 +14,7 @@ Run the full validation before opening a PR or publishing:
 pnpm run validate
 ```
 
-This checks both theme JSON files, builds the website, and packages the extension locally.
+This checks the theme JSON files, builds the website, and packages the extension locally.
 
 For a faster package metadata check, run:
 
@@ -36,6 +35,8 @@ Use `patch` for fixes, `minor` for new theme coverage or project capabilities, a
 ## Local Extension Testing
 
 Open this repository in VS Code and press `F5` to launch an Extension Development Host. After editing a theme file, reload the development host window to see the latest colors.
+
+The extension package lives in `packages/santi020k-theme`, and the website lives in `apps/website`.
 
 ## Release Checklist
 

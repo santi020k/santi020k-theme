@@ -7,8 +7,8 @@ Reference for the theme.santi020k.com marketing site and the VS Code theme color
 ## Stack
 
 - **Runtime**: Vite (plain HTML/CSS/JS, no framework)
-- **Build**: `pnpm --dir website run build`
-- **Deploy**: static assets from `website/dist/`
+- **Build**: `pnpm run site:build`
+- **Deploy**: static assets from `apps/website/dist/`
 - **Font**: Montserrat (system fallbacks: Avenir Next → Segoe UI → sans-serif)
 
 ### Why not Astro?
@@ -117,7 +117,7 @@ Decorative code widget in the hero. Always shows the active theme variant (filen
 Shows the dark, light, and high-contrast theme thumbnails side-by-side. Always styled with their respective theme colors — `.variant-dark` is always dark, `.variant-light` is always light, and `.variant-hc` is always high contrast, regardless of the current site theme. All three have hardcoded color overrides that override the inherited `var(--brand)` eyebrow color.
 
 ### `.screenshots-section`
-Two-column grid (left: heading, right: screenshot cards). The cards show all shipped variants with real preview assets. Images (`preview-dark.png`, `preview-light.png`, `preview-hc-dark.png`, 1280×720) live in `website/public/`.
+Two-column grid (left: heading, right: screenshot cards). The cards show all shipped variants with real preview assets. Images (`preview-dark.png`, `preview-light.png`, `preview-hc-dark.png`, 1280x720) live in `apps/website/public/`.
 
 ### `.why-grid`
 A 2×2 grid of `.why-card` articles inside the `#why` section. Each card has a `.why-icon` (44×44 rounded square, brand color), an `h3`, and a short `p`. Cards show the `--brand` border on hover.
@@ -170,7 +170,7 @@ On click, `main.js` fires a circular clip-path animation that expands from the b
 
 ## VS Code theme color system
 
-The theme JSON files live in `themes/`. Both variants share the same CSS-variable naming convention used on the website:
+The theme JSON files live in `packages/santi020k-theme/themes/`. Both variants share the same CSS-variable naming convention used on the website:
 
 | Website token | Dark theme hex | Light theme hex | VS Code role |
 |---|---|---|---|
@@ -195,4 +195,4 @@ When adding new syntax or workbench colors to the theme JSON, pick from this pal
 1. **Token change** → edit the `:root` blocks in `src/styles.css`. Dark and light tokens are adjacent; keep them in sync.
 2. **New section** → add a `<section class="site-shell ...">` to `index.html` and a matching `border-top: 1px solid var(--section-divider)` rule in `styles.css`.
 3. **Version bump** → update `softwareVersion` in the JSON-LD block in `index.html`.
-4. **Build** → `pnpm --dir website run build` from the repo root; output goes to `website/dist/`.
+4. **Build** -> `pnpm run site:build` from the repo root; output goes to `apps/website/dist/`.

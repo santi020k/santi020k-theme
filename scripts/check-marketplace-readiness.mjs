@@ -2,6 +2,8 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { extensionPackageDir, repoRoot, websiteDir } from './paths.mjs'
+
 const requiredFiles = [
   'README.md',
   'CHANGELOG.md',
@@ -54,6 +56,9 @@ export const requiredIgnorePatterns = [
   '.windsurf/**',
   '.copilot/**',
   '.aider/**',
+  'apps/**',
+  'packages/**',
+  '.turbo/**',
   '.npmrc',
   '.env*',
   'node_modules/**',
@@ -63,13 +68,17 @@ export const requiredIgnorePatterns = [
   'AGENTS.md',
   'eslint.config.mjs',
   'cspell.config.yaml',
+  'knip.json',
+  'renovate.json',
+  'turbo.json',
   '.nvmrc',
   'pnpm-lock.yaml',
   'pnpm-workspace.yaml',
   'llms.txt',
   'favicon.svg',
   'icon.svg',
-  'assets/*.svg'
+  'assets/*.svg',
+  '*.vsix'
 ]
 
 const requiredAgentSkillFiles = [
@@ -85,8 +94,13 @@ const getWebsiteSoftwareVersion = html => {
   return match?.[1]
 }
 
-export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
-  const resolvePath = path => join(rootDir, path)
+export const checkMarketplaceReadiness = (packageDir = extensionPackageDir, {
+  repositoryDir = packageDir === extensionPackageDir ? repoRoot : packageDir,
+  websiteRoot = packageDir === extensionPackageDir ? websiteDir : join(packageDir, 'website')
+} = {}) => {
+  const resolvePath = path => join(packageDir, path)
+  const resolveRepoPath = path => join(repositoryDir, path)
+  const resolveWebsitePath = path => join(websiteRoot, path)
   const readJson = path => JSON.parse(readFileSync(resolvePath(path), 'utf8'))
 
   for (const file of requiredFiles) {
@@ -96,14 +110,14 @@ export const checkMarketplaceReadiness = (rootDir = process.cwd()) => {
   }
 
   for (const file of requiredAgentSkillFiles) {
-    if (!existsSync(resolvePath(file))) {
+    if (!existsSync(resolveRepoPath(file))) {
       throw new Error(`Missing repo-local agent skill: ${file}`)
     }
   }
 
   const pkg = readJson('package.json')
-  const pnpmLock = readFileSync(resolvePath('pnpm-lock.yaml'), 'utf8')
-  const websiteIndex = readFileSync(resolvePath('website/index.html'), 'utf8')
+  const pnpmLock = readFileSync(resolveRepoPath('pnpm-lock.yaml'), 'utf8')
+  const websiteIndex = readFileSync(resolveWebsitePath('index.html'), 'utf8')
 
   for (const field of requiredPackageFields) {
     if (!pkg[field]) {

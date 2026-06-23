@@ -1,11 +1,12 @@
 import { readFileSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+
+import { fromExtensionPackage } from './paths.mjs'
 
 const baseThemes = [
-  { file: 'themes/santi020k-dark-color-theme.json', name: 'santi020k dark' },
-  { file: 'themes/santi020k-light-color-theme.json', name: 'santi020k light' },
-  { file: 'themes/santi020k-hc-dark-color-theme.json', name: 'santi020k hc dark' },
-  { file: 'themes/santi020k-hc-light-color-theme.json', name: 'santi020k hc light' }
+  { file: fromExtensionPackage('themes/santi020k-dark-color-theme.json'), name: 'santi020k dark' },
+  { file: fromExtensionPackage('themes/santi020k-light-color-theme.json'), name: 'santi020k light' },
+  { file: fromExtensionPackage('themes/santi020k-hc-dark-color-theme.json'), name: 'santi020k hc dark' },
+  { file: fromExtensionPackage('themes/santi020k-hc-light-color-theme.json'), name: 'santi020k hc light' }
 ]
 
 const addFontStyle = function (style, newStyle) {
@@ -17,7 +18,7 @@ const addFontStyle = function (style, newStyle) {
 }
 
 for (const base of baseThemes) {
-  const themePath = join(process.cwd(), base.file)
+  const themePath = base.file
   let raw
 
   try {
@@ -59,7 +60,7 @@ for (const base of baseThemes) {
   }
 
   writeFileSync(
-    join(process.cwd(), base.file.replace('.json', '').replace('-color-theme', '-bold-color-theme.json')), JSON.stringify(boldTheme, null, 2)
+    base.file.replace('.json', '').replace('-color-theme', '-bold-color-theme.json'), JSON.stringify(boldTheme, null, 2)
   )
 
   // Generate Italic Variant
@@ -88,7 +89,7 @@ for (const base of baseThemes) {
   }
 
   writeFileSync(
-    join(process.cwd(), base.file.replace('.json', '').replace('-color-theme', '-italic-color-theme.json')), JSON.stringify(italicTheme, null, 2)
+    base.file.replace('.json', '').replace('-color-theme', '-italic-color-theme.json'), JSON.stringify(italicTheme, null, 2)
   )
 }
 

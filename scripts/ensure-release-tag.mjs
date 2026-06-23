@@ -2,6 +2,8 @@ import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
+import { fromExtensionPackage } from './paths.mjs'
+
 const defaultRun = (command, args, options = {}) => execFileSync(command, args, {
   encoding: 'utf8',
   stdio: ['ignore', 'pipe', 'pipe'],
@@ -39,7 +41,7 @@ const hasRemoteTag = (tagName, remote, run) => {
 }
 
 export const ensureReleaseTag = ({
-  packagePath = 'package.json',
+  packagePath = fromExtensionPackage('package.json'),
   remote = 'origin',
   run = defaultRun
 } = {}) => {

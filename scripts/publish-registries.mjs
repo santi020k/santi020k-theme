@@ -1,6 +1,8 @@
 import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
 
+import { repoRoot } from './paths.mjs'
+
 const pkg = JSON.parse(readFileSync('package.json', 'utf8'))
 const extensionId = `${pkg.publisher}.${pkg.name}`
 const vsixPath = `${pkg.name}-${pkg.version}.vsix`
@@ -94,7 +96,7 @@ const shouldPublishOpenVsx = !openVsxVersions.has(pkg.version)
 if (!shouldPublishMarketplace && !shouldPublishOpenVsx) {
   console.log(`${extensionId}@${pkg.version} is already published to both registries.`)
 } else {
-  run('pnpm', ['run', 'validate'])
+  run('pnpm', ['--workspace-root', 'run', 'validate'], { cwd: repoRoot })
 
   if (!existsSync(vsixPath)) {
     throw new Error(`Expected packaged VSIX at ${vsixPath}`)

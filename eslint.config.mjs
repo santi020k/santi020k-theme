@@ -8,7 +8,10 @@ export default await defineConfig({
     '**/*.yml',
     '**/*.yaml',
     'scratch/**',
-    'website/dist/**'
+    'apps/website/dist/**',
+    'packages/santi020k-theme/themes/*-bold-color-theme.json',
+    'packages/santi020k-theme/themes/*-italic-color-theme.json',
+    'packages/santi020k-theme/themes/santi020k-hc-light-color-theme.json'
   ],
   features: {
     perfectionist: false
@@ -16,7 +19,7 @@ export default await defineConfig({
   runtime: Runtime.Node
 },
 {
-  files: ['website/src/**/*.js'],
+  files: ['apps/website/src/**/*.js'],
   languageOptions: {
     globals: {
       document: 'readonly',
@@ -40,7 +43,8 @@ export default await defineConfig({
   files: ['scripts/*.mjs'],
   rules: {
     'security/detect-non-literal-fs-filename': 'off',
-    'security/detect-object-injection': 'off'
+    'security/detect-object-injection': 'off',
+    'turbo/no-undeclared-env-vars': 'off'
   }
 },
 {

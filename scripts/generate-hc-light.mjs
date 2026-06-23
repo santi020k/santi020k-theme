@@ -1,5 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 
+import { fromExtensionPackage } from './paths.mjs'
+
 const darkenColor = function (hex) {
   if (!hex || !hex.startsWith('#')) return hex
 
@@ -18,8 +20,8 @@ const darkenColor = function (hex) {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}${a}`
 }
 
-const themePath = 'themes/santi020k-light-color-theme.json'
-const outputPath = 'themes/santi020k-hc-light-color-theme.json'
+const themePath = fromExtensionPackage('themes/santi020k-light-color-theme.json')
+const outputPath = fromExtensionPackage('themes/santi020k-hc-light-color-theme.json')
 const raw = readFileSync(themePath, 'utf8')
 const theme = JSON.parse(raw.replaceAll(/\/\*[\s\S]*?\*\//g, '').replaceAll(/^\s*\/\/.*$/gm, ''))
 

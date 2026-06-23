@@ -12,14 +12,14 @@ This repository contains a VS Code color theme extension with dark and light var
 
 ## Key Files
 
-- `themes/santi020k-dark-color-theme.json`
-- `themes/santi020k-light-color-theme.json`
+- `packages/santi020k-theme/themes/santi020k-dark-color-theme.json`
+- `packages/santi020k-theme/themes/santi020k-light-color-theme.json`
 - `scripts/validate-themes.mjs`
 - `scripts/check-marketplace-readiness.mjs`
 - `scripts/publish-registries.mjs`
 - `.github/workflows/release.yml`
 - `.github/workflows/validate.yml`
-- `website/src/styles.css`
+- `apps/website/src/styles.css`
 
 ## Theme Guidance
 

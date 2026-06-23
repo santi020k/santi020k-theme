@@ -36,17 +36,10 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: |
-            pnpm-lock.yaml
-            website/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm --dir website install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
-      - name: Audit root dependencies
+      - name: Audit workspace dependencies
         run: pnpm audit --audit-level=moderate
-
-      - name: Audit website dependencies
-        run: pnpm --dir website audit --audit-level=moderate

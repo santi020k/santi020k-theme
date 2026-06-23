@@ -1,0 +1,41 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["CI", "OVSX_PAT", "VSCE_PAT", "VITEST"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "dist/**",
+        "themes/*-bold-color-theme.json",
+        "themes/*-italic-color-theme.json",
+        "themes/santi020k-hc-light-color-theme.json"
+      ],
+      "outputLogs": "errors-only"
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "preview": {
+      "cache": false,
+      "persistent": true
+    },
+    "package": {
+      "dependsOn": ["build"],
+      "outputs": ["*.vsix"],
+      "outputLogs": "errors-only"
+    },
+    "validate:themes": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "outputLogs": "errors-only"
+    },
+    "//#lint:knip": {
+      "dependsOn": ["build"],
+      "outputLogs": "errors-only"
+    }
+  },
+  "futureFlags": {
+    "errorsOnlyShowHash": true
+  }
+}

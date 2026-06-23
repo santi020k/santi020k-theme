@@ -2,13 +2,14 @@ theme:
   - changed-files:
       - any-glob-to-any-file:
           - 'themes/**'
+          - 'packages/santi020k-theme/themes/**'
           - 'scripts/validate-themes.mjs'
           - 'tests/theme-validation.test.mjs'
 
 website:
   - changed-files:
       - any-glob-to-any-file:
-          - 'website/**'
+          - 'apps/website/**'
 
 release:
   - changed-files:
@@ -23,10 +24,11 @@ marketplace:
   - changed-files:
       - any-glob-to-any-file:
           - 'package.json'
-          - 'README.md'
-          - 'CHANGELOG.md'
-          - 'icon.png'
-          - 'assets/**'
+          - 'packages/santi020k-theme/package.json'
+          - 'packages/santi020k-theme/README.md'
+          - 'packages/santi020k-theme/CHANGELOG.md'
+          - 'packages/santi020k-theme/icon.png'
+          - 'packages/santi020k-theme/assets/**'
           - 'scripts/check-marketplace-readiness.mjs'
           - 'tests/marketplace-readiness.test.mjs'
 
@@ -39,7 +41,7 @@ docs:
   - changed-files:
       - any-glob-to-any-file:
           - '*.md'
-          - 'website/WEBSITE.md'
+          - 'apps/website/WEBSITE.md'
           - 'llms.txt'
 
 tests:
@@ -52,8 +54,9 @@ dependencies:
       - any-glob-to-any-file:
           - 'package.json'
           - 'pnpm-lock.yaml'
-          - 'website/package.json'
-          - 'website/pnpm-lock.yaml'
+          - 'pnpm-workspace.yaml'
+          - 'apps/*/package.json'
+          - 'packages/*/package.json'
 
 skip-changelog:
   - head-branch:

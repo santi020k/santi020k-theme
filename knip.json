@@ -1,0 +1,30 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignoreBinaries": [
+    "validate"
+  ],
+  "ignoreDependencies": [
+    "ovsx"
+  ],
+  "workspaces": {
+    ".": {
+      "entry": [
+        "scripts/*.mjs"
+      ],
+      "project": [
+        "scripts/**/*.mjs",
+        "tests/**/*.mjs"
+      ]
+    },
+    "apps/website": {
+      "project": [
+        "src/**/*.js"
+      ]
+    },
+    "packages/santi020k-theme": {
+      "entry": [
+        "package.json"
+      ]
+    }
+  }
+}

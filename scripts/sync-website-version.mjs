@@ -1,8 +1,10 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
-const packageJsonPath = 'package.json'
-const websiteIndexPath = 'website/index.html'
+import { fromExtensionPackage, fromWebsite } from './paths.mjs'
+
+const packageJsonPath = fromExtensionPackage('package.json')
+const websiteIndexPath = fromWebsite('index.html')
 const softwareVersionPattern = /("softwareVersion":\s*")([^"]+)(")/
 
 export const syncWebsiteVersion = ({

@@ -1,0 +1,149 @@
+{
+  "name": "santi020k-theme",
+  "displayName": "Santi020k Theme",
+  "description": "A coordinated dark, light, and high-contrast VS Code theme with muted violet accents, validated contrast, and semantic highlighting for long sessions.",
+  "version": "1.6.0",
+  "packageManager": "pnpm@10.32.1",
+  "publisher": "santi020k",
+  "author": {
+    "name": "Santiago Molina",
+    "url": "https://santi020k.com"
+  },
+  "homepage": "https://theme.santi020k.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santi020k/santi020k-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/santi020k/santi020k-theme/issues"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/santi020k"
+  },
+  "license": "MIT",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/santi020k"
+  },
+  "engines": {
+    "vscode": "^1.75.0",
+    "node": ">=22.18.0"
+  },
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "color-theme",
+    "dark",
+    "dark-theme",
+    "light",
+    "light-theme",
+    "high-contrast",
+    "hc-theme",
+    "purple",
+    "violet",
+    "indigo",
+    "antigravity",
+    "minimal",
+    "accessible",
+    "semantic",
+    "semantic-highlighting",
+    "syntax-highlighting",
+    "vscode-theme",
+    "cursor",
+    "windsurf",
+    "vscodium",
+    "santi020k"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#110c1d",
+    "theme": "dark"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "santi020k dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/santi020k-dark-color-theme.json"
+      },
+      {
+        "label": "santi020k light",
+        "uiTheme": "vs",
+        "path": "./themes/santi020k-light-color-theme.json"
+      },
+      {
+        "label": "santi020k hc dark",
+        "uiTheme": "hc-black",
+        "path": "./themes/santi020k-hc-dark-color-theme.json"
+      },
+      {
+        "label": "santi020k hc light",
+        "uiTheme": "hc-light",
+        "path": "./themes/santi020k-hc-light-color-theme.json"
+      },
+      {
+        "label": "santi020k dark bold",
+        "uiTheme": "vs-dark",
+        "path": "./themes/santi020k-dark-bold-color-theme.json"
+      },
+      {
+        "label": "santi020k light bold",
+        "uiTheme": "vs",
+        "path": "./themes/santi020k-light-bold-color-theme.json"
+      },
+      {
+        "label": "santi020k hc dark bold",
+        "uiTheme": "hc-black",
+        "path": "./themes/santi020k-hc-dark-bold-color-theme.json"
+      },
+      {
+        "label": "santi020k hc light bold",
+        "uiTheme": "hc-light",
+        "path": "./themes/santi020k-hc-light-bold-color-theme.json"
+      },
+      {
+        "label": "santi020k dark italic",
+        "uiTheme": "vs-dark",
+        "path": "./themes/santi020k-dark-italic-color-theme.json"
+      },
+      {
+        "label": "santi020k light italic",
+        "uiTheme": "vs",
+        "path": "./themes/santi020k-light-italic-color-theme.json"
+      },
+      {
+        "label": "santi020k hc dark italic",
+        "uiTheme": "hc-black",
+        "path": "./themes/santi020k-hc-dark-italic-color-theme.json"
+      },
+      {
+        "label": "santi020k hc light italic",
+        "uiTheme": "hc-light",
+        "path": "./themes/santi020k-hc-light-italic-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "pnpm run build:themes",
+    "build:themes": "pnpm run format:themes && node ../../scripts/generate-hc-light.mjs && node ../../scripts/generate-variants.mjs",
+    "format:themes": "node ../../scripts/format-themes.mjs",
+    "validate:themes": "node ../../scripts/validate-themes.mjs",
+    "validate:marketplace": "node ../../scripts/check-marketplace-readiness.mjs",
+    "package": "pnpm run build && vsce package --no-dependencies",
+    "publish": "node ../../scripts/publish-registries.mjs",
+    "publish:pre": "pnpm --workspace-root run validate && vsce publish --pre-release",
+    "release": "node ../../scripts/publish-registries.mjs"
+  }
+}

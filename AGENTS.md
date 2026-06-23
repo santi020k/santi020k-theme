@@ -6,8 +6,9 @@ Guidance for AI coding agents working in this repository.
 
 This is a VS Code color theme extension named `santi020k-theme`.
 
-- Theme files live in `themes/`.
-- The marketing/preview website lives in `website/`.
+- Theme files live in `packages/santi020k-theme/themes/`.
+- The published VS Code extension package lives in `packages/santi020k-theme/`.
+- The marketing/preview website lives in `apps/website/`.
 - Release automation uses Changesets and publishes to both the Visual Studio Marketplace and Open VSX.
 - Validation scripts live in `scripts/`.
 
@@ -28,16 +29,17 @@ Use them when the task matches their names. If your agent runtime cannot load sk
 pnpm run validate:themes
 pnpm run validate:marketplace
 pnpm run validate
-pnpm run package -- --no-dependencies
+pnpm run package:extension
 pnpm run release
 pnpm run changeset
+pnpm run commit
 ```
 
 Prefer `pnpm run validate` before finishing any user-visible change. It parses theme JSON, checks marketplace readiness, builds the website, and packages the extension.
 
 ## Theme Editing Rules
 
-- Update both `themes/santi020k-dark-color-theme.json` and `themes/santi020k-light-color-theme.json` together unless the user explicitly asks for one variant.
+- Update both `packages/santi020k-theme/themes/santi020k-dark-color-theme.json` and `packages/santi020k-theme/themes/santi020k-light-color-theme.json` together unless the user explicitly asks for one variant.
 - Keep the purple/indigo visual identity intact unless the request is a redesign.
 - When adding UI color coverage, add related state tokens together: background, foreground, border, hover, focus, inactive/unfocused.
 - Modal-like surfaces usually depend on shared tokens such as `foreground`, `descriptionForeground`, `editorWidget.*`, `widget.*`, `textLink.*`, `input*`, `button*`, `checkbox*`, `dropdown*`, `quickInput*`, and notification tokens.
@@ -48,16 +50,16 @@ Prefer `pnpm run validate` before finishing any user-visible change. It parses t
 
 - Add a changeset for user-visible changes: `pnpm run changeset`.
 - Use `patch` for fixes/docs/release automation, `minor` for new theme coverage or significant capability additions, and `major` only for breaking compatibility changes.
-- Do not manually bump `package.json` or `CHANGELOG.md` for normal feature PRs; Changesets handles that in the release PR.
+- Do not manually bump `packages/santi020k-theme/package.json` or `packages/santi020k-theme/CHANGELOG.md` for normal feature PRs; Changesets handles that in the release PR.
 - The release script is expected to be idempotent and skip already-published versions.
 - Required publish secrets are `VSCE_PAT` and `OVSX_PAT`.
 
 ## Website Rules
 
-- Website source is under `website/`.
+- Website source is under `apps/website/`.
 - Build with `pnpm run site:build` from the repo root.
 - Keep visible focus styles and external-link safety intact.
-- The site is deployed outside the extension package; `.vscodeignore` should continue excluding `website/**`.
+- The site is deployed outside the extension package; `packages/santi020k-theme/.vscodeignore` should continue excluding repo-only app and tooling paths.
 
 ## Validation Expectations
 

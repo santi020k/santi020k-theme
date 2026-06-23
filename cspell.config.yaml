@@ -24,15 +24,21 @@ words:
   - bracket-pair
   - breadcrumbs
   - changelog
+  - changefreq
   - changeset
   - changesets
   - claymorphism
   - color-scheme
   - command-center
+  - commitizen
+  - commitlint
+  - Consolas
+  - dasharray
   - defmodule
   - editor-background
   - editor-foreground
   - emphasised
+  - esbuild
   - eslint
   - fira
   - flex-shrink
@@ -68,11 +74,17 @@ words:
   - justify-content
   - justify-self
   - keybinding
+  - keytar
+  - knip
+  - labelledby
+  - lastmod
   - lede
   - letter-spacing
+  - linecap
   - ligatures
   - lightningcss
   - line-height
+  - linejoin
   - llms
   - margin-inline
   - max-height
@@ -136,6 +148,9 @@ words:
   - transition-property
   - transition-timing-function
   - tsconfck
+  - undici
+  - unrs
+  - urlset
   - v1.4.0
   - v1.5.0
   - vite
@@ -157,5 +172,7 @@ ignorePaths:
   - "*.vsix"
   - .agents/**
   - .changeset/**
-  - website/dist/**
-  - website/.vite/**
+  - .turbo/**
+  - apps/website/dist/**
+  - apps/website/.vite/**
+  - packages/santi020k-theme/*.vsix
