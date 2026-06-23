@@ -252,7 +252,8 @@ const findDuplicateColorKeys = raw => {
   let depth = 1
 
   while (i < raw.length && depth > 0) {
-    if (raw[i] === '"') {
+    switch (raw[i]) {
+    case '"': {
       i++
 
       while (i < raw.length && raw[i] !== '"') {
@@ -260,10 +261,22 @@ const findDuplicateColorKeys = raw => {
 
         i++
       }
-    } else if (raw[i] === '{') {
+    
+    break;
+    }
+
+    case '{': {
       depth++
-    } else if (raw[i] === '}') {
+    
+    break;
+    }
+
+    case '}': {
       depth--
+    
+    break;
+    }
+    // No default
     }
 
     i++
@@ -327,8 +340,8 @@ export const validateThemes = (files = themeFiles) => {
     const raw = readFileSync(file, 'utf8')
 
     const cleanRaw = raw
-      .replace(/\/\*[\s\S]*?\*\//g, '')
-      .replace(/^\s*\/\/.*$/gm, '')
+      .replaceAll(/\/\*[\s\S]*?\*\//g, '')
+      .replaceAll(/^\s*\/\/.*$/gm, '')
 
     const theme = JSON.parse(cleanRaw)
     const duplicateColorKeys = findDuplicateColorKeys(raw)

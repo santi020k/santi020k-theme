@@ -26,7 +26,7 @@
     "editor.inactiveSelectionBackground": "#5a0fdb40",
     "editor.inlineValuesBackground": "#322b4058",
     "editor.inlineValuesForeground": "#8d8896",
-    "editor.lineHighlightBackground": "#ffffff08",
+    "editor.lineHighlightBackground": "#ffffff0d",
     "editor.lineHighlightBorder": "#00000000",
     "editor.linkedEditingBackground": "#5a0fdb40",
     "editor.stackFrameHighlightBackground": "#945df430",
@@ -54,9 +54,9 @@
     "editorBracketPairGuide.activeBackground1": "#945df480",
     "editorBracketPairGuide.activeBackground2": "#89b8c880",
     "editorBracketPairGuide.activeBackground3": "#e8b44a80",
-    "editorBracketPairGuide.background1": "#945df425",
-    "editorBracketPairGuide.background2": "#89b8c825",
-    "editorBracketPairGuide.background3": "#e8b44a25",
+    "editorBracketPairGuide.background1": "#945df438",
+    "editorBracketPairGuide.background2": "#89b8c838",
+    "editorBracketPairGuide.background3": "#e8b44a38",
     // Editor Gutter
     "editorGutter.addedBackground": "#7daea360",
     "editorGutter.deletedBackground": "#ea696260",
@@ -298,7 +298,7 @@
     // Scrollbar
     "scrollbar.shadow": "#00000060",
     "scrollbarSlider.activeBackground": "#5a0fdb80",
-    "scrollbarSlider.background": "#49415860",
+    "scrollbarSlider.background": "#49415878",
     "scrollbarSlider.hoverBackground": "#32195d80",
     // Quick Picker
     "pickerGroup.border": "#494158",
@@ -546,15 +546,15 @@
     "editorActionList.focusBackground": "#322b40",
     "editorActionList.focusForeground": "#dfdde3",
     "editorActionList.foreground": "#b6b2bd",
-    "editorCodeLens.foreground": "#9080a8",
+    "editorCodeLens.foreground": "#a090c0",
     "editorGhostText.border": "#00000000",
-    "editorGhostText.foreground": "#8d88969a",
+    "editorGhostText.foreground": "#9090b068",
     "editorGroupHeader.tabsBackground": "#0d0a15",
     "editorGroupHeader.tabsBorder": "#231d30",
     "editorInlayHint.background": "#322b4066",
     "editorInlayHint.foreground": "#b6b2bd",
     "editorInlayHint.parameterBackground": "#322b4066",
-    "editorInlayHint.parameterForeground": "#b6b2bd",
+    "editorInlayHint.parameterForeground": "#a8d0e0",
     "editorInlayHint.typeBackground": "#231d3066",
     "editorInlayHint.typeForeground": "#9b69f6",
     "editorLightBulbAi.foreground": "#945df4",
@@ -647,7 +647,7 @@
     },
     "class": "#945df4",
     "comment": {
-      "foreground": "#8d70c0",
+      "foreground": "#9d80d0",
       "italic": true
     },
     "decorator": "#e8b44a",
@@ -681,7 +681,7 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#8d70c0",
+        "foreground": "#9d80d0",
         "fontStyle": "italic"
       }
     },

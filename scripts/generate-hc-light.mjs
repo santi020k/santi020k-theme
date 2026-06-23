@@ -3,9 +3,9 @@ import { readFileSync, writeFileSync } from 'node:fs'
 const darkenColor = function (hex) {
   if (!hex || !hex.startsWith('#')) return hex
 
-  let r = parseInt(hex.slice(1, 3), 16)
-  let g = parseInt(hex.slice(3, 5), 16)
-  let b = parseInt(hex.slice(5, 7), 16)
+  let r = Number.parseInt(hex.slice(1, 3), 16)
+  let g = Number.parseInt(hex.slice(3, 5), 16)
+  let b = Number.parseInt(hex.slice(5, 7), 16)
   let a = hex.length === 9 ? hex.slice(7, 9) : ''
 
   // Make colors darker for high contrast light
@@ -21,7 +21,7 @@ const darkenColor = function (hex) {
 const themePath = 'themes/santi020k-light-color-theme.json'
 const outputPath = 'themes/santi020k-hc-light-color-theme.json'
 const raw = readFileSync(themePath, 'utf8')
-const theme = JSON.parse(raw.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, ''))
+const theme = JSON.parse(raw.replaceAll(/\/\*[\s\S]*?\*\//g, '').replaceAll(/^\s*\/\/.*$/gm, ''))
 
 theme.name = 'santi020k hc light'
 
@@ -32,11 +32,11 @@ theme.type = 'hc-light'
 // For now, let's just darken some of the foregrounds for extra contrast if needed,
 // but the regular light theme is already accessible. We will darken token colors.
 if (theme.tokenColors) {
-  theme.tokenColors.forEach(token => {
+  for (const token of theme.tokenColors) {
     if (token.settings && token.settings.foreground) {
       token.settings.foreground = darkenColor(token.settings.foreground)
     }
-  })
+  }
 }
 
 if (theme.semanticTokenColors) {
@@ -76,12 +76,12 @@ for (const [key, val] of Object.entries(hcOverrides)) {
 // The generator darkens all token colors uniformly, so we nudge punctuation
 // to a warmer, slightly less purple tone to separate it from italic comments.
 if (theme.tokenColors) {
-  theme.tokenColors.forEach(token => {
+  for (const token of theme.tokenColors) {
     if (token.name === 'Punctuation' && token.settings?.foreground) {
       // Shift punctuation toward a warmer grey-purple rather than the comment's cool purple
       token.settings.foreground = '#5c4a7a'
     }
-  })
+  }
 }
 
 writeFileSync(outputPath, JSON.stringify(theme, null, 2))

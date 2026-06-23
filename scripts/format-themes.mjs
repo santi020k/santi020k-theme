@@ -53,8 +53,8 @@ const formatTheme = file => {
   const raw = readFileSync(file, 'utf8')
 
   const cleanRaw = raw
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/^\s*\/\/.*$/gm, '')
+    .replaceAll(/\/\*[\s\S]*?\*\//g, '')
+    .replaceAll(/^\s*\/\/.*$/gm, '')
 
   const content = JSON.parse(cleanRaw)
   // 1. Sort Colors by Category and then Alphabetically
@@ -128,7 +128,7 @@ const formatTheme = file => {
     // Remove last comma and fix closing brace indentation
     newColorsBlock = newColorsBlock.trimEnd().replace(/,$/, '') + '\n  '
 
-    output = output.substring(0, colorsStart + colorsHeader.length) + newColorsBlock + output.substring(colorsEnd)
+    output = output.slice(0, Math.max(0, colorsStart + colorsHeader.length)) + newColorsBlock + output.slice(Math.max(0, colorsEnd))
   }
 
   writeFileSync(file, output + '\n')

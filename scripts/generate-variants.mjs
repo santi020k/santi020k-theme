@@ -16,7 +16,7 @@ const addFontStyle = function (style, newStyle) {
   return `${newStyle} ${style}`.trim()
 }
 
-baseThemes.forEach(base => {
+for (const base of baseThemes) {
   const themePath = join(process.cwd(), base.file)
   let raw
 
@@ -25,12 +25,12 @@ baseThemes.forEach(base => {
   } catch {
     console.warn(`Could not read ${base.file}, skipping.`)
 
-    return
+    continue
   }
 
   const cleanRaw = raw
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/^\s*\/\/.*$/gm, '')
+    .replaceAll(/\/\*[\s\S]*?\*\//g, '')
+    .replaceAll(/^\s*\/\/.*$/gm, '')
 
   const baseThemeObj = JSON.parse(cleanRaw)
   // Generate Bold Variant
@@ -51,11 +51,11 @@ baseThemes.forEach(base => {
   }
 
   if (boldTheme.tokenColors) {
-    boldTheme.tokenColors.forEach(token => {
+    for (const token of boldTheme.tokenColors) {
       if (token.settings) {
         token.settings.fontStyle = addFontStyle(token.settings.fontStyle, 'bold')
       }
-    })
+    }
   }
 
   writeFileSync(
@@ -80,16 +80,16 @@ baseThemes.forEach(base => {
   }
 
   if (italicTheme.tokenColors) {
-    italicTheme.tokenColors.forEach(token => {
+    for (const token of italicTheme.tokenColors) {
       if (token.settings) {
         token.settings.fontStyle = addFontStyle(token.settings.fontStyle, 'italic')
       }
-    })
+    }
   }
 
   writeFileSync(
     join(process.cwd(), base.file.replace('.json', '').replace('-color-theme', '-italic-color-theme.json')), JSON.stringify(italicTheme, null, 2)
   )
-})
+}
 
 console.log('Variants generated successfully.')

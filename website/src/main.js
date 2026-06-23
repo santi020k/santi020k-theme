@@ -110,7 +110,6 @@ const SNIPPETS = {
   <span class="keyword">auto</span> ptr = std::make_unique&lt;Data&gt;();
   <span class="keyword">return</span> <span class="number">0</span>;
 }`,
-  /* eslint-disable @stylistic/max-len */
   elixir: () => `<span class="muted">// Functional Elixir</span>
 <span class="keyword">defmodule</span> <span class="function">App</span> <span class="keyword">do</span>
   <span class="keyword">def</span> <span class="function">start</span>(<span class="property">_type</span>, <span class="property">_args</span>) <span class="keyword">do</span>
@@ -123,7 +122,6 @@ const SNIPPETS = {
     Aurora UI
   &lt;/<span class="keyword">h1</span>&gt;
 &lt;/<span class="keyword">div</span>&gt;`
-  /* eslint-enable @stylistic/max-len */
 }
 
 let currentPreviewLang = 'json'
@@ -257,10 +255,10 @@ if (variantSelect) {
 }
 
 const syncPreviewWithSite = () => {
-  if (!manualPreviewTheme) {
-    updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light', currentPreviewVariant)
-  } else {
+  if (manualPreviewTheme) {
     updatePreview()
+  } else {
+    updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light', currentPreviewVariant)
   }
 }
 
@@ -364,8 +362,8 @@ const setupClipboard = () => {
         setTimeout(() => {
           installBtn.innerHTML = originalText
         }, 2000)
-      } catch (err) {
-        console.error('Failed to copy: ', err)
+      } catch (error) {
+        console.error('Failed to copy: ', error)
       }
     })
   }
@@ -390,8 +388,8 @@ const setupClipboard = () => {
         setTimeout(() => {
           settingsBtn.innerHTML = originalHtml
         }, 2000)
-      } catch (err) {
-        console.error('Failed to copy settings: ', err)
+      } catch (error) {
+        console.error('Failed to copy settings: ', error)
       }
     })
   }
