@@ -10,6 +10,7 @@ packages/*/node_modules/
 
 # Website build output from apps/website, apps/vscode-website, and apps/chrome-website
 apps/*/dist/
+apps/*/.astro/
 
 # Package build output from packages/santi020k-theme and packages/santi020k-chrome-theme
 packages/*/dist/
