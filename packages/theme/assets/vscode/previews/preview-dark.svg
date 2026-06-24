@@ -1,63 +1,183 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
   <title id="title">santi020k dark theme preview</title>
-  <desc id="desc">A stylized VS Code editor preview using the santi020k dark color palette.</desc>
-  <rect width="1280" height="720" fill="#0e0919"/>
-  <rect x="0" y="0" width="1280" height="48" fill="#0e0919"/>
-  <rect x="0" y="48" width="76" height="672" fill="#0e0919"/>
-  <rect x="76" y="48" width="260" height="672" fill="#170f25"/>
-  <rect x="336" y="48" width="944" height="42" fill="#0e0919"/>
-  <rect x="336" y="90" width="944" height="630" fill="#120c1e"/>
-  <rect x="356" y="48" width="210" height="42" fill="#120c1e"/>
-  <rect x="356" y="88" width="210" height="2" fill="#8b52d6"/>
-  <text x="382" y="75" fill="#e8e0f0" font-family="Inter, Segoe UI, sans-serif" font-size="15">theme.ts</text>
-  <circle cx="28" cy="24" r="6" fill="#ea6962"/>
-  <circle cx="50" cy="24" r="6" fill="#e8b44a"/>
-  <circle cx="72" cy="24" r="6" fill="#7daea3"/>
-  <rect x="22" y="82" width="32" height="32" rx="8" fill="#261d3a"/>
-  <rect x="22" y="134" width="32" height="32" rx="8" fill="#1e1530"/>
-  <rect x="22" y="186" width="32" height="32" rx="8" fill="#1e1530"/>
-  <text x="104" y="92" fill="#b8a8d8" font-family="Inter, Segoe UI, sans-serif" font-size="13" font-weight="700">EXPLORER</text>
-  <text x="104" y="134" fill="#e8e0f0" font-family="Inter, Segoe UI, sans-serif" font-size="15">santi020k-theme</text>
-  <text x="126" y="176" fill="#c8b8e8" font-family="Inter, Segoe UI, sans-serif" font-size="14">themes</text>
-  <text x="146" y="214" fill="#d4a8ff" font-family="Inter, Segoe UI, sans-serif" font-size="14">santi020k-dark.json</text>
-  <text x="146" y="250" fill="#7868a0" font-family="Inter, Segoe UI, sans-serif" font-size="14">santi020k-light.json</text>
-  <text x="126" y="304" fill="#c8b8e8" font-family="Inter, Segoe UI, sans-serif" font-size="14">scripts</text>
-  <text x="126" y="340" fill="#c8b8e8" font-family="Inter, Segoe UI, sans-serif" font-size="14">website</text>
-  <g font-family="JetBrains Mono, SFMono-Regular, Consolas, monospace" font-size="20">
-    <text x="376" y="142" fill="#584878">01</text>
-    <text x="424" y="142" fill="#a06ee6" font-style="italic">const</text>
-    <text x="488" y="142" fill="#e8e0f0">palette</text>
-    <text x="584" y="142" fill="#9070c0">=</text>
-    <text x="620" y="142" fill="#9070c0">{</text>
-    <text x="376" y="184" fill="#584878">02</text>
-    <text x="464" y="184" fill="#b890f0">surface</text>
-    <text x="548" y="184" fill="#9070c0">:</text>
-    <text x="584" y="184" fill="#d4a8ff">'#120c1e'</text>
-    <text x="376" y="226" fill="#584878">03</text>
-    <text x="464" y="226" fill="#b890f0">accent</text>
-    <text x="536" y="226" fill="#9070c0">:</text>
-    <text x="572" y="226" fill="#d4a8ff">'#c090ff'</text>
-    <text x="376" y="268" fill="#584878">04</text>
-    <text x="464" y="268" fill="#b890f0">muted</text>
-    <text x="524" y="268" fill="#9070c0">:</text>
-    <text x="560" y="268" fill="#d4a8ff">'#7868a0'</text>
-    <text x="376" y="310" fill="#584878">05</text>
-    <text x="424" y="310" fill="#9070c0">}</text>
-    <text x="376" y="374" fill="#584878">06</text>
-    <text x="424" y="374" fill="#584878" font-style="italic">// Modern workbench surfaces stay violet and calm.</text>
-    <text x="376" y="416" fill="#584878">07</text>
-    <text x="424" y="416" fill="#a06ee6" font-style="italic">export</text>
-    <text x="512" y="416" fill="#a06ee6" font-style="italic">function</text>
-    <text x="624" y="416" fill="#c090ff">applyTheme</text>
-    <text x="748" y="416" fill="#9070c0">()</text>
-    <text x="788" y="416" fill="#9070c0">{</text>
-    <text x="376" y="458" fill="#584878">08</text>
-    <text x="464" y="458" fill="#a06ee6" font-style="italic">return</text>
-    <text x="548" y="458" fill="#e8e0f0">palette</text>
-    <text x="376" y="500" fill="#584878">09</text>
-    <text x="424" y="500" fill="#9070c0">}</text>
-  </g>
-  <rect x="336" y="660" width="944" height="60" fill="#0e0919"/>
-  <text x="376" y="696" fill="#b8a8d8" font-family="Inter, Segoe UI, sans-serif" font-size="15">santi020k dark</text>
-  <text x="1110" y="696" fill="#c090ff" font-family="Inter, Segoe UI, sans-serif" font-size="15">validated</text>
+  <desc id="desc">A realistic VS Code editor preview using the santi020k dark color palette.</desc>
+  <rect x="0" y="0" width="1280" height="720" fill="#0d0718"/>
+  <rect x="40" y="38" width="1200" height="640" rx="22" fill="#07040dcc"/>
+  <rect x="40" y="28" width="1200" height="48" rx="18" fill="#100a1c"/>
+  <rect x="40" y="58" width="1200" height="620" fill="#100a1c"/>
+  <circle cx="72" cy="52" r="6" fill="#ff7f86"/>
+  <circle cx="94" cy="52" r="6" fill="#ffc46b"/>
+  <circle cx="116" cy="52" r="6" fill="#8bd69a"/>
+  <text x="548" y="57" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">santi020k-theme</text>
+
+  <rect x="40" y="76" width="70" height="620" fill="#0d0718"/>
+  
+  <rect x="19" y="93" width="38" height="38" rx="8" fill="#211634"/>
+  <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" transform="translate(29 103)" fill="none" stroke="#e9e2f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  
+  
+  <path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4.3-4.3" transform="translate(29 161)" fill="none" stroke="#7f719d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  
+  
+  <path d="M6 3v12M18 9V3M6 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM18 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM6 7h6a6 6 0 0 1 6 6v2" transform="translate(29 219)" fill="none" stroke="#7f719d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  
+  
+  <path d="M12 2l8 4v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6z" transform="translate(29 277)" fill="none" stroke="#7f719d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+  <rect x="110" y="76" width="264" height="620" fill="#170f25"/>
+  <rect x="373" y="76" width="1" height="620" fill="#2b2140" opacity="0.8"/>
+  <text x="134" y="118" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800">EXPLORER</text>
+  <text x="134" y="154" fill="#d8ceee" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">SANTI020K-THEME</text>
+  <text x="134" y="196" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">v packages</text>
+  <text x="154" y="226" fill="#d8ceee" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">v santi020k-theme</text>
+  <text x="174" y="256" fill="#d8ceee" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">v themes</text>
+  <rect x="142" y="269" width="210" height="30" rx="6" fill="#1e1530"/>
+  <text x="176" y="290" fill="#945df4" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">santi020k-dark.json</text>
+  <text x="176" y="324" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">token-colors.json</text>
+  <text x="154" y="374" fill="#d8ceee" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">v scripts</text>
+  <text x="176" y="404" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">generate-variants.mjs</text>
+  <text x="176" y="434" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">validate-themes.mjs</text>
+
+  <rect x="374" y="76" width="866" height="42" fill="#100a1c"/>
+  <rect x="394" y="76" width="188" height="42" fill="#120c1e"/>
+  <rect x="394" y="115" width="188" height="3" fill="#945df4"/>
+  <text x="424" y="102" fill="#e9e2f2" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">palette.ts</text>
+  <text x="622" y="102" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">README.md</text>
+  <text x="744" y="102" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">package.json</text>
+
+  <rect x="374" y="118" width="866" height="480" fill="#120c1e"/>
+  <rect x="374" y="118" width="866" height="34" fill="#181027" opacity="0.66"/>
+  <text x="400" y="140" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12">packages &gt; santi020k-theme &gt; palette.ts</text>
+  
+    
+    <text x="382" y="170" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">01</text>
+    <text x="420" y="170" fill="#a985ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18" font-style="italic">import </text>
+<text x="494.9" y="170" fill="#e9e2f2" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">{ createTheme } </text>
+<text x="666.0999999999999" y="170" fill="#a985ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18" font-style="italic">from </text>
+<text x="719.5999999999999" y="170" fill="#d6b1ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">&quot;@santi020k/theme&quot;</text>
+  
+
+    
+    <text x="382" y="205" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">02</text>
+    
+  
+
+    
+    <text x="382" y="240" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">03</text>
+    <text x="420" y="240" fill="#a985ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18" font-style="italic">const </text>
+<text x="484.2" y="240" fill="#e9e2f2" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">palette </text>
+<text x="569.8" y="240" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">= </text>
+<text x="591.1999999999999" y="240" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">{</text>
+  
+
+    
+    <text x="382" y="275" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">04</text>
+    <text x="420" y="275" fill="#b899ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">  canvas</text>
+<text x="505.6" y="275" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">: </text>
+<text x="527" y="275" fill="#d6b1ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">&quot;deep indigo&quot;</text>
+<text x="666.1" y="275" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">,</text>
+  
+
+    
+    <text x="382" y="310" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">05</text>
+    <text x="420" y="310" fill="#b899ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">  accent</text>
+<text x="505.6" y="310" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">: </text>
+<text x="527" y="310" fill="#d6b1ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">&quot;violet&quot;</text>
+<text x="612.6" y="310" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">,</text>
+  
+
+    
+    <text x="382" y="345" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">06</text>
+    <text x="420" y="345" fill="#b899ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">  contrast</text>
+<text x="527" y="345" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">: </text>
+<text x="548.4" y="345" fill="#8fd5ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">4.8</text>
+<text x="580.5" y="345" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">,</text>
+  
+
+    
+    <text x="382" y="380" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">07</text>
+    <text x="420" y="380" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">}</text>
+  
+
+    
+    <text x="382" y="415" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">08</text>
+    
+  
+
+    
+    <text x="382" y="450" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">09</text>
+    <text x="420" y="450" fill="#a985ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18" font-style="italic">export </text>
+<text x="494.9" y="450" fill="#a985ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18" font-style="italic">function </text>
+<text x="591.1999999999999" y="450" fill="#c59cff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">applyWorkbench</text>
+<text x="740.9999999999999" y="450" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">() {</text>
+  
+
+    <rect x="376" y="462" width="756" height="30" fill="#181027" opacity="0.76"/>
+    <text x="382" y="485" fill="#b58cff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">10</text>
+    <text x="420" y="485" fill="#a985ff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18" font-style="italic">  return </text>
+<text x="516.3" y="485" fill="#c59cff" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">createTheme</text>
+<text x="634" y="485" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">({ palette })</text>
+  
+
+    
+    <text x="382" y="520" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">11</text>
+    <text x="420" y="520" fill="#83719f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18">}</text>
+  
+
+    
+    <text x="382" y="555" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">12</text>
+    
+  
+
+    
+    <text x="382" y="590" fill="#5f4e7f" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="16">13</text>
+    <text x="420" y="590" fill="#726486" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="18" font-style="italic">// Semantic tokens stay expressive without noise.</text>
+  
+  <rect x="1160" y="132" width="76" height="3" rx="2" fill="#945df4" opacity="0.78"/>
+<rect x="1160" y="141" width="48" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="150" width="92" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="159" width="58" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="168" width="110" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="177" width="68" height="3" rx="2" fill="#945df4" opacity="0.78"/>
+<rect x="1160" y="186" width="86" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="195" width="42" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="204" width="76" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="213" width="48" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="222" width="92" height="3" rx="2" fill="#945df4" opacity="0.78"/>
+<rect x="1160" y="231" width="58" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="240" width="110" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="249" width="68" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="258" width="86" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="267" width="42" height="3" rx="2" fill="#945df4" opacity="0.78"/>
+<rect x="1160" y="276" width="76" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="285" width="48" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="294" width="92" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="303" width="58" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="312" width="110" height="3" rx="2" fill="#945df4" opacity="0.78"/>
+<rect x="1160" y="321" width="68" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="330" width="86" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="339" width="42" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="348" width="76" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="357" width="48" height="3" rx="2" fill="#945df4" opacity="0.78"/>
+<rect x="1160" y="366" width="92" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="375" width="58" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="384" width="110" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="393" width="68" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+<rect x="1160" y="402" width="86" height="3" rx="2" fill="#945df4" opacity="0.78"/>
+<rect x="1160" y="411" width="42" height="3" rx="2" fill="#83719f" opacity="0.32"/>
+
+  <rect x="374" y="598" width="866" height="98" fill="#100a1c"/>
+  <rect x="374" y="598" width="866" height="2" fill="#752df0"/>
+  <text x="400" y="630" fill="#7f719d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800">TERMINAL</text>
+  <text x="400" y="660" fill="#e9e2f2" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="14">$ pnpm run validate:themes</text>
+  <text x="400" y="684" fill="#8bd69a" font-family="JetBrains Mono, Fira Code, SFMono-Regular, Consolas, monospace" font-size="14">Theme validation passed</text>
+
+  <rect x="40" y="696" width="1200" height="24" fill="#752df0"/>
+  <text x="62" y="713" fill="#f4f0ff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">santi020k dark</text>
+  <text x="1066" y="713" fill="#f4f0ff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12">TypeScript</text>
+  <text x="1158" y="713" fill="#f4f0ff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12">UTF-8</text>
 </svg>

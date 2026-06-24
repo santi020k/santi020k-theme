@@ -1,7 +1,7 @@
 # Santi020k Theme
 
-<!-- Badge URLs: do NOT change these. shields.io is the correct service. vsmarketplacebadges.dev is dead. See AGENTS.md §README Rules. -->
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme?label=Marketplace&logo=visual-studio-code&color=945df4)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
+<!-- Badge URLs: do NOT change these. For VS Marketplace version use badgen.net (shields.io visual-studio-marketplace is retired). shields.io is used for Open VSX and CI. vsmarketplacebadges.dev is dead. See AGENTS.md §README Rules. -->
+[![Visual Studio Marketplace Version](https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?color=945df4&icon=terminal)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
 [![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX&logo=visual-studio-code&color=945df4)](https://open-vsx.org/extension/santi020k/santi020k-theme)
 [![Validate](https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml?label=Validate&logo=github&color=945df4)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
 
