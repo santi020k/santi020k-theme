@@ -1,6 +1,6 @@
 # @santi020k/theme-core
 
-## 0.1.0
+## 1.0.0
 
 ### Minor Changes
 
