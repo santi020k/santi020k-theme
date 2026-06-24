@@ -10,8 +10,8 @@ The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.
 | --- | --- |
 | `packages/santi020k-theme` | Published VS Code extension with dark, light, high-contrast, bold, and italic variants |
 | `packages/santi020k-chrome-theme` | Chrome Web Store theme package, synced from the VS Code palette |
-| `packages/theme` | Public `@santi020k/theme` package for tokens, assets, metadata, and Chrome mapping helpers |
-| `packages/theme-core` | Public `@santi020k/theme-core` helper package for token generation, asset lookup, and website behavior |
+| `packages/theme` | Public `@santi020k/theme` package for tokens, website CSS, assets, metadata, and Chrome mapping helpers |
+| `packages/theme-core` | Public `@santi020k/theme-core` helper package for package-neutral token generation, asset lookup, and site behavior primitives |
 | `apps/website` | Theme family hub for `theme.santi020k.com` |
 | `apps/vscode-website` | VS Code theme product site for `vscode.santi020k.com` |
 | `apps/chrome-website` | Chrome theme product site for `chrome.santi020k.com` |
@@ -55,7 +55,7 @@ Use Node `>=22.18.0` and pnpm `10.32.1`.
 - [`packages/santi020k-theme/README.md`](packages/santi020k-theme/README.md) is the marketplace-facing VS Code extension README.
 - [`packages/santi020k-chrome-theme/README.md`](packages/santi020k-chrome-theme/README.md) covers Chrome theme development and Web Store packaging.
 - [`packages/theme/README.md`](packages/theme/README.md) documents shared tokens and assets.
-- [`packages/theme-core/README.md`](packages/theme-core/README.md) documents shared helper APIs.
+- [`packages/theme-core/README.md`](packages/theme-core/README.md) documents lower-level shared helper APIs.
 - [`apps/website/README.md`](apps/website/README.md), [`apps/vscode-website/README.md`](apps/vscode-website/README.md), and [`apps/chrome-website/README.md`](apps/chrome-website/README.md) cover the static sites.
 
 ## License
