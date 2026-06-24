@@ -11,6 +11,7 @@
       "types": "./index.d.ts",
       "import": "./index.js"
     },
+    "./typography.css": "./typography.css",
     "./tokens.css": "./tokens/tokens.css",
     "./tokens.json": "./tokens/tokens.json",
     "./tailwind": {
@@ -25,6 +26,7 @@
     "assets",
     "docs",
     "tokens",
+    "typography.css",
     "index.d.ts",
     "index.js",
     "tailwind.d.ts",

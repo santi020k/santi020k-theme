@@ -1,0 +1,15 @@
+/* Santi020k typography tokens.
+ * Font loading is left to the consuming app. The canonical web font is Montserrat.
+ */
+
+:root {
+  --santi-font-sans: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
+  --santi-font-display: "Montserrat", "Avenir Next", sans-serif;
+  --santi-font-mono: "Montserrat", "SFMono-Regular", "SF Mono", monospace;
+}
+
+@theme {
+  --font-sans: var(--santi-font-sans);
+  --font-display: var(--santi-font-display);
+  --font-mono: var(--santi-font-mono);
+}

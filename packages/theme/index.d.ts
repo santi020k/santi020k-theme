@@ -45,6 +45,11 @@ export type ChromeThemeVariant = typeof chromeThemeVariants[number]
 export type RgbColor = [number, number, number]
 export declare const colors: ColorToken[]
 export declare const typography: TypographyConfig
+export declare const fontFamily: {
+  sans: string
+  display: string
+  mono: string
+}
 export declare const staticAssets: Record<string, string>
 export declare const assets: BrandAsset[]
 export declare const manifest: AssetManifest

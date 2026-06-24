@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-label="Santi020k light Chrome new tab background">
+  <defs>
+    <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfaff"/>
+      <stop offset="0.52" stop-color="#f8f6fd"/>
+      <stop offset="1" stop-color="#f0edf9"/>
+    </linearGradient>
+    <radialGradient id="violetGlow" cx="71%" cy="45%" r="48%">
+      <stop offset="0" stop-color="#6319be" stop-opacity="0.18"/>
+      <stop offset="0.42" stop-color="#b48df7" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#f8f6fd" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="leftGlow" cx="13%" cy="24%" r="44%">
+      <stop offset="0" stop-color="#7daea3" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#f8f6fd" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#6319be" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <pattern id="microGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#6319be" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+    <filter id="panelShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="34" stdDeviation="42" flood-color="#604c8a" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="3840" height="2160" fill="url(#canvas)"/>
+  <rect width="3840" height="2160" fill="url(#grid)"/>
+  <rect width="3840" height="2160" fill="url(#violetGlow)"/>
+  <rect width="3840" height="2160" fill="url(#leftGlow)"/>
+
+  <g opacity="0.64" filter="url(#softBlur)">
+    <path d="M2140 392 C2520 230 3188 244 3610 410 L3610 1610 C3176 1752 2528 1766 2142 1606 Z" fill="#b48df7" opacity="0.16"/>
+    <path d="M2320 520 C2700 396 3280 390 3544 520 L3544 1480 C3204 1588 2696 1614 2320 1480 Z" fill="#6319be" opacity="0.08"/>
+  </g>
+
+  <g transform="translate(2038 284)" filter="url(#panelShadow)">
+    <rect x="0" y="0" width="1510" height="1510" rx="146" fill="#f8f6fd" fill-opacity="0.72" stroke="#b48df7" stroke-opacity="0.52" stroke-width="4" stroke-dasharray="50 46"/>
+    <rect x="106" y="112" width="1298" height="1298" rx="92" fill="#ffffff" fill-opacity="0.38" stroke="#d3cde6" stroke-opacity="0.82"/>
+    <rect x="106" y="112" width="1298" height="1298" rx="92" fill="url(#microGrid)" opacity="0.7"/>
+  </g>
+
+  <g transform="translate(2594 754)" opacity="0.9">
+    <path d="M48 0 L420 326 L48 652" fill="none" stroke="#6319be" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity="0.34"/>
+    <path d="M48 0 L420 326 L48 652" fill="none" stroke="#b48df7" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" opacity="0.32"/>
+    <path d="M626 652 H964" fill="none" stroke="#6319be" stroke-width="38" stroke-linecap="round" opacity="0.34"/>
+    <path d="M626 652 H964" fill="none" stroke="#b48df7" stroke-width="20" stroke-linecap="round" opacity="0.32"/>
+  </g>
+
+  <g transform="translate(276 360)" opacity="0.18">
+    <rect x="0" y="0" width="1030" height="116" rx="26" fill="#e3dff0"/>
+    <rect x="44" y="38" width="224" height="20" rx="10" fill="#6319be"/>
+    <rect x="314" y="38" width="530" height="20" rx="10" fill="#302e36" opacity="0.42"/>
+    <rect x="44" y="72" width="392" height="14" rx="7" fill="#604c8a"/>
+  </g>
+
+  <g transform="translate(324 546)" opacity="0.15">
+    <rect x="0" y="0" width="1200" height="430" rx="38" fill="#ffffff" stroke="#d3cde6"/>
+    <path d="M64 88H552M64 152H868M64 216H700M64 280H980M64 344H484" stroke="#302e36" stroke-width="16" stroke-linecap="round"/>
+    <path d="M64 88H222M64 216H298M64 344H184" stroke="#6319be" stroke-width="16" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.26">
+    <path d="M0 1680 C570 1530 1058 1568 1510 1748 C1988 1940 2468 1972 3146 1762 C3430 1674 3666 1652 3840 1688" fill="none" stroke="#d3cde6" stroke-width="3"/>
+    <path d="M0 1746 C602 1602 1074 1628 1510 1808 C1982 2004 2478 2034 3146 1820 C3430 1728 3666 1714 3840 1748" fill="none" stroke="#6319be" stroke-opacity="0.16" stroke-width="2"/>
+  </g>
+</svg>

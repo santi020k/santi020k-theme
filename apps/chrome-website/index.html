@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta name="description" content="A professional Chrome browser theme with a deep violet palette, muted lavender text, and elegant violet accents. Mapped directly from the Santi020k VS Code theme for a consistent developer experience." />
     <meta name="author" content="Santiago Molina" />
+    <meta name="language" content="en" />
     <meta name="keywords" content="Chrome theme, browser theme, dark theme, violet theme, Santi020k, developer theme, VS Code theme, minimalist theme" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="color-scheme" content="dark light" />
@@ -30,17 +31,21 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://chrome.santi020k.com/" />
     <meta property="og:site_name" content="Santi020k Theme" />
-    <meta property="og:title" content="Santi020k Theme — Premium Chrome Browser Theme" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Santi020k Theme — Chrome Browser Theme" />
     <meta property="og:description" content="A professional Chrome browser theme with a deep violet palette. Mapped directly from the Santi020k VS Code theme for a consistent developer experience." />
     <meta property="og:image" content="https://chrome.santi020k.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Santi020k Theme — Chrome browser theme with dark and light variants" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@santi020k" />
     <meta name="twitter:creator" content="@santi020k" />
-    <meta name="twitter:title" content="Santi020k Theme — Premium Chrome Browser Theme" />
+    <meta name="twitter:url" content="https://chrome.santi020k.com/" />
+    <meta name="twitter:title" content="Santi020k Theme — Chrome Browser Theme" />
     <meta name="twitter:description" content="A professional Chrome browser theme with a deep violet palette. Mapped directly from the Santi020k VS Code theme." />
     <meta name="twitter:image" content="https://chrome.santi020k.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Santi020k Theme - Chrome Browser Theme" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -53,6 +58,7 @@
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "url": "https://chrome.santi020k.com/",
       "description": "A Chrome browser theme matching the Santi020k VS Code palette — deep violet surfaces, muted lavender text, and violet accents.",
+      "screenshot": "https://chrome.santi020k.com/og-image.png",
       "author": {
         "@type": "Person",
         "name": "Santiago Molina",
@@ -138,9 +144,14 @@
           <p class="eyebrow">Preview</p>
           <h2>Every surface, matched.</h2>
           <p class="section-lede">The same token-level precision as the VS Code theme — no approximations, no guesswork.</p>
+          <div class="preview-controls" aria-label="Browser preview mode">
+            <button class="preview-control is-active" type="button" data-preview-theme="dark" aria-pressed="true">Dark</button>
+            <button class="preview-control" type="button" data-preview-theme="light" aria-pressed="false">Light</button>
+            <button class="preview-control" type="button" data-preview-theme="incognito" aria-pressed="false">Incognito</button>
+          </div>
         </div>
 
-        <div class="browser-mockup" aria-label="Chrome browser mockup with Santi020k theme">
+        <div class="browser-mockup" data-preview-variant="dark" aria-label="Chrome browser mockup with Santi020k theme">
           <div class="bm-frame">
             <div class="bm-tabstrip">
               <div class="bm-tab bm-tab--active">

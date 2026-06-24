@@ -14,6 +14,7 @@ export interface TypographyConfig {
   body: string
   mono: string
   source: 'self-hosted' | 'google-fonts' | 'cdn' | 'system'
+  importUrl?: string
   weights: number[]
 }
 

@@ -151,7 +151,7 @@ export const createChromeThemeFromVSCodeColors = (vscodeColors, variant = 'dark'
     frame: hexToRgb(frame),
     frame_inactive: darkenHex(frame, 0.85),
     frame_incognito: variant === 'dark' ? darkenHex(frame, 0.72) : [35, 29, 48],
-    frame_incognito_inactive: variant === 'dark' ? darkenHex(frame, 0.47) : [28, 21, 40],
+    frame_incognito_inactive: variant === 'dark' ? darkenHex(frame, 0.2) : [28, 21, 40],
 
     background_tab: hexToRgb(tabInactiveBg),
 
@@ -214,8 +214,15 @@ export const typography = {
   display: '"Montserrat", "Avenir Next", sans-serif',
   body: '"Montserrat", "Avenir Next", "Segoe UI", sans-serif',
   mono: '"Montserrat", "SFMono-Regular", "SF Mono", monospace',
-  source: 'self-hosted',
+  source: 'google-fonts',
+  importUrl: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap',
   weights: [100, 200, 300, 400, 500, 600, 700, 800, 900]
+}
+
+export const fontFamily = {
+  sans: typography.body,
+  display: typography.display,
+  mono: typography.mono
 }
 
 export const staticAssets = {

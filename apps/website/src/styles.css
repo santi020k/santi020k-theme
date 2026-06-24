@@ -388,7 +388,8 @@ h3 {
 }
 
 .theme-card,
-.soon-card {
+.soon-card,
+.package-panel {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -450,14 +451,51 @@ h3 {
 }
 
 .theme-card p,
-.soon-card p {
+.soon-card p,
+.package-panel p {
   margin-bottom: 22px;
 }
 
 .soon-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
+}
+
+.package-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
+  gap: clamp(24px, 4vw, 44px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 36px);
+}
+
+.package-copy {
+  min-width: 0;
+}
+
+.package-snippet {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(18px, 3vw, 24px);
+  background: #0b0712;
+  color: #dfdde3;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+
+.package-snippet code {
+  display: block;
+  overflow-x: auto;
+  border-left: 3px solid #945df4;
+  padding: 10px 0 10px 14px;
+  color: #c7a4ff;
+  font-family: "Fira Code", monospace;
+  font-size: clamp(0.78rem, 1.5vw, 0.92rem);
+  line-height: 1.6;
+  white-space: nowrap;
 }
 
 .soon-card {
@@ -579,6 +617,10 @@ h3 {
   }
 
   .soon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .package-panel {
     grid-template-columns: 1fr;
   }
 }

@@ -12,12 +12,12 @@
       })()
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Santi020k Themes - VS Code, Chrome, and More</title>
+    <title>Santi020k Themes - VS Code, Chrome, npm, and More</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="/hub-hero-art.png" fetchpriority="high" />
-    <meta name="description" content="The Santi020k theme family hub: VS Code color themes, Chrome browser themes, and upcoming visual surfaces built around the same calm violet system." />
+    <meta name="description" content="The Santi020k theme family hub: VS Code color themes, Chrome browser themes, npm design tokens, and upcoming visual surfaces built around the same calm violet system." />
     <meta name="author" content="Santiago Molina" />
     <meta name="language" content="en" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -30,8 +30,8 @@
     <meta property="og:url" content="https://theme.santi020k.com/" />
     <meta property="og:site_name" content="Santi020k Themes" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="Santi020k Themes - VS Code, Chrome, and More" />
-    <meta property="og:description" content="A hub for the Santi020k theme family across editor, browser, and upcoming surfaces." />
+    <meta property="og:title" content="Santi020k Themes - VS Code, Chrome, npm, and More" />
+    <meta property="og:description" content="A hub for the Santi020k theme family across editor, browser, npm packages, and upcoming surfaces." />
     <meta property="og:image" content="https://theme.santi020k.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -41,8 +41,9 @@
     <meta name="twitter:creator" content="@santi020k" />
     <meta name="twitter:url" content="https://theme.santi020k.com/" />
     <meta name="twitter:title" content="Santi020k Themes" />
-    <meta name="twitter:description" content="VS Code, Chrome, and upcoming Santi020k theme surfaces in one place." />
+    <meta name="twitter:description" content="VS Code, Chrome, npm packages, and upcoming Santi020k theme surfaces in one place." />
     <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Santi020k Themes - VS Code, Chrome, npm, and more" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -68,6 +69,13 @@
           "name": "Santi020k Theme for Chrome",
           "url": "https://chrome.santi020k.com/",
           "applicationCategory": "BrowserApplication"
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "@santi020k/theme",
+          "url": "https://github.com/santi020k/santi020k-theme",
+          "codeRepository": "https://github.com/santi020k/santi020k-theme",
+          "programmingLanguage": ["CSS", "JavaScript", "TypeScript"]
         }
       ]
     }
@@ -82,6 +90,7 @@
 
       <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
         <a href="#themes">Themes</a>
+        <a href="#packages">Packages</a>
         <a href="#soon">Coming soon</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
       </nav>
@@ -115,6 +124,7 @@
           <div class="actions" aria-label="Primary theme links">
             <a class="button button-primary" href="https://vscode.santi020k.com/">Open VS Code</a>
             <a class="button button-secondary" href="https://chrome.santi020k.com/">Open Chrome</a>
+            <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</a>
           </div>
         </div>
 
@@ -173,6 +183,33 @@
         </div>
       </section>
 
+      <section id="packages" class="site-shell section packages-section">
+        <div class="section-heading">
+          <p class="eyebrow">npm package</p>
+          <h2>Use the same tokens in your own surface.</h2>
+        </div>
+
+        <article class="package-panel">
+          <div class="package-copy">
+            <div class="card-kicker">
+              <span class="status-dot live"></span>
+              Live on npm
+            </div>
+            <h3>@santi020k/theme</h3>
+            <p>Design tokens, CSS custom properties, Tailwind mappings, and shared brand assets for Santi020k websites, apps, and theme-family surfaces.</p>
+            <div class="card-actions">
+              <a class="button button-primary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">View source</a>
+            </div>
+          </div>
+
+          <div class="package-snippet" aria-label="Package install and import examples">
+            <code>pnpm add @santi020k/theme</code>
+            <code>@import '@santi020k/theme/tokens.css';</code>
+            <code>import { config, projects } from '@santi020k/theme'</code>
+          </div>
+        </article>
+      </section>
+
       <section id="soon" class="site-shell section soon-section">
         <div class="section-heading">
           <p class="eyebrow">Coming soon</p>
@@ -192,18 +229,6 @@
           </article>
 
           <article class="soon-card">
-            <div class="swatch-row" aria-hidden="true">
-              <span style="--swatch:#110c1d"></span>
-              <span style="--swatch:#945df4"></span>
-              <span style="--swatch:#7daea3"></span>
-              <span style="--swatch:#e8b44a"></span>
-              <span style="--swatch:#ea6962"></span>
-            </div>
-            <h3>Design tokens</h3>
-            <p>Portable color definitions for docs, sites, and small product surfaces.</p>
-          </article>
-
-          <article class="soon-card">
             <div class="wallpaper-frame" aria-hidden="true">
               <span></span>
             </div>
@@ -219,6 +244,7 @@
       <div class="footer-links">
         <a href="https://vscode.santi020k.com/">VS Code</a>
         <a href="https://chrome.santi020k.com/">Chrome</a>
+        <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
       </div>
     </footer>

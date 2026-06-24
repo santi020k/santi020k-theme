@@ -129,3 +129,24 @@ if (installBtn) {
     }
   })
 }
+
+const preview = document.querySelector('.browser-mockup')
+const previewControls = document.querySelectorAll('[data-preview-theme]')
+
+if (preview && previewControls.length > 0) {
+  for (const control of previewControls) {
+    control.addEventListener('click', () => {
+      const variant = control.dataset.previewTheme
+
+      preview.dataset.previewVariant = variant
+
+      for (const item of previewControls) {
+        const active = item === control
+
+        item.classList.toggle('is-active', active)
+
+        item.setAttribute('aria-pressed', String(active))
+      }
+    })
+  }
+}

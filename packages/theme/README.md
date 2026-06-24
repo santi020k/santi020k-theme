@@ -1,6 +1,12 @@
 # @santi020k/theme
 
-Santi020k design tokens and shared assets for websites, apps, the VS Code theme, and the Chrome theme.
+Shared Santi020k Theme tokens, assets, metadata, and Chrome color mapping helpers.
+
+Use this package when a website, app, or theme surface needs the public Santi020k visual system: CSS custom properties, Tailwind v4 tokens, package metadata, project assets, or the Chrome manifest color mapping derived from the VS Code palette.
+
+**Website:** [theme.santi020k.com](https://theme.santi020k.com)
+
+**npm:** [npmjs.com/package/@santi020k/theme](https://www.npmjs.com/package/@santi020k/theme)
 
 ## Install
 
@@ -8,15 +14,25 @@ Santi020k design tokens and shared assets for websites, apps, the VS Code theme,
 pnpm add @santi020k/theme
 ```
 
+This package is ESM-only and expects Node `>=22.18.0`.
+
+## Exports
+
+| Export | Use it for |
+| --- | --- |
+| `@santi020k/theme` | JS tokens, metadata, asset lookup, Chrome theme helpers |
+| `@santi020k/theme/typography.css` | Shared Montserrat font-family variables and Tailwind v4 font mappings |
+| `@santi020k/theme/tokens.css` | CSS custom properties and Tailwind v4 `@theme` values |
+| `@santi020k/theme/tokens.json` | Raw token data |
+| `@santi020k/theme/tailwind` | Tailwind-compatible theme object |
+| `@santi020k/theme/assets/*` | Package-relative static asset imports |
+| `@santi020k/theme/docs/*` | Packaged documentation such as brand guidance |
+
 ## CSS Tokens
 
 ```css
 @import '@santi020k/theme/tokens.css';
-```
 
-The CSS file exposes raw HSL custom properties and Tailwind v4 `@theme` mappings:
-
-```css
 .panel {
   color: hsl(var(--ink));
   background: hsl(var(--surface));
@@ -24,14 +40,32 @@ The CSS file exposes raw HSL custom properties and Tailwind v4 `@theme` mappings
 }
 ```
 
+The CSS export includes raw HSL custom properties and Tailwind v4 `@theme` mappings. Prefer these tokens over one-off colors when building Santi020k surfaces.
+
+## Typography
+
+Montserrat is the canonical Santi020k web font. Import the typography-only CSS when a project only needs the shared font variables:
+
+```css
+@import '@santi020k/theme/typography.css';
+
+html {
+  font-family: var(--santi-font-sans);
+}
+```
+
+Consumers should load Montserrat from their preferred delivery path, such as Google Fonts or a self-hosted copy. The package exposes the family stacks and Tailwind font mappings, not renamed or repackaged font files.
+
 ## JavaScript
 
 ```js
-import { config, getAssets } from '@santi020k/theme'
+import { colors, config, getAssets, projects } from '@santi020k/theme'
 import { theme } from '@santi020k/theme/tailwind'
 
 const logos = getAssets('logo')
-console.log(config.colors, theme.colors.brand, logos)
+const project = projects.santi020kTheme
+
+console.log(colors, config.colors, theme.colors.brand, logos, project.title)
 ```
 
 ## Assets
@@ -42,7 +76,7 @@ import vscodePreview from '@santi020k/theme/assets/vscode/previews/preview-dark.
 import projectCover from '@santi020k/theme/assets/projects/santi020k-theme/cover.webp'
 ```
 
-The asset tree includes the original brand project assets plus theme-family assets:
+The asset tree includes:
 
 - `assets/logos`, `assets/favicons`, `assets/banners`, and `assets/wallpapers`
 - `assets/vscode` for extension icons and previews
@@ -51,13 +85,32 @@ The asset tree includes the original brand project assets plus theme-family asse
 
 For package metadata and static copy targets, import `manifest` from the root export.
 
-## Project Metadata
+## Chrome Theme Helpers
 
-```js
-import { projects } from '@santi020k/theme'
+The Chrome theme package uses this package to keep Chrome manifests centered on the VS Code palette.
 
-const project = projects.santi020kTheme
-console.log(project.title, project.coverImage.horizontal)
-```
+Useful exports include:
 
-The project image paths are package-relative. In Astro or Vite, import the matching asset path directly when you need a bundled image URL.
+- `chromeThemeVariants`
+- `chromeThemeVariantManifests`
+- `chromeThemeSourceTokenRoles`
+- `chromeThemeContrastPairs`
+- `createChromeThemeFromVSCodeColors`
+
+Use these helpers instead of duplicating Chrome color mappings in app or package code.
+
+## Development
+
+| Command | What it does |
+| --- | --- |
+| `pnpm --filter @santi020k/theme run build` | Syntax-checks the package entry points |
+| `pnpm --filter @santi020k/theme run validate` | Runs the package validation shortcut |
+| `pnpm run validate` | Runs the full monorepo validation suite |
+
+## Brand Source
+
+The canonical brand guide lives in [`../../docs/brand-guidelines.md`](../../docs/brand-guidelines.md). A package copy is available at `@santi020k/theme/docs/brand-guidelines.md` for consumers that need the guidance from the published package.
+
+## License
+
+MIT.

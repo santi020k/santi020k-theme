@@ -164,7 +164,8 @@ On click, `main.js` fires a circular clip-path animation that expands from the b
 - JSON-LD `SoftwareApplication` schema with `downloadUrl`, `offers` (free), and `author`
 - Dual `theme-color` meta tags (one per `prefers-color-scheme` media query)
 
-**To improve**: generate a proper `1200×630` OG image for richer Twitter/LinkedIn cards. The current `icon-512.png` (512×512) is valid but a landscape format would use the available card space better.
+- Social images are generated at `1200x630` by `pnpm run generate:og`.
+- Run `pnpm run validate:seo` before shipping metadata or OG asset changes.
 
 ---
 

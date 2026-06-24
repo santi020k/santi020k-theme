@@ -1,42 +1,63 @@
-# santi020k-theme
+# Santi020k Theme
 
-Monorepo for the Santi020k theme family: the VS Code extension, the Chrome browser theme, and their websites.
+Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Chrome, shared brand packages, and static product websites.
+
+The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.md). Read it before changing colors, product names, screenshots, icons, website copy, store metadata, or shared assets.
 
 ## Workspaces
 
-- `packages/santi020k-theme` - published VS Code extension package
-- `packages/santi020k-chrome-theme` - Chrome Web Store theme package
-- `packages/theme` - public `@santi020k/theme` token and asset package
-- `packages/theme-core` - public `@santi020k/theme-core` helpers for token and asset packages
-- `apps/website` - theme hub for `theme.santi020k.com`
-- `apps/vscode-website` - VS Code theme site for `vscode.santi020k.com`
-- `apps/chrome-website` - Chrome theme site for `chrome.santi020k.com`
-- `packages/santi020k-theme/scripts` and `packages/santi020k-theme/tests` - VS Code validation, release, and theme tooling
-- `apps/vscode-website/scripts` and `apps/vscode-website/tests` - VS Code website version sync tooling
+| Workspace | Purpose |
+| --- | --- |
+| `packages/santi020k-theme` | Published VS Code extension with dark, light, high-contrast, bold, and italic variants |
+| `packages/santi020k-chrome-theme` | Chrome Web Store theme package, synced from the VS Code palette |
+| `packages/theme` | Public `@santi020k/theme` package for tokens, assets, metadata, and Chrome mapping helpers |
+| `packages/theme-core` | Public `@santi020k/theme-core` helper package for token generation, asset lookup, and website behavior |
+| `apps/website` | Theme family hub for `theme.santi020k.com` |
+| `apps/vscode-website` | VS Code theme product site for `vscode.santi020k.com` |
+| `apps/chrome-website` | Chrome theme product site for `chrome.santi020k.com` |
 
-## Common Commands
+## Quick Start
 
 ```bash
 pnpm install
 pnpm run validate
-pnpm run package:extension
-pnpm run site:dev
-pnpm run site:vscode:dev
-pnpm run site:chrome:dev
-pnpm run commit
 ```
 
-## Brand Guidance
+Use Node `>=22.18.0` and pnpm `10.32.1`.
 
-Use [`docs/brand-guidelines.md`](docs/brand-guidelines.md) as the source of truth for product names, palette language, voice, screenshots, assets, website consistency, and AI agent guidance.
+## Common Commands
 
-## Versioning And Environment
+| Command | What it does |
+| --- | --- |
+| `pnpm run validate` | Builds packages, checks spelling, validates themes and marketplace metadata, tests, lints, and packages the VS Code extension |
+| `pnpm run validate:themes` | Validates the VS Code theme JSON files |
+| `pnpm run validate:marketplace` | Checks VS Code extension marketplace readiness |
+| `pnpm run validate:chrome` | Lints, validates contrast, and dry-runs Chrome packaging |
+| `pnpm run package:extension` | Builds and packages the VS Code extension as a VSIX |
+| `pnpm run package:chrome` | Builds Chrome Web Store zip files |
+| `pnpm run site:dev` | Starts the theme hub website |
+| `pnpm run site:vscode:dev` | Starts the VS Code theme website |
+| `pnpm run site:chrome:dev` | Starts the Chrome theme website |
+| `pnpm run changeset` | Creates a release changeset |
+| `pnpm run commit` | Opens the conventional commit prompt |
 
-- VS Code theme releases are managed by Changesets for `packages/santi020k-theme`.
-- Chrome theme releases keep `packages/santi020k-chrome-theme/package.json` and both Chrome manifests in sync.
-- Website app package versions are private workspace metadata, not public theme versions.
-- Copy `.env.example` to `.env` for local release or deploy credentials; `.env` stays ignored.
+## Working On The Theme Family
 
-The full extension README lives in [`packages/santi020k-theme/README.md`](packages/santi020k-theme/README.md).
+- Start brand-sensitive work in [`docs/brand-guidelines.md`](docs/brand-guidelines.md).
+- Keep VS Code dark and light theme changes paired unless the task is explicitly single-variant.
+- Keep Chrome manifests synced from the VS Code theme through `pnpm run sync:themes`.
+- Keep website copy concrete, developer-facing, and aligned with the published domains.
+- Add a changeset for user-visible package, docs, release, website, or theme changes.
 
-The project architecture is documented in [`docs/architecture.md`](docs/architecture.md).
+## Documentation Map
+
+- [`docs/architecture.md`](docs/architecture.md) explains the repo architecture.
+- [`packages/santi020k-theme/README.md`](packages/santi020k-theme/README.md) is the marketplace-facing VS Code extension README.
+- [`packages/santi020k-chrome-theme/README.md`](packages/santi020k-chrome-theme/README.md) covers Chrome theme development and Web Store packaging.
+- [`packages/theme/README.md`](packages/theme/README.md) documents shared tokens and assets.
+- [`packages/theme-core/README.md`](packages/theme-core/README.md) documents shared helper APIs.
+- [`apps/website/README.md`](apps/website/README.md), [`apps/vscode-website/README.md`](apps/vscode-website/README.md), and [`apps/chrome-website/README.md`](apps/chrome-website/README.md) cover the static sites.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

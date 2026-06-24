@@ -7,6 +7,9 @@
 :root,
 :root[data-theme="light"] {
   color-scheme: light;
+  --santi-font-sans: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
+  --santi-font-display: "Montserrat", "Avenir Next", sans-serif;
+  --santi-font-mono: "Montserrat", "SFMono-Regular", "SF Mono", monospace;
   --theme-bg: 268 20% 98%;
   --surface: 268 20% 100%;
   --surface-muted: 268 20% 96%;
@@ -65,9 +68,9 @@
 }
 
 @theme {
-  --font-sans: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
-  --font-display: "Montserrat", "Avenir Next", sans-serif;
-  --font-mono: "Montserrat", "SFMono-Regular", "SF Mono", monospace;
+  --font-sans: var(--santi-font-sans);
+  --font-display: var(--santi-font-display);
+  --font-mono: var(--santi-font-mono);
 
   --color-canvas: hsl(var(--theme-bg));
   --color-surface: hsl(var(--surface));

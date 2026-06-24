@@ -4,11 +4,9 @@
 [![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX&logo=visual-studio-code&color=945df4)](https://open-vsx.org/extension/santi020k/santi020k-theme)
 [![Validate](https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml?label=Validate&logo=github&color=945df4)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
 
-A deep indigo-black dark, a purple-tinted light, and high contrast variants for VS Code — built for long sessions, not just screenshots. Available in 12 fine-tuned variants (Dark, Light, HC Dark, HC Light) across Base, Bold, and Italic styles.
+A coordinated VS Code theme family with deep indigo-black dark variants, purple-tinted light variants, high-contrast siblings, and optional bold or italic syntax styles. It is built for long technical sessions: calm contrast, semantic highlighting, and one consistent violet color language.
 
-**-> [vscode.santi020k.com](https://vscode.santi020k.com)**
-
----
+**Website:** [vscode.santi020k.com](https://vscode.santi020k.com)
 
 ![santi020k dark theme preview](assets/previews/preview-dark.png)
 
@@ -18,30 +16,52 @@ A deep indigo-black dark, a purple-tinted light, and high contrast variants for 
 
 ![santi020k high contrast light theme preview](assets/previews/preview-hc-light.png)
 
----
+## Highlights
 
-## Why this theme
-
-- **Purple-forward, not purple-loud.** Every accent — cursor, brackets, active borders — comes from a single violet ramp. Nothing neon, nothing clashing.
-- **Four profiles, one color language.** Dark, light, high contrast dark, and high contrast light all share the same violet palette so switching between them feels intentional, not jarring.
-- **Bold and Italic variants.** Prefer a punchy, thick font weight? Want distinct italic keywords? Choose from the 12 included variants to match your typography preferences exactly.
-- **Built for readability.** Contrast ratios are validated automatically on every commit. Keywords are italic, comments are softened, JSON keys / values / numbers use distinct hues so structure is obvious at a glance.
-- **Works everywhere.** VS Code, Cursor, Windsurf, VSCodium — any editor built on the VS Code extension API.
-
----
+- 12 shipped variants across dark, light, high-contrast dark, and high-contrast light profiles.
+- Base, bold, and italic styles for different typography preferences.
+- Purple-forward accents without neon noise.
+- Semantic highlighting enabled for richer editor intelligence.
+- Validated theme JSON and marketplace metadata in CI.
+- Compatible with VS Code, Cursor, Windsurf, VSCodium, GitHub Codespaces, and other VS Code extension hosts.
 
 ## Install
 
-**VS Code Marketplace** — the fastest way:
+### Visual Studio Marketplace
 
-1. Open VS Code → Extensions (`Cmd+Shift+X` / `Ctrl+Shift+X`)
-2. Search **Santi020k Theme**
-3. Click **Install**
-4. Open the theme picker (`Cmd+K Cmd+T`) and choose from the 12 variants, such as **santi020k dark**, **santi020k light bold**, or **santi020k hc light italic**.
+1. Open Extensions in VS Code.
+2. Search for **Santi020k Theme**.
+3. Install the extension from publisher `santi020k`.
+4. Open the theme picker and choose a variant such as `santi020k dark`, `santi020k light bold`, or `santi020k hc light italic`.
 
-### Achieving the "Preview Look"
+Marketplace listing: [marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
 
-The marketing website is **optimized for ligature-ready fonts** and features **Fira Code** with contextual ligatures enabled. To get that exact look in VS Code, we recommend these settings:
+### Open VSX
+
+Use Open VSX for VSCodium and editors that do not install from the Visual Studio Marketplace.
+
+Open VSX listing: [open-vsx.org/extension/santi020k/santi020k-theme](https://open-vsx.org/extension/santi020k/santi020k-theme)
+
+## Variants
+
+| Variant | UI theme | Notes |
+| --- | --- | --- |
+| `santi020k dark` | Dark | Deep indigo-black canvas with muted violet accents |
+| `santi020k light` | Light | Purple-tinted whites with a stronger violet interaction color |
+| `santi020k hc dark` | High contrast dark | Stronger borders and clearer separation on near-black surfaces |
+| `santi020k hc light` | High contrast light | White canvas, black structure, saturated syntax accents |
+| `santi020k dark bold` | Dark | Dark palette with bold syntax tokens |
+| `santi020k light bold` | Light | Light palette with bold syntax tokens |
+| `santi020k hc dark bold` | High contrast dark | High-contrast dark palette with bold syntax tokens |
+| `santi020k hc light bold` | High contrast light | High-contrast light palette with bold syntax tokens |
+| `santi020k dark italic` | Dark | Dark palette with broader italic syntax styling |
+| `santi020k light italic` | Light | Light palette with broader italic syntax styling |
+| `santi020k hc dark italic` | High contrast dark | High-contrast dark palette with broader italic syntax styling |
+| `santi020k hc light italic` | High contrast light | High-contrast light palette with broader italic syntax styling |
+
+## Preview Settings
+
+The screenshots use a ligature-ready editor setup. To get a similar look:
 
 ```json
 {
@@ -53,118 +73,42 @@ The marketing website is **optimized for ligature-ready fonts** and features **F
 }
 ```
 
-**Open VSX** — for Cursor, VSCodium, and other compatible editors:
+The theme works with any font. These settings only tune the preview style.
 
-Install from [open-vsx.org/extension/santi020k/santi020k-theme](https://open-vsx.org/extension/santi020k/santi020k-theme), then pick the variant from the theme picker.
+## Development
 
----
+Run commands from the repository root unless you are intentionally working inside this package.
 
-## Variants
-
-### santi020k dark
-
-Deep indigo-black (`#110c1d`) backgrounds with a layered surface hierarchy. Accent colors are muted violets pulled directly from the wallpaper geometry — nothing neon, nothing loud. Keywords and storage modifiers are italic; comments are softened but readable. The cursor and active tab indicator glow in `#945df4`.
-
-| Role | Color |
+| Command | What it does |
 | --- | --- |
-| Editor background | `#110c1d` |
-| Activity / Status bar | `#0b0712` |
-| Sidebar | `#1c1528` |
-| Cursor / active border | `#945df4` |
-| Buttons / badges | `#5a0fdb` |
-| Strings | `#b48df7` |
-| Keywords | `#8445f2` italic |
-| Comments | `#71569f` italic |
-| Primary text | `#dfdde3` |
+| `pnpm --filter santi020k-theme run build` | Generates base, high-contrast, bold, and italic theme files |
+| `pnpm --filter santi020k-theme run validate:themes` | Parses and validates the theme files |
+| `pnpm --filter santi020k-theme run validate:marketplace` | Checks extension metadata and packaging readiness |
+| `pnpm --filter santi020k-theme run package` | Builds a local VSIX with `vsce package --no-dependencies` |
+| `pnpm run validate:themes` | Runs the root theme validation shortcut |
+| `pnpm run validate` | Runs the full monorepo validation suite |
 
-### santi020k dark bold
+Generated variants come from scripts in `scripts/`. Avoid hand-editing generated VSIX files or build artifacts.
 
-The "website preview" version of the dark theme. It shares the exact same palette as `santi020k dark` but explicitly sets **bold** weight for every syntax token. When combined with a bold font, it delivers the high-impact, punchy aesthetic seen in the marketing previews.
+## Release
 
-| Role | Style |
-| --- | --- |
-| Palette | Identical to `santi020k dark` |
-| Syntax Tokens | **Bold** (global override) |
-| Keywords | **Bold Italic** |
-| Function Names | **Bold** |
+Releases are managed by Changesets and published to both the Visual Studio Marketplace and Open VSX.
 
-### santi020k light bold
+- Add a patch changeset for fixes and docs.
+- Add a minor changeset for new theme coverage or significant capability additions.
+- Required publish secrets are `VSCE_PAT` and `OVSX_PAT`.
+- The release script is expected to skip versions that are already published.
 
-The bold counterpart to the light theme. It applies a global bold override to all syntax tokens, making the violet ramp even more prominent against the soft lavender backgrounds.
+## Related Packages
 
-| Role | Style |
-| --- | --- |
-| Palette | Identical to `santi020k light` |
-| Syntax Tokens | **Bold** |
-| Keywords | **Bold Italic** |
-
-### santi020k light
-
-Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving all interactive elements. The status bar flips to solid brand purple, making workspace context immediately readable. Syntax uses a single-hue violet ramp so the light variant feels like a natural counterpart to the dark one.
-
-| Role | Color |
-| --- | --- |
-| Editor background | `#f8f6fd` |
-| Sidebar | `#f0edf9` |
-| Tab bar | `#e3dff0` |
-| Status bar | `#6319be` |
-| Cursor / active border | `#6319be` |
-| Strings | `#7030b0` |
-| Keywords | `#5a1ab0` italic |
-| Comments | `#9880c0` italic |
-| Primary text | `#302e36` |
-
-### santi020k hc dark
-
-Near-black (`#0d0718`) backgrounds with vivid purple borders (`#602cba`) replacing the subtle ones from the dark variant. All accent colors are fully saturated — teal `#60c8e0`, amber `#ffc060`, red `#ff7070` — so every signal reads clearly at a glance. Indent guides are made visible. Built for screens with limited contrast, accessibility requirements, or anyone who prefers maximum separation between UI elements.
-
-| Role | Color |
-| --- | --- |
-| Editor background | `#0d0718` |
-| Activity / Status bar | `#090410` |
-| Sidebar | `#140b22` |
-| Borders | `#602cba` |
-| Cursor / active border | `#a570ff` |
-| Strings | `#c5a3ff` |
-| Keywords | `#955ff2` italic |
-| Comments | `#8264b4` italic |
-| Primary text | `#f0ebfa` |
-
-### santi020k hc light
-
-Maximum contrast for light theme users. Features a pure white (`#ffffff`) background with stark black borders (`#000000`) and deeply saturated purples and blues for syntax. Built for accessibility, bright environments, or screens where subtle contrast washes out.
-
-| Role | Color |
-| --- | --- |
-| Editor background | `#ffffff` |
-| Sidebar / Status bar | `#f0edf9` |
-| Borders | `#000000` |
-| Cursor / active border | `#302e36` |
-| Strings | `#7030b0` |
-| Keywords | `#5a1ab0` italic |
-| Primary text | `#111111` |
-
-### Italic Variants
-
-For users who prefer distinctive typography for syntax, every theme profile (Dark, Light, HC Dark, HC Light) includes an **Italic** variant. These variants enforce italic styling across keywords, parameters, types, and modifiers, while keeping the rest of the text upright.
-
-- **santi020k dark italic**
-- **santi020k light italic**
-- **santi020k hc dark italic**
-- **santi020k hc light italic**
-
----
-
-## Contributing
-
-See the repository [CONTRIBUTING.md](https://github.com/santi020k/santi020k-theme/blob/main/CONTRIBUTING.md) for setup, editing themes, validation, and the release workflow.
+- `@santi020k/theme` provides shared assets, design tokens, and Chrome color mapping helpers.
+- `@santi020k/theme-core` provides shared token, asset, and website helper functions.
+- `santi020k-chrome-theme` ships the matching Chrome browser theme.
 
 ## Support
 
-If this theme makes your editor a nicer place to live, you can support ongoing maintenance through [GitHub Sponsors](https://github.com/sponsors/santi020k).
-
----
+If this theme makes your editor a nicer place to work, you can support ongoing maintenance through [GitHub Sponsors](https://github.com/sponsors/santi020k).
 
 ## License
 
-[MIT](LICENSE)
+MIT. See the repository [LICENSE](../../LICENSE).
