@@ -35,8 +35,10 @@ words:
   - commitizen
   - commitlint
   - Consolas
+  - crx
   - dasharray
   - defmodule
+  - deployInfos
   - editor-background
   - editor-foreground
   - ekehaoadgcihpkajlnbpkankaginojci
@@ -117,6 +119,7 @@ words:
   - outline-offset
   - ovsx
   - OVSX_PAT
+  - OAuth
   - pnpm-lock
   - padding-block
   - PATs

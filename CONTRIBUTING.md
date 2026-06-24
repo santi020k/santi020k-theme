@@ -37,6 +37,7 @@ Use `patch` for fixes, `minor` for new theme coverage or project capabilities, a
 - `.env.example` is the tracked template for local release and deploy variables.
 - `.env` is ignored and stores local secret values such as `VSCE_PAT` and `OVSX_PAT`.
 - The VS Code extension release uses `VSCE_PAT` and `OVSX_PAT`.
+- The Chrome Web Store release uses the `CHROME_WEBSTORE_*` variables.
 - Website deploys should use app-specific Cloudflare Pages project names for the hub, VS Code site, and Chrome site.
 
 ## Local Extension Testing

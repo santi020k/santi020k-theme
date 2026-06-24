@@ -19,11 +19,17 @@
       "types": "./utils.d.ts",
       "import": "./utils.js"
     },
+    "./site": {
+      "types": "./site.d.ts",
+      "import": "./site.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
     "index.d.ts",
     "index.js",
+    "site.d.ts",
+    "site.js",
     "types.d.ts",
     "types.js",
     "utils.d.ts",
@@ -31,7 +37,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node --check index.js && node --check types.js && node --check utils.js",
+    "build": "node --check index.js && node --check site.js && node --check types.js && node --check utils.js",
     "validate": "pnpm run build"
   },
   "publishConfig": {

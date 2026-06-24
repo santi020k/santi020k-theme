@@ -126,11 +126,9 @@ const assetPaths = [
   'assets/wallpapers/wallpaper.webp'
 ]
 
-function formatFromPath(path) {
-  return path.slice(path.lastIndexOf('.') + 1)
-}
+const formatFromPath = path => path.slice(path.lastIndexOf('.') + 1)
 
-function categoryFromPath(path) {
+const categoryFromPath = path => {
   if (path.includes('/logos/')) {
     return 'logo'
   }
@@ -166,7 +164,7 @@ function categoryFromPath(path) {
   return 'theme'
 }
 
-function surfaceFromPath(path) {
+const surfaceFromPath = path => {
   if (path.startsWith('assets/chrome/')) {
     return 'chrome'
   }
@@ -178,7 +176,7 @@ function surfaceFromPath(path) {
   return 'brand'
 }
 
-function variantFromPath(path) {
+const variantFromPath = path => {
   if (path.includes('light')) {
     return 'light'
   }
@@ -190,7 +188,7 @@ function variantFromPath(path) {
   return 'both'
 }
 
-function descriptionFromPath(path) {
+const descriptionFromPath = path => {
   const filename = path.slice(path.lastIndexOf('/') + 1)
 
   const readableName = filename
@@ -261,14 +259,8 @@ export const config = {
   }
 }
 
-export function getAsset(path) {
-  return getAssetByPath(manifest, path)
-}
+export const getAsset = path => getAssetByPath(manifest, path)
 
-export function getAssets(category) {
-  return getAssetsByCategory(manifest, category)
-}
+export const getAssets = category => getAssetsByCategory(manifest, category)
 
-export function getSurfaceAssets(surface) {
-  return getAssetsBySurface(manifest, surface)
-}
+export const getSurfaceAssets = surface => getAssetsBySurface(manifest, surface)

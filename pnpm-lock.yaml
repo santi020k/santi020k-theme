@@ -127,18 +127,30 @@ importers:
         version: 4.1.9(@types/node@26.0.0)(jsdom@25.0.1)(vite@8.1.0(@types/node@26.0.0)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
 
   apps/chrome-website:
+    dependencies:
+      '@santi020k/theme-core':
+        specifier: workspace:^
+        version: link:../../packages/theme-core
     devDependencies:
       vite:
         specifier: ^8.1.0
         version: 8.1.0(@types/node@26.0.0)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)
 
   apps/vscode-website:
+    dependencies:
+      '@santi020k/theme-core':
+        specifier: workspace:^
+        version: link:../../packages/theme-core
     devDependencies:
       vite:
         specifier: ^8.1.0
         version: 8.1.0(@types/node@26.0.0)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)
 
   apps/website:
+    dependencies:
+      '@santi020k/theme-core':
+        specifier: workspace:^
+        version: link:../../packages/theme-core
     devDependencies:
       vite:
         specifier: ^8.1.0

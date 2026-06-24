@@ -1,45 +1,39 @@
-function getModeValue(token, mode) {
-  return mode === 'light' ? token.light : token.dark
-}
+const getModeValue = (token, mode) => mode === 'light' ? token.light : token.dark
+const getContrastValue = (token, mode) => mode === 'light' ? token.lightContrast : token.darkContrast
 
-function getContrastValue(token, mode) {
-  return mode === 'light' ? token.lightContrast : token.darkContrast
-}
+export const generateCSSProperties = (tokens, mode) => tokens
+  .map(token => {
+    const value = getModeValue(token, mode)
 
-export function generateCSSProperties(tokens, mode) {
-  return tokens
-    .map(token => {
-      const value = getModeValue(token, mode)
+    return `  --${token.name}: ${value};`
+  })
+  .join('\n')
 
-      return `  --${token.name}: ${value};`
-    })
-    .join('\n')
-}
+export const generateHighContrastProperties = (tokens, mode) => tokens
+  .filter(token => Boolean(getContrastValue(token, mode)))
+  .map(token => {
+    const value = getContrastValue(token, mode)
 
-export function generateHighContrastProperties(tokens, mode) {
-  return tokens
-    .filter(token => Boolean(getContrastValue(token, mode)))
-    .map(token => {
-      const value = getContrastValue(token, mode)
+    return `  --${token.name}: ${value};`
+  })
+  .join('\n')
 
-      return `  --${token.name}: ${value};`
-    })
-    .join('\n')
-}
-
-export function generateTokensCSS(config) {
+export const generateTokensCSS = config => {
   const { colors, darkMode, darkModeVariant } = config
   const lightProps = generateCSSProperties(colors, 'light')
   const darkProps = generateCSSProperties(colors, 'dark')
   const lightContrastProps = generateHighContrastProperties(colors, 'light')
   const darkContrastProps = generateHighContrastProperties(colors, 'dark')
   const usesMediaDarkMode = darkMode === 'media-query'
+  let darkSelector = '@media (prefers-color-scheme: dark) { :root'
 
-  const darkSelector = darkMode === 'data-theme'
-    ? ':root[data-theme="dark"]'
-    : darkMode === 'class'
-      ? ':root.dark'
-      : '@media (prefers-color-scheme: dark) { :root'
+  if (darkMode === 'data-theme') {
+    darkSelector = ':root[data-theme="dark"]'
+  }
+
+  if (darkMode === 'class') {
+    darkSelector = ':root.dark'
+  }
 
   const darkSelectorClose = usesMediaDarkMode ? ' }' : ''
   let css = '/* Auto-generated from @santi020k/theme-core. */\n\n'
@@ -69,7 +63,7 @@ export function generateTokensCSS(config) {
   return css
 }
 
-export function generateTailwindTheme(config) {
+export const generateTailwindTheme = config => {
   const { colors, typography } = config
 
   const fontLines = [
@@ -85,14 +79,8 @@ export function generateTailwindTheme(config) {
   return `@theme {\n${fontLines}\n\n${colorLines}\n}\n`
 }
 
-export function getAssetByPath(manifest, path) {
-  return manifest.assets.find(asset => asset.path === path)
-}
+export const getAssetByPath = (manifest, path) => manifest.assets.find(asset => asset.path === path)
 
-export function getAssetsByCategory(manifest, category) {
-  return manifest.assets.filter(asset => asset.category === category)
-}
+export const getAssetsByCategory = (manifest, category) => manifest.assets.filter(asset => asset.category === category)
 
-export function getAssetsBySurface(manifest, surface) {
-  return manifest.assets.filter(asset => asset.surface === surface)
-}
+export const getAssetsBySurface = (manifest, surface) => manifest.assets.filter(asset => asset.surface === surface)

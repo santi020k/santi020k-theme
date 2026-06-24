@@ -1,19 +1,17 @@
 import './styles.css'
 
-const STORAGE_KEY = 'theme'
-const rootInDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
-
-const setTheme = theme => {
-  if (theme !== 'light' && theme !== 'dark') return
-
-  const root = document.documentElement
-
-  if (root.getAttribute('data-theme') === theme) return
-
-  root.setAttribute('data-theme', theme)
-
-  localStorage.setItem(STORAGE_KEY, theme)
-}
+import {
+  bindPreferredSiteThemeSync,
+  bindSiteNavigation,
+  rootInDarkMode,
+  setSiteTheme,
+  SITE_DESKTOP_NAV_QUERY,
+  SITE_REDUCED_MOTION_QUERY,
+  SITE_REVEAL_DARK_BACKGROUND,
+  SITE_REVEAL_LIGHT_BACKGROUND,
+  SITE_TOUCH_POINTER_QUERY,
+  syncSiteThemeToggle
+} from '@santi020k/theme-core/site'
 
 const PREVIEW_DATA = {
   dark: {
@@ -162,14 +160,10 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, v
   if (variantSelect) variantSelect.value = variant
 }
 
-const syncToggle = toggle => {
-  if (toggle) toggle.setAttribute('aria-checked', String(rootInDarkMode()))
-}
-
 const circularReveal = (button, isDark, newTheme) => {
   // Skip clip-path animation on touch/coarse-pointer: GPU-expensive and hurts INP
-  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
-    setTheme(newTheme)
+  if (window.matchMedia(SITE_TOUCH_POINTER_QUERY).matches) {
+    setSiteTheme(newTheme)
 
     return
   }
@@ -191,14 +185,14 @@ const circularReveal = (button, isDark, newTheme) => {
     inset: '0',
     zIndex: '99999',
     pointerEvents: 'none',
-    backgroundColor: isDark ? '#110c1d' : '#f8f6fd',
+    backgroundColor: isDark ? SITE_REVEAL_DARK_BACKGROUND : SITE_REVEAL_LIGHT_BACKGROUND,
     clipPath: `circle(${maxRadius}px at ${x}px ${y}px)`,
     willChange: 'clip-path'
   })
 
   document.body.appendChild(overlay)
 
-  setTheme(newTheme)
+  setSiteTheme(newTheme)
 
   // Double rAF: first frame commits the append + initial clip-path to the
   // compositor; second frame starts the collapse. Avoids forced sync layout.
@@ -225,9 +219,9 @@ const toggle = document.querySelector('.theme-toggle')
 const header = document.querySelector('.site-header')
 const navToggle = document.querySelector('.nav-toggle')
 const navLinks = document.querySelectorAll('.nav-links a')
-const desktopNavQuery = window.matchMedia('(min-width: 941px)')
+const desktopNavQuery = window.matchMedia(SITE_DESKTOP_NAV_QUERY)
 
-syncToggle(toggle)
+syncSiteThemeToggle(toggle)
 
 const langSelect = document.querySelector('.preview-lang-select')
 const themeSelect = document.querySelector('.preview-theme-select')
@@ -264,44 +258,17 @@ const syncPreviewWithSite = () => {
 
 syncPreviewWithSite()
 
-const setNavOpen = isOpen => {
-  if (!header || !navToggle) return
-
-  if (isOpen) {
-    header.setAttribute('data-nav-open', 'true')
-  } else {
-    header.removeAttribute('data-nav-open')
-  }
-
-  navToggle.setAttribute('aria-expanded', String(isOpen))
-}
-
-if (navToggle) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = navToggle.getAttribute('aria-expanded') === 'true'
-
-    setNavOpen(!isOpen)
-  })
-}
-
-for (const link of navLinks) {
-  link.addEventListener('click', () => setNavOpen(false))
-}
-
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') setNavOpen(false)
-})
-
-desktopNavQuery.addEventListener('change', event => {
-  if (event.matches) setNavOpen(false)
+bindSiteNavigation({
+  desktopNavQuery,
+  header,
+  navLinks,
+  navToggle
 })
 
 // Respect OS-level theme changes (only when user has no stored preference)
-window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
-  if (!localStorage.getItem(STORAGE_KEY)) {
-    setTheme(e.matches ? 'light' : 'dark')
-
-    syncToggle(toggle)
+bindPreferredSiteThemeSync({
+  onThemeChange: () => {
+    syncSiteThemeToggle(toggle)
 
     syncPreviewWithSite()
   }
@@ -319,10 +286,10 @@ if (toggle) {
 
     isAnimating = true
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setTheme(newTheme)
+    if (window.matchMedia(SITE_REDUCED_MOTION_QUERY).matches) {
+      setSiteTheme(newTheme)
 
-      syncToggle(toggle)
+      syncSiteThemeToggle(toggle)
 
       syncPreviewWithSite()
 
@@ -333,7 +300,7 @@ if (toggle) {
 
     circularReveal(toggle, isDark, newTheme)
 
-    syncToggle(toggle)
+    syncSiteThemeToggle(toggle)
 
     syncPreviewWithSite()
 

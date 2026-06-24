@@ -27,14 +27,14 @@ const DEFAULT_VARIANTS = [
   {
     artifact: 'dist/santi020k-chrome-theme.zip',
     itemId: 'cljcifjjgolaplmemjcnjhkjfoneadgj',
-    itemIdEnv: 'CHROME_WEBSTORE_DARK_ITEM_ID',
+    itemIdOverride: () => process.env.CHROME_WEBSTORE_DARK_ITEM_ID,
     manifest: 'manifest.json',
     name: 'dark'
   },
   {
     artifact: 'dist/santi020k-chrome-theme-light.zip',
     itemId: 'ekehaoadgcihpkajlnbpkankaginojci',
-    itemIdEnv: 'CHROME_WEBSTORE_LIGHT_ITEM_ID',
+    itemIdOverride: () => process.env.CHROME_WEBSTORE_LIGHT_ITEM_ID,
     manifest: 'manifest-light.json',
     name: 'light'
   }
@@ -47,17 +47,13 @@ const variantFilter = args
   .find(arg => arg.startsWith('--variant='))
   ?.replace('--variant=', '')
 
-const booleanEnv = (name, fallback = false) => {
-  const value = process.env[name]
-
+const booleanValue = (value, fallback = false) => {
   if (value === undefined || value === '') return fallback
 
   return value === '1' || value.toLowerCase() === 'true'
 }
 
-const requiredEnv = name => {
-  const value = process.env[name]
-
+const requiredValue = (name, value) => {
   if (!value) throw new Error(`${name} is required.`)
 
   return value
@@ -140,12 +136,12 @@ const webstoreRequest = async (path, options = {}) => {
 }
 
 const getAccessToken = async ({ clientId, clientSecret, refreshToken }) => {
-  const params = new URLSearchParams({
-    client_id: clientId,
-    client_secret: clientSecret,
-    grant_type: 'refresh_token',
-    refresh_token: refreshToken
-  })
+  const params = new URLSearchParams([
+    ['client_id', clientId],
+    ['client_secret', clientSecret],
+    ['grant_type', 'refresh_token'],
+    ['refresh_token', refreshToken]
+  ])
 
   const response = await fetch(OAUTH_TOKEN_URL, {
     body: params,
@@ -231,12 +227,12 @@ const publishItem = async ({ accessToken, itemId, publisherId }) => {
   const deployPercentage = process.env.CHROME_WEBSTORE_DEPLOY_PERCENTAGE
 
   const body = {
-    blockOnWarnings: booleanEnv('CHROME_WEBSTORE_BLOCK_ON_WARNINGS', true),
+    blockOnWarnings: booleanValue(process.env.CHROME_WEBSTORE_BLOCK_ON_WARNINGS, true),
     publishType: process.env.CHROME_WEBSTORE_PUBLISH_TYPE || 'DEFAULT_PUBLISH'
   }
 
   if (process.env.CHROME_WEBSTORE_SKIP_REVIEW !== undefined) {
-    body.skipReview = booleanEnv('CHROME_WEBSTORE_SKIP_REVIEW')
+    body.skipReview = booleanValue(process.env.CHROME_WEBSTORE_SKIP_REVIEW)
   }
 
   if (deployPercentage) {
@@ -268,7 +264,7 @@ const summarizeWarnings = response => {
 }
 
 const releaseVariant = async ({ accessToken, publisherId, variant }) => {
-  const itemId = process.env[variant.itemIdEnv] || variant.itemId
+  const itemId = variant.itemIdOverride() || variant.itemId
   const artifactPath = join(root, variant.artifact)
   const version = readManifestVersion(variant.manifest)
 
@@ -336,10 +332,10 @@ const main = async () => {
     return
   }
 
-  const clientId = requiredEnv('CHROME_WEBSTORE_CLIENT_ID')
-  const clientSecret = requiredEnv('CHROME_WEBSTORE_CLIENT_SECRET')
-  const refreshToken = requiredEnv('CHROME_WEBSTORE_REFRESH_TOKEN')
-  const publisherId = requiredEnv('CHROME_WEBSTORE_PUBLISHER_ID')
+  const clientId = requiredValue('CHROME_WEBSTORE_CLIENT_ID', process.env.CHROME_WEBSTORE_CLIENT_ID)
+  const clientSecret = requiredValue('CHROME_WEBSTORE_CLIENT_SECRET', process.env.CHROME_WEBSTORE_CLIENT_SECRET)
+  const refreshToken = requiredValue('CHROME_WEBSTORE_REFRESH_TOKEN', process.env.CHROME_WEBSTORE_REFRESH_TOKEN)
+  const publisherId = requiredValue('CHROME_WEBSTORE_PUBLISHER_ID', process.env.CHROME_WEBSTORE_PUBLISHER_ID)
   const accessToken = await getAccessToken({ clientId, clientSecret, refreshToken })
 
   for (const variant of variants) {

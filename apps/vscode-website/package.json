@@ -10,6 +10,9 @@
     "preview": "vite preview --host 127.0.0.1 --port 4176",
     "sync:website-version": "node scripts/sync-website-version.mjs"
   },
+  "dependencies": {
+    "@santi020k/theme-core": "workspace:^"
+  },
   "devDependencies": {
     "vite": "catalog:"
   },

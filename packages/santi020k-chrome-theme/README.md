@@ -35,6 +35,8 @@ pnpm --filter santi020k-chrome-theme run validate                    # Validate 
 pnpm --filter santi020k-chrome-theme run sync                        # Sync colors + regenerate NTP images
 pnpm --filter santi020k-chrome-theme run package                     # Build dist/*.zip for the Web Store
 pnpm --filter santi020k-chrome-theme run package:dry                 # Validate only, no zip written
+pnpm --filter santi020k-chrome-theme run publish:webstore            # Submit packaged zips to Chrome Web Store
+pnpm --filter santi020k-chrome-theme run release                     # Package and submit both Web Store listings
 ```
 
 ### Sync from VS Code theme
@@ -65,7 +67,18 @@ This reads the VS Code theme files from `packages/santi020k-theme/themes/` and u
 
 ## Publishing
 
-Upload `dist/santi020k-chrome-theme.zip` (built via `pnpm run package`) in the [Chrome Web Developer Dashboard](https://chrome.google.com/webstore/devconsole).
+Updates are automated through `.github/workflows/chrome-release.yml` after the first Dashboard publication. The workflow
+validates the Chrome package, builds both dark/light zips, uploads them as artifacts, and submits new manifest versions to
+the Chrome Web Store.
+
+For manual releases, run:
+
+```bash
+pnpm run release:chrome
+```
+
+Set `CHROME_WEBSTORE_CLIENT_ID`, `CHROME_WEBSTORE_CLIENT_SECRET`, `CHROME_WEBSTORE_REFRESH_TOKEN`, and
+`CHROME_WEBSTORE_PUBLISHER_ID` before publishing locally or as GitHub repository secrets.
 
 Published listings:
 
