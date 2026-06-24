@@ -1,6 +1,6 @@
 {
   "name": "@santi020k/theme-core",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shared token and asset manifest helpers for Santi020k theme packages.",
   "type": "module",
   "main": "./index.js",
