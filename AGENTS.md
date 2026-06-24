@@ -76,6 +76,30 @@ Prefer `pnpm run validate` before finishing any user-visible change. It parses t
 - Keep visible focus styles and external-link safety intact.
 - The site is deployed outside the extension package; `packages/santi020k-theme/.vscodeignore` should continue excluding repo-only app and tooling paths.
 
+## README Rules
+
+These rules apply to `packages/santi020k-theme/README.md` (the marketplace-facing README). Do **not** change them.
+
+### Image URLs
+
+All preview images **must** use `raw.githubusercontent.com` absolute URLs:
+
+```
+https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/santi020k-theme/assets/previews/<filename>.png
+```
+
+The VS Code Marketplace does not resolve relative paths when rendering READMEs. Relative paths like `assets/previews/preview-dark.png` will produce broken images in the listing.
+
+### Badge URLs
+
+Badges **must** use `shields.io`. Do not replace them with any other service.
+
+- VS Marketplace: `https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme`
+- Open VSX: `https://img.shields.io/open-vsx/v/santi020k/santi020k-theme`
+- CI status: `https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml`
+
+`vsmarketplacebadges.dev` is a defunct service. Do not use it. Do not "correct" these badges — `shields.io` is the authoritative, working source.
+
 ## Validation Expectations
 
 Before finalizing code changes, run the narrowest useful check first, then the full validation if feasible.
