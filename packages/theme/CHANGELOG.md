@@ -1,5 +1,11 @@
 # @santi020k/theme
 
+## 1.0.2
+
+### Patch Changes
+
+- [#23](https://github.com/santi020k/santi020k-theme/pull/23) [`38f609a`](https://github.com/santi020k/santi020k-theme/commit/38f609acdf26bb4c2bfc99e92c4b992a2c0c083d) Thanks [@santi020k](https://github.com/santi020k)! - Refresh the VS Code theme preview images with richer editor mockups and add a repeatable generator for the rendered assets.
+
 ## 1.0.1
 
 ### Patch Changes
