@@ -36,6 +36,7 @@
   "devDependencies": {
     "@santi020k/eslint-config-basic": "catalog:",
     "archiver": "catalog:",
-    "eslint": "catalog:"
+    "eslint": "catalog:",
+    "sharp": "catalog:"
   }
 }

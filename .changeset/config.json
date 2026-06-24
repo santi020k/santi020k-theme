@@ -3,7 +3,7 @@
   "changelog": ["@changesets/changelog-github", { "repo": "santi020k/santi020k-theme" }],
   "commit": false,
   "fixed": [],
-  "linked": [],
+  "linked": [["@santi020k/theme-core", "@santi020k/theme"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

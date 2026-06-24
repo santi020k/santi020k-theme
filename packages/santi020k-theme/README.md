@@ -1,5 +1,6 @@
 # Santi020k Theme
 
+<!-- Badge URLs: do NOT change these. shields.io is the correct service. vsmarketplacebadges.dev is dead. See AGENTS.md §README Rules. -->
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme?label=Marketplace&logo=visual-studio-code&color=945df4)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
 [![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX&logo=visual-studio-code&color=945df4)](https://open-vsx.org/extension/santi020k/santi020k-theme)
 [![Validate](https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml?label=Validate&logo=github&color=945df4)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
@@ -8,13 +9,14 @@ A coordinated VS Code theme family with deep indigo-black dark variants, purple-
 
 **Website:** [vscode.santi020k.com](https://vscode.santi020k.com)
 
-![santi020k dark theme preview](assets/previews/preview-dark.png)
+<!-- Image URLs: use raw.githubusercontent.com so they render in the VS Code Marketplace. Relative paths do not work there. See AGENTS.md §README Rules. -->
+![santi020k dark theme preview](https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/santi020k-theme/assets/previews/preview-dark.png)
 
-![santi020k light theme preview](assets/previews/preview-light.png)
+![santi020k light theme preview](https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/santi020k-theme/assets/previews/preview-light.png)
 
-![santi020k high contrast dark theme preview](assets/previews/preview-hc-dark.png)
+![santi020k high contrast dark theme preview](https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/santi020k-theme/assets/previews/preview-hc-dark.png)
 
-![santi020k high contrast light theme preview](assets/previews/preview-hc-light.png)
+![santi020k high contrast light theme preview](https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/santi020k-theme/assets/previews/preview-hc-light.png)
 
 ## Highlights
 
