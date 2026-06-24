@@ -1,14 +1,14 @@
 # Theme Hub Website
 
-Static Vite site for [theme.santi020k.com](https://theme.santi020k.com), the entry point for the Santi020k Theme family.
+Static Astro site for [theme.santi020k.com](https://theme.santi020k.com), the entry point for the Santi020k Theme family.
 
 The hub links visitors to the dedicated VS Code and Chrome theme sites, gives a compact cross-surface preview, and keeps future theme surfaces visible without turning the root site into a portfolio page.
 
 ## Stack
 
-- Runtime: Vite with plain HTML, CSS, and JavaScript
+- Runtime: Astro with plain HTML, CSS, and JavaScript
 - Shared tokens and helpers: `@santi020k/theme`
-- Source: `index.html`, `src/main.js`, `src/styles.css`
+- Source: `src/pages/index.astro`, `src/main.js`, `src/styles.css`
 - Public assets: `public/`
 - Build output: `dist/`
 

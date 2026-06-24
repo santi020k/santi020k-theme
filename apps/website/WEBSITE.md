@@ -4,7 +4,7 @@ Reference for the theme.santi020k.com hub.
 
 ## Stack
 
-- Runtime: Vite with plain HTML, CSS, and JavaScript
+- Runtime: Astro with plain HTML, CSS, and JavaScript
 - Build: `pnpm run site:build`
 - Deploy output: `apps/website/dist/`
 - Domain: `https://theme.santi020k.com/`
@@ -21,7 +21,7 @@ This site is the entry point for the Santi020k theme family. It links to the ded
 
 ## Maintenance
 
-- Keep public product links in `index.html` aligned with the deployed domains and npm package URLs.
+- Keep public product links in `src/pages/index.astro` aligned with the deployed domains and npm package URLs.
 - Keep visible focus styles and the dark/light toggle intact.
 - Run `pnpm run generate:og` after changing product positioning or social card copy.
 - Run `pnpm run validate:seo` before shipping metadata or OG asset changes.

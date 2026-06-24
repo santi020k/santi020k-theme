@@ -66,7 +66,7 @@ const readSiteFiles = async site => {
   )
 
   return [
-    join(site.root, 'index.html'),
+    join(site.root, 'src/pages/index.astro'),
     ...checkablePublicFiles
   ]
 }
@@ -186,7 +186,8 @@ const resolveLocalCandidates = (site, value) => {
 
   return [
     resolve(site.root, pathname),
-    resolve(site.root, 'public', pathname)
+    resolve(site.root, 'public', pathname),
+    ...(pathname === 'index.html' ? [resolve(site.root, 'src/pages/index.astro')] : [])
   ]
 }
 

@@ -5,16 +5,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1 --port 4176",
-    "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1 --port 4176",
+    "dev": "astro dev --host 127.0.0.1 --port 4176",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4176",
     "sync:website-version": "node scripts/sync-website-version.mjs"
   },
   "dependencies": {
     "@santi020k/theme": "workspace:^"
   },
   "devDependencies": {
-    "vite": "catalog:"
+    "astro": "catalog:"
   },
   "engines": {
     "node": ">=22.18.0"

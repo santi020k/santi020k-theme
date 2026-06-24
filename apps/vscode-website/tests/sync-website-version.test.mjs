@@ -13,10 +13,10 @@ const createFixture = ({ htmlVersion = '0.0.0', packageVersion = '9.8.7' } = {})
 
   tempDirs.push(root)
 
-  mkdirSync(join(root, 'website'))
+  mkdirSync(join(root, 'website/src/pages'), { recursive: true })
 
   const packagePath = join(root, 'package.json')
-  const websitePath = join(root, 'website/index.html')
+  const websitePath = join(root, 'website/src/pages/index.astro')
 
   writeFileSync(packagePath, JSON.stringify({ version: packageVersion }, null, 2))
 

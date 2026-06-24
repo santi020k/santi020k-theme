@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { fromExtensionPackage, fromVscodeWebsite } from './paths.mjs'
 
 const packageJsonPath = fromExtensionPackage('package.json')
-const websiteIndexPath = fromVscodeWebsite('index.html')
+const websiteIndexPath = fromVscodeWebsite('src/pages/index.astro')
 const softwareVersionPattern = /("softwareVersion":\s*")([^"]+)(")/
 
 export const syncWebsiteVersion = ({

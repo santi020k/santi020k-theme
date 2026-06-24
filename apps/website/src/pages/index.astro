@@ -44,7 +44,7 @@
     <meta name="twitter:description" content="VS Code, Chrome, npm packages, and upcoming Santi020k theme surfaces in one place." />
     <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Themes - VS Code, Chrome, npm, and more" />
-    <script type="application/ld+json">
+    <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
@@ -209,7 +209,7 @@
           <div class="package-snippet" aria-label="Package install and import examples">
             <code>pnpm add @santi020k/theme</code>
             <code>@import '@santi020k/theme/tokens.css';</code>
-            <code>import { config, projects } from '@santi020k/theme'</code>
+            <code>import &#123; config, projects &#125; from '@santi020k/theme'</code>
           </div>
         </article>
       </section>
@@ -253,6 +253,8 @@
       </div>
     </footer>
 
-    <script type="module" src="/src/main.js"></script>
+    <script>
+      import '../main.js'
+    </script>
   </body>
 </html>

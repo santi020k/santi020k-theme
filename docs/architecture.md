@@ -30,9 +30,9 @@ Each future public theme surface should follow this pairing:
 | `packages/santi020k-chrome-theme` | Chrome Web Store theme package | Owns Chrome manifests, browser-theme generation, Web Store packaging, Chrome-specific validation, store copy, and store media. |
 | `packages/theme` | Public shared package | Public entry point for reusable Santi020k tokens, website CSS variables, typography variables, assets, project metadata, and Chrome color mapping helpers. Most consumers should use this package. |
 | `packages/theme-core` | Public low-level helper package | Package-neutral types, token CSS generation helpers, asset manifest helpers, and shared browser behavior used by `@santi020k/theme`. Use directly only when building shared packages or lower-level tooling. |
-| `apps/website` | Static Vite app | Theme family hub for `theme.santi020k.com`. Links the VS Code, Chrome, npm, and future surfaces together. |
-| `apps/vscode-website` | Static Vite app | Product page for the VS Code extension at `vscode.santi020k.com`, including Marketplace/Open VSX install paths and preview assets. |
-| `apps/chrome-website` | Static Vite app | Product page for the Chrome browser theme at `chrome.santi020k.com`, including Chrome Web Store install paths and browser previews. |
+| `apps/website` | Static Astro app | Theme family hub for `theme.santi020k.com`. Links the VS Code, Chrome, npm, and future surfaces together. |
+| `apps/vscode-website` | Static Astro app | Product page for the VS Code extension at `vscode.santi020k.com`, including Marketplace/Open VSX install paths and preview assets. |
+| `apps/chrome-website` | Static Astro app | Product page for the Chrome browser theme at `chrome.santi020k.com`, including Chrome Web Store install paths and browser previews. |
 
 ## Dependency Flow
 
@@ -131,7 +131,7 @@ Workspace-local scripts still provide the isolation we want:
 ## Ownership Rules
 
 - Put store manifests, publish assets, zipping scripts, and package validation in `packages/<surface>-theme`.
-- Put marketing pages, static website assets, SEO metadata, and site-specific Vite config in `apps/<surface>-website`.
+- Put marketing pages, static website assets, SEO metadata, and site-specific Astro config in `apps/<surface>-website`.
 - Keep package/app-owned scripts and tests inside the owning workspace; root commands should orchestrate workspace scripts.
 - Put only truly shared cross-project tooling at the root.
 - Add reusable libraries under `packages/<name>` only when at least two workspaces need the same code.
@@ -140,9 +140,9 @@ Workspace-local scripts still provide the isolation we want:
 
 ## Website Architecture
 
-The three websites are intentionally plain Vite apps with static HTML, CSS, and JavaScript:
+The three websites are intentionally plain Astro apps with static HTML, CSS, and JavaScript:
 
-- `index.html` owns metadata, JSON-LD, first-render theme bootstrapping, and page structure.
+- `src/pages/index.astro` owns metadata, JSON-LD, first-render theme bootstrapping, and page structure.
 - `src/styles.css` owns layout and site-specific component styling.
 - `src/main.js` owns small browser behaviors.
 - `public/` owns website-only deploy assets such as social images, screenshots, favicons, wallpapers, and robots/sitemap files.
@@ -227,6 +227,6 @@ Run the narrowest useful check first, then broaden when the change crosses works
 | Website-only changes | owning `site:*:build` script |
 | Cross-surface or release-ready changes | `pnpm run validate` |
 
-If pnpm policy checks block local script execution, document the exact policy failure and run direct equivalent checks where practical, such as package entrypoint syntax checks and direct Vite builds from the affected apps.
+If pnpm policy checks block local script execution, document the exact policy failure and run direct equivalent checks where practical, such as package entrypoint syntax checks and direct Astro builds from the affected apps.
 
 Run full validation before publishing any package or store artifact. Release scripts may repeat validation near the publish step, but the first publish action should not run until the workspace has already passed the release-ready gate.

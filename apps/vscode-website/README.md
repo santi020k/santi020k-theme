@@ -1,14 +1,14 @@
 # VS Code Theme Website
 
-Static Vite site for [vscode.santi020k.com](https://vscode.santi020k.com), the product page for the `santi020k-theme` VS Code extension.
+Static Astro site for [vscode.santi020k.com](https://vscode.santi020k.com), the product page for the `santi020k-theme` VS Code extension.
 
 The page should make the theme visible immediately, link directly to Marketplace and Open VSX install paths, and show real previews of the dark, light, and high-contrast variants.
 
 ## Stack
 
-- Runtime: Vite with plain HTML, CSS, and JavaScript
+- Runtime: Astro with plain HTML, CSS, and JavaScript
 - Shared tokens and helpers: `@santi020k/theme`
-- Source: `index.html`, `src/main.js`, `src/styles.css`
+- Source: `src/pages/index.astro`, `src/main.js`, `src/styles.css`
 - Version sync: `scripts/sync-website-version.mjs`
 - Tests: `tests/sync-website-version.test.mjs`
 - Public assets: `public/`

@@ -4,7 +4,7 @@ Reference for the chrome.santi020k.com site.
 
 ## Stack
 
-- Runtime: Vite with plain HTML, CSS, and JavaScript
+- Runtime: Astro with plain HTML, CSS, and JavaScript
 - Build: `pnpm run site:chrome:build`
 - Dev server: `pnpm run site:chrome:dev`
 - Deploy output: `apps/chrome-website/dist/`

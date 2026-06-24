@@ -1,15 +1,14 @@
 # Chrome Theme Website
 
-Static Vite site for [chrome.santi020k.com](https://chrome.santi020k.com), the product page for the Santi020k Chrome browser theme.
+Static Astro site for [chrome.santi020k.com](https://chrome.santi020k.com), the product page for the Santi020k Chrome browser theme.
 
 The page should connect the browser theme to the wider Santi020k Theme family, show the actual Chrome visual direction, and send users to the dark and light Chrome Web Store listings.
 
 ## Stack
 
-- Runtime: Vite with plain HTML, CSS, and JavaScript
+- Runtime: Astro with plain HTML, CSS, and JavaScript
 - Shared tokens and helpers: `@santi020k/theme`
-- Source: `index.html`, `src/main.js`, `src/styles.css`
-- Vite config: `vite.config.js`
+- Source: `src/pages/index.astro`, `src/main.js`, `src/styles.css`
 - Public assets: `public/`
 - Build output: `dist/`
 

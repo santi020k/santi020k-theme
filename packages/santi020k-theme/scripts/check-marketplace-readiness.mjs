@@ -119,7 +119,7 @@ export const checkMarketplaceReadiness = (packageDir = extensionPackageDir, {
 
   const pkg = readJson('package.json')
   const pnpmLock = readFileSync(resolveRepoPath('pnpm-lock.yaml'), 'utf8')
-  const websiteIndex = readFileSync(resolveWebsitePath('index.html'), 'utf8')
+  const websiteIndex = readFileSync(resolveWebsitePath('src/pages/index.astro'), 'utf8')
   const packageFieldMap = new Map(Object.entries(pkg))
 
   for (const field of requiredPackageFields) {

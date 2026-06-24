@@ -5,6 +5,7 @@ export default await defineConfig({
   ignores: [
     '**/*.json',
     '**/*.md',
+    '**/*.astro',
     '**/*.d.ts',
     '**/*.yml',
     '**/*.yaml',

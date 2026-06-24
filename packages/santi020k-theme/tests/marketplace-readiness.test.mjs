@@ -127,7 +127,7 @@ const createFixturePackage = ({
   }
 
   writeFile(
-    root, 'website/index.html', `<script type="application/ld+json">{ "softwareVersion": "${pkg.version}" }</script>`
+    root, 'website/src/pages/index.astro', `<script type="application/ld+json">{ "softwareVersion": "${pkg.version}" }</script>`
   )
 
   writeFile(root, '.vscodeignore', `${ignorePatterns.join('\n')}\n`)
@@ -200,7 +200,7 @@ describe('marketplace readiness', () => {
     const root = createFixturePackage()
 
     writeFile(
-      root, 'website/index.html', '<script type="application/ld+json">{ "softwareVersion": "0.0.0" }</script>'
+      root, 'website/src/pages/index.astro', '<script type="application/ld+json">{ "softwareVersion": "0.0.0" }</script>'
     )
 
     expect(() => checkMarketplaceReadiness(root)).toThrow(

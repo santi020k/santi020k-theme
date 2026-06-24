@@ -75,7 +75,7 @@ const requirePresent = (site, label, actual) => {
 }
 
 for (const site of sites) {
-  const htmlPath = resolve(root, 'apps', site.app, 'index.html')
+  const htmlPath = resolve(root, 'apps', site.app, 'src/pages/index.astro')
   const html = await readFile(htmlPath, 'utf8')
   const title = titleText(html)
 

@@ -6,14 +6,14 @@ Reference for the vscode.santi020k.com marketing site and the VS Code theme colo
 
 ## Stack
 
-- **Runtime**: Vite (plain HTML/CSS/JS, no framework)
+- **Runtime**: Astro with plain HTML, CSS, and JavaScript
 - **Build**: `pnpm run site:build`
 - **Deploy**: static assets from `apps/vscode-website/dist/`
 - **Font**: Montserrat (system fallbacks: Avenir Next → Segoe UI → sans-serif)
 
-### Why not Astro?
+### Why Astro?
 
-The site is a single marketing page with no routing, no content collections, and no server-side data. Astro's value (SSG, content API, component islands) does not apply here. The Vite setup compiles to ~5 KB of HTML + CSS. Migrate to Astro only if the site grows to multiple pages or needs dynamic content (e.g. live install counts, changelogs).
+The site is still a static product page, but Astro gives the theme family a future-friendly path for shared layouts, component extraction, content growth, and Astro Doctor validation without changing the lightweight browser behavior.
 
 ---
 
@@ -194,6 +194,6 @@ When adding new syntax or workbench colors to the theme JSON, pick from this pal
 ## Updating the site
 
 1. **Token change** → edit the `:root` blocks in `src/styles.css`. Dark and light tokens are adjacent; keep them in sync.
-2. **New section** → add a `<section class="site-shell ...">` to `index.html` and a matching `border-top: 1px solid var(--section-divider)` rule in `styles.css`.
-3. **Version bump** → update `softwareVersion` in the JSON-LD block in `index.html`.
+2. **New section** → add a `<section class="site-shell ...">` to `src/pages/index.astro` and a matching `border-top: 1px solid var(--section-divider)` rule in `styles.css`.
+3. **Version bump** → update `softwareVersion` in the JSON-LD block in `src/pages/index.astro`.
 4. **Build** -> `pnpm run site:vscode:build` from the repo root; output goes to `apps/vscode-website/dist/`.
