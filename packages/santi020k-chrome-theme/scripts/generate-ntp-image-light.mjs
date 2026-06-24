@@ -5,11 +5,12 @@
  * (Light variant).
  *
  * Chrome themes need an opaque RGB PNG for the New Tab Page background.
- * The editable SVG is the source of truth; this script rasterizes it at 3840×2160
- * and flattens the alpha channel so Chrome can decode it correctly.
+ * The editable SVG is the source of truth; this script rasterizes it at 1920×1080,
+ * flattens the alpha channel, and strips ancillary PNG chunks so Chrome Web Store
+ * can decode it consistently.
  *
  * Source asset: images/theme_ntp_background_light.svg
- * Output asset: images/theme_ntp_background_light.png (3840×2160, RGB)
+ * Output asset: images/theme_ntp_background_light.png (1920×1080, RGB)
  *
  * Usage:
  *   pnpm run sync:assets
@@ -21,8 +22,12 @@ import { fileURLToPath } from 'node:url';
 
 import sharp from 'sharp';
 
+import { readPngInfo, stripPngAncillaryChunks } from './png-utils.mjs';
+
 const __dir = dirname(fileURLToPath(import.meta.url));
 const workspaceThemePackageRoot = resolve(__dir, '..', '..', 'theme');
+const width = 1920;
+const height = 1080;
 
 const themePackageRoot = existsSync(join(workspaceThemePackageRoot, 'package.json'))
   ? workspaceThemePackageRoot
@@ -38,10 +43,16 @@ mkdirSync(imagesDir, { recursive: true });
 // Chrome's theme engine does not support RGBA images for theme_ntp_background.
 // The background color matches the canvas gradient midpoint (#f8f6fd).
 await sharp(src)
+  .resize({ fit: 'cover', height, width })
   .flatten({ background: { r: 248, g: 246, b: 253 } })
-  .png()
+  .removeAlpha()
+  .toColourspace('srgb')
+  .png({ adaptiveFiltering: false, compressionLevel: 9, palette: false })
   .toFile(out);
 
-const { size } = statSync(out);
+stripPngAncillaryChunks(out);
 
-console.log(`Converted theme_ntp_background_light.svg → theme_ntp_background_light.png (${size} bytes)`);
+const { size } = statSync(out);
+const info = readPngInfo(out);
+
+console.log(`Converted theme_ntp_background_light.svg → theme_ntp_background_light.png (${info.width}×${info.height}, ${size} bytes)`);

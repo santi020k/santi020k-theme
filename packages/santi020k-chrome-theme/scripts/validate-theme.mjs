@@ -12,6 +12,8 @@ import {
   getRgbContrastRatio
 } from '@santi020k/theme';
 
+import { assertStoreSafeNtpPng } from './png-utils.mjs';
+
 const __dir = dirname(fileURLToPath(import.meta.url));
 const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
 
@@ -30,20 +32,6 @@ const resolveRuntimeAsset = assetPath => {
   if (!entry) return resolve(__dir, '..', assetPath);
 
   return resolve(themePackageRoot, entry.source, assetPath.slice(assetRoot.length + 1));
-};
-
-const readPngDimensions = filePath => {
-  const buffer = readFileSync(filePath);
-  const pngSignature = '89504e470d0a1a0a';
-
-  if (buffer.subarray(0, 8).toString('hex') !== pngSignature) {
-    throw new Error('not a PNG file');
-  }
-
-  return {
-    width: buffer.readUInt32BE(16),
-    height: buffer.readUInt32BE(20),
-  };
 };
 
 const readThemeJson = filePath => JSON.parse(readFileSync(filePath, 'utf8'));
@@ -178,22 +166,11 @@ const validateTheme = variant => {
           const requirement = IMAGE_REQUIREMENTS.get(key);
 
           try {
-            const { width, height } = readPngDimensions(fullPath);
+            const { width, height } = assertStoreSafeNtpPng(fullPath, requirement, path);
 
-            const largeEnough = !requirement || (
-              width >= requirement.minWidth
-              && height >= requirement.minHeight
-            );
-
-            if (largeEnough) {
-              console.log(`✅ NTP background size: ${width}×${height}`);
-            } else {
-              console.error(`❌ NTP background too small: ${width}×${height} (needs at least ${requirement.minWidth}×${requirement.minHeight})`);
-
-              errors++;
-            }
+            console.log(`✅ NTP background store-safe PNG: ${width}×${height}, 8-bit RGB`);
           } catch (error) {
-            console.error(`❌ NTP background must be a PNG with readable dimensions: ${error.message}`);
+            console.error(`❌ NTP background must be a Chrome Web Store-safe PNG: ${error.message}`);
 
             errors++;
           }
