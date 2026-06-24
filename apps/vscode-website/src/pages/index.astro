@@ -1,5 +1,28 @@
 ---
 import { Image } from 'astro:assets'
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Santi020k Theme',
+  applicationCategory: 'DeveloperApplication',
+  applicationSubCategory: 'Color Theme',
+  operatingSystem: 'Windows, macOS, Linux',
+  "softwareVersion": "1.6.0",
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  downloadUrl: 'https://marketplace.visualstudio.com/items?itemName=Santi020k.santi020k-theme',
+  url: 'https://vscode.santi020k.com',
+  description: 'A purple-forward VS Code color theme with dark, light, and high-contrast variants built around a deep indigo-black palette and muted violet accents.',
+  screenshot: 'https://vscode.santi020k.com/og-image.png',
+  author: {
+    '@type': 'Person',
+    name: 'Santiago Molina',
+    url: 'https://santi020k.com',
+    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k'],
+  },
+}
+
+const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`
 ---
 
 <!doctype html>
@@ -56,28 +79,7 @@ import { Image } from 'astro:assets'
     <meta name="twitter:image" content="https://vscode.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Dark, Light, and High Contrast" />
     <!-- JSON-LD: SoftwareApplication -->
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Santi020k Theme",
-      "applicationCategory": "DeveloperApplication",
-      "applicationSubCategory": "Color Theme",
-      "operatingSystem": "Windows, macOS, Linux",
-      "softwareVersion": "1.6.0",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=Santi020k.santi020k-theme",
-      "url": "https://vscode.santi020k.com",
-      "description": "A purple-forward VS Code color theme with dark, light, and high-contrast variants built around a deep indigo-black palette and muted violet accents.",
-      "screenshot": "https://vscode.santi020k.com/og-image.png",
-      "author": {
-        "@type": "Person",
-        "name": "Santiago Molina",
-        "url": "https://santi020k.com",
-        "sameAs": ["https://github.com/santi020k", "https://twitter.com/santi020k"]
-      }
-    }
-    </script>
+    <Fragment set:html={structuredDataHtml} />
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">

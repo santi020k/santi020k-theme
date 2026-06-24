@@ -72,7 +72,8 @@
     "sharp": "catalog:",
     "turbo": "catalog:",
     "vite": "catalog:",
-    "vitest": "catalog:"
+    "vitest": "catalog:",
+    "wrangler": "catalog:"
   },
   "lint-staged": {
     "*.{js,mjs}": [

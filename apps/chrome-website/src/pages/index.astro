@@ -1,5 +1,27 @@
 ---
 import { Image } from 'astro:assets'
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Santi020k Theme (Chrome)',
+  applicationCategory: 'BrowserApplication',
+  applicationSubCategory: 'Browser Theme',
+  operatingSystem: 'Windows, macOS, Linux',
+  softwareVersion: '1.3.3',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: 'https://chrome.santi020k.com/',
+  description: 'A Chrome browser theme matching the Santi020k VS Code palette — deep violet surfaces, muted lavender text, and violet accents.',
+  screenshot: 'https://chrome.santi020k.com/og-image.png',
+  author: {
+    '@type': 'Person',
+    name: 'Santiago Molina',
+    url: 'https://santi020k.com',
+    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k'],
+  },
+}
+
+const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`
 ---
 
 <!doctype html>
@@ -50,27 +72,7 @@ import { Image } from 'astro:assets'
     <meta name="twitter:description" content="A professional Chrome browser theme with a deep violet palette. Mapped directly from the Santi020k VS Code theme." />
     <meta name="twitter:image" content="https://chrome.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Chrome Browser Theme" />
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Santi020k Theme (Chrome)",
-      "applicationCategory": "BrowserApplication",
-      "applicationSubCategory": "Browser Theme",
-      "operatingSystem": "Windows, macOS, Linux",
-      "softwareVersion": "1.3.3",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "url": "https://chrome.santi020k.com/",
-      "description": "A Chrome browser theme matching the Santi020k VS Code palette — deep violet surfaces, muted lavender text, and violet accents.",
-      "screenshot": "https://chrome.santi020k.com/og-image.png",
-      "author": {
-        "@type": "Person",
-        "name": "Santiago Molina",
-        "url": "https://santi020k.com",
-        "sameAs": ["https://github.com/santi020k", "https://twitter.com/santi020k"]
-      }
-    }
-    </script>
+    <Fragment set:html={structuredDataHtml} />
   </head>
   <body>
     <header class="site-header" aria-label="Site header">
