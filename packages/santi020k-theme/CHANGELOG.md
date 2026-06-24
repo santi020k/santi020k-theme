@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- [#19](https://github.com/santi020k/santi020k-theme/pull/19) [`3baf4b7`](https://github.com/santi020k/santi020k-theme/commit/3baf4b7b0e6e1c00f1c70081df8fa43860d58e5a) Thanks [@santi020k](https://github.com/santi020k)! - Fix preview images and badge URLs in the marketplace README. Preview images now use absolute `raw.githubusercontent.com` URLs so they render correctly in the VS Code Marketplace (relative paths are not resolved by the marketplace renderer). Badge URLs are pinned to `shields.io` with an inline comment and AGENTS.md rules to prevent future regressions from AI assistants substituting defunct alternatives.
+
 ## 2.0.0
 
 ### Major Changes
