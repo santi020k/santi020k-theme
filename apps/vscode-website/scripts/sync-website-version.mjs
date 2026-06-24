@@ -1,12 +1,10 @@
 import { readFileSync, writeFileSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const websiteRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const repoRoot = resolve(websiteRoot, '../..')
-const extensionPackageDir = resolve(repoRoot, 'packages/santi020k-theme')
-const packageJsonPath = resolve(extensionPackageDir, 'package.json')
-const websiteIndexPath = resolve(websiteRoot, 'index.html')
+import { fromExtensionPackage, fromVscodeWebsite } from './paths.mjs'
+
+const packageJsonPath = fromExtensionPackage('package.json')
+const websiteIndexPath = fromVscodeWebsite('index.html')
 const softwareVersionPattern = /("softwareVersion":\s*")([^"]+)(")/
 
 export const syncWebsiteVersion = ({

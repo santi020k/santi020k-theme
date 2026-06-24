@@ -9,7 +9,6 @@
   "workspaces": {
     ".": {
       "entry": [
-        "eslint.config.mjs",
         "package.json"
       ],
       "project": [

@@ -24,6 +24,13 @@ pnpm run site:chrome:dev
 pnpm run commit
 ```
 
+## Versioning And Environment
+
+- VS Code theme releases are managed by Changesets for `packages/santi020k-theme`.
+- Chrome theme releases keep `packages/santi020k-chrome-theme/package.json` and both Chrome manifests in sync.
+- Website app package versions are private workspace metadata, not public theme versions.
+- Copy `.env.example` to `.env` for local release or deploy credentials; `.env` stays ignored.
+
 The full extension README lives in [`packages/santi020k-theme/README.md`](packages/santi020k-theme/README.md).
 
 The project architecture is documented in [`docs/architecture.md`](docs/architecture.md).

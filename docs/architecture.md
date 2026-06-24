@@ -42,6 +42,12 @@ Workspace-local scripts still provide the isolation we want:
 - Release publishing should stay package-driven through Changesets and only run when package/release paths change.
 - Website deployment should be app-specific. A hub-only change should not deploy the VS Code or Chrome sites, and a Chrome package-only change should not deploy a website unless assets or website copy changed.
 
+## Versioning
+
+- `packages/santi020k-theme` uses Changesets. A v2 launch is represented by a major changeset, then the release PR updates the package version, changelog, and VS Code website `softwareVersion`.
+- `packages/santi020k-chrome-theme` is private but its Chrome Web Store manifests are release artifacts. Keep `package.json`, `manifest.json`, and `manifest-light.json` on the same version before packaging.
+- `apps/*` are private deployable websites. Their package versions are workspace metadata, not public theme versions.
+
 Recommended workflow split:
 
 - `validate.yml`: root validation for PR confidence.

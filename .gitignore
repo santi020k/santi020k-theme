@@ -1,17 +1,31 @@
+# Dependencies used by every workspace
 node_modules/
-apps/*/dist/
 apps/*/node_modules/
-packages/*/dist/
 packages/*/node_modules/
-*.vsix
+
+# Local environment files for release and deploy credentials
 .env
+.env.*
+!.env.example
+
+# Website build output from apps/website, apps/vscode-website, and apps/chrome-website
+apps/*/dist/
+
+# Package build output from packages/santi020k-theme and packages/santi020k-chrome-theme
+packages/*/dist/
+*.vsix
+*.zip
 packages/santi020k-theme/*.vsix
+
+# Generated VS Code theme variants from packages/santi020k-theme/scripts
 packages/santi020k-theme/themes/*-bold-color-theme.json
 packages/santi020k-theme/themes/*-italic-color-theme.json
 packages/santi020k-theme/themes/santi020k-hc-light-color-theme.json
+
+# Local tool caches
 .turbo/
 .eslintcache
 .cspellcache
 
-# Turborepo
-.turbo
+# OS and editor noise
+.DS_Store

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.0] - 2026-06-24
+
+### Changed
+- Launch the Chrome theme as part of the Santi020k v2 theme-family architecture.
+- Keep the Chrome dark and light theme manifests aligned at version `2.0.0`.
+- Move the Chrome website into the shared monorepo app structure for `chrome.santi020k.com`.
+
 ## [1.3.3] - 2026-05-08
 
 ### Fixed
