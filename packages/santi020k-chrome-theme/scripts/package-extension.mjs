@@ -12,7 +12,7 @@ import {
   chromeRuntimeAssetEntries,
   chromeThemeVariantManifests
 } from '@santi020k/theme';
-import archiver from 'archiver';
+import { ZipArchive } from 'archiver';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dir, '..');
@@ -87,7 +87,7 @@ const build = (manifestFile, outputName, version) => new Promise((resolve, rejec
 
     const outPath = join(root, 'dist', outputName);
     const output = createWriteStream(outPath);
-    const archive = archiver('zip', { zlib: { level: 9 } });
+    const archive = new ZipArchive({ zlib: { level: 9 } });
 
     output.on('close', () => {
       console.log(`✓ Packed: dist/${outputName} (v${version}, ${archive.pointer()} bytes)`);
