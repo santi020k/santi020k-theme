@@ -217,7 +217,12 @@ export const staticAssets = {
   'icons/icon-192.webp': 'assets/favicons/icon-192.webp',
   'icons/icon-512.webp': 'assets/favicons/icon-512.webp',
   'logos/logo-square.webp': 'assets/logos/logo-square.webp',
-  'logos/logo-santi020k.webp': 'assets/logos/logo-santi020k.webp'
+  'logos/logo-santi020k.webp': 'assets/logos/logo-santi020k.webp',
+  'projects/santi020k-theme/cover.webp': 'assets/projects/santi020k-theme/cover.webp',
+  'projects/santi020k-theme/cover-horizontal.webp': 'assets/projects/santi020k-theme/cover-horizontal.webp',
+  'projects/santi020k-theme/cover-vertical.webp': 'assets/projects/santi020k-theme/cover-vertical.webp',
+  'projects/santi020k-theme/logo.webp': 'assets/projects/santi020k-theme/logo.webp',
+  'projects/santi020k-theme/preview-light.webp': 'assets/projects/santi020k-theme/preview-light.webp'
 }
 
 const assetPaths = [
@@ -281,6 +286,12 @@ const assetPaths = [
   'assets/logos/logo-square.png',
   'assets/logos/logo-square.svg',
   'assets/logos/logo-square.webp',
+  'assets/projects/santi020k-theme/cover-horizontal.webp',
+  'assets/projects/santi020k-theme/cover-v2.webp',
+  'assets/projects/santi020k-theme/cover-vertical.webp',
+  'assets/projects/santi020k-theme/cover.webp',
+  'assets/projects/santi020k-theme/logo.webp',
+  'assets/projects/santi020k-theme/preview-light.webp',
   'assets/vscode/icon.png',
   'assets/vscode/icon.svg',
   'assets/vscode/previews/preview-dark.png',
@@ -351,6 +362,10 @@ const surfaceFromPath = path => {
     return 'vscode'
   }
 
+  if (path.startsWith('assets/projects/')) {
+    return 'website'
+  }
+
   return 'brand'
 }
 
@@ -392,6 +407,51 @@ export const manifest = {
   assets
 }
 
+export const projects = {
+  santi020kTheme: {
+    slug: 'santi020k-theme',
+    title: 'Santi020k Theme',
+    description: 'Designed and shipped a VS Code theme extension with matched dark and light variants, marketplace publishing, registry automation, and a focused documentation site.',
+    role: 'Creator',
+    startingDate: '28 Apr 2026',
+    githubUrl: 'https://github.com/santi020k/santi020k-theme',
+    liveDemoUrl: 'https://theme.santi020k.com/',
+    typesId: 'personal',
+    impactMetrics: [
+      'Published across the VS Code Marketplace and Open VSX',
+      'Built dark and light variants from one coherent color language',
+      'Automated validation, packaging, and registry publishing'
+    ],
+    technologies: [
+      'Visual Studio Code',
+      'VS Code Extension',
+      'Theme Design',
+      'JavaScript',
+      'Node.js',
+      'Vitest',
+      'ESLint',
+      'CI-CD',
+      'GitHub Actions',
+      'Open Source',
+      'Developer Experience (DX)',
+      'Developer Documentation',
+      'Accessibility',
+      'Testing',
+      'Design Systems'
+    ],
+    coverImage: {
+      src: 'assets/projects/santi020k-theme/cover.webp',
+      horizontal: 'assets/projects/santi020k-theme/cover-horizontal.webp',
+      vertical: 'assets/projects/santi020k-theme/cover-vertical.webp',
+      logo: 'assets/projects/santi020k-theme/logo.webp',
+      logoAspect: 'square',
+      logoSurface: 'dark',
+      alt: 'Santi020k Theme logo on a deep indigo geometric cover with editor UI artwork'
+    },
+    previewImage: 'assets/projects/santi020k-theme/preview-light.webp'
+  }
+}
+
 export const voice = {
   personality: ['Direct', 'Concise', 'Technical', 'Personal', 'Honest'],
   vocabulary: [
@@ -426,6 +486,7 @@ export const config = {
   colors,
   typography,
   assets: manifest,
+  projects,
   voice,
   darkMode: 'data-theme',
   darkModeVariant: '[data-theme="dark"] &',

@@ -29,7 +29,6 @@ export default await defineConfig({
     'n/hashbang': 'off',
     'n/no-process-exit': 'off',
     'n/no-unpublished-import': 'off',
-    'no-unused-vars': 'off',
-    'promise/param-names': 'off'
+    'security/detect-non-literal-fs-filename': 'off'
   }
 })

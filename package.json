@@ -36,7 +36,7 @@
     "release:chrome": "pnpm --filter santi020k-chrome-theme run release",
     "release:tag": "pnpm --filter santi020k-theme run release:tag",
     "changeset": "changeset",
-    "version-packages": "changeset version && pnpm install --lockfile-only && pnpm run sync:website-version",
+    "version-packages": "changeset version && pnpm --filter santi020k-chrome-theme run sync:manifest-version && pnpm install --lockfile-only && pnpm run sync:website-version",
     "site:dev": "pnpm --filter @santi020k/santi020k-theme-website run dev",
     "site:build": "pnpm --filter @santi020k/santi020k-theme-website run build",
     "site:preview": "pnpm --filter @santi020k/santi020k-theme-website run preview",

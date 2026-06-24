@@ -67,6 +67,7 @@ export interface BrandConfig {
   typography: TypographyConfig
   assets: AssetManifest
   voice: VoiceConfig
+  projects?: Record<string, unknown>
   darkMode: DarkModeStrategy
   darkModeVariant?: string
   accessibilityTarget: 'AA' | 'AAA'

@@ -47,6 +47,32 @@ export declare const typography: TypographyConfig
 export declare const staticAssets: Record<string, string>
 export declare const assets: BrandAsset[]
 export declare const manifest: AssetManifest
+export interface ProjectImageMetadata {
+  src: string
+  horizontal: string
+  vertical: string
+  logo: string
+  logoAspect: 'square' | 'portrait' | 'landscape'
+  logoSurface: 'dark' | 'light' | 'transparent'
+  alt: string
+}
+export interface ProjectMetadata {
+  slug: string
+  title: string
+  description: string
+  role: string
+  startingDate: string
+  githubUrl: string
+  liveDemoUrl: string
+  typesId: string
+  impactMetrics: string[]
+  technologies: string[]
+  coverImage: ProjectImageMetadata
+  previewImage: string
+}
+export declare const projects: {
+  santi020kTheme: ProjectMetadata
+}
 export declare const voice: VoiceConfig
 export declare const config: BrandConfig
 export declare function isChromeThemeVariant(variant: string): variant is ChromeThemeVariant

@@ -4,8 +4,8 @@
  * Supports packaging both Dark and Light variants.
  */
 
-import { createWriteStream,existsSync, mkdirSync, readFileSync } from 'fs';
-import { dirname, join,resolve } from 'path';
+import { createWriteStream, existsSync, mkdirSync, readFileSync } from 'fs';
+import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import {
@@ -43,7 +43,7 @@ const resolveRuntimeAsset = assetPath => {
   return join(themePackageRoot, entry.source, assetPath.slice(assetRoot.length + 1));
 };
 
-function validate(manifestFile) {
+const validate = manifestFile => {
   const manifestPath = join(root, manifestFile);
 
   if (!existsSync(manifestPath)) return null;
@@ -80,10 +80,9 @@ function validate(manifestFile) {
   }
 
   return manifest.version;
-}
+};
 
-function build(manifestFile, outputName, version) {
-  return new Promise((res, rej) => {
+const build = (manifestFile, outputName, version) => new Promise((resolve, reject) => {
     mkdirSync(join(root, 'dist'), { recursive: true });
 
     const outPath = join(root, 'dist', outputName);
@@ -93,16 +92,16 @@ function build(manifestFile, outputName, version) {
     output.on('close', () => {
       console.log(`✓ Packed: dist/${outputName} (v${version}, ${archive.pointer()} bytes)`);
 
-      res();
+      resolve();
     });
 
-    archive.on('error', rej);
+    archive.on('error', reject);
 
     archive.pipe(output);
 
     // Add manifest as manifest.json in the zip
     archive.file(join(root, manifestFile), { name: 'manifest.json' });
-    
+
     for (const entry of INCLUDE_COMMON) {
       const abs = entry.source;
 
@@ -117,9 +116,8 @@ function build(manifestFile, outputName, version) {
 
     archive.finalize();
   });
-}
 
-async function run() {
+const run = async () => {
   try {
     for (const variant of VARIANTS) {
       const version = validate(variant.manifest);
@@ -131,7 +129,7 @@ async function run() {
       }
 
       console.log(`Validating ${variant.manifest} v${version}...`);
-      
+
       if (dryRun) {
         console.log(`  --dry-run: ${variant.name} validation passed.`);
       } else {
@@ -143,6 +141,6 @@ async function run() {
 
     process.exit(1);
   }
-}
+};
 
 run();

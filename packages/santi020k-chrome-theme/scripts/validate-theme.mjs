@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { existsSync,readFileSync } from 'fs';
-import { dirname,resolve } from 'path';
+import { existsSync, readFileSync } from 'fs';
+import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import {
@@ -15,10 +15,13 @@ import {
 const __dir = dirname(fileURLToPath(import.meta.url));
 const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
 
-const SOURCE_MAP = {
-  dark: '../../santi020k-theme/themes/santi020k-dark-color-theme.json',
-  light: '../../santi020k-theme/themes/santi020k-light-color-theme.json',
-};
+const SOURCE_MAP = new Map([
+  ['dark', '../../santi020k-theme/themes/santi020k-dark-color-theme.json'],
+  ['light', '../../santi020k-theme/themes/santi020k-light-color-theme.json']
+]);
+
+const MANIFEST_MAP = new Map(Object.entries(chromeThemeVariantManifests));
+const IMAGE_REQUIREMENTS = new Map(Object.entries(chromeThemeImageRequirements));
 
 const resolveRuntimeAsset = assetPath => {
   const [assetRoot] = assetPath.split('/');
@@ -50,7 +53,13 @@ const stripJsonComments = raw => raw
   .replaceAll(/\/\*[\s\S]*?\*\//g, '');
 
 const readVSCodeColors = variant => {
-  const sourcePath = resolve(__dir, SOURCE_MAP[variant]);
+  const sourceFile = SOURCE_MAP.get(variant);
+
+  if (!sourceFile) {
+    throw new Error(`Missing VS Code theme source for ${variant}`);
+  }
+
+  const sourcePath = resolve(__dir, sourceFile);
 
   if (!existsSync(sourcePath)) {
     throw new Error(`Source VS Code theme not found: ${sourcePath}`);
@@ -61,8 +70,14 @@ const readVSCodeColors = variant => {
 
 const formatValue = value => JSON.stringify(value);
 
-function validateTheme(variant) {
-  const manifestFile = chromeThemeVariantManifests[variant].manifest;
+const validateTheme = variant => {
+  const manifestConfig = MANIFEST_MAP.get(variant);
+
+  if (!manifestConfig) {
+    throw new Error(`Missing Chrome theme manifest configuration for ${variant}`);
+  }
+
+  const manifestFile = manifestConfig.manifest;
   const filePath = resolve(__dir, '..', manifestFile);
 
   console.log(`\n🔍 Validating ${manifestFile}...`);
@@ -75,6 +90,8 @@ function validateTheme(variant) {
 
   const manifest = readThemeJson(filePath);
   const colors = manifest.theme?.colors;
+  const colorMap = new Map(Object.entries(colors ?? {}));
+  const propertyMap = new Map(Object.entries(manifest.theme?.properties ?? {}));
 
   if (!colors) {
     console.error(`❌ No theme colors found in ${filePath}`);
@@ -86,19 +103,19 @@ function validateTheme(variant) {
   const expected = createChromeThemeFromVSCodeColors(readVSCodeColors(variant), variant);
 
   for (const [key, expectedValue] of Object.entries(expected.colors)) {
-    const actualValue = colors[key];
+    const actualValue = colorMap.get(key);
 
     if (formatValue(actualValue) === formatValue(expectedValue)) {
       continue;
     }
 
-    console.error(`❌ Token drift: ${key} is ${formatValue(actualValue)}, expected ${formatValue(expectedValue)} from ${SOURCE_MAP[variant]}`);
+    console.error(`❌ Token drift: ${key} is ${formatValue(actualValue)}, expected ${formatValue(expectedValue)} from @santi020k/theme`);
 
     errors++;
   }
 
   for (const [key, expectedValue] of Object.entries(expected.properties)) {
-    const actualValue = manifest.theme?.properties?.[key];
+    const actualValue = propertyMap.get(key);
 
     if (actualValue === expectedValue) {
       continue;
@@ -110,8 +127,8 @@ function validateTheme(variant) {
   }
 
   for (const { fg, bg, label } of chromeThemeContrastPairs) {
-    const fgVal = colors[fg];
-    const bgVal = colors[bg];
+    const fgVal = colorMap.get(fg);
+    const bgVal = colorMap.get(bg);
 
     if (!fgVal || !bgVal) {
       console.warn(`⚠️  Missing keys for ${label}: ${fg} or ${bg}`);
@@ -158,7 +175,7 @@ function validateTheme(variant) {
         console.log(`✅ Image exists: ${key} (${path})`);
 
         if (key === 'theme_ntp_background') {
-          const requirement = chromeThemeImageRequirements[key];
+          const requirement = IMAGE_REQUIREMENTS.get(key);
 
           try {
             const { width, height } = readPngDimensions(fullPath);
@@ -202,7 +219,7 @@ function validateTheme(variant) {
   }
 
   return errors;
-}
+};
 
 const darkErrors = validateTheme('dark');
 const lightErrors = validateTheme('light');

@@ -1,6 +1,6 @@
 {
   "name": "santi020k-chrome-theme",
-  "version": "2.0.0",
+  "version": "1.3.3",
   "packageManager": "pnpm@10.32.1",
   "private": true,
   "description": "Chrome browser theme matching the Santi020k palette.",
@@ -18,6 +18,7 @@
     "validate:a11y": "node scripts/validate-theme.mjs",
     "validate": "pnpm run lint && pnpm run validate:a11y && pnpm run package:dry",
     "sync:themes": "node scripts/sync-from-vscode-theme.mjs --variant=dark --write && node scripts/sync-from-vscode-theme.mjs --variant=light --write",
+    "sync:manifest-version": "node scripts/sync-manifest-version.mjs",
     "sync:assets": "node scripts/generate-ntp-image.mjs && node scripts/generate-ntp-image-light.mjs && node scripts/generate-store-assets-light.mjs",
     "sync:store-assets:light": "node scripts/generate-store-assets-light.mjs",
     "sync": "pnpm run sync:themes && pnpm run sync:assets",

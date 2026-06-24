@@ -17,50 +17,7 @@ const outDir = join(themePackageRoot, 'assets', 'chrome', 'store');
 const tmpDir = join(tmpdir(), 'santi020k-light-store-assets');
 const chromeBin = process.env.CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
-const pages = [
-  { name: 'promo-tile-light.png', width: 440, height: 280, body: promoTile() },
-  { name: 'marquee-banner-light.png', width: 1400, height: 560, body: marqueeBanner() },
-  { name: 'screenshot-main-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'main' }) },
-  { name: 'screenshot-ntp-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'ntp' }) },
-  { name: 'screenshot-incognito-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'incognito' }) },
-];
-
-mkdirSync(outDir, { recursive: true });
-
-rmSync(tmpDir, { recursive: true, force: true });
-
-mkdirSync(tmpDir, { recursive: true });
-
-for (const page of pages) {
-  const htmlPath = join(tmpDir, `${page.name}.html`);
-  const outPath = join(outDir, page.name);
-
-  writeFileSync(htmlPath, html(page), 'utf8');
-
-  const result = spawnSync(chromeBin, [
-    '--headless=new',
-    '--disable-gpu',
-    '--disable-dev-shm-usage',
-    '--hide-scrollbars',
-    '--no-first-run',
-    `--window-size=${page.width},${page.height}`,
-    `--screenshot=${outPath}`,
-    pathToFileURL(htmlPath).href,
-  ], { stdio: 'pipe' });
-
-  if (result.status !== 0) {
-    process.stderr.write(result.stderr.toString());
-
-    process.stderr.write(result.stdout.toString());
-
-    throw new Error(`Failed to render ${page.name}`);
-  }
-
-  console.log(`Generated store/assets/${page.name}`);
-}
-
-function html({ width, height, body }) {
-  return `<!doctype html>
+const html = ({ width, height, body }) => `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -133,10 +90,29 @@ function html({ width, height, body }) {
 </head>
 <body>${body}</body>
 </html>`;
-}
 
-function promoTile() {
-  return `<main class="asset">
+const swatches = (colors, size = 38) => colors.map((color) => `<span class="swatch" style="width:${size}px;height:${size}px;background:${color}"></span>`).join('');
+
+const tile = index => {
+  const colors = ['#6319be', '#7744b8', '#9c72db', '#d3cde6'];
+
+  return `<div class="tile"><div class="tile-icon" style="background:${colors[index % colors.length]}"></div><div class="tile-line"></div></div>`;
+};
+
+const chromeTop = (isIncognito = false) => `<div class="chrome-bar">
+    <div class="tabs">
+      <div class="tab active">${isIncognito ? 'New Incognito Tab' : 'Santi020k Theme'}</div>
+      <div class="tab">VS Code Marketplace</div>
+      <div class="tab">GitHub</div>
+    </div>
+    <div class="toolbar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <div class="omnibox">chrome.santi020k.com</div>
+      <span class="star"></span>
+    </div>
+  </div>`;
+
+const promoTile = () => `<main class="asset">
   <div class="subtle-grid"></div>
   <section style="position:absolute;left:34px;top:34px;width:250px">
     <div class="kicker" style="font-size:12px;margin-bottom:18px">Light Chrome Theme</div>
@@ -148,10 +124,8 @@ function promoTile() {
   </section>
   <div class="ntp-mark" style="right:24px;top:58px;width:112px;height:112px;font-size:36px;border-width:2px">&gt;_</div>
 </main>`;
-}
 
-function marqueeBanner() {
-  return `<main class="asset">
+const marqueeBanner = () => `<main class="asset">
   <div class="subtle-grid"></div>
   <section style="position:absolute;left:82px;top:82px;width:470px">
     <div class="kicker" style="font-size:16px;margin-bottom:24px">Light Chrome Theme</div>
@@ -172,11 +146,9 @@ function marqueeBanner() {
     </div>
   </div>
 </main>`;
-}
 
-function browserScreenshot({ mode }) {
+const browserScreenshot = ({ mode }) => {
   const isIncognito = mode === 'incognito';
-  const pageTop = mode === 'ntp' ? '0' : '58px';
 
   return `<main class="asset ${isIncognito ? 'incognito' : ''}">
   <div class="chrome" style="inset:0;border:0;box-shadow:none;border-radius:0">
@@ -194,29 +166,46 @@ function browserScreenshot({ mode }) {
     </div>
   </div>
 </main>`;
-}
+};
 
-function chromeTop(isIncognito = false) {
-  return `<div class="chrome-bar">
-    <div class="tabs">
-      <div class="tab active">${isIncognito ? 'New Incognito Tab' : 'Santi020k Theme'}</div>
-      <div class="tab">VS Code Marketplace</div>
-      <div class="tab">GitHub</div>
-    </div>
-    <div class="toolbar">
-      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      <div class="omnibox">chrome.santi020k.com</div>
-      <span class="star"></span>
-    </div>
-  </div>`;
-}
+const pages = [
+  { name: 'promo-tile-light.png', width: 440, height: 280, body: promoTile() },
+  { name: 'marquee-banner-light.png', width: 1400, height: 560, body: marqueeBanner() },
+  { name: 'screenshot-main-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'main' }) },
+  { name: 'screenshot-ntp-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'ntp' }) },
+  { name: 'screenshot-incognito-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'incognito' }) },
+];
 
-function tile(index) {
-  const colors = ['#6319be', '#7744b8', '#9c72db', '#d3cde6'];
+mkdirSync(outDir, { recursive: true });
 
-  return `<div class="tile"><div class="tile-icon" style="background:${colors[index % colors.length]}"></div><div class="tile-line"></div></div>`;
-}
+rmSync(tmpDir, { recursive: true, force: true });
 
-function swatches(colors, size = 38) {
-  return colors.map((color) => `<span class="swatch" style="width:${size}px;height:${size}px;background:${color}"></span>`).join('');
+mkdirSync(tmpDir, { recursive: true });
+
+for (const page of pages) {
+  const htmlPath = join(tmpDir, `${page.name}.html`);
+  const outPath = join(outDir, page.name);
+
+  writeFileSync(htmlPath, html(page), 'utf8');
+
+  const result = spawnSync(chromeBin, [
+    '--headless=new',
+    '--disable-gpu',
+    '--disable-dev-shm-usage',
+    '--hide-scrollbars',
+    '--no-first-run',
+    `--window-size=${page.width},${page.height}`,
+    `--screenshot=${outPath}`,
+    pathToFileURL(htmlPath).href,
+  ], { stdio: 'pipe' });
+
+  if (result.status !== 0) {
+    process.stderr.write(result.stderr.toString());
+
+    process.stderr.write(result.stdout.toString());
+
+    throw new Error(`Failed to render ${page.name}`);
+  }
+
+  console.log(`Generated store/assets/${page.name}`);
 }
