@@ -64,7 +64,6 @@ const createNpmUserConfig = (token) => {
   writeFileSync(configPath, [
     `registry=${registry}`,
     `//${registryUrl.host}${registryUrl.pathname}:_authToken=${token}`,
-    'provenance=true',
     '',
   ].join('\n'), { mode: 0o600 })
 
@@ -106,7 +105,7 @@ try {
   for (const { dir, name, pkg } of unpublished) {
     console.log(`Publishing ${name}@${pkg.version} to npm...`)
 
-    run('pnpm', ['--dir', dir, 'publish', '--access', 'public', '--registry', registry, '--no-git-checks'], {
+    run('pnpm', ['--dir', dir, 'publish', '--access', 'public', '--registry', registry, '--no-git-checks', '--provenance'], {
       env: {
         NPM_CONFIG_USERCONFIG: configPath,
         NODE_AUTH_TOKEN: token,
