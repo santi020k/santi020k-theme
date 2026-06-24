@@ -2,33 +2,43 @@ theme:
   - changed-files:
       - any-glob-to-any-file:
           - 'themes/**'
-          - 'scripts/validate-themes.mjs'
-          - 'tests/theme-validation.test.mjs'
+          - 'packages/santi020k-theme/themes/**'
+          - 'packages/santi020k-theme/scripts/validate-themes.mjs'
+          - 'packages/santi020k-theme/tests/theme-validation.test.mjs'
 
 website:
   - changed-files:
       - any-glob-to-any-file:
-          - 'website/**'
+          - 'apps/website/**'
+          - 'apps/vscode-website/**'
+          - 'apps/chrome-website/**'
+
+chrome:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'packages/santi020k-chrome-theme/**'
+          - 'apps/chrome-website/**'
 
 release:
   - changed-files:
       - any-glob-to-any-file:
           - '.changeset/**'
-          - 'scripts/publish-registries.mjs'
-          - 'scripts/ensure-release-tag.mjs'
-          - 'scripts/sync-website-version.mjs'
+          - 'apps/vscode-website/scripts/sync-website-version.mjs'
+          - 'packages/santi020k-theme/scripts/publish-registries.mjs'
+          - 'packages/santi020k-theme/scripts/ensure-release-tag.mjs'
           - '.github/workflows/release.yml'
 
 marketplace:
   - changed-files:
       - any-glob-to-any-file:
           - 'package.json'
-          - 'README.md'
-          - 'CHANGELOG.md'
-          - 'icon.png'
-          - 'assets/**'
-          - 'scripts/check-marketplace-readiness.mjs'
-          - 'tests/marketplace-readiness.test.mjs'
+          - 'packages/santi020k-theme/package.json'
+          - 'packages/santi020k-theme/README.md'
+          - 'packages/santi020k-theme/CHANGELOG.md'
+          - 'packages/santi020k-theme/icon.png'
+          - 'packages/santi020k-theme/assets/**'
+          - 'packages/santi020k-theme/scripts/check-marketplace-readiness.mjs'
+          - 'packages/santi020k-theme/tests/marketplace-readiness.test.mjs'
 
 ci:
   - changed-files:
@@ -39,21 +49,23 @@ docs:
   - changed-files:
       - any-glob-to-any-file:
           - '*.md'
-          - 'website/WEBSITE.md'
+          - 'apps/website/WEBSITE.md'
           - 'llms.txt'
 
 tests:
   - changed-files:
       - any-glob-to-any-file:
-          - 'tests/**'
+          - 'apps/*/tests/**'
+          - 'packages/*/tests/**'
 
 dependencies:
   - changed-files:
       - any-glob-to-any-file:
           - 'package.json'
           - 'pnpm-lock.yaml'
-          - 'website/package.json'
-          - 'website/pnpm-lock.yaml'
+          - 'pnpm-workspace.yaml'
+          - 'apps/*/package.json'
+          - 'packages/*/package.json'
 
 skip-changelog:
   - head-branch:

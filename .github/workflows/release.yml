@@ -4,6 +4,19 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '.changeset/**'
+      - 'package.json'
+      - 'packages/theme/**'
+      - 'packages/theme-core/**'
+      - 'packages/santi020k-theme/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'scripts/publish-npm-packages.mjs'
+      - 'apps/vscode-website/scripts/sync-website-version.mjs'
+      - 'packages/santi020k-theme/scripts/ensure-release-tag.mjs'
+      - 'packages/santi020k-theme/scripts/publish-registries.mjs'
+      - '.github/workflows/release.yml'
   workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
@@ -15,6 +28,7 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: write
+      id-token: write
       pull-requests: write
 
     steps:
@@ -33,9 +47,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: |
-            pnpm-lock.yaml
-            website/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -52,6 +64,8 @@ jobs:
         env:
           HUSKY: 0
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
 

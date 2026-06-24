@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">santi020k light theme preview</title>
+  <desc id="desc">A stylized VS Code editor preview using the santi020k light color palette.</desc>
+  <rect width="1280" height="720" fill="#e3dff0"/>
+  <rect x="0" y="0" width="1280" height="48" fill="#e3dff0"/>
+  <rect x="0" y="48" width="76" height="672" fill="#e3dff0"/>
+  <rect x="76" y="48" width="260" height="672" fill="#f0edf9"/>
+  <rect x="336" y="48" width="944" height="42" fill="#e3dff0"/>
+  <rect x="336" y="90" width="944" height="630" fill="#f8f6fd"/>
+  <rect x="356" y="48" width="210" height="42" fill="#f8f6fd"/>
+  <rect x="356" y="88" width="210" height="2" fill="#6319be"/>
+  <text x="382" y="75" fill="#302e36" font-family="Inter, Segoe UI, sans-serif" font-size="15">theme.ts</text>
+  <circle cx="28" cy="24" r="6" fill="#c0392b"/>
+  <circle cx="50" cy="24" r="6" fill="#c07a10"/>
+  <circle cx="72" cy="24" r="6" fill="#28a745"/>
+  <rect x="22" y="82" width="32" height="32" rx="8" fill="#ddd8f0"/>
+  <rect x="22" y="134" width="32" height="32" rx="8" fill="#eae7f5"/>
+  <rect x="22" y="186" width="32" height="32" rx="8" fill="#eae7f5"/>
+  <text x="104" y="92" fill="#5a1ab0" font-family="Inter, Segoe UI, sans-serif" font-size="13" font-weight="700">EXPLORER</text>
+  <text x="104" y="134" fill="#302e36" font-family="Inter, Segoe UI, sans-serif" font-size="15">santi020k-theme</text>
+  <text x="126" y="176" fill="#403850" font-family="Inter, Segoe UI, sans-serif" font-size="14">themes</text>
+  <text x="146" y="214" fill="#6319be" font-family="Inter, Segoe UI, sans-serif" font-size="14">santi020k-light.json</text>
+  <text x="146" y="250" fill="#9880c0" font-family="Inter, Segoe UI, sans-serif" font-size="14">santi020k-dark.json</text>
+  <text x="126" y="304" fill="#403850" font-family="Inter, Segoe UI, sans-serif" font-size="14">scripts</text>
+  <text x="126" y="340" fill="#403850" font-family="Inter, Segoe UI, sans-serif" font-size="14">website</text>
+  <g font-family="JetBrains Mono, SFMono-Regular, Consolas, monospace" font-size="20">
+    <text x="376" y="142" fill="#9880c0">01</text>
+    <text x="424" y="142" fill="#5a1ab0" font-style="italic">const</text>
+    <text x="488" y="142" fill="#302e36">palette</text>
+    <text x="584" y="142" fill="#8b52d6">=</text>
+    <text x="620" y="142" fill="#8b52d6">{</text>
+    <text x="376" y="184" fill="#9880c0">02</text>
+    <text x="464" y="184" fill="#6020b8">surface</text>
+    <text x="548" y="184" fill="#8b52d6">:</text>
+    <text x="584" y="184" fill="#7030b0">'#f8f6fd'</text>
+    <text x="376" y="226" fill="#9880c0">03</text>
+    <text x="464" y="226" fill="#6020b8">accent</text>
+    <text x="536" y="226" fill="#8b52d6">:</text>
+    <text x="572" y="226" fill="#7030b0">'#6319be'</text>
+    <text x="376" y="268" fill="#9880c0">04</text>
+    <text x="464" y="268" fill="#6020b8">muted</text>
+    <text x="524" y="268" fill="#8b52d6">:</text>
+    <text x="560" y="268" fill="#7030b0">'#9880c0'</text>
+    <text x="376" y="310" fill="#9880c0">05</text>
+    <text x="424" y="310" fill="#8b52d6">}</text>
+    <text x="376" y="374" fill="#9880c0">06</text>
+    <text x="424" y="374" fill="#9880c0" font-style="italic">// Modern workbench surfaces stay violet and crisp.</text>
+    <text x="376" y="416" fill="#9880c0">07</text>
+    <text x="424" y="416" fill="#5a1ab0" font-style="italic">export</text>
+    <text x="512" y="416" fill="#5a1ab0" font-style="italic">function</text>
+    <text x="624" y="416" fill="#5a18a8">applyTheme</text>
+    <text x="748" y="416" fill="#8b52d6">()</text>
+    <text x="788" y="416" fill="#8b52d6">{</text>
+    <text x="376" y="458" fill="#9880c0">08</text>
+    <text x="464" y="458" fill="#5a1ab0" font-style="italic">return</text>
+    <text x="548" y="458" fill="#302e36">palette</text>
+    <text x="376" y="500" fill="#9880c0">09</text>
+    <text x="424" y="500" fill="#8b52d6">}</text>
+  </g>
+  <rect x="336" y="660" width="944" height="60" fill="#6319be"/>
+  <text x="376" y="696" fill="#ffffff" font-family="Inter, Segoe UI, sans-serif" font-size="15">santi020k light</text>
+  <text x="1110" y="696" fill="#ffffff" font-family="Inter, Segoe UI, sans-serif" font-size="15">validated</text>
+</svg>
