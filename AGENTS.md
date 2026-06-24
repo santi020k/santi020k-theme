@@ -92,13 +92,13 @@ The VS Code Marketplace does not resolve relative paths when rendering READMEs. 
 
 ### Badge URLs
 
-Badges **must** use `shields.io`. Do not replace them with any other service.
+Use the correct service per badge — do not swap them around.
 
-- VS Marketplace: `https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme`
-- Open VSX: `https://img.shields.io/open-vsx/v/santi020k/santi020k-theme`
-- CI status: `https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml`
+- VS Marketplace version: `https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?color=945df4&icon=terminal` — **must use badgen.net**. The shields.io `visual-studio-marketplace` endpoint is retired and renders "retired badge".
+- Open VSX: `https://img.shields.io/open-vsx/v/santi020k/santi020k-theme` — shields.io
+- CI status: `https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml` — shields.io
 
-`vsmarketplacebadges.dev` is a defunct service. Do not use it. Do not "correct" these badges — `shields.io` is the authoritative, working source.
+`vsmarketplacebadges.dev` is a defunct service. Do not use it.
 
 ## Validation Expectations
 
