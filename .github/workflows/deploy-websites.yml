@@ -5,16 +5,16 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/deploy-websites.yml'
-      - 'apps/website/**'
-      - 'apps/vscode-website/**'
-      - 'apps/chrome-website/**'
-      - 'package.json'
-      - 'packages/theme/**'
-      - 'packages/theme-core/**'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - 'turbo.json'
+      - ".github/workflows/deploy-websites.yml"
+      - "apps/website/**"
+      - "apps/vscode-website/**"
+      - "apps/chrome-website/**"
+      - "package.json"
+      - "packages/theme/**"
+      - "packages/theme-core/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "turbo.json"
   workflow_dispatch:
     inputs:
       site:
