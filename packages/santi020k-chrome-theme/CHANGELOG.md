@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.3
+
+### Patch Changes
+
+- [#23](https://github.com/santi020k/santi020k-theme/pull/23) [`38f609a`](https://github.com/santi020k/santi020k-theme/commit/38f609acdf26bb4c2bfc99e92c4b992a2c0c083d) Thanks [@santi020k](https://github.com/santi020k)! - Always regenerate NTP background images in CI before packaging to prevent RGBA PNGs from being bundled. Adds a `sync:ntp-images` script (portable, no Chrome dependency) wired into the release workflow, and a packaging-time guard that fails with a clear error if a PNG is not opaque RGB.
+
+  Tighten the Chrome Web Store package by rasterizing NTP backgrounds as 1920x1080 store-safe RGB PNGs without ancillary chunks, validating that encoding, and shipping only the manifest-referenced image and icons in each variant zip.
+
+- Updated dependencies [[`38f609a`](https://github.com/santi020k/santi020k-theme/commit/38f609acdf26bb4c2bfc99e92c4b992a2c0c083d)]:
+  - @santi020k/theme@1.0.2
+
 ## 2.0.2
 
 ### Patch Changes
