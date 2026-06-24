@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- [#19](https://github.com/santi020k/santi020k-theme/pull/19) [`3baf4b7`](https://github.com/santi020k/santi020k-theme/commit/3baf4b7b0e6e1c00f1c70081df8fa43860d58e5a) Thanks [@santi020k](https://github.com/santi020k)! - Add `generate-store-assets.mjs` to generate Chrome Web Store promotional images for the dark theme variant (promo tile, marquee banner, and three screenshots) from the same HTML-rendered approach used by the light variant. Both themes are now regenerated together via `pnpm run sync:assets`.
+
+- [#19](https://github.com/santi020k/santi020k-theme/pull/19) [`3baf4b7`](https://github.com/santi020k/santi020k-theme/commit/3baf4b7b0e6e1c00f1c70081df8fa43860d58e5a) Thanks [@santi020k](https://github.com/santi020k)! - Fix "could not decode image" error for `theme_ntp_background.png` in both dark and light variants. The PNG was generated as RGBA by `sips`, which Chrome's theme engine cannot decode. Switched to `sharp` to produce an opaque RGB PNG.
+
 ## 2.0.0
 
 ### Major Changes
