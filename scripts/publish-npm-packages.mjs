@@ -37,7 +37,7 @@ const run = (command, args, options = {}) => {
 }
 
 const readPackage = (dir) => JSON.parse(readFileSync(resolve(root, dir, 'package.json'), 'utf8'))
-const packageMetadataUrl = (name) => new URL(name.replace('/', '%2F'), registry)
+const packageMetadataUrl = (name) => new URL(encodeURIComponent(name), registry)
 
 const isPublished = async (name, version) => {
   const response = await fetch(packageMetadataUrl(name))
