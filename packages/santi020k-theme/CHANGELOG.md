@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Launch the v2 theme-family architecture: move the Chrome theme into the monorepo, add a theme hub for theme.santi020k.com, and move the VS Code theme site metadata to vscode.santi020k.com.
+
+### Minor Changes
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Add comment review icon color coverage and strengthen package validation for generated theme variants.
+
+### Patch Changes
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Automate Chrome Web Store packaging and release submission for the Chrome theme listings.
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Improve package and website README documentation across the theme monorepo.
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Refresh shared theme assets with cleaner Santi020k project artwork, dark Chrome store media, and a flat VS Code extension icon.
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Move the project into a pnpm monorepo layout and add Husky, Commitizen, commitlint, lint-staged, Turbo, Knip, Renovate, and GitHub Actions dependency upkeep.
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Organize VS Code theme preview assets and add a high contrast light marketplace preview.
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Improve ghost text and website preview contrast, tighten packaged VSIX contents, and refresh dependency audit overrides.
+
+- [#15](https://github.com/santi020k/santi020k-theme/pull/15) [`791ceee`](https://github.com/santi020k/santi020k-theme/commit/791ceee1676bd7f635057f66ec15251f98c2d68a) Thanks [@santi020k](https://github.com/santi020k)! - Add a token-source generation step for the VS Code base themes so dark, light, and high-contrast dark variants are generated from centered Santi020k theme sources.
+
 ## 1.6.0
 
 ### Minor Changes
