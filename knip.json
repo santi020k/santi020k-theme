@@ -16,23 +16,51 @@
       ]
     },
     "apps/website": {
+      "entry": [
+        "src/pages/*.astro"
+      ],
+      "ignore": [
+        "src/main.js"
+      ],
+      "ignoreDependencies": [
+        "@santi020k/theme"
+      ],
       "project": [
+        "src/**/*.astro",
         "src/**/*.js"
       ]
     },
     "apps/vscode-website": {
       "entry": [
         "package.json",
-        "scripts/*.mjs"
+        "scripts/*.mjs",
+        "src/pages/*.astro"
+      ],
+      "ignore": [
+        "src/main.js"
+      ],
+      "ignoreDependencies": [
+        "@santi020k/theme"
       ],
       "project": [
         "scripts/**/*.mjs",
+        "src/**/*.astro",
         "tests/**/*.mjs",
         "src/**/*.js"
       ]
     },
     "apps/chrome-website": {
+      "entry": [
+        "src/pages/*.astro"
+      ],
+      "ignore": [
+        "src/main.js"
+      ],
+      "ignoreDependencies": [
+        "@santi020k/theme"
+      ],
       "project": [
+        "src/**/*.astro",
         "src/**/*.js"
       ]
     },

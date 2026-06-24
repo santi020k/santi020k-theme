@@ -1,0 +1,242 @@
+name: Deploy Websites
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/deploy-websites.yml'
+      - 'apps/website/**'
+      - 'apps/vscode-website/**'
+      - 'apps/chrome-website/**'
+      - 'package.json'
+      - 'packages/theme/**'
+      - 'packages/theme-core/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'turbo.json'
+  workflow_dispatch:
+    inputs:
+      site:
+        description: Website to deploy.
+        default: all
+        options:
+          - all
+          - theme
+          - vscode
+          - chrome
+        type: choice
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-websites-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  changes:
+    name: Detect website changes
+    runs-on: ubuntu-latest
+    outputs:
+      theme: ${{ steps.manual.outputs.theme || steps.filter.outputs.theme }}
+      vscode: ${{ steps.manual.outputs.vscode || steps.filter.outputs.vscode }}
+      chrome: ${{ steps.manual.outputs.chrome || steps.filter.outputs.chrome }}
+    steps:
+      - name: Check out repository
+        if: github.event_name == 'push'
+        uses: actions/checkout@v4
+
+      - name: Select manual deployment targets
+        id: manual
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          SITE: ${{ inputs.site }}
+        run: |
+          echo "theme=false" >> "$GITHUB_OUTPUT"
+          echo "vscode=false" >> "$GITHUB_OUTPUT"
+          echo "chrome=false" >> "$GITHUB_OUTPUT"
+
+          if [ "$SITE" = "all" ] || [ "$SITE" = "theme" ]; then
+            echo "theme=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ "$SITE" = "all" ] || [ "$SITE" = "vscode" ]; then
+            echo "vscode=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ "$SITE" = "all" ] || [ "$SITE" = "chrome" ]; then
+            echo "chrome=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Detect changed website paths
+        id: filter
+        if: github.event_name == 'push'
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            theme:
+              - '.github/workflows/deploy-websites.yml'
+              - 'package.json'
+              - 'packages/theme/**'
+              - 'packages/theme-core/**'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'turbo.json'
+              - 'apps/website/**'
+            vscode:
+              - '.github/workflows/deploy-websites.yml'
+              - 'package.json'
+              - 'packages/theme/**'
+              - 'packages/theme-core/**'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'turbo.json'
+              - 'apps/vscode-website/**'
+            chrome:
+              - '.github/workflows/deploy-websites.yml'
+              - 'package.json'
+              - 'packages/theme/**'
+              - 'packages/theme-core/**'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'turbo.json'
+              - 'apps/chrome-website/**'
+
+  deploy-theme:
+    name: Deploy theme.santi020k.com
+    needs: changes
+    if: needs.changes.outputs.theme == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Validate Cloudflare deployment config
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_THEME_PROJECT_NAME }}
+        run: |
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_THEME_PROJECT_NAME repository variable"; exit 1; }
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build theme hub
+        run: pnpm run site:build
+
+      - name: Deploy theme hub to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/website/dist --project-name=${{ vars.CLOUDFLARE_PAGES_THEME_PROJECT_NAME }} --branch=main
+
+  deploy-vscode:
+    name: Deploy vscode.santi020k.com
+    needs: changes
+    if: needs.changes.outputs.vscode == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Validate Cloudflare deployment config
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME }}
+        run: |
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME repository variable"; exit 1; }
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build VS Code website
+        run: pnpm run site:vscode:build
+
+      - name: Deploy VS Code website to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/vscode-website/dist --project-name=${{ vars.CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME }} --branch=main
+
+  deploy-chrome:
+    name: Deploy chrome.santi020k.com
+    needs: changes
+    if: needs.changes.outputs.chrome == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Validate Cloudflare deployment config
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_CHROME_PROJECT_NAME }}
+        run: |
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_CHROME_PROJECT_NAME repository variable"; exit 1; }
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Chrome website
+        run: pnpm run site:chrome:build
+
+      - name: Deploy Chrome website to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/chrome-website/dist --project-name=${{ vars.CLOUDFLARE_PAGES_CHROME_PROJECT_NAME }} --branch=main

@@ -7,7 +7,7 @@ Reference for the vscode.santi020k.com marketing site and the VS Code theme colo
 ## Stack
 
 - **Runtime**: Astro with plain HTML, CSS, and JavaScript
-- **Build**: `pnpm run site:build`
+- **Build**: `pnpm run site:vscode:build`
 - **Deploy**: static assets from `apps/vscode-website/dist/`
 - **Font**: Montserrat (system fallbacks: Avenir Next → Segoe UI → sans-serif)
 
