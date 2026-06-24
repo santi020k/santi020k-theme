@@ -11,3 +11,6 @@ packages/santi020k-theme/themes/santi020k-hc-light-color-theme.json
 .turbo/
 .eslintcache
 .cspellcache
+
+# Turborepo
+.turbo

@@ -90,6 +90,8 @@ const completeColors = {
   'editorStickyScroll.border': '#334155',
   'settings.headerForeground': '#f8fafc',
   'settings.modifiedItemIndicator': '#8b5cf6',
+  'commentsView.resolvedIcon': '#22c55e',
+  'commentsView.unresolvedIcon': '#facc15',
   'editorGhostText.foreground': '#94a3b8a0',
   'editorMultiCursor.primary.foreground': '#a78bfa',
   'editorMultiCursor.secondary.foreground': '#a78bfa80',

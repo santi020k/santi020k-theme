@@ -103,6 +103,8 @@ const modernSurfaceColorKeys = [
   'editorStickyScroll.border',
   'settings.headerForeground',
   'settings.modifiedItemIndicator',
+  'commentsView.resolvedIcon',
+  'commentsView.unresolvedIcon',
   'editorMultiCursor.primary.foreground',
   'editorMultiCursor.secondary.foreground',
   'editorIndentGuide.background1',

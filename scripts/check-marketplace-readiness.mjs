@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -179,9 +179,20 @@ export const checkMarketplaceReadiness = (packageDir = extensionPackageDir, {
 
   const themePaths = new Set(pkg.contributes.themes.map(theme => theme.path))
 
+  const packagedThemePaths = readdirSync(resolvePath('themes'))
+    .filter(file => file.endsWith('.json'))
+    .map(file => `./themes/${file}`)
+    .sort()
+
   for (const themePath of requiredThemeContributions) {
     if (!themePaths.has(themePath)) {
       throw new Error(`package.json must contribute ${themePath}`)
+    }
+  }
+
+  for (const themePath of packagedThemePaths) {
+    if (!themePaths.has(themePath)) {
+      throw new Error(`package.json must contribute packaged theme ${themePath}`)
     }
   }
 

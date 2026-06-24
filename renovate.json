@@ -9,6 +9,8 @@
   "baseBranches": ["main"],
   "labels": ["dependencies", "skip-changelog"],
   "schedule": ["before 9am on Monday"],
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
   "prConcurrentLimit": 10,
   "prHourlyLimit": 3,
   "rebaseWhen": "behind-base-branch",

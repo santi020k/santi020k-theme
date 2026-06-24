@@ -184,6 +184,16 @@ describe('marketplace readiness', () => {
     )
   })
 
+  test('rejects packaged theme files that are not contributed', () => {
+    const root = createFixturePackage()
+
+    writeFile(root, 'themes/santi020k-dark-bold-color-theme.json')
+
+    expect(() => checkMarketplaceReadiness(root)).toThrow(
+      /package\.json must contribute packaged theme \.\/themes\/santi020k-dark-bold-color-theme\.json/
+    )
+  })
+
   test('rejects mismatched website structured-data version', () => {
     const root = createFixturePackage()
 

@@ -400,6 +400,8 @@
     "testing.uncoveredBranchBackground": "#c0392b12",
     "testing.uncoveredGutterBackground": "#c0392b30",
     // Git & SCM
+    "commentsView.resolvedIcon": "#28a745",
+    "commentsView.unresolvedIcon": "#c07a10",
     "gitDecoration.addedResourceForeground": "#28a745",
     "gitDecoration.conflictingResourceForeground": "#c07a10",
     "gitDecoration.deletedResourceForeground": "#c0392b",
