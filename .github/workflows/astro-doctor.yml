@@ -3,11 +3,11 @@ name: Astro Doctor
 on:
   pull_request:
     paths:
-      - 'apps/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - '.github/workflows/astro-doctor.yml'
+      - "apps/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/astro-doctor.yml"
   workflow_dispatch:
 
 permissions:
@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run Astro Doctor
-        uses: santi020k/astro-doctor@v1
+        uses: santi020k/astro-doctor@v1.0.2
         with:
           working-directory: .
           fail-on: error

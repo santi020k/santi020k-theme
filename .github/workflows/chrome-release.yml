@@ -7,6 +7,8 @@ on:
     paths:
       - '.github/workflows/chrome-release.yml'
       - 'package.json'
+      - 'packages/theme/**'
+      - 'packages/theme-core/**'
       - 'packages/santi020k-chrome-theme/**'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
