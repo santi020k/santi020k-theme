@@ -6,6 +6,134 @@ import {
 
 export const packageName = '@santi020k/theme'
 
+export const chromeThemeVariants = ['dark', 'light']
+
+export const chromeThemeContrastPairs = [
+  { fg: 'tab_text', bg: 'frame', label: 'Active Tab Text' },
+  { fg: 'tab_background_text', bg: 'background_tab', label: 'Inactive Tab Text' },
+  { fg: 'ntp_text', bg: 'ntp_background', label: 'NTP Text' },
+  { fg: 'ntp_link', bg: 'ntp_background', label: 'NTP Link' },
+  { fg: 'omnibox_text', bg: 'omnibox_background', label: 'Omnibox Text' },
+  { fg: 'toolbar_text', bg: 'toolbar', label: 'Toolbar Text' }
+]
+
+export const chromeRuntimeAssetEntries = [
+  { destination: 'icons', source: 'assets/chrome/icons' },
+  { destination: 'images', source: 'assets/chrome/images' }
+]
+
+export const isChromeThemeVariant = variant => chromeThemeVariants.includes(variant)
+
+export const hexToRgb = hex => {
+  const value = hex.slice(0, 7)
+  const normalized = value.replace('#', '')
+  const parsed = Number.parseInt(normalized, 16)
+
+  return [parsed >> 16 & 0xff, parsed >> 8 & 0xff, parsed & 0xff]
+}
+
+export const darkenRgb = (rgb, factor) => rgb.map(value => Math.round(value * factor))
+
+export const darkenHex = (hex, factor) => darkenRgb(hexToRgb(hex), factor)
+
+export const clampRgb = rgb => rgb.map(value => Math.max(0, Math.min(255, value)))
+
+export const getRgbLuminance = rgb => {
+  const [r, g, b] = rgb.map(value => {
+    const s = value / 255
+
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4
+  })
+
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b
+}
+
+export const getRgbContrastRatio = (rgb1, rgb2) => {
+  const l1 = getRgbLuminance(rgb1)
+  const l2 = getRgbLuminance(rgb2)
+
+  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05)
+}
+
+export const createChromeThemeFromVSCodeColors = (vscodeColors, variant = 'dark') => {
+  if (!isChromeThemeVariant(variant)) {
+    throw new Error(`Invalid Chrome theme variant: ${variant}`)
+  }
+
+  const hex = (token, fallback) => {
+    const value = vscodeColors[token] || fallback
+
+    if (!value) throw new Error(`Missing VS Code token: ${token}`)
+
+    return value.slice(0, 7)
+  }
+
+  const frame = hex('titleBar.activeBackground')
+  const toolbar = hex('sideBar.background')
+  const editorBg = hex('editor.background')
+  const editorFg = hex('editor.foreground')
+  const iconFg = hex('icon.foreground')
+  const link = hex('textLink.foreground')
+  const linkActive = hex('textLink.activeForeground')
+  const tabBorder = hex('tab.border')
+  const tabInactiveBg = hex('tab.inactiveBackground')
+  const tabActiveFg = hex('tab.activeForeground')
+  const tabInactiveFg = hex('tab.inactiveForeground')
+  const tabAccent = hex('tab.activeBorder')
+  const unfocusedFg = hex('tab.unfocusedInactiveForeground')
+  const tabBackgroundText = variant === 'light' ? '#604c8a' : '#a19da8'
+
+  const colors = {
+    bookmark_text: hexToRgb(editorFg),
+    button_background: darkenHex(toolbar, variant === 'dark' ? 1.25 : 0.95),
+    control_background: hexToRgb(tabBorder),
+
+    frame: hexToRgb(frame),
+    frame_inactive: darkenHex(frame, 0.85),
+    frame_incognito: variant === 'dark' ? darkenHex(frame, 0.72) : [35, 29, 48],
+    frame_incognito_inactive: variant === 'dark' ? darkenHex(frame, 0.47) : [28, 21, 40],
+
+    background_tab: hexToRgb(tabInactiveBg),
+
+    ntp_background: hexToRgb(editorBg),
+    ntp_header: hexToRgb(toolbar),
+    ntp_link: hexToRgb(link),
+    ntp_link_underline: hexToRgb(link),
+    ntp_section: hexToRgb(toolbar),
+    ntp_section_link: hexToRgb(linkActive),
+    ntp_section_text: hexToRgb(iconFg),
+    ntp_text: hexToRgb(editorFg),
+
+    omnibox_background: hexToRgb(editorBg),
+    omnibox_text: hexToRgb(editorFg),
+
+    tab_background_separator: hexToRgb(tabBorder),
+    tab_background_text: hexToRgb(tabBackgroundText),
+    tab_background_text_inactive: hexToRgb(tabInactiveFg),
+    tab_background_text_incognito: hexToRgb(tabInactiveFg),
+    tab_background_text_incognito_inactive: hexToRgb(unfocusedFg),
+    tab_line: hexToRgb(tabAccent),
+    tab_text: hexToRgb(tabActiveFg),
+
+    toolbar: hexToRgb(toolbar),
+    toolbar_button_icon: hexToRgb(iconFg),
+    toolbar_text: hexToRgb(editorFg)
+  }
+
+  const properties = {
+    ntp_background_alignment: 'center',
+    ntp_background_repeat: 'no-repeat',
+    ntp_logo_alternate: variant === 'dark' ? 1 : 0
+  }
+
+  return {
+    colors: Object.fromEntries(
+      Object.entries(colors).map(([key, rgb]) => [key, clampRgb(rgb)])
+    ),
+    properties
+  }
+}
+
 export const colors = [
   { name: 'theme-bg', light: '268 20% 98%', dark: '260 43% 8%', lightContrast: '268 20% 98%', darkContrast: '260 43% 8%', description: 'Page background' },
   { name: 'surface', light: '268 20% 100%', dark: '260 30% 12%', description: 'Card and panel surfaces' },

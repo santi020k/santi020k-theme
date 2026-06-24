@@ -16,7 +16,7 @@ export const readStoredSiteTheme = storage => {
   try {
     return storage?.getItem?.(SITE_THEME_STORAGE_KEY)
   } catch {
-    
+    // Storage can be unavailable in hardened browser contexts.
   }
 }
 

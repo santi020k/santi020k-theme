@@ -8,10 +8,12 @@ import { createWriteStream,existsSync, mkdirSync, readFileSync } from 'fs';
 import { dirname, join,resolve } from 'path';
 import { fileURLToPath } from 'url';
 
+import { chromeRuntimeAssetEntries } from '@santi020k/theme';
 import archiver from 'archiver';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dir, '..');
+const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
 const dryRun = process.argv.includes('--dry-run');
 
 const VARIANTS = [
@@ -21,10 +23,22 @@ const VARIANTS = [
 
 // Runtime entries to include in the zip (relative to root).
 const INCLUDE_COMMON = [
-  { type: 'dir',  name: 'icons' },
-  { type: 'dir',  name: 'images' },
-  { type: 'file', name: 'LICENSE' },
+  ...chromeRuntimeAssetEntries.map(entry => ({
+    destination: entry.destination,
+    source: join(themePackageRoot, entry.source),
+    type: 'dir'
+  })),
+  { destination: 'LICENSE', source: join(root, 'LICENSE'), type: 'file' },
 ];
+
+const resolveRuntimeAsset = assetPath => {
+  const [assetRoot] = assetPath.split('/');
+  const entry = chromeRuntimeAssetEntries.find(({ destination }) => destination === assetRoot);
+
+  if (!entry) return join(root, assetPath);
+
+  return join(themePackageRoot, entry.source, assetPath.slice(assetRoot.length + 1));
+};
 
 function validate(manifestFile) {
   const manifestPath = join(root, manifestFile);
@@ -52,9 +66,9 @@ function validate(manifestFile) {
       throw new Error(`Version mismatch: package.json ${pkg.version} vs ${manifestFile} ${manifest.version}`);
   }
 
-  for (const icon of ['icon16.png', 'icon48.png', 'icon128.png']) {
-    if (!existsSync(join(root, 'icons', icon)))
-      throw new Error(`Missing required icon: icons/${icon}`);
+  for (const iconPath of Object.values(manifest.icons ?? {})) {
+    if (!existsSync(resolveRuntimeAsset(iconPath)))
+      throw new Error(`Missing required icon: ${iconPath}`);
   }
 
   return manifest.version;
@@ -82,14 +96,14 @@ function build(manifestFile, outputName, version) {
     archive.file(join(root, manifestFile), { name: 'manifest.json' });
     
     for (const entry of INCLUDE_COMMON) {
-      const abs = join(root, entry.name);
+      const abs = entry.source;
 
       if (!existsSync(abs)) continue;
 
       if (entry.type === 'dir') {
-        archive.directory(abs, entry.name);
+        archive.directory(abs, entry.destination);
       } else {
-        archive.file(abs, { name: entry.name });
+        archive.file(abs, { name: entry.destination });
       }
     }
 

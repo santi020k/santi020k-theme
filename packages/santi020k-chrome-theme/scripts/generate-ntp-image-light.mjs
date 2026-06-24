@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Copies images/light.png → images/theme_ntp_background_light.png
- * for the Santi020k Chrome Theme (Light variant).
+ * Converts images/theme_ntp_background_light.webp →
+ * images/theme_ntp_background_light.png for the Santi020k Chrome Theme
+ * (Light variant).
  *
- * Chrome cannot load the source asset directly from an arbitrary path;
- * this script ensures the authoritative light background (1920×1080 PNG)
- * is always in place at the path referenced by manifest-light.json.
+ * Chrome cannot decode WebP theme images in theme packages; this script ensures
+ * the authoritative light background is always available as a Chrome-compatible
+ * 3840×2160 PNG at the path referenced by manifest-light.json.
  *
  * Source asset: images/theme_ntp_background_light.webp
  * Output asset: images/theme_ntp_background_light.png
@@ -15,21 +16,29 @@
  */
 
 import { execSync } from 'child_process';
-import { mkdirSync, statSync } from 'fs';
-import { dirname,join } from 'path';
+import { existsSync,mkdirSync, statSync } from 'fs';
+import { dirname,join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
-const root = join(__dir, '..');
-const src = join(root, 'images', 'theme_ntp_background_light.webp');
-const out = join(root, 'images', 'theme_ntp_background_light.png');
+const workspaceThemePackageRoot = resolve(__dir, '..', '..', 'theme');
 
-mkdirSync(join(root, 'images'), { recursive: true });
+const themePackageRoot = existsSync(join(workspaceThemePackageRoot, 'package.json'))
+  ? workspaceThemePackageRoot
+  : dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
 
-// Use sips to convert the high-quality WebP source to a compatible PNG.
-// Use -Z 1920 to ensure the image is standard 1080p resolution.
+const imagesDir = join(themePackageRoot, 'assets', 'chrome', 'images');
+const src = join(imagesDir, 'theme_ntp_background_light.webp');
+const out = join(imagesDir, 'theme_ntp_background_light.png');
+const WIDTH = 3840;
+const HEIGHT = 2160;
+
+mkdirSync(imagesDir, { recursive: true });
+
+// Chrome themes do not provide a "cover" background-size property, so the NTP
+// image itself must be large enough to fill modern desktop viewport sizes.
 // Use --deleteColorManagementProperties to strip ICC profiles that can cause decoding errors in some Chrome versions.
-execSync(`sips -s format png -Z 1920 --deleteColorManagementProperties "${src}" --out "${out}"`, { stdio: 'inherit' });
+execSync(`sips -s format png -z ${HEIGHT} ${WIDTH} --deleteColorManagementProperties "${src}" --out "${out}"`, { stdio: 'inherit' });
 
 const { size } = statSync(out);
 

@@ -12,9 +12,8 @@ import { tmpdir } from 'os';
 import { dirname, join } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
-const __dir = dirname(fileURLToPath(import.meta.url));
-const root = join(__dir, '..');
-const outDir = join(root, 'store', 'assets');
+const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
+const outDir = join(themePackageRoot, 'assets', 'chrome', 'store');
 const tmpDir = join(tmpdir(), 'santi020k-light-store-assets');
 const chromeBin = process.env.CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 

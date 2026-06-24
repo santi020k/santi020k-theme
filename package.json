@@ -13,6 +13,7 @@
     "pretest": "pnpm run build:themes",
     "test": "vitest run packages/santi020k-theme/tests apps/vscode-website/tests",
     "sync:website-version": "pnpm --filter @santi020k/santi020k-vscode-theme-website run sync:website-version",
+    "validate:links": "node scripts/check-website-links.mjs",
     "validate:themes": "pnpm --filter santi020k-theme run validate:themes",
     "validate:marketplace": "pnpm --filter santi020k-theme run validate:marketplace",
     "validate:chrome": "pnpm --filter santi020k-chrome-theme run validate",

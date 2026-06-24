@@ -157,6 +157,10 @@ importers:
         version: 8.1.0(@types/node@26.0.0)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)
 
   packages/santi020k-chrome-theme:
+    dependencies:
+      '@santi020k/theme':
+        specifier: workspace:^
+        version: link:../theme
     devDependencies:
       '@santi020k/eslint-config-basic':
         specifier: 'catalog:'

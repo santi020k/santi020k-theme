@@ -24,6 +24,9 @@
     "release": "pnpm run package && pnpm run publish:webstore"
   },
   "funding": "https://github.com/sponsors/santi020k",
+  "dependencies": {
+    "@santi020k/theme": "workspace:^"
+  },
   "devDependencies": {
     "@santi020k/eslint-config-basic": "catalog:",
     "archiver": "catalog:",

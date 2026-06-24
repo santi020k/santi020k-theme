@@ -46,6 +46,7 @@ export default await defineConfig({
 },
 {
   files: [
+    'scripts/*.mjs',
     'apps/vscode-website/scripts/*.mjs',
     'packages/santi020k-chrome-theme/scripts/*.mjs',
     'packages/santi020k-theme/scripts/*.mjs'

@@ -3,42 +3,39 @@ import { existsSync,readFileSync } from 'fs';
 import { dirname,resolve } from 'path';
 import { fileURLToPath } from 'url';
 
+import {
+  chromeRuntimeAssetEntries,
+  chromeThemeContrastPairs,
+  getRgbContrastRatio
+} from '@santi020k/theme';
+
 const __dir = dirname(fileURLToPath(import.meta.url));
+const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
+const NTP_BACKGROUND_MIN_WIDTH = 3840;
+const NTP_BACKGROUND_MIN_HEIGHT = 2160;
 
-/**
- * Calculates relative luminance of an RGB color.
- * Formula: 0.2126 * R + 0.7152 * G + 0.0722 * B
- * where R, G, B are sRGB components after linearizing.
- */
-function getLuminance(rgb) {
-  const [r, g, b] = rgb.map(v => {
-    const s = v / 255;
+const resolveRuntimeAsset = assetPath => {
+  const [assetRoot] = assetPath.split('/');
+  const entry = chromeRuntimeAssetEntries.find(({ destination }) => destination === assetRoot);
 
-    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
-  });
+  if (!entry) return resolve(__dir, '..', assetPath);
 
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
+  return resolve(themePackageRoot, entry.source, assetPath.slice(assetRoot.length + 1));
+};
 
-/**
- * Calculates contrast ratio between two RGB colors.
- * Formula: (L1 + 0.05) / (L2 + 0.05)
- */
-function getContrastRatio(rgb1, rgb2) {
-  const l1 = getLuminance(rgb1);
-  const l2 = getLuminance(rgb2);
+const readPngDimensions = filePath => {
+  const buffer = readFileSync(filePath);
+  const pngSignature = '89504e470d0a1a0a';
 
-  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
-}
+  if (buffer.subarray(0, 8).toString('hex') !== pngSignature) {
+    throw new Error('not a PNG file');
+  }
 
-const CHECK_PAIRS = [
-  { fg: 'tab_text', bg: 'frame', label: 'Active Tab Text' },
-  { fg: 'tab_background_text', bg: 'background_tab', label: 'Inactive Tab Text' },
-  { fg: 'ntp_text', bg: 'ntp_background', label: 'NTP Text' },
-  { fg: 'ntp_link', bg: 'ntp_background', label: 'NTP Link' },
-  { fg: 'omnibox_text', bg: 'omnibox_background', label: 'Omnibox Text' },
-  { fg: 'toolbar_text', bg: 'toolbar', label: 'Toolbar Text' }
-];
+  return {
+    width: buffer.readUInt32BE(16),
+    height: buffer.readUInt32BE(20),
+  };
+};
 
 function validateTheme(filePath) {
   console.log(`\n🔍 Validating ${filePath}...`);
@@ -60,7 +57,7 @@ function validateTheme(filePath) {
 
   let errors = 0;
 
-  for (const { fg, bg, label } of CHECK_PAIRS) {
+  for (const { fg, bg, label } of chromeThemeContrastPairs) {
     const fgVal = colors[fg];
     const bgVal = colors[bg];
 
@@ -70,7 +67,7 @@ function validateTheme(filePath) {
       continue;
     }
 
-    const ratio = getContrastRatio(fgVal, bgVal);
+    const ratio = getRgbContrastRatio(fgVal, bgVal);
     const pass = ratio >= 4.5;
 
     if (pass) {
@@ -103,10 +100,29 @@ function validateTheme(filePath) {
   // Image existence check
   if (manifest.theme?.images) {
     for (const [key, path] of Object.entries(manifest.theme.images)) {
-      const fullPath = resolve(__dir, '..', path);
+      const fullPath = resolveRuntimeAsset(path);
 
       if (existsSync(fullPath)) {
         console.log(`✅ Image exists: ${key} (${path})`);
+
+        if (key === 'theme_ntp_background') {
+          try {
+            const { width, height } = readPngDimensions(fullPath);
+            const largeEnough = width >= NTP_BACKGROUND_MIN_WIDTH && height >= NTP_BACKGROUND_MIN_HEIGHT;
+
+            if (largeEnough) {
+              console.log(`✅ NTP background size: ${width}×${height}`);
+            } else {
+              console.error(`❌ NTP background too small: ${width}×${height} (needs at least ${NTP_BACKGROUND_MIN_WIDTH}×${NTP_BACKGROUND_MIN_HEIGHT})`);
+
+              errors++;
+            }
+          } catch (error) {
+            console.error(`❌ NTP background must be a PNG with readable dimensions: ${error.message}`);
+
+            errors++;
+          }
+        }
       } else {
         console.error(`❌ Missing image: ${key} references ${path} which does not exist`);
 
@@ -115,6 +131,16 @@ function validateTheme(filePath) {
     }
   } else {
     console.warn(`⚠️  No images defined in theme`);
+  }
+
+  const properties = manifest.theme?.properties ?? {};
+
+  if (properties.ntp_background_repeat === 'no-repeat') {
+    console.log(`✅ NTP background repeat: ${properties.ntp_background_repeat}`);
+  } else {
+    console.error(`❌ ntp_background_repeat must be "no-repeat" to avoid visible tiling artifacts`);
+
+    errors++;
   }
 
   return errors;

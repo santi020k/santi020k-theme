@@ -88,6 +88,7 @@ button:focus-visible {
 
 img {
   display: block;
+  height: auto;
   max-width: 100%;
 }
 
@@ -300,6 +301,12 @@ h3 {
   border-color: var(--line);
   background: var(--btn-secondary-bg);
   color: var(--ink);
+}
+
+:root[data-theme="light"] .button-secondary {
+  border-color: color-mix(in srgb, var(--brand) 24%, var(--line));
+  background: #ffffff;
+  color: #2f2938;
 }
 
 .button-secondary:hover {
@@ -634,8 +641,9 @@ h3 {
   }
 
   .hero {
+    gap: 24px;
     padding-top: 32px;
-    padding-bottom: 52px;
+    padding-bottom: 28px;
   }
 
   h1 {

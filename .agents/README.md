@@ -10,6 +10,19 @@ Primary guidance lives in:
 
 Use those files before modifying theme colors, release automation, or package metadata.
 
+## Agent Roles
+
+Reusable role definitions live in `agents/`.
+
+- `agents/theme-maintainer.toml`
+- `agents/accessibility-auditor.toml`
+- `agents/website-maintainer.toml`
+- `agents/chrome-theme-maintainer.toml`
+- `agents/release-manager.toml`
+- `agents/ci-triager.toml`
+
+Keep authored agent guidance here instead of duplicating it into provider-specific folders. If a tool needs a vendor-specific config path, generate or mirror from this directory.
+
 ## Repo-Local Skills
 
 Portable agent skills live in `skills/`.
