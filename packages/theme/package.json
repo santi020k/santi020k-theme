@@ -14,6 +14,11 @@
     "./typography.css": "./typography.css",
     "./tokens.css": "./tokens/tokens.css",
     "./tokens.json": "./tokens/tokens.json",
+    "./site": {
+      "types": "./site.d.ts",
+      "import": "./site.js"
+    },
+    "./site.css": "./site.css",
     "./tailwind": {
       "types": "./tailwind.d.ts",
       "import": "./tailwind.js"
@@ -26,6 +31,9 @@
     "assets",
     "docs",
     "tokens",
+    "site.css",
+    "site.d.ts",
+    "site.js",
     "typography.css",
     "index.d.ts",
     "index.js",
@@ -34,7 +42,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node --check index.js && node --check tailwind.js",
+    "build": "node --check index.js && node --check site.js && node --check tailwind.js",
     "validate": "pnpm run build"
   },
   "dependencies": {

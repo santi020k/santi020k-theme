@@ -7,7 +7,7 @@ import {
   setSiteTheme,
   SITE_HUB_DESKTOP_NAV_QUERY,
   syncSiteThemeToggle
-} from '@santi020k/theme-core/site'
+} from '@santi020k/theme/site'
 
 const toggle = document.querySelector('.theme-toggle')
 const header = document.querySelector('.site-header')

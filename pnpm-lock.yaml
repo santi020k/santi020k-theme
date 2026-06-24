@@ -135,9 +135,9 @@ importers:
 
   apps/chrome-website:
     dependencies:
-      '@santi020k/theme-core':
+      '@santi020k/theme':
         specifier: workspace:^
-        version: link:../../packages/theme-core
+        version: link:../../packages/theme
     devDependencies:
       vite:
         specifier: ^8.1.0
@@ -145,9 +145,9 @@ importers:
 
   apps/vscode-website:
     dependencies:
-      '@santi020k/theme-core':
+      '@santi020k/theme':
         specifier: workspace:^
-        version: link:../../packages/theme-core
+        version: link:../../packages/theme
     devDependencies:
       vite:
         specifier: ^8.1.0
@@ -155,9 +155,9 @@ importers:
 
   apps/website:
     dependencies:
-      '@santi020k/theme-core':
+      '@santi020k/theme':
         specifier: workspace:^
-        version: link:../../packages/theme-core
+        version: link:../../packages/theme
     devDependencies:
       vite:
         specifier: ^8.1.0

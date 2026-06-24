@@ -7,7 +7,7 @@ The page should make the theme visible immediately, link directly to Marketplace
 ## Stack
 
 - Runtime: Vite with plain HTML, CSS, and JavaScript
-- Shared helpers: `@santi020k/theme-core`
+- Shared tokens and helpers: `@santi020k/theme`
 - Source: `index.html`, `src/main.js`, `src/styles.css`
 - Version sync: `scripts/sync-website-version.mjs`
 - Tests: `tests/sync-website-version.test.mjs`

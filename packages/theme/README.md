@@ -21,7 +21,9 @@ This package is ESM-only and expects Node `>=22.18.0`.
 | Export | Use it for |
 | --- | --- |
 | `@santi020k/theme` | JS tokens, metadata, asset lookup, Chrome theme helpers |
-| `@santi020k/theme/typography.css` | Shared Montserrat font-family variables and Tailwind v4 font mappings |
+| `@santi020k/theme/site` | Shared website theme and navigation helpers |
+| `@santi020k/theme/site.css` | Shared website-ready color and typography variables |
+| `@santi020k/theme/typography.css` | Shared Montserrat font-family variables |
 | `@santi020k/theme/tokens.css` | CSS custom properties and Tailwind v4 `@theme` values |
 | `@santi020k/theme/tokens.json` | Raw token data |
 | `@santi020k/theme/tailwind` | Tailwind-compatible theme object |
@@ -42,6 +44,20 @@ This package is ESM-only and expects Node `>=22.18.0`.
 
 The CSS export includes raw HSL custom properties and Tailwind v4 `@theme` mappings. Prefer these tokens over one-off colors when building Santi020k surfaces.
 
+For Santi020k product websites, use the site stylesheet instead. It exposes the same public color language as CSS-ready colors, plus the shared typography variables:
+
+```css
+@import '@santi020k/theme/site.css';
+
+.panel {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--line);
+}
+```
+
+Use `data-santi020k-site="hub"` on the root element for the family hub palette offsets.
+
 ## Typography
 
 Montserrat is the canonical Santi020k web font. Import the typography-only CSS when a project only needs the shared font variables:
@@ -50,11 +66,11 @@ Montserrat is the canonical Santi020k web font. Import the typography-only CSS w
 @import '@santi020k/theme/typography.css';
 
 html {
-  font-family: var(--santi-font-sans);
+  font-family: var(--santi020k-font-sans);
 }
 ```
 
-Consumers should load Montserrat from their preferred delivery path, such as Google Fonts or a self-hosted copy. The package exposes the family stacks and Tailwind font mappings, not renamed or repackaged font files.
+Consumers should load Montserrat from their preferred delivery path, such as Google Fonts or a self-hosted copy. The package exposes the family stacks, not renamed or repackaged font files. Tailwind v4 font mappings remain available through `@santi020k/theme/tokens.css`.
 
 ## JavaScript
 

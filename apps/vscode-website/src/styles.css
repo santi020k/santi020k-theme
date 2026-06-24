@@ -1,27 +1,4 @@
-/* ─── Dark theme (default) ────────────────────────────────────────────────── */
-:root,
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --theme-bg: #110c1d;
-  --surface: #1c1528;
-  --surface-muted: #231d30;
-  --surface-strong: #322b40;
-  --line: #494158;
-  --ink: #dfdde3;
-  --ink-soft: #b6b2bd;
-  --ink-muted: #8d8896;
-  --brand: #945df4;
-  --brand-solid: #5a0fdb;
-  --brand-hover: #752df0;
-  --accent: #b48df7;
-  --success: #7daea3;
-  --warning: #e8b44a;
-  --danger: #ea6962;
-  --glow-rgb: 154 102 244;
-  --btn-secondary-bg: rgb(28 21 40 / 0.72);
-  --section-divider: rgb(73 65 88 / 0.7);
-  --swatch-circle-border: rgb(223 221 227 / 0.22);
-}
+@import '@santi020k/theme/site.css';
 
 /* Editor preview (shared tokens for inheritance) */
 .editor-preview {
@@ -85,33 +62,9 @@
 }
 
 :root {
-  font-family: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
+  font-family: var(--santi020k-font-sans);
   background: var(--theme-bg);
   color: var(--ink);
-}
-
-/* ─── Light theme ─────────────────────────────────────────────────────────── */
-:root[data-theme="light"] {
-  color-scheme: light;
-  --theme-bg: #f8f6fd;
-  --surface: #f0edf9;
-  --surface-muted: #eae7f5;
-  --surface-strong: #e3dff0;
-  --line: #d3cde6;
-  --ink: #302e36;
-  --ink-soft: #403850;
-  --ink-muted: #9880c0;
-  --brand: #6319be;
-  --brand-solid: #5a14b0;
-  --brand-hover: #7730b8;
-  --accent: #7030b0;
-  --success: #28a745;
-  --warning: #c07a10;
-  --danger: #c0392b;
-  --glow-rgb: 99 25 190;
-  --btn-secondary-bg: rgb(248 246 253 / 0.85);
-  --section-divider: rgb(211 205 230 / 0.7);
-  --swatch-circle-border: rgb(58 37 86 / 0.15);
 }
 
 /* ─── Reset & base ────────────────────────────────────────────────────────── */

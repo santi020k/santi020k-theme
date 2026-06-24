@@ -51,6 +51,18 @@ const logo = (x, y, size = 68) => `
   </g>
 `
 
+const websiteLogo = (x, y, size = 68) => {
+  const scale = size / 80
+
+  return `
+  <g transform="translate(${x} ${y}) scale(${scale})">
+    <rect width="80" height="80" rx="18" fill="#5a0fdb"/>
+    <path d="M26 28 L40 40 L26 52" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="48" y1="52" x2="62" y2="52" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  </g>
+`
+}
+
 const editorVisual = `
   <g transform="translate(720 150) scale(0.86)">
     <rect width="398" height="318" rx="18" fill="#0b0712" stroke="#494158" stroke-width="2"/>
@@ -149,7 +161,7 @@ const cardSvg = ({ accent, badge, domain, subtitleLines, title, visual }) => `\
   <path d="M0 482c160-66 310-66 450 0 157 74 326 64 506-31 103-54 184-76 244-66v245H0Z" fill="${accent}" opacity="0.12"/>
   <rect x="64" y="64" width="1072" height="502" rx="26" fill="#110c1d" fill-opacity="0.78" stroke="#494158" stroke-width="2"/>
   <path d="M64 64h1072v8H64Z" fill="${accent}" opacity="0.72"/>
-  ${logo(104, 112)}
+  ${visual === 'hub' ? websiteLogo(104, 112) : logo(104, 112)}
   <text x="196" y="144" fill="${accent}" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="850" letter-spacing="0">${escapeXml(badge)}</text>
   <rect x="196" y="166" width="96" height="4" rx="2" fill="${accent}"/>
   <text x="104" y="318" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="850" letter-spacing="0">${escapeXml(title)}</text>

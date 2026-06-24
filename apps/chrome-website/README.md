@@ -7,7 +7,7 @@ The page should connect the browser theme to the wider Santi020k Theme family, s
 ## Stack
 
 - Runtime: Vite with plain HTML, CSS, and JavaScript
-- Shared helpers: `@santi020k/theme-core`
+- Shared tokens and helpers: `@santi020k/theme`
 - Source: `index.html`, `src/main.js`, `src/styles.css`
 - Vite config: `vite.config.js`
 - Public assets: `public/`

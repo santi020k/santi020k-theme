@@ -11,7 +11,7 @@ import {
   SITE_REVEAL_LIGHT_BACKGROUND,
   SITE_TOUCH_POINTER_QUERY,
   syncSiteThemeToggle
-} from '@santi020k/theme-core/site'
+} from '@santi020k/theme/site'
 
 const circularReveal = (button, isDark, newTheme) => {
   if (window.matchMedia(SITE_TOUCH_POINTER_QUERY).matches) {

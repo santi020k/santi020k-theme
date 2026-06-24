@@ -1,58 +1,11 @@
-:root,
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --theme-bg: #0f0b19;
-  --surface: #1a1426;
-  --surface-muted: #221a31;
-  --surface-strong: #2e2440;
-  --line: #453a55;
-  --line-soft: rgb(69 58 85 / 0.58);
-  --ink: #f1edf8;
-  --ink-soft: #c7c0d2;
-  --ink-muted: #91889f;
-  --brand: #9b66ff;
-  --brand-solid: #6d28f3;
-  --brand-hover: #7f3cff;
-  --accent: #c7a4ff;
-  --success: #78d2bf;
-  --warning: #e8b44a;
-  --danger: #ea6962;
-  --chrome: #7cc9b9;
-  --shadow: rgb(0 0 0 / 0.34);
-  --btn-secondary-bg: rgb(26 20 38 / 0.76);
-  --section-divider: rgb(69 58 85 / 0.66);
-}
-
-:root[data-theme="light"] {
-  color-scheme: light;
-  --theme-bg: #f8f6fd;
-  --surface: #f0edf9;
-  --surface-muted: #eae7f5;
-  --surface-strong: #e3dff0;
-  --line: #d3cde6;
-  --line-soft: rgb(177 165 205 / 0.64);
-  --ink: #302e36;
-  --ink-soft: #403850;
-  --ink-muted: #725b92;
-  --brand: #6319be;
-  --brand-solid: #5a14b0;
-  --brand-hover: #7730b8;
-  --accent: #7030b0;
-  --success: #1f7f67;
-  --warning: #9a610c;
-  --danger: #b33a30;
-  --chrome: #21796a;
-  --shadow: rgb(58 37 86 / 0.16);
-  --btn-secondary-bg: rgb(248 246 253 / 0.88);
-  --section-divider: rgb(211 205 230 / 0.8);
-}
+@import '@santi020k/theme/site.css';
 
 * {
   box-sizing: border-box;
 }
 
 :root {
-  font-family: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
+  font-family: var(--santi020k-font-sans);
   background: var(--theme-bg);
   color: var(--ink);
 }
@@ -122,7 +75,11 @@ img {
   font-weight: 800;
 }
 
-.brand img {
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  color: var(--brand-solid);
   border-radius: 8px;
   box-shadow: 0 0 24px color-mix(in srgb, var(--brand) 34%, transparent);
 }

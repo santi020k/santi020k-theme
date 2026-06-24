@@ -1,0 +1,84 @@
+@import './typography.css';
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --theme-bg: #110c1d;
+  --surface: #1c1528;
+  --surface-muted: #231d30;
+  --surface-strong: #322b40;
+  --line: #494158;
+  --ink: #dfdde3;
+  --ink-soft: #b6b2bd;
+  --ink-muted: #8d8896;
+  --brand: #945df4;
+  --brand-solid: #5a0fdb;
+  --brand-hover: #752df0;
+  --brand-mark-ink: #ffffff;
+  --accent: #b48df7;
+  --success: #7daea3;
+  --warning: #e8b44a;
+  --danger: #ea6962;
+  --glow-rgb: 154 102 244;
+  --btn-secondary-bg: rgb(28 21 40 / 0.72);
+  --section-divider: rgb(73 65 88 / 0.7);
+  --swatch-circle-border: rgb(223 221 227 / 0.22);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --theme-bg: #f8f6fd;
+  --surface: #f0edf9;
+  --surface-muted: #eae7f5;
+  --surface-strong: #e3dff0;
+  --line: #d3cde6;
+  --ink: #302e36;
+  --ink-soft: #403850;
+  --ink-muted: #9880c0;
+  --brand: #6319be;
+  --brand-solid: #5a14b0;
+  --brand-hover: #7730b8;
+  --brand-mark-ink: #ffffff;
+  --accent: #7030b0;
+  --success: #28a745;
+  --warning: #c07a10;
+  --danger: #c0392b;
+  --glow-rgb: 99 25 190;
+  --btn-secondary-bg: rgb(248 246 253 / 0.85);
+  --section-divider: rgb(211 205 230 / 0.7);
+  --swatch-circle-border: rgb(58 37 86 / 0.15);
+}
+
+:root[data-santi020k-site="hub"],
+:root[data-santi020k-site="hub"][data-theme="dark"] {
+  --theme-bg: #0f0b19;
+  --surface: #1a1426;
+  --surface-muted: #221a31;
+  --surface-strong: #2e2440;
+  --line: #453a55;
+  --line-soft: rgb(69 58 85 / 0.58);
+  --ink: #f1edf8;
+  --ink-soft: #c7c0d2;
+  --ink-muted: #91889f;
+  --brand: #9b66ff;
+  --brand-solid: #6d28f3;
+  --brand-hover: #7f3cff;
+  --accent: #c7a4ff;
+  --success: #78d2bf;
+  --chrome: #7cc9b9;
+  --shadow: rgb(0 0 0 / 0.34);
+  --btn-secondary-bg: rgb(26 20 38 / 0.76);
+  --section-divider: rgb(69 58 85 / 0.66);
+}
+
+:root[data-santi020k-site="hub"][data-theme="light"] {
+  --line-soft: rgb(177 165 205 / 0.64);
+  --ink-muted: #725b92;
+  --success: #1f7f67;
+  --warning: #9a610c;
+  --danger: #b33a30;
+  --chrome: #21796a;
+  --shadow: rgb(58 37 86 / 0.16);
+  --btn-secondary-bg: rgb(248 246 253 / 0.88);
+  --section-divider: rgb(211 205 230 / 0.8);
+}
