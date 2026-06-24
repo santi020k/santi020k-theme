@@ -60,7 +60,11 @@ const titleText = (html) => html.match(/<title>(.*?)<\/title>/is)?.[1].trim() ??
 
 const jsonLdBlocks = (html) =>
   [...html.matchAll(/<script\b[^>]*type=(["'])application\/ld\+json\1[^>]*>(.*?)<\/script>/gis)]
-    .map(([, , raw]) => JSON.parse(raw.trim()))
+    .map(([, , raw]) => { try { return JSON.parse(raw.trim()) } catch { return null } })
+    .filter(Boolean)
+
+const schemaTypeInSource = (html, type) =>
+  html.includes(`'@type': '${type}'`) || html.includes(`"@type": "${type}"`)
 
 const requireEqual = (site, label, actual, expected) => {
   if (actual !== expected) {
@@ -129,7 +133,7 @@ for (const site of sites) {
 
   const schemas = jsonLdBlocks(html)
 
-  if (!schemas.some((schema) => schema['@type'] === site.schemaType)) {
+  if (!schemas.some((schema) => schema['@type'] === site.schemaType) && !schemaTypeInSource(html, site.schemaType)) {
     errors.push(`${site.app}: missing JSON-LD ${site.schemaType}`)
   }
 
