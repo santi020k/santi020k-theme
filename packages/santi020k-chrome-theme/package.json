@@ -9,9 +9,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "dev": "vite website --host 127.0.0.1 --port 4175",
-    "build": "vite build website",
-    "preview": "vite preview website --host 127.0.0.1 --port 4175",
+    "build": "pnpm run package:dry",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "validate:a11y": "node scripts/validate-theme.mjs",
@@ -27,7 +25,6 @@
   "devDependencies": {
     "@santi020k/eslint-config-basic": "catalog:",
     "archiver": "catalog:",
-    "eslint": "catalog:",
-    "vite": "catalog:"
+    "eslint": "catalog:"
   }
 }

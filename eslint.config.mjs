@@ -22,8 +22,7 @@ export default await defineConfig({
 },
 {
   files: [
-    'apps/*/src/**/*.js',
-    'packages/santi020k-chrome-theme/website/src/**/*.js'
+    'apps/*/src/**/*.js'
   ],
   languageOptions: {
     globals: {

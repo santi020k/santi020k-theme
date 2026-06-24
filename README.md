@@ -8,6 +8,7 @@ Monorepo for the Santi020k theme family: the VS Code extension, the Chrome brows
 - `packages/santi020k-chrome-theme` - Chrome Web Store theme package
 - `apps/website` - theme hub for `theme.santi020k.com`
 - `apps/vscode-website` - VS Code theme site for `vscode.santi020k.com`
+- `apps/chrome-website` - Chrome theme site for `chrome.santi020k.com`
 - `scripts` and `tests` - repository validation, release, and theme tooling
 
 ## Common Commands
@@ -18,7 +19,10 @@ pnpm run validate
 pnpm run package:extension
 pnpm run site:dev
 pnpm run site:vscode:dev
+pnpm run site:chrome:dev
 pnpm run commit
 ```
 
 The full extension README lives in [`packages/santi020k-theme/README.md`](packages/santi020k-theme/README.md).
+
+The project architecture is documented in [`docs/architecture.md`](docs/architecture.md).

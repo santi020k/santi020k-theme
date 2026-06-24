@@ -26,15 +26,17 @@
         "src/**/*.js"
       ]
     },
+    "apps/chrome-website": {
+      "project": [
+        "src/**/*.js"
+      ]
+    },
     "packages/santi020k-chrome-theme": {
       "entry": [
-        "package.json",
-        "website/src/main.js",
-        "website/vite.config.js"
+        "package.json"
       ],
       "project": [
-        "scripts/**/*.mjs",
-        "website/src/**/*.js"
+        "scripts/**/*.mjs"
       ]
     },
     "packages/santi020k-theme": {

@@ -126,6 +126,12 @@ importers:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.0)(jsdom@25.0.1)(vite@8.1.0(@types/node@26.0.0)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
 
+  apps/chrome-website:
+    devDependencies:
+      vite:
+        specifier: ^8.1.0
+        version: 8.1.0(@types/node@26.0.0)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)
+
   apps/vscode-website:
     devDependencies:
       vite:
@@ -149,9 +155,6 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 10.5.0(jiti@2.7.0)
-      vite:
-        specifier: ^8.1.0
-        version: 8.1.0(@types/node@26.0.0)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)
 
   packages/santi020k-theme: {}
 

@@ -36,7 +36,7 @@ Use `patch` for fixes, `minor` for new theme coverage or project capabilities, a
 
 Open this repository in VS Code and press `F5` to launch an Extension Development Host. After editing a theme file, reload the development host window to see the latest colors.
 
-The VS Code extension package lives in `packages/santi020k-theme`, the Chrome theme package lives in `packages/santi020k-chrome-theme`, the hub website lives in `apps/website`, and the VS Code website lives in `apps/vscode-website`.
+The VS Code extension package lives in `packages/santi020k-theme`, the Chrome theme package lives in `packages/santi020k-chrome-theme`, the hub website lives in `apps/website`, the VS Code website lives in `apps/vscode-website`, and the Chrome website lives in `apps/chrome-website`.
 
 ## Release Checklist
 

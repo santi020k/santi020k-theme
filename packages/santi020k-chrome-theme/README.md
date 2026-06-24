@@ -29,12 +29,12 @@ This package lives in the Santi020k theme monorepo alongside the VS Code extensi
 ```bash
 pnpm install
 
-pnpm run dev          # Preview the marketing website (localhost:4175)
-pnpm run build        # Production build of the website
-pnpm run validate     # Validate manifest + run dry-run package
-pnpm run sync         # Sync colors from VS Code theme + regenerate NTP images
-pnpm run package      # Build dist/santi020k-chrome-theme.zip for the Web Store
-pnpm run package:dry  # Validate only, no zip written
+pnpm --filter @santi020k/santi020k-chrome-theme-website run dev      # Preview the Chrome website
+pnpm --filter @santi020k/santi020k-chrome-theme-website run build    # Production website build
+pnpm --filter santi020k-chrome-theme run validate                    # Validate manifests + dry-run package
+pnpm --filter santi020k-chrome-theme run sync                        # Sync colors + regenerate NTP images
+pnpm --filter santi020k-chrome-theme run package                     # Build dist/*.zip for the Web Store
+pnpm --filter santi020k-chrome-theme run package:dry                 # Validate only, no zip written
 ```
 
 ### Sync from VS Code theme

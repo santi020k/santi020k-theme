@@ -4,6 +4,16 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '.changeset/**'
+      - 'package.json'
+      - 'packages/santi020k-theme/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'scripts/ensure-release-tag.mjs'
+      - 'scripts/publish-registries.mjs'
+      - 'scripts/sync-website-version.mjs'
+      - '.github/workflows/release.yml'
   workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}

@@ -11,11 +11,13 @@ website:
       - any-glob-to-any-file:
           - 'apps/website/**'
           - 'apps/vscode-website/**'
+          - 'apps/chrome-website/**'
 
 chrome:
   - changed-files:
       - any-glob-to-any-file:
           - 'packages/santi020k-chrome-theme/**'
+          - 'apps/chrome-website/**'
 
 release:
   - changed-files:

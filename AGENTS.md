@@ -11,6 +11,7 @@ This is a Santi020k theme family monorepo centered on the `santi020k-theme` VS C
 - The Chrome browser theme package lives in `packages/santi020k-chrome-theme/`.
 - The theme hub website lives in `apps/website/`.
 - The VS Code theme website lives in `apps/vscode-website/`.
+- The Chrome theme website lives in `apps/chrome-website/`.
 - Release automation uses Changesets and publishes to both the Visual Studio Marketplace and Open VSX.
 - Validation scripts live in `scripts/`.
 
@@ -60,6 +61,7 @@ Prefer `pnpm run validate` before finishing any user-visible change. It parses t
 
 - Website source is under `apps/website/`.
 - VS Code website source is under `apps/vscode-website/`.
+- Chrome website source is under `apps/chrome-website/`.
 - Build with `pnpm run site:build` from the repo root.
 - Keep visible focus styles and external-link safety intact.
 - The site is deployed outside the extension package; `packages/santi020k-theme/.vscodeignore` should continue excluding repo-only app and tooling paths.
