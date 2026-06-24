@@ -13,7 +13,8 @@ This is a Santi020k theme family monorepo centered on the `santi020k-theme` VS C
 - The VS Code theme website lives in `apps/vscode-website/`.
 - The Chrome theme website lives in `apps/chrome-website/`.
 - Release automation uses Changesets and publishes to both the Visual Studio Marketplace and Open VSX.
-- Validation scripts live in `scripts/`.
+- VS Code extension validation and release scripts live in `packages/santi020k-theme/scripts/`.
+- App-specific scripts live inside their owning `apps/*` workspace.
 
 ## Repo-Local Skills
 

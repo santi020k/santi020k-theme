@@ -10,9 +10,9 @@ on:
       - 'packages/santi020k-theme/**'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
-      - 'scripts/ensure-release-tag.mjs'
-      - 'scripts/publish-registries.mjs'
-      - 'scripts/sync-website-version.mjs'
+      - 'apps/vscode-website/scripts/sync-website-version.mjs'
+      - 'packages/santi020k-theme/scripts/ensure-release-tag.mjs'
+      - 'packages/santi020k-theme/scripts/publish-registries.mjs'
       - '.github/workflows/release.yml'
   workflow_dispatch:
 

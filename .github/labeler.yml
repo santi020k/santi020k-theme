@@ -3,8 +3,8 @@ theme:
       - any-glob-to-any-file:
           - 'themes/**'
           - 'packages/santi020k-theme/themes/**'
-          - 'scripts/validate-themes.mjs'
-          - 'tests/theme-validation.test.mjs'
+          - 'packages/santi020k-theme/scripts/validate-themes.mjs'
+          - 'packages/santi020k-theme/tests/theme-validation.test.mjs'
 
 website:
   - changed-files:
@@ -23,9 +23,9 @@ release:
   - changed-files:
       - any-glob-to-any-file:
           - '.changeset/**'
-          - 'scripts/publish-registries.mjs'
-          - 'scripts/ensure-release-tag.mjs'
-          - 'scripts/sync-website-version.mjs'
+          - 'apps/vscode-website/scripts/sync-website-version.mjs'
+          - 'packages/santi020k-theme/scripts/publish-registries.mjs'
+          - 'packages/santi020k-theme/scripts/ensure-release-tag.mjs'
           - '.github/workflows/release.yml'
 
 marketplace:
@@ -37,8 +37,8 @@ marketplace:
           - 'packages/santi020k-theme/CHANGELOG.md'
           - 'packages/santi020k-theme/icon.png'
           - 'packages/santi020k-theme/assets/**'
-          - 'scripts/check-marketplace-readiness.mjs'
-          - 'tests/marketplace-readiness.test.mjs'
+          - 'packages/santi020k-theme/scripts/check-marketplace-readiness.mjs'
+          - 'packages/santi020k-theme/tests/marketplace-readiness.test.mjs'
 
 ci:
   - changed-files:
@@ -55,7 +55,8 @@ docs:
 tests:
   - changed-files:
       - any-glob-to-any-file:
-          - 'tests/**'
+          - 'apps/*/tests/**'
+          - 'packages/*/tests/**'
 
 dependencies:
   - changed-files:

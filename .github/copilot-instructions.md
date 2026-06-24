@@ -14,9 +14,9 @@ This repository contains a VS Code color theme extension with dark and light var
 
 - `packages/santi020k-theme/themes/santi020k-dark-color-theme.json`
 - `packages/santi020k-theme/themes/santi020k-light-color-theme.json`
-- `scripts/validate-themes.mjs`
-- `scripts/check-marketplace-readiness.mjs`
-- `scripts/publish-registries.mjs`
+- `packages/santi020k-theme/scripts/validate-themes.mjs`
+- `packages/santi020k-theme/scripts/check-marketplace-readiness.mjs`
+- `packages/santi020k-theme/scripts/publish-registries.mjs`
 - `.github/workflows/release.yml`
 - `.github/workflows/validate.yml`
 - `apps/website/src/styles.css`
@@ -33,4 +33,4 @@ This repository contains a VS Code color theme extension with dark and light var
 - Releases use Changesets.
 - Publishing targets both Visual Studio Marketplace and Open VSX.
 - Required secrets: `VSCE_PAT` and `OVSX_PAT`.
-- Do not include `.github`, `.changeset`, `scripts`, `website`, or dependencies in the VSIX package.
+- Do not include `.github`, `.changeset`, package-local `scripts`, `website`, or dependencies in the VSIX package.

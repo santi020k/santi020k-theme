@@ -9,7 +9,8 @@ Monorepo for the Santi020k theme family: the VS Code extension, the Chrome brows
 - `apps/website` - theme hub for `theme.santi020k.com`
 - `apps/vscode-website` - VS Code theme site for `vscode.santi020k.com`
 - `apps/chrome-website` - Chrome theme site for `chrome.santi020k.com`
-- `scripts` and `tests` - repository validation, release, and theme tooling
+- `packages/santi020k-theme/scripts` and `packages/santi020k-theme/tests` - VS Code validation, release, and theme tooling
+- `apps/vscode-website/scripts` and `apps/vscode-website/tests` - VS Code website version sync tooling
 
 ## Common Commands
 

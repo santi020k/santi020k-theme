@@ -137,13 +137,14 @@
   },
   "scripts": {
     "build": "pnpm run build:themes",
-    "build:themes": "pnpm run format:themes && node ../../scripts/generate-hc-light.mjs && node ../../scripts/generate-variants.mjs",
-    "format:themes": "node ../../scripts/format-themes.mjs",
-    "validate:themes": "node ../../scripts/validate-themes.mjs",
-    "validate:marketplace": "node ../../scripts/check-marketplace-readiness.mjs",
+    "build:themes": "pnpm run format:themes && node scripts/generate-hc-light.mjs && node scripts/generate-variants.mjs",
+    "format:themes": "node scripts/format-themes.mjs",
+    "validate:themes": "node scripts/validate-themes.mjs",
+    "validate:marketplace": "node scripts/check-marketplace-readiness.mjs",
     "package": "pnpm run build && vsce package --no-dependencies",
-    "publish": "node ../../scripts/publish-registries.mjs",
+    "publish": "node scripts/publish-registries.mjs",
     "publish:pre": "pnpm --workspace-root run validate && vsce publish --pre-release",
-    "release": "node ../../scripts/publish-registries.mjs"
+    "release:tag": "node scripts/ensure-release-tag.mjs",
+    "release": "node scripts/publish-registries.mjs"
   }
 }

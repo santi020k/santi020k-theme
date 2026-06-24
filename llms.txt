@@ -11,9 +11,9 @@
 - `apps/website/`: Theme hub website for `theme.santi020k.com`.
 - `apps/vscode-website/`: VS Code theme website for `vscode.santi020k.com`.
 - `apps/chrome-website/`: Chrome theme website for `chrome.santi020k.com`.
-- `scripts/validate-themes.mjs`: Theme JSON, token coverage, hex, duplicate-key, and contrast validation.
-- `scripts/check-marketplace-readiness.mjs`: Marketplace package preflight checks.
-- `scripts/publish-registries.mjs`: Idempotent publisher for Visual Studio Marketplace and Open VSX.
+- `packages/santi020k-theme/scripts/validate-themes.mjs`: Theme JSON, token coverage, hex, duplicate-key, and contrast validation.
+- `packages/santi020k-theme/scripts/check-marketplace-readiness.mjs`: Marketplace package preflight checks.
+- `packages/santi020k-theme/scripts/publish-registries.mjs`: Idempotent publisher for Visual Studio Marketplace and Open VSX.
 - `.changeset/config.json`: Changesets release configuration.
 - `.github/workflows/validate.yml`: CI validation.
 - `.github/workflows/release.yml`: Release PR and publish workflow.

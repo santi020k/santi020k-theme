@@ -45,8 +45,9 @@ export default await defineConfig({
 },
 {
   files: [
-    'scripts/*.mjs',
-    'packages/santi020k-chrome-theme/scripts/*.mjs'
+    'apps/vscode-website/scripts/*.mjs',
+    'packages/santi020k-chrome-theme/scripts/*.mjs',
+    'packages/santi020k-theme/scripts/*.mjs'
   ],
   rules: {
     'n/hashbang': 'off',
@@ -60,7 +61,10 @@ export default await defineConfig({
   }
 },
 {
-  files: ['tests/*.test.mjs'],
+  files: [
+    'apps/*/tests/*.test.mjs',
+    'packages/*/tests/*.test.mjs'
+  ],
   rules: {
     'n/no-unpublished-import': 'off',
     'security/detect-non-literal-fs-filename': 'off'

@@ -9,11 +9,11 @@
   "workspaces": {
     ".": {
       "entry": [
-        "scripts/*.mjs"
+        "eslint.config.mjs",
+        "package.json"
       ],
       "project": [
-        "scripts/**/*.mjs",
-        "tests/**/*.mjs"
+        "*.mjs"
       ]
     },
     "apps/website": {
@@ -22,7 +22,13 @@
       ]
     },
     "apps/vscode-website": {
+      "entry": [
+        "package.json",
+        "scripts/*.mjs"
+      ],
       "project": [
+        "scripts/**/*.mjs",
+        "tests/**/*.mjs",
         "src/**/*.js"
       ]
     },
@@ -41,7 +47,12 @@
     },
     "packages/santi020k-theme": {
       "entry": [
-        "package.json"
+        "package.json",
+        "scripts/*.mjs"
+      ],
+      "project": [
+        "scripts/**/*.mjs",
+        "tests/**/*.mjs"
       ]
     }
   }

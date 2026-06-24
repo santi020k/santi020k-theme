@@ -1,8 +1,8 @@
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-export const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-export const extensionPackageDir = resolve(repoRoot, 'packages/santi020k-theme')
+export const extensionPackageDir = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+export const repoRoot = resolve(extensionPackageDir, '../..')
 export const themeHubWebsiteDir = resolve(repoRoot, 'apps/website')
 export const vscodeWebsiteDir = resolve(repoRoot, 'apps/vscode-website')
 

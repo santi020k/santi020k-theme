@@ -32,7 +32,8 @@ Workspace-local scripts still provide the isolation we want:
 
 - Put store manifests, publish assets, zipping scripts, and package validation in `packages/<surface>-theme`.
 - Put marketing pages, static website assets, SEO metadata, and site-specific Vite config in `apps/<surface>-website`.
-- Put shared cross-project validation and release scripts in root `scripts/`.
+- Keep package/app-owned scripts and tests inside the owning workspace; root commands should orchestrate workspace scripts.
+- Put only truly shared cross-project tooling at the root.
 - Add reusable libraries under `packages/<name>` only when at least two workspaces need the same code.
 
 ## CI And Release Boundaries
