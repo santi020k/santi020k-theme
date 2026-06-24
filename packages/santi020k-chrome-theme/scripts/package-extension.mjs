@@ -75,8 +75,20 @@ const validate = manifestFile => {
   }
 
   for (const imagePath of Object.values(manifest.theme.images ?? {})) {
-    if (!existsSync(resolveRuntimeAsset(imagePath)))
+    const absImagePath = resolveRuntimeAsset(imagePath);
+
+    if (!existsSync(absImagePath))
       throw new Error(`Missing required image: ${imagePath}`);
+
+    if (imagePath.endsWith('.png')) {
+      // Byte 25 of a valid PNG is the IHDR color type: 2=RGB, 6=RGBA.
+      // Chrome's theme engine cannot decode RGBA PNGs — run sync:ntp-images to fix.
+      const header = readFileSync(absImagePath, { encoding: null });
+      const colorType = header[25];
+
+      if (colorType !== 2)
+        throw new Error(`${imagePath}: PNG is color type ${colorType} (RGBA). Chrome requires opaque RGB. Run: pnpm run sync:ntp-images`);
+    }
   }
 
   return manifest.version;
