@@ -36,6 +36,32 @@ if (!existsSync(manifestPath)) {
 }
 
 const outDir = join(root, '.dev', variant);
+const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+
+const resolveRuntimeAsset = assetPath => {
+  const [assetRoot] = assetPath.split('/');
+  const entry = chromeRuntimeAssetEntries.find(({ destination }) => destination === assetRoot);
+
+  if (!entry) return join(root, assetPath);
+
+  return join(themePackageRoot, entry.source, assetPath.slice(assetRoot.length + 1));
+};
+
+const copyRuntimeAsset = assetPath => {
+  const source = resolveRuntimeAsset(assetPath);
+
+  if (!existsSync(source)) {
+    console.error(`Missing runtime asset: ${assetPath}`);
+
+    process.exit(1);
+  }
+
+  const destination = join(outDir, assetPath);
+
+  mkdirSync(dirname(destination), { recursive: true });
+
+  cpSync(source, destination);
+};
 
 rmSync(outDir, { force: true, recursive: true });
 
@@ -43,19 +69,14 @@ mkdirSync(outDir, { recursive: true });
 
 writeFileSync(
   join(outDir, 'manifest.json'),
-  `${JSON.stringify(JSON.parse(readFileSync(manifestPath, 'utf8')), null, 2)}\n`
+  `${JSON.stringify(manifest, null, 2)}\n`
 );
 
-for (const entry of chromeRuntimeAssetEntries) {
-  const source = join(themePackageRoot, entry.source);
-
-  if (!existsSync(source)) {
-    console.warn(`Skipping missing runtime assets: ${source}`);
-
-    continue;
-  }
-
-  cpSync(source, join(outDir, entry.destination), { recursive: true });
+for (const assetPath of new Set([
+  ...Object.values(manifest.icons ?? {}),
+  ...Object.values(manifest.theme?.images ?? {})
+])) {
+  copyRuntimeAsset(assetPath);
 }
 
 const licensePath = join(root, 'LICENSE');

@@ -66,6 +66,8 @@ words:
   - grid-template-columns
   - grid-template-rows
   - hashkey
+  - IDAT
+  - IEND
   - IHDR
   - hclight
   - hexcode

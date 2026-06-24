@@ -10,9 +10,12 @@ import { fileURLToPath } from 'url';
 
 import {
   chromeRuntimeAssetEntries,
+  chromeThemeImageRequirements,
   chromeThemeVariantManifests
 } from '@santi020k/theme';
 import { ZipArchive } from 'archiver';
+
+import { assertStoreSafeNtpPng } from './png-utils.mjs';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dir, '..');
@@ -24,15 +27,7 @@ const VARIANTS = Object.entries(chromeThemeVariantManifests).map(([name, config]
   ...config
 }));
 
-// Runtime entries to include in the zip (relative to root).
-const INCLUDE_COMMON = [
-  ...chromeRuntimeAssetEntries.map(entry => ({
-    destination: entry.destination,
-    source: join(themePackageRoot, entry.source),
-    type: 'dir'
-  })),
-  { destination: 'LICENSE', source: join(root, 'LICENSE'), type: 'file' },
-];
+const IMAGE_REQUIREMENTS = new Map(Object.entries(chromeThemeImageRequirements));
 
 const resolveRuntimeAsset = assetPath => {
   const [assetRoot] = assetPath.split('/');
@@ -42,6 +37,13 @@ const resolveRuntimeAsset = assetPath => {
 
   return join(themePackageRoot, entry.source, assetPath.slice(assetRoot.length + 1));
 };
+
+const getManifestRuntimeAssets = manifest => [
+  ...new Set([
+    ...Object.values(manifest.icons ?? {}),
+    ...Object.values(manifest.theme?.images ?? {})
+  ])
+].sort();
 
 const validate = manifestFile => {
   const manifestPath = join(root, manifestFile);
@@ -74,27 +76,29 @@ const validate = manifestFile => {
       throw new Error(`Missing required icon: ${iconPath}`);
   }
 
-  for (const imagePath of Object.values(manifest.theme.images ?? {})) {
+  for (const [imageKey, imagePath] of Object.entries(manifest.theme.images ?? {})) {
     const absImagePath = resolveRuntimeAsset(imagePath);
 
     if (!existsSync(absImagePath))
       throw new Error(`Missing required image: ${imagePath}`);
 
-    if (imagePath.endsWith('.png')) {
-      // Byte 25 of a valid PNG is the IHDR color type: 2=RGB, 6=RGBA.
-      // Chrome's theme engine cannot decode RGBA PNGs — run sync:ntp-images to fix.
-      const header = readFileSync(absImagePath, { encoding: null });
-      const colorType = header[25];
+    if (!imagePath.endsWith('.png'))
+      throw new Error(`${imagePath}: Chrome theme images must be PNG files. Run: pnpm run sync:ntp-images`);
 
-      if (colorType !== 2)
-        throw new Error(`${imagePath}: PNG is color type ${colorType} (RGBA). Chrome requires opaque RGB. Run: pnpm run sync:ntp-images`);
+    const requirement = IMAGE_REQUIREMENTS.get(imageKey);
+
+    if (requirement) {
+      assertStoreSafeNtpPng(absImagePath, requirement, imagePath);
     }
   }
 
-  return manifest.version;
+  return {
+    manifest,
+    version: manifest.version
+  };
 };
 
-const build = (manifestFile, outputName, version) => new Promise((resolve, reject) => {
+const build = (manifestFile, manifest, outputName, version) => new Promise((resolve, reject) => {
     mkdirSync(join(root, 'dist'), { recursive: true });
 
     const outPath = join(root, 'dist', outputName);
@@ -114,16 +118,14 @@ const build = (manifestFile, outputName, version) => new Promise((resolve, rejec
     // Add manifest as manifest.json in the zip
     archive.file(join(root, manifestFile), { name: 'manifest.json' });
 
-    for (const entry of INCLUDE_COMMON) {
-      const abs = entry.source;
+    const licensePath = join(root, 'LICENSE');
 
-      if (!existsSync(abs)) continue;
+    if (existsSync(licensePath)) {
+      archive.file(licensePath, { name: 'LICENSE' });
+    }
 
-      if (entry.type === 'dir') {
-        archive.directory(abs, entry.destination);
-      } else {
-        archive.file(abs, { name: entry.destination });
-      }
+    for (const assetPath of getManifestRuntimeAssets(manifest)) {
+      archive.file(resolveRuntimeAsset(assetPath), { name: assetPath });
     }
 
     archive.finalize();
@@ -132,20 +134,22 @@ const build = (manifestFile, outputName, version) => new Promise((resolve, rejec
 const run = async () => {
   try {
     for (const variant of VARIANTS) {
-      const version = validate(variant.manifest);
+      const result = validate(variant.manifest);
 
-      if (!version) {
+      if (!result) {
         console.log(`Skipping ${variant.name} (manifest not found)`);
 
         continue;
       }
+
+      const { manifest, version } = result;
 
       console.log(`Validating ${variant.manifest} v${version}...`);
 
       if (dryRun) {
         console.log(`  --dry-run: ${variant.name} validation passed.`);
       } else {
-        await build(variant.manifest, variant.output, version);
+        await build(variant.manifest, manifest, variant.output, version);
       }
     }
   } catch (error) {

@@ -21,9 +21,15 @@ export const chromeThemeVariantManifests = {
 
 export const chromeThemeImageRequirements = {
   theme_ntp_background: {
+    bitDepth: 8,
+    colorType: 2,
     format: 'png',
-    minWidth: 3840,
-    minHeight: 2160
+    height: 1080,
+    maxHeight: 1080,
+    maxWidth: 1920,
+    minHeight: 1080,
+    minWidth: 1920,
+    width: 1920
   }
 }
 

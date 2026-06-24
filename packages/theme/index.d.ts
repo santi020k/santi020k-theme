@@ -21,9 +21,15 @@ export declare const chromeThemeVariantManifests: Record<
 export declare const chromeThemeImageRequirements: Record<
   string,
   {
+    bitDepth: 8
+    colorType: 2
     format: 'png'
+    height: number
+    maxHeight: number
+    maxWidth: number
     minWidth: number
     minHeight: number
+    width: number
   }
 >
 export declare const chromeThemeSourceTokenRoles: {
