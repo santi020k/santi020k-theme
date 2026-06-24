@@ -16,6 +16,7 @@ catalog:
   "@santi020k/eslint-config-basic": ^2.1.1
   "@types/node": ^26.0.0
   "@vscode/vsce": ^3.9.2
+  archiver: ^7.0.1
   commitizen: ^4.3.2
   cspell: ^10.0.1
   cz-conventional-changelog: ^3.3.0

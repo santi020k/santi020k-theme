@@ -8,7 +8,9 @@ export default await defineConfig({
     '**/*.yml',
     '**/*.yaml',
     'scratch/**',
-    'apps/website/dist/**',
+    'apps/*/dist/**',
+    'packages/*/dist/**',
+    'packages/santi020k-chrome-theme/scratch/**',
     'packages/santi020k-theme/themes/*-bold-color-theme.json',
     'packages/santi020k-theme/themes/*-italic-color-theme.json',
     'packages/santi020k-theme/themes/santi020k-hc-light-color-theme.json'
@@ -19,7 +21,10 @@ export default await defineConfig({
   runtime: Runtime.Node
 },
 {
-  files: ['apps/website/src/**/*.js'],
+  files: [
+    'apps/*/src/**/*.js',
+    'packages/santi020k-chrome-theme/website/src/**/*.js'
+  ],
   languageOptions: {
     globals: {
       document: 'readonly',
@@ -40,8 +45,16 @@ export default await defineConfig({
   },
 },
 {
-  files: ['scripts/*.mjs'],
+  files: [
+    'scripts/*.mjs',
+    'packages/santi020k-chrome-theme/scripts/*.mjs'
+  ],
   rules: {
+    'n/hashbang': 'off',
+    'n/no-process-exit': 'off',
+    'n/no-unpublished-import': 'off',
+    'no-unused-vars': 'off',
+    'promise/param-names': 'off',
     'security/detect-non-literal-fs-filename': 'off',
     'security/detect-object-injection': 'off',
     'turbo/no-undeclared-env-vars': 'off'

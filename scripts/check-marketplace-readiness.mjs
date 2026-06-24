@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { extensionPackageDir, repoRoot, websiteDir } from './paths.mjs'
+import { extensionPackageDir, repoRoot, vscodeWebsiteDir } from './paths.mjs'
 
 const requiredFiles = [
   'README.md',
@@ -96,7 +96,7 @@ const getWebsiteSoftwareVersion = html => {
 
 export const checkMarketplaceReadiness = (packageDir = extensionPackageDir, {
   repositoryDir = packageDir === extensionPackageDir ? repoRoot : packageDir,
-  websiteRoot = packageDir === extensionPackageDir ? websiteDir : join(packageDir, 'website')
+  websiteRoot = packageDir === extensionPackageDir ? vscodeWebsiteDir : join(packageDir, 'website')
 } = {}) => {
   const resolvePath = path => join(packageDir, path)
   const resolveRepoPath = path => join(repositoryDir, path)

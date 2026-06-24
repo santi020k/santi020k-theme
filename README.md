@@ -1,11 +1,13 @@
 # santi020k-theme
 
-Monorepo for the `santi020k-theme` VS Code color theme extension and its preview website.
+Monorepo for the Santi020k theme family: the VS Code extension, the Chrome browser theme, and their websites.
 
 ## Workspaces
 
 - `packages/santi020k-theme` - published VS Code extension package
-- `apps/website` - marketing and preview website
+- `packages/santi020k-chrome-theme` - Chrome Web Store theme package
+- `apps/website` - theme hub for `theme.santi020k.com`
+- `apps/vscode-website` - VS Code theme site for `vscode.santi020k.com`
 - `scripts` and `tests` - repository validation, release, and theme tooling
 
 ## Common Commands
@@ -15,6 +17,7 @@ pnpm install
 pnpm run validate
 pnpm run package:extension
 pnpm run site:dev
+pnpm run site:vscode:dev
 pnpm run commit
 ```
 

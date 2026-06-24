@@ -6,7 +6,7 @@
 
 A deep indigo-black dark, a purple-tinted light, and high contrast variants for VS Code — built for long sessions, not just screenshots. Available in 12 fine-tuned variants (Dark, Light, HC Dark, HC Light) across Base, Bold, and Italic styles.
 
-**→ [theme.santi020k.com](https://theme.santi020k.com)**
+**-> [vscode.santi020k.com](https://vscode.santi020k.com)**
 
 ---
 

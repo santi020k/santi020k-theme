@@ -400,8 +400,6 @@
     "testing.uncoveredBranchBackground": "#ff707015",
     "testing.uncoveredGutterBackground": "#ff707030",
     // Git & SCM
-    "commentsView.resolvedIcon": "#60e098",
-    "commentsView.unresolvedIcon": "#ffc060",
     "gitDecoration.addedResourceForeground": "#60e098",
     "gitDecoration.conflictingResourceForeground": "#ffc060",
     "gitDecoration.deletedResourceForeground": "#ff7070",
@@ -534,6 +532,8 @@
     "chat.slashCommandBackground": "#261740",
     "chat.slashCommandForeground": "#a570ff",
     "chatManagement.sashBorder": "#602cba",
+    "commentsView.resolvedIcon": "#60e098",
+    "commentsView.unresolvedIcon": "#ffc060",
     "editor.findMatchBackground": "#590cdf80",
     "editor.findMatchHighlightBackground": "#4609ae50",
     "editor.foldBackground": "#26174040",

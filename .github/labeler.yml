@@ -10,6 +10,12 @@ website:
   - changed-files:
       - any-glob-to-any-file:
           - 'apps/website/**'
+          - 'apps/vscode-website/**'
+
+chrome:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'packages/santi020k-chrome-theme/**'
 
 release:
   - changed-files:

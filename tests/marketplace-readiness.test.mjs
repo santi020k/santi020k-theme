@@ -15,7 +15,7 @@ const packageJson = {
   version: '1.2.0',
   packageManager: 'pnpm@10.32.1',
   publisher: 'santi020k',
-  homepage: 'https://theme.santi020k.com',
+  homepage: 'https://vscode.santi020k.com',
   repository: {
     type: 'git',
     url: 'https://github.com/santi020k/santi020k-theme'

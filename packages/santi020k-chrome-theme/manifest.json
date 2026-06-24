@@ -1,0 +1,164 @@
+{
+  "manifest_version": 3,
+  "name": "Santi020k Theme",
+  "version": "1.3.3",
+  "description": "Browser chrome aligned with the Santi020k VS Code theme - deep violet surfaces, muted lavender text, and violet accents.",
+  "homepage_url": "https://chrome.santi020k.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "theme": {
+    "images": {
+      "theme_ntp_background": "images/theme_ntp_background.png"
+    },
+    "properties": {
+      "ntp_background_alignment": "center",
+      "ntp_background_repeat": "no-repeat",
+      "ntp_logo_alternate": 1
+    },
+    "colors": {
+      "bookmark_text": [
+        223,
+        221,
+        227
+      ],
+      "button_background": [
+        35,
+        26,
+        50
+      ],
+      "control_background": [
+        35,
+        29,
+        48
+      ],
+      "frame": [
+        11,
+        7,
+        18
+      ],
+      "frame_inactive": [
+        9,
+        6,
+        15
+      ],
+      "frame_incognito": [
+        8,
+        5,
+        13
+      ],
+      "frame_incognito_inactive": [
+        5,
+        3,
+        8
+      ],
+      "background_tab": [
+        11,
+        7,
+        18
+      ],
+      "ntp_background": [
+        17,
+        12,
+        29
+      ],
+      "ntp_header": [
+        28,
+        21,
+        40
+      ],
+      "ntp_link": [
+        148,
+        93,
+        244
+      ],
+      "ntp_link_underline": [
+        148,
+        93,
+        244
+      ],
+      "ntp_section": [
+        28,
+        21,
+        40
+      ],
+      "ntp_section_link": [
+        180,
+        141,
+        247
+      ],
+      "ntp_section_text": [
+        182,
+        178,
+        189
+      ],
+      "ntp_text": [
+        223,
+        221,
+        227
+      ],
+      "omnibox_background": [
+        17,
+        12,
+        29
+      ],
+      "omnibox_text": [
+        223,
+        221,
+        227
+      ],
+      "tab_background_separator": [
+        35,
+        29,
+        48
+      ],
+      "tab_background_text": [
+        161,
+        157,
+        168
+      ],
+      "tab_background_text_inactive": [
+        141,
+        136,
+        150
+      ],
+      "tab_background_text_incognito": [
+        141,
+        136,
+        150
+      ],
+      "tab_background_text_incognito_inactive": [
+        94,
+        87,
+        107
+      ],
+      "tab_line": [
+        117,
+        45,
+        240
+      ],
+      "tab_text": [
+        223,
+        221,
+        227
+      ],
+      "toolbar": [
+        28,
+        21,
+        40
+      ],
+      "toolbar_button_icon": [
+        182,
+        178,
+        189
+      ],
+      "toolbar_text": [
+        223,
+        221,
+        227
+      ]
+    }
+  }
+}

@@ -9,6 +9,7 @@ words:
   - align-items
   - alpinejs
   - antialiased
+  - archiver
   - auroraui
   - autoincrement
   - Avenir
@@ -68,6 +69,7 @@ words:
   - immutability
   - inactive-background
   - inactive-border
+  - incognito
   - indigo
   - inlay-hints
   - inter
@@ -85,6 +87,7 @@ words:
   - lightningcss
   - line-height
   - linejoin
+  - linearizing
   - llms
   - margin-inline
   - max-height
@@ -100,6 +103,7 @@ words:
   - neumorphism
   - nodejs
   - npx
+  - omnibox
   - outfit
   - outline-offset
   - ovsx
@@ -122,12 +126,15 @@ words:
   - santi020k-hc
   - santi020k-light
   - santi020k-theme
+  - santi020k-chrome
   - scroll-behavior
   - Segoe
   - selection-background
   - selection-foreground
   - semantic-highlighting
   - semantic-token-colors
+  - screencaptures
+  - screenshotting
   - shadcn
   - side-bar
   - skeuomorphism
@@ -137,6 +144,7 @@ words:
   - sticky-scroll
   - suggest-widget
   - tailwindcss
+  - tabstrip
   - text-decoration
   - text-transform
   - textmate
@@ -150,6 +158,7 @@ words:
   - tsconfck
   - undici
   - unrs
+  - unsuffixed
   - urlset
   - v1.4.0
   - v1.5.0
@@ -160,6 +169,8 @@ words:
   - vscode
   - vscodeignore
   - vscodium
+  - webp
+  - webstore
   - walkthrough
   - wordmark
 ignorePaths:
@@ -173,6 +184,7 @@ ignorePaths:
   - .agents/**
   - .changeset/**
   - .turbo/**
-  - apps/website/dist/**
-  - apps/website/.vite/**
+  - apps/*/dist/**
+  - apps/*/.vite/**
+  - packages/*/dist/**
   - packages/santi020k-theme/*.vsix

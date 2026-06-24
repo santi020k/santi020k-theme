@@ -8,272 +8,37 @@ const setTheme = theme => {
 
   const root = document.documentElement
 
-  if (root.getAttribute('data-theme') === theme) return
-
   root.setAttribute('data-theme', theme)
 
   localStorage.setItem(STORAGE_KEY, theme)
-}
-
-const PREVIEW_DATA = {
-  dark: {
-    normal: { filename: 'santi020k-dark-color-theme.json', themeName: 'santi020k dark' },
-    bold: { filename: 'santi020k-dark-bold-color-theme.json', themeName: 'santi020k dark bold' },
-    italic: { filename: 'santi020k-dark-italic-color-theme.json', themeName: 'santi020k dark italic' }
-  },
-  light: {
-    normal: { filename: 'santi020k-light-color-theme.json', themeName: 'santi020k light' },
-    bold: { filename: 'santi020k-light-bold-color-theme.json', themeName: 'santi020k light bold' },
-    italic: { filename: 'santi020k-light-italic-color-theme.json', themeName: 'santi020k light italic' }
-  },
-  hc: {
-    normal: { filename: 'santi020k-hc-dark-color-theme.json', themeName: 'santi020k hc dark' },
-    bold: { filename: 'santi020k-hc-dark-bold-color-theme.json', themeName: 'santi020k hc dark bold' },
-    italic: { filename: 'santi020k-hc-dark-italic-color-theme.json', themeName: 'santi020k hc dark italic' }
-  },
-  hclight: {
-    normal: { filename: 'santi020k-hc-light-color-theme.json', themeName: 'santi020k hc light' },
-    bold: { filename: 'santi020k-hc-light-bold-color-theme.json', themeName: 'santi020k hc light bold' },
-    italic: { filename: 'santi020k-hc-light-italic-color-theme.json', themeName: 'santi020k hc light italic' }
-  }
-}
-
-const SNIPPETS = {
-  json: data => `<span class="muted">// focused without glare</span>
-{
-  <span class="property">"name"</span>: <span class="string">"${data.themeName}"</span>,
-  <span class="property">"type"</span>: <span class="string">"dark"</span>,
-  <span class="property">"semanticHighlighting"</span>: <span class="keyword">true</span>
-}`,
-  ts: () => `<span class="muted">// Type-safe logic</span>
-<span class="keyword">interface</span> <span class="function">Config</span> {
-  <span class="property">id</span>: <span class="keyword">string</span>;
-  <span class="property">active</span>: <span class="keyword">boolean</span>;
-}
-
-<span class="keyword">function</span> <span class="function">setup</span>(config: <span class="function">Config</span>)
-    : <span class="keyword">void</span> {
-  console.<span class="function">log</span>(config.id);
-}`,
-  js: () => `<span class="muted">// Standard JS</span>
-<span class="keyword">export async function</span> <span class="function">fetchData</span>(url) {
-  <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="function">fetch</span>(url);
-  <span class="keyword">const</span> { <span class="property">data</span> } = <span class="keyword">await</span> res
-    .<span class="function">json</span>();
-  <span class="keyword">return</span> data;
-}`,
-  rust: () => `<span class="muted">// Precise lifetimes</span>
-<span class="keyword">impl</span>&lt;<span class="string">'a</span>&gt; Parser&lt;<span class="string">'a</span>&gt; {
-  <span class="keyword">pub fn</span> <span class="function">new</span>(input: <span class="keyword">&'a</span> str)
-    -&gt; <span class="keyword">Self</span> {
-    <span class="keyword">Self</span> { input }
-  }
-}`,
-  go: () => `<span class="muted">// Clear built-ins</span>
-<span class="keyword">func</span> <span class="function">main</span>() {
-  items := <span class="function">make</span>([]<span class="keyword">string</span>, <span class="number">0</span>)
-  <span class="keyword">if</span> <span class="function">len</span>(items) == <span class="number">0</span> {
-    <span class="function">println</span>(<span class="string">"Empty"</span>)
-  }
-}`,
-  react: () => `<span class="muted">// Interactive components</span>
-<span class="keyword">export const</span> <span class="function">Button</span> = ({ children, onClick }) =&gt; {
-  <span class="keyword">const</span> [count, setCount] = <span class="function">useState</span>(
-    <span class="number">0</span>
-  );
-
-  <span class="keyword">return</span> (
-    &lt;<span class="keyword">button</span>
-      <span class="function">className</span>=<span class="string">"p-4 bg-brand"</span>
-      <span class="function">onClick</span>={onClick}
-    &gt;
-      {children}
-    &lt;/<span class="keyword">button</span>&gt;
-  );
-}`,
-  prisma: () => `<span class="muted">// Type-safe schemas</span>
-<span class="keyword">model</span> <span class="function">User</span> {
-  <span class="property">id</span>    <span class="keyword">Int</span>     @id @default(autoincrement())
-  <span class="property">email</span> <span class="keyword">String</span>  @unique
-  <span class="property">name</span>  <span class="keyword">String</span>?
-  <span class="property">posts</span> <span class="function">Post</span>[]
-}`,
-  java: () => `<span class="muted">// Typed and structured</span>
-<span class="keyword">public class</span> <span class="function">Service</span> {
-  <span class="keyword">private final</span> <span class="keyword">String</span> name;
-  <span class="keyword">public</span> <span class="function">Service</span>(<span class="keyword">String</span> name) {
-    <span class="keyword">this</span>.name = name;
-  }
-}`,
-  cpp: () => `<span class="muted">// Memory managed</span>
-<span class="keyword">auto</span> <span class="function">main</span>() -&gt; <span class="keyword">int</span> {
-  <span class="keyword">auto</span> ptr = std::make_unique&lt;Data&gt;();
-  <span class="keyword">return</span> <span class="number">0</span>;
-}`,
-  elixir: () => `<span class="muted">// Functional Elixir</span>
-<span class="keyword">defmodule</span> <span class="function">App</span> <span class="keyword">do</span>
-  <span class="keyword">def</span> <span class="function">start</span>(<span class="property">_type</span>, <span class="property">_args</span>) <span class="keyword">do</span>
-    <span class="function">Supervisor</span>.start_link([], strategy: :one_for_one)
-  <span class="keyword">end</span>
-<span class="keyword">end</span>`,
-  tailwind: () => `<span class="muted">// Utility-first CSS</span>
-&lt;<span class="keyword">div</span> <span class="function">class</span>=<span class="string">"flex items-center justify-between p-6 bg-indigo-900/20 border-b border-indigo-500/30"</span>&gt;
-  &lt;<span class="keyword">h1</span> <span class="function">class</span>=<span class="string">"text-2xl font-bold text-violet-400"</span>&gt;
-    Aurora UI
-  &lt;/<span class="keyword">h1</span>&gt;
-&lt;/<span class="keyword">div</span>&gt;`
-}
-
-let currentPreviewLang = 'json'
-let currentPreviewTheme = 'dark'
-let currentPreviewVariant = 'normal'
-
-const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
-  currentPreviewLang = lang
-
-  currentPreviewTheme = theme
-
-  currentPreviewVariant = variant
-
-  // eslint-disable-next-line security/detect-object-injection
-  const data = PREVIEW_DATA[theme][variant]
-  const container = document.querySelector('.editor-preview')
-  const codeEl = document.querySelector('.preview-code')
-  const filenameEl = document.querySelector('.preview-filename')
-  const langSelect = document.querySelector('.preview-lang-select')
-  const themeSelect = document.querySelector('.preview-theme-select')
-  const variantSelect = document.querySelector('.preview-variant-select')
-
-  if (container) {
-    container.setAttribute('data-preview-theme', theme)
-
-    container.setAttribute('data-preview-variant', variant)
-  }
-
-  if (filenameEl) filenameEl.textContent = data.filename
-
-  // eslint-disable-next-line security/detect-object-injection
-  if (codeEl) codeEl.innerHTML = SNIPPETS[lang](data)
-
-  if (langSelect) langSelect.value = lang
-
-  if (themeSelect) themeSelect.value = theme
-
-  if (variantSelect) variantSelect.value = variant
 }
 
 const syncToggle = toggle => {
   if (toggle) toggle.setAttribute('aria-checked', String(rootInDarkMode()))
 }
 
-const circularReveal = (button, isDark, newTheme) => {
-  // Skip clip-path animation on touch/coarse-pointer: GPU-expensive and hurts INP
-  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
-    setTheme(newTheme)
-
-    return
-  }
-
-  const rect = button.getBoundingClientRect()
-  const x = Math.round(rect.left + rect.width / 2)
-  const y = Math.round(rect.top + rect.height / 2)
-
-  const maxRadius = Math.hypot(
-    Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)
-  )
-
-  const overlay = document.createElement('div')
-
-  overlay.setAttribute('aria-hidden', 'true')
-
-  Object.assign(overlay.style, {
-    position: 'fixed',
-    inset: '0',
-    zIndex: '99999',
-    pointerEvents: 'none',
-    backgroundColor: isDark ? '#110c1d' : '#f8f6fd',
-    clipPath: `circle(${maxRadius}px at ${x}px ${y}px)`,
-    willChange: 'clip-path'
-  })
-
-  document.body.appendChild(overlay)
-
-  setTheme(newTheme)
-
-  // Double rAF: first frame commits the append + initial clip-path to the
-  // compositor; second frame starts the collapse. Avoids forced sync layout.
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      overlay.style.transition = 'clip-path 580ms cubic-bezier(0.4, 0, 0.2, 1)'
-
-      overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`
-
-      const done = () => overlay.remove()
-
-      overlay.addEventListener('transitionend', done, { once: true })
-
-      setTimeout(done, 750)
-    })
-  })
-}
-
-// ── Boot ──────────────────────────────────────────────────────────────────────
-// Theme is already set by the anti-FOUC inline script in <head>.
-// We just need to sync the toggle button state and preview content.
-
 const toggle = document.querySelector('.theme-toggle')
 const header = document.querySelector('.site-header')
 const navToggle = document.querySelector('.nav-toggle')
 const navLinks = document.querySelectorAll('.nav-links a')
-const desktopNavQuery = window.matchMedia('(min-width: 941px)')
-
-syncToggle(toggle)
-
-const langSelect = document.querySelector('.preview-lang-select')
-const themeSelect = document.querySelector('.preview-theme-select')
-const variantSelect = document.querySelector('.preview-variant-select')
-let manualPreviewTheme = false
-
-if (langSelect) {
-  langSelect.addEventListener('change', e => {
-    updatePreview(e.target.value, currentPreviewTheme, currentPreviewVariant)
-  })
-}
-
-if (themeSelect) {
-  themeSelect.addEventListener('change', e => {
-    manualPreviewTheme = true
-
-    updatePreview(currentPreviewLang, e.target.value, currentPreviewVariant)
-  })
-}
-
-if (variantSelect) {
-  variantSelect.addEventListener('change', e => {
-    updatePreview(currentPreviewLang, currentPreviewTheme, e.target.value)
-  })
-}
-
-const syncPreviewWithSite = () => {
-  if (manualPreviewTheme) {
-    updatePreview()
-  } else {
-    updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light', currentPreviewVariant)
-  }
-}
-
-syncPreviewWithSite()
+const desktopNavQuery = window.matchMedia('(min-width: 900px)')
 
 const setNavOpen = isOpen => {
   if (!header || !navToggle) return
 
-  if (isOpen) {
-    header.setAttribute('data-nav-open', 'true')
-  } else {
-    header.removeAttribute('data-nav-open')
-  }
+  header.toggleAttribute('data-nav-open', isOpen)
 
   navToggle.setAttribute('aria-expanded', String(isOpen))
+}
+
+syncToggle(toggle)
+
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    setTheme(rootInDarkMode() ? 'light' : 'dark')
+
+    syncToggle(toggle)
+  })
 }
 
 if (navToggle) {
@@ -296,110 +61,10 @@ desktopNavQuery.addEventListener('change', event => {
   if (event.matches) setNavOpen(false)
 })
 
-// Respect OS-level theme changes (only when user has no stored preference)
-window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', event => {
   if (!localStorage.getItem(STORAGE_KEY)) {
-    setTheme(e.matches ? 'light' : 'dark')
+    setTheme(event.matches ? 'light' : 'dark')
 
     syncToggle(toggle)
-
-    syncPreviewWithSite()
   }
 })
-
-// Theme toggle button
-if (toggle) {
-  let isAnimating = false
-
-  toggle.addEventListener('click', () => {
-    if (isAnimating) return
-
-    const isDark = rootInDarkMode()
-    const newTheme = isDark ? 'light' : 'dark'
-
-    isAnimating = true
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setTheme(newTheme)
-
-      syncToggle(toggle)
-
-      syncPreviewWithSite()
-
-      isAnimating = false
-
-      return
-    }
-
-    circularReveal(toggle, isDark, newTheme)
-
-    syncToggle(toggle)
-
-    syncPreviewWithSite()
-
-    setTimeout(() => {
-      isAnimating = false
-    }, 800)
-  })
-}
-
-// Clipboard handlers
-const setupClipboard = () => {
-  const installBtn = document.querySelector('.button-copy-install')
-  const settingsBtn = document.querySelector('.button-copy-settings')
-
-  if (installBtn) {
-    const commandText = installBtn.querySelector('.command')
-    const originalText = commandText?.textContent ?? 'ext install santi020k.santi020k-theme'
-
-    installBtn.addEventListener('click', async () => {
-      const command = 'ext install santi020k.santi020k-theme'
-
-      try {
-        await navigator.clipboard.writeText(command)
-
-        if (commandText) {
-          commandText.textContent = 'Copied to clipboard!'
-
-          installBtn.setAttribute('aria-label', 'Installation command copied')
-
-          setTimeout(() => {
-            commandText.textContent = originalText
-
-            installBtn.setAttribute('aria-label', 'Copy installation command')
-          }, 2000)
-        }
-      } catch (error) {
-        console.error('Failed to copy: ', error)
-      }
-    })
-  }
-
-  if (settingsBtn) {
-    settingsBtn.addEventListener('click', async () => {
-      const settings = {
-        'editor.fontFamily': '\'Fira Code\', \'Montserrat\', monospace',
-        'editor.fontLigatures': true,
-        'editor.fontWeight': '500',
-        'editor.lineHeight': 1.9,
-        'editor.letterSpacing': -0.2
-      }
-
-      try {
-        await navigator.clipboard.writeText(JSON.stringify(settings, null, 2))
-
-        const originalHtml = settingsBtn.innerHTML
-
-        settingsBtn.innerHTML = '<span>Copied!</span>'
-
-        setTimeout(() => {
-          settingsBtn.innerHTML = originalHtml
-        }, 2000)
-      } catch (error) {
-        console.error('Failed to copy settings: ', error)
-      }
-    })
-  }
-}
-
-setupClipboard()
