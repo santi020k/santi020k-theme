@@ -105,7 +105,7 @@ try {
   for (const { dir, name, pkg } of unpublished) {
     console.log(`Publishing ${name}@${pkg.version} to npm...`)
 
-    run('pnpm', ['--dir', dir, 'publish', '--access', 'public', '--registry', registry, '--no-git-checks', '--provenance'], {
+    run('pnpm', ['--dir', dir, 'publish', '--access', 'public', '--no-git-checks', '--provenance'], {
       env: {
         NPM_CONFIG_USERCONFIG: configPath,
         NODE_AUTH_TOKEN: token,
