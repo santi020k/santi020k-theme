@@ -63,9 +63,21 @@ Design guide:
 
 Use a horizontal gradient from `#0b0712` → `#1c1528` as the base.
 
-## Light theme assets
+## Generated assets
 
-Run `pnpm run sync:store-assets:light` to generate the light-specific store assets without overwriting the existing dark assets:
+Both dark and light listing assets are generated from HTML rendered via headless Chrome. Run `pnpm run sync:assets` to regenerate all of them, or use the individual commands below.
+
+### Dark theme assets (`pnpm run sync:store-assets:dark`)
+
+| Asset | Size | Notes |
+|-------|------|-------|
+| `store/assets/promo-tile.png` | 440×280 px | Required small promo tile for the dark listing |
+| `store/assets/marquee-banner.png` | 1400×560 px | Optional marquee banner for the dark listing |
+| `store/assets/screenshot-main.png` | 1280×800 px | Main browser chrome screenshot |
+| `store/assets/screenshot-ntp.png` | 1280×800 px | New Tab page screenshot |
+| `store/assets/screenshot-incognito.png` | 1280×800 px | Incognito frame screenshot |
+
+### Light theme assets (`pnpm run sync:store-assets:light`)
 
 | Asset | Size | Notes |
 |-------|------|-------|
