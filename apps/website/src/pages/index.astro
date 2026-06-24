@@ -1,5 +1,42 @@
 ---
 import { Image } from 'astro:assets'
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Santi020k Themes',
+  url: 'https://theme.santi020k.com/',
+  description: 'The hub for Santi020k visual themes across editor, browser, and upcoming surfaces.',
+  author: {
+    '@type': 'Person',
+    name: 'Santiago Molina',
+    url: 'https://santi020k.com',
+    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k'],
+  },
+  hasPart: [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Santi020k Theme for VS Code',
+      url: 'https://vscode.santi020k.com/',
+      applicationCategory: 'DeveloperApplication',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Santi020k Theme for Chrome',
+      url: 'https://chrome.santi020k.com/',
+      applicationCategory: 'BrowserApplication',
+    },
+    {
+      '@type': 'SoftwareSourceCode',
+      name: '@santi020k/theme',
+      url: 'https://github.com/santi020k/santi020k-theme',
+      codeRepository: 'https://github.com/santi020k/santi020k-theme',
+      programmingLanguage: ['CSS', 'JavaScript', 'TypeScript'],
+    },
+  ],
+}
+
+const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`
 ---
 
 <!doctype html>
@@ -48,42 +85,7 @@ import { Image } from 'astro:assets'
     <meta name="twitter:description" content="VS Code, Chrome, npm packages, and upcoming Santi020k theme surfaces in one place." />
     <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Themes - VS Code, Chrome, npm, and more" />
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Santi020k Themes",
-      "url": "https://theme.santi020k.com/",
-      "description": "The hub for Santi020k visual themes across editor, browser, and upcoming surfaces.",
-      "author": {
-        "@type": "Person",
-        "name": "Santiago Molina",
-        "url": "https://santi020k.com",
-        "sameAs": ["https://github.com/santi020k", "https://twitter.com/santi020k"]
-      },
-      "hasPart": [
-        {
-          "@type": "SoftwareApplication",
-          "name": "Santi020k Theme for VS Code",
-          "url": "https://vscode.santi020k.com/",
-          "applicationCategory": "DeveloperApplication"
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "Santi020k Theme for Chrome",
-          "url": "https://chrome.santi020k.com/",
-          "applicationCategory": "BrowserApplication"
-        },
-        {
-          "@type": "SoftwareSourceCode",
-          "name": "@santi020k/theme",
-          "url": "https://github.com/santi020k/santi020k-theme",
-          "codeRepository": "https://github.com/santi020k/santi020k-theme",
-          "programmingLanguage": ["CSS", "JavaScript", "TypeScript"]
-        }
-      ]
-    }
-    </script>
+    <Fragment set:html={structuredDataHtml} />
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">

@@ -143,11 +143,10 @@ jobs:
         run: pnpm run site:build
 
       - name: Deploy theme hub to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy apps/website/dist --project-name=${{ vars.CLOUDFLARE_PAGES_THEME_PROJECT_NAME }} --branch=main
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: pnpm exec wrangler pages deploy apps/website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_THEME_PROJECT_NAME }}" --branch=main
 
   deploy-vscode:
     name: Deploy vscode.santi020k.com
@@ -189,11 +188,10 @@ jobs:
         run: pnpm run site:vscode:build
 
       - name: Deploy VS Code website to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy apps/vscode-website/dist --project-name=${{ vars.CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME }} --branch=main
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: pnpm exec wrangler pages deploy apps/vscode-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME }}" --branch=main
 
   deploy-chrome:
     name: Deploy chrome.santi020k.com
@@ -235,8 +233,7 @@ jobs:
         run: pnpm run site:chrome:build
 
       - name: Deploy Chrome website to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy apps/chrome-website/dist --project-name=${{ vars.CLOUDFLARE_PAGES_CHROME_PROJECT_NAME }} --branch=main
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: pnpm exec wrangler pages deploy apps/chrome-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_CHROME_PROJECT_NAME }}" --branch=main
