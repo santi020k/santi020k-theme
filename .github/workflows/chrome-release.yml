@@ -78,6 +78,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Generate NTP background images
+        run: pnpm --filter santi020k-chrome-theme run sync:ntp-images
+
       - name: Validate Chrome theme
         run: pnpm run validate:chrome
 

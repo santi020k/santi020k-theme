@@ -19,7 +19,10 @@ Assets in this package are organized by how the VS Code Marketplace consumes the
 | `../icon.svg` | Icon source | Source-only. Excluded from the packaged VSIX. |
 | `source/previews/preview-dark.svg` | Dark preview source | Source-only. Excluded from the packaged VSIX. |
 | `source/previews/preview-light.svg` | Light preview source | Source-only. Excluded from the packaged VSIX. |
+| `source/previews/preview-hc-dark.svg` | High contrast dark preview source | Source-only. Excluded from the packaged VSIX. |
 | `source/previews/preview-hc-light.svg` | High contrast light preview source | Source-only. Excluded from the packaged VSIX. |
+
+Run `pnpm run generate:vscode-previews` from the repository root to regenerate the SVG sources and rendered PNG previews.
 
 ## Brand Rules
 
