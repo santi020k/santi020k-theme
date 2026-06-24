@@ -45,7 +45,7 @@ await sharp(src)
   .resize({ fit: 'cover', height, width })
   .flatten({ background: { r: 13, g: 10, b: 21 } })
   .removeAlpha()
-  .toColourspace('srgb')
+  .toColorspace('srgb')
   .png({ adaptiveFiltering: false, compressionLevel: 9, palette: false })
   .toFile(out);
 
