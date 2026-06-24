@@ -7,12 +7,13 @@ description: Audit VS Code themes and theme websites for accessibility. Use when
 
 ## Audit Workflow
 
-1. Identify surfaces: editor, sidebar, tabs, status bar, inputs, buttons, quick input, notifications, modals, settings, terminal, website preview.
-2. Check contrast for primary text and interactive controls before decorative or low-priority text.
-3. Review both dark and light variants.
-4. Prefer concrete file/line findings and exact color pairs.
-5. If changing code, keep visual identity intact and adjust the smallest color/token set that fixes the issue.
-6. Validate with existing scripts and, for websites, use a browser screenshot when possible.
+1. Read `AGENTS.md` and `docs/brand-guidelines.md` so accessibility fixes preserve the brand source of truth.
+2. Identify surfaces: editor, sidebar, tabs, status bar, inputs, buttons, quick input, notifications, modals, settings, terminal, website preview.
+3. Check contrast for primary text and interactive controls before decorative or low-priority text.
+4. Review both dark and light variants.
+5. Prefer concrete file/line findings and exact color pairs.
+6. If changing code, keep visual identity intact and adjust the smallest color/token set that fixes the issue.
+7. Validate with existing scripts and, for websites, use a browser screenshot when possible.
 
 ## Contrast Priorities
 

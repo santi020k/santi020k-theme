@@ -61,7 +61,8 @@ const formatTheme = file => {
   const content = JSON.parse(cleanRaw)
   // 1. Sort Colors by Category and then Alphabetically
   const colors = content.colors
-  const sortedColors = {}
+  const colorMap = new Map(Object.entries(colors))
+  const sortedColorEntries = []
   const usedKeys = new Set()
 
   for (const category of categories) {
@@ -70,24 +71,24 @@ const formatTheme = file => {
       .sort()
 
     for (const key of categoryKeys) {
-      sortedColors[key] = colors[key]
+      sortedColorEntries.push([key, colorMap.get(key)])
 
       usedKeys.add(key)
     }
   }
 
-  content.colors = sortedColors
+  content.colors = Object.fromEntries(sortedColorEntries)
 
   // 2. Sort Semantic Token Colors
   if (content.semanticTokenColors) {
     const semanticTokenColors = content.semanticTokenColors
-    const sortedSemantic = {}
+    const semanticTokenColorMap = new Map(Object.entries(semanticTokenColors))
 
-    for (const key of Object.keys(semanticTokenColors).sort()) {
-      sortedSemantic[key] = semanticTokenColors[key]
-    }
+    const sortedSemanticEntries = Object.keys(semanticTokenColors)
+      .sort()
+      .map(key => [key, semanticTokenColorMap.get(key)])
 
-    content.semanticTokenColors = sortedSemantic
+    content.semanticTokenColors = Object.fromEntries(sortedSemanticEntries)
   }
 
   // 3. Output with 2 spaces

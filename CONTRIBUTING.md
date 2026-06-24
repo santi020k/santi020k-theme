@@ -22,6 +22,10 @@ For a faster package metadata check, run:
 pnpm run validate:marketplace
 ```
 
+## Brand Consistency
+
+Read [`docs/brand-guidelines.md`](docs/brand-guidelines.md) before changing colors, product copy, screenshots, icons, website UI, store metadata, or shared assets. That file is the canonical brand source of truth across all packages and apps.
+
 ## Changesets
 
 For user-visible changes, add a changeset:

@@ -126,7 +126,7 @@ const validateTheme = variant => {
     errors++;
   }
 
-  for (const { fg, bg, label } of chromeThemeContrastPairs) {
+  for (const { fg, bg, label, minRatio = 4.5 } of chromeThemeContrastPairs) {
     const fgVal = colorMap.get(fg);
     const bgVal = colorMap.get(bg);
 
@@ -137,12 +137,12 @@ const validateTheme = variant => {
     }
 
     const ratio = getRgbContrastRatio(fgVal, bgVal);
-    const pass = ratio >= 4.5;
+    const pass = ratio >= minRatio;
 
     if (pass) {
       console.log(`✅ ${label.padEnd(20)}: ${ratio.toFixed(2)}:1 (Pass)`);
     } else {
-      console.error(`❌ ${label.padEnd(20)}: ${ratio.toFixed(2)}:1 (FAIL - Needs 4.5:1)`);
+      console.error(`❌ ${label.padEnd(20)}: ${ratio.toFixed(2)}:1 (FAIL - Needs ${minRatio}:1)`);
 
       errors++;
     }

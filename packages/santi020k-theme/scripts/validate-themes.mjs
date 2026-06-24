@@ -111,6 +111,7 @@ const modernSurfaceColorKeys = [
   'editorIndentGuide.activeBackground1'
 ]
 
+/** @type {Array<[string, string, number]>} */
 const contrastPairs = [
   ['editor.foreground', 'editor.background', 4.5],
   ['foreground', 'editor.background', 4.5],
@@ -159,9 +160,15 @@ const parseHex = hex => {
   }
 }
 
-const compositeRgb = (foreground, background) => foreground.rgb.map((channel, index) => (
-  Math.round(channel * foreground.alpha + background.rgb[index] * (1 - foreground.alpha))
-))
+const compositeRgb = (foreground, background) => foreground.rgb.map((channel, index) => {
+  const backgroundChannel = background.rgb.at(index)
+
+  if (backgroundChannel === undefined) {
+    throw new Error(`Missing background RGB channel at index ${index}`)
+  }
+
+  return Math.round(channel * foreground.alpha + backgroundChannel * (1 - foreground.alpha))
+})
 
 const resolveRgb = (foreground, background) => {
   if (foreground.alpha === 1) {
@@ -259,12 +266,12 @@ const findDuplicateColorKeys = raw => {
   let depth = 1
 
   while (i < raw.length && depth > 0) {
-    switch (raw[i]) {
+    switch (raw.at(i)) {
     case '"': {
       i++
 
-      while (i < raw.length && raw[i] !== '"') {
-        if (raw[i] === '\\') i++
+      while (i < raw.length && raw.at(i) !== '"') {
+        if (raw.at(i) === '\\') i++
 
         i++
       }
@@ -369,20 +376,25 @@ export const validateThemes = (files = themeFiles) => {
 
     validateHexMap(file, theme.colors)
 
+    const colorMap = new Map(Object.entries(theme.colors))
+
     for (const key of [...requiredColorKeys, ...modernSurfaceColorKeys]) {
-      if (!theme.colors[key]) {
+      if (!colorMap.get(key)) {
         throw new Error(`${file} is missing colors.${key}`)
       }
     }
 
     for (const [foregroundKey, backgroundKey, minimumRatio] of contrastPairs) {
-      if (!theme.colors[foregroundKey] || !theme.colors[backgroundKey]) {
+      const foregroundColor = colorMap.get(foregroundKey)
+      const backgroundColor = colorMap.get(backgroundKey)
+
+      if (!foregroundColor || !backgroundColor) {
         throw new Error(
-          `${file} is missing colors required for contrast check: ${[foregroundKey, backgroundKey].filter(k => !theme.colors[k]).join(', ')}`
+          `${file} is missing colors required for contrast check: ${[foregroundKey, backgroundKey].filter(k => !colorMap.get(k)).join(', ')}`
         )
       }
 
-      const ratio = contrastRatio(theme.colors[foregroundKey], theme.colors[backgroundKey])
+      const ratio = contrastRatio(foregroundColor, backgroundColor)
 
       if (ratio < minimumRatio) {
         throw new Error(

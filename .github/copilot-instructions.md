@@ -4,6 +4,7 @@ This repository contains a VS Code color theme extension with dark and light var
 
 ## Priorities
 
+- Treat `docs/brand-guidelines.md` as the canonical brand source of truth for palette, product names, voice, assets, screenshots, and website consistency.
 - Preserve the existing santi020k purple/indigo palette unless a redesign is requested.
 - Keep dark and light theme files aligned.
 - Prefer official VS Code theme color token names.
@@ -12,6 +13,7 @@ This repository contains a VS Code color theme extension with dark and light var
 
 ## Key Files
 
+- `docs/brand-guidelines.md`
 - `packages/santi020k-theme/themes/santi020k-dark-color-theme.json`
 - `packages/santi020k-theme/themes/santi020k-light-color-theme.json`
 - `packages/santi020k-theme/scripts/validate-themes.mjs`

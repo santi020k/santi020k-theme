@@ -9,9 +9,11 @@ const requiredFiles = [
   'CHANGELOG.md',
   'LICENSE',
   'icon.png',
-  'assets/preview-dark.png',
-  'assets/preview-hc-dark.png',
-  'assets/preview-light.png',
+  'assets/README.md',
+  'assets/previews/preview-dark.png',
+  'assets/previews/preview-hc-dark.png',
+  'assets/previews/preview-hc-light.png',
+  'assets/previews/preview-light.png',
   '.vscodeignore',
   'themes/santi020k-dark-color-theme.json',
   'themes/santi020k-hc-dark-color-theme.json',
@@ -77,7 +79,7 @@ export const requiredIgnorePatterns = [
   'llms.txt',
   'favicon.svg',
   'icon.svg',
-  'assets/*.svg',
+  'assets/**/*.svg',
   '*.vsix'
 ]
 
@@ -118,9 +120,10 @@ export const checkMarketplaceReadiness = (packageDir = extensionPackageDir, {
   const pkg = readJson('package.json')
   const pnpmLock = readFileSync(resolveRepoPath('pnpm-lock.yaml'), 'utf8')
   const websiteIndex = readFileSync(resolveWebsitePath('index.html'), 'utf8')
+  const packageFieldMap = new Map(Object.entries(pkg))
 
   for (const field of requiredPackageFields) {
-    if (!pkg[field]) {
+    if (!packageFieldMap.get(field)) {
       throw new Error(`package.json is missing ${field}`)
     }
   }

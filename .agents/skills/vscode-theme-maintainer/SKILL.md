@@ -7,12 +7,13 @@ description: Maintain, review, or extend VS Code color theme extensions. Use whe
 
 ## Workflow
 
-1. Identify whether the request affects workbench UI colors, syntax highlighting, semantic highlighting, package metadata, website preview, or release automation.
-2. Read `package.json`, the affected files under `themes/`, and local validation scripts before editing.
-3. Keep dark and light variants in sync unless the user explicitly asks for one variant only.
-4. Prefer official VS Code color token names. If unsure about newer token names, verify against the VS Code Theme Color Reference or VS Code source.
-5. Add or update validation when a change creates a repeatable failure mode.
-6. Run the repo's validation command before finishing, usually `npm run validate`.
+1. Read `AGENTS.md` and `docs/brand-guidelines.md` before brand-sensitive color, copy, asset, or preview changes.
+2. Identify whether the request affects workbench UI colors, syntax highlighting, semantic highlighting, package metadata, website preview, or release automation.
+3. Read `package.json`, the affected files under `themes/`, and local validation scripts before editing.
+4. Keep dark and light variants in sync unless the user explicitly asks for one variant only.
+5. Prefer official VS Code color token names. If unsure about newer token names, verify against the VS Code Theme Color Reference or VS Code source.
+6. Add or update validation when a change creates a repeatable failure mode.
+7. Run the repo's validation command before finishing, usually `pnpm run validate`.
 
 ## Theme Editing Rules
 
@@ -27,9 +28,9 @@ description: Maintain, review, or extend VS Code color theme extensions. Use whe
 Use local project commands when present:
 
 ```bash
-npm run validate:themes
-npm run validate:marketplace
-npm run validate
+pnpm run validate:themes
+pnpm run validate:marketplace
+pnpm run validate
 ```
 
 If the repo has no validation scripts, parse all theme JSON files with Node and package with `vsce package --no-dependencies`.

@@ -42,15 +42,17 @@ if (theme.tokenColors) {
 }
 
 if (theme.semanticTokenColors) {
-  for (let key in theme.semanticTokenColors) {
-    let val = theme.semanticTokenColors[key]
-
+  theme.semanticTokenColors = Object.fromEntries(Object.entries(theme.semanticTokenColors).map(([key, val]) => {
     if (typeof val === 'string') {
-      theme.semanticTokenColors[key] = darkenColor(val)
-    } else if (val.foreground) {
-      val.foreground = darkenColor(val.foreground)
+      return [key, darkenColor(val)]
     }
-  }
+
+    if (val?.foreground) {
+      return [key, { ...val, foreground: darkenColor(val.foreground) }]
+    }
+
+    return [key, val]
+  }))
 }
 
 // HC-Light specific overrides: stronger focus affordances and accessibility corrections
@@ -70,9 +72,7 @@ const hcOverrides = {
   'widget.border': '#6319be60'
 }
 
-for (const [key, val] of Object.entries(hcOverrides)) {
-  theme.colors[key] = val
-}
+theme.colors = { ...theme.colors, ...hcOverrides }
 
 // In HC-light, punctuation should be visually distinct from comments.
 // The generator darkens all token colors uniformly, so we nudge punctuation

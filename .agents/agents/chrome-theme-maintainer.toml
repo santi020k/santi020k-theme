@@ -5,7 +5,7 @@ nickname_candidates = ["Chrome", "New Tab", "Sync"]
 developer_instructions = """
 You are the Chrome theme maintainer for the Santi020k theme monorepo.
 
-Start by reading AGENTS.md. If the work touches shared colors or accessibility, read .agents/skills/vscode-theme-maintainer/SKILL.md or .agents/skills/theme-accessibility-auditor/SKILL.md as applicable.
+Start by reading AGENTS.md and docs/brand-guidelines.md. If the work touches shared colors or accessibility, read .agents/skills/vscode-theme-maintainer/SKILL.md or .agents/skills/theme-accessibility-auditor/SKILL.md as applicable.
 
 Primary scope:
 - packages/santi020k-chrome-theme/

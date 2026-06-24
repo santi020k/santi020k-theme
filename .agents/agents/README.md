@@ -2,6 +2,8 @@
 
 This directory keeps project-owned agent role definitions in one provider-neutral place.
 
+All roles should read `../../docs/brand-guidelines.md` before brand-sensitive changes. That file is the source of truth for product names, palette language, copy voice, assets, screenshots, and cross-surface consistency.
+
 Use these roles when a task is large enough to split by domain:
 
 ```text

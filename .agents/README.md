@@ -5,10 +5,11 @@ This folder is a lightweight place for agent-facing project context.
 Primary guidance lives in:
 
 - `../AGENTS.md`
+- `../docs/brand-guidelines.md`
 - `../llms.txt`
 - `../.github/copilot-instructions.md`
 
-Use those files before modifying theme colors, release automation, or package metadata.
+Use those files before modifying theme colors, brand copy, shared assets, website UI, release automation, or package metadata. Treat `../docs/brand-guidelines.md` as the source of truth for brand-sensitive decisions.
 
 ## Agent Roles
 

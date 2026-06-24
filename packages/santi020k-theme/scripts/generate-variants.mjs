@@ -40,15 +40,17 @@ for (const base of baseThemes) {
   boldTheme.name = `${base.name} bold`
 
   if (boldTheme.semanticTokenColors) {
-    for (const key in boldTheme.semanticTokenColors) {
-      const val = boldTheme.semanticTokenColors[key]
-
+    boldTheme.semanticTokenColors = Object.fromEntries(Object.entries(boldTheme.semanticTokenColors).map(([key, val]) => {
       if (typeof val === 'string') {
-        boldTheme.semanticTokenColors[key] = { foreground: val, bold: true }
-      } else if (typeof val === 'object') {
-        val.bold = true
+        return [key, { foreground: val, bold: true }]
       }
-    }
+
+      if (val && typeof val === 'object') {
+        return [key, { ...val, bold: true }]
+      }
+
+      return [key, val]
+    }))
   }
 
   if (boldTheme.tokenColors) {
@@ -69,15 +71,17 @@ for (const base of baseThemes) {
   italicTheme.name = `${base.name} italic`
 
   if (italicTheme.semanticTokenColors) {
-    for (const key in italicTheme.semanticTokenColors) {
-      const val = italicTheme.semanticTokenColors[key]
-
+    italicTheme.semanticTokenColors = Object.fromEntries(Object.entries(italicTheme.semanticTokenColors).map(([key, val]) => {
       if (typeof val === 'string') {
-        italicTheme.semanticTokenColors[key] = { foreground: val, italic: true }
-      } else if (typeof val === 'object') {
-        val.italic = true
+        return [key, { foreground: val, italic: true }]
       }
-    }
+
+      if (val && typeof val === 'object') {
+        return [key, { ...val, italic: true }]
+      }
+
+      return [key, val]
+    }))
   }
 
   if (italicTheme.tokenColors) {

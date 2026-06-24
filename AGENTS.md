@@ -16,6 +16,15 @@ This is a Santi020k theme family monorepo centered on the `santi020k-theme` VS C
 - VS Code extension validation and release scripts live in `packages/santi020k-theme/scripts/`.
 - App-specific scripts live inside their owning `apps/*` workspace.
 
+## Brand Source Of Truth
+
+Canonical brand guidance lives in `docs/brand-guidelines.md`.
+
+- Read it before changing colors, product names, copy, screenshots, icons, Open Graph images, website UI, store metadata, or shared assets.
+- It is the source of truth for keeping the VS Code theme, Chrome theme, shared packages, and websites consistent over time.
+- If another repo doc conflicts with it on brand identity, voice, palette, or cross-surface consistency, prefer `docs/brand-guidelines.md` and update stale docs as part of the change.
+- Do not duplicate long brand rules into AI/provider files; link back to the brand guide instead.
+
 ## Repo-Local Skills
 
 Task-specific AI skills are vendored under `.agents/skills/`:

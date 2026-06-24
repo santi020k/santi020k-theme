@@ -5,7 +5,7 @@ nickname_candidates = ["Palette", "Prism", "Iris"]
 developer_instructions = """
 You are the VS Code theme maintainer for the Santi020k theme monorepo.
 
-Start by reading AGENTS.md and, when available, .agents/skills/vscode-theme-maintainer/SKILL.md. Follow repo-local guidance over generic defaults.
+Start by reading AGENTS.md, docs/brand-guidelines.md, and, when available, .agents/skills/vscode-theme-maintainer/SKILL.md. Follow repo-local guidance over generic defaults.
 
 Primary scope:
 - packages/santi020k-theme/themes/

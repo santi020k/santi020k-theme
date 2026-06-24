@@ -25,22 +25,32 @@ const CHROME_WEBSTORE_SCOPE = 'https://www.googleapis.com/auth/chromewebstore'
 const UPLOAD_POLL_ATTEMPTS = 24
 const UPLOAD_POLL_INTERVAL_MS = 5000
 
-const WEBSTORE_ITEMS = {
-  dark: {
+const WEBSTORE_ITEMS = new Map([
+  ['dark', {
     itemId: 'cljcifjjgolaplmemjcnjhkjfoneadgj',
     itemIdOverride: () => process.env.CHROME_WEBSTORE_DARK_ITEM_ID
-  },
-  light: {
+  }],
+  ['light', {
     itemId: 'ekehaoadgcihpkajlnbpkankaginojci',
     itemIdOverride: () => process.env.CHROME_WEBSTORE_LIGHT_ITEM_ID
+  }]
+])
+
+const getWebstoreItem = name => {
+  const item = WEBSTORE_ITEMS.get(name)
+
+  if (!item) {
+    throw new Error(`Missing Chrome Web Store item configuration for ${name}.`)
   }
+
+  return item
 }
 
 const DEFAULT_VARIANTS = Object.entries(chromeThemeVariantManifests).map(([name, config]) => ({
   artifact: `dist/${config.output}`,
   name,
   ...config,
-  ...WEBSTORE_ITEMS[name]
+  ...getWebstoreItem(name)
 }))
 
 const args = process.argv.slice(2)

@@ -4,6 +4,7 @@
 
 ## Important Files
 
+- `docs/brand-guidelines.md`: Canonical brand source of truth for product names, palette language, voice, assets, websites, screenshots, and AI guidance.
 - `packages/santi020k-theme/package.json`: VS Code extension manifest, scripts, marketplace metadata, theme contributions.
 - `packages/santi020k-theme/themes/santi020k-dark-color-theme.json`: Dark VS Code theme.
 - `packages/santi020k-theme/themes/santi020k-light-color-theme.json`: Light VS Code theme.
@@ -35,6 +36,7 @@ pnpm run release
 
 ## Agent Notes
 
+- Read `docs/brand-guidelines.md` before brand-sensitive changes and treat it as the authority when docs conflict.
 - Keep both theme variants in sync unless asked otherwise.
 - Preserve theme identity: dark indigo surfaces, purple/violet accents, calm contrast.
 - Add changesets for user-visible changes.

@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 /**
- * Converts images/theme_ntp_background.webp → images/theme_ntp_background.png
+ * Converts images/theme_ntp_background.svg → images/theme_ntp_background.png
  * for the Santi020k Chrome theme.
  *
- * Chrome cannot decode WebP theme images in theme packages; this script uses
- * the macOS `sips` utility to re-encode the authoritative WebP as a PNG that
- * Chrome can load as the New Tab Page background.
+ * Chrome themes need a PNG for the New Tab Page background. The editable SVG
+ * is the source of truth; this script rasterizes it at 3840×2160.
  *
- * Source asset: images/theme_ntp_background.webp
+ * Source asset: images/theme_ntp_background.svg
  * Output asset: images/theme_ntp_background.png (3840×2160)
  *
  * Usage:
@@ -27,7 +26,7 @@ const themePackageRoot = existsSync(join(workspaceThemePackageRoot, 'package.jso
   : dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
 
 const imagesDir = join(themePackageRoot, 'assets', 'chrome', 'images');
-const src = join(imagesDir, 'theme_ntp_background.webp');
+const src = join(imagesDir, 'theme_ntp_background.svg');
 const out = join(imagesDir, 'theme_ntp_background.png');
 const WIDTH = 3840;
 const HEIGHT = 2160;
@@ -36,9 +35,8 @@ mkdirSync(imagesDir, { recursive: true });
 
 // Chrome themes do not provide a "cover" background-size property, so the NTP
 // image itself must be large enough to fill modern desktop viewport sizes.
-// Use --deleteColorManagementProperties to strip ICC profiles that can cause decoding errors in some Chrome versions.
 execSync(`sips -s format png -z ${HEIGHT} ${WIDTH} --deleteColorManagementProperties "${src}" --out "${out}"`, { stdio: 'inherit' });
 
 const { size } = statSync(out);
 
-console.log(`Converted theme_ntp_background.webp → theme_ntp_background.png (${size} bytes)`);
+console.log(`Converted theme_ntp_background.svg → theme_ntp_background.png (${size} bytes)`);

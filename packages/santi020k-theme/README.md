@@ -10,11 +10,13 @@ A deep indigo-black dark, a purple-tinted light, and high contrast variants for 
 
 ---
 
-![santi020k dark theme preview](assets/preview-dark.png)
+![santi020k dark theme preview](assets/previews/preview-dark.png)
 
-![santi020k light theme preview](assets/preview-light.png)
+![santi020k light theme preview](assets/previews/preview-light.png)
 
-![santi020k high contrast dark theme preview](assets/preview-hc-dark.png)
+![santi020k high contrast dark theme preview](assets/previews/preview-hc-dark.png)
+
+![santi020k high contrast light theme preview](assets/previews/preview-hc-light.png)
 
 ---
 

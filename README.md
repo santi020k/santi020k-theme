@@ -26,6 +26,10 @@ pnpm run site:chrome:dev
 pnpm run commit
 ```
 
+## Brand Guidance
+
+Use [`docs/brand-guidelines.md`](docs/brand-guidelines.md) as the source of truth for product names, palette language, voice, screenshots, assets, website consistency, and AI agent guidance.
+
 ## Versioning And Environment
 
 - VS Code theme releases are managed by Changesets for `packages/santi020k-theme`.

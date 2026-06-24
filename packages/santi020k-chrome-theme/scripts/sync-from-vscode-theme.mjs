@@ -25,13 +25,21 @@ if (!isChromeThemeVariant(variant)) {
   process.exit(1);
 }
 
-const SOURCE_MAP = {
-  dark: '../../santi020k-theme/themes/santi020k-dark-color-theme.json',
-  light: '../../santi020k-theme/themes/santi020k-light-color-theme.json',
-};
+const SOURCE_MAP = new Map([
+  ['dark', '../../santi020k-theme/themes/santi020k-dark-color-theme.json'],
+  ['light', '../../santi020k-theme/themes/santi020k-light-color-theme.json']
+]);
 
-const sourcePath = resolve(__dir, SOURCE_MAP[variant]);
-const targetManifest = chromeThemeVariantManifests[variant].manifest;
+const MANIFEST_MAP = new Map(Object.entries(chromeThemeVariantManifests));
+const sourceFile = SOURCE_MAP.get(variant);
+const manifestConfig = MANIFEST_MAP.get(variant);
+
+if (!sourceFile || !manifestConfig) {
+  throw new Error(`Missing Chrome theme configuration for ${variant}`);
+}
+
+const sourcePath = resolve(__dir, sourceFile);
+const targetManifest = manifestConfig.manifest;
 const targetPath = resolve(__dir, '..', targetManifest);
 
 if (!existsSync(sourcePath)) {

@@ -35,6 +35,7 @@ export declare const chromeThemeContrastPairs: {
   fg: string
   bg: string
   label: string
+  minRatio?: number
 }[]
 export declare const chromeRuntimeAssetEntries: {
   destination: string

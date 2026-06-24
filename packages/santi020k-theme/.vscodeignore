@@ -30,7 +30,7 @@ pnpm-workspace.yaml
 llms.txt
 favicon.svg
 icon.svg
-assets/*.svg
+assets/**/*.svg
 *.vsix
 .gitignore
 scratch/**

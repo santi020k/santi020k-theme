@@ -51,8 +51,9 @@ const isPublished = async (name, version) => {
   }
 
   const metadata = await response.json()
+  const versionMap = new Map(Object.entries(metadata.versions ?? {}))
 
-  return Boolean(metadata.versions?.[version])
+  return versionMap.has(version)
 }
 
 const createNpmUserConfig = (token) => {

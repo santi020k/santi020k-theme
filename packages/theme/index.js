@@ -61,10 +61,18 @@ export const chromeThemeSourceTokenRoles = [
 export const chromeThemeContrastPairs = [
   { fg: 'tab_text', bg: 'frame', label: 'Active Tab Text' },
   { fg: 'tab_background_text', bg: 'background_tab', label: 'Inactive Tab Text' },
+  { fg: 'tab_background_text_inactive', bg: 'background_tab', label: 'Unfocused Tab Text', minRatio: 3 },
+  { fg: 'tab_background_text_incognito', bg: 'frame_incognito', label: 'Incognito Tab Text', minRatio: 3 },
+  { fg: 'tab_background_text_incognito_inactive', bg: 'frame_incognito_inactive', label: 'Incognito Inactive Tab Text', minRatio: 3 },
+  { fg: 'tab_line', bg: 'frame', label: 'Active Tab Accent', minRatio: 3 },
+  { fg: 'bookmark_text', bg: 'toolbar', label: 'Bookmark Text' },
   { fg: 'ntp_text', bg: 'ntp_background', label: 'NTP Text' },
   { fg: 'ntp_link', bg: 'ntp_background', label: 'NTP Link' },
+  { fg: 'ntp_section_text', bg: 'ntp_section', label: 'NTP Section Text' },
+  { fg: 'ntp_section_link', bg: 'ntp_section', label: 'NTP Section Link' },
   { fg: 'omnibox_text', bg: 'omnibox_background', label: 'Omnibox Text' },
-  { fg: 'toolbar_text', bg: 'toolbar', label: 'Toolbar Text' }
+  { fg: 'toolbar_text', bg: 'toolbar', label: 'Toolbar Text' },
+  { fg: 'toolbar_button_icon', bg: 'toolbar', label: 'Toolbar Icons', minRatio: 3 }
 ]
 
 export const chromeRuntimeAssetEntries = [
@@ -110,8 +118,10 @@ export const createChromeThemeFromVSCodeColors = (vscodeColors, variant = 'dark'
     throw new Error(`Invalid Chrome theme variant: ${variant}`)
   }
 
+  const vscodeColorMap = new Map(Object.entries(vscodeColors))
+
   const hex = (token, fallback) => {
-    const value = vscodeColors[token] || fallback
+    const value = vscodeColorMap.get(token) || fallback
 
     if (!value) throw new Error(`Missing VS Code token: ${token}`)
 
@@ -318,6 +328,14 @@ const assetPaths = [
 const formatFromPath = path => path.slice(path.lastIndexOf('.') + 1)
 
 const categoryFromPath = path => {
+  if (path.startsWith('assets/projects/') && path.endsWith('/logo.webp')) {
+    return 'logo'
+  }
+
+  if (path.startsWith('assets/projects/') && (path.includes('/cover') || path.includes('/preview'))) {
+    return 'preview'
+  }
+
   if (path.includes('/logos/')) {
     return 'logo'
   }
