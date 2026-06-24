@@ -1,0 +1,58 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "santi020k-theme: build-vscode-theme",
+      "type": "shell",
+      "command": "pnpm",
+      "args": [
+        "run",
+        "dev:vscode"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "santi020k-chrome-theme: dev-dark",
+      "type": "shell",
+      "command": "pnpm",
+      "args": [
+        "run",
+        "dev:chrome:dark"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "santi020k-chrome-theme: dev-light",
+      "type": "shell",
+      "command": "pnpm",
+      "args": [
+        "run",
+        "dev:chrome:light"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "santi020k-theme: validate",
+      "type": "shell",
+      "command": "pnpm",
+      "args": [
+        "run",
+        "validate"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}

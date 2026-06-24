@@ -2,12 +2,40 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Extension Development Host",
+      "name": "Santi020k Theme: VS Code",
       "type": "extensionHost",
       "request": "launch",
+      "runtimeExecutable": "${execPath}",
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}"
-      ]
+        "--disable-extensions",
+        "--extensionDevelopmentPath=${workspaceFolder}/packages/santi020k-theme",
+        "${workspaceFolder}"
+      ],
+      "preLaunchTask": "santi020k-theme: build-vscode-theme"
+    },
+    {
+      "name": "Santi020k Theme: Chrome Dark",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "chrome://newtab",
+      "userDataDir": "${workspaceFolder}/.vscode/chrome-dark-profile",
+      "runtimeArgs": [
+        "--disable-extensions-except=${workspaceFolder}/packages/santi020k-chrome-theme/.dev/dark",
+        "--load-extension=${workspaceFolder}/packages/santi020k-chrome-theme/.dev/dark"
+      ],
+      "preLaunchTask": "santi020k-chrome-theme: dev-dark"
+    },
+    {
+      "name": "Santi020k Theme: Chrome Light",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "chrome://newtab",
+      "userDataDir": "${workspaceFolder}/.vscode/chrome-light-profile",
+      "runtimeArgs": [
+        "--disable-extensions-except=${workspaceFolder}/packages/santi020k-chrome-theme/.dev/light",
+        "--load-extension=${workspaceFolder}/packages/santi020k-chrome-theme/.dev/light"
+      ],
+      "preLaunchTask": "santi020k-chrome-theme: dev-light"
     }
   ]
 }

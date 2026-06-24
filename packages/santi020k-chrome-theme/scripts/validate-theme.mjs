@@ -6,13 +6,19 @@ import { fileURLToPath } from 'url';
 import {
   chromeRuntimeAssetEntries,
   chromeThemeContrastPairs,
+  chromeThemeImageRequirements,
+  chromeThemeVariantManifests,
+  createChromeThemeFromVSCodeColors,
   getRgbContrastRatio
 } from '@santi020k/theme';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
-const NTP_BACKGROUND_MIN_WIDTH = 3840;
-const NTP_BACKGROUND_MIN_HEIGHT = 2160;
+
+const SOURCE_MAP = {
+  dark: '../../santi020k-theme/themes/santi020k-dark-color-theme.json',
+  light: '../../santi020k-theme/themes/santi020k-light-color-theme.json',
+};
 
 const resolveRuntimeAsset = assetPath => {
   const [assetRoot] = assetPath.split('/');
@@ -37,8 +43,29 @@ const readPngDimensions = filePath => {
   };
 };
 
-function validateTheme(filePath) {
-  console.log(`\n🔍 Validating ${filePath}...`);
+const readThemeJson = filePath => JSON.parse(readFileSync(filePath, 'utf8'));
+
+const stripJsonComments = raw => raw
+  .replaceAll(/\/\/.*$/gm, '')
+  .replaceAll(/\/\*[\s\S]*?\*\//g, '');
+
+const readVSCodeColors = variant => {
+  const sourcePath = resolve(__dir, SOURCE_MAP[variant]);
+
+  if (!existsSync(sourcePath)) {
+    throw new Error(`Source VS Code theme not found: ${sourcePath}`);
+  }
+
+  return JSON.parse(stripJsonComments(readFileSync(sourcePath, 'utf8'))).colors;
+};
+
+const formatValue = value => JSON.stringify(value);
+
+function validateTheme(variant) {
+  const manifestFile = chromeThemeVariantManifests[variant].manifest;
+  const filePath = resolve(__dir, '..', manifestFile);
+
+  console.log(`\n🔍 Validating ${manifestFile}...`);
   
   if (!existsSync(filePath)) {
     console.error(`❌ File not found: ${filePath}`);
@@ -46,7 +73,7 @@ function validateTheme(filePath) {
     process.exit(1);
   }
 
-  const manifest = JSON.parse(readFileSync(filePath, 'utf8'));
+  const manifest = readThemeJson(filePath);
   const colors = manifest.theme?.colors;
 
   if (!colors) {
@@ -56,6 +83,31 @@ function validateTheme(filePath) {
   }
 
   let errors = 0;
+  const expected = createChromeThemeFromVSCodeColors(readVSCodeColors(variant), variant);
+
+  for (const [key, expectedValue] of Object.entries(expected.colors)) {
+    const actualValue = colors[key];
+
+    if (formatValue(actualValue) === formatValue(expectedValue)) {
+      continue;
+    }
+
+    console.error(`❌ Token drift: ${key} is ${formatValue(actualValue)}, expected ${formatValue(expectedValue)} from ${SOURCE_MAP[variant]}`);
+
+    errors++;
+  }
+
+  for (const [key, expectedValue] of Object.entries(expected.properties)) {
+    const actualValue = manifest.theme?.properties?.[key];
+
+    if (actualValue === expectedValue) {
+      continue;
+    }
+
+    console.error(`❌ Property drift: ${key} is ${formatValue(actualValue)}, expected ${formatValue(expectedValue)} from @santi020k/theme`);
+
+    errors++;
+  }
 
   for (const { fg, bg, label } of chromeThemeContrastPairs) {
     const fgVal = colors[fg];
@@ -87,7 +139,7 @@ function validateTheme(filePath) {
   }
 
   // Version consistency check
-  const pkg = JSON.parse(readFileSync(resolve(__dir, '../package.json'), 'utf8'));
+  const pkg = readThemeJson(resolve(__dir, '../package.json'));
 
   if (manifest.version === pkg.version) {
     console.log(`✅ Version consistency: ${manifest.version}`);
@@ -106,14 +158,20 @@ function validateTheme(filePath) {
         console.log(`✅ Image exists: ${key} (${path})`);
 
         if (key === 'theme_ntp_background') {
+          const requirement = chromeThemeImageRequirements[key];
+
           try {
             const { width, height } = readPngDimensions(fullPath);
-            const largeEnough = width >= NTP_BACKGROUND_MIN_WIDTH && height >= NTP_BACKGROUND_MIN_HEIGHT;
+
+            const largeEnough = !requirement || (
+              width >= requirement.minWidth
+              && height >= requirement.minHeight
+            );
 
             if (largeEnough) {
               console.log(`✅ NTP background size: ${width}×${height}`);
             } else {
-              console.error(`❌ NTP background too small: ${width}×${height} (needs at least ${NTP_BACKGROUND_MIN_WIDTH}×${NTP_BACKGROUND_MIN_HEIGHT})`);
+              console.error(`❌ NTP background too small: ${width}×${height} (needs at least ${requirement.minWidth}×${requirement.minHeight})`);
 
               errors++;
             }
@@ -146,8 +204,8 @@ function validateTheme(filePath) {
   return errors;
 }
 
-const darkErrors = validateTheme(resolve(__dir, '../manifest.json'));
-const lightErrors = validateTheme(resolve(__dir, '../manifest-light.json'));
+const darkErrors = validateTheme('dark');
+const lightErrors = validateTheme('light');
 const totalErrors = darkErrors + lightErrors;
 
 if (totalErrors > 0) {

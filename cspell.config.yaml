@@ -111,8 +111,11 @@ words:
   - mrmime
   - multi-cursor
   - neumorphism
+  - NODE_AUTH_TOKEN
   - nodejs
   - npx
+  - NPM_CONFIG_USERCONFIG
+  - NPM_TOKEN
   - OKLCH
   - omnibox
   - outfit

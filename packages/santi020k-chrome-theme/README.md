@@ -7,7 +7,7 @@
 
 ![Santi020k Chrome Theme Preview](store/assets/screenshot-main.png)
 
-Chrome browser theme matching the palette of **[santi020k VS Code theme](https://github.com/santi020k/santi020k-theme)** — deep violet chrome (`#0b0712`, `#1c1528`), editor-like surfaces (`#110c1d`), and violet accents (`#752df0` / `#945df4`).
+Chrome browser theme matching the palette of **[santi020k VS Code theme](https://github.com/santi020k/santi020k-theme)** — deep violet chrome (`#0d0a15`, `#151221`), editor-like surfaces, and violet accents (`#752df0` / `#945df4`).
 
 This package lives in the Santi020k theme monorepo alongside the VS Code extension, while Chrome Web Store packaging and listings stay independent.
 
@@ -47,23 +47,23 @@ When the VS Code palette changes, run:
 pnpm run sync:themes
 ```
 
-This reads the VS Code theme files from `packages/santi020k-theme/themes/` and updates both `manifest.json` and `manifest-light.json`.
+This reads the VS Code theme files from `packages/santi020k-theme/themes/` through the shared `@santi020k/theme` Chrome token mapping and updates both `manifest.json` and `manifest-light.json`. Validation fails if either Chrome manifest drifts from those centered theme tokens.
 
 ## Palette
 
 | Role | Hex | VS Code token |
 |------|-----|---------------|
-| Frame (title bar) | `#0b0712` | `titleBar.activeBackground`, `activityBar.background` |
-| Toolbar / tab strip | `#1c1528` | `sideBar.background` |
-| Inactive tabs | `#0b0712` | `tab.inactiveBackground` |
+| Frame (title bar) | `#0d0a15` | `titleBar.activeBackground`, `activityBar.background` |
+| Toolbar / tab strip | `#151221` | `sideBar.background` |
+| Inactive tabs | `#0d0a15` | `tab.inactiveBackground` |
 | Active tab accent line | `#752df0` | `tab.activeBorder` |
-| NTP / omnibox surface | `#110c1d` | `editor.background` |
+| NTP / omnibox surface | `#0d0a15` | `editor.background` |
 | Separators / controls | `#231d30` | `activityBar.border`, `tab.border` |
 | Primary text | `#dfdde3` | `editor.foreground`, `foreground` |
 | Muted text (inactive tabs) | `#a19da8` | between `icon.foreground` and line numbers |
 | Tab text inactive (unfocused) | `#8d8896` | `tab.inactiveForeground` |
 | Links / accents | `#945df4`, `#b48df7` | `textLink.foreground`, `textLink.activeForeground` |
-| Incognito frame | `#08060e` | derived from frame, darkened |
+| Incognito frame | `#09070f` | derived from frame, darkened |
 
 ## Publishing
 

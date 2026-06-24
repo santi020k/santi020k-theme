@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0] - 2026-06-24
+
+### Changed
+- Centered the dark and light Chrome themes on the shared `@santi020k/theme` Chrome token mapping, with manifests synced from the canonical VS Code theme colors.
+- Updated the dark Chrome surface colors to match the current Santi020k VS Code theme frame, toolbar, tab, New Tab, and omnibox tokens.
+- Shared Chrome variant metadata now drives sync, packaging, publishing, and validation so dark/light manifest and zip names stay aligned.
+
+### Fixed
+- Added manifest drift validation so hand-edited Chrome colors or properties fail validation until `pnpm run sync:themes` realigns them with the VS Code theme source.
+- Packaging now validates referenced theme images as required runtime assets, not only icons.
+- Centralized the New Tab PNG size requirement in the shared theme package to keep asset generation and validation from diverging.
+
 ## [1.3.3] - 2026-05-08
 
 ### Fixed

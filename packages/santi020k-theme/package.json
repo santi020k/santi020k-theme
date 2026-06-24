@@ -137,7 +137,7 @@
   },
   "scripts": {
     "build": "pnpm run build:themes",
-    "build:themes": "pnpm run format:themes && node scripts/generate-hc-light.mjs && node scripts/generate-variants.mjs",
+    "build:themes": "node scripts/generate-base-themes.mjs && pnpm run format:themes && node scripts/generate-hc-light.mjs && node scripts/generate-variants.mjs",
     "format:themes": "node scripts/format-themes.mjs",
     "validate:themes": "node scripts/validate-themes.mjs",
     "validate:marketplace": "node scripts/check-marketplace-readiness.mjs",

@@ -13,6 +13,7 @@ apps/*/dist/
 
 # Package build output from packages/santi020k-theme and packages/santi020k-chrome-theme
 packages/*/dist/
+packages/santi020k-chrome-theme/.dev/
 *.vsix
 *.zip
 packages/santi020k-theme/*.vsix
@@ -26,6 +27,7 @@ packages/santi020k-theme/themes/santi020k-hc-light-color-theme.json
 .turbo/
 .eslintcache
 .cspellcache
+.vscode/chrome-*-profile/
 
 # OS and editor noise
 .DS_Store

@@ -9,6 +9,7 @@ import { dirname,resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import {
+  chromeThemeVariantManifests,
   createChromeThemeFromVSCodeColors,
   isChromeThemeVariant
 } from '@santi020k/theme';
@@ -29,13 +30,9 @@ const SOURCE_MAP = {
   light: '../../santi020k-theme/themes/santi020k-light-color-theme.json',
 };
 
-const TARGET_MAP = {
-  dark: '../manifest.json',
-  light: '../manifest-light.json',
-};
-
 const sourcePath = resolve(__dir, SOURCE_MAP[variant]);
-const targetPath = resolve(__dir, TARGET_MAP[variant]);
+const targetManifest = chromeThemeVariantManifests[variant].manifest;
+const targetPath = resolve(__dir, '..', targetManifest);
 
 if (!existsSync(sourcePath)) {
   console.error(`Source theme not found: ${sourcePath}`);
@@ -62,7 +59,7 @@ if (isWrite) {
 
   writeFileSync(targetPath, JSON.stringify(manifest, null, 2) + '\n');
 
-  console.log(`✓ Updated ${TARGET_MAP[variant]}`);
+  console.log(`✓ Updated ${targetManifest}`);
 } else {
   console.log(JSON.stringify({ colors, properties }, null, 2));
 }

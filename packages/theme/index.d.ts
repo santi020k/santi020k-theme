@@ -11,6 +11,26 @@ import type {
 
 export declare const packageName: '@santi020k/theme'
 export declare const chromeThemeVariants: ['dark', 'light']
+export declare const chromeThemeVariantManifests: Record<
+  ChromeThemeVariant,
+  {
+    manifest: string
+    output: string
+  }
+>
+export declare const chromeThemeImageRequirements: Record<
+  string,
+  {
+    format: 'png'
+    minWidth: number
+    minHeight: number
+  }
+>
+export declare const chromeThemeSourceTokenRoles: {
+  chrome: string
+  source: string
+  transform?: string
+}[]
 export declare const chromeThemeContrastPairs: {
   fg: string
   bg: string

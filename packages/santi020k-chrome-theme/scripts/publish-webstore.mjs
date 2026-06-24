@@ -15,6 +15,8 @@ import { dirname, join, resolve } from 'node:path'
 import { setTimeout as delay } from 'node:timers/promises'
 import { fileURLToPath } from 'node:url'
 
+import { chromeThemeVariantManifests } from '@santi020k/theme'
+
 const __dir = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dir, '..')
 const OAUTH_TOKEN_URL = 'https://oauth2.googleapis.com/token'
@@ -23,22 +25,23 @@ const CHROME_WEBSTORE_SCOPE = 'https://www.googleapis.com/auth/chromewebstore'
 const UPLOAD_POLL_ATTEMPTS = 24
 const UPLOAD_POLL_INTERVAL_MS = 5000
 
-const DEFAULT_VARIANTS = [
-  {
-    artifact: 'dist/santi020k-chrome-theme.zip',
+const WEBSTORE_ITEMS = {
+  dark: {
     itemId: 'cljcifjjgolaplmemjcnjhkjfoneadgj',
-    itemIdOverride: () => process.env.CHROME_WEBSTORE_DARK_ITEM_ID,
-    manifest: 'manifest.json',
-    name: 'dark'
+    itemIdOverride: () => process.env.CHROME_WEBSTORE_DARK_ITEM_ID
   },
-  {
-    artifact: 'dist/santi020k-chrome-theme-light.zip',
+  light: {
     itemId: 'ekehaoadgcihpkajlnbpkankaginojci',
-    itemIdOverride: () => process.env.CHROME_WEBSTORE_LIGHT_ITEM_ID,
-    manifest: 'manifest-light.json',
-    name: 'light'
+    itemIdOverride: () => process.env.CHROME_WEBSTORE_LIGHT_ITEM_ID
   }
-]
+}
+
+const DEFAULT_VARIANTS = Object.entries(chromeThemeVariantManifests).map(([name, config]) => ({
+  artifact: `dist/${config.output}`,
+  name,
+  ...config,
+  ...WEBSTORE_ITEMS[name]
+}))
 
 const args = process.argv.slice(2)
 const dryRun = args.includes('--dry-run')

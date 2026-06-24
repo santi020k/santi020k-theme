@@ -8,7 +8,10 @@ import { createWriteStream,existsSync, mkdirSync, readFileSync } from 'fs';
 import { dirname, join,resolve } from 'path';
 import { fileURLToPath } from 'url';
 
-import { chromeRuntimeAssetEntries } from '@santi020k/theme';
+import {
+  chromeRuntimeAssetEntries,
+  chromeThemeVariantManifests
+} from '@santi020k/theme';
 import archiver from 'archiver';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
@@ -16,10 +19,10 @@ const root = resolve(__dir, '..');
 const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
 const dryRun = process.argv.includes('--dry-run');
 
-const VARIANTS = [
-  { name: 'dark',  manifest: 'manifest.json',       output: 'santi020k-chrome-theme.zip' },
-  { name: 'light', manifest: 'manifest-light.json', output: 'santi020k-chrome-theme-light.zip' }
-];
+const VARIANTS = Object.entries(chromeThemeVariantManifests).map(([name, config]) => ({
+  name,
+  ...config
+}));
 
 // Runtime entries to include in the zip (relative to root).
 const INCLUDE_COMMON = [
@@ -69,6 +72,11 @@ function validate(manifestFile) {
   for (const iconPath of Object.values(manifest.icons ?? {})) {
     if (!existsSync(resolveRuntimeAsset(iconPath)))
       throw new Error(`Missing required icon: ${iconPath}`);
+  }
+
+  for (const imagePath of Object.values(manifest.theme.images ?? {})) {
+    if (!existsSync(resolveRuntimeAsset(imagePath)))
+      throw new Error(`Missing required image: ${imagePath}`);
   }
 
   return manifest.version;

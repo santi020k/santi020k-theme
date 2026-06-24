@@ -8,6 +8,56 @@ export const packageName = '@santi020k/theme'
 
 export const chromeThemeVariants = ['dark', 'light']
 
+export const chromeThemeVariantManifests = {
+  dark: {
+    manifest: 'manifest.json',
+    output: 'santi020k-chrome-theme.zip'
+  },
+  light: {
+    manifest: 'manifest-light.json',
+    output: 'santi020k-chrome-theme-light.zip'
+  }
+}
+
+export const chromeThemeImageRequirements = {
+  theme_ntp_background: {
+    format: 'png',
+    minWidth: 3840,
+    minHeight: 2160
+  }
+}
+
+export const chromeThemeSourceTokenRoles = [
+  { chrome: 'bookmark_text', source: 'editor.foreground' },
+  { chrome: 'button_background', source: 'sideBar.background', transform: 'buttonSurface' },
+  { chrome: 'control_background', source: 'tab.border' },
+  { chrome: 'frame', source: 'titleBar.activeBackground' },
+  { chrome: 'frame_inactive', source: 'titleBar.activeBackground', transform: 'inactiveFrame' },
+  { chrome: 'frame_incognito', source: 'titleBar.activeBackground', transform: 'incognitoFrame' },
+  { chrome: 'frame_incognito_inactive', source: 'titleBar.activeBackground', transform: 'inactiveIncognitoFrame' },
+  { chrome: 'background_tab', source: 'tab.inactiveBackground' },
+  { chrome: 'ntp_background', source: 'editor.background' },
+  { chrome: 'ntp_header', source: 'sideBar.background' },
+  { chrome: 'ntp_link', source: 'textLink.foreground' },
+  { chrome: 'ntp_link_underline', source: 'textLink.foreground' },
+  { chrome: 'ntp_section', source: 'sideBar.background' },
+  { chrome: 'ntp_section_link', source: 'textLink.activeForeground' },
+  { chrome: 'ntp_section_text', source: 'icon.foreground' },
+  { chrome: 'ntp_text', source: 'editor.foreground' },
+  { chrome: 'omnibox_background', source: 'editor.background' },
+  { chrome: 'omnibox_text', source: 'editor.foreground' },
+  { chrome: 'tab_background_separator', source: 'tab.border' },
+  { chrome: 'tab_background_text', source: 'chrome.variant.inactiveTabText' },
+  { chrome: 'tab_background_text_inactive', source: 'tab.inactiveForeground' },
+  { chrome: 'tab_background_text_incognito', source: 'tab.inactiveForeground' },
+  { chrome: 'tab_background_text_incognito_inactive', source: 'tab.unfocusedInactiveForeground' },
+  { chrome: 'tab_line', source: 'tab.activeBorder' },
+  { chrome: 'tab_text', source: 'tab.activeForeground' },
+  { chrome: 'toolbar', source: 'sideBar.background' },
+  { chrome: 'toolbar_button_icon', source: 'icon.foreground' },
+  { chrome: 'toolbar_text', source: 'editor.foreground' }
+]
+
 export const chromeThemeContrastPairs = [
   { fg: 'tab_text', bg: 'frame', label: 'Active Tab Text' },
   { fg: 'tab_background_text', bg: 'background_tab', label: 'Inactive Tab Text' },
