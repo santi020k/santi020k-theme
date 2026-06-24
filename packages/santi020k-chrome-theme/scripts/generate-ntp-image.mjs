@@ -35,7 +35,7 @@ mkdirSync(imagesDir, { recursive: true });
 
 // Render the SVG and flatten alpha to produce an opaque RGB PNG.
 // Chrome's theme engine does not support RGBA images for theme_ntp_background.
-// The background colour matches the canvas gradient midpoint (#0d0a15).
+// The background color matches the canvas gradient midpoint (#0d0a15).
 await sharp(src)
   .flatten({ background: { r: 13, g: 10, b: 21 } })
   .png()

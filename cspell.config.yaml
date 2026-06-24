@@ -193,6 +193,7 @@ words:
   - vsce
   - VSCE_PAT
   - vscode
+  - vsmarketplacebadges
   - vscodeignore
   - vscodium
   - WCAG
