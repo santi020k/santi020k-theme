@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.2
+
+### Patch Changes
+
+- [#21](https://github.com/santi020k/santi020k-theme/pull/21) [`9f0e5e3`](https://github.com/santi020k/santi020k-theme/commit/9f0e5e3a773a797aad6ce2a4acef4fd668b56e7a) Thanks [@santi020k](https://github.com/santi020k)! - Replace retired shields.io VS Marketplace version badge with badgen.net. The shields.io `visual-studio-marketplace` endpoint was retired and rendered "retired badge" in the marketplace listing.
+
+- [#21](https://github.com/santi020k/santi020k-theme/pull/21) [`9f0e5e3`](https://github.com/santi020k/santi020k-theme/commit/9f0e5e3a773a797aad6ce2a4acef4fd668b56e7a) Thanks [@santi020k](https://github.com/santi020k)! - Refresh the VS Code theme preview images with richer editor mockups and add a repeatable generator for the rendered assets.
+
 ## 2.0.1
 
 ### Patch Changes

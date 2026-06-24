@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.2
+
+### Patch Changes
+
+- [#21](https://github.com/santi020k/santi020k-theme/pull/21) [`9f0e5e3`](https://github.com/santi020k/santi020k-theme/commit/9f0e5e3a773a797aad6ce2a4acef4fd668b56e7a) Thanks [@santi020k](https://github.com/santi020k)! - Always regenerate NTP background images in CI before packaging to prevent RGBA PNGs from being bundled. Adds a `sync:ntp-images` script (portable, no Chrome dependency) wired into the release workflow, and a packaging-time guard that fails with a clear error if a PNG is not opaque RGB.
+
+- Updated dependencies [[`9f0e5e3`](https://github.com/santi020k/santi020k-theme/commit/9f0e5e3a773a797aad6ce2a4acef4fd668b56e7a)]:
+  - @santi020k/theme@1.0.1
+
 ## 2.0.1
 
 ### Patch Changes
