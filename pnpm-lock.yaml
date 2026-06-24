@@ -186,6 +186,9 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 10.5.0(jiti@2.7.0)
+      sharp:
+        specifier: 'catalog:'
+        version: 0.35.2
 
   packages/santi020k-theme: {}
 

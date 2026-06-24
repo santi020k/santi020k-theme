@@ -7,8 +7,9 @@
 - [ ] `node scripts/package-extension.mjs --dry-run` passes
 - [ ] `node scripts/package-extension.mjs` produces `dist/santi020k-chrome-theme.zip`
 - [ ] Zip verified: unzip and confirm only `manifest.json`, `icons/`, and `LICENSE` are present (no `store/`, `scripts/`, or `README.md` unless intentional)
-- [ ] Screencaptures taken per `store/image-specs.md` (at least 1 screenshot; use `*-light.png` files for the light listing)
-- [ ] Small promo tile (440×280 px PNG) ready (`promo-tile-light.png` for the light listing)
+- [ ] Store assets regenerated: `pnpm run sync:assets` (produces both dark and light PNGs)
+- [ ] Screencaptures taken per `store/image-specs.md` (at least 1 screenshot per listing)
+- [ ] Small promo tile (440×280 px PNG) ready (`promo-tile.png` for dark, `promo-tile-light.png` for light)
 
 ## Dashboard fields
 
@@ -102,12 +103,19 @@ Use the workflow dispatch `dry_run` input when checking credentials-free package
 - [x] Tag the release in git: `git push --tags`
 - [x] Publish light theme listing
 
-## Light Theme Listing Assets
+## Store Listing Assets
 
-Generate the light listing artwork with:
+Regenerate both dark and light listing artwork together with:
 
 ```sh
-pnpm run sync:store-assets:light
+pnpm run sync:assets
 ```
 
-Upload the generated `store/assets/*-light.png` files to the light theme Chrome Web Store listing. The existing unsuffixed files remain the dark listing assets.
+Or individually:
+
+```sh
+pnpm run sync:store-assets:dark   # regenerates unsuffixed dark assets
+pnpm run sync:store-assets:light  # regenerates *-light.png assets
+```
+
+Upload the unsuffixed `store/assets/*.png` files to the dark theme listing and the `store/assets/*-light.png` files to the light theme listing.
