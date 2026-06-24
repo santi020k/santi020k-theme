@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest a package, website, automation, or documentation improvement.
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: What should change?
+      description: Describe the improvement and who it helps.
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - VS Code extension / themes
+        - Chrome theme
+        - Theme hub website
+        - VS Code website
+        - Chrome website
+        - Release automation / packaging
+        - Documentation / metadata
+        - GitHub templates / project maintenance
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Add links, screenshots, examples, or related issues.
+  - type: checkboxes
+    id: brand
+    attributes:
+      label: Brand and accessibility
+      options:
+        - label: This request affects colors, product names, copy, screenshots, icons, website UI, store metadata, or shared assets.
+        - label: This request affects readability, contrast, focus states, reduced motion, or high-contrast behavior.

@@ -34,9 +34,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: |
-            pnpm-lock.yaml
-            website/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -48,6 +46,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: santi020k-theme-vsix
-          path: '*.vsix'
+          path: packages/santi020k-theme/*.vsix
           if-no-files-found: error
           retention-days: 7

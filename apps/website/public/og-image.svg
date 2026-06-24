@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Santi020k Themes social card">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0d0718"/>
+      <stop offset="0.54" stop-color="#110c1d"/>
+      <stop offset="1" stop-color="#1c1528"/>
+    </linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0v44" fill="none" stroke="#494158" stroke-opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.52"/>
+  <path d="M0 482c160-66 310-66 450 0 157 74 326 64 506-31 103-54 184-76 244-66v245H0Z" fill="#945df4" opacity="0.12"/>
+  <rect x="64" y="64" width="1072" height="502" rx="26" fill="#110c1d" fill-opacity="0.78" stroke="#494158" stroke-width="2"/>
+  <path d="M64 64h1072v8H64Z" fill="#945df4" opacity="0.72"/>
+  
+  <g transform="translate(104 112) scale(0.85)">
+    <rect width="80" height="80" rx="18" fill="#5a0fdb"/>
+    <path d="M26 28 L40 40 L26 52" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="48" y1="52" x2="62" y2="52" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <text x="196" y="144" fill="#945df4" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="850" letter-spacing="0">Theme family</text>
+  <rect x="196" y="166" width="96" height="4" rx="2" fill="#945df4"/>
+  <text x="104" y="318" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="850" letter-spacing="0">Santi020k Themes</text>
+  <text x="108" y="374" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="550" letter-spacing="0"><tspan x="108" dy="0">A calm violet system for VS Code,</tspan><tspan x="108" dy="38">Chrome, npm packages, and more.</tspan></text>
+  <text x="104" y="496" fill="#8d8896" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0">theme.santi020k.com</text>
+  
+  <g transform="translate(722 144) scale(0.88)">
+    <rect width="190" height="148" rx="18" fill="#0b0712" stroke="#494158" stroke-width="2"/>
+    <rect x="26" y="34" width="92" height="12" rx="6" fill="#945df4"/>
+    <rect x="26" y="66" width="132" height="10" rx="5" fill="#b6b2bd" opacity="0.58"/>
+    <rect x="26" y="94" width="88" height="28" rx="8" fill="#5a0fdb"/>
+    <rect x="220" y="48" width="190" height="148" rx="18" fill="#110c1d" stroke="#494158" stroke-width="2"/>
+    <rect x="244" y="78" width="142" height="30" rx="15" fill="#1c1528" stroke="#494158"/>
+    <rect x="244" y="128" width="64" height="38" rx="10" fill="#945df4"/>
+    <rect x="322" y="128" width="64" height="38" rx="10" fill="#f8f6fd"/>
+    <rect x="84" y="220" width="250" height="86" rx="18" fill="#1c1528" stroke="#494158" stroke-width="2"/>
+    <circle cx="130" cy="263" r="20" fill="#945df4"/>
+    <rect x="170" y="244" width="116" height="12" rx="6" fill="#dfdde3" opacity="0.82"/>
+    <rect x="170" y="272" width="92" height="10" rx="5" fill="#b6b2bd" opacity="0.62"/>
+  </g>
+
+</svg>

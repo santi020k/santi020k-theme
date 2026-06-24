@@ -5,10 +5,24 @@ This folder is a lightweight place for agent-facing project context.
 Primary guidance lives in:
 
 - `../AGENTS.md`
+- `../docs/brand-guidelines.md`
 - `../llms.txt`
 - `../.github/copilot-instructions.md`
 
-Use those files before modifying theme colors, release automation, or package metadata.
+Use those files before modifying theme colors, brand copy, shared assets, website UI, release automation, or package metadata. Treat `../docs/brand-guidelines.md` as the source of truth for brand-sensitive decisions.
+
+## Agent Roles
+
+Reusable role definitions live in `agents/`.
+
+- `agents/theme-maintainer.toml`
+- `agents/accessibility-auditor.toml`
+- `agents/website-maintainer.toml`
+- `agents/chrome-theme-maintainer.toml`
+- `agents/release-manager.toml`
+- `agents/ci-triager.toml`
+
+Keep authored agent guidance here instead of duplicating it into provider-specific folders. If a tool needs a vendor-specific config path, generate or mirror from this directory.
 
 ## Repo-Local Skills
 

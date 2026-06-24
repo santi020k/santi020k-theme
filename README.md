@@ -1,168 +1,63 @@
 # Santi020k Theme
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/santi020k.santi020k-theme?label=Marketplace&logo=visual-studio-code&color=945df4)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
-[![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX&logo=visual-studio-code&color=945df4)](https://open-vsx.org/extension/santi020k/santi020k-theme)
-[![Validate](https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml?label=Validate&logo=github&color=945df4)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
+Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Chrome, shared brand packages, and static product websites.
 
-A deep indigo-black dark, a purple-tinted light, and high contrast variants for VS Code — built for long sessions, not just screenshots. Available in 12 fine-tuned variants (Dark, Light, HC Dark, HC Light) across Base, Bold, and Italic styles.
+The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.md). Read it before changing colors, product names, screenshots, icons, website copy, store metadata, or shared assets.
 
-**→ [theme.santi020k.com](https://theme.santi020k.com)**
+## Workspaces
 
----
+| Workspace | Purpose |
+| --- | --- |
+| `packages/santi020k-theme` | Published VS Code extension with dark, light, high-contrast, bold, and italic variants |
+| `packages/santi020k-chrome-theme` | Chrome Web Store theme package, synced from the VS Code palette |
+| `packages/theme` | Public `@santi020k/theme` package for tokens, website CSS, assets, metadata, and Chrome mapping helpers |
+| `packages/theme-core` | Public `@santi020k/theme-core` helper package for package-neutral token generation, asset lookup, and site behavior primitives |
+| `apps/website` | Theme family hub for `theme.santi020k.com` |
+| `apps/vscode-website` | VS Code theme product site for `vscode.santi020k.com` |
+| `apps/chrome-website` | Chrome theme product site for `chrome.santi020k.com` |
 
-![santi020k dark theme preview](assets/preview-dark.png)
+## Quick Start
 
-![santi020k light theme preview](assets/preview-light.png)
-
-![santi020k high contrast dark theme preview](assets/preview-hc-dark.png)
-
----
-
-## Why this theme
-
-- **Purple-forward, not purple-loud.** Every accent — cursor, brackets, active borders — comes from a single violet ramp. Nothing neon, nothing clashing.
-- **Four profiles, one color language.** Dark, light, high contrast dark, and high contrast light all share the same violet palette so switching between them feels intentional, not jarring.
-- **Bold and Italic variants.** Prefer a punchy, thick font weight? Want distinct italic keywords? Choose from the 12 included variants to match your typography preferences exactly.
-- **Built for readability.** Contrast ratios are validated automatically on every commit. Keywords are italic, comments are softened, JSON keys / values / numbers use distinct hues so structure is obvious at a glance.
-- **Works everywhere.** VS Code, Cursor, Windsurf, VSCodium — any editor built on the VS Code extension API.
-
----
-
-## Install
-
-**VS Code Marketplace** — the fastest way:
-
-1. Open VS Code → Extensions (`Cmd+Shift+X` / `Ctrl+Shift+X`)
-2. Search **Santi020k Theme**
-3. Click **Install**
-4. Open the theme picker (`Cmd+K Cmd+T`) and choose from the 12 variants, such as **santi020k dark**, **santi020k light bold**, or **santi020k hc light italic**.
-
-### Achieving the "Preview Look"
-
-The marketing website is **optimized for ligature-ready fonts** and features **Fira Code** with contextual ligatures enabled. To get that exact look in VS Code, we recommend these settings:
-
-```json
-{
-  "editor.fontFamily": "'Fira Code', 'Montserrat', monospace",
-  "editor.fontLigatures": true,
-  "editor.fontWeight": "500",
-  "editor.lineHeight": 1.9,
-  "editor.letterSpacing": -0.2
-}
+```bash
+pnpm install
+pnpm run validate
 ```
 
-**Open VSX** — for Cursor, VSCodium, and other compatible editors:
+Use Node `>=22.18.0` and pnpm `10.32.1`.
 
-Install from [open-vsx.org/extension/santi020k/santi020k-theme](https://open-vsx.org/extension/santi020k/santi020k-theme), then pick the variant from the theme picker.
+## Common Commands
 
----
-
-## Variants
-
-### santi020k dark
-
-Deep indigo-black (`#110c1d`) backgrounds with a layered surface hierarchy. Accent colors are muted violets pulled directly from the wallpaper geometry — nothing neon, nothing loud. Keywords and storage modifiers are italic; comments are softened but readable. The cursor and active tab indicator glow in `#945df4`.
-
-| Role | Color |
+| Command | What it does |
 | --- | --- |
-| Editor background | `#110c1d` |
-| Activity / Status bar | `#0b0712` |
-| Sidebar | `#1c1528` |
-| Cursor / active border | `#945df4` |
-| Buttons / badges | `#5a0fdb` |
-| Strings | `#b48df7` |
-| Keywords | `#8445f2` italic |
-| Comments | `#71569f` italic |
-| Primary text | `#dfdde3` |
+| `pnpm run validate` | Builds packages, checks spelling, validates themes and marketplace metadata, tests, lints, and packages the VS Code extension |
+| `pnpm run validate:themes` | Validates the VS Code theme JSON files |
+| `pnpm run validate:marketplace` | Checks VS Code extension marketplace readiness |
+| `pnpm run validate:chrome` | Lints, validates contrast, and dry-runs Chrome packaging |
+| `pnpm run package:extension` | Builds and packages the VS Code extension as a VSIX |
+| `pnpm run package:chrome` | Builds Chrome Web Store zip files |
+| `pnpm run site:dev` | Starts the theme hub website |
+| `pnpm run site:vscode:dev` | Starts the VS Code theme website |
+| `pnpm run site:chrome:dev` | Starts the Chrome theme website |
+| `pnpm run changeset` | Creates a release changeset |
+| `pnpm run commit` | Opens the conventional commit prompt |
 
-### santi020k dark bold
+## Working On The Theme Family
 
-The "website preview" version of the dark theme. It shares the exact same palette as `santi020k dark` but explicitly sets **bold** weight for every syntax token. When combined with a bold font, it delivers the high-impact, punchy aesthetic seen in the marketing previews.
+- Start brand-sensitive work in [`docs/brand-guidelines.md`](docs/brand-guidelines.md).
+- Keep VS Code dark and light theme changes paired unless the task is explicitly single-variant.
+- Keep Chrome manifests synced from the VS Code theme through `pnpm run sync:themes`.
+- Keep website copy concrete, developer-facing, and aligned with the published domains.
+- Add a changeset for user-visible package, docs, release, website, or theme changes.
 
-| Role | Style |
-| --- | --- |
-| Palette | Identical to `santi020k dark` |
-| Syntax Tokens | **Bold** (global override) |
-| Keywords | **Bold Italic** |
-| Function Names | **Bold** |
+## Documentation Map
 
-### santi020k light bold
-
-The bold counterpart to the light theme. It applies a global bold override to all syntax tokens, making the violet ramp even more prominent against the soft lavender backgrounds.
-
-| Role | Style |
-| --- | --- |
-| Palette | Identical to `santi020k light` |
-| Syntax Tokens | **Bold** |
-| Keywords | **Bold Italic** |
-
-### santi020k light
-
-Purple-tinted whites (`#f8f6fd`) with a rich violet brand (`#6319be`) driving all interactive elements. The status bar flips to solid brand purple, making workspace context immediately readable. Syntax uses a single-hue violet ramp so the light variant feels like a natural counterpart to the dark one.
-
-| Role | Color |
-| --- | --- |
-| Editor background | `#f8f6fd` |
-| Sidebar | `#f0edf9` |
-| Tab bar | `#e3dff0` |
-| Status bar | `#6319be` |
-| Cursor / active border | `#6319be` |
-| Strings | `#7030b0` |
-| Keywords | `#5a1ab0` italic |
-| Comments | `#9880c0` italic |
-| Primary text | `#302e36` |
-
-### santi020k hc dark
-
-Near-black (`#0d0718`) backgrounds with vivid purple borders (`#602cba`) replacing the subtle ones from the dark variant. All accent colors are fully saturated — teal `#60c8e0`, amber `#ffc060`, red `#ff7070` — so every signal reads clearly at a glance. Indent guides are made visible. Built for screens with limited contrast, accessibility requirements, or anyone who prefers maximum separation between UI elements.
-
-| Role | Color |
-| --- | --- |
-| Editor background | `#0d0718` |
-| Activity / Status bar | `#090410` |
-| Sidebar | `#140b22` |
-| Borders | `#602cba` |
-| Cursor / active border | `#a570ff` |
-| Strings | `#c5a3ff` |
-| Keywords | `#955ff2` italic |
-| Comments | `#8264b4` italic |
-| Primary text | `#f0ebfa` |
-
-### santi020k hc light
-
-Maximum contrast for light theme users. Features a pure white (`#ffffff`) background with stark black borders (`#000000`) and deeply saturated purples and blues for syntax. Built for accessibility, bright environments, or screens where subtle contrast washes out.
-
-| Role | Color |
-| --- | --- |
-| Editor background | `#ffffff` |
-| Sidebar / Status bar | `#f0edf9` |
-| Borders | `#000000` |
-| Cursor / active border | `#302e36` |
-| Strings | `#7030b0` |
-| Keywords | `#5a1ab0` italic |
-| Primary text | `#111111` |
-
-### Italic Variants
-
-For users who prefer distinctive typography for syntax, every theme profile (Dark, Light, HC Dark, HC Light) includes an **Italic** variant. These variants enforce italic styling across keywords, parameters, types, and modifiers, while keeping the rest of the text upright.
-
-- **santi020k dark italic**
-- **santi020k light italic**
-- **santi020k hc dark italic**
-- **santi020k hc light italic**
-
----
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, editing themes, validation, and the release workflow.
-
-## Support
-
-If this theme makes your editor a nicer place to live, you can support ongoing maintenance through [GitHub Sponsors](https://github.com/sponsors/santi020k).
-
----
+- [`docs/architecture.md`](docs/architecture.md) explains the repo architecture.
+- [`packages/santi020k-theme/README.md`](packages/santi020k-theme/README.md) is the marketplace-facing VS Code extension README.
+- [`packages/santi020k-chrome-theme/README.md`](packages/santi020k-chrome-theme/README.md) covers Chrome theme development and Web Store packaging.
+- [`packages/theme/README.md`](packages/theme/README.md) documents shared tokens and assets.
+- [`packages/theme-core/README.md`](packages/theme-core/README.md) documents lower-level shared helper APIs.
+- [`apps/website/README.md`](apps/website/README.md), [`apps/vscode-website/README.md`](apps/vscode-website/README.md), and [`apps/chrome-website/README.md`](apps/chrome-website/README.md) cover the static sites.
 
 ## License
 
-[MIT](LICENSE)
+MIT. See [LICENSE](LICENSE).

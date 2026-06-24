@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Santi020k Theme social card">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0d0718"/>
+      <stop offset="0.54" stop-color="#110c1d"/>
+      <stop offset="1" stop-color="#1c1528"/>
+    </linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0v44" fill="none" stroke="#494158" stroke-opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.52"/>
+  <path d="M0 482c160-66 310-66 450 0 157 74 326 64 506-31 103-54 184-76 244-66v245H0Z" fill="#945df4" opacity="0.12"/>
+  <rect x="64" y="64" width="1072" height="502" rx="26" fill="#110c1d" fill-opacity="0.78" stroke="#494158" stroke-width="2"/>
+  <path d="M64 64h1072v8H64Z" fill="#945df4" opacity="0.72"/>
+  
+  <g transform="translate(104 112)">
+    <rect width="68" height="68" rx="16" fill="#1c1528" stroke="#494158" stroke-width="2"/>
+    <path d="M34 12.24 51.68 53.04 16.32 53.04Z" fill="#945df4" opacity="0.94"/>
+    <path d="M34 12.24 16.32 53.04M34 12.24l17.68 40.8M16.32 53.04h35.36" fill="none" stroke="#dfdde3" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  </g>
+
+  <text x="196" y="144" fill="#945df4" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="850" letter-spacing="0">VS Code color theme</text>
+  <rect x="196" y="166" width="96" height="4" rx="2" fill="#945df4"/>
+  <text x="104" y="318" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="850" letter-spacing="0">Santi020k Theme</text>
+  <text x="108" y="374" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="550" letter-spacing="0"><tspan x="108" dy="0">Dark, light, and high-contrast variants</tspan><tspan x="108" dy="38">built for long technical sessions.</tspan></text>
+  <text x="104" y="496" fill="#8d8896" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0">vscode.santi020k.com</text>
+  
+  <g transform="translate(720 150) scale(0.86)">
+    <rect width="398" height="318" rx="18" fill="#0b0712" stroke="#494158" stroke-width="2"/>
+    <rect width="398" height="48" rx="18" fill="#1c1528"/>
+    <circle cx="31" cy="24" r="6" fill="#ea6962"/>
+    <circle cx="55" cy="24" r="6" fill="#e8b44a"/>
+    <circle cx="79" cy="24" r="6" fill="#7daea3"/>
+    <g font-family="SFMono-Regular, Consolas, monospace" font-size="19">
+      <text x="34" y="94" fill="#5e576b">1</text>
+      <text x="72" y="94" fill="#8445f2">const</text>
+      <text x="138" y="94" fill="#dfdde3">focus</text>
+      <text x="208" y="94" fill="#b6b2bd">=</text>
+      <text x="232" y="94" fill="#b48df7">'calm'</text>
+      <text x="34" y="136" fill="#5e576b">2</text>
+      <text x="72" y="136" fill="#8445f2">theme</text>
+      <text x="142" y="136" fill="#b6b2bd">.</text>
+      <text x="158" y="136" fill="#945df4">apply</text>
+      <text x="220" y="136" fill="#b6b2bd">(</text>
+      <text x="238" y="136" fill="#b48df7">'violet'</text>
+      <text x="326" y="136" fill="#b6b2bd">)</text>
+      <text x="34" y="178" fill="#5e576b">3</text>
+      <text x="72" y="178" fill="#7daea3">syntax</text>
+      <text x="148" y="178" fill="#dfdde3">.</text>
+      <text x="164" y="178" fill="#945df4">staysReadable</text>
+      <text x="34" y="220" fill="#5e576b">4</text>
+      <text x="72" y="220" fill="#e8b44a">session</text>
+      <text x="158" y="220" fill="#dfdde3">.</text>
+      <text x="174" y="220" fill="#945df4">continue</text>
+      <text x="262" y="220" fill="#b6b2bd">()</text>
+    </g>
+    <rect x="30" y="256" width="122" height="34" rx="8" fill="#1c1528" stroke="#945df4"/>
+    <text x="52" y="279" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">dark</text>
+    <rect x="166" y="256" width="122" height="34" rx="8" fill="#f8f6fd" stroke="#6319be"/>
+    <text x="190" y="279" fill="#302e36" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">light</text>
+  </g>
+
+</svg>

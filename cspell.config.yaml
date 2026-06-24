@@ -9,6 +9,7 @@ words:
   - align-items
   - alpinejs
   - antialiased
+  - archiver
   - auroraui
   - autoincrement
   - Avenir
@@ -24,16 +25,27 @@ words:
   - bracket-pair
   - breadcrumbs
   - changelog
+  - changefreq
   - changeset
   - changesets
+  - cljcifjjgolaplmemjcnjhkjfoneadgj
   - claymorphism
   - color-scheme
   - command-center
+  - commitizen
+  - commitlint
+  - Consolas
+  - crx
+  - dasharray
   - defmodule
+  - deployInfos
   - editor-background
   - editor-foreground
+  - ekehaoadgcihpkajlnbpkankaginojci
   - emphasised
+  - esbuild
   - eslint
+  - favicons
   - fira
   - flex-shrink
   - flex-wrap
@@ -59,24 +71,37 @@ words:
   - hover-background
   - hover-border
   - hover-widget
+  - hugeicons
+  - Iconify
   - immutability
   - inactive-background
   - inactive-border
+  - incognito
   - indigo
   - inlay-hints
   - inter
   - justify-content
   - justify-self
   - keybinding
+  - keytar
+  - knip
+  - labelledby
+  - lastmod
   - lede
+  - letterform
   - letter-spacing
+  - linecap
   - ligatures
   - lightningcss
   - line-height
+  - linejoin
+  - linearizing
   - llms
+  - logomark
   - margin-inline
   - max-height
   - max-width
+  - Medellín
   - min-height
   - min-width
   - minimap
@@ -86,12 +111,21 @@ words:
   - mrmime
   - multi-cursor
   - neumorphism
+  - negotiables
+  - NODE_AUTH_TOKEN
+  - newtab
   - nodejs
+  - npmjs
   - npx
+  - NPM_CONFIG_USERCONFIG
+  - NPM_TOKEN
+  - OKLCH
+  - omnibox
   - outfit
   - outline-offset
   - ovsx
   - OVSX_PAT
+  - OAuth
   - pnpm-lock
   - padding-block
   - PATs
@@ -100,6 +134,7 @@ words:
   - pointer-events
   - premove
   - quick-picker
+  - rasterizes
   - readonly
   - readwrite
   - rgbaf
@@ -110,21 +145,31 @@ words:
   - santi020k-hc
   - santi020k-light
   - santi020k-theme
+  - santi020k-chrome
   - scroll-behavior
   - Segoe
   - selection-background
   - selection-foreground
   - semantic-highlighting
   - semantic-token-colors
+  - screencaptures
+  - screenshotting
   - shadcn
   - side-bar
+  - shouty
   - skeuomorphism
+  - Specialisation
   - Stackframe
   - starlight
   - status-bar
   - sticky-scroll
+  - stylised
   - suggest-widget
+  - Tabler
+  - tabler
+  - Tailwind
   - tailwindcss
+  - tabstrip
   - text-decoration
   - text-transform
   - textmate
@@ -136,6 +181,11 @@ words:
   - transition-property
   - transition-timing-function
   - tsconfck
+  - tspan
+  - undici
+  - unrs
+  - unsuffixed
+  - urlset
   - v1.4.0
   - v1.5.0
   - vite
@@ -145,6 +195,9 @@ words:
   - vscode
   - vscodeignore
   - vscodium
+  - WCAG
+  - webp
+  - webstore
   - walkthrough
   - wordmark
 ignorePaths:
@@ -157,5 +210,9 @@ ignorePaths:
   - "*.vsix"
   - .agents/**
   - .changeset/**
-  - website/dist/**
-  - website/.vite/**
+  - .turbo/**
+  - apps/*/dist/**
+  - apps/*/.vite/**
+  - packages/*/dist/**
+  - packages/theme/docs/**
+  - packages/santi020k-theme/*.vsix
