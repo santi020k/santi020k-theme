@@ -228,3 +228,5 @@ Run the narrowest useful check first, then broaden when the change crosses works
 | Cross-surface or release-ready changes | `pnpm run validate` |
 
 If pnpm policy checks block local script execution, document the exact policy failure and run direct equivalent checks where practical, such as package entrypoint syntax checks and direct Vite builds from the affected apps.
+
+Run full validation before publishing any package or store artifact. Release scripts may repeat validation near the publish step, but the first publish action should not run until the workspace has already passed the release-ready gate.

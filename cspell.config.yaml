@@ -111,8 +111,10 @@ words:
   - mrmime
   - multi-cursor
   - neumorphism
+  - negotiables
   - NODE_AUTH_TOKEN
   - nodejs
+  - npmjs
   - npx
   - NPM_CONFIG_USERCONFIG
   - NPM_TOKEN
@@ -131,6 +133,7 @@ words:
   - pointer-events
   - premove
   - quick-picker
+  - rasterizes
   - readonly
   - readwrite
   - rgbaf
@@ -152,6 +155,7 @@ words:
   - screenshotting
   - shadcn
   - side-bar
+  - shouty
   - skeuomorphism
   - Specialisation
   - Stackframe

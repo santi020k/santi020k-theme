@@ -314,6 +314,7 @@ const assetPaths = [
   'assets/vscode/previews/preview-dark.png',
   'assets/vscode/previews/preview-dark.svg',
   'assets/vscode/previews/preview-hc-dark.png',
+  'assets/vscode/previews/preview-hc-light.png',
   'assets/vscode/previews/preview-light.png',
   'assets/vscode/previews/preview-light.svg',
   'assets/wallpapers/wallpaper-1-desktop.png',

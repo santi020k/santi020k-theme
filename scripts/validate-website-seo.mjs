@@ -31,9 +31,10 @@ const root = resolve(import.meta.dirname, '..')
 const errors = []
 
 const attrValue = (tag, attr) => {
-  const match = tag.match(new RegExp(`${attr}=(["'])(.*?)\\1`, 'i'))
+  const attributes = [...tag.matchAll(/\s([^\s=]+)=(["'])(.*?)\2/g)]
+  const match = attributes.find(([, name]) => name.toLowerCase() === attr.toLowerCase())
 
-  return match?.[2] ?? ''
+  return match?.[3] ?? ''
 }
 
 const findMeta = (html, attr, value) => {

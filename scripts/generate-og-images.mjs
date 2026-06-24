@@ -134,10 +134,20 @@ const hubVisual = `
   </g>
 `
 
-const visuals = {
-  browser: browserVisual,
-  editor: editorVisual,
-  hub: hubVisual,
+const getVisual = (visual) => {
+  switch (visual) {
+    case 'browser':
+      return browserVisual
+
+    case 'editor':
+      return editorVisual
+
+    case 'hub':
+      return hubVisual
+
+    default:
+      throw new Error(`Unknown Open Graph visual: ${visual}`)
+  }
 }
 
 const subtitleText = (lines) => lines
@@ -167,7 +177,7 @@ const cardSvg = ({ accent, badge, domain, subtitleLines, title, visual }) => `\
   <text x="104" y="318" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="850" letter-spacing="0">${escapeXml(title)}</text>
   <text x="108" y="374" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="550" letter-spacing="0">${subtitleText(subtitleLines)}</text>
   <text x="104" y="496" fill="#8d8896" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0">${escapeXml(domain)}</text>
-  ${visuals[visual]}
+  ${getVisual(visual)}
 </svg>
 `
 

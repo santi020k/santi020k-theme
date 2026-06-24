@@ -32,7 +32,7 @@
     "publish": "pnpm --filter santi020k-theme run publish",
     "publish:npm": "node scripts/publish-npm-packages.mjs",
     "publish:chrome": "pnpm --filter santi020k-chrome-theme run publish:webstore",
-    "release": "pnpm run publish:npm && pnpm --filter santi020k-theme run release",
+    "release": "pnpm run validate && pnpm run publish:npm && pnpm --filter santi020k-theme run release",
     "release:npm": "pnpm run publish:npm",
     "release:chrome": "pnpm --filter santi020k-chrome-theme run release",
     "release:tag": "pnpm --filter santi020k-theme run release:tag",
