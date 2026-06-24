@@ -1,0 +1,264 @@
+---
+import { Image } from 'astro:assets'
+---
+
+<!doctype html>
+<html lang="en" data-santi020k-site="hub">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        var s = localStorage.getItem('theme')
+        var pref = s === 'light' || s === 'dark'
+          ? s
+          : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        document.documentElement.setAttribute('data-theme', pref)
+      })()
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Santi020k Themes - VS Code, Chrome, npm, and More</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="/hub-hero-art.png" fetchpriority="high" />
+    <meta name="description" content="The Santi020k theme family hub: VS Code color themes, Chrome browser themes, npm design tokens, and upcoming visual surfaces built around the same calm violet system." />
+    <meta name="author" content="Santiago Molina" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href="https://theme.santi020k.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://theme.santi020k.com/" />
+    <meta property="og:site_name" content="Santi020k Themes" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Santi020k Themes - VS Code, Chrome, npm, and More" />
+    <meta property="og:description" content="A hub for the Santi020k theme family across editor, browser, npm packages, and upcoming surfaces." />
+    <meta property="og:image" content="https://theme.santi020k.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Santi020k Themes hub" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@santi020k" />
+    <meta name="twitter:creator" content="@santi020k" />
+    <meta name="twitter:url" content="https://theme.santi020k.com/" />
+    <meta name="twitter:title" content="Santi020k Themes" />
+    <meta name="twitter:description" content="VS Code, Chrome, npm packages, and upcoming Santi020k theme surfaces in one place." />
+    <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Santi020k Themes - VS Code, Chrome, npm, and more" />
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Santi020k Themes",
+      "url": "https://theme.santi020k.com/",
+      "description": "The hub for Santi020k visual themes across editor, browser, and upcoming surfaces.",
+      "author": {
+        "@type": "Person",
+        "name": "Santiago Molina",
+        "url": "https://santi020k.com",
+        "sameAs": ["https://github.com/santi020k", "https://twitter.com/santi020k"]
+      },
+      "hasPart": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Santi020k Theme for VS Code",
+          "url": "https://vscode.santi020k.com/",
+          "applicationCategory": "DeveloperApplication"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Santi020k Theme for Chrome",
+          "url": "https://chrome.santi020k.com/",
+          "applicationCategory": "BrowserApplication"
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "@santi020k/theme",
+          "url": "https://github.com/santi020k/santi020k-theme",
+          "codeRepository": "https://github.com/santi020k/santi020k-theme",
+          "programmingLanguage": ["CSS", "JavaScript", "TypeScript"]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <header class="site-shell site-header" aria-label="Site header">
+      <a class="brand" href="#top" aria-label="Santi020k Themes home">
+        <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+          <rect width="80" height="80" rx="18" fill="currentColor" />
+          <path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+          <line x1="48" y1="52" x2="62" y2="52" stroke="var(--brand-mark-ink)" stroke-width="8" stroke-linecap="round" />
+        </svg>
+        <span>Santi020k Themes</span>
+      </a>
+
+      <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
+        <a href="#themes">Themes</a>
+        <a href="#packages">Packages</a>
+        <a href="#soon">Coming soon</a>
+        <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+        <button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="site-shell hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Theme family</p>
+          <h1>Santi020k Themes</h1>
+          <p class="lede">
+            A shared violet system for your editor, your browser, and the next surfaces that should feel like they belong together.
+          </p>
+          <div class="actions" aria-label="Primary theme links">
+            <a class="button button-primary" href="https://vscode.santi020k.com/">Open VS Code</a>
+            <a class="button button-secondary" href="https://chrome.santi020k.com/">Open Chrome</a>
+            <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Theme previews">
+          <Image src="/hub-hero-art.png" width="1536" height="1024" alt="Abstract editor and browser windows using the Santi020k theme palette" fetchpriority="high" inferSize />
+          <div class="hero-art-caption" aria-hidden="true">
+            <span>VS Code</span>
+            <span>Chrome</span>
+            <span>Tokens</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="themes" class="site-shell section">
+        <div class="section-heading">
+          <p class="eyebrow">Available now</p>
+          <h2>Choose your surface.</h2>
+        </div>
+
+        <div class="theme-grid">
+          <article class="theme-card theme-card-large">
+            <a class="theme-card-media" href="https://vscode.santi020k.com/" aria-label="Open VS Code theme site">
+              <Image src="/vscode-theme-art.png" width="1672" height="941" alt="Abstract Santi020k VS Code theme preview" loading="lazy" decoding="async" inferSize />
+            </a>
+            <div class="theme-card-body">
+              <div class="card-kicker">
+                <span class="status-dot live"></span>
+                Live
+              </div>
+              <h3>VS Code</h3>
+              <p>Dark, light, high contrast, bold, and italic variants for VS Code-compatible editors.</p>
+              <div class="card-actions">
+                <a class="button button-primary" href="https://vscode.santi020k.com/">Open site</a>
+                <a class="button button-secondary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="theme-card">
+            <a class="theme-card-media" href="https://chrome.santi020k.com/" aria-label="Open Chrome theme site">
+              <Image src="/chrome-theme-art.png" width="1586" height="992" alt="Abstract Santi020k Chrome theme preview" loading="lazy" decoding="async" inferSize />
+            </a>
+            <div class="theme-card-body">
+              <div class="card-kicker">
+                <span class="status-dot live"></span>
+                Live
+              </div>
+              <h3>Chrome</h3>
+              <p>Matching dark and light Chrome browser themes with the same violet system.</p>
+              <div class="card-actions">
+                <a class="button button-primary" href="https://chrome.santi020k.com/">Open site</a>
+                <a class="button button-secondary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" rel="noopener noreferrer">Web Store</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="packages" class="site-shell section packages-section">
+        <div class="section-heading">
+          <p class="eyebrow">npm package</p>
+          <h2>Use the same tokens in your own surface.</h2>
+        </div>
+
+        <article class="package-panel">
+          <div class="package-copy">
+            <div class="card-kicker">
+              <span class="status-dot live"></span>
+              Live on npm
+            </div>
+            <h3>@santi020k/theme</h3>
+            <p>Design tokens, CSS custom properties, Tailwind mappings, and shared brand assets for Santi020k websites, apps, and theme-family surfaces.</p>
+            <div class="card-actions">
+              <a class="button button-primary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">View source</a>
+            </div>
+          </div>
+
+          <div class="package-snippet" aria-label="Package install and import examples">
+            <code>pnpm add @santi020k/theme</code>
+            <code>@import '@santi020k/theme/tokens.css';</code>
+            <code>import &#123; config, projects &#125; from '@santi020k/theme'</code>
+          </div>
+        </article>
+      </section>
+
+      <section id="soon" class="site-shell section soon-section">
+        <div class="section-heading">
+          <p class="eyebrow">Coming soon</p>
+          <h2>Next up for the same visual language.</h2>
+        </div>
+
+        <div class="soon-grid">
+          <article class="soon-card terminal-card">
+            <div class="soon-visual" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <code>$ santi020k apply terminal</code>
+            </div>
+            <h3>Terminal palettes</h3>
+            <p>Shell color presets for long-running sessions, logs, and prompts.</p>
+          </article>
+
+          <article class="soon-card">
+            <div class="wallpaper-frame" aria-hidden="true">
+              <span></span>
+            </div>
+            <h3>Wallpapers and assets</h3>
+            <p>Backgrounds and brand images that match the editor and browser themes.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-shell site-footer">
+      <p>Made by <a href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</a>.</p>
+      <div class="footer-links">
+        <a href="https://vscode.santi020k.com/">VS Code</a>
+        <a href="https://chrome.santi020k.com/">Chrome</a>
+        <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</a>
+        <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </footer>
+
+    <script>
+      import '../main.js'
+    </script>
+  </body>
+</html>

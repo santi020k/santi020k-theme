@@ -4,6 +4,7 @@ This repository contains a VS Code color theme extension with dark and light var
 
 ## Priorities
 
+- Treat `docs/brand-guidelines.md` as the canonical brand source of truth for palette, product names, voice, assets, screenshots, and website consistency.
 - Preserve the existing santi020k purple/indigo palette unless a redesign is requested.
 - Keep dark and light theme files aligned.
 - Prefer official VS Code theme color token names.
@@ -12,14 +13,15 @@ This repository contains a VS Code color theme extension with dark and light var
 
 ## Key Files
 
-- `themes/santi020k-dark-color-theme.json`
-- `themes/santi020k-light-color-theme.json`
-- `scripts/validate-themes.mjs`
-- `scripts/check-marketplace-readiness.mjs`
-- `scripts/publish-registries.mjs`
+- `docs/brand-guidelines.md`
+- `packages/santi020k-theme/themes/santi020k-dark-color-theme.json`
+- `packages/santi020k-theme/themes/santi020k-light-color-theme.json`
+- `packages/santi020k-theme/scripts/validate-themes.mjs`
+- `packages/santi020k-theme/scripts/check-marketplace-readiness.mjs`
+- `packages/santi020k-theme/scripts/publish-registries.mjs`
 - `.github/workflows/release.yml`
 - `.github/workflows/validate.yml`
-- `website/src/styles.css`
+- `apps/website/src/styles.css`
 
 ## Theme Guidance
 
@@ -33,4 +35,4 @@ This repository contains a VS Code color theme extension with dark and light var
 - Releases use Changesets.
 - Publishing targets both Visual Studio Marketplace and Open VSX.
 - Required secrets: `VSCE_PAT` and `OVSX_PAT`.
-- Do not include `.github`, `.changeset`, `scripts`, `website`, or dependencies in the VSIX package.
+- Do not include `.github`, `.changeset`, package-local `scripts`, `website`, or dependencies in the VSIX package.

@@ -1,182 +1,90 @@
 {
-  "name": "santi020k-theme",
-  "displayName": "Santi020k Theme",
-  "description": "A coordinated dark, light, and high-contrast VS Code theme with muted violet accents, validated contrast, and semantic highlighting for long sessions.",
-  "version": "1.6.0",
+  "name": "@santi020k/santi020k-theme-root",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "packageManager": "pnpm@10.32.1",
-  "publisher": "santi020k",
-  "author": {
-    "name": "Santiago Molina",
-    "url": "https://santi020k.com"
-  },
-  "homepage": "https://theme.santi020k.com",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/santi020k/santi020k-theme"
-  },
-  "bugs": {
-    "url": "https://github.com/santi020k/santi020k-theme/issues"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/santi020k"
-  },
-  "license": "MIT",
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/santi020k"
-  },
-  "engines": {
-    "vscode": "^1.75.0",
-    "node": ">=22.18.0"
-  },
-  "extensionKind": [
-    "ui",
-    "workspace"
-  ],
-  "capabilities": {
-    "untrustedWorkspaces": {
-      "supported": true
-    },
-    "virtualWorkspaces": true
-  },
-  "categories": [
-    "Themes"
-  ],
-  "keywords": [
-    "theme",
-    "color-theme",
-    "dark",
-    "dark-theme",
-    "light",
-    "light-theme",
-    "high-contrast",
-    "hc-theme",
-    "purple",
-    "violet",
-    "indigo",
-    "antigravity",
-    "minimal",
-    "accessible",
-    "semantic",
-    "semantic-highlighting",
-    "syntax-highlighting",
-    "vscode-theme",
-    "cursor",
-    "windsurf",
-    "vscodium",
-    "santi020k"
-  ],
-  "icon": "icon.png",
-  "galleryBanner": {
-    "color": "#110c1d",
-    "theme": "dark"
-  },
-  "contributes": {
-    "themes": [
-      {
-        "label": "santi020k dark",
-        "uiTheme": "vs-dark",
-        "path": "./themes/santi020k-dark-color-theme.json"
-      },
-      {
-        "label": "santi020k light",
-        "uiTheme": "vs",
-        "path": "./themes/santi020k-light-color-theme.json"
-      },
-      {
-        "label": "santi020k hc dark",
-        "uiTheme": "hc-black",
-        "path": "./themes/santi020k-hc-dark-color-theme.json"
-      },
-      {
-        "label": "santi020k hc light",
-        "uiTheme": "hc-light",
-        "path": "./themes/santi020k-hc-light-color-theme.json"
-      },
-      {
-        "label": "santi020k dark bold",
-        "uiTheme": "vs-dark",
-        "path": "./themes/santi020k-dark-bold-color-theme.json"
-      },
-      {
-        "label": "santi020k light bold",
-        "uiTheme": "vs",
-        "path": "./themes/santi020k-light-bold-color-theme.json"
-      },
-      {
-        "label": "santi020k hc dark bold",
-        "uiTheme": "hc-black",
-        "path": "./themes/santi020k-hc-dark-bold-color-theme.json"
-      },
-      {
-        "label": "santi020k hc light bold",
-        "uiTheme": "hc-light",
-        "path": "./themes/santi020k-hc-light-bold-color-theme.json"
-      },
-      {
-        "label": "santi020k dark italic",
-        "uiTheme": "vs-dark",
-        "path": "./themes/santi020k-dark-italic-color-theme.json"
-      },
-      {
-        "label": "santi020k light italic",
-        "uiTheme": "vs",
-        "path": "./themes/santi020k-light-italic-color-theme.json"
-      },
-      {
-        "label": "santi020k hc dark italic",
-        "uiTheme": "hc-black",
-        "path": "./themes/santi020k-hc-dark-italic-color-theme.json"
-      },
-      {
-        "label": "santi020k hc light italic",
-        "uiTheme": "hc-light",
-        "path": "./themes/santi020k-hc-light-italic-color-theme.json"
-      }
-    ]
-  },
   "scripts": {
-    "validate": "pnpm run build:themes && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run test && pnpm run lint && pnpm run site:build && pnpm run package",
+    "dev": "pnpm run site:dev",
+    "dev:vscode": "pnpm run build:themes",
+    "dev:chrome": "pnpm --filter santi020k-chrome-theme run dev",
+    "dev:chrome:dark": "pnpm --filter santi020k-chrome-theme run dev:dark",
+    "dev:chrome:light": "pnpm --filter santi020k-chrome-theme run dev:light",
+    "build": "turbo run build",
+    "build:chrome-theme": "pnpm --filter santi020k-chrome-theme run build",
+    "build:themes": "pnpm --filter santi020k-theme run build",
+    "validate": "pnpm run build && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run validate:chrome && pnpm run validate:seo && pnpm run test && pnpm run lint && pnpm run lint:knip && pnpm run package:extension",
     "pretest": "pnpm run build:themes",
-    "test": "vitest run",
-    "sync:website-version": "node scripts/sync-website-version.mjs",
-    "format:themes": "node scripts/format-themes.mjs",
-    "build:themes": "pnpm run format:themes && node scripts/generate-hc-light.mjs && node scripts/generate-variants.mjs",
-    "validate:themes": "node scripts/validate-themes.mjs",
-    "validate:marketplace": "node scripts/check-marketplace-readiness.mjs",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "package": "vsce package --no-dependencies",
-    "publish": "node scripts/publish-registries.mjs",
-    "publish:pre": "pnpm run validate && vsce publish --pre-release",
-    "release": "node scripts/publish-registries.mjs",
-    "release:tag": "node scripts/ensure-release-tag.mjs",
+    "test": "vitest run packages/santi020k-theme/tests apps/vscode-website/tests",
+    "sync:website-version": "pnpm --filter @santi020k/santi020k-vscode-theme-website run sync:website-version",
+    "validate:links": "node scripts/check-website-links.mjs",
+    "validate:seo": "node scripts/validate-website-seo.mjs",
+    "validate:themes": "pnpm --filter santi020k-theme run validate:themes",
+    "validate:marketplace": "pnpm --filter santi020k-theme run validate:marketplace",
+    "validate:chrome": "pnpm --filter santi020k-chrome-theme run validate",
+    "lint": "eslint . --cache --no-warn-ignored",
+    "lint:fix": "eslint . --cache --fix --no-warn-ignored",
+    "lint:spell": "cspell \"**\" --gitignore --cache --show-suggestions --show-context",
+    "lint:knip": "knip",
+    "package": "pnpm run package:extension",
+    "package:extension": "pnpm --filter santi020k-theme run package",
+    "package:chrome": "pnpm --filter santi020k-chrome-theme run package",
+    "publish": "pnpm --filter santi020k-theme run publish",
+    "publish:npm": "node scripts/publish-npm-packages.mjs",
+    "publish:chrome": "pnpm --filter santi020k-chrome-theme run publish:webstore",
+    "release": "pnpm run validate && pnpm run publish:npm && pnpm --filter santi020k-theme run release",
+    "release:npm": "pnpm run publish:npm",
+    "release:chrome": "pnpm --filter santi020k-chrome-theme run release",
+    "release:tag": "pnpm --filter santi020k-theme run release:tag",
+    "generate:og": "node scripts/generate-og-images.mjs",
     "changeset": "changeset",
-    "version-packages": "changeset version && pnpm install --lockfile-only && pnpm run sync:website-version",
-    "site:install": "pnpm --dir website install --frozen-lockfile",
-    "site:dev": "pnpm --dir website run dev",
-    "site:build": "pnpm --dir website install --frozen-lockfile && pnpm --dir website run build",
-    "site:preview": "pnpm --dir website run preview",
-    "lint:spell": "cspell \"**/*.{json,md,js,mjs,css,html}\" --no-progress"
-  },
-  "pnpm": {
-    "overrides": {
-      "fast-uri": "^3.1.2",
-      "tmp": ">=0.2.6",
-      "brace-expansion": ">=5.0.6",
-      "ws": ">=8.20.1",
-      "qs": ">=6.15.2"
-    }
+    "version-packages": "changeset version && pnpm --filter santi020k-chrome-theme run sync:manifest-version && pnpm install --lockfile-only && pnpm run sync:website-version",
+    "site:dev": "pnpm --filter @santi020k/santi020k-theme-website run dev",
+    "site:build": "pnpm --filter @santi020k/santi020k-theme-website run build",
+    "site:preview": "pnpm --filter @santi020k/santi020k-theme-website run preview",
+    "site:vscode:dev": "pnpm --filter @santi020k/santi020k-vscode-theme-website run dev",
+    "site:vscode:build": "pnpm --filter @santi020k/santi020k-vscode-theme-website run build",
+    "site:vscode:preview": "pnpm --filter @santi020k/santi020k-vscode-theme-website run preview",
+    "site:chrome:dev": "pnpm --filter @santi020k/santi020k-chrome-theme-website run dev",
+    "site:chrome:build": "pnpm --filter @santi020k/santi020k-chrome-theme-website run build",
+    "site:chrome:preview": "pnpm --filter @santi020k/santi020k-chrome-theme-website run preview",
+    "prepare": "husky",
+    "pre-commit": "lint-staged",
+    "pre-push": "pnpm run validate",
+    "commit": "cz"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.6.0",
-    "eslint": "^10.2.1",
-    "@changesets/cli": "^2.31.0",
-    "@santi020k/eslint-config-basic": "^1.6.0",
-    "@types/node": "^25.6.0",
-    "@vscode/vsce": "^3.9.1",
-    "cspell": "^10.0.0",
-    "ovsx": "^0.10.11",
-    "vitest": "^4.1.5"
+    "@changesets/changelog-github": "catalog:",
+    "@changesets/cli": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@santi020k/eslint-config-basic": "catalog:",
+    "@types/node": "catalog:",
+    "@vscode/vsce": "catalog:",
+    "commitizen": "catalog:",
+    "cspell": "catalog:",
+    "cz-conventional-changelog": "catalog:",
+    "eslint": "catalog:",
+    "husky": "catalog:",
+    "knip": "catalog:",
+    "lint-staged": "catalog:",
+    "ovsx": "catalog:",
+    "sharp": "catalog:",
+    "turbo": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "lint-staged": {
+    "*.{js,mjs}": [
+      "eslint --fix --no-warn-ignored"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

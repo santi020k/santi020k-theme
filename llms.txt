@@ -1,21 +1,26 @@
 # Santi020k Theme
 
-> A VS Code color theme extension with coordinated dark and light variants, a preview website, Changesets releases, Visual Studio Marketplace publishing, and Open VSX publishing.
+> A theme-family monorepo with VS Code and Chrome themes, dedicated websites, Changesets releases, Visual Studio Marketplace publishing, and Open VSX publishing.
 
 ## Important Files
 
-- `package.json`: Extension manifest, scripts, marketplace metadata, theme contributions.
-- `themes/santi020k-dark-color-theme.json`: Dark VS Code theme.
-- `themes/santi020k-light-color-theme.json`: Light VS Code theme.
-- `scripts/validate-themes.mjs`: Theme JSON, token coverage, hex, duplicate-key, and contrast validation.
-- `scripts/check-marketplace-readiness.mjs`: Marketplace package preflight checks.
-- `scripts/publish-registries.mjs`: Idempotent publisher for Visual Studio Marketplace and Open VSX.
+- `docs/brand-guidelines.md`: Canonical brand source of truth for product names, palette language, voice, assets, websites, screenshots, and AI guidance.
+- `packages/santi020k-theme/package.json`: VS Code extension manifest, scripts, marketplace metadata, theme contributions.
+- `packages/santi020k-theme/themes/santi020k-dark-color-theme.json`: Dark VS Code theme.
+- `packages/santi020k-theme/themes/santi020k-light-color-theme.json`: Light VS Code theme.
+- `packages/santi020k-chrome-theme/manifest.json`: Chrome dark theme manifest.
+- `apps/website/`: Theme hub website for `theme.santi020k.com`.
+- `apps/vscode-website/`: VS Code theme website for `vscode.santi020k.com`.
+- `apps/chrome-website/`: Chrome theme website for `chrome.santi020k.com`.
+- `packages/santi020k-theme/scripts/validate-themes.mjs`: Theme JSON, token coverage, hex, duplicate-key, and contrast validation.
+- `packages/santi020k-theme/scripts/check-marketplace-readiness.mjs`: Marketplace package preflight checks.
+- `packages/santi020k-theme/scripts/publish-registries.mjs`: Idempotent publisher for Visual Studio Marketplace and Open VSX.
 - `.changeset/config.json`: Changesets release configuration.
 - `.github/workflows/validate.yml`: CI validation.
 - `.github/workflows/release.yml`: Release PR and publish workflow.
 - `.github/workflows/changeset-check.yml`: Pull request changeset guard.
-- `website/`: Vite website source and public assets.
 - `.vscodeignore`: Controls VSIX contents.
+- `docs/architecture.md`: Monorepo boundaries and growth pattern.
 - `AGENTS.md`: Instructions for AI coding agents.
 
 ## Common Commands
@@ -31,6 +36,7 @@ pnpm run release
 
 ## Agent Notes
 
+- Read `docs/brand-guidelines.md` before brand-sensitive changes and treat it as the authority when docs conflict.
 - Keep both theme variants in sync unless asked otherwise.
 - Preserve theme identity: dark indigo surfaces, purple/violet accents, calm contrast.
 - Add changesets for user-visible changes.

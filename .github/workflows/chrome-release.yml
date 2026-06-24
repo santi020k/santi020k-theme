@@ -1,0 +1,111 @@
+name: Release Chrome Theme
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/chrome-release.yml"
+      - "package.json"
+      - "packages/theme/**"
+      - "packages/theme-core/**"
+      - "packages/santi020k-chrome-theme/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Build and report what would be submitted without calling the Chrome Web Store API.
+        default: false
+        type: boolean
+      publish_type:
+        description: Chrome Web Store publish mode.
+        default: DEFAULT_PUBLISH
+        options:
+          - DEFAULT_PUBLISH
+          - STAGED_PUBLISH
+        type: choice
+      variant:
+        description: Theme variant to submit.
+        default: all
+        options:
+          - all
+          - dark
+          - light
+        type: choice
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chrome-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Package and publish Chrome theme
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CHROME_WEBSTORE_BLOCK_ON_WARNINGS: true
+      CHROME_WEBSTORE_CLIENT_ID: ${{ secrets.CHROME_WEBSTORE_CLIENT_ID }}
+      CHROME_WEBSTORE_CLIENT_SECRET: ${{ secrets.CHROME_WEBSTORE_CLIENT_SECRET }}
+      CHROME_WEBSTORE_DARK_ITEM_ID: ${{ vars.CHROME_WEBSTORE_DARK_ITEM_ID }}
+      CHROME_WEBSTORE_DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+      CHROME_WEBSTORE_LIGHT_ITEM_ID: ${{ vars.CHROME_WEBSTORE_LIGHT_ITEM_ID }}
+      CHROME_WEBSTORE_PUBLISH_TYPE: ${{ github.event.inputs.publish_type || 'DEFAULT_PUBLISH' }}
+      CHROME_WEBSTORE_PUBLISHER_ID: ${{ secrets.CHROME_WEBSTORE_PUBLISHER_ID }}
+      CHROME_WEBSTORE_REFRESH_TOKEN: ${{ secrets.CHROME_WEBSTORE_REFRESH_TOKEN }}
+      CHROME_WEBSTORE_VARIANT: ${{ github.event.inputs.variant || 'all' }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate Chrome theme
+        run: pnpm run validate:chrome
+
+      - name: Package Chrome theme
+        run: pnpm run package:chrome
+
+      - name: Upload Chrome theme packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: santi020k-chrome-theme-zips
+          path: packages/santi020k-chrome-theme/dist/*.zip
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish Chrome Web Store items
+        run: |
+          publish_args=()
+
+          if [ "${CHROME_WEBSTORE_VARIANT}" != "all" ]; then
+            publish_args+=("--variant=${CHROME_WEBSTORE_VARIANT}")
+          fi
+
+          if [ "${CHROME_WEBSTORE_DRY_RUN}" = "true" ]; then
+            publish_args+=("--dry-run")
+          fi
+
+          if [ "${#publish_args[@]}" -gt 0 ]; then
+            pnpm --filter santi020k-chrome-theme run publish:webstore -- "${publish_args[@]}"
+          else
+            pnpm --filter santi020k-chrome-theme run publish:webstore
+          fi
