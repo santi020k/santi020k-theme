@@ -1,3 +1,7 @@
+---
+import { Image } from 'astro:assets'
+---
+
 <!doctype html>
 <html lang="en" data-santi020k-site="hub">
   <head>
@@ -44,7 +48,7 @@
     <meta name="twitter:description" content="VS Code, Chrome, npm packages, and upcoming Santi020k theme surfaces in one place." />
     <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Themes - VS Code, Chrome, npm, and more" />
-    <script type="application/ld+json" is:inline>
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
@@ -133,7 +137,7 @@
         </div>
 
         <div class="hero-art" aria-label="Theme previews">
-          <img src="/hub-hero-art.png" width="1536" height="1024" alt="Abstract editor and browser windows using the Santi020k theme palette" fetchpriority="high" />
+          <Image src="/hub-hero-art.png" width="1536" height="1024" alt="Abstract editor and browser windows using the Santi020k theme palette" fetchpriority="high" inferSize />
           <div class="hero-art-caption" aria-hidden="true">
             <span>VS Code</span>
             <span>Chrome</span>
@@ -151,7 +155,7 @@
         <div class="theme-grid">
           <article class="theme-card theme-card-large">
             <a class="theme-card-media" href="https://vscode.santi020k.com/" aria-label="Open VS Code theme site">
-              <img src="/vscode-theme-art.png" width="1672" height="941" alt="Abstract Santi020k VS Code theme preview" loading="lazy" decoding="async" />
+              <Image src="/vscode-theme-art.png" width="1672" height="941" alt="Abstract Santi020k VS Code theme preview" loading="lazy" decoding="async" inferSize />
             </a>
             <div class="theme-card-body">
               <div class="card-kicker">
@@ -169,7 +173,7 @@
 
           <article class="theme-card">
             <a class="theme-card-media" href="https://chrome.santi020k.com/" aria-label="Open Chrome theme site">
-              <img src="/chrome-theme-art.png" width="1586" height="992" alt="Abstract Santi020k Chrome theme preview" loading="lazy" decoding="async" />
+              <Image src="/chrome-theme-art.png" width="1586" height="992" alt="Abstract Santi020k Chrome theme preview" loading="lazy" decoding="async" inferSize />
             </a>
             <div class="theme-card-body">
               <div class="card-kicker">

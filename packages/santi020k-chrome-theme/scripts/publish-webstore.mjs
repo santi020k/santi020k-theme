@@ -22,6 +22,7 @@ const root = resolve(__dir, '..')
 const OAUTH_TOKEN_URL = 'https://oauth2.googleapis.com/token'
 const WEBSTORE_API_BASE = 'https://chromewebstore.googleapis.com'
 const CHROME_WEBSTORE_SCOPE = 'https://www.googleapis.com/auth/chromewebstore'
+const CHROME_WEBSTORE_SCOPE_URL = new URL(CHROME_WEBSTORE_SCOPE)
 const UPLOAD_POLL_ATTEMPTS = 24
 const UPLOAD_POLL_INTERVAL_MS = 5000
 
@@ -126,6 +127,31 @@ const formatApiError = body => {
   return JSON.stringify(body)
 }
 
+const isChromeWebstoreScope = scope => {
+  try {
+    const url = new URL(scope)
+
+    return (
+      url.origin === CHROME_WEBSTORE_SCOPE_URL.origin &&
+      url.pathname === CHROME_WEBSTORE_SCOPE_URL.pathname &&
+      url.username === '' &&
+      url.password === '' &&
+      url.search === '' &&
+      url.hash === ''
+    )
+  } catch {
+    return false
+  }
+}
+
+const hasChromeWebstoreScope = scope => (
+  typeof scope === 'string' &&
+  scope
+    .trim()
+    .split(/\s+/u)
+    .some(entry => isChromeWebstoreScope(entry))
+)
+
 const webstoreRequest = async (path, options = {}) => {
   const { accessToken, headers, ...fetchOptions } = options
 
@@ -172,7 +198,7 @@ const getAccessToken = async ({ clientId, clientSecret, refreshToken }) => {
     throw new Error(`Unable to refresh Chrome Web Store access token: ${response.status} ${response.statusText}${detail ? ` - ${detail}` : ''}`)
   }
 
-  if (body.scope && !body.scope.split(' ').includes(CHROME_WEBSTORE_SCOPE)) {
+  if (body.scope && !hasChromeWebstoreScope(body.scope)) {
     throw new Error(`Refresh token is missing ${CHROME_WEBSTORE_SCOPE} scope.`)
   }
 

@@ -1,3 +1,7 @@
+---
+import { Image } from 'astro:assets'
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -52,7 +56,7 @@
     <meta name="twitter:image" content="https://vscode.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Dark, Light, and High Contrast" />
     <!-- JSON-LD: SoftwareApplication -->
-    <script type="application/ld+json" is:inline>
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -78,7 +82,7 @@
   <body>
     <header class="site-shell site-header" aria-label="Site header">
       <a class="brand" href="#top" aria-label="Santi020k Theme home">
-        <img src="/favicon.svg" alt="" width="36" height="36" />
+        <Image src="/favicon.svg" alt="" width="36" height="36" inferSize />
         <span>Santi020k Theme</span>
       </a>
       <div class="header-actions">
@@ -225,19 +229,19 @@
         </div>
         <div class="screenshot-grid">
           <figure class="screenshot-card">
-            <img class="screenshot-img" src="/preview-dark.png" alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1280" height="720" loading="lazy" />
+            <Image class="screenshot-img" src="/preview-dark.png" alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1280" height="720" loading="lazy" inferSize />
             <figcaption>santi020k dark</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img class="screenshot-img" src="/preview-light.png" alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1280" height="720" loading="lazy" />
+            <Image class="screenshot-img" src="/preview-light.png" alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1280" height="720" loading="lazy" inferSize />
             <figcaption>santi020k light</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img class="screenshot-img" src="/preview-hc-dark.png" alt="santi020k high contrast dark theme applied in VS Code — near-black surfaces with vivid purple and amber accents" width="1280" height="720" loading="lazy" />
+            <Image class="screenshot-img" src="/preview-hc-dark.png" alt="santi020k high contrast dark theme applied in VS Code — near-black surfaces with vivid purple and amber accents" width="1280" height="720" loading="lazy" inferSize />
             <figcaption>santi020k hc dark</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img class="screenshot-img" src="/preview-hc-light.png" alt="santi020k high contrast light theme applied in VS Code — white surfaces with strong purple structure and clear syntax contrast" width="1280" height="720" loading="lazy" />
+            <Image class="screenshot-img" src="/preview-hc-light.png" alt="santi020k high contrast light theme applied in VS Code — white surfaces with strong purple structure and clear syntax contrast" width="1280" height="720" loading="lazy" inferSize />
             <figcaption>santi020k hc light</figcaption>
           </figure>
         </div>

@@ -1,3 +1,7 @@
+---
+import { Image } from 'astro:assets'
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -46,7 +50,7 @@
     <meta name="twitter:description" content="A professional Chrome browser theme with a deep violet palette. Mapped directly from the Santi020k VS Code theme." />
     <meta name="twitter:image" content="https://chrome.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Chrome Browser Theme" />
-    <script type="application/ld+json" is:inline>
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -72,7 +76,7 @@
     <header class="site-header" aria-label="Site header">
       <div class="site-shell header-inner">
         <a class="brand" href="#top" aria-label="Santi020k Theme home">
-          <img src="/icons/icon.svg" alt="Santi020k Theme Logo" width="36" height="36" />
+          <Image src="/icons/icon.svg" alt="Santi020k Theme Logo" width="36" height="36" inferSize />
           <span>Santi020k Theme</span>
         </a>
         <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">

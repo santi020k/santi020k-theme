@@ -13,6 +13,8 @@
     "dev": "pnpm run dev:dark",
     "dev:dark": "node scripts/prepare-dev-extension.mjs --variant=dark",
     "dev:light": "node scripts/prepare-dev-extension.mjs --variant=light",
+    "preview:dark": "node scripts/launch-dev-chrome.mjs --variant=dark",
+    "preview:light": "node scripts/launch-dev-chrome.mjs --variant=light",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "validate:a11y": "node scripts/validate-theme.mjs",

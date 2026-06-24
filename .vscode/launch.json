@@ -15,27 +15,29 @@
     },
     {
       "name": "Santi020k Theme: Chrome Dark",
-      "type": "pwa-chrome",
+      "type": "node",
       "request": "launch",
-      "url": "chrome://newtab",
-      "userDataDir": "${workspaceFolder}/.vscode/chrome-dark-profile",
-      "runtimeArgs": [
-        "--disable-extensions-except=${workspaceFolder}/packages/santi020k-chrome-theme/.dev/dark",
-        "--load-extension=${workspaceFolder}/packages/santi020k-chrome-theme/.dev/dark"
+      "program": "${workspaceFolder}/packages/santi020k-chrome-theme/scripts/launch-dev-chrome.mjs",
+      "args": [
+        "--variant=dark"
       ],
-      "preLaunchTask": "santi020k-chrome-theme: dev-dark"
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     },
     {
       "name": "Santi020k Theme: Chrome Light",
-      "type": "pwa-chrome",
+      "type": "node",
       "request": "launch",
-      "url": "chrome://newtab",
-      "userDataDir": "${workspaceFolder}/.vscode/chrome-light-profile",
-      "runtimeArgs": [
-        "--disable-extensions-except=${workspaceFolder}/packages/santi020k-chrome-theme/.dev/light",
-        "--load-extension=${workspaceFolder}/packages/santi020k-chrome-theme/.dev/light"
+      "program": "${workspaceFolder}/packages/santi020k-chrome-theme/scripts/launch-dev-chrome.mjs",
+      "args": [
+        "--variant=light"
       ],
-      "preLaunchTask": "santi020k-chrome-theme: dev-light"
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     }
   ]
 }

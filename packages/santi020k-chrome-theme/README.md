@@ -21,18 +21,22 @@ Install from the Chrome Web Store:
 ## Local Development
 
 1. Run `pnpm install` from the repository root.
-2. Prepare a development extension.
+2. Prepare a development extension or launch a preview runner.
 3. Open `chrome://extensions`, enable Developer mode, choose **Load unpacked**, and select the generated development directory printed by the command.
 
 | Command | What it does |
 | --- | --- |
 | `pnpm --filter santi020k-chrome-theme run dev:dark` | Prepares the dark theme for unpacked Chrome testing |
 | `pnpm --filter santi020k-chrome-theme run dev:light` | Prepares the light theme for unpacked Chrome testing |
+| `pnpm --filter santi020k-chrome-theme run preview:dark` | Opens Chrome with the dark development theme loaded |
+| `pnpm --filter santi020k-chrome-theme run preview:light` | Opens Chrome with the light development theme loaded |
 | `pnpm --filter santi020k-chrome-theme run sync` | Syncs colors from VS Code and regenerates New Tab / store assets |
 | `pnpm --filter santi020k-chrome-theme run validate` | Lints, checks contrast, and dry-runs packaging |
 | `pnpm --filter santi020k-chrome-theme run package` | Builds `dist/*.zip` packages for the Chrome Web Store |
 | `pnpm run validate:chrome` | Runs the root Chrome validation shortcut |
 | `pnpm run site:chrome:dev` | Starts the Chrome theme website |
+
+The VS Code Run and Debug entries use the preview runner. Chrome 137+ ignores `--load-extension` in branded Google Chrome builds, so the runner starts Chrome with remote debugging and installs the unpacked theme through Chrome DevTools Protocol.
 
 ## Palette Sync
 
