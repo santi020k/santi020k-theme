@@ -6,6 +6,8 @@ Monorepo for the Santi020k theme family: the VS Code extension, the Chrome brows
 
 - `packages/santi020k-theme` - published VS Code extension package
 - `packages/santi020k-chrome-theme` - Chrome Web Store theme package
+- `packages/theme` - public `@santi020k/theme` token and asset package
+- `packages/theme-core` - public `@santi020k/theme-core` helpers for token and asset packages
 - `apps/website` - theme hub for `theme.santi020k.com`
 - `apps/vscode-website` - VS Code theme site for `vscode.santi020k.com`
 - `apps/chrome-website` - Chrome theme site for `chrome.santi020k.com`

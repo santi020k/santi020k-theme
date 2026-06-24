@@ -158,6 +158,14 @@ importers:
 
   packages/santi020k-theme: {}
 
+  packages/theme:
+    dependencies:
+      '@santi020k/theme-core':
+        specifier: workspace:^
+        version: link:../theme-core
+
+  packages/theme-core: {}
+
 packages:
 
   '@adobe/css-tools@4.4.4':

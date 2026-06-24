@@ -19,7 +19,9 @@
     "sync:store-assets:light": "node scripts/generate-store-assets-light.mjs",
     "sync": "pnpm run sync:themes && pnpm run sync:assets",
     "package": "node scripts/package-extension.mjs",
-    "package:dry": "node scripts/package-extension.mjs --dry-run"
+    "package:dry": "node scripts/package-extension.mjs --dry-run",
+    "publish:webstore": "node scripts/publish-webstore.mjs",
+    "release": "pnpm run package && pnpm run publish:webstore"
   },
   "funding": "https://github.com/sponsors/santi020k",
   "devDependencies": {

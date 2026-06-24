@@ -8,6 +8,7 @@ Use one root monorepo with two kinds of workspaces:
 
 - `packages/*` are distributable theme artifacts and package-specific tooling.
 - `apps/*` are deployable websites.
+- shared libraries live under `packages/*` when at least two surfaces need the same tokens, assets, or helpers.
 
 Each future public theme surface should follow this pairing:
 
@@ -16,6 +17,7 @@ Each future public theme surface should follow this pairing:
 | Theme hub | none | `apps/website` |
 | VS Code | `packages/santi020k-theme` | `apps/vscode-website` |
 | Chrome | `packages/santi020k-chrome-theme` | `apps/chrome-website` |
+| Shared brand assets | `packages/theme` / `packages/theme-core` | none |
 | Future surface | `packages/santi020k-<surface>-theme` | `apps/<surface>-website` |
 
 ## Why One Root Turbo
@@ -35,6 +37,7 @@ Workspace-local scripts still provide the isolation we want:
 - Keep package/app-owned scripts and tests inside the owning workspace; root commands should orchestrate workspace scripts.
 - Put only truly shared cross-project tooling at the root.
 - Add reusable libraries under `packages/<name>` only when at least two workspaces need the same code.
+- Keep shared design tokens and reusable assets in `packages/theme`; use `packages/theme-core` for package-neutral token and asset manifest helpers.
 
 ## CI And Release Boundaries
 
@@ -63,3 +66,4 @@ Keep names literal and boring:
 - root scripts: `site:<surface>:dev`, `site:<surface>:build`, `site:<surface>:preview`
 
 The hub keeps the shorter package name `@santi020k/santi020k-theme-website` because it owns `theme.santi020k.com`.
+The shared npm token package uses the shorter scoped name `@santi020k/theme` because it is not tied to one extension surface.

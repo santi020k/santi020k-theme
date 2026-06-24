@@ -45,6 +45,46 @@ These answers must stay aligned with `PRIVACY.md`:
 
 Review typically takes 1–3 business days for themes.
 
+## Automated updates
+
+The first publication and any listing/privacy changes still happen in the Chrome Web Store Developer Dashboard. Once the
+dark and light listings exist, GitHub Actions can upload and submit versioned package updates automatically.
+
+Required GitHub repository secrets:
+
+| Secret | Purpose |
+|--------|---------|
+| `CHROME_WEBSTORE_CLIENT_ID` | OAuth client ID from the Google Cloud project with the Chrome Web Store API enabled |
+| `CHROME_WEBSTORE_CLIENT_SECRET` | OAuth client secret for the same client |
+| `CHROME_WEBSTORE_REFRESH_TOKEN` | Refresh token granted with the `https://www.googleapis.com/auth/chromewebstore` scope |
+| `CHROME_WEBSTORE_PUBLISHER_ID` | Publisher ID from Chrome Web Store Developer Dashboard settings |
+
+Optional GitHub repository variables:
+
+| Variable | Default |
+|----------|---------|
+| `CHROME_WEBSTORE_DARK_ITEM_ID` | `cljcifjjgolaplmemjcnjhkjfoneadgj` |
+| `CHROME_WEBSTORE_LIGHT_ITEM_ID` | `ekehaoadgcihpkajlnbpkankaginojci` |
+
+Deployment flow:
+
+1. Bump `package.json`, `manifest.json`, and `manifest-light.json` to the same version.
+2. Merge the change to `main`.
+3. `.github/workflows/chrome-release.yml` validates the Chrome package, builds both zips, uploads them as workflow artifacts,
+   and submits any version that is not already published or under review.
+
+Manual release commands:
+
+```sh
+pnpm run package:chrome
+pnpm run publish:chrome -- --dry-run
+pnpm run publish:chrome -- --variant=dark
+pnpm run release:chrome
+```
+
+Use the workflow dispatch `dry_run` input when checking credentials-free package output from GitHub Actions. Use
+`publish_type=STAGED_PUBLISH` when the submitted update should wait for a manual publish after approval.
+
 ## Privacy policy hosting options (pick one)
 
 - **First-party (preferred):** Add `/privacy` route to `chrome.santi020k.com` serving the content of `PRIVACY.md`
