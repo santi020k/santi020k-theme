@@ -26,6 +26,11 @@ This package is ESM-only and expects Node `>=22.18.0`.
 | `@santi020k/theme/typography.css` | Shared Montserrat font-family variables |
 | `@santi020k/theme/tokens.css` | CSS custom properties and Tailwind v4 `@theme` values |
 | `@santi020k/theme/tokens.json` | Raw token data |
+| `@santi020k/theme/shiki` | Typed dark/light and high-contrast Shiki theme exports |
+| `@santi020k/theme/shiki/santi020k-dark.json` | Shiki-ready dark VS Code theme JSON |
+| `@santi020k/theme/shiki/santi020k-hc-dark.json` | Shiki-ready high-contrast dark VS Code theme JSON |
+| `@santi020k/theme/shiki/santi020k-hc-light.json` | Shiki-ready high-contrast light VS Code theme JSON |
+| `@santi020k/theme/shiki/santi020k-light.json` | Shiki-ready light VS Code theme JSON |
 | `@santi020k/theme/tailwind` | Tailwind-compatible theme object |
 | `@santi020k/theme/assets/*` | Package-relative static asset imports |
 | `@santi020k/theme/docs/*` | Packaged documentation such as brand guidance |
@@ -83,6 +88,34 @@ const project = projects.santi020kTheme
 
 console.log(colors, config.colors, theme.colors.brand, logos, project.title)
 ```
+
+## Shiki Themes
+
+The VS Code theme package generates clean JSON copies for syntax highlighters that cannot read
+JSONC comments:
+
+```js
+import { santi020kShikiThemes } from '@santi020k/theme/shiki'
+
+const themes = {
+  dark: santi020kShikiThemes.dark,
+  hcDark: santi020kShikiThemes.hcDark,
+  hcLight: santi020kShikiThemes.hcLight,
+  light: santi020kShikiThemes.light
+}
+```
+
+Raw JSON imports are available when a tool needs direct theme files:
+
+```js
+import darkTheme from '@santi020k/theme/shiki/santi020k-dark.json' with { type: 'json' }
+import hcDarkTheme from '@santi020k/theme/shiki/santi020k-hc-dark.json' with { type: 'json' }
+import hcLightTheme from '@santi020k/theme/shiki/santi020k-hc-light.json' with { type: 'json' }
+import lightTheme from '@santi020k/theme/shiki/santi020k-light.json' with { type: 'json' }
+```
+
+Use these exports with Shiki, Astro's `<Code />` component, or other VS Code theme consumers that
+expect importable JSON.
 
 ## Assets
 
