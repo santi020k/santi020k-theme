@@ -95,7 +95,11 @@ The VS Code theme package generates clean JSON copies for syntax highlighters th
 JSONC comments:
 
 ```js
-import { santi020kShikiThemes } from '@santi020k/theme/shiki'
+import {
+  getSanti020kShikiTheme,
+  santi020kShikiThemes,
+  santi020kShikiThemeVariants
+} from '@santi020k/theme/shiki'
 
 const themes = {
   dark: santi020kShikiThemes.dark,
@@ -103,6 +107,11 @@ const themes = {
   hcLight: santi020kShikiThemes.hcLight,
   light: santi020kShikiThemes.light
 }
+
+const pickerOptions = santi020kShikiThemeVariants.map(variant => ({
+  label: getSanti020kShikiTheme(variant).name,
+  value: variant
+}))
 ```
 
 Raw JSON imports are available when a tool needs direct theme files:

@@ -81,10 +81,16 @@ describe('generated package Shiki themes', () => {
     expect(lightTheme.tokenColors).toEqual(expect.any(Array))
   })
 
-  test('package Shiki entrypoint exports a dark and light theme map', async () => {
-    const { santi020kShikiThemes } = await import(
+  test('package Shiki entrypoint exports theme helpers', async () => {
+    const {
+      getSanti020kShikiTheme,
+      santi020kShikiThemes,
+      santi020kShikiThemeVariants
+    } = await import(
       pathToFileURL(fromRepoRoot('packages/theme/shiki.js')).href
     )
+
+    expect(santi020kShikiThemeVariants).toEqual(['dark', 'hcDark', 'hcLight', 'light'])
 
     expect(santi020kShikiThemes.dark).toMatchObject({
       name: 'santi020k dark',
@@ -105,5 +111,11 @@ describe('generated package Shiki themes', () => {
       name: 'santi020k light',
       type: 'light'
     })
+
+    expect(getSanti020kShikiTheme('hcDark')).toBe(santi020kShikiThemes.hcDark)
+
+    expect(() => getSanti020kShikiTheme('unknown')).toThrow(
+      /Unknown Santi020k Shiki theme variant: unknown/
+    )
   })
 })

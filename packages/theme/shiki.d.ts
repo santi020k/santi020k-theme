@@ -1,3 +1,4 @@
+export type Santi020kShikiThemeVariant = 'dark' | 'hcDark' | 'hcLight' | 'light'
 export type Santi020kShikiThemeType = 'dark' | 'hc-dark' | 'hc-light' | 'light'
 
 export interface Santi020kShikiTokenColor {
@@ -48,3 +49,9 @@ export declare const santi020kShikiThemes: {
   hcLight: typeof santi020kHcLightShikiTheme
   light: typeof santi020kLightShikiTheme
 }
+
+export declare const santi020kShikiThemeVariants: readonly Santi020kShikiThemeVariant[]
+
+export declare function getSanti020kShikiTheme(
+  variant: Santi020kShikiThemeVariant
+): typeof santi020kShikiThemes[Santi020kShikiThemeVariant]

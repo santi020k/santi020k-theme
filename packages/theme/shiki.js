@@ -14,3 +14,24 @@ export const santi020kShikiThemes = {
   hcLight: santi020kHcLightShikiTheme,
   light: santi020kLightShikiTheme
 }
+
+export const santi020kShikiThemeVariants = Object.freeze(['dark', 'hcDark', 'hcLight', 'light'])
+
+export const getSanti020kShikiTheme = variant => {
+  switch (variant) {
+    case 'dark':
+      return santi020kDarkShikiTheme
+
+    case 'hcDark':
+      return santi020kHcDarkShikiTheme
+
+    case 'hcLight':
+      return santi020kHcLightShikiTheme
+
+    case 'light':
+      return santi020kLightShikiTheme
+
+    default:
+      throw new Error(`Unknown Santi020k Shiki theme variant: ${variant}`)
+  }
+}
