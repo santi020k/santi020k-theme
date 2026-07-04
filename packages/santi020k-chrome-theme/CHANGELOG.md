@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.4
+
+### Patch Changes
+
+- [#27](https://github.com/santi020k/santi020k-theme/pull/27) [`adfe079`](https://github.com/santi020k/santi020k-theme/commit/adfe0794e6f61021a3a0eec800fd62372f6a8837) Thanks [@santi020k](https://github.com/santi020k)! - Add Chrome Web Store service account authentication for release automation.
+
+- Updated dependencies [[`4c95993`](https://github.com/santi020k/santi020k-theme/commit/4c95993bc291a82c29e9290beb36e69366322478)]:
+  - @santi020k/theme@1.1.0
+
 ## 2.0.3
 
 ### Patch Changes
