@@ -112,6 +112,10 @@ jobs:
         if: steps.chrome-changes.outputs.should_publish == 'true'
         run: pnpm install --frozen-lockfile
 
+      - name: Verify Chrome Web Store credentials
+        if: steps.chrome-changes.outputs.should_publish == 'true' && env.CHROME_WEBSTORE_DRY_RUN != 'true'
+        run: pnpm --filter santi020k-chrome-theme run check:webstore-auth
+
       - name: Generate NTP background images
         if: steps.chrome-changes.outputs.should_publish == 'true'
         run: pnpm --filter santi020k-chrome-theme run sync:ntp-images
