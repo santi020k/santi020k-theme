@@ -55,10 +55,8 @@ Required GitHub repository secrets:
 
 | Secret | Purpose |
 |--------|---------|
-| `CHROME_WEBSTORE_CLIENT_ID` | OAuth client ID from the Google Cloud project with the Chrome Web Store API enabled |
-| `CHROME_WEBSTORE_CLIENT_SECRET` | OAuth client secret for the same client |
-| `CHROME_WEBSTORE_REFRESH_TOKEN` | Refresh token granted with the `https://www.googleapis.com/auth/chromewebstore` scope |
 | `CHROME_WEBSTORE_PUBLISHER_ID` | Publisher ID from Chrome Web Store Developer Dashboard settings |
+| `CHROME_WEBSTORE_SERVICE_ACCOUNT_JSON` | Google Cloud service account JSON key for the service account linked to the Chrome Web Store publisher |
 
 Optional GitHub repository variables:
 
@@ -67,30 +65,26 @@ Optional GitHub repository variables:
 | `CHROME_WEBSTORE_DARK_ITEM_ID` | `cljcifjjgolaplmemjcnjhkjfoneadgj` |
 | `CHROME_WEBSTORE_LIGHT_ITEM_ID` | `ekehaoadgcihpkajlnbpkankaginojci` |
 
-### OAuth refresh token rotation
+### Service account authentication
 
-Chrome Web Store API deployments use a Google OAuth refresh token to mint short-lived access tokens. Google does not
-provide a service-account publishing flow for Chrome Web Store items, so the durable setup is a production OAuth client
-with a refresh token granted by a Google account that can manage the publisher.
+Use this for GitHub Actions deployments. Chrome Web Store API supports Google Cloud service accounts for server-to-server
+publishing, which avoids user refresh tokens and the recurring `invalid_grant` failures they can produce.
 
-Before generating a replacement token:
+Setup:
 
-- Confirm the Google Cloud project has the **Chrome Web Store API** enabled.
-- Confirm the OAuth consent screen publishing status is **In production**. Tokens generated while the app is in Testing
-  mode can expire quickly and fail with `invalid_grant`.
-- Use the same OAuth client as the GitHub secrets `CHROME_WEBSTORE_CLIENT_ID` and `CHROME_WEBSTORE_CLIENT_SECRET`.
-- Grant exactly this scope: `https://www.googleapis.com/auth/chromewebstore`.
-- Generate the token with offline access and consent forced, then replace only the GitHub
-  `CHROME_WEBSTORE_REFRESH_TOKEN` secret.
+1. In Google Cloud Console, use the project with the Chrome Web Store API enabled.
+2. Create a service account. No project-level role is required just for Chrome Web Store API access.
+3. Create a JSON key for the service account.
+4. In the Chrome Web Store Developer Dashboard, open **Account** and add the service account email to the publisher.
+   Only one service account can be linked to a publisher.
+5. In GitHub repository secrets, set `CHROME_WEBSTORE_SERVICE_ACCOUNT_JSON` to the full JSON key contents.
+6. Keep `CHROME_WEBSTORE_PUBLISHER_ID` set to the publisher ID from the Developer Dashboard.
 
-Verify the replacement locally or in Actions with:
+Verify with:
 
 ```sh
 pnpm --filter santi020k-chrome-theme run check:webstore-auth
 ```
-
-If CI reports `invalid_grant`, rerunning will not fix it. Rotate `CHROME_WEBSTORE_REFRESH_TOKEN` and verify the OAuth app
-is in production before publishing again.
 
 Deployment flow:
 
