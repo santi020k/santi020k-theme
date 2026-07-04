@@ -79,12 +79,10 @@ For a local release:
 pnpm run release:chrome
 ```
 
-Required environment variables:
+Required environment variables for CI:
 
-- `CHROME_WEBSTORE_CLIENT_ID`
-- `CHROME_WEBSTORE_CLIENT_SECRET`
-- `CHROME_WEBSTORE_REFRESH_TOKEN`
 - `CHROME_WEBSTORE_PUBLISHER_ID`
+- `CHROME_WEBSTORE_SERVICE_ACCOUNT_JSON`
 
 ## Privacy
 
