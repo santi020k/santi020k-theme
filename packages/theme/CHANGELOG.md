@@ -1,5 +1,12 @@
 # @santi020k/theme
 
+## 1.1.0
+
+### Minor Changes
+
+- [#25](https://github.com/santi020k/santi020k-theme/pull/25) [`4c95993`](https://github.com/santi020k/santi020k-theme/commit/4c95993bc291a82c29e9290beb36e69366322478) Thanks [@santi020k](https://github.com/santi020k)! - Export Shiki-ready dark, light, and high-contrast VS Code themes from the public theme package,
+  including typed `@santi020k/theme/shiki` helpers and raw JSON imports.
+
 ## 1.0.2
 
 ### Patch Changes
