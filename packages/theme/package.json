@@ -14,6 +14,14 @@
     "./typography.css": "./typography.css",
     "./tokens.css": "./tokens/tokens.css",
     "./tokens.json": "./tokens/tokens.json",
+    "./shiki": {
+      "types": "./shiki.d.ts",
+      "import": "./shiki.js"
+    },
+    "./shiki/santi020k-dark.json": "./shiki/santi020k-dark.json",
+    "./shiki/santi020k-hc-dark.json": "./shiki/santi020k-hc-dark.json",
+    "./shiki/santi020k-hc-light.json": "./shiki/santi020k-hc-light.json",
+    "./shiki/santi020k-light.json": "./shiki/santi020k-light.json",
     "./site": {
       "types": "./site.d.ts",
       "import": "./site.js"
@@ -30,10 +38,13 @@
   "files": [
     "assets",
     "docs",
+    "shiki",
     "tokens",
     "site.css",
     "site.d.ts",
     "site.js",
+    "shiki.d.ts",
+    "shiki.js",
     "typography.css",
     "index.d.ts",
     "index.js",
@@ -42,7 +53,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node --check index.js && node --check site.js && node --check tailwind.js",
+    "build": "node --check index.js && node --check shiki.js && node --check site.js && node --check tailwind.js",
     "validate": "pnpm run build"
   },
   "dependencies": {
