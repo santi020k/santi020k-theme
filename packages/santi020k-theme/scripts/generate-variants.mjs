@@ -33,6 +33,12 @@ for (const base of baseThemes) {
     .replaceAll(/\/\*[\s\S]*?\*\//g, '')
     .replaceAll(/^\s*\/\/.*$/gm, '')
 
+  if (!cleanRaw.trim()) {
+    console.warn(`Could not parse empty theme file ${base.file}, skipping.`)
+
+    continue
+  }
+
   const baseThemeObj = JSON.parse(cleanRaw)
   // Generate Bold Variant
   const boldTheme = JSON.parse(JSON.stringify(baseThemeObj))
