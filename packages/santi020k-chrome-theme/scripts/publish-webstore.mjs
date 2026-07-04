@@ -23,6 +23,7 @@ const OAUTH_TOKEN_URL = 'https://oauth2.googleapis.com/token'
 const WEBSTORE_API_BASE = 'https://chromewebstore.googleapis.com'
 const CHROME_WEBSTORE_SCOPE = 'https://www.googleapis.com/auth/chromewebstore'
 const CHROME_WEBSTORE_SCOPE_URL = new URL(CHROME_WEBSTORE_SCOPE)
+const AUTH_ROTATION_GUIDE = 'packages/santi020k-chrome-theme/store/PUBLISHING.md#oauth-refresh-token-rotation'
 const UPLOAD_POLL_ATTEMPTS = 24
 const UPLOAD_POLL_INTERVAL_MS = 5000
 
@@ -55,6 +56,7 @@ const DEFAULT_VARIANTS = Object.entries(chromeThemeVariantManifests).map(([name,
 }))
 
 const args = process.argv.slice(2)
+const authCheck = args.includes('--check-auth')
 const dryRun = args.includes('--dry-run')
 
 const variantFilter = args
@@ -127,6 +129,27 @@ const formatApiError = body => {
   return JSON.stringify(body)
 }
 
+const formatOAuthTokenError = ({ body, response }) => {
+  const detail = formatApiError(body)
+
+  const lines = [
+    `Unable to refresh Chrome Web Store access token: ${response.status} ${response.statusText}${detail ? ` - ${detail}` : ''}`
+  ]
+
+  if (body?.error === 'invalid_grant') {
+    lines.push(
+      'The configured CHROME_WEBSTORE_REFRESH_TOKEN is not usable. It may be expired, revoked, generated for a different OAuth client, or generated while the Google OAuth app was still in Testing mode.',
+      `Rotate CHROME_WEBSTORE_REFRESH_TOKEN, and make sure the Google OAuth consent screen is set to In production before generating the new token. See ${AUTH_ROTATION_GUIDE}.`
+    )
+  } else if (body?.error === 'invalid_client') {
+    lines.push(
+      'Check CHROME_WEBSTORE_CLIENT_ID and CHROME_WEBSTORE_CLIENT_SECRET. They must belong to the OAuth client that created CHROME_WEBSTORE_REFRESH_TOKEN.'
+    )
+  }
+
+  return lines.join('\n')
+}
+
 const isChromeWebstoreScope = scope => {
   try {
     const url = new URL(scope)
@@ -193,9 +216,7 @@ const getAccessToken = async ({ clientId, clientSecret, refreshToken }) => {
   const body = await parseResponseBody(response)
 
   if (!response.ok) {
-    const detail = formatApiError(body)
-
-    throw new Error(`Unable to refresh Chrome Web Store access token: ${response.status} ${response.statusText}${detail ? ` - ${detail}` : ''}`)
+    throw new Error(formatOAuthTokenError({ body, response }))
   }
 
   if (body.scope && !hasChromeWebstoreScope(body.scope)) {
@@ -226,6 +247,26 @@ const getKnownVersions = status => ({
 const getItemStatus = ({ accessToken, itemId, publisherId }) => webstoreRequest(`${itemPath(publisherId, itemId)}:fetchStatus`, {
   accessToken
 })
+
+const getCredentials = () => ({
+  clientId: requiredValue('CHROME_WEBSTORE_CLIENT_ID', process.env.CHROME_WEBSTORE_CLIENT_ID),
+  clientSecret: requiredValue('CHROME_WEBSTORE_CLIENT_SECRET', process.env.CHROME_WEBSTORE_CLIENT_SECRET),
+  publisherId: requiredValue('CHROME_WEBSTORE_PUBLISHER_ID', process.env.CHROME_WEBSTORE_PUBLISHER_ID),
+  refreshToken: requiredValue('CHROME_WEBSTORE_REFRESH_TOKEN', process.env.CHROME_WEBSTORE_REFRESH_TOKEN)
+})
+
+const checkAuth = async variants => {
+  const { clientId, clientSecret, publisherId, refreshToken } = getCredentials()
+  const accessToken = await getAccessToken({ clientId, clientSecret, refreshToken })
+
+  for (const variant of variants) {
+    const itemId = variant.itemIdOverride() || variant.itemId
+
+    await getItemStatus({ accessToken, itemId, publisherId })
+
+    console.log(`Chrome Web Store credentials can access ${variant.name} item ${itemId}.`)
+  }
+}
 
 const uploadStateSucceeded = state => state === 'SUCCEEDED'
 const uploadStateInProgress = state => state === 'IN_PROGRESS' || state === 'UPLOAD_IN_PROGRESS'
@@ -359,6 +400,14 @@ const releaseVariant = async ({ accessToken, publisherId, variant }) => {
 const main = async () => {
   const variants = getSelectedVariants()
 
+  if (authCheck) {
+    await checkAuth(variants)
+
+    console.log('Chrome Web Store credentials are valid.')
+
+    return
+  }
+
   for (const variant of variants) {
     readManifestVersion(variant.manifest)
   }
@@ -371,10 +420,7 @@ const main = async () => {
     return
   }
 
-  const clientId = requiredValue('CHROME_WEBSTORE_CLIENT_ID', process.env.CHROME_WEBSTORE_CLIENT_ID)
-  const clientSecret = requiredValue('CHROME_WEBSTORE_CLIENT_SECRET', process.env.CHROME_WEBSTORE_CLIENT_SECRET)
-  const refreshToken = requiredValue('CHROME_WEBSTORE_REFRESH_TOKEN', process.env.CHROME_WEBSTORE_REFRESH_TOKEN)
-  const publisherId = requiredValue('CHROME_WEBSTORE_PUBLISHER_ID', process.env.CHROME_WEBSTORE_PUBLISHER_ID)
+  const { clientId, clientSecret, publisherId, refreshToken } = getCredentials()
   const accessToken = await getAccessToken({ clientId, clientSecret, refreshToken })
 
   for (const variant of variants) {

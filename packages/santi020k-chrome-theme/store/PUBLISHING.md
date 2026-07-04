@@ -67,6 +67,31 @@ Optional GitHub repository variables:
 | `CHROME_WEBSTORE_DARK_ITEM_ID` | `cljcifjjgolaplmemjcnjhkjfoneadgj` |
 | `CHROME_WEBSTORE_LIGHT_ITEM_ID` | `ekehaoadgcihpkajlnbpkankaginojci` |
 
+### OAuth refresh token rotation
+
+Chrome Web Store API deployments use a Google OAuth refresh token to mint short-lived access tokens. Google does not
+provide a service-account publishing flow for Chrome Web Store items, so the durable setup is a production OAuth client
+with a refresh token granted by a Google account that can manage the publisher.
+
+Before generating a replacement token:
+
+- Confirm the Google Cloud project has the **Chrome Web Store API** enabled.
+- Confirm the OAuth consent screen publishing status is **In production**. Tokens generated while the app is in Testing
+  mode can expire quickly and fail with `invalid_grant`.
+- Use the same OAuth client as the GitHub secrets `CHROME_WEBSTORE_CLIENT_ID` and `CHROME_WEBSTORE_CLIENT_SECRET`.
+- Grant exactly this scope: `https://www.googleapis.com/auth/chromewebstore`.
+- Generate the token with offline access and consent forced, then replace only the GitHub
+  `CHROME_WEBSTORE_REFRESH_TOKEN` secret.
+
+Verify the replacement locally or in Actions with:
+
+```sh
+pnpm --filter santi020k-chrome-theme run check:webstore-auth
+```
+
+If CI reports `invalid_grant`, rerunning will not fix it. Rotate `CHROME_WEBSTORE_REFRESH_TOKEN` and verify the OAuth app
+is in production before publishing again.
+
 Deployment flow:
 
 1. Bump `package.json`, `manifest.json`, and `manifest-light.json` to the same version.

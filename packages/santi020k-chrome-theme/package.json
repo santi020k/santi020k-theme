@@ -28,6 +28,7 @@
     "sync": "pnpm run sync:themes && pnpm run sync:assets",
     "package": "node scripts/package-extension.mjs",
     "package:dry": "node scripts/package-extension.mjs --dry-run",
+    "check:webstore-auth": "node scripts/publish-webstore.mjs --check-auth",
     "publish:webstore": "node scripts/publish-webstore.mjs",
     "release": "pnpm run package && pnpm run publish:webstore"
   },
