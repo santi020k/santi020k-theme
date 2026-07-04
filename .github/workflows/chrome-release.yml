@@ -61,14 +61,47 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect Chrome publish changes
+        id: chrome-changes
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+            echo "Manual Chrome release requested." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          changed_files="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- \
+            .github/workflows/chrome-release.yml \
+            packages/santi020k-chrome-theme \
+            packages/theme \
+            packages/theme-core \
+            pnpm-workspace.yaml)"
+
+          if [ -n "$changed_files" ]; then
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "Chrome publish inputs changed:"
+              echo '```'
+              echo "$changed_files"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+            echo "No Chrome publish inputs changed; skipping Chrome Web Store deployment." >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Set up pnpm
+        if: steps.chrome-changes.outputs.should_publish == 'true'
         uses: pnpm/action-setup@v4
         with:
           version: 10.32.1
           run_install: false
 
       - name: Set up Node.js
+        if: steps.chrome-changes.outputs.should_publish == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -76,18 +109,23 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
+        if: steps.chrome-changes.outputs.should_publish == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Generate NTP background images
+        if: steps.chrome-changes.outputs.should_publish == 'true'
         run: pnpm --filter santi020k-chrome-theme run sync:ntp-images
 
       - name: Validate Chrome theme
+        if: steps.chrome-changes.outputs.should_publish == 'true'
         run: pnpm run validate:chrome
 
       - name: Package Chrome theme
+        if: steps.chrome-changes.outputs.should_publish == 'true'
         run: pnpm run package:chrome
 
       - name: Upload Chrome theme packages
+        if: steps.chrome-changes.outputs.should_publish == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: santi020k-chrome-theme-zips
@@ -96,6 +134,7 @@ jobs:
           retention-days: 14
 
       - name: Publish Chrome Web Store items
+        if: steps.chrome-changes.outputs.should_publish == 'true'
         run: |
           publish_args=()
 
