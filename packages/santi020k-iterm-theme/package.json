@@ -1,0 +1,21 @@
+{
+  "name": "santi020k-iterm-theme",
+  "version": "1.0.0",
+  "description": "Calm violet dark and light color presets for iTerm2.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "packageManager": "pnpm@10.32.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santi020k/santi020k-theme",
+    "directory": "packages/santi020k-iterm-theme"
+  }
+}

@@ -151,6 +151,19 @@ importers:
         specifier: 'catalog:'
         version: 7.0.2(@azure/identity@4.13.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.0.0)(jiti@2.7.0)(yaml@2.9.0)
 
+  apps/iterm-website:
+    dependencies:
+      '@santi020k/theme':
+        specifier: workspace:^
+        version: link:../../packages/theme
+      santi020k-iterm-theme:
+        specifier: workspace:*
+        version: link:../../packages/santi020k-iterm-theme
+    devDependencies:
+      astro:
+        specifier: 'catalog:'
+        version: 7.0.2(@azure/identity@4.13.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.0.0)(jiti@2.7.0)(yaml@2.9.0)
+
   apps/vscode-website:
     dependencies:
       '@santi020k/theme':
@@ -189,6 +202,8 @@ importers:
       sharp:
         specifier: 'catalog:'
         version: 0.35.2
+
+  packages/santi020k-iterm-theme: {}
 
   packages/santi020k-theme: {}
 

@@ -19,6 +19,7 @@ Each future public theme surface should follow this pairing:
 | Theme hub | none | `apps/website` |
 | VS Code | `packages/santi020k-theme` | `apps/vscode-website` |
 | Chrome | `packages/santi020k-chrome-theme` | `apps/chrome-website` |
+| iTerm2 | `packages/santi020k-iterm-theme` | `apps/iterm-website` |
 | Shared brand assets | `packages/theme` / `packages/theme-core` | none |
 | Future surface | `packages/santi020k-<surface>-theme` | `apps/<surface>-website` |
 
@@ -28,11 +29,13 @@ Each future public theme surface should follow this pairing:
 | --- | --- | --- |
 | `packages/santi020k-theme` | Published VS Code extension | Owns VS Code `package.json`, marketplace metadata, theme JSON files, validation scripts, VSIX packaging, and Visual Studio Marketplace/Open VSX publishing. |
 | `packages/santi020k-chrome-theme` | Chrome Web Store theme package | Owns Chrome manifests, browser-theme generation, Web Store packaging, Chrome-specific validation, store copy, and store media. |
+| `packages/santi020k-iterm-theme` | Generated terminal presets | Owns the dark and light palette source, `.itermcolors` generation, and preset validation. |
 | `packages/theme` | Public shared package | Public entry point for reusable Santi020k tokens, website CSS variables, typography variables, assets, project metadata, and Chrome color mapping helpers. Most consumers should use this package. |
 | `packages/theme-core` | Public low-level helper package | Package-neutral types, token CSS generation helpers, asset manifest helpers, and shared browser behavior used by `@santi020k/theme`. Use directly only when building shared packages or lower-level tooling. |
 | `apps/website` | Static Astro app | Theme family hub for `theme.santi020k.com`. Links the VS Code, Chrome, npm, and future surfaces together. |
 | `apps/vscode-website` | Static Astro app | Product page for the VS Code extension at `vscode.santi020k.com`, including Marketplace/Open VSX install paths and preview assets. |
 | `apps/chrome-website` | Static Astro app | Product page for the Chrome browser theme at `chrome.santi020k.com`, including Chrome Web Store install paths and browser previews. |
+| `apps/iterm-website` | Static Astro app | Product page for the iTerm2 presets at `iterm.santi020k.com`, including downloads, terminal previews, and install instructions. |
 
 ## Dependency Flow
 
@@ -140,7 +143,7 @@ Workspace-local scripts still provide the isolation we want:
 
 ## Website Architecture
 
-The three websites are intentionally plain Astro apps with static HTML, CSS, and JavaScript:
+The product websites are intentionally plain Astro apps with static HTML, CSS, and JavaScript:
 
 - `src/pages/index.astro` owns metadata, JSON-LD, first-render theme bootstrapping, and page structure.
 - `src/styles.css` owns layout and site-specific component styling.
@@ -190,7 +193,7 @@ Recommended workflow split:
 
 - `validate.yml`: root validation for PR confidence.
 - `release.yml`: Changesets and marketplace publishing for package/release changes only.
-- `deploy-websites.yml`: Cloudflare Pages direct-upload deployments for `theme.santi020k.com`, `vscode.santi020k.com`, and `chrome.santi020k.com`, with one path-filtered job per app.
+- `deploy-websites.yml`: Cloudflare Pages direct-upload deployments for `theme.santi020k.com`, `vscode.santi020k.com`, `chrome.santi020k.com`, and `iterm.santi020k.com`, with one path-filtered job per app.
 
 Cloudflare deployment uses repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, plus repository variables `CLOUDFLARE_PAGES_THEME_PROJECT_NAME`, `CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME`, and `CLOUDFLARE_PAGES_CHROME_PROJECT_NAME`.
 

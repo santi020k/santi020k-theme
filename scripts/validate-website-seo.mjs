@@ -25,6 +25,13 @@ const sites = [
     keyword: 'Chrome Browser Theme',
     schemaType: 'SoftwareApplication',
   },
+  {
+    app: 'iterm-website',
+    canonical: 'https://iterm.santi020k.com/',
+    image: 'https://iterm.santi020k.com/og-image.png',
+    keyword: 'iTerm2 Theme',
+    schemaType: 'SoftwareApplication',
+  },
 ]
 
 const root = resolve(import.meta.dirname, '..')

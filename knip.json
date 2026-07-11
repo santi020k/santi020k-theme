@@ -64,6 +64,16 @@
         "src/**/*.js"
       ]
     },
+    "apps/iterm-website": {
+      "entry": ["package.json", "scripts/*.mjs", "src/pages/*.astro"],
+      "ignore": ["src/main.js"],
+      "ignoreDependencies": ["@santi020k/theme", "santi020k-iterm-theme"],
+      "project": ["scripts/**/*.mjs", "src/**/*.astro", "src/**/*.js"]
+    },
+    "packages/santi020k-iterm-theme": {
+      "entry": ["package.json"],
+      "project": ["*.mjs", "scripts/**/*.mjs"]
+    },
     "packages/santi020k-chrome-theme": {
       "entry": [
         "package.json"

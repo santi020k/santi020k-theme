@@ -11,7 +11,7 @@ Reference for the theme.santi020k.com hub.
 
 ## Role
 
-This site is the entry point for the Santi020k theme family. It links to the dedicated VS Code site at `https://vscode.santi020k.com/`, the Chrome site at `https://chrome.santi020k.com/`, the public npm package at `https://www.npmjs.com/package/@santi020k/theme`, and coming-soon theme surfaces.
+This site is the entry point for the Santi020k theme family. It links to the dedicated VS Code site at `https://vscode.santi020k.com/`, the Chrome site at `https://chrome.santi020k.com/`, the iTerm2 site at `https://iterm.santi020k.com/`, the public npm package at `https://www.npmjs.com/package/@santi020k/theme`, and coming-soon theme surfaces.
 
 ## Assets
 

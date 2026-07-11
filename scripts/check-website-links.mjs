@@ -19,6 +19,11 @@ const sites = [
     name: 'Chrome website',
     root: resolve(repoRoot, 'apps/chrome-website'),
     baseUrl: 'https://chrome.santi020k.com/'
+  },
+  {
+    name: 'iTerm2 website',
+    root: resolve(repoRoot, 'apps/iterm-website'),
+    baseUrl: 'https://iterm.santi020k.com/'
   }
 ]
 

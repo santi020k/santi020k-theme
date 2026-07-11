@@ -27,6 +27,12 @@ const structuredData = {
       applicationCategory: 'BrowserApplication',
     },
     {
+      '@type': 'SoftwareApplication',
+      name: 'Santi020k Theme for iTerm2',
+      url: 'https://iterm.santi020k.com/',
+      applicationCategory: 'DeveloperApplication',
+    },
+    {
       '@type': 'SoftwareSourceCode',
       name: '@santi020k/theme',
       url: 'https://github.com/santi020k/santi020k-theme',
@@ -134,6 +140,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
           <div class="actions" aria-label="Primary theme links">
             <a class="button button-primary" href="https://vscode.santi020k.com/">Open VS Code</a>
             <a class="button button-secondary" href="https://chrome.santi020k.com/">Open Chrome</a>
+            <a class="button button-secondary" href="https://iterm.santi020k.com/">Open iTerm2</a>
             <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</a>
           </div>
         </div>
@@ -190,6 +197,17 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
               </div>
             </div>
           </article>
+          <article class="theme-card">
+            <a class="theme-card-media terminal-card" href="https://iterm.santi020k.com/" aria-label="Open iTerm2 theme site">
+              <div class="soon-visual" aria-hidden="true"><span></span><span></span><span></span><code>➜ ~/Projects <b>git:(main)</b><br />$ pnpm run focus</code></div>
+            </a>
+            <div class="theme-card-body">
+              <div class="card-kicker"><span class="status-dot live"></span>Live</div>
+              <h3>iTerm2</h3>
+              <p>Dark and light terminal presets with full ANSI coverage and the same focused violet cursor.</p>
+              <div class="card-actions"><a class="button button-primary" href="https://iterm.santi020k.com/">Open site</a><a class="button button-secondary" href="https://iterm.santi020k.com/themes/Santi020k%20Dark.itermcolors">Download</a></div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -227,17 +245,6 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
         </div>
 
         <div class="soon-grid">
-          <article class="soon-card terminal-card">
-            <div class="soon-visual" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-              <code>$ santi020k apply terminal</code>
-            </div>
-            <h3>Terminal palettes</h3>
-            <p>Shell color presets for long-running sessions, logs, and prompts.</p>
-          </article>
-
           <article class="soon-card">
             <div class="wallpaper-frame" aria-hidden="true">
               <span></span>
@@ -254,6 +261,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
       <div class="footer-links">
         <a href="https://vscode.santi020k.com/">VS Code</a>
         <a href="https://chrome.santi020k.com/">Chrome</a>
+        <a href="https://iterm.santi020k.com/">iTerm2</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
       </div>
