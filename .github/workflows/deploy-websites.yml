@@ -149,11 +149,11 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_THEME_PROJECT_NAME }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_THEME_PROJECT_NAME repository variable"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_THEME_HUB repository variable"; exit 1; }
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -165,7 +165,7 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_THEME_PROJECT_NAME }}" --branch=main
+        run: pnpm exec wrangler pages deploy apps/website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}" --branch=main
 
   deploy-vscode:
     name: Deploy vscode.santi020k.com
@@ -194,11 +194,11 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_VSCODE }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME repository variable"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_VSCODE repository variable"; exit 1; }
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -210,7 +210,7 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/vscode-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME }}" --branch=main
+        run: pnpm exec wrangler pages deploy apps/vscode-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_VSCODE }}" --branch=main
 
   deploy-chrome:
     name: Deploy chrome.santi020k.com
@@ -239,11 +239,11 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_CHROME_PROJECT_NAME }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_CHROME }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_CHROME_PROJECT_NAME repository variable"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_CHROME repository variable"; exit 1; }
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -255,7 +255,7 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/chrome-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_CHROME_PROJECT_NAME }}" --branch=main
+        run: pnpm exec wrangler pages deploy apps/chrome-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_CHROME }}" --branch=main
 
   deploy-iterm:
     name: Deploy iterm.santi020k.com
@@ -281,11 +281,11 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_ITERM_PROJECT_NAME }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_ITERM }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_ITERM_PROJECT_NAME repository variable"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_ITERM repository variable"; exit 1; }
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build iTerm2 website
@@ -294,4 +294,4 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/iterm-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_ITERM_PROJECT_NAME }}" --branch=main
+        run: pnpm exec wrangler pages deploy apps/iterm-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_ITERM }}" --branch=main

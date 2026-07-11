@@ -195,7 +195,7 @@ Recommended workflow split:
 - `release.yml`: Changesets and marketplace publishing for package/release changes only.
 - `deploy-websites.yml`: Cloudflare Pages direct-upload deployments for `theme.santi020k.com`, `vscode.santi020k.com`, `chrome.santi020k.com`, and `iterm.santi020k.com`, with one path-filtered job per app.
 
-Cloudflare deployment uses repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, plus repository variables `CLOUDFLARE_PAGES_THEME_PROJECT_NAME`, `CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME`, and `CLOUDFLARE_PAGES_CHROME_PROJECT_NAME`.
+Cloudflare deployment uses repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, plus repository variables `CLOUDFLARE_PAGES_PROJECT_THEME_HUB`, `CLOUDFLARE_PAGES_PROJECT_VSCODE`, `CLOUDFLARE_PAGES_PROJECT_CHROME`, and `CLOUDFLARE_PAGES_PROJECT_ITERM`.
 
 ## Naming
 
