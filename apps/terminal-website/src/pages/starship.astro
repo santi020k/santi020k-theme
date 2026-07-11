@@ -3,13 +3,14 @@ import TerminalPreview from '../components/TerminalPreview.astro'
 import SiteLayout from '../layouts/SiteLayout.astro'
 const canonical = 'https://terminal.santi020k.com/starship/'
 const description = 'Install the Santi020k Powerline prompt for Starship with coordinated dark and light violet palettes.'
-const schema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Santi020k Theme for Starship', applicationCategory: 'DeveloperApplication', operatingSystem: 'macOS, Linux, Windows', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, url: canonical, downloadUrl: 'https://terminal.santi020k.com/starship/santi020k-dark.toml', description }
+const downloadBase = 'https://santi020k-terminal-theme.pages.dev/starship'
+const schema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Santi020k Theme for Starship', applicationCategory: 'DeveloperApplication', operatingSystem: 'macOS, Linux, Windows', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, url: canonical, downloadUrl: `${downloadBase}/santi020k-dark.toml`, description }
 const commands = {
   install: 'brew install starship',
   init: 'eval "$(starship init zsh)"',
   backup: 'test ! -f ~/.config/starship.toml || cp ~/.config/starship.toml ~/.config/starship.toml.backup',
-  dark: 'curl -fsSL https://terminal.santi020k.com/starship/santi020k-dark.toml -o ~/.config/starship.toml',
-  light: 'curl -fsSL https://terminal.santi020k.com/starship/santi020k-light.toml -o ~/.config/starship.toml',
+  dark: `curl -fsSL ${downloadBase}/santi020k-dark.toml -o ~/.config/starship.toml`,
+  light: `curl -fsSL ${downloadBase}/santi020k-light.toml -o ~/.config/starship.toml`,
 }
 ---
 <SiteLayout title="Santi020k Starship Theme — Powerline Prompt" {description} {canonical} {schema} imageAlt="Santi020k Powerline prompt for Starship">
