@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://iterm.santi020k.com/sitemap.xml

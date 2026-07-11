@@ -6,10 +6,10 @@ Use this guide for every Santi020k theme-family surface:
 
 - VS Code extension: `packages/santi020k-theme`
 - Chrome theme: `packages/santi020k-chrome-theme`
-- iTerm2 theme: `packages/santi020k-iterm-theme`
+- Terminal theme: `packages/santi020k-terminal-theme`
 - Shared token and asset packages: `packages/theme`, `packages/theme-core`
 - Websites: `apps/website`, `apps/vscode-website`, `apps/chrome-website`
-- iTerm2 website: `apps/iterm-website`
+- Terminal website: `apps/terminal-website`
 - Store listings, screenshots, release copy, Open Graph images, and AI agent guidance
 
 When brand direction, tokens, assets, product copy, or visual rules change, update this document first, then update implementation files from it.
@@ -43,7 +43,7 @@ Use these names exactly unless a platform forces a different casing:
 | Theme hub | `theme.santi020k.com` |
 | VS Code site | `vscode.santi020k.com` |
 | Chrome site | `chrome.santi020k.com` |
-| iTerm2 site | `iterm.santi020k.com` |
+| Terminal site | `terminal.santi020k.com` |
 
 Theme variant names stay lowercase in VS Code UI contexts:
 

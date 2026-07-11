@@ -21,9 +21,9 @@ const sites = [
     baseUrl: 'https://chrome.santi020k.com/'
   },
   {
-    name: 'iTerm2 website',
-    root: resolve(repoRoot, 'apps/iterm-website'),
-    baseUrl: 'https://iterm.santi020k.com/'
+    name: 'Terminal website',
+    root: resolve(repoRoot, 'apps/terminal-website'),
+    baseUrl: 'https://terminal.santi020k.com/'
   }
 ]
 
@@ -65,13 +65,14 @@ const listPublicFiles = async dir => {
 const readSiteFiles = async site => {
   const publicDir = join(site.root, 'public')
   const publicFiles = await listPublicFiles(publicDir)
+  const pageFiles = await listPublicFiles(join(site.root, 'src/pages'))
 
   const checkablePublicFiles = publicFiles.filter(file =>
     /\.(?:html|txt|xml|webmanifest)$/u.test(file)
   )
 
   return [
-    join(site.root, 'src/pages/index.astro'),
+    ...pageFiles.filter(file => file.endsWith('.astro')),
     ...checkablePublicFiles
   ]
 }
@@ -183,16 +184,23 @@ const normalizeLocalPath = value => {
   const url = new URL(value, 'https://local.invalid')
   const pathname = decodeURIComponent(url.pathname)
 
-  return pathname === '/' ? '/index.html' : pathname
+  if (pathname === '/') return '/index.html'
+
+  return pathname.endsWith('/') ? `${pathname}index.html` : pathname
 }
 
 const resolveLocalCandidates = (site, value) => {
   const pathname = normalizeLocalPath(value).slice(1)
+  let route = pathname.replace(/\.html$/u, '')
+
+  if (pathname.endsWith('/index.html')) route = pathname.slice(0, -'/index.html'.length)
 
   return [
     resolve(site.root, pathname),
     resolve(site.root, 'public', pathname),
-    ...(pathname === 'index.html' ? [resolve(site.root, 'src/pages/index.astro')] : [])
+    ...(pathname === 'index.html'
+      ? [resolve(site.root, 'src/pages/index.astro')]
+      : [resolve(site.root, 'src/pages', `${route}.astro`)])
   ]
 }
 
@@ -285,6 +293,19 @@ const checkSite = async site => {
 
     for (const ref of references) {
       if (ref.value.startsWith('http://') || ref.value.startsWith('https://')) {
+        const internalSite = sites.find(candidate => ref.value.startsWith(candidate.baseUrl))
+
+        if (internalSite) {
+          const localValue = new URL(ref.value).pathname
+          const failure = await checkLocalReference(internalSite, relativeFile, ids, { ...ref, value: localValue })
+
+          localReferenceCount += 1
+
+          if (failure) failures.push(failure)
+
+          continue
+        }
+
         externalUrls.add(ref.value)
 
         continue

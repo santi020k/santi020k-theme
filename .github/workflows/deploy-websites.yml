@@ -9,8 +9,8 @@ on:
       - "apps/website/**"
       - "apps/vscode-website/**"
       - "apps/chrome-website/**"
-      - "apps/iterm-website/**"
-      - "packages/santi020k-iterm-theme/**"
+      - "apps/terminal-website/**"
+      - "packages/santi020k-terminal-theme/**"
       - "package.json"
       - "packages/theme/**"
       - "packages/theme-core/**"
@@ -27,7 +27,7 @@ on:
           - theme
           - vscode
           - chrome
-          - iterm
+          - terminal
         type: choice
 
 permissions:
@@ -45,7 +45,7 @@ jobs:
       theme: ${{ steps.manual.outputs.theme || steps.filter.outputs.theme }}
       vscode: ${{ steps.manual.outputs.vscode || steps.filter.outputs.vscode }}
       chrome: ${{ steps.manual.outputs.chrome || steps.filter.outputs.chrome }}
-      iterm: ${{ steps.manual.outputs.iterm || steps.filter.outputs.iterm }}
+      terminal: ${{ steps.manual.outputs.terminal || steps.filter.outputs.terminal }}
     steps:
       - name: Check out repository
         if: github.event_name == 'push'
@@ -60,7 +60,7 @@ jobs:
           echo "theme=false" >> "$GITHUB_OUTPUT"
           echo "vscode=false" >> "$GITHUB_OUTPUT"
           echo "chrome=false" >> "$GITHUB_OUTPUT"
-          echo "iterm=false" >> "$GITHUB_OUTPUT"
+          echo "terminal=false" >> "$GITHUB_OUTPUT"
 
           if [ "$SITE" = "all" ] || [ "$SITE" = "theme" ]; then
             echo "theme=true" >> "$GITHUB_OUTPUT"
@@ -74,8 +74,8 @@ jobs:
             echo "chrome=true" >> "$GITHUB_OUTPUT"
           fi
 
-          if [ "$SITE" = "all" ] || [ "$SITE" = "iterm" ]; then
-            echo "iterm=true" >> "$GITHUB_OUTPUT"
+          if [ "$SITE" = "all" ] || [ "$SITE" = "terminal" ]; then
+            echo "terminal=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Detect changed website paths
@@ -111,16 +111,16 @@ jobs:
               - 'pnpm-workspace.yaml'
               - 'turbo.json'
               - 'apps/chrome-website/**'
-            iterm:
+            terminal:
               - '.github/workflows/deploy-websites.yml'
               - 'package.json'
               - 'packages/theme/**'
               - 'packages/theme-core/**'
-              - 'packages/santi020k-iterm-theme/**'
+              - 'packages/santi020k-terminal-theme/**'
               - 'pnpm-lock.yaml'
               - 'pnpm-workspace.yaml'
               - 'turbo.json'
-              - 'apps/iterm-website/**'
+              - 'apps/terminal-website/**'
 
   deploy-theme:
     name: Deploy theme.santi020k.com
@@ -257,10 +257,10 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: pnpm exec wrangler pages deploy apps/chrome-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_CHROME }}" --branch=main
 
-  deploy-iterm:
-    name: Deploy iterm.santi020k.com
+  deploy-terminal:
+    name: Deploy terminal.santi020k.com
     needs: changes
-    if: needs.changes.outputs.iterm == 'true'
+    if: needs.changes.outputs.terminal == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -281,17 +281,17 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_ITERM }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_TERMINAL }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_ITERM repository variable"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_TERMINAL repository variable"; exit 1; }
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Build iTerm2 website
-        run: pnpm run site:iterm:build
-      - name: Deploy iTerm2 website to Cloudflare Pages
+      - name: Build Terminal website
+        run: pnpm run site:terminal:build
+      - name: Deploy Terminal website to Cloudflare Pages
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/iterm-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_ITERM }}" --branch=main
+        run: pnpm exec wrangler pages deploy apps/terminal-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_TERMINAL }}" --branch=main

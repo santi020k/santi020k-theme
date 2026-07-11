@@ -1,0 +1,25 @@
+---
+import TerminalPreview from '../components/TerminalPreview.astro'
+import SiteLayout from '../layouts/SiteLayout.astro'
+const canonical = 'https://terminal.santi020k.com/starship/'
+const description = 'Install the Santi020k Powerline prompt for Starship with coordinated dark and light violet palettes.'
+const schema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Santi020k Theme for Starship', applicationCategory: 'DeveloperApplication', operatingSystem: 'macOS, Linux, Windows', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, url: canonical, downloadUrl: 'https://terminal.santi020k.com/starship/santi020k-dark.toml', description }
+const commands = {
+  install: 'brew install starship',
+  init: 'eval "$(starship init zsh)"',
+  backup: 'test ! -f ~/.config/starship.toml || cp ~/.config/starship.toml ~/.config/starship.toml.backup',
+  dark: 'curl -fsSL https://terminal.santi020k.com/starship/santi020k-dark.toml -o ~/.config/starship.toml',
+  light: 'curl -fsSL https://terminal.santi020k.com/starship/santi020k-light.toml -o ~/.config/starship.toml',
+}
+---
+<SiteLayout title="Santi020k Starship Theme — Powerline Prompt" {description} {canonical} {schema} imageAlt="Santi020k Powerline prompt for Starship">
+  <section class="shell hero"><div class="hero-copy"><p class="eyebrow">Starship prompt preset</p><h1>Powerline shape. Santi020k focus.</h1><p class="lede">Inspired by Starship’s Pastel Powerline preset, rebuilt with a quieter violet progression and clear semantic roles for directory, Git, runtimes, and command state.</p><div class="actions"><a class="button primary" href="#install">Install the prompt</a><a class="button secondary" href="/starship/santi020k-dark.toml" download>Download TOML</a></div><p class="compatibility"><span></span> Zsh, Bash, Fish, PowerShell · Nerd Font required</p></div><TerminalPreview prompt id="preview" /></section>
+  <section class="shell section compact-section"><div class="section-heading"><p class="eyebrow">Built for daily work</p><h2>Information where it earns its space.</h2></div><div class="feature-grid"><div><b>Directory first</b><p>Your current context gets the strongest violet.</p></div><div><b>Git at a glance</b><p>Branch and working state stay grouped together.</p></div><div><b>Runtimes on demand</b><p>Language versions appear only when relevant.</p></div><div><b>Quiet history</b><p>Time and duration recede into the final segment.</p></div></div></section>
+  <section class="install-section" id="install"><div class="shell"><div class="section-heading"><p class="eyebrow">Safe manual install</p><h2>Four steps. Your existing config stays recoverable.</h2><p>These macOS and Zsh instructions keep the setup explicit. Starship supports other shells using the same downloaded preset.</p></div><ol class="install-list">
+    <li><div><b>Install Starship</b><span>Skip this if Starship is already installed.</span></div><div class="command"><code>{commands.install}</code><button data-copy={commands.install} aria-label="Copy Starship install command">Copy</button></div></li>
+    <li><div><b>Enable it in Zsh</b><span>Add this line to the end of <code>~/.zshrc</code>.</span></div><div class="command"><code>{commands.init}</code><button data-copy={commands.init} aria-label="Copy Zsh initialization">Copy</button></div></li>
+    <li><div><b>Back up your current preset</b><span>This only creates a backup when a config already exists.</span></div><div class="command"><code>{commands.backup}</code><button data-copy={commands.backup} aria-label="Copy backup command">Copy</button></div></li>
+    <li><div><b>Choose dark or light</b><span>The download becomes your active Starship configuration.</span></div><div class="variant-commands"><div class="command"><code>{commands.dark}</code><button data-copy={commands.dark} aria-label="Copy dark preset command">Copy dark</button></div><div class="command"><code>{commands.light}</code><button data-copy={commands.light} aria-label="Copy light preset command">Copy light</button></div></div></li>
+  </ol><aside class="notice"><b>Using Oh My Zsh?</b><p>Set <code>ZSH_THEME=""</code> before Oh My Zsh loads, then initialize Starship after it. Your Oh My Zsh plugins can stay enabled.</p></aside></div></section>
+  <section class="shell section"><div class="section-heading"><p class="eyebrow">Font check</p><h2>Squares instead of icons?</h2><p>The Powerline separators and tool icons require a Nerd Font. Install one, select it in your terminal profile, then open a new terminal window. CaskaydiaCove Nerd Font is a reliable starting point.</p></div><div class="actions"><a class="button primary" href="https://www.nerdfonts.com/font-downloads">Get a Nerd Font</a><a class="button secondary" href="/iterm2/">Install matching colors</a></div></section>
+</SiteLayout>

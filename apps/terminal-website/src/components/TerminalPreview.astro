@@ -1,0 +1,16 @@
+---
+const { prompt = false, id } = Astro.props
+---
+<div class="terminal-wrap" id={id}><div class="terminal" data-terminal-theme="dark">
+  <div class="terminal-bar"><span class="dots"><i></i><i></i><i></i></span><span>santi020k — zsh — 92×26</span><span></span></div>
+  <div class:list={["terminal-body", { "powerline-preview": prompt }]} aria-label="Terminal theme preview">
+    {prompt ? <>
+      <p class="powerline"><span class="cap os"></span><span class="segment os"></span><span class="join dir"></span><span class="segment dir"> ~/Projects/theme</span><span class="join git"></span><span class="segment git"> main +2</span><span class="join runtime"></span><span class="segment runtime"> v22</span><span class="join time"></span><span class="segment time"> 14:32</span><span class="cap time"></span></p>
+      <p><b class="purple">❯</b> pnpm run focus</p><p class="muted">Calm contrast. Durable focus.</p><p>&nbsp;</p>
+      <p class="powerline"><span class="cap os"></span><span class="segment os"></span><span class="join dir"></span><span class="segment dir"> ~/Projects/theme</span><span class="join git"></span><span class="segment git"> main</span><span class="join runtime"></span><span class="segment runtime"> v22</span><span class="join time"></span><span class="segment time"> 14:33</span><span class="cap time"></span></p><p><b class="purple">❯</b> <span class="cursor">&nbsp;</span></p>
+    </> : <>
+      <p><b class="green">➜</b> <b class="cyan">~/Projects/theme</b> <span class="purple">git:(main)</span> <span class="red">✗</span></p><p><span class="muted">$</span> pnpm run validate:terminal</p><p><span class="purple">›</span> Generating Santi020k presets...</p><p><span class="green">✓</span> Dark palette <span class="muted">16 ANSI colors</span></p><p><span class="green">✓</span> Light palette <span class="muted">16 ANSI colors</span></p><p><span class="yellow">!</span> Calm contrast. Durable focus.</p><p>&nbsp;</p><p><b class="green">➜</b> <b class="cyan">~/Projects/theme</b> <span class="cursor">&nbsp;</span></p>
+    </>}
+  </div>
+  <div class="terminal-switch"><button class="is-active" data-preset="dark" aria-pressed="true">Dark</button><button data-preset="light" aria-pressed="false">Light</button></div>
+</div></div>

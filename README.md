@@ -10,13 +10,13 @@ The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.
 | --- | --- |
 | `packages/santi020k-theme` | Published VS Code extension with dark, light, high-contrast, bold, and italic variants |
 | `packages/santi020k-chrome-theme` | Chrome Web Store theme package, synced from the VS Code palette |
-| `packages/santi020k-iterm-theme` | Generated dark and light iTerm2 color presets |
+| `packages/santi020k-terminal-theme` | Generated iTerm2 color and Starship prompt presets |
 | `packages/theme` | Public `@santi020k/theme` package for tokens, website CSS, assets, metadata, and Chrome mapping helpers |
 | `packages/theme-core` | Public `@santi020k/theme-core` helper package for package-neutral token generation, asset lookup, and site behavior primitives |
 | `apps/website` | Theme family hub for `theme.santi020k.com` |
 | `apps/vscode-website` | VS Code theme product site for `vscode.santi020k.com` |
 | `apps/chrome-website` | Chrome theme product site for `chrome.santi020k.com` |
-| `apps/iterm-website` | iTerm2 theme product site for `iterm.santi020k.com` |
+| `apps/terminal-website` | Terminal product site for `terminal.santi020k.com` |
 
 ## Quick Start
 
@@ -35,13 +35,13 @@ Use Node `>=22.18.0` and pnpm `10.32.1`.
 | `pnpm run validate:themes` | Validates the VS Code theme JSON files |
 | `pnpm run validate:marketplace` | Checks VS Code extension marketplace readiness |
 | `pnpm run validate:chrome` | Lints, validates contrast, and dry-runs Chrome packaging |
-| `pnpm run validate:iterm` | Validates generated iTerm2 preset structure and color coverage |
+| `pnpm run validate:terminal` | Validates generated iTerm2 and Starship presets |
 | `pnpm run package:extension` | Builds and packages the VS Code extension as a VSIX |
 | `pnpm run package:chrome` | Builds Chrome Web Store zip files |
 | `pnpm run site:dev` | Starts the theme hub website |
 | `pnpm run site:vscode:dev` | Starts the VS Code theme website |
 | `pnpm run site:chrome:dev` | Starts the Chrome theme website |
-| `pnpm run site:iterm:dev` | Starts the iTerm2 theme website |
+| `pnpm run site:terminal:dev` | Starts the Terminal theme website |
 | `pnpm run changeset` | Creates a release changeset |
 | `pnpm run commit` | Opens the conventional commit prompt |
 

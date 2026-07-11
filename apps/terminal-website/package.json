@@ -1,5 +1,5 @@
 {
-  "name": "@santi020k/santi020k-iterm-theme-website",
+  "name": "@santi020k/santi020k-terminal-theme-website",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@santi020k/theme": "workspace:^",
-    "santi020k-iterm-theme": "workspace:*"
+    "santi020k-terminal-theme": "workspace:*"
   },
   "devDependencies": {
     "astro": "catalog:"

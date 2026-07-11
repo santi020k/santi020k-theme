@@ -26,11 +26,12 @@ const sites = [
     schemaType: 'SoftwareApplication',
   },
   {
-    app: 'iterm-website',
-    canonical: 'https://iterm.santi020k.com/',
-    image: 'https://iterm.santi020k.com/og-image.png',
-    keyword: 'iTerm2 Theme',
-    schemaType: 'SoftwareApplication',
+    app: 'terminal-website',
+    canonical: 'https://terminal.santi020k.com/',
+    image: 'https://terminal.santi020k.com/og-image.png',
+    keyword: 'Terminal Theme',
+    schemaType: 'CollectionPage',
+    built: true,
   },
 ]
 
@@ -86,7 +87,7 @@ const requirePresent = (site, label, actual) => {
 }
 
 for (const site of sites) {
-  const htmlPath = resolve(root, 'apps', site.app, 'src/pages/index.astro')
+  const htmlPath = resolve(root, 'apps', site.app, site.built ? 'dist/index.html' : 'src/pages/index.astro')
   const html = await readFile(htmlPath, 'utf8')
   const title = titleText(html)
 

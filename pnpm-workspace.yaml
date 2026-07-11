@@ -48,3 +48,4 @@ allowBuilds:
   keytar: false
   sharp: false
   unrs-resolver: false
+  workerd: false

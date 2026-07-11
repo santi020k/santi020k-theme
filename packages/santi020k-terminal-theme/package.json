@@ -1,7 +1,7 @@
 {
-  "name": "santi020k-iterm-theme",
+  "name": "santi020k-terminal-theme",
   "version": "1.0.0",
-  "description": "Calm violet dark and light color presets for iTerm2.",
+  "description": "Santi020k terminal color schemes and Starship prompt presets.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,6 +16,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/santi020k/santi020k-theme",
-    "directory": "packages/santi020k-iterm-theme"
+    "directory": "packages/santi020k-terminal-theme"
   }
 }

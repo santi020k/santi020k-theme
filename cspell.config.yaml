@@ -25,6 +25,7 @@ words:
   - box-shadow
   - bracket-pair
   - breadcrumbs
+  - Caskaydia
   - changelog
   - changefreq
   - changeset
@@ -60,6 +61,7 @@ words:
   - font-weight
   - FOUC
   - GITHUB_TOKEN
+  - Ghostty
   - glassmorphism
   - grid-column
   - grid-row
@@ -138,6 +140,7 @@ words:
   - pluginutils
   - pnpapi
   - pointer-events
+  - Powerline
   - premove
   - quick-picker
   - rasterizes
@@ -208,6 +211,7 @@ words:
   - webstore
   - walkthrough
   - wordmark
+  - workerd
 ignorePaths:
   - node_modules/**
   - "**/node_modules/**"

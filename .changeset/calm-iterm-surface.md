@@ -1,7 +1,7 @@
 ---
-"santi020k-iterm-theme": minor
-"@santi020k/santi020k-iterm-theme-website": minor
+"santi020k-terminal-theme": minor
+"@santi020k/santi020k-terminal-theme-website": minor
 "@santi020k/santi020k-theme-website": minor
 ---
 
-Add complete dark and light iTerm2 presets, launch the dedicated iTerm2 product website, and promote the new terminal surface from the theme-family hub.
+Add complete dark and light iTerm2 and Starship presets, launch the unified Terminal product website, and promote the new terminal surface from the theme-family hub.
