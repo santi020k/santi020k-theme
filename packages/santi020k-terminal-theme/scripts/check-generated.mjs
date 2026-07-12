@@ -4,15 +4,30 @@ import { resolve } from 'node:path'
 import { palettes } from '../palettes.mjs'
 import { promptVariants, starshipFilename } from '../prompt-presets.mjs'
 
-import { renderIterm, renderStarship } from './build.mjs'
+import { renderAlacritty, renderGhostty, renderIterm, renderKitty, renderStarship, renderWezterm, renderWindowsTerminal } from './build.mjs'
 import { renderPreviewSvg } from './preview-assets.mjs'
 
 const root = resolve(import.meta.dirname, '..')
 const websiteStarship = resolve(root, '../../apps/terminal-website/public/starship')
+const websitePorts = resolve(root, '../../apps/terminal-website/public/ports')
 const checks = []
 
 for (const palette of Object.values(palettes)) {
   checks.push([resolve(root, 'iterm2', `${palette.name}.itermcolors`), renderIterm(palette)])
+
+  const portChecks = [
+    ['ghostty', `santi020k-${palette.slug}`, renderGhostty(palette)],
+    ['kitty', `santi020k-${palette.slug}.conf`, renderKitty(palette)],
+    ['wezterm', `santi020k-${palette.slug}.lua`, renderWezterm(palette)],
+    ['windows-terminal', `santi020k-${palette.slug}.json`, renderWindowsTerminal(palette)],
+    ['alacritty', `santi020k-${palette.slug}.toml`, renderAlacritty(palette)],
+  ]
+
+  for (const [directory, filename, rendered] of portChecks) {
+    checks.push([resolve(root, directory, filename), rendered])
+
+    checks.push([resolve(websitePorts, directory, filename), rendered])
+  }
 
   checks.push([resolve(root, 'assets/previews', `starship-${palette.slug}.svg`), renderPreviewSvg(palette)])
 

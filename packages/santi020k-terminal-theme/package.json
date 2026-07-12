@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs && node scripts/generate-preview-assets.mjs",
-    "validate": "pnpm run build && node scripts/validate.mjs && node scripts/check-generated.mjs"
+    "validate": "pnpm run build && node scripts/validate.mjs && node scripts/check-generated.mjs",
+    "sync:themes": "node scripts/sync-from-vscode-theme.mjs"
   },
   "engines": {
     "node": ">=22.18.0"

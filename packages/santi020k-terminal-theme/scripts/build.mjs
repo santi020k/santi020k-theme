@@ -44,10 +44,14 @@ export const renderWindowsTerminal = palette => `${JSON.stringify({
   foreground: palette.foreground,
   cursorColor: palette.cursor,
   selectionBackground: palette.selection,
+  // ANSI positions are fixed by the terminal color specification.
+   
   black: palette.ansi[0], red: palette.ansi[1], green: palette.ansi[2], yellow: palette.ansi[3], blue: palette.ansi[4], purple: palette.ansi[5], cyan: palette.ansi[6], white: palette.ansi[7],
   brightBlack: palette.ansi[8], brightRed: palette.ansi[9], brightGreen: palette.ansi[10], brightYellow: palette.ansi[11], brightBlue: palette.ansi[12], brightPurple: palette.ansi[13], brightCyan: palette.ansi[14], brightWhite: palette.ansi[15],
 }, null, 2)}\n`
 
+// ANSI positions are fixed by the terminal color specification.
+// eslint-disable-next-line security/detect-object-injection
 export const renderAlacritty = palette => `[colors.primary]\nbackground = '${palette.background}'\nforeground = '${palette.foreground}'\n\n[colors.cursor]\ncursor = '${palette.cursor}'\ntext = '${palette.cursorText}'\n\n[colors.selection]\nbackground = '${palette.selection}'\ntext = '${palette.selectedText}'\n\n[colors.normal]\n${['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'].map((name, index) => `${name} = '${palette.ansi[index]}'`).join('\n')}\n\n[colors.bright]\n${['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'].map((name, index) => `${name} = '${palette.ansi[index + 8]}'`).join('\n')}\n`
 
 export const renderStarship = (palette, variantKey = 'rich') => {

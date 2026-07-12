@@ -14,6 +14,8 @@ for (const file of themeFiles.slice(0, 4)) {
   const theme = parseJsonc(await readFile(file, 'utf8'))
 
   for (const [foreground, background, minimum] of contrastPairs) {
+    // Pair names come from the fixed validator table.
+    // eslint-disable-next-line security/detect-object-injection
     const ratio = contrastRatio(theme.colors[foreground], theme.colors[background])
 
     rows.push(`| ${theme.name} | \`${foreground}\` / \`${background}\` | ${ratio.toFixed(2)}:1 | ${minimum}:1 | Pass |`)
