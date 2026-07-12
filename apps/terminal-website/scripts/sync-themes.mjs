@@ -6,6 +6,7 @@ const root = resolve(import.meta.dirname, '../../..')
 const destinations = [
   { source: resolve(root, 'packages/santi020k-terminal-theme/iterm2'), destination: resolve(root, 'apps/terminal-website/public/themes'), files: ['Santi020k Dark.itermcolors', 'Santi020k Light.itermcolors'] },
   { source: resolve(root, 'packages/santi020k-terminal-theme/starship'), destination: resolve(root, 'apps/terminal-website/public/starship'), files: ['santi020k-dark.toml', 'santi020k-light.toml'] },
+  { source: resolve(root, 'packages/santi020k-terminal-theme/zsh'), destination: resolve(root, 'apps/terminal-website/public/zsh'), files: ['install.zsh', 'santi020k.zsh', 'santi020k-auto-theme.zsh'] },
 ]
 
 for (const group of destinations) {
