@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets'
+import { getSiteUrls } from '@santi020k/theme/site'
 import { galleryAssets as assets } from '../data/gallery-assets.js'
+
+const siteUrls = getSiteUrls(import.meta.env.DEV)
 ---
 
 <!doctype html>
@@ -102,7 +105,7 @@ import { galleryAssets as assets } from '../data/gallery-assets.js'
       <div class="dialog-media"><img src="" alt="" /></div>
     </dialog>
 
-    <footer class="site-shell site-footer"><p>Made by <a href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</a>.</p><div class="footer-links"><a href="/">Theme hub</a><a href="https://vscode.santi020k.com/">VS Code</a><a href="https://chrome.santi020k.com/">Chrome</a><a href="https://terminal.santi020k.com/">Terminal</a><a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a></div></footer>
+    <footer class="site-shell site-footer"><p>Made by <a href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</a>.</p><div class="footer-links"><a href="/">Theme hub</a><a href={siteUrls.vscode}>VS Code</a><a href={siteUrls.chrome}>Chrome</a><a href={siteUrls.terminal}>Terminal</a><a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a></div></footer>
     <script>import '../main.js'</script>
   </body>
 </html>

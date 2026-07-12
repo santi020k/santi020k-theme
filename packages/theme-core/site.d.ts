@@ -10,6 +10,20 @@ export const SITE_REDUCED_MOTION_QUERY: '(prefers-reduced-motion: reduce)'
 export const SITE_REVEAL_DARK_BACKGROUND: '#110c1d'
 export const SITE_REVEAL_LIGHT_BACKGROUND: '#f8f6fd'
 
+export interface SiteUrls {
+  readonly hub: string
+  readonly vscode: string
+  readonly chrome: string
+  readonly terminal: string
+}
+
+export const SITE_URLS: {
+  readonly production: SiteUrls
+  readonly development: SiteUrls
+}
+
+export function getSiteUrls(development?: boolean): SiteUrls
+
 export type SiteTheme = typeof SITE_THEME_LIGHT | typeof SITE_THEME_DARK
 
 export interface SiteThemePreferenceOptions {

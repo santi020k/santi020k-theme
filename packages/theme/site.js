@@ -2,6 +2,7 @@ export {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
   getPreferredSiteTheme,
+  getSiteUrls,
   isSiteTheme,
   readStoredSiteTheme,
   rootInDarkMode,
@@ -18,5 +19,6 @@ export {
   SITE_THEME_PREFERENCE_QUERY,
   SITE_THEME_STORAGE_KEY,
   SITE_TOUCH_POINTER_QUERY,
+  SITE_URLS,
   syncSiteThemeToggle
 } from '@santi020k/theme-core/site'

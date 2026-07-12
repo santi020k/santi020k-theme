@@ -1,8 +1,11 @@
 ---
 import { Image } from 'astro:assets'
+import { getSiteUrls } from '@santi020k/theme/site'
 import wallpaperOne from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
 import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/wallpaper-2-desktop.webp'
 import wallpaperThree from '../../../../packages/theme/assets/wallpapers/wallpaper-3-desktop.webp'
+
+const siteUrls = getSiteUrls(import.meta.env.DEV)
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -141,9 +144,9 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
             A shared violet system for your editor, your browser, and the next surfaces that should feel like they belong together.
           </p>
           <div class="actions" aria-label="Primary theme links">
-            <a class="button button-primary" href="https://vscode.santi020k.com/">Open VS Code</a>
-            <a class="button button-secondary" href="https://chrome.santi020k.com/">Open Chrome</a>
-            <a class="button button-secondary" href="https://terminal.santi020k.com/">Open Terminal</a>
+            <a class="button button-primary" href={siteUrls.vscode}>Open VS Code</a>
+            <a class="button button-secondary" href={siteUrls.chrome}>Open Chrome</a>
+            <a class="button button-secondary" href={siteUrls.terminal}>Open Terminal</a>
             <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</a>
           </div>
         </div>
@@ -166,7 +169,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
 
         <div class="theme-grid">
           <article class="theme-card theme-card-large">
-            <a class="theme-card-media" href="https://vscode.santi020k.com/" aria-label="Open VS Code theme site">
+            <a class="theme-card-media" href={siteUrls.vscode} aria-label="Open VS Code theme site">
               <Image src="/vscode-theme-art.png" width="1672" height="941" alt="Abstract Santi020k VS Code theme preview" loading="lazy" decoding="async" inferSize />
             </a>
             <div class="theme-card-body">
@@ -177,14 +180,14 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
               <h3>VS Code</h3>
               <p>Dark, light, high contrast, bold, and italic variants for VS Code-compatible editors.</p>
               <div class="card-actions">
-                <a class="button button-primary" href="https://vscode.santi020k.com/">Open site</a>
+                <a class="button button-primary" href={siteUrls.vscode}>Open site</a>
                 <a class="button button-secondary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
               </div>
             </div>
           </article>
 
           <article class="theme-card">
-            <a class="theme-card-media" href="https://chrome.santi020k.com/" aria-label="Open Chrome theme site">
+            <a class="theme-card-media" href={siteUrls.chrome} aria-label="Open Chrome theme site">
               <Image src="/chrome-theme-art.png" width="1586" height="992" alt="Abstract Santi020k Chrome theme preview" loading="lazy" decoding="async" inferSize />
             </a>
             <div class="theme-card-body">
@@ -195,13 +198,13 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
               <h3>Chrome</h3>
               <p>Matching dark and light Chrome browser themes with the same violet system.</p>
               <div class="card-actions">
-                <a class="button button-primary" href="https://chrome.santi020k.com/">Open site</a>
+                <a class="button button-primary" href={siteUrls.chrome}>Open site</a>
                 <a class="button button-secondary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" rel="noopener noreferrer">Web Store</a>
               </div>
             </div>
           </article>
           <article class="theme-card terminal-theme-card">
-            <a class="theme-card-media terminal-card" href="https://terminal.santi020k.com/" aria-label="Open Terminal theme site">
+            <a class="theme-card-media terminal-card" href={siteUrls.terminal} aria-label="Open Terminal theme site">
               <div class="terminal-window" aria-hidden="true">
                 <div class="terminal-title-bar">
                   <span class="terminal-dots"><i></i><i></i><i></i></span>
@@ -222,7 +225,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
               <div class="card-kicker"><span class="status-dot live"></span>Live</div>
               <h3>Terminal</h3>
               <p>Matching iTerm2 colors and a Powerline-style Starship prompt in one terminal theme.</p>
-              <div class="card-actions"><a class="button button-primary" href="https://terminal.santi020k.com/">Open site</a><a class="button button-secondary" href="https://terminal.santi020k.com/starship/">Starship</a></div>
+              <div class="card-actions"><a class="button button-primary" href={siteUrls.terminal}>Open site</a><a class="button button-secondary" href={`${siteUrls.terminal}starship/`}>Starship</a></div>
             </div>
           </article>
         </div>
@@ -275,9 +278,9 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
     <footer class="site-shell site-footer">
       <p>Made by <a href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</a>.</p>
       <div class="footer-links">
-        <a href="https://vscode.santi020k.com/">VS Code</a>
-        <a href="https://chrome.santi020k.com/">Chrome</a>
-        <a href="https://terminal.santi020k.com/">Terminal</a>
+        <a href={siteUrls.vscode}>VS Code</a>
+        <a href={siteUrls.chrome}>Chrome</a>
+        <a href={siteUrls.terminal}>Terminal</a>
         <a href="/gallery/">Gallery</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
