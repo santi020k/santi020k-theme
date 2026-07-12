@@ -1,11 +1,12 @@
 {
   "name": "santi020k-terminal-theme",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Santi020k terminal color schemes and Starship prompt presets.",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs && node scripts/generate-preview-assets.mjs",
+    "package": "pnpm run build && node scripts/package-release.mjs",
     "validate": "pnpm run build && node scripts/validate.mjs && node scripts/check-generated.mjs",
     "sync:themes": "node scripts/sync-from-vscode-theme.mjs"
   },

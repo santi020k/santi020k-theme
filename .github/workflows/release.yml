@@ -10,6 +10,7 @@ on:
       - 'packages/theme/**'
       - 'packages/theme-core/**'
       - 'packages/santi020k-theme/**'
+      - 'packages/santi020k-terminal-theme/**'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
       - 'scripts/publish-npm-packages.mjs'
@@ -74,3 +75,7 @@ jobs:
       - name: Ensure GitHub release tag exists
         if: github.ref == 'refs/heads/main' && steps.changesets.outputs.published == 'true'
         run: pnpm run release:tag
+
+      - name: Ensure Terminal release tag exists
+        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.published == 'true'
+        run: pnpm run release:terminal:tag

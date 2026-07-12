@@ -35,7 +35,7 @@ curl --proto '=https' --tlsv1.2 -fsSL "$BASE_URL/starship/santi020k-light.toml" 
 
 touch "$ZSHRC"
 if ! grep -Fqx "$SOURCE_LINE" "$ZSHRC"; then
-  print -r -- "\n# Santi020k Terminal\n$SOURCE_LINE" >> "$ZSHRC"
+  printf '%s\n' '' '# Santi020k Terminal' "$SOURCE_LINE" >> "$ZSHRC"
 fi
 
 print '\nSanti020k Terminal is ready.'

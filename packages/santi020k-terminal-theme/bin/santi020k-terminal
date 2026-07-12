@@ -1,0 +1,117 @@
+#!/usr/bin/env zsh
+# cspell:ignore esac mktemp pipefail ZDOTDIR
+set -euo pipefail
+
+readonly COMMAND=${1:-help}
+readonly CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+readonly CONFIG_DIR="$CONFIG_HOME/santi020k-terminal"
+readonly STARSHIP_DIR="$CONFIG_HOME/starship"
+readonly ZSHRC=${ZDOTDIR:-$HOME}/.zshrc
+readonly SOURCE_LINE='source "${XDG_CONFIG_HOME:-$HOME/.config}/santi020k-terminal/santi020k.zsh"'
+readonly SCRIPT_DIR=${0:A:h}
+readonly PREFIX=${SCRIPT_DIR:h}
+readonly ASSET_DIR=${SANTI020K_ASSET_DIR:-$PREFIX/share/santi020k-terminal}
+readonly VERSION=${SANTI020K_VERSION:-0.1.0}
+
+backup_file() {
+  local file=$1 timestamp=$2
+  if [[ -f "$file" ]]; then
+    cp "$file" "$file.backup-$timestamp"
+  fi
+}
+
+require_assets() {
+  local file
+  for file in zsh/santi020k.zsh zsh/santi020k-auto-theme.zsh starship/santi020k-dark.toml starship/santi020k-light.toml; do
+    if [[ ! -r "$ASSET_DIR/$file" ]]; then
+      print -u2 "Missing packaged asset: $ASSET_DIR/$file"
+      return 1
+    fi
+  done
+}
+
+install_config() {
+  require_assets
+  mkdir -p "$CONFIG_DIR" "$STARSHIP_DIR"
+
+  local timestamp=$(date +%Y%m%d-%H%M%S)
+  backup_file "$CONFIG_DIR/santi020k.zsh" "$timestamp"
+  backup_file "$CONFIG_DIR/santi020k-auto-theme.zsh" "$timestamp"
+  backup_file "$STARSHIP_DIR/santi020k-dark.toml" "$timestamp"
+  backup_file "$STARSHIP_DIR/santi020k-light.toml" "$timestamp"
+
+  install -m 0644 "$ASSET_DIR/zsh/santi020k.zsh" "$CONFIG_DIR/santi020k.zsh"
+  install -m 0644 "$ASSET_DIR/zsh/santi020k-auto-theme.zsh" "$CONFIG_DIR/santi020k-auto-theme.zsh"
+  install -m 0644 "$ASSET_DIR/starship/santi020k-dark.toml" "$STARSHIP_DIR/santi020k-dark.toml"
+  install -m 0644 "$ASSET_DIR/starship/santi020k-light.toml" "$STARSHIP_DIR/santi020k-light.toml"
+
+  touch "$ZSHRC"
+  if ! grep -Fqx "$SOURCE_LINE" "$ZSHRC"; then
+    printf '%s\n' '' '# Santi020k Terminal' "$SOURCE_LINE" >> "$ZSHRC"
+  fi
+
+  print 'Santi020k Terminal is ready. Open a new terminal or run: exec zsh'
+}
+
+doctor() {
+  local failed=0 command
+
+  for command in brew starship fzf zoxide eza bat rg fd jq delta; do
+    if command -v "$command" >/dev/null 2>&1; then
+      print "ok  $command"
+    else
+      print "missing  $command"
+      failed=1
+    fi
+  done
+
+  for file in "$CONFIG_DIR/santi020k.zsh" "$CONFIG_DIR/santi020k-auto-theme.zsh" "$STARSHIP_DIR/santi020k-dark.toml" "$STARSHIP_DIR/santi020k-light.toml"; do
+    if [[ -r "$file" ]]; then
+      print "ok  $file"
+    else
+      print "missing  $file"
+      failed=1
+    fi
+  done
+
+  grep -Fqx "$SOURCE_LINE" "$ZSHRC" 2>/dev/null || { print "missing  Santi020k source line in $ZSHRC"; failed=1; }
+  return $failed
+}
+
+uninstall_config() {
+  if [[ -f "$ZSHRC" ]]; then
+    local temporary=$(mktemp)
+    awk -v source="$SOURCE_LINE" '
+      $0 == "# Santi020k Terminal" { marker = 1; next }
+      $0 == source { marker = 0; next }
+      { if (marker) { print "# Santi020k Terminal"; marker = 0 }; print }
+    ' "$ZSHRC" > "$temporary"
+    command cat "$temporary" > "$ZSHRC"
+    rm -f "$temporary"
+  fi
+
+  rm -f "$CONFIG_DIR/santi020k.zsh" "$CONFIG_DIR/santi020k-auto-theme.zsh"
+  rmdir "$CONFIG_DIR" 2>/dev/null || true
+  print 'Removed Santi020k-managed configuration. Homebrew packages and backup files were kept.'
+}
+
+case "$COMMAND" in
+  install) install_config ;;
+  update)
+    if command -v brew >/dev/null 2>&1 && brew list --formula santi020k-terminal >/dev/null 2>&1; then
+      brew upgrade santi020k/tap/santi020k-terminal
+    fi
+    install_config
+    ;;
+  doctor) doctor ;;
+  uninstall) uninstall_config ;;
+  version|--version|-v) print "santi020k-terminal $VERSION" ;;
+  help|--help|-h)
+    print 'Usage: santi020k-terminal <install|update|doctor|uninstall|version>'
+    ;;
+  *)
+    print -u2 "Unknown command: $COMMAND"
+    print -u2 'Usage: santi020k-terminal <install|update|doctor|uninstall|version>'
+    exit 2
+    ;;
+esac

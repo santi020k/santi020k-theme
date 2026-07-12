@@ -22,13 +22,26 @@ The default rich presets use Nerd Font icons and relaxed segment padding. Portab
 
 ## Powerful Zsh setup
 
-The installer uses Homebrew to install Starship, Zsh autosuggestions, syntax highlighting, extra completions, fzf, zoxide, eza, bat, ripgrep, fd, jq, and git-delta. It keeps the managed configuration in `~/.config/santi020k-terminal`, preserves the rest of `.zshrc`, and is safe to run again.
+The recommended installation uses the `santi020k-terminal` formula from the shared `santi020k/tap` Homebrew tap:
+
+```sh
+brew install santi020k/tap/santi020k-terminal
+santi020k-terminal install
+```
+
+The CLI supports `install`, `update`, `doctor`, `uninstall`, and `version`. Homebrew owns the formula and its dependencies; the explicit `install` command keeps shell configuration changes reviewable.
+
+The hosted install script remains available as an alternative. It uses Homebrew to install Starship, Zsh autosuggestions, syntax highlighting, extra completions, fzf, zoxide, eza, bat, ripgrep, fd, jq, and git-delta. Both paths keep managed configuration in `~/.config/santi020k-terminal`, preserve the rest of `.zshrc`, and are safe to run again.
 
 ```sh
 curl --proto '=https' --tlsv1.2 -fsSL https://terminal.santi020k.com/zsh/install.zsh | zsh
 ```
 
 Review `zsh/install.zsh` before running it. Homebrew is required and is intentionally not installed automatically.
+
+## Homebrew releases
+
+`pnpm --filter santi020k-terminal-theme run package` creates a versioned release archive, SHA-256 metadata, and `santi020k-terminal.rb` formula under `dist/`. Tags named `santi020k-terminal-v<version>` publish the archive and update `santi020k/homebrew-tap` when the `HOMEBREW_TAP_TOKEN` repository secret is configured.
 
 ## Transparent iTerm2 profiles
 

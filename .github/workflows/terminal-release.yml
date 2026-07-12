@@ -1,0 +1,64 @@
+name: Terminal release
+
+on:
+  push:
+    tags:
+      - 'santi020k-terminal-v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    timeout-minutes: 20
+    env:
+      HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run validate:terminal
+      - run: pnpm --filter santi020k-terminal-theme run package
+
+      - name: Verify tag matches package version
+        if: github.ref_type == 'tag'
+        run: test "${GITHUB_REF_NAME}" = "santi020k-terminal-v$(node -p "require('./packages/santi020k-terminal-theme/package.json').version")"
+
+      - name: Publish release archive
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" packages/santi020k-terminal-theme/dist/*.tar.gz --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" packages/santi020k-terminal-theme/dist/*.tar.gz --verify-tag --generate-notes
+          fi
+
+      - name: Update Homebrew tap
+        if: github.ref_type == 'tag' && env.HOMEBREW_TAP_TOKEN != ''
+        run: |
+          git clone "https://x-access-token:${HOMEBREW_TAP_TOKEN}@github.com/santi020k/homebrew-tap.git" "$RUNNER_TEMP/homebrew-tap"
+          mkdir -p "$RUNNER_TEMP/homebrew-tap/Formula"
+          cp packages/santi020k-terminal-theme/dist/santi020k-terminal.rb "$RUNNER_TEMP/homebrew-tap/Formula/santi020k-terminal.rb"
+          cd "$RUNNER_TEMP/homebrew-tap"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add Formula/santi020k-terminal.rb
+          git diff --cached --quiet && exit 0
+          version=$(node -p "require('$GITHUB_WORKSPACE/packages/santi020k-terminal-theme/package.json').version")
+          git commit -m "chore: update santi020k-terminal to ${version}"
+          git push

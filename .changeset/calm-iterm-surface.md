@@ -1,5 +1,5 @@
 ---
-"santi020k-terminal-theme": minor
+"santi020k-terminal-theme": major
 "@santi020k/santi020k-terminal-theme-website": minor
 "@santi020k/santi020k-theme-website": minor
 ---

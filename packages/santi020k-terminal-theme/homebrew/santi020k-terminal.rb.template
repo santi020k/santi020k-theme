@@ -1,0 +1,46 @@
+# typed: strict
+# frozen_string_literal: true
+
+# cspell:ignore pkgshare
+
+# Formula for the Santi020k terminal theme and shell setup.
+class Santi020kTerminal < Formula
+  desc "Terminal colors, Starship prompt, and curated Zsh setup"
+  homepage "https://terminal.santi020k.com"
+  url "https://github.com/santi020k/santi020k-theme/releases/download/santi020k-terminal-v{{VERSION}}/santi020k-terminal-{{VERSION}}.tar.gz"
+  sha256 "{{SHA256}}"
+  license "MIT"
+
+  depends_on "bat"
+  depends_on "eza"
+  depends_on "fd"
+  depends_on "fzf"
+  depends_on "git-delta"
+  depends_on "jq"
+  depends_on "ripgrep"
+  depends_on "starship"
+  depends_on "zoxide"
+  depends_on "zsh-autosuggestions"
+  depends_on "zsh-completions"
+  depends_on "zsh-syntax-highlighting"
+
+  def install
+    bin.install "bin/santi020k-terminal"
+    pkgshare.install Dir["share/santi020k-terminal/*"]
+  end
+
+  def caveats
+    <<~EOS
+      Finish setup by running:
+        santi020k-terminal install
+
+      This creates backed-up configuration under ~/.config and adds one source
+      line to ~/.zshrc. Homebrew does not modify your shell configuration itself.
+    EOS
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/santi020k-terminal version")
+    assert_match "Usage:", shell_output("#{bin}/santi020k-terminal help")
+  end
+end

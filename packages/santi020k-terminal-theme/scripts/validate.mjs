@@ -1,5 +1,6 @@
 import { execFileSync, spawnSync } from 'node:child_process'
-import { readFile } from 'node:fs/promises'
+import { chmod, mkdtemp, readFile, rm } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
 import { resolve } from 'node:path'
 
 import { parse } from 'smol-toml'
@@ -7,7 +8,7 @@ import { parse } from 'smol-toml'
 import { palettes } from '../palettes.mjs'
 import { promptVariants, runtimeModules, starshipFilename } from '../prompt-presets.mjs'
 
-// cspell:ignore compinit pipefail precmd
+// cspell:ignore compinit pipefail precmd ZDOTDIR
 
 const root = resolve(import.meta.dirname, '..')
 const requiredKeys = ['Background Color', 'Foreground Color', 'Cursor Color', 'Selection Color', ...Array.from({ length: 16 }, (_, index) => `Ansi ${index} Color`)]
@@ -96,4 +97,38 @@ for (const expected of ['set -euo pipefail', 'brew install', 'git-delta', 'santi
   if (!installer.includes(expected)) throw new Error(`Zsh installer missing ${expected}`)
 }
 
-console.log(`Validated ${Object.keys(palettes).length} palettes across six terminal formats, ${Object.keys(palettes).length * Object.keys(promptVariants).length} parsed Starship presets, and the Zsh setup.`)
+const cli = resolve(root, 'bin', 'santi020k-terminal')
+const cliContents = await readFile(cli, 'utf8')
+
+for (const expected of ['install_config', 'doctor', 'uninstall_config', 'santi020k/tap/santi020k-terminal']) {
+  if (!cliContents.includes(expected)) throw new Error(`Terminal CLI missing ${expected}`)
+}
+
+const sandbox = await mkdtemp(resolve(tmpdir(), 'santi020k-terminal-'))
+
+try {
+  await chmod(cli, 0o755)
+
+  const env = { ...process.env, HOME: sandbox, XDG_CONFIG_HOME: resolve(sandbox, '.config'), ZDOTDIR: sandbox, SANTI020K_ASSET_DIR: root }
+
+  execFileSync(cli, ['install'], { env, encoding: 'utf8' })
+
+  execFileSync(cli, ['install'], { env, encoding: 'utf8' })
+
+  const managedZsh = await readFile(resolve(sandbox, '.config', 'santi020k-terminal', 'santi020k.zsh'), 'utf8')
+  const sandboxZshrc = await readFile(resolve(sandbox, '.zshrc'), 'utf8')
+
+  if (managedZsh !== zshSetup) throw new Error('Terminal CLI did not install the packaged Zsh setup')
+
+  if (sandboxZshrc.split('Santi020k Terminal').length !== 2) throw new Error('Terminal CLI installation is not idempotent')
+
+  execFileSync(cli, ['uninstall'], { env, encoding: 'utf8' })
+
+  const cleanedZshrc = await readFile(resolve(sandbox, '.zshrc'), 'utf8')
+
+  if (cleanedZshrc.includes('santi020k-terminal/santi020k.zsh')) throw new Error('Terminal CLI uninstall left its source line in .zshrc')
+} finally {
+  await rm(sandbox, { force: true, recursive: true })
+}
+
+console.log(`Validated ${Object.keys(palettes).length} palettes across six terminal formats, ${Object.keys(palettes).length * Object.keys(promptVariants).length} parsed Starship presets, the Zsh setup, and the terminal CLI lifecycle.`)
