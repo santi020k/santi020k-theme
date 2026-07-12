@@ -82,7 +82,7 @@ error = "${colors.error}"
 [os]
 disabled = false
 style = "bg:os fg:light_text"
-format = "[ $symbol ]($style)"
+format = "[  $symbol  ]($style)"
 
 [os.symbols]
 Macos = ""
@@ -97,7 +97,7 @@ format = "[$user ]($style)"
 
 [directory]
 style = "bg:directory fg:light_text bold"
-format = "[ $path ]($style)"
+format = "[  $path  ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -108,13 +108,13 @@ truncation_symbol = "…/"
 "Pictures" = " "
 
 [git_branch]
-symbol = ""
+symbol = "git"
 style = "bg:git fg:dark_text bold"
-format = "[ $symbol $branch ]($style)"
+format = "[  $symbol $branch ]($style)"
 
 [git_status]
 style = "bg:git fg:dark_text"
-format = "[$all_status$ahead_behind ]($style)"
+format = "[$all_status$ahead_behind  ]($style)"
 
 [character]
 success_symbol = "[❯](bold directory)"
@@ -129,7 +129,7 @@ format = "[ 󰔟 $duration ]($style)"
 disabled = false
 time_format = "%R"
 style = "bg:time fg:${dark ? 'light_text' : 'dark_text'}"
-format = "[  $time ]($style)"
+format = "[  $time  ]($style)"
 
 [docker_context]
 symbol = " "
@@ -137,8 +137,8 @@ style = "bg:time fg:${dark ? 'light_text' : 'dark_text'}"
 format = "[ $symbol$context ]($style)"
 
 ${['c', 'cpp', 'deno', 'golang', 'java', 'nodejs', 'php', 'python', 'ruby', 'rust'].map(module => `[${module}]
-style = "bg:runtime fg:dark_text"
-format = "[ $symbol($version) ]($style)"`).join('\n\n')}
+${module === 'nodejs' ? 'symbol = "node "\n' : ''}style = "bg:runtime fg:dark_text"
+format = "[  $symbol($version)  ]($style)"`).join('\n\n')}
 `
 }
 

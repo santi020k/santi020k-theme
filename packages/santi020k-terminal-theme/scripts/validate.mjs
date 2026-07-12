@@ -26,6 +26,10 @@ for (const palette of Object.values(palettes)) {
   for (const expected of ['palette = "santi020k"', '[palettes.santi020k]', '[directory]', '[git_branch]', '[character]']) {
     if (!starship.includes(expected)) throw new Error(`${palette.name}: Starship preset missing ${expected}`)
   }
+
+  for (const expected of ['Macos = ""', 'symbol = "git"', 'symbol = "node "', 'format = "[  $time  ]($style)"']) {
+    if (!starship.includes(expected)) throw new Error(`${palette.name}: Starship preset does not match the website preview: missing ${expected}`)
+  }
 }
 
 const autoTheme = await readFile(resolve(root, 'zsh', 'santi020k-auto-theme.zsh'), 'utf8')

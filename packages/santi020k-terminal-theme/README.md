@@ -12,6 +12,8 @@ The terminal edition of Santi020k Theme combines matching terminal colors and a 
 
 Visit [terminal.santi020k.com](https://terminal.santi020k.com/) for previews and installation instructions.
 
+The Starship presets use a recognizable OS icon, clear Git and runtime labels, and the same relaxed segment padding as the website preview. For matching physical scale in iTerm2, use CaskaydiaCove Nerd Font at 15 pt with approximately 110% vertical spacing.
+
 ## Powerful Zsh setup
 
 The installer uses Homebrew to install Starship, Zsh autosuggestions, syntax highlighting, extra completions, fzf, zoxide, eza, bat, ripgrep, fd, jq, and git-delta. It keeps the managed configuration in `~/.config/santi020k-terminal`, preserves the rest of `.zshrc`, and is safe to run again.
