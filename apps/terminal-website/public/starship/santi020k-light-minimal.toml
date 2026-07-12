@@ -3,16 +3,7 @@
 add_newline = true
 palette = "santi020k"
 format = """
-[](os)$os$username[](fg:os bg:directory)$directory[](fg:directory bg:git)$git_branch$git_status[](fg:git bg:runtime)$c\
-$cpp\
-$deno\
-$golang\
-$java\
-$nodejs\
-$php\
-$python\
-$ruby\
-$rust\
+[](os)$os$username[](fg:os bg:directory)$directory[](fg:directory bg:git)$git_branch$git_status[](fg:git bg:runtime)
 [](fg:runtime bg:time)$docker_context$cmd_duration$time[](fg:time)$line_break$character"""
 
 [palettes.santi020k]
@@ -28,12 +19,12 @@ error = "#c0392b"
 [os]
 disabled = false
 style = "bg:os fg:light_text"
-format = "[  $symbol  ]($style)"
+format = "[ $symbol ]($style)"
 
 [os.symbols]
-Macos = ""
-Linux = ""
-Windows = "󰍲"
+Macos = ""
+Linux = ""
+Windows = ""
 
 [username]
 show_always = false
@@ -43,24 +34,21 @@ format = "[$user ]($style)"
 
 [directory]
 style = "bg:directory fg:light_text bold"
-format = "[  $path  ]($style)"
+format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+
 
 [git_branch]
-symbol = ""
+symbol = ""
 style = "bg:git fg:dark_text bold"
-format = "[  $symbol $branch ]($style)"
+format = "[ $symbol$branch ]($style)"
 
 [git_status]
 style = "bg:git fg:dark_text"
-format = "[$all_status$ahead_behind  ]($style)"
+format = "[$all_status$ahead_behind ]($style)"
 
 [character]
 success_symbol = "[❯](bold directory)"
@@ -69,66 +57,66 @@ error_symbol = "[❯](bold error)"
 [cmd_duration]
 min_time = 2000
 style = "bg:time fg:dark_text"
-format = "[ 󰔟 $duration ]($style)"
+format = "[ $duration ]($style)"
 
 [time]
 disabled = false
 time_format = "%R"
 style = "bg:time fg:dark_text"
-format = "[  $time  ]($style)"
+format = "[ $time ]($style)"
 
 [docker_context]
-symbol = " "
+symbol = ""
 style = "bg:time fg:dark_text"
 format = "[ $symbol$context ]($style)"
 
 [c]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [cpp]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [deno]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [golang]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [java]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [nodejs]
-disabled = false
-symbol = " "
+disabled = true
+symbol = ""
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [php]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [python]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [ruby]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"
 
 [rust]
-disabled = false
+disabled = true
 style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"
+format = "[ $symbol($version) ]($style)"

@@ -1,7 +1,11 @@
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { execFileSync, spawnSync } from 'node:child_process'
+
+import { parse } from 'smol-toml'
 
 import { palettes } from '../palettes.mjs'
+import { promptVariants, runtimeModules, starshipFilename } from '../prompt-presets.mjs'
 
 // cspell:ignore compinit pipefail precmd
 
@@ -20,17 +24,32 @@ for (const palette of Object.values(palettes)) {
     if (!contents.includes(`<key>${key}</key>`)) throw new Error(`${palette.name}: missing ${key}`)
   }
 
-  const starshipPath = resolve(root, 'starship', `santi020k-${palette.slug}.toml`)
-  const starship = await readFile(starshipPath, 'utf8')
+  for (const [variantKey, variant] of Object.entries(promptVariants)) {
+    const starshipPath = resolve(root, 'starship', starshipFilename(palette.slug, variantKey))
+    const starship = await readFile(starshipPath, 'utf8')
+    let config
+    try { config = parse(starship) } catch (error) { throw new Error(`${palette.name} ${variant.name}: invalid TOML`, { cause: error }) }
 
-  for (const expected of ['palette = "santi020k"', '[palettes.santi020k]', '[directory]', '[git_branch]', '[character]']) {
-    if (!starship.includes(expected)) throw new Error(`${palette.name}: Starship preset missing ${expected}`)
-  }
-
-  for (const expected of ['Macos = ""', 'symbol = "git"', 'symbol = "node "', 'format = "[  $time  ]($style)"']) {
-    if (!starship.includes(expected)) throw new Error(`${palette.name}: Starship preset does not match the website preview: missing ${expected}`)
+    if (config.palette !== 'santi020k' || !config.palettes?.santi020k) throw new Error(`${palette.name} ${variant.name}: missing palette`)
+    if (config.os.symbols.Macos !== variant.symbols.macos || config.git_branch.symbol !== variant.symbols.git) {
+      throw new Error(`${palette.name} ${variant.name}: generated symbols do not match shared preset metadata`)
+    }
+    for (const runtime of runtimeModules) {
+      if (config[runtime].disabled !== !variant.runtimes) throw new Error(`${palette.name} ${variant.name}: incorrect ${runtime} state`)
+    }
   }
 }
+
+const starship = process.env.STARSHIP_BIN || 'starship'
+if (spawnSync(starship, ['--version'], { stdio: 'ignore' }).status === 0) {
+  for (const palette of Object.values(palettes)) {
+    for (const variantKey of Object.keys(promptVariants)) {
+      const config = resolve(root, 'starship', starshipFilename(palette.slug, variantKey))
+      const prompt = execFileSync(starship, ['prompt', '--path', root, '--status', '1'], { env: { ...process.env, TERM: 'xterm-256color', STARSHIP_CONFIG: config }, encoding: 'utf8' })
+      if (!prompt.includes('\u001B[')) throw new Error(`${palette.name} ${variantKey}: Starship smoke test did not render a styled prompt`)
+    }
+  }
+} else console.log('Skipped Starship rendering smoke tests because the Starship CLI is unavailable.')
 
 const autoTheme = await readFile(resolve(root, 'zsh', 'santi020k-auto-theme.zsh'), 'utf8')
 
@@ -50,4 +69,4 @@ for (const expected of ['set -euo pipefail', 'brew install', 'git-delta', 'santi
   if (!installer.includes(expected)) throw new Error(`Zsh installer missing ${expected}`)
 }
 
-console.log(`Validated ${Object.keys(palettes).length} iTerm2 presets, ${Object.keys(palettes).length} Starship presets, and the Zsh setup.`)
+console.log(`Validated ${Object.keys(palettes).length} iTerm2 presets, ${Object.keys(palettes).length * Object.keys(promptVariants).length} parsed Starship presets, and the Zsh setup.`)

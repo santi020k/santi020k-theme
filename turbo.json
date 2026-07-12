@@ -12,6 +12,10 @@
       ],
       "outputLogs": "errors-only"
     },
+    "santi020k-terminal-theme#build": {
+      "outputs": ["iterm2/**", "starship/**", "assets/previews/**"],
+      "outputLogs": "errors-only"
+    },
     "dev": {
       "cache": false,
       "persistent": true

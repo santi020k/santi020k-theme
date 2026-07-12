@@ -5,14 +5,20 @@
 The terminal edition of Santi020k Theme combines matching terminal colors and a Powerline-style prompt:
 
 - `iterm2/`: generated dark and light iTerm2 color presets.
-- `starship/`: generated dark and light Starship configurations.
+- `starship/`: generated rich, portable, and minimal Starship configurations in dark and light.
 - `zsh/`: optional macOS appearance detection for switching Starship configurations.
 - `zsh/install.zsh`: a one-command macOS installer for the curated Zsh setup.
 - `zsh/santi020k.zsh`: completions, history, key bindings, plugin loading, and tool initialization.
 
 Visit [terminal.santi020k.com](https://terminal.santi020k.com/) for previews and installation instructions.
 
-The Starship presets use a recognizable OS icon, clear Git and runtime labels, and the same relaxed segment padding as the website preview. For matching physical scale in iTerm2, use CaskaydiaCove Nerd Font at 15 pt with approximately 110% vertical spacing.
+The default rich presets use Nerd Font icons and relaxed segment padding. Portable presets replace application icons with plain labels, while minimal presets remove runtime modules and use tighter spacing. For matching physical scale in iTerm2, use CaskaydiaCove Nerd Font at 15 pt with approximately 110% vertical spacing.
+
+| Preset | Dark | Light | Font requirement |
+| --- | --- | --- | --- |
+| Rich icons | `santi020k-dark.toml` | `santi020k-light.toml` | Nerd Font |
+| Portable labels | `santi020k-dark-portable.toml` | `santi020k-light-portable.toml` | Powerline-capable font |
+| Minimal | `santi020k-dark-minimal.toml` | `santi020k-light-minimal.toml` | Powerline-capable font |
 
 ## Powerful Zsh setup
 
@@ -43,4 +49,4 @@ pnpm --filter santi020k-terminal-theme run build
 pnpm --filter santi020k-terminal-theme run validate
 ```
 
-Edit `palettes.mjs` for terminal colors and `scripts/build.mjs` for output mappings. Generated files should not be hand-edited.
+Edit `palettes.mjs` for terminal colors, `prompt-presets.mjs` for shared prompt metadata, and `scripts/build.mjs` for output mappings. Validation parses every TOML file, checks generated assets and website downloads for drift, and renders smoke prompts when the Starship CLI is installed. Generated files should not be hand-edited.

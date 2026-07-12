@@ -5,14 +5,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "validate": "node scripts/validate.mjs"
+    "build": "node scripts/build.mjs && node scripts/generate-preview-assets.mjs",
+    "validate": "pnpm run build && node scripts/validate.mjs && node scripts/check-generated.mjs"
   },
   "engines": {
     "node": ">=22.18.0"
   },
   "packageManager": "pnpm@10.32.1",
   "license": "MIT",
+  "devDependencies": {
+    "smol-toml": "catalog:"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/santi020k/santi020k-theme",

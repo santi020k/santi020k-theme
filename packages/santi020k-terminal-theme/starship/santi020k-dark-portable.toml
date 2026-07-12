@@ -31,9 +31,9 @@ style = "bg:os fg:light_text"
 format = "[  $symbol  ]($style)"
 
 [os.symbols]
-Macos = ""
-Linux = ""
-Windows = "󰍲"
+Macos = "mac"
+Linux = "linux"
+Windows = "win"
 
 [username]
 show_always = false
@@ -48,13 +48,10 @@ truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+
 
 [git_branch]
-symbol = ""
+symbol = "git"
 style = "bg:git fg:dark_text bold"
 format = "[  $symbol $branch ]($style)"
 
@@ -69,7 +66,7 @@ error_symbol = "[❯](bold error)"
 [cmd_duration]
 min_time = 2000
 style = "bg:time fg:light_text"
-format = "[ 󰔟 $duration ]($style)"
+format = "[ $duration ]($style)"
 
 [time]
 disabled = false
@@ -78,7 +75,7 @@ style = "bg:time fg:light_text"
 format = "[  $time  ]($style)"
 
 [docker_context]
-symbol = " "
+symbol = "docker "
 style = "bg:time fg:light_text"
 format = "[ $symbol$context ]($style)"
 
@@ -109,7 +106,7 @@ format = "[  $symbol($version)  ]($style)"
 
 [nodejs]
 disabled = false
-symbol = " "
+symbol = "node "
 style = "bg:runtime fg:dark_text"
 format = "[  $symbol($version)  ]($style)"
 

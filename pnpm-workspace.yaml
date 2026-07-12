@@ -27,6 +27,7 @@ catalog:
   lint-staged: ^17.0.8
   ovsx: ^1.0.2
   sharp: ^0.35.2
+  smol-toml: ^1.6.1
   turbo: ^2.9.18
   vite: ^8.1.0
   vitest: ^4.1.9

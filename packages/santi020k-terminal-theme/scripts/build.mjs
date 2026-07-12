@@ -1,7 +1,9 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 import { palettes } from '../palettes.mjs'
+import { promptVariants, runtimeModules, starshipFilename } from '../prompt-presets.mjs'
 
 const root = resolve(import.meta.dirname, '..')
 const componentNames = ['Red', 'Green', 'Blue']
@@ -20,7 +22,7 @@ const colorDict = hex => {
   return `<dict>${components}\n\t\t<key>Color Space</key>\n\t\t<string>sRGB</string>\n\t</dict>`
 }
 
-const render = palette => {
+export const renderIterm = palette => {
   // Palette keys come from the fixed colorKeys table above.
   // eslint-disable-next-line security/detect-object-injection
   const entries = colorKeys.map(([label, key]) => `\t<key>${label}</key>\n\t${colorDict(palette[key])}`)
@@ -30,8 +32,14 @@ const render = palette => {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n${entries.join('\n')}\n</dict>\n</plist>\n`
 }
 
-const renderStarship = palette => {
+export const renderStarship = (palette, variantKey = 'rich') => {
   const dark = palette.slug === 'dark'
+  const variant = promptVariants[variantKey]
+  const pad = variant.padding
+  const runtimeFormat = variant.runtimes ? runtimeModules.map(module => `$${module}\\`).join('\n') : ''
+  const substitutions = Object.entries(variant.substitutions)
+    .map(([name, symbol]) => `"${name}" = "${symbol}"`)
+    .join('\n')
 
   const colors = dark
     ? { os: '#602cba', directory: '#752df0', git: '#945df4', runtime: '#89b8c8', time: '#302545', lightText: '#ffffff', darkText: '#17141d', error: '#ea6962' }
@@ -51,16 +59,7 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:git bg:runtime)\
-$c\
-$cpp\
-$deno\
-$golang\
-$java\
-$nodejs\
-$php\
-$python\
-$ruby\
-$rust\
+${runtimeFormat}
 [](fg:runtime bg:time)\
 $docker_context\
 $cmd_duration\
@@ -82,12 +81,12 @@ error = "${colors.error}"
 [os]
 disabled = false
 style = "bg:os fg:light_text"
-format = "[  $symbol  ]($style)"
+format = "[${pad}$symbol${pad}]($style)"
 
 [os.symbols]
-Macos = ""
-Linux = ""
-Windows = "󰍲"
+Macos = "${variant.symbols.macos}"
+Linux = "${variant.symbols.linux}"
+Windows = "${variant.symbols.windows}"
 
 [username]
 show_always = false
@@ -97,24 +96,21 @@ format = "[$user ]($style)"
 
 [directory]
 style = "bg:directory fg:light_text bold"
-format = "[  $path  ]($style)"
+format = "[${pad}$path${pad}]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+${substitutions}
 
 [git_branch]
-symbol = "git"
+symbol = "${variant.symbols.git}"
 style = "bg:git fg:dark_text bold"
-format = "[  $symbol $branch ]($style)"
+format = "[${pad}$symbol${variant.symbols.git ? ' ' : ''}$branch ]($style)"
 
 [git_status]
 style = "bg:git fg:dark_text"
-format = "[$all_status$ahead_behind  ]($style)"
+format = "[$all_status$ahead_behind${pad}]($style)"
 
 [character]
 success_symbol = "[❯](bold directory)"
@@ -123,35 +119,39 @@ error_symbol = "[❯](bold error)"
 [cmd_duration]
 min_time = 2000
 style = "bg:time fg:${dark ? 'light_text' : 'dark_text'}"
-format = "[ 󰔟 $duration ]($style)"
+format = "[ ${variant.symbols.duration}$duration ]($style)"
 
 [time]
 disabled = false
 time_format = "%R"
 style = "bg:time fg:${dark ? 'light_text' : 'dark_text'}"
-format = "[  $time  ]($style)"
+format = "[${pad}$time${pad}]($style)"
 
 [docker_context]
-symbol = " "
+symbol = "${variant.symbols.docker}"
 style = "bg:time fg:${dark ? 'light_text' : 'dark_text'}"
 format = "[ $symbol$context ]($style)"
 
-${['c', 'cpp', 'deno', 'golang', 'java', 'nodejs', 'php', 'python', 'ruby', 'rust'].map(module => `[${module}]
-${module === 'nodejs' ? 'symbol = "node "\n' : ''}style = "bg:runtime fg:dark_text"
-format = "[  $symbol($version)  ]($style)"`).join('\n\n')}
+${runtimeModules.map(module => `[${module}]
+disabled = ${variant.runtimes ? 'false' : 'true'}
+${module === 'nodejs' ? `symbol = "${variant.symbols.node}"\n` : ''}style = "bg:runtime fg:dark_text"
+format = "[${pad}$symbol($version)${pad}]($style)"`).join('\n\n')}
 `
 }
 
-await Promise.all([
-  mkdir(resolve(root, 'iterm2'), { recursive: true }),
-  mkdir(resolve(root, 'starship'), { recursive: true }),
-])
-
-for (const palette of Object.values(palettes)) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   await Promise.all([
-    writeFile(resolve(root, 'iterm2', `${palette.name}.itermcolors`), render(palette)),
-    writeFile(resolve(root, 'starship', `santi020k-${palette.slug}.toml`), renderStarship(palette)),
+    mkdir(resolve(root, 'iterm2'), { recursive: true }),
+    mkdir(resolve(root, 'starship'), { recursive: true }),
   ])
-}
 
-console.log(`Generated ${Object.keys(palettes).length} iTerm2 presets and ${Object.keys(palettes).length} Starship presets.`)
+  for (const palette of Object.values(palettes)) {
+    const outputs = [writeFile(resolve(root, 'iterm2', `${palette.name}.itermcolors`), renderIterm(palette))]
+    for (const variantKey of Object.keys(promptVariants)) {
+      outputs.push(writeFile(resolve(root, 'starship', starshipFilename(palette.slug, variantKey)), renderStarship(palette, variantKey)))
+    }
+    await Promise.all(outputs)
+  }
+
+  console.log(`Generated ${Object.keys(palettes).length} iTerm2 presets and ${Object.keys(palettes).length * Object.keys(promptVariants).length} Starship presets.`)
+}
