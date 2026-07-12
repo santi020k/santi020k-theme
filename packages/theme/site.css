@@ -49,7 +49,7 @@
   --swatch-circle-border: rgb(58 37 86 / 0.15);
 }
 
-:root[data-santi020k-site="hub"],
+:root[data-santi020k-site="hub"]:not([data-theme]),
 :root[data-santi020k-site="hub"][data-theme="dark"] {
   --theme-bg: #0f0b19;
   --surface: #1a1426;

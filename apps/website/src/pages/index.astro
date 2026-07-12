@@ -110,7 +110,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
       <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
         <a href="#themes">Themes</a>
         <a href="#packages">Packages</a>
-        <a href="#assets">Wallpapers</a>
+        <a href="/gallery/">Gallery</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
       </nav>
 
@@ -200,9 +200,23 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
               </div>
             </div>
           </article>
-          <article class="theme-card">
+          <article class="theme-card terminal-theme-card">
             <a class="theme-card-media terminal-card" href="https://terminal.santi020k.com/" aria-label="Open Terminal theme site">
-              <div class="soon-visual" aria-hidden="true"><span></span><span></span><span></span><code>➜ ~/Projects <b>git:(main)</b><br />$ pnpm run focus</code></div>
+              <div class="terminal-window" aria-hidden="true">
+                <div class="terminal-title-bar">
+                  <span class="terminal-dots"><i></i><i></i><i></i></span>
+                  <span>santi020k — zsh</span>
+                  <span></span>
+                </div>
+                <div class="terminal-screen">
+                  <div class="powerline-prompt">
+                    <span class="prompt-os">mac</span><span class="prompt-dir">~/Projects/theme</span><span class="prompt-git">git main</span><span class="prompt-runtime">node v22</span>
+                  </div>
+                  <code><span class="prompt-mark">❯</span> pnpm run focus</code>
+                  <code class="terminal-result"><span>✓</span> Theme palette ready <b>dark · light</b></code>
+                  <code><span class="prompt-mark">❯</span> <i class="terminal-cursor"></i></code>
+                </div>
+              </div>
             </a>
             <div class="theme-card-body">
               <div class="card-kicker"><span class="status-dot live"></span>Live</div>
@@ -250,6 +264,9 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
         <div class="wallpaper-grid">
           {[wallpaperOne, wallpaperTwo, wallpaperThree].map((wallpaper, index) => <article class="wallpaper-card"><Image src={wallpaper} alt={`Santi020k violet wallpaper ${index + 1}`} loading="lazy" /><div><h3>Wallpaper {index + 1}</h3><a class="button button-primary" href={wallpaper.src} download={`santi020k-wallpaper-${index + 1}.webp`}>Download desktop</a></div></article>)}
         </div>
+        <div class="section-cta">
+          <a class="button button-secondary" href="/gallery/">Browse all wallpapers, banners, previews, and logos</a>
+        </div>
       </section>
     </main>
 
@@ -259,6 +276,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
         <a href="https://vscode.santi020k.com/">VS Code</a>
         <a href="https://chrome.santi020k.com/">Chrome</a>
         <a href="https://terminal.santi020k.com/">Terminal</a>
+        <a href="/gallery/">Gallery</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
       </div>
