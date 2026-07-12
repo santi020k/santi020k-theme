@@ -39,6 +39,7 @@
     "release:tag": "pnpm --filter santi020k-theme run release:tag",
     "generate:og": "node scripts/generate-og-images.mjs",
     "generate:vscode-previews": "node scripts/generate-vscode-preview-assets.mjs",
+    "report:accessibility": "node scripts/generate-accessibility-report.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version && pnpm --filter santi020k-chrome-theme run sync:manifest-version && pnpm install --lockfile-only && pnpm run sync:website-version",
     "site:dev": "pnpm --filter @santi020k/santi020k-theme-website run dev",

@@ -207,6 +207,10 @@ importers:
         version: 0.35.2
 
   packages/santi020k-terminal-theme:
+    dependencies:
+      '@santi020k/theme':
+        specifier: workspace:^
+        version: link:../theme
     devDependencies:
       smol-toml:
         specifier: 'catalog:'

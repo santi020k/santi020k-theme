@@ -32,11 +32,30 @@ export const renderIterm = palette => {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n${entries.join('\n')}\n</dict>\n</plist>\n`
 }
 
+export const renderGhostty = palette => `# ${palette.name}\nbackground = ${palette.background}\nforeground = ${palette.foreground}\ncursor-color = ${palette.cursor}\ncursor-text = ${palette.cursorText}\nselection-background = ${palette.selection}\nselection-foreground = ${palette.selectedText}\n${palette.ansi.map((color, index) => `palette = ${index}=${color}`).join('\n')}\n`
+
+export const renderKitty = palette => `# ${palette.name}\nbackground ${palette.background}\nforeground ${palette.foreground}\ncursor ${palette.cursor}\ncursor_text_color ${palette.cursorText}\nselection_background ${palette.selection}\nselection_foreground ${palette.selectedText}\nurl_color ${palette.link}\n${palette.ansi.map((color, index) => `color${index} ${color}`).join('\n')}\n`
+
+export const renderWezterm = palette => `return {\n  foreground = '${palette.foreground}',\n  background = '${palette.background}',\n  cursor_bg = '${palette.cursor}',\n  cursor_fg = '${palette.cursorText}',\n  cursor_border = '${palette.cursor}',\n  selection_fg = '${palette.selectedText}',\n  selection_bg = '${palette.selection}',\n  ansi = { ${palette.ansi.slice(0, 8).map(color => `'${color}'`).join(', ')} },\n  brights = { ${palette.ansi.slice(8).map(color => `'${color}'`).join(', ')} },\n}\n`
+
+export const renderWindowsTerminal = palette => `${JSON.stringify({
+  name: palette.name,
+  background: palette.background,
+  foreground: palette.foreground,
+  cursorColor: palette.cursor,
+  selectionBackground: palette.selection,
+  black: palette.ansi[0], red: palette.ansi[1], green: palette.ansi[2], yellow: palette.ansi[3], blue: palette.ansi[4], purple: palette.ansi[5], cyan: palette.ansi[6], white: palette.ansi[7],
+  brightBlack: palette.ansi[8], brightRed: palette.ansi[9], brightGreen: palette.ansi[10], brightYellow: palette.ansi[11], brightBlue: palette.ansi[12], brightPurple: palette.ansi[13], brightCyan: palette.ansi[14], brightWhite: palette.ansi[15],
+}, null, 2)}\n`
+
+export const renderAlacritty = palette => `[colors.primary]\nbackground = '${palette.background}'\nforeground = '${palette.foreground}'\n\n[colors.cursor]\ncursor = '${palette.cursor}'\ntext = '${palette.cursorText}'\n\n[colors.selection]\nbackground = '${palette.selection}'\ntext = '${palette.selectedText}'\n\n[colors.normal]\n${['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'].map((name, index) => `${name} = '${palette.ansi[index]}'`).join('\n')}\n\n[colors.bright]\n${['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'].map((name, index) => `${name} = '${palette.ansi[index + 8]}'`).join('\n')}\n`
+
 export const renderStarship = (palette, variantKey = 'rich') => {
   const dark = palette.slug === 'dark'
   const variant = promptVariants[variantKey]
   const pad = variant.padding
   const runtimeFormat = variant.runtimes ? runtimeModules.map(module => `$${module}\\`).join('\n') : ''
+
   const substitutions = Object.entries(variant.substitutions)
     .map(([name, symbol]) => `"${name}" = "${symbol}"`)
     .join('\n')
@@ -143,15 +162,26 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   await Promise.all([
     mkdir(resolve(root, 'iterm2'), { recursive: true }),
     mkdir(resolve(root, 'starship'), { recursive: true }),
+    ...['ghostty', 'kitty', 'wezterm', 'windows-terminal', 'alacritty'].map(directory => mkdir(resolve(root, directory), { recursive: true })),
   ])
 
   for (const palette of Object.values(palettes)) {
     const outputs = [writeFile(resolve(root, 'iterm2', `${palette.name}.itermcolors`), renderIterm(palette))]
+
+    outputs.push(
+      writeFile(resolve(root, 'ghostty', `santi020k-${palette.slug}`), renderGhostty(palette)),
+      writeFile(resolve(root, 'kitty', `santi020k-${palette.slug}.conf`), renderKitty(palette)),
+      writeFile(resolve(root, 'wezterm', `santi020k-${palette.slug}.lua`), renderWezterm(palette)),
+      writeFile(resolve(root, 'windows-terminal', `santi020k-${palette.slug}.json`), renderWindowsTerminal(palette)),
+      writeFile(resolve(root, 'alacritty', `santi020k-${palette.slug}.toml`), renderAlacritty(palette)),
+    )
+
     for (const variantKey of Object.keys(promptVariants)) {
       outputs.push(writeFile(resolve(root, 'starship', starshipFilename(palette.slug, variantKey)), renderStarship(palette, variantKey)))
     }
+
     await Promise.all(outputs)
   }
 
-  console.log(`Generated ${Object.keys(palettes).length} iTerm2 presets and ${Object.keys(palettes).length * Object.keys(promptVariants).length} Starship presets.`)
+  console.log(`Generated terminal color presets for ${Object.keys(palettes).length} palettes and ${Object.keys(palettes).length * Object.keys(promptVariants).length} Starship presets.`)
 }

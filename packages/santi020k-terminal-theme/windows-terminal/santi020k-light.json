@@ -1,0 +1,23 @@
+{
+  "name": "Santi020k Light",
+  "background": "#f0edf9",
+  "foreground": "#302e36",
+  "cursorColor": "#6319be",
+  "selectionBackground": "#ddd8f0",
+  "black": "#302e36",
+  "red": "#c0392b",
+  "green": "#20823a",
+  "yellow": "#c07a10",
+  "blue": "#2060c8",
+  "purple": "#6319be",
+  "cyan": "#1080a0",
+  "white": "#403850",
+  "brightBlack": "#8c82a5",
+  "brightRed": "#e05050",
+  "brightGreen": "#3cb858",
+  "brightYellow": "#e09030",
+  "brightBlue": "#3878d8",
+  "brightPurple": "#7730b8",
+  "brightCyan": "#2098c0",
+  "brightWhite": "#302e36"
+}

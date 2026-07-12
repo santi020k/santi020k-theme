@@ -108,6 +108,8 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
         <a href="#screenshots">Preview</a>
         <a href="#why">Why</a>
         <a href="#editors">Editors</a>
+        <a href="#compatibility">Compatibility</a>
+        <a href="#settings">Settings</a>
         <a href="#palette">Palette</a>
         <a href="https://marketplace.visualstudio.com/items?itemName=Santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
         <span class="separator" aria-hidden="true"></span>
@@ -129,6 +131,9 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
             </a>
             <a class="button button-primary" href="https://open-vsx.org/extension/santi020k/santi020k-theme" rel="noopener noreferrer">
               Open VSX
+            </a>
+            <a class="button button-secondary" href="https://vscode.dev/editor/theme/santi020k.santi020k-theme" rel="noopener noreferrer">
+              Try in vscode.dev
             </a>
             <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">
               GitHub
@@ -351,6 +356,26 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
 
 
 
+      </section>
+
+      <section id="compatibility" class="site-shell compatibility-section">
+        <div><p class="eyebrow">Compatibility</p><h2>Important editor surfaces are covered.</h2><p class="section-lede">The palette includes dedicated colors for modern VS Code workflows and popular extensions. The matrix is maintained with the theme validation fixtures.</p></div>
+        <div class="compatibility-grid" role="list">
+          {['GitLens', 'Error Lens', 'GitHub Pull Requests', 'Copilot Chat', 'Inline suggestions', 'Testing', 'Debugging', 'Notebooks', 'Remote development', 'Diff editor', 'Terminal', 'Notifications'].map(name => <div role="listitem"><span aria-hidden="true">✓</span><b>{name}</b></div>)}
+        </div>
+        <p class="evidence-links"><a href="https://github.com/santi020k/santi020k-theme/blob/main/docs/accessibility-report.md">View accessibility evidence</a> · <a href="https://github.com/santi020k/santi020k-theme/blob/main/docs/compatibility.md">View compatibility details</a></p>
+      </section>
+
+      <section id="settings" class="site-shell settings-section">
+        <div><p class="eyebrow">Settings recipe</p><h2>Copy a complete theme setup.</h2><p class="section-lede">Choose a syntax style and optional OS switching. The recipe uses standard VS Code settings and keeps the extension itself lightweight.</p></div>
+        <div class="settings-builder">
+          <div class="settings-controls">
+            <label>Syntax style<select class="settings-style"><option value="base">Base</option><option value="bold">Bold</option><option value="italic">Italic</option></select></label>
+            <label><input class="settings-auto" type="checkbox" checked /> Follow the operating system light and dark mode</label>
+            <label><input class="settings-font" type="checkbox" checked /> Include calm editor typography</label>
+          </div>
+          <div class="settings-output"><pre><code class="settings-code"></code></pre><button class="button button-primary settings-copy" type="button">Copy settings</button></div>
+        </div>
       </section>
 
       <section id="palette" class="site-shell palette-section">

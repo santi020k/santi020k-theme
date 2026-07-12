@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["CI", "NPM_TOKEN", "NODE_AUTH_TOKEN", "OVSX_PAT", "VSCE_PAT", "VITEST"],
+  "globalEnv": ["CI", "NPM_TOKEN", "NODE_AUTH_TOKEN", "OVSX_PAT", "STARSHIP_BIN", "VSCE_PAT", "VITEST"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -13,7 +13,7 @@
       "outputLogs": "errors-only"
     },
     "santi020k-terminal-theme#build": {
-      "outputs": ["iterm2/**", "starship/**", "assets/previews/**"],
+      "outputs": ["alacritty/**", "assets/previews/**", "ghostty/**", "iterm2/**", "kitty/**", "starship/**", "wezterm/**", "windows-terminal/**"],
       "outputLogs": "errors-only"
     },
     "dev": {

@@ -1,0 +1,5 @@
+{
+  "source": "../../packages/theme/tokens/tokens.json",
+  "requiredModes": ["dark", "light"],
+  "roles": ["canvas", "surface", "foreground", "muted", "focus", "selection", "error", "warning", "success", "link"]
+}

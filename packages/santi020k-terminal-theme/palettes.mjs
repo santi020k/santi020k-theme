@@ -1,14 +1,30 @@
+import { readFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
+
+import { createTerminalPaletteFromVSCodeColors } from '@santi020k/theme'
+
+const root = resolve(import.meta.dirname, '..')
+
+const readVSCodeColors = async variant => {
+  const raw = await readFile(resolve(root, 'santi020k-theme', 'themes', `santi020k-${variant}-color-theme.json`), 'utf8')
+  const stripped = raw.replaceAll(/\/\/.*$/gm, '').replaceAll(/\/\*[\s\S]*?\*\//g, '')
+
+  return JSON.parse(stripped).colors
+}
+
+const [dark, light] = await Promise.all([readVSCodeColors('dark'), readVSCodeColors('light')])
+
 export const palettes = {
   dark: {
     name: 'Santi020k Dark',
     slug: 'dark',
-    background: '#0d0a15', foreground: '#dfdde3', bold: '#ffffff', cursor: '#945df4', cursorText: '#0d0a15', selection: '#322b40', selectedText: '#ffffff', link: '#b48df7', badge: '#5a0fdb',
-    ansi: ['#231d30', '#ea6962', '#7daea3', '#e8b44a', '#9b69f6', '#b48df7', '#89b8c8', '#dfdde3', '#726c7f', '#ff8b84', '#9bc9be', '#f4cb72', '#b48df7', '#d0b5ff', '#a8d6e5', '#ffffff'],
+    bold: '#ffffff', cursorText: '#0d0a15', selection: '#322b40', selectedText: '#ffffff', link: '#b48df7', badge: '#5a0fdb',
+    ...createTerminalPaletteFromVSCodeColors(dark),
   },
   light: {
     name: 'Santi020k Light',
     slug: 'light',
-    background: '#f8f6fd', foreground: '#302e36', bold: '#17141d', cursor: '#6319be', cursorText: '#ffffff', selection: '#ddd8f0', selectedText: '#17141d', link: '#6319be', badge: '#6319be',
-    ansi: ['#302e36', '#c0392b', '#16752c', '#a85f00', '#6319be', '#7730b8', '#087b98', '#5f526f', '#6d637c', '#c0392b', '#16752c', '#a85f00', '#7b2bd4', '#9451cf', '#087b98', '#17141d'],
+    bold: '#17141d', cursorText: '#ffffff', selection: '#ddd8f0', selectedText: '#17141d', link: '#6319be', badge: '#6319be',
+    ...createTerminalPaletteFromVSCodeColors(light),
   },
 }

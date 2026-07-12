@@ -1,5 +1,8 @@
 ---
 import { Image } from 'astro:assets'
+import wallpaperOne from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
+import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/wallpaper-2-desktop.webp'
+import wallpaperThree from '../../../../packages/theme/assets/wallpapers/wallpaper-3-desktop.webp'
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -107,7 +110,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
       <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
         <a href="#themes">Themes</a>
         <a href="#packages">Packages</a>
-        <a href="#soon">Coming soon</a>
+        <a href="#assets">Wallpapers</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
       </nav>
 
@@ -238,20 +241,14 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
         </article>
       </section>
 
-      <section id="soon" class="site-shell section soon-section">
+      <section id="assets" class="site-shell section soon-section">
         <div class="section-heading">
-          <p class="eyebrow">Coming soon</p>
-          <h2>Next up for the same visual language.</h2>
+          <p class="eyebrow">Wallpapers</p>
+          <h2>Bring the palette to your desktop.</h2>
+          <p>Three production-ready backgrounds, available directly from the shared theme asset package.</p>
         </div>
-
-        <div class="soon-grid">
-          <article class="soon-card">
-            <div class="wallpaper-frame" aria-hidden="true">
-              <span></span>
-            </div>
-            <h3>Wallpapers and assets</h3>
-            <p>Backgrounds and brand images that match the editor and browser themes.</p>
-          </article>
+        <div class="wallpaper-grid">
+          {[wallpaperOne, wallpaperTwo, wallpaperThree].map((wallpaper, index) => <article class="wallpaper-card"><Image src={wallpaper} alt={`Santi020k violet wallpaper ${index + 1}`} loading="lazy" /><div><h3>Wallpaper {index + 1}</h3><a class="button button-primary" href={wallpaper.src} download={`santi020k-wallpaper-${index + 1}.webp`}>Download desktop</a></div></article>)}
         </div>
       </section>
     </main>

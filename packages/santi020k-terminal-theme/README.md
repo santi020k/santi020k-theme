@@ -50,3 +50,15 @@ pnpm --filter santi020k-terminal-theme run validate
 ```
 
 Edit `palettes.mjs` for terminal colors, `prompt-presets.mjs` for shared prompt metadata, and `scripts/build.mjs` for output mappings. Validation parses every TOML file, checks generated assets and website downloads for drift, and renders smoke prompts when the Starship CLI is installed. Generated files should not be hand-edited.
+The shared dark and light palette is generated for iTerm2, Ghostty, Kitty, WezTerm, Windows Terminal, and Alacritty, with coordinated Starship and Zsh presets.
+
+## Generated color presets
+
+| Terminal | Directory |
+| --- | --- |
+| iTerm2 | `iterm2/` |
+| Ghostty | `ghostty/` |
+| Kitty | `kitty/` |
+| WezTerm | `wezterm/` |
+| Windows Terminal | `windows-terminal/` |
+| Alacritty | `alacritty/` |

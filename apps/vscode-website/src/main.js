@@ -36,6 +36,53 @@ const PREVIEW_DATA = {
   }
 }
 
+const buildSettingsRecipe = () => {
+  const style = document.querySelector('.settings-style')?.value ?? 'base'
+  const suffix = style === 'base' ? '' : ` ${style}`
+  const settings = { 'workbench.colorTheme': `santi020k dark${suffix}` }
+
+  if (document.querySelector('.settings-auto')?.checked) {
+    settings['window.autoDetectColorScheme'] = true
+
+    settings['window.autoDetectHighContrast'] = true
+
+    settings['workbench.preferredDarkColorTheme'] = `santi020k dark${suffix}`
+
+    settings['workbench.preferredLightColorTheme'] = `santi020k light${suffix}`
+
+    settings['workbench.preferredHighContrastColorTheme'] = `santi020k hc dark${suffix}`
+
+    settings['workbench.preferredHighContrastLightColorTheme'] = `santi020k hc light${suffix}`
+  }
+
+  if (document.querySelector('.settings-font')?.checked) {
+    settings['editor.fontFamily'] = "'Fira Code', monospace"
+
+    settings['editor.fontLigatures'] = true
+
+    settings['editor.lineHeight'] = 1.55
+  }
+
+  const output = `${JSON.stringify(settings, null, 2)}\n`
+  const code = document.querySelector('.settings-code')
+
+  if (code) code.textContent = output
+
+  return output
+}
+
+for (const control of document.querySelectorAll('.settings-builder input, .settings-builder select')) control.addEventListener('change', buildSettingsRecipe)
+
+document.querySelector('.settings-copy')?.addEventListener('click', async event => {
+  await navigator.clipboard.writeText(buildSettingsRecipe())
+
+  event.currentTarget.textContent = 'Copied'
+
+  window.setTimeout(() => { event.currentTarget.textContent = 'Copy settings' }, 1800)
+})
+
+buildSettingsRecipe()
+
 const SNIPPETS = {
   json: data => `<span class="muted">// focused without glare</span>
 {

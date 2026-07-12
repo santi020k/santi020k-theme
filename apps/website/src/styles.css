@@ -697,3 +697,6 @@ h3 {
     transition-duration: 0.01ms !important;
   }
 }
+
+.wallpaper-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}.wallpaper-card{overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.wallpaper-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}.wallpaper-card>div{padding:20px}.wallpaper-card h3{margin:0 0 16px}.wallpaper-card .button{width:100%}
+@media(max-width:800px){.wallpaper-grid{grid-template-columns:1fr}}

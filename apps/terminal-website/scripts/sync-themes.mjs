@@ -7,6 +7,11 @@ const destinations = [
   { source: resolve(root, 'packages/santi020k-terminal-theme/iterm2'), destination: resolve(root, 'apps/terminal-website/public/themes'), files: ['Santi020k Dark.itermcolors', 'Santi020k Light.itermcolors'] },
   { source: resolve(root, 'packages/santi020k-terminal-theme/starship'), destination: resolve(root, 'apps/terminal-website/public/starship'), files: ['santi020k-dark.toml', 'santi020k-light.toml', 'santi020k-dark-portable.toml', 'santi020k-light-portable.toml', 'santi020k-dark-minimal.toml', 'santi020k-light-minimal.toml'] },
   { source: resolve(root, 'packages/santi020k-terminal-theme/zsh'), destination: resolve(root, 'apps/terminal-website/public/zsh'), files: ['install.zsh', 'santi020k.zsh', 'santi020k-auto-theme.zsh'] },
+  ...['ghostty', 'kitty', 'wezterm', 'windows-terminal', 'alacritty'].map(format => ({
+    source: resolve(root, 'packages/santi020k-terminal-theme', format),
+    destination: resolve(root, 'apps/terminal-website/public/ports', format),
+    files: format === 'ghostty' ? ['santi020k-dark', 'santi020k-light'] : format === 'wezterm' ? ['santi020k-dark.lua', 'santi020k-light.lua'] : format === 'windows-terminal' ? ['santi020k-dark.json', 'santi020k-light.json'] : format === 'kitty' ? ['santi020k-dark.conf', 'santi020k-light.conf'] : ['santi020k-dark.toml', 'santi020k-light.toml'],
+  })),
 ]
 
 for (const group of destinations) {
@@ -15,4 +20,4 @@ for (const group of destinations) {
   for (const file of group.files) await copyFile(resolve(group.source, file), resolve(group.destination, file))
 }
 
-console.log('Synced iTerm2 and Starship presets into the Terminal website.')
+console.log('Synced terminal presets into the Terminal website.')
