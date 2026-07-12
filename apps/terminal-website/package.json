@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "sync:themes": "node scripts/sync-themes.mjs",
-    "dev": "pnpm run sync:themes && astro dev --host 127.0.0.1 --port 4176",
+    "dev": "pnpm run sync:themes && astro dev --host 127.0.0.1 --port 4177",
     "build": "pnpm run sync:themes && astro build",
-    "preview": "astro preview --host 127.0.0.1 --port 4176"
+    "preview": "astro preview --host 127.0.0.1 --port 4177"
   },
   "dependencies": {
     "@santi020k/theme": "workspace:^",

@@ -38,10 +38,11 @@ Use Node `>=22.18.0` and pnpm `10.32.1`.
 | `pnpm run validate:terminal` | Validates generated iTerm2 and Starship presets |
 | `pnpm run package:extension` | Builds and packages the VS Code extension as a VSIX |
 | `pnpm run package:chrome` | Builds Chrome Web Store zip files |
+| `pnpm run sites:dev` | Starts all four website development servers in parallel |
 | `pnpm run site:dev` | Starts the theme hub website |
 | `pnpm run site:vscode:dev` | Starts the VS Code theme website |
 | `pnpm run site:chrome:dev` | Starts the Chrome theme website |
-| `pnpm run site:terminal:dev` | Starts the Terminal theme website |
+| `pnpm run site:terminal:dev` | Starts the Terminal theme website on port 4177 |
 | `pnpm run changeset` | Creates a release changeset |
 | `pnpm run commit` | Opens the conventional commit prompt |
 

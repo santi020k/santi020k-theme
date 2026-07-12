@@ -43,6 +43,7 @@
     "changeset": "changeset",
     "version-packages": "changeset version && pnpm --filter santi020k-chrome-theme run sync:manifest-version && pnpm install --lockfile-only && pnpm run sync:website-version",
     "site:dev": "pnpm --filter @santi020k/santi020k-theme-website run dev",
+    "sites:dev": "pnpm --parallel --filter @santi020k/santi020k-theme-website --filter @santi020k/santi020k-vscode-theme-website --filter @santi020k/santi020k-chrome-theme-website --filter @santi020k/santi020k-terminal-theme-website run dev",
     "site:build": "pnpm --filter @santi020k/santi020k-theme-website run build",
     "site:preview": "pnpm --filter @santi020k/santi020k-theme-website run preview",
     "site:vscode:dev": "pnpm --filter @santi020k/santi020k-vscode-theme-website run dev",

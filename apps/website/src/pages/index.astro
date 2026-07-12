@@ -255,11 +255,13 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
         </article>
       </section>
 
-      <section id="assets" class="site-shell section soon-section">
-        <div class="section-heading">
-          <p class="eyebrow">Wallpapers</p>
+      <section id="assets" class="site-shell section assets-section">
+        <div class="section-heading assets-heading">
+          <div class="assets-heading-copy">
+            <p class="eyebrow">Wallpapers</p>
+            <p>Three production-ready backgrounds, available directly from the shared theme asset package.</p>
+          </div>
           <h2>Bring the palette to your desktop.</h2>
-          <p>Three production-ready backgrounds, available directly from the shared theme asset package.</p>
         </div>
         <div class="wallpaper-grid">
           {[wallpaperOne, wallpaperTwo, wallpaperThree].map((wallpaper, index) => <article class="wallpaper-card"><Image src={wallpaper} alt={`Santi020k violet wallpaper ${index + 1}`} loading="lazy" /><div><h3>Wallpaper {index + 1}</h3><a class="button button-primary" href={wallpaper.src} download={`santi020k-wallpaper-${index + 1}.webp`}>Download desktop</a></div></article>)}
