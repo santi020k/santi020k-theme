@@ -38,5 +38,13 @@ export const promptVariants = {
 
 export const runtimeModules = ['c', 'cpp', 'deno', 'golang', 'java', 'nodejs', 'php', 'python', 'ruby', 'rust']
 
+export const getPromptVariant = variantKey => {
+  const variant = Object.entries(promptVariants).find(([key]) => key === variantKey)?.[1]
+
+  if (!variant) throw new Error(`Unknown prompt variant: ${variantKey}`)
+
+  return variant
+}
+
 export const starshipFilename = (paletteSlug, variantKey = 'rich') =>
-  `santi020k-${paletteSlug}${promptVariants[variantKey].suffix}.toml`
+  `santi020k-${paletteSlug}${getPromptVariant(variantKey).suffix}.toml`

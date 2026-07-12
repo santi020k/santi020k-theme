@@ -57,8 +57,10 @@ for (const palette of Object.values(palettes)) {
       throw new Error(`${palette.name} ${variant.name}: generated symbols do not match shared preset metadata`)
     }
 
+    const configSections = new Map(Object.entries(config))
+
     for (const runtime of runtimeModules) {
-      if (config[runtime].disabled !== !variant.runtimes) throw new Error(`${palette.name} ${variant.name}: incorrect ${runtime} state`)
+      if (configSections.get(runtime)?.disabled !== !variant.runtimes) throw new Error(`${palette.name} ${variant.name}: incorrect ${runtime} state`)
     }
   }
 }

@@ -13,7 +13,7 @@
     "build": "turbo run build",
     "build:chrome-theme": "pnpm --filter santi020k-chrome-theme run build",
     "build:themes": "pnpm --filter santi020k-theme run build",
-    "validate": "pnpm run build && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run validate:chrome && pnpm run validate:terminal && pnpm run validate:seo && pnpm run test && pnpm run lint && pnpm run lint:knip && pnpm run package:extension",
+    "validate": "pnpm run build && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run validate:chrome && pnpm run validate:terminal && pnpm run report:accessibility && pnpm run validate:seo && pnpm run test && pnpm run lint && pnpm run lint:knip && pnpm run package:extension",
     "pretest": "pnpm run build:themes",
     "test": "vitest run packages/santi020k-theme/tests apps/vscode-website/tests",
     "sync:website-version": "pnpm --filter @santi020k/santi020k-vscode-theme-website run sync:website-version",

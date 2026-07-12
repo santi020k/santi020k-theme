@@ -12,11 +12,10 @@ const rows = []
 
 for (const file of themeFiles.slice(0, 4)) {
   const theme = parseJsonc(await readFile(file, 'utf8'))
+  const colors = new Map(Object.entries(theme.colors))
 
   for (const [foreground, background, minimum] of contrastPairs) {
-    // Pair names come from the fixed validator table.
-    // eslint-disable-next-line security/detect-object-injection
-    const ratio = contrastRatio(theme.colors[foreground], theme.colors[background])
+    const ratio = contrastRatio(colors.get(foreground), colors.get(background))
 
     rows.push(`| ${theme.name} | \`${foreground}\` / \`${background}\` | ${ratio.toFixed(2)}:1 | ${minimum}:1 | Pass |`)
   }
@@ -42,6 +41,8 @@ ${rows.join('\n')}
 Source: [theme validator](../packages/santi020k-theme/scripts/validate-themes.mjs).
 `
 
-await writeFile(resolve(root, 'docs/accessibility-report.md'), report)
+const reportTargets = [resolve(root, 'docs/accessibility-report.md'), resolve(root, 'apps/vscode-website/public/accessibility-report.md')]
 
-console.log(`Generated ${relative(root, resolve(root, 'docs/accessibility-report.md'))} with ${rows.length} measured pairs.`)
+await Promise.all(reportTargets.map(target => writeFile(target, report)))
+
+console.log(`Generated ${reportTargets.map(target => relative(root, target)).join(' and ')} with ${rows.length} measured pairs.`)

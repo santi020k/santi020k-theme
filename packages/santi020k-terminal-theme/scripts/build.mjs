@@ -3,10 +3,9 @@ import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 import { palettes } from '../palettes.mjs'
-import { promptVariants, runtimeModules, starshipFilename } from '../prompt-presets.mjs'
+import { getPromptVariant, promptVariants, runtimeModules, starshipFilename } from '../prompt-presets.mjs'
 
 const root = resolve(import.meta.dirname, '..')
-const componentNames = ['Red', 'Green', 'Blue']
 
 const colorKeys = [
   ['Background Color', 'background'], ['Foreground Color', 'foreground'], ['Bold Color', 'bold'],
@@ -15,17 +14,18 @@ const colorKeys = [
 ]
 
 const colorDict = hex => {
-  const values = hex.slice(1).match(/.{2}/gu).map(value => Number.parseInt(value, 16) / 255)
-  // eslint-disable-next-line security/detect-object-injection
-  const components = values.map((value, index) => `\n\t\t<key>${componentNames[index]} Component</key>\n\t\t<real>${value.toFixed(6)}</real>`).join('')
+  const [red, green, blue] = hex.slice(1).match(/.{2}/gu).map(value => Number.parseInt(value, 16) / 255)
+
+  const components = [['Red', red], ['Green', green], ['Blue', blue]]
+    .map(([name, value]) => `\n\t\t<key>${name} Component</key>\n\t\t<real>${value.toFixed(6)}</real>`)
+    .join('')
 
   return `<dict>${components}\n\t\t<key>Color Space</key>\n\t\t<string>sRGB</string>\n\t</dict>`
 }
 
 export const renderIterm = palette => {
-  // Palette keys come from the fixed colorKeys table above.
-  // eslint-disable-next-line security/detect-object-injection
-  const entries = colorKeys.map(([label, key]) => `\t<key>${label}</key>\n\t${colorDict(palette[key])}`)
+  const paletteColors = new Map(Object.entries(palette))
+  const entries = colorKeys.map(([label, key]) => `\t<key>${label}</key>\n\t${colorDict(paletteColors.get(key))}`)
 
   for (const [index, color] of palette.ansi.entries()) entries.push(`\t<key>Ansi ${index} Color</key>\n\t${colorDict(color)}`)
 
@@ -45,18 +45,21 @@ export const renderWindowsTerminal = palette => `${JSON.stringify({
   cursorColor: palette.cursor,
   selectionBackground: palette.selection,
   // ANSI positions are fixed by the terminal color specification.
-   
   black: palette.ansi[0], red: palette.ansi[1], green: palette.ansi[2], yellow: palette.ansi[3], blue: palette.ansi[4], purple: palette.ansi[5], cyan: palette.ansi[6], white: palette.ansi[7],
   brightBlack: palette.ansi[8], brightRed: palette.ansi[9], brightGreen: palette.ansi[10], brightYellow: palette.ansi[11], brightBlue: palette.ansi[12], brightPurple: palette.ansi[13], brightCyan: palette.ansi[14], brightWhite: palette.ansi[15],
 }, null, 2)}\n`
 
-// ANSI positions are fixed by the terminal color specification.
-// eslint-disable-next-line security/detect-object-injection
-export const renderAlacritty = palette => `[colors.primary]\nbackground = '${palette.background}'\nforeground = '${palette.foreground}'\n\n[colors.cursor]\ncursor = '${palette.cursor}'\ntext = '${palette.cursorText}'\n\n[colors.selection]\nbackground = '${palette.selection}'\ntext = '${palette.selectedText}'\n\n[colors.normal]\n${['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'].map((name, index) => `${name} = '${palette.ansi[index]}'`).join('\n')}\n\n[colors.bright]\n${['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'].map((name, index) => `${name} = '${palette.ansi[index + 8]}'`).join('\n')}\n`
+export const renderAlacritty = palette => {
+  const colorNames = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white']
+  const normal = colorNames.map((name, index) => `${name} = '${palette.ansi.at(index)}'`).join('\n')
+  const bright = colorNames.map((name, index) => `${name} = '${palette.ansi.at(index + 8)}'`).join('\n')
+
+  return `[colors.primary]\nbackground = '${palette.background}'\nforeground = '${palette.foreground}'\n\n[colors.cursor]\ncursor = '${palette.cursor}'\ntext = '${palette.cursorText}'\n\n[colors.selection]\nbackground = '${palette.selection}'\ntext = '${palette.selectedText}'\n\n[colors.normal]\n${normal}\n\n[colors.bright]\n${bright}\n`
+}
 
 export const renderStarship = (palette, variantKey = 'rich') => {
   const dark = palette.slug === 'dark'
-  const variant = promptVariants[variantKey]
+  const variant = getPromptVariant(variantKey)
   const pad = variant.padding
   const runtimeFormat = variant.runtimes ? runtimeModules.map(module => `$${module}\\`).join('\n') : ''
 

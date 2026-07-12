@@ -169,6 +169,8 @@ const SNIPPETS = {
 &lt;/<span class="keyword">div</span>&gt;`
 }
 
+const previewData = new Map(Object.entries(PREVIEW_DATA).map(([theme, variants]) => [theme, new Map(Object.entries(variants))]))
+const snippets = new Map(Object.entries(SNIPPETS))
 let currentPreviewLang = 'json'
 let currentPreviewTheme = 'dark'
 let currentPreviewVariant = 'normal'
@@ -180,8 +182,11 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, v
 
   currentPreviewVariant = variant
 
-  // eslint-disable-next-line security/detect-object-injection
-  const data = PREVIEW_DATA[theme][variant]
+  const data = previewData.get(theme)?.get(variant)
+  const renderSnippet = snippets.get(lang)
+
+  if (!data || !renderSnippet) throw new Error('Unknown preview selection')
+
   const container = document.querySelector('.editor-preview')
   const codeEl = document.querySelector('.preview-code')
   const filenameEl = document.querySelector('.preview-filename')
@@ -197,8 +202,7 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, v
 
   if (filenameEl) filenameEl.textContent = data.filename
 
-  // eslint-disable-next-line security/detect-object-injection
-  if (codeEl) codeEl.innerHTML = SNIPPETS[lang](data)
+  if (codeEl) codeEl.innerHTML = renderSnippet(data)
 
   if (langSelect) langSelect.value = lang
 

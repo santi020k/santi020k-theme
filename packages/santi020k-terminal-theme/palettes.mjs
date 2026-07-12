@@ -5,14 +5,19 @@ import { createTerminalPaletteFromVSCodeColors } from '@santi020k/theme'
 
 const root = resolve(import.meta.dirname, '..')
 
-const readVSCodeColors = async variant => {
-  const raw = await readFile(resolve(root, 'santi020k-theme', 'themes', `santi020k-${variant}-color-theme.json`), 'utf8')
+const parseVSCodeColors = raw => {
   const stripped = raw.replaceAll(/\/\/.*$/gm, '').replaceAll(/\/\*[\s\S]*?\*\//g, '')
 
   return JSON.parse(stripped).colors
 }
 
-const [dark, light] = await Promise.all([readVSCodeColors('dark'), readVSCodeColors('light')])
+const [darkRaw, lightRaw] = await Promise.all([
+  readFile(resolve(root, 'santi020k-theme', 'themes', 'santi020k-dark-color-theme.json'), 'utf8'),
+  readFile(resolve(root, 'santi020k-theme', 'themes', 'santi020k-light-color-theme.json'), 'utf8'),
+])
+
+const dark = parseVSCodeColors(darkRaw)
+const light = parseVSCodeColors(lightRaw)
 
 export const palettes = {
   dark: {
