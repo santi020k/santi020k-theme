@@ -1,6 +1,6 @@
 {
   "name": "@santi020k/theme",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Santi020k design tokens and shared brand assets for websites, apps, and theme surfaces.",
   "type": "module",
   "main": "./index.js",

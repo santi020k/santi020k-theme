@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- [#28](https://github.com/santi020k/santi020k-theme/pull/28) [`e74d8bb`](https://github.com/santi020k/santi020k-theme/commit/e74d8bbaeb84a589dfb1ef08d749a66559d1a116) Thanks [@santi020k](https://github.com/santi020k)! - Add instant web previews, settings recipes, compatibility and accessibility evidence, downloadable wallpapers, generated terminal ports, and a contributor port starter.
+
+### Patch Changes
+
+- [`aa11652`](https://github.com/santi020k/santi020k-theme/commit/aa11652bca5acd280d5f5696894c20ab5b6da542) - Prevent release PR updates from attempting to create Terminal release tags before packages are published.
+
 ## 2.0.3
 
 ### Patch Changes
