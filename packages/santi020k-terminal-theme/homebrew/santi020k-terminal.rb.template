@@ -1,7 +1,7 @@
 # typed: strict
 # frozen_string_literal: true
 
-# cspell:ignore pkgshare
+# cspell:ignore pkgshare testpath ZDOTDIR
 
 # Formula for the Santi020k terminal theme and shell setup.
 class Santi020kTerminal < Formula
@@ -26,6 +26,9 @@ class Santi020kTerminal < Formula
 
   def install
     bin.install "bin/santi020k-terminal"
+    bash_completion.install "share/santi020k-terminal/completions/santi020k-terminal.bash"
+    fish_completion.install "share/santi020k-terminal/completions/santi020k-terminal.fish"
+    zsh_completion.install "share/santi020k-terminal/completions/_santi020k-terminal"
     pkgshare.install Dir["share/santi020k-terminal/*"]
   end
 
@@ -36,11 +39,22 @@ class Santi020kTerminal < Formula
 
       This creates backed-up configuration under ~/.config and adds one source
       line to ~/.zshrc. Homebrew does not modify your shell configuration itself.
+
+      Discover presets and terminal colors with:
+        santi020k-terminal preset list
+        santi020k-terminal colors list
     EOS
   end
 
   test do
     assert_match version.to_s, shell_output("#{bin}/santi020k-terminal version")
     assert_match "Usage:", shell_output("#{bin}/santi020k-terminal help")
+
+    ENV["HOME"] = testpath
+    ENV["XDG_CONFIG_HOME"] = testpath/".config"
+    ENV["ZDOTDIR"] = testpath
+    system bin/"santi020k-terminal", "install"
+    assert_path_exists testpath/".config/santi020k-terminal/santi020k.zsh"
+    assert_match "santi020k-terminal/santi020k.zsh", (testpath/".zshrc").read
   end
 end

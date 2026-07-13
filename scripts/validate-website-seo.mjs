@@ -37,10 +37,12 @@ const sites = [
 
 const terminalPages = [
   { route: '', image: 'og-image.png' },
-  { route: 'zsh', image: 'og-zsh.png' },
-  { route: 'iterm2', image: 'og-iterm2.png' },
-  { route: 'starship', image: 'og-starship.png' },
-  { route: 'ports', image: 'og-ports.png' },
+  { route: 'docs', image: 'og-image.png' },
+  { route: 'docs/installation', image: 'og-image.png' },
+  { route: 'docs/zsh', image: 'og-image.png' },
+  { route: 'docs/starship', image: 'og-image.png' },
+  { route: 'docs/terminal-colors', image: 'og-image.png' },
+  { route: 'docs/cli', image: 'og-image.png' },
 ]
 
 const root = resolve(import.meta.dirname, '..')

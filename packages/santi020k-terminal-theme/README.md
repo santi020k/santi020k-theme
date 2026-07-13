@@ -29,7 +29,21 @@ brew install santi020k/tap/santi020k-terminal
 santi020k-terminal install
 ```
 
-The CLI supports `install`, `update`, `doctor`, `uninstall`, and `version`. Homebrew owns the formula and its dependencies; the explicit `install` command keeps shell configuration changes reviewable.
+The CLI installs managed configuration and also provides preset selection, terminal color helpers, health checks, repair, migrations, and status reporting. Homebrew installs native completions for Zsh, Bash, and Fish.
+
+```sh
+santi020k-terminal preset list
+santi020k-terminal preset use portable
+santi020k-terminal colors list
+santi020k-terminal colors install iterm2 dark
+santi020k-terminal status
+santi020k-terminal preview dark
+santi020k-terminal doctor --fix
+```
+
+`preset use` switches the rich, portable, or minimal Starship configuration while preserving automatic macOS light/dark selection. `colors path` prints the packaged file for any supported terminal. `colors install` imports iTerm2 presets and installs Ghostty, Kitty, or Alacritty theme files; for WezTerm and Windows Terminal it prints the packaged source path for manual integration. Repair asks before installing missing Homebrew dependencies; pass `--yes` after `--fix` for non-interactive use.
+
+Homebrew owns the formula and its dependencies; the explicit `install` command keeps shell configuration changes reviewable.
 
 The hosted install script remains available as an alternative. It uses Homebrew to install Starship, Zsh autosuggestions, syntax highlighting, extra completions, fzf, zoxide, eza, bat, ripgrep, fd, jq, and git-delta. Both paths keep managed configuration in `~/.config/santi020k-terminal`, preserve the rest of `.zshrc`, and are safe to run again.
 
@@ -51,7 +65,7 @@ This is an iTerm2 profile preference and cannot be stored in an `.itermcolors` c
 
 ## Automatic light and dark mode
 
-The optional `zsh/santi020k-auto-theme.zsh` helper follows the macOS system appearance. It sets `STARSHIP_CONFIG` to the dark or light preset at startup and before every prompt, allowing an open Zsh session to follow appearance changes.
+The optional `zsh/santi020k-auto-theme.zsh` helper follows the macOS system appearance and the preset stored by `santi020k-terminal preset use`. It sets `STARSHIP_CONFIG` at startup and before every prompt, allowing an open Zsh session to follow appearance or preset changes.
 
 Detection follows macOS rather than an independently selected iTerm2 profile color preset.
 

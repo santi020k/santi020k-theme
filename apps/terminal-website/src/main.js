@@ -13,7 +13,7 @@ const toggle = document.querySelector('.theme-toggle')
 
 syncSiteThemeToggle(toggle)
 
-bindSiteNavigation({ desktopNavQuery: window.matchMedia(SITE_DESKTOP_NAV_QUERY), header: document.querySelector('.site-header'), navLinks: document.querySelectorAll('nav a'), navToggle: document.querySelector('.nav-toggle') })
+bindSiteNavigation({ desktopNavQuery: window.matchMedia(SITE_DESKTOP_NAV_QUERY), header: document.querySelector('.site-header'), navLinks: document.querySelectorAll('#primary-navigation a'), navToggle: document.querySelector('.nav-toggle') })
 
 bindPreferredSiteThemeSync({ onThemeChange: () => syncSiteThemeToggle(toggle) })
 
@@ -51,35 +51,41 @@ for (const button of document.querySelectorAll('[data-copy]')) button.addEventLi
   setTimeout(() => { button.textContent = original }, 1800)
 })
 
+const selectTab = (tabs, panels, selectedTab, focus = false) => {
+  for (const tab of tabs) {
+    const active = tab === selectedTab
+
+    tab.setAttribute('aria-selected', String(active))
+
+    tab.tabIndex = active ? 0 : -1
+  }
+
+  for (const panel of panels) panel.hidden = panel.id !== selectedTab.getAttribute('aria-controls')
+
+  if (focus) selectedTab.focus()
+}
+
 for (const tabList of document.querySelectorAll('[data-tabs]')) {
   const tabs = [...tabList.querySelectorAll('[role="tab"]')]
   const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls'))).filter(Boolean)
 
-  const selectTab = (selectedTab, focus = false) => {
-    for (const tab of tabs) {
-      const active = tab === selectedTab
-
-      tab.setAttribute('aria-selected', String(active))
-
-      tab.tabIndex = active ? 0 : -1
-    }
-
-    for (const panel of panels) panel.hidden = panel.id !== selectedTab.getAttribute('aria-controls')
-
-    if (focus) selectedTab.focus()
-  }
-
   for (const [index, tab] of tabs.entries()) {
-    tab.addEventListener('click', () => selectTab(tab))
+    tab.addEventListener('click', () => selectTab(tabs, panels, tab))
 
     tab.addEventListener('keydown', event => {
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
 
       event.preventDefault()
 
-      const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length
+      let nextIndex
 
-      selectTab(tabs[nextIndex], true)
+      if (event.key === 'Home') nextIndex = 0
+      else if (event.key === 'End') nextIndex = tabs.length - 1
+      else nextIndex = (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length
+
+      const nextTab = tabs.at(nextIndex)
+
+      if (nextTab) selectTab(tabs, panels, nextTab, true)
     })
   }
 }

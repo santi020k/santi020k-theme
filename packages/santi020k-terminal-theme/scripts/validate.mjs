@@ -81,7 +81,7 @@ if (spawnSync(starship, ['--version'], { stdio: 'ignore' }).status === 0) {
 
 const autoTheme = await readFile(resolve(root, 'zsh', 'santi020k-auto-theme.zsh'), 'utf8')
 
-for (const expected of ['AppleInterfaceStyle', 'STARSHIP_CONFIG', 'santi020k-dark.toml', 'santi020k-light.toml', 'add-zsh-hook precmd']) {
+for (const expected of ['AppleInterfaceStyle', 'STARSHIP_CONFIG', 'preset_file', 'suffix', 'add-zsh-hook precmd']) {
   if (!autoTheme.includes(expected)) throw new Error(`Zsh auto theme missing ${expected}`)
 }
 
@@ -100,7 +100,7 @@ for (const expected of ['set -euo pipefail', 'brew install', 'git-delta', 'santi
 const cli = resolve(root, 'bin', 'santi020k-terminal')
 const cliContents = await readFile(cli, 'utf8')
 
-for (const expected of ['install_config', 'doctor', 'uninstall_config', 'santi020k/tap/santi020k-terminal']) {
+for (const expected of ['install_config', 'doctor', 'repair', 'preset_command', 'colors_command', 'status', 'preview', 'migrate', 'santi020k/tap/santi020k-terminal', 'refreshing managed configuration only']) {
   if (!cliContents.includes(expected)) throw new Error(`Terminal CLI missing ${expected}`)
 }
 
@@ -122,11 +122,41 @@ try {
 
   if (sandboxZshrc.split('Santi020k Terminal').length !== 2) throw new Error('Terminal CLI installation is not idempotent')
 
+  for (const preset of ['dark', 'light', 'dark-portable', 'light-portable', 'dark-minimal', 'light-minimal']) {
+    await readFile(resolve(sandbox, '.config', 'starship', `santi020k-${preset}.toml`), 'utf8')
+  }
+
+  execFileSync(cli, ['preset', 'use', 'portable'], { env, encoding: 'utf8' })
+
+  const selectedPreset = execFileSync(cli, ['preset', 'current'], { env, encoding: 'utf8' }).trim()
+
+  if (selectedPreset !== 'portable') throw new Error('Terminal CLI did not persist the selected preset')
+
+  const status = execFileSync(cli, ['status'], { env, encoding: 'utf8' })
+
+  if (!status.includes('Preset: portable') || !status.includes('Configuration schema: 1')) throw new Error('Terminal CLI status did not report managed state')
+
+  execFileSync(cli, ['colors', 'install', 'kitty', 'dark'], { env, encoding: 'utf8' })
+
+  await readFile(resolve(sandbox, '.config', 'kitty', 'themes', 'santi020k-dark.conf'), 'utf8')
+
+  const migration = execFileSync(cli, ['migrate'], { env, encoding: 'utf8' })
+
+  if (!migration.includes('is current')) throw new Error('Terminal CLI migration did not detect current configuration')
+
   execFileSync(cli, ['uninstall'], { env, encoding: 'utf8' })
 
   const cleanedZshrc = await readFile(resolve(sandbox, '.zshrc'), 'utf8')
 
   if (cleanedZshrc.includes('santi020k-terminal/santi020k.zsh')) throw new Error('Terminal CLI uninstall left its source line in .zshrc')
+
+  try {
+    await readFile(resolve(sandbox, '.config', 'santi020k-terminal', 'preset'), 'utf8')
+
+    throw new Error('Terminal CLI uninstall left managed preset state behind')
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error
+  }
 } finally {
   await rm(sandbox, { force: true, recursive: true })
 }

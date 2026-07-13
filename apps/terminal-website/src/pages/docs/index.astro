@@ -1,0 +1,8 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro'
+const headings = [{ id: 'choose-a-path', label: 'Choose a path' }, { id: 'what-is-included', label: 'What is included' }]
+---
+<DocsLayout title="Terminal documentation" description="Install, configure, and maintain the Santi020k shell, prompt, and terminal colors." path="/docs/" {headings}>
+  <section id="choose-a-path"><h2>Choose a path</h2><div class="docs-card-grid"><a href="/docs/installation/"><span>Recommended</span><h3>Complete setup</h3><p>Install the managed Zsh environment, Starship prompt, CLI completions, and modern command-line tools.</p></a><a href="/docs/starship/"><span>Component</span><h3>Prompt only</h3><p>Add the Santi020k Starship preset without replacing the rest of your shell configuration.</p></a><a href="/docs/terminal-colors/"><span>Component</span><h3>Colors only</h3><p>Download dark and light presets for iTerm2, Ghostty, Kitty, WezTerm, Alacritty, and Windows Terminal.</p></a></div></section>
+  <section id="what-is-included"><h2>What is included</h2><p>The complete setup keeps configuration under <code>~/.config/santi020k-terminal</code> and uses Homebrew to manage its dependencies. It does not replace your existing <code>~/.zshrc</code>.</p><ul><li>A focused Zsh plugin layer with completions, suggestions, highlighting, and durable history.</li><li>Rich, portable, and minimal Starship presets with automatic light and dark appearance.</li><li>A CLI for status, updates, repairs, prompt selection, color installation, and removal.</li><li>Coordinated dark and light terminal palettes generated from the shared Santi020k color source.</li></ul></section>
+</DocsLayout>

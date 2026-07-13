@@ -9,10 +9,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: terminal-release
+  cancel-in-progress: false
+
 jobs:
   release:
     runs-on: macos-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
     steps:
@@ -33,23 +37,47 @@ jobs:
       - run: pnpm run validate:terminal
       - run: pnpm --filter santi020k-terminal-theme run package
 
+      - name: Validate Homebrew formula
+        run: |
+          formula=packages/santi020k-terminal-theme/dist/santi020k-terminal.rb
+          brew style "$formula"
+          brew audit --strict --formula "$formula"
+          brew install --formula "$formula"
+          brew test santi020k-terminal
+
       - name: Verify tag matches package version
         if: github.ref_type == 'tag'
         run: test "${GITHUB_REF_NAME}" = "santi020k-terminal-v$(node -p "require('./packages/santi020k-terminal-theme/package.json').version")"
+
+      - name: Verify Homebrew tap credentials
+        if: github.ref_type == 'tag'
+        run: test -n "$HOMEBREW_TAP_TOKEN" || { echo 'HOMEBREW_TAP_TOKEN is required for terminal releases.' >&2; exit 1; }
 
       - name: Publish release archive
         if: github.ref_type == 'tag'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          archive=$(find packages/santi020k-terminal-theme/dist -maxdepth 1 -name '*.tar.gz' -print -quit)
+          asset=$(basename "$archive")
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            gh release upload "$GITHUB_REF_NAME" packages/santi020k-terminal-theme/dist/*.tar.gz --clobber
+            if gh release view "$GITHUB_REF_NAME" --json assets --jq '.assets[].name' | grep -Fxq "$asset"; then
+              mkdir -p "$RUNNER_TEMP/existing-release"
+              gh release download "$GITHUB_REF_NAME" --pattern "$asset" --dir "$RUNNER_TEMP/existing-release"
+              cmp "$archive" "$RUNNER_TEMP/existing-release/$asset" || {
+                echo "Release asset $asset already exists with different contents; refusing to replace it." >&2
+                exit 1
+              }
+              echo "Reusing existing immutable release asset $asset."
+            else
+              gh release upload "$GITHUB_REF_NAME" "$archive"
+            fi
           else
-            gh release create "$GITHUB_REF_NAME" packages/santi020k-terminal-theme/dist/*.tar.gz --verify-tag --generate-notes
+            gh release create "$GITHUB_REF_NAME" "$archive" --verify-tag --generate-notes
           fi
 
       - name: Update Homebrew tap
-        if: github.ref_type == 'tag' && env.HOMEBREW_TAP_TOKEN != ''
+        if: github.ref_type == 'tag'
         run: |
           git clone "https://x-access-token:${HOMEBREW_TAP_TOKEN}@github.com/santi020k/homebrew-tap.git" "$RUNNER_TEMP/homebrew-tap"
           mkdir -p "$RUNNER_TEMP/homebrew-tap/Formula"
