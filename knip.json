@@ -1,7 +1,8 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignoreBinaries": [
-    "validate"
+    "validate",
+    "zsh"
   ],
   "ignoreDependencies": [
     "ovsx"
@@ -22,9 +23,6 @@
       "ignore": [
         "src/main.js"
       ],
-      "ignoreDependencies": [
-        "@santi020k/theme"
-      ],
       "project": [
         "src/**/*.astro",
         "src/**/*.js"
@@ -38,9 +36,6 @@
       ],
       "ignore": [
         "src/main.js"
-      ],
-      "ignoreDependencies": [
-        "@santi020k/theme"
       ],
       "project": [
         "scripts/**/*.mjs",
@@ -56,13 +51,20 @@
       "ignore": [
         "src/main.js"
       ],
-      "ignoreDependencies": [
-        "@santi020k/theme"
-      ],
       "project": [
         "src/**/*.astro",
         "src/**/*.js"
       ]
+    },
+    "apps/terminal-website": {
+      "entry": ["package.json", "scripts/*.mjs", "src/pages/*.astro"],
+      "ignore": ["src/main.js"],
+      "ignoreDependencies": ["santi020k-terminal-theme"],
+      "project": ["scripts/**/*.mjs", "src/**/*.astro", "src/**/*.js"]
+    },
+    "packages/santi020k-terminal-theme": {
+      "entry": ["package.json"],
+      "project": ["*.mjs", "scripts/**/*.mjs", "tests/**/*.mjs"]
     },
     "packages/santi020k-chrome-theme": {
       "entry": [

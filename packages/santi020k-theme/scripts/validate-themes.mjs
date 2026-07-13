@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { fromExtensionPackage } from './paths.mjs'
 
-const themeFiles = [
+export const themeFiles = [
   fromExtensionPackage('themes/santi020k-dark-color-theme.json'),
   fromExtensionPackage('themes/santi020k-light-color-theme.json'),
   fromExtensionPackage('themes/santi020k-hc-dark-color-theme.json'),
@@ -112,7 +112,7 @@ const modernSurfaceColorKeys = [
 ]
 
 /** @type {Array<[string, string, number]>} */
-const contrastPairs = [
+export const contrastPairs = [
   ['editor.foreground', 'editor.background', 4.5],
   ['foreground', 'editor.background', 4.5],
   ['input.foreground', 'input.background', 4.5],
@@ -188,7 +188,7 @@ const luminance = rgb => {
   return 0.2126 * red + 0.7152 * green + 0.0722 * blue
 }
 
-const contrastRatio = (foreground, background) => {
+export const contrastRatio = (foreground, background) => {
   const backgroundColor = parseHex(background)
 
   const resolvedBackground = {

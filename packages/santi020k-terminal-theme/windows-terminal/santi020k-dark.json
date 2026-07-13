@@ -1,0 +1,23 @@
+{
+  "name": "Santi020k Dark",
+  "background": "#0d0a15",
+  "foreground": "#dfdde3",
+  "cursorColor": "#945df4",
+  "selectionBackground": "#322b40",
+  "black": "#8d8896",
+  "red": "#ea6962",
+  "green": "#7daea3",
+  "yellow": "#e8b44a",
+  "blue": "#6b82c8",
+  "purple": "#945df4",
+  "cyan": "#89b8c8",
+  "white": "#b6b2bd",
+  "brightBlack": "#827d8c",
+  "brightRed": "#f28080",
+  "brightGreen": "#a0c8a0",
+  "brightYellow": "#f0c870",
+  "brightBlue": "#8898d8",
+  "brightPurple": "#b48df7",
+  "brightCyan": "#a8d0e0",
+  "brightWhite": "#dfdde3"
+}

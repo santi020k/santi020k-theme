@@ -101,6 +101,15 @@ export declare function createChromeThemeFromVSCodeColors(
   colors: Record<string, RgbColor>
   properties: Record<string, string | number>
 }
+export declare const terminalAnsiTokenOrder: string[]
+export declare function createTerminalPaletteFromVSCodeColors(
+  vscodeColors: Record<string, string>
+): {
+  background: string
+  foreground: string
+  cursor: string
+  ansi: string[]
+}
 export declare function getAsset(path: string): BrandAsset | undefined
 export declare function getAssets(category: BrandAssetCategory): BrandAsset[]
 export declare function getSurfaceAssets(surface: BrandSurface): BrandAsset[]

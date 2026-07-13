@@ -1,6 +1,31 @@
 version: "0.2"
 language: en
 words:
+  # Shell, packaging, and platform identifiers used by the terminal tooling.
+  - bbwe
+  - checkwinsize
+  - compdef
+  - compinit
+  - configurator
+  - dups
+  - elif
+  - esac
+  - fpath
+  - gname
+  - histappend
+  - LOCALAPPDATA
+  - mktemp
+  - pipefail
+  - pkgshare
+  - precmd
+  - SAVEHIST
+  - slurpfile
+  - testpath
+  - tlsv
+  - ustar
+  - wekyb
+  - zcompdump
+  - ZDOTDIR
   - active-background
   - active-border
   - activity-bar
@@ -25,6 +50,7 @@ words:
   - box-shadow
   - bracket-pair
   - breadcrumbs
+  - Caskaydia
   - changelog
   - changefreq
   - changeset
@@ -60,6 +86,7 @@ words:
   - font-weight
   - FOUC
   - GITHUB_TOKEN
+  - Ghostty
   - glassmorphism
   - grid-column
   - grid-row
@@ -83,6 +110,8 @@ words:
   - incognito
   - indigo
   - inlay-hints
+  - iterm
+  - itermcolors
   - inter
   - justify-content
   - justify-self
@@ -106,6 +135,7 @@ words:
   - max-height
   - max-width
   - Medellín
+  - Menlo
   - min-height
   - min-width
   - minimap
@@ -136,6 +166,7 @@ words:
   - pluginutils
   - pnpapi
   - pointer-events
+  - Powerline
   - premove
   - quick-picker
   - rasterizes
@@ -163,6 +194,7 @@ words:
   - side-bar
   - shouty
   - skeuomorphism
+  - smol
   - Specialisation
   - Stackframe
   - starlight
@@ -193,6 +225,8 @@ words:
   - urlset
   - v1.4.0
   - v1.5.0
+  - Wezterm
+  - wezterm
   - vite
   - vitest
   - vsce
@@ -206,6 +240,7 @@ words:
   - webstore
   - walkthrough
   - wordmark
+  - workerd
 ignorePaths:
   - node_modules/**
   - "**/node_modules/**"

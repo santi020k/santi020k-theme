@@ -1,0 +1,14 @@
+---
+import { promptVariants, starshipFilename } from '../../../../../packages/santi020k-terminal-theme/prompt-presets.mjs'
+import DocsLayout from '../../layouts/DocsLayout.astro'
+const base = 'https://terminal.santi020k.com/starship'
+const install = 'brew install starship'
+const init = 'eval "$(starship init zsh)"'
+const headings = [{ id: 'presets', label: 'Prompt presets' }, { id: 'prompt-only', label: 'Prompt-only install' }, { id: 'font', label: 'Font requirement' }]
+const variants = Object.entries(promptVariants).map(([key, variant]) => ({ ...variant, dark: `/starship/${starshipFilename('dark', key)}`, light: `/starship/${starshipFilename('light', key)}` }))
+---
+<DocsLayout title="Starship prompt" description="Use a quiet Powerline prompt with coordinated dark and light violet palettes." path="/docs/starship/" {headings}>
+  <section id="presets"><h2>Three prompts, one palette</h2><p>Rich is the full prompt. Portable replaces application icons with labels. Minimal removes runtime modules for a quieter prompt.</p><div class="docs-card-grid compact">{variants.map(variant => <article><h3>{variant.name}</h3><p>{variant.description}</p><div class="docs-downloads"><a href={variant.dark} download>Dark</a><a href={variant.light} download>Light</a></div></article>)}</div></section>
+  <section id="prompt-only"><h2>Install only the prompt</h2><ol><li><p>Install Starship:</p><div class="command"><code>{install}</code><button data-copy={install} aria-label="Copy Starship installation command">Copy</button></div></li><li><p>Enable it in the current Zsh session:</p><div class="command"><code>{init}</code><button data-copy={init} aria-label="Copy Starship initialization command">Copy</button></div></li><li><p>Back up <code>~/.config/starship.toml</code>, then download the preset you want. For example:</p><div class="command"><code>{`curl -fsSL ${base}/santi020k-dark.toml -o ~/.config/starship.toml`}</code><button data-copy={`curl -fsSL ${base}/santi020k-dark.toml -o ~/.config/starship.toml`} aria-label="Copy dark preset download command">Copy</button></div></li></ol><aside class="docs-callout"><b>Using Oh My Zsh?</b><p>Set <code>ZSH_THEME=""</code> before Oh My Zsh loads. Your plugins can remain enabled while Starship owns the prompt.</p></aside></section>
+  <section id="font"><h2>Install a Nerd Font</h2><p>The Powerline separators and symbols require a Nerd Font. The site preview uses CaskaydiaCove Nerd Font at 15 pt with approximately 110% vertical spacing.</p><div class="command"><code>brew install --cask font-caskaydia-cove-nerd-font</code><button data-copy="brew install --cask font-caskaydia-cove-nerd-font" aria-label="Copy Nerd Font installation command">Copy</button></div></section>
+</DocsLayout>

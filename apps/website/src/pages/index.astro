@@ -1,5 +1,12 @@
 ---
 import { Image } from 'astro:assets'
+import { getSiteUrls } from '@santi020k/theme/site'
+import AppleIcon from '../../../../packages/theme/components/AppleIcon.astro'
+import wallpaperOne from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
+import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/wallpaper-2-desktop.webp'
+import wallpaperThree from '../../../../packages/theme/assets/wallpapers/wallpaper-3-desktop.webp'
+
+const siteUrls = getSiteUrls(import.meta.env.DEV)
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -27,6 +34,12 @@ const structuredData = {
       applicationCategory: 'BrowserApplication',
     },
     {
+      '@type': 'SoftwareApplication',
+      name: 'Santi020k Theme for iTerm2',
+      url: 'https://terminal.santi020k.com/',
+      applicationCategory: 'DeveloperApplication',
+    },
+    {
       '@type': 'SoftwareSourceCode',
       name: '@santi020k/theme',
       url: 'https://github.com/santi020k/santi020k-theme',
@@ -36,7 +49,7 @@ const structuredData = {
   ],
 }
 
-const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
 ---
 
 <!doctype html>
@@ -85,7 +98,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
     <meta name="twitter:description" content="VS Code, Chrome, npm packages, and upcoming Santi020k theme surfaces in one place." />
     <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Themes - VS Code, Chrome, npm, and more" />
-    <Fragment set:html={structuredDataHtml} />
+    <script type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
@@ -101,7 +114,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
       <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
         <a href="#themes">Themes</a>
         <a href="#packages">Packages</a>
-        <a href="#soon">Coming soon</a>
+        <a href="/gallery/">Gallery</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
       </nav>
 
@@ -132,8 +145,9 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
             A shared violet system for your editor, your browser, and the next surfaces that should feel like they belong together.
           </p>
           <div class="actions" aria-label="Primary theme links">
-            <a class="button button-primary" href="https://vscode.santi020k.com/">Open VS Code</a>
-            <a class="button button-secondary" href="https://chrome.santi020k.com/">Open Chrome</a>
+            <a class="button button-primary" href={siteUrls.vscode}>Open VS Code</a>
+            <a class="button button-secondary" href={siteUrls.chrome}>Open Chrome</a>
+            <a class="button button-secondary" href={siteUrls.terminal}>Open Terminal</a>
             <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</a>
           </div>
         </div>
@@ -156,7 +170,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
 
         <div class="theme-grid">
           <article class="theme-card theme-card-large">
-            <a class="theme-card-media" href="https://vscode.santi020k.com/" aria-label="Open VS Code theme site">
+            <a class="theme-card-media" href={siteUrls.vscode} aria-label="Open VS Code theme site">
               <Image src="/vscode-theme-art.png" width="1672" height="941" alt="Abstract Santi020k VS Code theme preview" loading="lazy" decoding="async" inferSize />
             </a>
             <div class="theme-card-body">
@@ -167,14 +181,14 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
               <h3>VS Code</h3>
               <p>Dark, light, high contrast, bold, and italic variants for VS Code-compatible editors.</p>
               <div class="card-actions">
-                <a class="button button-primary" href="https://vscode.santi020k.com/">Open site</a>
+                <a class="button button-primary" href={siteUrls.vscode}>Open site</a>
                 <a class="button button-secondary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
               </div>
             </div>
           </article>
 
           <article class="theme-card">
-            <a class="theme-card-media" href="https://chrome.santi020k.com/" aria-label="Open Chrome theme site">
+            <a class="theme-card-media" href={siteUrls.chrome} aria-label="Open Chrome theme site">
               <Image src="/chrome-theme-art.png" width="1586" height="992" alt="Abstract Santi020k Chrome theme preview" loading="lazy" decoding="async" inferSize />
             </a>
             <div class="theme-card-body">
@@ -185,9 +199,34 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
               <h3>Chrome</h3>
               <p>Matching dark and light Chrome browser themes with the same violet system.</p>
               <div class="card-actions">
-                <a class="button button-primary" href="https://chrome.santi020k.com/">Open site</a>
+                <a class="button button-primary" href={siteUrls.chrome}>Open site</a>
                 <a class="button button-secondary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" rel="noopener noreferrer">Web Store</a>
               </div>
+            </div>
+          </article>
+          <article class="theme-card terminal-theme-card">
+            <a class="theme-card-media terminal-card" href={siteUrls.terminal} aria-label="Open Terminal theme site">
+              <div class="terminal-window" aria-hidden="true">
+                <div class="terminal-title-bar">
+                  <span class="terminal-dots"><i></i><i></i><i></i></span>
+                  <span>santi020k — zsh</span>
+                  <span></span>
+                </div>
+                <div class="terminal-screen">
+                  <div class="powerline-prompt">
+                    <span class="prompt-cap start" aria-hidden="true"></span><span class="prompt-segment prompt-os" aria-label="macOS"><AppleIcon /></span><span class="prompt-join os-dir" aria-hidden="true"></span><span class="prompt-segment prompt-dir">~/Projects/theme</span><span class="prompt-join dir-git" aria-hidden="true"></span><span class="prompt-segment prompt-git">git main</span><span class="prompt-join git-runtime" aria-hidden="true"></span><span class="prompt-segment prompt-runtime">node v22</span><span class="prompt-cap end" aria-hidden="true"></span>
+                  </div>
+                  <code><span class="prompt-mark">❯</span> pnpm run focus</code>
+                  <code class="terminal-result"><span>✓</span> Theme palette ready <b>dark · light</b></code>
+                  <code><span class="prompt-mark">❯</span> <i class="terminal-cursor"></i></code>
+                </div>
+              </div>
+            </a>
+            <div class="theme-card-body">
+              <div class="card-kicker"><span class="status-dot live"></span>Live</div>
+              <h3>Terminal</h3>
+              <p>Matching iTerm2 colors and a Powerline-style Starship prompt in one terminal theme.</p>
+              <div class="card-actions"><a class="button button-primary" href={siteUrls.terminal}>Open site</a><a class="button button-secondary" href={`${siteUrls.terminal}starship/`}>Starship</a></div>
             </div>
           </article>
         </div>
@@ -220,31 +259,19 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
         </article>
       </section>
 
-      <section id="soon" class="site-shell section soon-section">
-        <div class="section-heading">
-          <p class="eyebrow">Coming soon</p>
-          <h2>Next up for the same visual language.</h2>
+      <section id="assets" class="site-shell section assets-section">
+        <div class="section-heading assets-heading">
+          <div class="assets-heading-copy">
+            <p class="eyebrow">Wallpapers</p>
+            <p>Three production-ready backgrounds, available directly from the shared theme asset package.</p>
+          </div>
+          <h2>Bring the palette to your desktop.</h2>
         </div>
-
-        <div class="soon-grid">
-          <article class="soon-card terminal-card">
-            <div class="soon-visual" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-              <code>$ santi020k apply terminal</code>
-            </div>
-            <h3>Terminal palettes</h3>
-            <p>Shell color presets for long-running sessions, logs, and prompts.</p>
-          </article>
-
-          <article class="soon-card">
-            <div class="wallpaper-frame" aria-hidden="true">
-              <span></span>
-            </div>
-            <h3>Wallpapers and assets</h3>
-            <p>Backgrounds and brand images that match the editor and browser themes.</p>
-          </article>
+        <div class="wallpaper-grid">
+          {[wallpaperOne, wallpaperTwo, wallpaperThree].map((wallpaper, index) => <article class="wallpaper-card"><Image src={wallpaper} alt={`Santi020k violet wallpaper ${index + 1}`} loading="lazy" /><div><h3>Wallpaper {index + 1}</h3><a class="button button-primary" href={wallpaper.src} download={`santi020k-wallpaper-${index + 1}.webp`}>Download desktop</a></div></article>)}
+        </div>
+        <div class="section-cta">
+          <a class="button button-secondary" href="/gallery/">Browse all wallpapers, banners, previews, and logos</a>
         </div>
       </section>
     </main>
@@ -252,8 +279,10 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
     <footer class="site-shell site-footer">
       <p>Made by <a href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</a>.</p>
       <div class="footer-links">
-        <a href="https://vscode.santi020k.com/">VS Code</a>
-        <a href="https://chrome.santi020k.com/">Chrome</a>
+        <a href={siteUrls.vscode}>VS Code</a>
+        <a href={siteUrls.chrome}>Chrome</a>
+        <a href={siteUrls.terminal}>Terminal</a>
+        <a href="/gallery/">Gallery</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
       </div>

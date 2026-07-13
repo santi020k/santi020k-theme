@@ -1,6 +1,6 @@
 # Santi020k Theme
 
-Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Chrome, shared brand packages, and static product websites.
+Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Chrome, iTerm2, shared brand packages, and static product websites.
 
 The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.md). Read it before changing colors, product names, screenshots, icons, website copy, store metadata, or shared assets.
 
@@ -10,11 +10,13 @@ The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.
 | --- | --- |
 | `packages/santi020k-theme` | Published VS Code extension with dark, light, high-contrast, bold, and italic variants |
 | `packages/santi020k-chrome-theme` | Chrome Web Store theme package, synced from the VS Code palette |
+| `packages/santi020k-terminal-theme` | Generated iTerm2 color and Starship prompt presets |
 | `packages/theme` | Public `@santi020k/theme` package for tokens, website CSS, assets, metadata, and Chrome mapping helpers |
 | `packages/theme-core` | Public `@santi020k/theme-core` helper package for package-neutral token generation, asset lookup, and site behavior primitives |
 | `apps/website` | Theme family hub for `theme.santi020k.com` |
 | `apps/vscode-website` | VS Code theme product site for `vscode.santi020k.com` |
 | `apps/chrome-website` | Chrome theme product site for `chrome.santi020k.com` |
+| `apps/terminal-website` | Terminal product site for `terminal.santi020k.com` |
 
 ## Quick Start
 
@@ -33,11 +35,14 @@ Use Node `>=22.18.0` and pnpm `10.32.1`.
 | `pnpm run validate:themes` | Validates the VS Code theme JSON files |
 | `pnpm run validate:marketplace` | Checks VS Code extension marketplace readiness |
 | `pnpm run validate:chrome` | Lints, validates contrast, and dry-runs Chrome packaging |
+| `pnpm run validate:terminal` | Validates generated iTerm2 and Starship presets |
 | `pnpm run package:extension` | Builds and packages the VS Code extension as a VSIX |
 | `pnpm run package:chrome` | Builds Chrome Web Store zip files |
+| `pnpm run sites:dev` | Starts all four website development servers in parallel |
 | `pnpm run site:dev` | Starts the theme hub website |
 | `pnpm run site:vscode:dev` | Starts the VS Code theme website |
 | `pnpm run site:chrome:dev` | Starts the Chrome theme website |
+| `pnpm run site:terminal:dev` | Starts the Terminal theme website on port 4177 |
 | `pnpm run changeset` | Creates a release changeset |
 | `pnpm run commit` | Opens the conventional commit prompt |
 

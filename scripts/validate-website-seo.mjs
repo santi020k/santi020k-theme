@@ -25,6 +25,33 @@ const sites = [
     keyword: 'Chrome Browser Theme',
     schemaType: 'SoftwareApplication',
   },
+  {
+    app: 'terminal-website',
+    canonical: 'https://terminal.santi020k.com/',
+    image: 'https://terminal.santi020k.com/og-image.png',
+    keyword: 'Terminal Theme',
+    schemaType: 'CollectionPage',
+    built: true,
+  },
+]
+
+const terminalPages = [
+  { route: '', image: 'og-image.png' },
+  { route: 'docs', image: 'og-image.png' },
+  { route: 'docs/zsh', image: 'og-image.png' },
+  { route: 'docs/starship', image: 'og-image.png' },
+  { route: 'docs/terminal-colors', image: 'og-image.png' },
+  { route: 'docs/cli', image: 'og-image.png' },
+]
+
+const additionalPages = [
+  {
+    app: 'website/gallery',
+    html: 'apps/website/dist/gallery/index.html',
+    canonical: 'https://theme.santi020k.com/gallery/',
+    image: 'https://theme.santi020k.com/og-image.png',
+    schemaType: 'CollectionPage',
+  },
 ]
 
 const root = resolve(import.meta.dirname, '..')
@@ -66,6 +93,18 @@ const jsonLdBlocks = (html) =>
 const schemaTypeInSource = (html, type) =>
   html.includes(`'@type': '${type}'`) || html.includes(`"@type": "${type}"`)
 
+const schemaContainsType = (schema, type) => {
+  if (Array.isArray(schema)) {
+    return schema.some((value) => schemaContainsType(value, type))
+  }
+
+  if (schema && typeof schema === 'object') {
+    return schema['@type'] === type || Object.values(schema).some((value) => schemaContainsType(value, type))
+  }
+
+  return false
+}
+
 const requireEqual = (site, label, actual, expected) => {
   if (actual !== expected) {
     errors.push(`${site.app}: expected ${label} to be ${expected}, got ${actual || 'missing'}`)
@@ -79,7 +118,7 @@ const requirePresent = (site, label, actual) => {
 }
 
 for (const site of sites) {
-  const htmlPath = resolve(root, 'apps', site.app, 'src/pages/index.astro')
+  const htmlPath = resolve(root, 'apps', site.app, site.built ? 'dist/index.html' : 'src/pages/index.astro')
   const html = await readFile(htmlPath, 'utf8')
   const title = titleText(html)
 
@@ -109,6 +148,12 @@ for (const site of sites) {
 
   requireEqual(site, 'og:image', metaContent(html, 'property', 'og:image'), site.image)
 
+  if (site.app === 'terminal-website') {
+    requireEqual(site, 'og:image:secure_url', metaContent(html, 'property', 'og:image:secure_url'), site.image)
+
+    requireEqual(site, 'og:image:type', metaContent(html, 'property', 'og:image:type'), 'image/png')
+  }
+
   requireEqual(site, 'og:image:width', metaContent(html, 'property', 'og:image:width'), '1200')
 
   requireEqual(site, 'og:image:height', metaContent(html, 'property', 'og:image:height'), '630')
@@ -133,7 +178,7 @@ for (const site of sites) {
 
   const schemas = jsonLdBlocks(html)
 
-  if (!schemas.some((schema) => schema['@type'] === site.schemaType) && !schemaTypeInSource(html, site.schemaType)) {
+  if (!schemas.some((schema) => schemaContainsType(schema, site.schemaType)) && !schemaTypeInSource(html, site.schemaType)) {
     errors.push(`${site.app}: missing JSON-LD ${site.schemaType}`)
   }
 
@@ -145,10 +190,87 @@ for (const site of sites) {
   }
 }
 
+for (const page of terminalPages) {
+  const pageName = page.route || 'home'
+  const site = { app: `terminal-website/${pageName}` }
+  const htmlPath = resolve(root, 'apps/terminal-website/dist', page.route, 'index.html')
+  const html = await readFile(htmlPath, 'utf8')
+  const canonical = `https://terminal.santi020k.com/${page.route ? `${page.route}/` : ''}`
+  const imageUrl = `https://terminal.santi020k.com/${page.image}`
+
+  requirePresent(site, 'title', titleText(html))
+
+  requirePresent(site, 'meta description', metaContent(html, 'name', 'description'))
+
+  requireEqual(site, 'canonical URL', linkHref(html, 'canonical'), canonical)
+
+  requireEqual(site, 'og:url', metaContent(html, 'property', 'og:url'), canonical)
+
+  requireEqual(site, 'og:image', metaContent(html, 'property', 'og:image'), imageUrl)
+
+  requireEqual(site, 'og:image:secure_url', metaContent(html, 'property', 'og:image:secure_url'), imageUrl)
+
+  requireEqual(site, 'og:image:type', metaContent(html, 'property', 'og:image:type'), 'image/png')
+
+  requireEqual(site, 'og:image:width', metaContent(html, 'property', 'og:image:width'), '1200')
+
+  requireEqual(site, 'og:image:height', metaContent(html, 'property', 'og:image:height'), '630')
+
+  requirePresent(site, 'og:image:alt', metaContent(html, 'property', 'og:image:alt'))
+
+  requireEqual(site, 'twitter:image', metaContent(html, 'name', 'twitter:image'), imageUrl)
+
+  requirePresent(site, 'twitter:image:alt', metaContent(html, 'name', 'twitter:image:alt'))
+
+  const imagePath = resolve(root, 'apps/terminal-website/public', page.image)
+  const metadata = await sharp(imagePath).metadata()
+
+  if (metadata.width !== 1200 || metadata.height !== 630) {
+    errors.push(`${site.app}: ${page.image} should be 1200x630, got ${metadata.width}x${metadata.height}`)
+  }
+}
+
+for (const page of additionalPages) {
+  const site = { app: page.app }
+  const html = await readFile(resolve(root, page.html), 'utf8')
+
+  requirePresent(site, 'title', titleText(html))
+
+  requirePresent(site, 'meta description', metaContent(html, 'name', 'description'))
+
+  requireEqual(site, 'canonical URL', linkHref(html, 'canonical'), page.canonical)
+
+  requireEqual(site, 'robots', metaContent(html, 'name', 'robots'), 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
+
+  requireEqual(site, 'og:url', metaContent(html, 'property', 'og:url'), page.canonical)
+
+  requireEqual(site, 'og:image', metaContent(html, 'property', 'og:image'), page.image)
+
+  requireEqual(site, 'og:image:width', metaContent(html, 'property', 'og:image:width'), '1200')
+
+  requireEqual(site, 'og:image:height', metaContent(html, 'property', 'og:image:height'), '630')
+
+  requirePresent(site, 'og:image:alt', metaContent(html, 'property', 'og:image:alt'))
+
+  requireEqual(site, 'twitter:card', metaContent(html, 'name', 'twitter:card'), 'summary_large_image')
+
+  requireEqual(site, 'twitter:url', metaContent(html, 'name', 'twitter:url'), page.canonical)
+
+  requireEqual(site, 'twitter:image', metaContent(html, 'name', 'twitter:image'), page.image)
+
+  requirePresent(site, 'twitter:image:alt', metaContent(html, 'name', 'twitter:image:alt'))
+
+  const schemas = jsonLdBlocks(html)
+
+  if (!schemas.some((schema) => schemaContainsType(schema, page.schemaType))) {
+    errors.push(`${site.app}: missing JSON-LD ${page.schemaType}`)
+  }
+}
+
 if (errors.length > 0) {
   console.error(errors.join('\n'))
 
   process.exit(1)
 }
 
-console.log(`Validated SEO and Open Graph metadata for ${sites.length} websites.`)
+console.log(`Validated SEO metadata for ${sites.length} websites, ${additionalPages.length} additional page, and Open Graph images for ${terminalPages.length} terminal pages.`)

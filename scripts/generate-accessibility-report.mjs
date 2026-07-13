@@ -1,0 +1,48 @@
+import { readFile, writeFile } from 'node:fs/promises'
+import { relative, resolve } from 'node:path'
+
+import { contrastPairs, contrastRatio, themeFiles, validateThemes } from '../packages/santi020k-theme/scripts/validate-themes.mjs'
+
+const root = resolve(import.meta.dirname, '..')
+const parseJsonc = raw => JSON.parse(raw.replaceAll(/\/\*[\s\S]*?\*\//g, '').replaceAll(/^\s*\/\/.*$/gm, ''))
+
+validateThemes()
+
+const rows = []
+
+for (const file of themeFiles.slice(0, 4)) {
+  const theme = parseJsonc(await readFile(file, 'utf8'))
+  const colors = new Map(Object.entries(theme.colors))
+
+  for (const [foreground, background, minimum] of contrastPairs) {
+    const ratio = contrastRatio(colors.get(foreground), colors.get(background))
+
+    rows.push(`| ${theme.name} | \`${foreground}\` / \`${background}\` | ${ratio.toFixed(2)}:1 | ${minimum}:1 | Pass |`)
+  }
+}
+
+const report = `# Accessibility report
+
+Generated from the canonical VS Code theme files by \`pnpm run report:accessibility\`. Do not edit the results table by hand.
+
+The validator checks all 12 shipped variants. Core text pairs require at least 4.5:1, secondary/decorative syntax requires at least 3:1, and all other syntax tokens require at least 4.5:1. The table below shows the four base palettes; bold and italic variants share their colors and are validated separately.
+
+| Theme | Pair | Measured | Required | Result |
+| --- | --- | ---: | ---: | --- |
+${rows.join('\n')}
+
+## Website requirements
+
+- Visible keyboard focus uses a three-pixel violet outline with offset.
+- Light and dark modes are exposed through \`color-scheme\` and preserve readable foreground/background roles.
+- Motion is disabled or reduced under \`prefers-reduced-motion: reduce\`.
+- Theme controls use native buttons, selects, checkboxes, and accessible labels.
+
+Source: [theme validator](../packages/santi020k-theme/scripts/validate-themes.mjs).
+`
+
+const reportTargets = [resolve(root, 'docs/accessibility-report.md'), resolve(root, 'apps/vscode-website/public/accessibility-report.md')]
+
+await Promise.all(reportTargets.map(target => writeFile(target, report)))
+
+console.log(`Generated ${reportTargets.map(target => relative(root, target)).join(' and ')} with ${rows.length} measured pairs.`)

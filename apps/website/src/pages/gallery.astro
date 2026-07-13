@@ -1,0 +1,148 @@
+---
+import { Image } from 'astro:assets'
+import { getSiteUrls } from '@santi020k/theme/site'
+import { galleryAssets as assets } from '../data/gallery-assets.js'
+
+const siteUrls = getSiteUrls(import.meta.env.DEV)
+const canonical = 'https://theme.santi020k.com/gallery/'
+const title = 'Gallery & Downloads — Santi020k Theme'
+const description = 'Download Santi020k Theme wallpapers, banners, VS Code previews, and brand assets in their original resolution.'
+const socialImage = 'https://theme.santi020k.com/og-image.png'
+const imageAlt = 'Santi020k Theme gallery with wallpapers, banners, editor previews, and brand assets'
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: canonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Santi020k Themes',
+    url: 'https://theme.santi020k.com/',
+  },
+}
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
+---
+
+<!doctype html>
+<html lang="en" data-santi020k-site="hub">
+  <head>
+    <meta charset="UTF-8" />
+    <script is:inline>
+      (function () {
+        var saved = localStorage.getItem('theme')
+        var preferred = saved === 'light' || saved === 'dark' ? saved : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        document.documentElement.setAttribute('data-theme', preferred)
+      })()
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Santiago Molina" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Santi020k Themes" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Wallpapers, banners, previews, and brand assets in one calm violet collection." />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@santi020k" />
+    <meta name="twitter:creator" content="@santi020k" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="Wallpapers, banners, previews, and brand assets in one calm violet collection." />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <script type="application/ld+json" set:html={structuredDataJson}></script>
+  </head>
+  <body>
+    <header class="site-shell site-header" aria-label="Site header">
+      <a class="brand" href="/" aria-label="Santi020k Themes home">
+        <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true" focusable="false"><rect width="80" height="80" rx="18" fill="currentColor" /><path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /><line x1="48" y1="52" x2="62" y2="52" stroke="var(--brand-mark-ink)" stroke-width="8" stroke-linecap="round" /></svg>
+        <span>Santi020k Themes</span>
+      </a>
+      <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
+        <a href="/#themes">Themes</a><a href="/#packages">Packages</a><a href="/gallery/" aria-current="page">Gallery</a><a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
+      </nav>
+      <div class="header-actions">
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+        <button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="site-shell gallery-hero" aria-labelledby="gallery-hero-title">
+        <div class="gallery-hero-copy">
+          <p class="eyebrow">Gallery & downloads</p>
+          <h1 id="gallery-hero-title">The Santi020k asset library.</h1>
+          <p class="lede">Wallpapers, social banners, editor previews, and brand marks—organized by collection and ready in the format you need.</p>
+          <div class="collection-downloads" aria-label="Collection downloads">
+            <a class="button button-primary" href="#asset-library">Browse all assets</a>
+            <a class="button button-secondary" href="/downloads/santi020k-wallpapers.zip" download>Wallpapers ZIP</a>
+            <a class="button button-secondary" href="/downloads/santi020k-banners.zip" download>Banners ZIP</a>
+          </div>
+        </div>
+        <aside class="gallery-hero-index" aria-label="Gallery summary">
+          <p class="gallery-index-label">Available now</p>
+          <dl>
+            <div><dt>{assets.length}</dt><dd>assets</dd></div>
+            <div><dt>4</dt><dd>collections</dd></div>
+            <div><dt>4</dt><dd>file formats</dd></div>
+          </dl>
+          <p>PNG · WEBP · SVG · HEIC</p>
+        </aside>
+      </section>
+
+      <section id="asset-library" class="site-shell gallery-section" aria-labelledby="gallery-heading">
+        <div class="gallery-toolbar">
+          <div><p class="eyebrow">Asset library</p><h2 id="gallery-heading">Choose a collection.</h2></div>
+          <div class="filter-group" role="group" aria-label="Filter assets">
+            {['all', 'wallpapers', 'banners', 'previews', 'logos'].map((filter, index) => <button class="filter-button" type="button" data-filter={filter} aria-pressed={index === 0 ? 'true' : 'false'}>{filter === 'all' ? 'All assets' : filter}</button>)}
+          </div>
+        </div>
+        <p class="gallery-count" aria-live="polite"><span data-gallery-count>{assets.length}</span> assets</p>
+        <div class="asset-grid">
+          {assets.map((asset) => (
+            <article class:list={['asset-card', { 'asset-card-portrait': asset.portrait }]} data-category={asset.category}>
+              <button class:list={['asset-preview', { 'asset-preview-contain': asset.contain || asset.portrait }]} type="button" data-preview-src={asset.preview.src} data-preview-alt={`${asset.title}, ${asset.variant}`} data-preview-title={asset.title} aria-label={`Preview ${asset.title}, ${asset.variant}`}>
+                <Image src={asset.preview} alt={`${asset.title}, ${asset.variant}`} loading="lazy" />
+                <span class="preview-label">Open preview</span>
+              </button>
+              <div class="asset-card-body">
+                <div><p class="asset-category">{asset.category} · {asset.variant}</p><h3>{asset.title}</h3><p class="asset-meta">{asset.dimensions}</p></div>
+                <div class="asset-formats" aria-label={`Download ${asset.title} formats`}>
+                  {asset.formats.map((format) => <a href={format.href} download={format.file} title={`Download ${asset.title} as ${format.label}`}>{format.label}<span aria-hidden="true">↓</span></a>)}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p class="gallery-empty" hidden>No assets match this filter.</p>
+      </section>
+    </main>
+
+    <dialog class="asset-dialog" aria-labelledby="asset-dialog-title">
+      <div class="dialog-header"><div><p class="eyebrow">Full preview</p><h2 id="asset-dialog-title"></h2></div><button class="dialog-close" type="button" aria-label="Close preview">×</button></div>
+      <div class="dialog-media"><img alt="" /></div>
+    </dialog>
+
+    <footer class="site-shell site-footer"><p>Made by <a href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</a>.</p><div class="footer-links"><a href="/">Theme hub</a><a href={siteUrls.vscode}>VS Code</a><a href={siteUrls.chrome}>Chrome</a><a href={siteUrls.terminal}>Terminal</a><a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a></div></footer>
+    <script>import '../main.js'</script>
+  </body>
+</html>

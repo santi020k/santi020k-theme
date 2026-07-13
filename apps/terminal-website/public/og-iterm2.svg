@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="iTerm2 Colors social card">
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1030 60) rotate(130) scale(650)">
+      <stop stop-color="#89b8c8" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#0d0718" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#494158" stroke-opacity="0.18"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0d0718"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M0 566c180-62 340-58 480 10 172 84 353 69 542-46 75-46 134-70 178-74v174H0Z" fill="#89b8c8" opacity="0.07"/>
+
+  <g transform="translate(72 64) scale(0.675)">
+    <rect width="80" height="80" rx="18" fill="#5a0fdb"/>
+    <path d="M26 28 L40 40 L26 52" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="48" y1="52" x2="62" y2="52" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <text x="146" y="98" fill="#945df4" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="850">SANTI020K THEME</text>
+  <rect x="146" y="116" width="86" height="4" rx="2" fill="#945df4"/>
+  <text x="72" y="306" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="850">iTerm2 Colors</text>
+  <text x="76" y="358" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600"><tspan x="76" dy="0">Dark and light. Full ANSI coverage.</tspan></text>
+  <g transform="translate(-192 25) scale(1.2)">
+  <g transform="translate(668 164)">
+    <rect width="430" height="270" rx="18" fill="#0b0712" stroke="#494158" stroke-width="2"/>
+    <rect width="430" height="44" rx="18" fill="#181322"/>
+    <circle cx="26" cy="22" r="5" fill="#ea6962"/><circle cx="46" cy="22" r="5" fill="#e8b44a"/><circle cx="66" cy="22" r="5" fill="#7daea3"/>
+    <text x="28" y="88" fill="#dfdde3" font-family="monospace" font-size="17">Santi020k ANSI palette</text>
+    <g transform="translate(28 116)"><rect x="0" y="0" width="34" height="34" rx="7" fill="#231d30"/><rect x="46" y="0" width="34" height="34" rx="7" fill="#ea6962"/><rect x="92" y="0" width="34" height="34" rx="7" fill="#7daea3"/><rect x="138" y="0" width="34" height="34" rx="7" fill="#e8b44a"/><rect x="184" y="0" width="34" height="34" rx="7" fill="#9b69f6"/><rect x="230" y="0" width="34" height="34" rx="7" fill="#b48df7"/><rect x="276" y="0" width="34" height="34" rx="7" fill="#89b8c8"/><rect x="322" y="0" width="34" height="34" rx="7" fill="#dfdde3"/><rect x="0" y="50" width="34" height="34" rx="7" fill="#726c7f"/><rect x="46" y="50" width="34" height="34" rx="7" fill="#ff8b84"/><rect x="92" y="50" width="34" height="34" rx="7" fill="#9bc9be"/><rect x="138" y="50" width="34" height="34" rx="7" fill="#f4cb72"/><rect x="184" y="50" width="34" height="34" rx="7" fill="#b48df7"/><rect x="230" y="50" width="34" height="34" rx="7" fill="#d0b5ff"/><rect x="276" y="50" width="34" height="34" rx="7" fill="#a8d6e5"/><rect x="322" y="50" width="34" height="34" rx="7" fill="#fff"/></g>
+    <text x="28" y="244" fill="#726c7f" font-family="monospace" font-size="15">dark + light presets</text>
+  </g>
+</g>
+</svg>

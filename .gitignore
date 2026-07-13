@@ -17,6 +17,7 @@ packages/*/dist/
 packages/santi020k-chrome-theme/.dev/
 *.vsix
 *.zip
+!apps/website/public/downloads/*.zip
 packages/santi020k-theme/*.vsix
 
 # Generated VS Code theme variants from packages/santi020k-theme/scripts
