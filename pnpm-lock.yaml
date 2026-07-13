@@ -75,7 +75,7 @@ catalogs:
 
 overrides:
   fast-uri: ^4.1.0
-  read-yaml-file: ^3.0.0
+  read-yaml-file: 2.1.0
   undici: ^8.7.0
   vite: ^8.1.4
 
@@ -7340,9 +7340,9 @@ packages:
     resolution: {integrity: sha512-9viLL4/n1BJUCT1NXVTdS1jtm80yDEgR5T4yCelII49Mbj0v1rZdKqj7zCiYdbB0CuCgdrvHcNogAKTFPBocFA==}
     engines: {node: '>=18'}
 
-  read-yaml-file@3.0.0:
-    resolution: {integrity: sha512-7urDNDyx3oJt9NGkymzT3qudju76BoJhT6ICWclx6274zxMeSUOhyiceHscSBk4Lfbs0IYpjOjUwLkaOzrsJdQ==}
-    engines: {node: '>=22.13'}
+  read-yaml-file@2.1.0:
+    resolution: {integrity: sha512-UkRNRIwnhG+y7hpqnycCL/xbTk7+ia9VuVTC0S+zVbwd65DI9eUpRMfsWIGrCWxTU/mi+JW8cHQCrv+zfCbEPQ==}
+    engines: {node: '>=10.13'}
 
   read@1.0.7:
     resolution: {integrity: sha512-rSOKNYUmaxy0om1BNjMN4ezNT6VKK+2xF4GBhc81mkH7L60i6dp8qPYrkndNLT3QPphoII3maL9PVC9XmhHwVQ==}
@@ -7828,10 +7828,6 @@ packages:
   strip-bom@4.0.0:
     resolution: {integrity: sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w==}
     engines: {node: '>=8'}
-
-  strip-bom@5.0.0:
-    resolution: {integrity: sha512-p+byADHF7SzEcVnLvc/r3uognM1hUhObuHXxJcgLCfD194XAkaLbjq3Wzb0N5G2tgIjH0dgT708Z51QxMeu60A==}
-    engines: {node: '>=12'}
 
   strip-indent@3.0.0:
     resolution: {integrity: sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==}
@@ -10730,7 +10726,7 @@ snapshots:
       '@manypkg/find-root': 1.1.0
       fs-extra: 8.1.0
       globby: 11.1.0
-      read-yaml-file: 3.0.0
+      read-yaml-file: 2.1.0
 
   '@mdn/browser-compat-data@5.7.6': {}
 
@@ -16921,10 +16917,10 @@ snapshots:
       type-fest: 4.41.0
       unicorn-magic: 0.1.0
 
-  read-yaml-file@3.0.0:
+  read-yaml-file@2.1.0:
     dependencies:
       js-yaml: 4.2.0
-      strip-bom: 5.0.0
+      strip-bom: 4.0.0
 
   read@1.0.7:
     dependencies:
@@ -17623,8 +17619,6 @@ snapshots:
   strip-bom@3.0.0: {}
 
   strip-bom@4.0.0: {}
-
-  strip-bom@5.0.0: {}
 
   strip-indent@3.0.0:
     dependencies:
