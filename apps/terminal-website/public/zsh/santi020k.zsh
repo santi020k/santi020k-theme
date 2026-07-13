@@ -1,6 +1,4 @@
 # Santi020k Zsh setup. Managed by the Santi020k Terminal installer.
-# cspell:ignore dups fpath SAVEHIST zcompdump
-
 typeset -U path fpath
 
 if [[ -z ${HOMEBREW_PREFIX:-} ]] && command -v brew >/dev/null 2>&1; then

@@ -1,6 +1,4 @@
 # Santi020k Bash setup. Managed by the Santi020k Terminal installer.
-# cspell:ignore checkwinsize histappend
-
 export HISTFILE="${HISTFILE:-$HOME/.bash_history}"
 export HISTSIZE=50000
 export HISTFILESIZE=50000

@@ -1,6 +1,31 @@
 version: "0.2"
 language: en
 words:
+  # Shell, packaging, and platform identifiers used by the terminal tooling.
+  - bbwe
+  - checkwinsize
+  - compdef
+  - compinit
+  - configurator
+  - dups
+  - elif
+  - esac
+  - fpath
+  - gname
+  - histappend
+  - LOCALAPPDATA
+  - mktemp
+  - pipefail
+  - pkgshare
+  - precmd
+  - SAVEHIST
+  - slurpfile
+  - testpath
+  - tlsv
+  - ustar
+  - wekyb
+  - zcompdump
+  - ZDOTDIR
   - active-background
   - active-border
   - activity-bar

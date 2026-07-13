@@ -1,7 +1,5 @@
 # Santi020k Terminal Theme
 
-<!-- cspell:ignore tlsv -->
-
 The terminal edition of Santi020k Theme combines matching terminal colors and a Powerline-style prompt:
 
 - `iterm2/`: generated dark and light iTerm2 color presets.

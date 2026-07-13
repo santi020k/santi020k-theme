@@ -247,6 +247,7 @@ const getVisual = (visual) => {
       return portsVisual
 
     case 'starship':
+      return powerlineVisual
 
     case 'terminal':
       return powerlineVisual

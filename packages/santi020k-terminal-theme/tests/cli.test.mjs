@@ -5,8 +5,6 @@ import { resolve } from 'node:path'
 
 import { afterEach, beforeAll, describe, expect, it } from 'vitest'
 
-// cspell:ignore idempotently ZDOTDIR
-
 const root = resolve(import.meta.dirname, '..')
 const cli = resolve(root, 'bin', 'santi020k-terminal')
 const sandboxes = []
@@ -41,7 +39,7 @@ afterEach(() => {
 })
 
 describe('terminal CLI', () => {
-  it('preserves existing shell configuration and installs idempotently', () => {
+  it('preserves existing shell configuration and is idempotent', () => {
     const { home, env } = createSandbox()
     const zshrc = resolve(home, '.zshrc')
 

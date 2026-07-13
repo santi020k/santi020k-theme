@@ -9,8 +9,6 @@ import {
   syncSiteThemeToggle
 } from '@santi020k/theme/site'
 
-// cspell:ignore configurator
-
 const toggle = document.querySelector('.theme-toggle')
 
 syncSiteThemeToggle(toggle)

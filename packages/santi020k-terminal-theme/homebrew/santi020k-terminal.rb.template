@@ -1,8 +1,6 @@
 # typed: strict
 # frozen_string_literal: true
 
-# cspell:ignore pkgshare testpath ZDOTDIR
-
 # Formula for the Santi020k terminal theme and shell setup.
 class Santi020kTerminal < Formula
   desc "Terminal colors, Starship prompt, and curated shell setup"

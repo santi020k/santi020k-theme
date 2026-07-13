@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# cspell:ignore tlsv
 set -euo pipefail
 
 readonly BASE_URL="${SANTI020K_BASE_URL:-https://terminal.santi020k.com}"

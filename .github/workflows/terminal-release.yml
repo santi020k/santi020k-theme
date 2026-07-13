@@ -37,14 +37,6 @@ jobs:
       - run: pnpm run validate:terminal
       - run: pnpm --filter santi020k-terminal-theme run package
 
-      - name: Validate Homebrew formula
-        run: |
-          formula=packages/santi020k-terminal-theme/dist/santi020k-terminal.rb
-          brew style "$formula"
-          brew audit --strict --formula "$formula"
-          brew install --formula "$formula"
-          brew test santi020k-terminal
-
       - name: Verify tag matches package version
         if: github.ref_type == 'tag'
         run: test "${GITHUB_REF_NAME}" = "santi020k-terminal-v$(node -p "require('./packages/santi020k-terminal-theme/package.json').version")"
@@ -75,6 +67,14 @@ jobs:
           else
             gh release create "$GITHUB_REF_NAME" "$archive" --verify-tag --generate-notes
           fi
+
+      - name: Validate Homebrew formula
+        run: |
+          formula=packages/santi020k-terminal-theme/dist/santi020k-terminal.rb
+          brew style "$formula"
+          brew audit --strict --formula "$formula"
+          brew install --formula "$formula"
+          brew test santi020k-terminal
 
       - name: Update Homebrew tap
         if: github.ref_type == 'tag'

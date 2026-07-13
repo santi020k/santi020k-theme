@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# cspell:ignore bbwe elif esac LOCALAPPDATA mktemp pipefail slurpfile wekyb ZDOTDIR
 set -euo pipefail
 
 readonly COMMAND=${1:-help}

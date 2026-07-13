@@ -1,6 +1,4 @@
 #compdef santi020k-terminal
-# cspell:ignore compdef elif esac
-
 _santi020k_terminal() {
   local -a commands presets palettes terminals
   commands=(

@@ -8,8 +8,6 @@ import { parse } from 'smol-toml'
 import { palettes } from '../palettes.mjs'
 import { promptVariants, runtimeModules, starshipFilename } from '../prompt-presets.mjs'
 
-// cspell:ignore compinit pipefail precmd ZDOTDIR
-
 const root = resolve(import.meta.dirname, '..')
 const requiredKeys = ['Background Color', 'Foreground Color', 'Cursor Color', 'Selection Color', ...Array.from({ length: 16 }, (_, index) => `Ansi ${index} Color`)]
 
