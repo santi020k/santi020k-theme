@@ -1,5 +1,11 @@
 # santi020k-terminal-theme
 
+## 1.0.1
+
+### Patch Changes
+
+- [`226883f`](https://github.com/santi020k/santi020k-theme/commit/226883f07ec185b237f52618744fbd7c253f59ec) - Make terminal releases compatible with Homebrew 6 formula auditing, allow manual runs to recover an interrupted tag release, and create release tags from package-version changes instead of registry-specific publish output.
+
 ## 1.0.0
 
 ### Major Changes
