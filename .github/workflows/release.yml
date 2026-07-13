@@ -77,11 +77,15 @@ jobs:
         run: pnpm run release:tag
 
       - name: Ensure Terminal release tag exists
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: >-
+          github.ref == 'refs/heads/main' &&
+          github.event_name == 'push' &&
+          steps.changesets.outputs.published == 'true'
         env:
           BEFORE_SHA: ${{ github.event.before }}
         run: |
-          if git diff --quiet "$BEFORE_SHA" HEAD -- packages/santi020k-terminal-theme/package.json; then
+          git checkout --detach "$GITHUB_SHA"
+          if git diff --quiet "$BEFORE_SHA" "$GITHUB_SHA" -- packages/santi020k-terminal-theme/package.json; then
             echo 'Terminal package version did not change; skipping terminal tag.'
             exit 0
           fi
