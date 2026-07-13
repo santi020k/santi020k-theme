@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from 'node:child_process'
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { resolve } from 'node:path'
 
@@ -101,6 +101,16 @@ describe('terminal CLI', () => {
     expect(result.stderr).toContain('Missing packaged asset:')
 
     expect(() => readFileSync(resolve(home, '.zshrc'), 'utf8')).toThrow()
+  })
+
+  it('uses title-cased filenames for terminal color presets', () => {
+    const { home, env } = createSandbox()
+
+    expect(run(['colors', 'path', 'iterm2', 'light'], env).trim()).toBe(resolve(root, 'iterm2', 'Santi020k Light.itermcolors'))
+
+    run(['colors', 'install', 'wezterm', 'light'], env)
+
+    expect(readdirSync(resolve(home, '.config/wezterm/colors'))).toContain('Santi020k Light.lua')
   })
 
   it('removes only managed shell integration during uninstall', () => {

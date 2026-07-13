@@ -138,7 +138,7 @@ preset_command() {
 color_asset() {
   local terminal=$1 palette=$2
   case "$terminal" in
-    iterm2) print -r -- "$ASSET_DIR/iterm2/Santi020k ${palette:u}.itermcolors" ;;
+    iterm2) print -r -- "$ASSET_DIR/iterm2/Santi020k ${(C)palette}.itermcolors" ;;
     ghostty) print -r -- "$ASSET_DIR/ghostty/santi020k-$palette" ;;
     kitty) print -r -- "$ASSET_DIR/kitty/santi020k-$palette.conf" ;;
     wezterm) print -r -- "$ASSET_DIR/wezterm/santi020k-$palette.lua" ;;
@@ -176,7 +176,7 @@ colors_command() {
         ghostty) destination="$CONFIG_HOME/ghostty/themes/santi020k-$palette" ;;
         kitty) destination="$CONFIG_HOME/kitty/themes/santi020k-$palette.conf" ;;
         alacritty) destination="$CONFIG_HOME/alacritty/themes/santi020k-$palette.toml" ;;
-        wezterm) destination="$CONFIG_HOME/wezterm/colors/Santi020k ${palette:u}.lua" ;;
+        wezterm) destination="$CONFIG_HOME/wezterm/colors/Santi020k ${(C)palette}.lua" ;;
         windows-terminal)
           install_windows_terminal "$asset"
           return
