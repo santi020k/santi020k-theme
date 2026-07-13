@@ -1,6 +1,7 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync } from 'node:fs'
 import { dirname } from 'node:path'
 
+import { writeFileAtomicSync } from './atomic-write.mjs'
 import { fromExtensionPackage, fromRepoRoot } from './paths.mjs'
 
 const packageShikiThemes = [
@@ -31,7 +32,7 @@ for (const { source, target } of packageShikiThemes) {
 
   mkdirSync(dirname(target), { recursive: true })
 
-  writeFileSync(target, `${JSON.stringify(theme, null, 2)}\n`)
+  writeFileAtomicSync(target, `${JSON.stringify(theme, null, 2)}\n`)
 
   console.log(`Generated ${target}`)
 }

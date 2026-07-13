@@ -1,5 +1,6 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 
+import { writeFileAtomicSync } from './atomic-write.mjs'
 import { fromExtensionPackage } from './paths.mjs'
 
 const baseThemes = [
@@ -67,7 +68,7 @@ for (const base of baseThemes) {
     }
   }
 
-  writeFileSync(
+  writeFileAtomicSync(
     base.file.replace('.json', '').replace('-color-theme', '-bold-color-theme.json'), JSON.stringify(boldTheme, null, 2)
   )
 
@@ -98,7 +99,7 @@ for (const base of baseThemes) {
     }
   }
 
-  writeFileSync(
+  writeFileAtomicSync(
     base.file.replace('.json', '').replace('-color-theme', '-italic-color-theme.json'), JSON.stringify(italicTheme, null, 2)
   )
 }

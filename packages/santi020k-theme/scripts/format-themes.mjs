@@ -1,5 +1,6 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 
+import { writeFileAtomicSync } from './atomic-write.mjs'
 import { fromExtensionPackage } from './paths.mjs'
 
 const themeFiles = [
@@ -134,7 +135,7 @@ const formatTheme = file => {
     output = output.slice(0, Math.max(0, colorsStart + colorsHeader.length)) + newColorsBlock + output.slice(Math.max(0, colorsEnd))
   }
 
-  writeFileSync(file, output + '\n')
+  writeFileAtomicSync(file, output + '\n')
 
   console.log(`Formatted ${file}`)
 }
