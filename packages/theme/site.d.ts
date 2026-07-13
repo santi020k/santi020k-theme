@@ -1,6 +1,7 @@
 export {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
+  getSiteUrls,
   getPreferredSiteTheme,
   isSiteTheme,
   readStoredSiteTheme,
@@ -18,9 +19,11 @@ export {
   SITE_THEME_PREFERENCE_QUERY,
   SITE_THEME_STORAGE_KEY,
   SITE_TOUCH_POINTER_QUERY,
+  SITE_URLS,
   syncSiteThemeToggle,
   type PreferredSiteThemeSyncOptions,
   type SiteNavigationOptions,
+  type SiteUrls,
   type SiteTheme,
   type SiteThemeOptions,
   type SiteThemePreferenceOptions

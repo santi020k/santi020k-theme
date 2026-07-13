@@ -200,6 +200,32 @@ export const createChromeThemeFromVSCodeColors = (vscodeColors, variant = 'dark'
   }
 }
 
+export const terminalAnsiTokenOrder = [
+  'terminal.ansiBlack', 'terminal.ansiRed', 'terminal.ansiGreen', 'terminal.ansiYellow',
+  'terminal.ansiBlue', 'terminal.ansiMagenta', 'terminal.ansiCyan', 'terminal.ansiWhite',
+  'terminal.ansiBrightBlack', 'terminal.ansiBrightRed', 'terminal.ansiBrightGreen', 'terminal.ansiBrightYellow',
+  'terminal.ansiBrightBlue', 'terminal.ansiBrightMagenta', 'terminal.ansiBrightCyan', 'terminal.ansiBrightWhite'
+]
+
+export const createTerminalPaletteFromVSCodeColors = vscodeColors => {
+  const vscodeColorMap = new Map(Object.entries(vscodeColors))
+
+  const hex = token => {
+    const value = vscodeColorMap.get(token)
+
+    if (!value) throw new Error(`Missing VS Code token: ${token}`)
+
+    return value.slice(0, 7)
+  }
+
+  return {
+    background: hex('terminal.background'),
+    foreground: hex('terminal.foreground'),
+    cursor: hex('editorCursor.foreground'),
+    ansi: terminalAnsiTokenOrder.map(hex)
+  }
+}
+
 export const colors = [
   { name: 'theme-bg', light: '268 20% 98%', dark: '260 43% 8%', lightContrast: '268 20% 98%', darkContrast: '260 43% 8%', description: 'Page background' },
   { name: 'surface', light: '268 20% 100%', dark: '260 30% 12%', description: 'Card and panel surfaces' },

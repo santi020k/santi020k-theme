@@ -36,6 +36,53 @@ const PREVIEW_DATA = {
   }
 }
 
+const buildSettingsRecipe = () => {
+  const style = document.querySelector('.settings-style')?.value ?? 'base'
+  const suffix = style === 'base' ? '' : ` ${style}`
+  const settings = { 'workbench.colorTheme': `santi020k dark${suffix}` }
+
+  if (document.querySelector('.settings-auto')?.checked) {
+    settings['window.autoDetectColorScheme'] = true
+
+    settings['window.autoDetectHighContrast'] = true
+
+    settings['workbench.preferredDarkColorTheme'] = `santi020k dark${suffix}`
+
+    settings['workbench.preferredLightColorTheme'] = `santi020k light${suffix}`
+
+    settings['workbench.preferredHighContrastColorTheme'] = `santi020k hc dark${suffix}`
+
+    settings['workbench.preferredHighContrastLightColorTheme'] = `santi020k hc light${suffix}`
+  }
+
+  if (document.querySelector('.settings-font')?.checked) {
+    settings['editor.fontFamily'] = "'Fira Code', monospace"
+
+    settings['editor.fontLigatures'] = true
+
+    settings['editor.lineHeight'] = 1.55
+  }
+
+  const output = `${JSON.stringify(settings, null, 2)}\n`
+  const code = document.querySelector('.settings-code')
+
+  if (code) code.textContent = output
+
+  return output
+}
+
+for (const control of document.querySelectorAll('.settings-builder input, .settings-builder select')) control.addEventListener('change', buildSettingsRecipe)
+
+document.querySelector('.settings-copy')?.addEventListener('click', async event => {
+  await navigator.clipboard.writeText(buildSettingsRecipe())
+
+  event.currentTarget.textContent = 'Copied'
+
+  window.setTimeout(() => { event.currentTarget.textContent = 'Copy settings' }, 1800)
+})
+
+buildSettingsRecipe()
+
 const SNIPPETS = {
   json: data => `<span class="muted">// focused without glare</span>
 {
@@ -122,6 +169,8 @@ const SNIPPETS = {
 &lt;/<span class="keyword">div</span>&gt;`
 }
 
+const previewData = new Map(Object.entries(PREVIEW_DATA).map(([theme, variants]) => [theme, new Map(Object.entries(variants))]))
+const snippets = new Map(Object.entries(SNIPPETS))
 let currentPreviewLang = 'json'
 let currentPreviewTheme = 'dark'
 let currentPreviewVariant = 'normal'
@@ -133,8 +182,11 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, v
 
   currentPreviewVariant = variant
 
-  // eslint-disable-next-line security/detect-object-injection
-  const data = PREVIEW_DATA[theme][variant]
+  const data = previewData.get(theme)?.get(variant)
+  const renderSnippet = snippets.get(lang)
+
+  if (!data || !renderSnippet) throw new Error('Unknown preview selection')
+
   const container = document.querySelector('.editor-preview')
   const codeEl = document.querySelector('.preview-code')
   const filenameEl = document.querySelector('.preview-filename')
@@ -150,8 +202,7 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, v
 
   if (filenameEl) filenameEl.textContent = data.filename
 
-  // eslint-disable-next-line security/detect-object-injection
-  if (codeEl) codeEl.innerHTML = SNIPPETS[lang](data)
+  if (codeEl) codeEl.innerHTML = renderSnippet(data)
 
   if (langSelect) langSelect.value = lang
 

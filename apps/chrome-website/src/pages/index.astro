@@ -1,5 +1,8 @@
 ---
 import { Image } from 'astro:assets'
+import { getSiteUrls } from '@santi020k/theme/site'
+
+const siteUrls = getSiteUrls(import.meta.env.DEV)
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -21,7 +24,7 @@ const structuredData = {
   },
 }
 
-const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
 ---
 
 <!doctype html>
@@ -72,7 +75,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
     <meta name="twitter:description" content="A professional Chrome browser theme with a deep violet palette. Mapped directly from the Santi020k VS Code theme." />
     <meta name="twitter:image" content="https://chrome.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Chrome Browser Theme" />
-    <Fragment set:html={structuredDataHtml} />
+    <script type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-header" aria-label="Site header">
@@ -88,8 +91,8 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
           <a href="#install">Install</a>
           <span class="separator" aria-hidden="true"></span>
           <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
-          <a href="https://vscode.santi020k.com/" rel="noopener noreferrer">VS Code theme</a>
-          <a href="https://theme.santi020k.com/" rel="noopener noreferrer">Theme hub</a>
+          <a href={siteUrls.vscode}>VS Code theme</a>
+          <a href={siteUrls.hub}>Theme hub</a>
         </nav>
         <div class="header-actions">
           <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
@@ -339,8 +342,8 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
       <span>Built by Santiago Molina.</span>
       <div class="footer-links">
         <a href="https://santi020k.com" rel="noopener noreferrer">santi020k.com</a>
-        <a href="https://vscode.santi020k.com/" rel="noopener noreferrer">VS Code theme</a>
-        <a href="https://theme.santi020k.com/" rel="noopener noreferrer">Theme hub</a>
+        <a href={siteUrls.vscode}>VS Code theme</a>
+        <a href={siteUrls.hub}>Theme hub</a>
         <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer" aria-label="GitHub repository" class="github-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>

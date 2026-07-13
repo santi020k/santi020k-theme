@@ -1,0 +1,130 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = true
+palette = "santi020k"
+format = """
+[](os)$os$username[](fg:os bg:directory)$directory[](fg:directory bg:git)$git_branch$git_status[](fg:git bg:runtime)
+[](fg:runtime bg:time)$docker_context$cmd_duration$time[](fg:time)$line_break$character"""
+
+[palettes.santi020k]
+os = "#602cba"
+directory = "#752df0"
+git = "#945df4"
+runtime = "#89b8c8"
+time = "#302545"
+light_text = "#ffffff"
+dark_text = "#17141d"
+error = "#ea6962"
+
+[os]
+disabled = false
+style = "bg:os fg:light_text"
+format = "[ $symbol ]($style)"
+
+[os.symbols]
+Macos = ""
+Linux = ""
+Windows = ""
+
+[username]
+show_always = false
+style_user = "bg:os fg:light_text"
+style_root = "bg:os fg:light_text bold"
+format = "[$user ]($style)"
+
+[env_var.SSH_CONNECTION]
+variable = "SSH_CONNECTION"
+symbol = "ssh "
+style = "bg:os fg:light_text bold"
+format = "[ $symbol]($style)"
+
+[directory]
+style = "bg:directory fg:light_text bold"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+
+
+[git_branch]
+symbol = ""
+style = "bg:git fg:dark_text bold"
+format = "[ $symbol$branch ]($style)"
+
+[git_status]
+style = "bg:git fg:dark_text"
+format = "[$all_status$ahead_behind ]($style)"
+
+[character]
+success_symbol = "[❯](bold directory)"
+error_symbol = "[❯](bold error)"
+
+[cmd_duration]
+disabled = false
+min_time = 2000
+style = "bg:time fg:light_text"
+format = "[ $duration ]($style)"
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:time fg:light_text"
+format = "[ $time ]($style)"
+
+[docker_context]
+disabled = false
+symbol = ""
+style = "bg:time fg:light_text"
+format = "[ $symbol$context ]($style)"
+
+[c]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[cpp]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[deno]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[golang]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[java]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[nodejs]
+disabled = true
+symbol = ""
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[php]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[python]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[ruby]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"
+
+[rust]
+disabled = true
+style = "bg:runtime fg:dark_text"
+format = "[ $symbol($version) ]($style)"

@@ -10,6 +10,24 @@ export const SITE_REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 export const SITE_REVEAL_DARK_BACKGROUND = '#110c1d'
 export const SITE_REVEAL_LIGHT_BACKGROUND = '#f8f6fd'
 
+export const SITE_URLS = {
+  production: {
+    hub: 'https://theme.santi020k.com/',
+    vscode: 'https://vscode.santi020k.com/',
+    chrome: 'https://chrome.santi020k.com/',
+    terminal: 'https://terminal.santi020k.com/'
+  },
+  development: {
+    hub: 'http://127.0.0.1:4174/',
+    vscode: 'http://127.0.0.1:4176/',
+    chrome: 'http://127.0.0.1:4175/',
+    terminal: 'http://127.0.0.1:4177/'
+  }
+}
+
+export const getSiteUrls = (development = false) =>
+  development ? SITE_URLS.development : SITE_URLS.production
+
 export const isSiteTheme = theme => theme === SITE_THEME_LIGHT || theme === SITE_THEME_DARK
 
 export const readStoredSiteTheme = storage => {

@@ -1,0 +1,31 @@
+---
+import { docsItems, docsSections } from '../data/docs.js'
+import SiteLayout from './SiteLayout.astro'
+
+const { title, description, path, eyebrow = 'Documentation', headings = [] } = Astro.props
+const canonical = new URL(path, 'https://terminal.santi020k.com').href
+const schema = { '@context': 'https://schema.org', '@type': 'TechArticle', headline: title, description, url: canonical }
+const currentIndex = docsItems.findIndex(item => item.href === path)
+const previous = currentIndex > 0 ? docsItems[currentIndex - 1] : undefined
+const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
+---
+<SiteLayout title={`${title} — Santi020k Terminal docs`} {description} {canonical} {schema}>
+  <div class="docs-shell shell">
+    <aside class="docs-sidebar" aria-label="Documentation navigation">
+      <a class="docs-home" href="/docs/">Terminal documentation</a>
+      {docsSections.map(section => <div class="docs-nav-group">
+        <span>{section.label}</span>
+        {section.items.map(item => <a href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</a>)}
+      </div>)}
+    </aside>
+    <article class="docs-article">
+      <header class="docs-heading"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{description}</p></header>
+      <div class="docs-content"><slot /></div>
+      <nav class="docs-pagination" aria-label="Documentation pagination">
+        {previous ? <a href={previous.href}><span>Previous</span><b>← {previous.label}</b></a> : <span></span>}
+        {next && <a href={next.href}><span>Next</span><b>{next.label} →</b></a>}
+      </nav>
+    </article>
+    {headings.length > 0 && <aside class="docs-toc" aria-label="On this page"><b>On this page</b>{headings.map(heading => <a href={`#${heading.id}`}>{heading.label}</a>)}</aside>}
+  </div>
+</SiteLayout>

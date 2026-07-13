@@ -1,0 +1,61 @@
+#compdef santi020k-terminal
+_santi020k_terminal() {
+  local -a commands presets palettes terminals
+  commands=(
+    'configure:interactively configure shell, prompt, and colors'
+    'install:install managed shell configuration'
+    'update:upgrade the formula and refresh configuration'
+    'doctor:check dependencies and managed files'
+    'preset:select a Starship preset'
+    'prompt:build a custom Starship prompt'
+    'colors:locate or install terminal color presets'
+    'config:export or import portable configuration'
+    'status:show the current managed configuration'
+    'preview:render the selected Starship prompt'
+    'migrate:migrate managed configuration'
+    'uninstall:remove managed shell configuration'
+    'version:print the installed version'
+  )
+  presets=(rich portable minimal)
+  palettes=(dark light)
+  terminals=(iterm2 ghostty kitty wezterm alacritty windows-terminal)
+
+  _arguments '1:command:->command' '*::argument:->args'
+  case $state in
+    command) _describe command commands ;;
+    args)
+      case $words[2] in
+        install) _values shell zsh bash fish all ;;
+        configure)
+          if (( CURRENT == 3 )); then _values shell zsh bash fish all
+          elif (( CURRENT == 4 )); then _values preset $presets
+          elif (( CURRENT == 5 )); then _values terminal $terminals skip
+          elif (( CURRENT == 6 )); then _values palette $palettes
+          fi
+          ;;
+        config) _values action export import ;;
+        prompt)
+          if (( CURRENT == 3 )); then _values action build
+          elif (( CURRENT == 6 )); then _values palette $palettes
+          fi
+          ;;
+        doctor) _values option --fix --yes ;;
+        preview) _values palette $palettes ;;
+        preset)
+          if (( CURRENT == 3 )); then _values action list current use
+          elif [[ $words[3] == use ]]; then _values preset $presets
+          fi
+          ;;
+        colors)
+          if (( CURRENT == 3 )); then _values action list path install
+          elif (( CURRENT == 4 )); then _values terminal $terminals
+          elif (( CURRENT == 5 )); then _values palette $palettes
+          elif (( CURRENT == 6 )); then _values option --dry-run
+          fi
+          ;;
+      esac
+      ;;
+  esac
+}
+
+_santi020k_terminal "$@"

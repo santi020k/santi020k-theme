@@ -29,8 +29,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.3
+
       - name: Run Astro Doctor
-        uses: santi020k/astro-doctor@v1.0.2
+        uses: santi020k/astro-doctor@v1
         with:
           working-directory: .
           fail-on: error
