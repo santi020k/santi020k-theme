@@ -1,5 +1,6 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 
+import { writeFileAtomicSync } from './atomic-write.mjs'
 import { fromExtensionPackage } from './paths.mjs'
 
 const baseThemeSources = [
@@ -20,7 +21,7 @@ const baseThemeSources = [
 for (const { source, target } of baseThemeSources) {
   const theme = JSON.parse(readFileSync(source, 'utf8'))
 
-  writeFileSync(target, `${JSON.stringify(theme, null, 2)}\n`)
+  writeFileAtomicSync(target, `${JSON.stringify(theme, null, 2)}\n`)
 
   console.log(`Generated ${target}`)
 }

@@ -1,5 +1,6 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 
+import { writeFileAtomicSync } from './atomic-write.mjs'
 import { fromExtensionPackage } from './paths.mjs'
 
 const darkenColor = function (hex) {
@@ -86,6 +87,6 @@ if (theme.tokenColors) {
   }
 }
 
-writeFileSync(outputPath, JSON.stringify(theme, null, 2))
+writeFileAtomicSync(outputPath, JSON.stringify(theme, null, 2))
 
 console.log('HC Light theme generated at:', outputPath)
