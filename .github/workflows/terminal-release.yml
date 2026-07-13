@@ -37,47 +37,57 @@ jobs:
       - run: pnpm run validate:terminal
       - run: pnpm --filter santi020k-terminal-theme run package
 
+      - name: Resolve release metadata
+        id: release
+        run: |
+          version=$(node -p "require('./packages/santi020k-terminal-theme/package.json').version")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=santi020k-terminal-v$version" >> "$GITHUB_OUTPUT"
+
       - name: Verify tag matches package version
         if: github.ref_type == 'tag'
-        run: test "${GITHUB_REF_NAME}" = "santi020k-terminal-v$(node -p "require('./packages/santi020k-terminal-theme/package.json').version")"
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: test "$GITHUB_REF_NAME" = "$RELEASE_TAG"
 
       - name: Verify Homebrew tap credentials
-        if: github.ref_type == 'tag'
         run: test -n "$HOMEBREW_TAP_TOKEN" || { echo 'HOMEBREW_TAP_TOKEN is required for terminal releases.' >&2; exit 1; }
 
       - name: Publish release archive
-        if: github.ref_type == 'tag'
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
         run: |
           archive=$(find packages/santi020k-terminal-theme/dist -maxdepth 1 -name '*.tar.gz' -print -quit)
           asset=$(basename "$archive")
-          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            if gh release view "$GITHUB_REF_NAME" --json assets --jq '.assets[].name' | grep -Fxq "$asset"; then
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            if gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' | grep -Fxq "$asset"; then
               mkdir -p "$RUNNER_TEMP/existing-release"
-              gh release download "$GITHUB_REF_NAME" --pattern "$asset" --dir "$RUNNER_TEMP/existing-release"
+              gh release download "$RELEASE_TAG" --pattern "$asset" --dir "$RUNNER_TEMP/existing-release"
               cmp "$archive" "$RUNNER_TEMP/existing-release/$asset" || {
                 echo "Release asset $asset already exists with different contents; refusing to replace it." >&2
                 exit 1
               }
               echo "Reusing existing immutable release asset $asset."
             else
-              gh release upload "$GITHUB_REF_NAME" "$archive"
+              gh release upload "$RELEASE_TAG" "$archive"
             fi
           else
-            gh release create "$GITHUB_REF_NAME" "$archive" --verify-tag --generate-notes
+            gh release create "$RELEASE_TAG" "$archive" --verify-tag --generate-notes
           fi
 
       - name: Validate Homebrew formula
         run: |
           formula=packages/santi020k-terminal-theme/dist/santi020k-terminal.rb
           brew style "$formula"
-          brew audit --strict --formula "$formula"
-          brew install --formula "$formula"
-          brew test santi020k-terminal
+          brew tap santi020k/tap
+          tap_formula="$(brew --repository santi020k/tap)/Formula/santi020k-terminal.rb"
+          cp "$formula" "$tap_formula"
+          brew audit --strict --formula santi020k/tap/santi020k-terminal
+          brew install --formula santi020k/tap/santi020k-terminal
+          brew test santi020k/tap/santi020k-terminal
 
       - name: Update Homebrew tap
-        if: github.ref_type == 'tag'
         run: |
           git clone "https://x-access-token:${HOMEBREW_TAP_TOKEN}@github.com/santi020k/homebrew-tap.git" "$RUNNER_TEMP/homebrew-tap"
           mkdir -p "$RUNNER_TEMP/homebrew-tap/Formula"
@@ -87,6 +97,5 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add Formula/santi020k-terminal.rb
           git diff --cached --quiet && exit 0
-          version=$(node -p "require('$GITHUB_WORKSPACE/packages/santi020k-terminal-theme/package.json').version")
-          git commit -m "chore: update santi020k-terminal to ${version}"
+          git commit -m "chore: update santi020k-terminal to ${{ steps.release.outputs.version }}"
           git push

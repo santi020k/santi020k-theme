@@ -76,14 +76,20 @@ jobs:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
 
       - name: Ensure GitHub release tag exists
-        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.published == 'true'
-        run: pnpm run release:tag
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          if git diff --quiet "$BEFORE_SHA" "$GITHUB_SHA" -- packages/santi020k-theme/package.json; then
+            echo 'VS Code package version did not change; skipping release tag.'
+            exit 0
+          fi
+          pnpm run release:tag
 
       - name: Ensure Terminal release tag exists
         if: >-
           github.ref == 'refs/heads/main' &&
-          github.event_name == 'push' &&
-          steps.changesets.outputs.published == 'true'
+          github.event_name == 'push'
         env:
           BEFORE_SHA: ${{ github.event.before }}
         run: |
