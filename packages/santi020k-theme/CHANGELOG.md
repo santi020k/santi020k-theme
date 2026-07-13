@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.1
+
+### Patch Changes
+
+- [`0865a90`](https://github.com/santi020k/santi020k-theme/commit/0865a902739a79335ea5ba5428aeebe21a5979a0) - Install Zsh in the Linux release job so the terminal CLI lifecycle validation can run before packages are published.
+
 ## 2.1.0
 
 ### Minor Changes
