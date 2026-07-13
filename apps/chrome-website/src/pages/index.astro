@@ -24,7 +24,7 @@ const structuredData = {
   },
 }
 
-const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
 ---
 
 <!doctype html>
@@ -75,7 +75,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
     <meta name="twitter:description" content="A professional Chrome browser theme with a deep violet palette. Mapped directly from the Santi020k VS Code theme." />
     <meta name="twitter:image" content="https://chrome.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Chrome Browser Theme" />
-    <Fragment set:html={structuredDataHtml} />
+    <script type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-header" aria-label="Site header">

@@ -21,7 +21,7 @@ const structuredData = {
     url: 'https://theme.santi020k.com/',
   },
 }
-const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>`
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
 ---
 
 <!doctype html>
@@ -69,7 +69,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
     <meta name="twitter:description" content="Wallpapers, banners, previews, and brand assets in one calm violet collection." />
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
-    <Fragment set:html={structuredDataHtml} />
+    <script type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
@@ -139,7 +139,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
 
     <dialog class="asset-dialog" aria-labelledby="asset-dialog-title">
       <div class="dialog-header"><div><p class="eyebrow">Full preview</p><h2 id="asset-dialog-title"></h2></div><button class="dialog-close" type="button" aria-label="Close preview">×</button></div>
-      <div class="dialog-media"><img src="" alt="" /></div>
+      <div class="dialog-media"><img alt="" /></div>
     </dialog>
 
     <footer class="site-shell site-footer"><p>Made by <a href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</a>.</p><div class="footer-links"><a href="/">Theme hub</a><a href={siteUrls.vscode}>VS Code</a><a href={siteUrls.chrome}>Chrome</a><a href={siteUrls.terminal}>Terminal</a><a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a></div></footer>
