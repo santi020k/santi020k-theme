@@ -4,6 +4,24 @@ import { getSiteUrls } from '@santi020k/theme/site'
 import { galleryAssets as assets } from '../data/gallery-assets.js'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
+const canonical = 'https://theme.santi020k.com/gallery/'
+const title = 'Gallery & Downloads — Santi020k Theme'
+const description = 'Download Santi020k Theme wallpapers, banners, VS Code previews, and brand assets in their original resolution.'
+const socialImage = 'https://theme.santi020k.com/og-image.png'
+const imageAlt = 'Santi020k Theme gallery with wallpapers, banners, editor previews, and brand assets'
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: canonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Santi020k Themes',
+    url: 'https://theme.santi020k.com/',
+  },
+}
+const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>`
 ---
 
 <!doctype html>
@@ -18,10 +36,13 @@ const siteUrls = getSiteUrls(import.meta.env.DEV)
       })()
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gallery & Downloads — Santi020k Theme</title>
-    <meta name="description" content="Download Santi020k Theme wallpapers, banners, VS Code previews, and brand assets in their original resolution." />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Santiago Molina" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="color-scheme" content="dark light" />
-    <link rel="canonical" href="https://theme.santi020k.com/gallery/" />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,10 +50,26 @@ const siteUrls = getSiteUrls(import.meta.env.DEV)
     <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Gallery & Downloads — Santi020k Theme" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Santi020k Themes" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content="Wallpapers, banners, previews, and brand assets in one calm violet collection." />
-    <meta property="og:image" content="https://theme.santi020k.com/og-image.png" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@santi020k" />
+    <meta name="twitter:creator" content="@santi020k" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="Wallpapers, banners, previews, and brand assets in one calm violet collection." />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <Fragment set:html={structuredDataHtml} />
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
