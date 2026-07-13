@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from 'node:child_process'
-import { chmod, mkdtemp, readFile, rm } from 'node:fs/promises'
+import { chmod, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { resolve } from 'node:path'
 
@@ -91,6 +91,13 @@ for (const expected of ['compinit', 'zoxide init zsh', 'fzf --zsh', 'zsh-autosug
   if (!zshSetup.includes(expected)) throw new Error(`Zsh setup missing ${expected}`)
 }
 
+const bashSetup = await readFile(resolve(root, 'bash', 'santi020k.bash'), 'utf8')
+const fishSetup = await readFile(resolve(root, 'fish', 'santi020k.fish'), 'utf8')
+
+for (const [shell, contents, expected] of [['Bash', bashSetup, ['fzf --bash', 'zoxide init bash', 'starship init bash', 'SANTI020K_THEME']], ['Fish', fishSetup, ['zoxide init fish', 'starship init fish', 'SANTI020K_THEME']]]) {
+  for (const value of expected) if (!contents.includes(value)) throw new Error(`${shell} setup missing ${value}`)
+}
+
 const installer = await readFile(resolve(root, 'zsh', 'install.zsh'), 'utf8')
 
 for (const expected of ['set -euo pipefail', 'brew install', 'git-delta', 'santi020k.zsh', 'SOURCE_LINE', 'tlsv1.2']) {
@@ -100,7 +107,7 @@ for (const expected of ['set -euo pipefail', 'brew install', 'git-delta', 'santi
 const cli = resolve(root, 'bin', 'santi020k-terminal')
 const cliContents = await readFile(cli, 'utf8')
 
-for (const expected of ['install_config', 'doctor', 'repair', 'preset_command', 'colors_command', 'status', 'preview', 'migrate', 'santi020k/tap/santi020k-terminal', 'refreshing managed configuration only']) {
+for (const expected of ['install_config', 'configure', 'config_command', 'prompt_command', 'install_windows_terminal', '--dry-run', 'Nerd Font', 'doctor', 'repair', 'preset_command', 'colors_command', 'status', 'preview', 'migrate', 'santi020k/tap/santi020k-terminal', 'refreshing managed configuration only']) {
   if (!cliContents.includes(expected)) throw new Error(`Terminal CLI missing ${expected}`)
 }
 
@@ -140,6 +147,44 @@ try {
 
   await readFile(resolve(sandbox, '.config', 'kitty', 'themes', 'santi020k-dark.conf'), 'utf8')
 
+  execFileSync(cli, ['colors', 'install', 'wezterm', 'light'], { env, encoding: 'utf8' })
+
+  await readFile(resolve(sandbox, '.config', 'wezterm', 'colors', 'Santi020k Light.lua'), 'utf8')
+
+  const dryRun = execFileSync(cli, ['colors', 'install', 'alacritty', 'dark', '--dry-run'], { env, encoding: 'utf8' })
+
+  if (!dryRun.includes('Would install')) throw new Error('Terminal CLI color dry-run did not describe the planned installation')
+
+  const windowsSettings = resolve(sandbox, 'windows-settings.json')
+
+  await writeFile(windowsSettings, '{"profiles":{"list":[]},"schemes":[]}\n')
+
+  execFileSync(cli, ['colors', 'install', 'windows-terminal', 'dark'], { env: { ...env, WINDOWS_TERMINAL_SETTINGS: windowsSettings }, encoding: 'utf8' })
+
+  const installedWindows = JSON.parse(await readFile(windowsSettings, 'utf8'))
+
+  if (!installedWindows.schemes.some(scheme => scheme.name === 'Santi020k Dark')) throw new Error('Terminal CLI did not install the Windows Terminal scheme')
+
+  execFileSync(cli, ['configure', 'all', 'minimal', 'skip', 'light'], { env, encoding: 'utf8' })
+
+  for (const rc of ['.zshrc', '.bashrc', '.config/fish/config.fish']) await readFile(resolve(sandbox, rc), 'utf8')
+
+  const exported = resolve(sandbox, 'terminal-config.json')
+
+  execFileSync(cli, ['config', 'export', exported], { env, encoding: 'utf8' })
+
+  const portableConfig = JSON.parse(await readFile(exported, 'utf8'))
+
+  if (portableConfig.shell !== 'all' || portableConfig.preset !== 'minimal') throw new Error('Terminal CLI did not export configured choices')
+
+  execFileSync(cli, ['config', 'import', exported], { env, encoding: 'utf8' })
+
+  execFileSync(cli, ['prompt', 'build', 'work', 'nodejs,python,time', 'dark'], { env, encoding: 'utf8' })
+
+  const customPrompt = parse(await readFile(resolve(sandbox, '.config', 'starship', 'work.toml'), 'utf8'))
+
+  if (customPrompt.rust.disabled !== true || customPrompt.nodejs.disabled !== false || customPrompt.docker_context.disabled !== true) throw new Error('Custom prompt module selection was not applied')
+
   const migration = execFileSync(cli, ['migrate'], { env, encoding: 'utf8' })
 
   if (!migration.includes('is current')) throw new Error('Terminal CLI migration did not detect current configuration')
@@ -149,6 +194,10 @@ try {
   const cleanedZshrc = await readFile(resolve(sandbox, '.zshrc'), 'utf8')
 
   if (cleanedZshrc.includes('santi020k-terminal/santi020k.zsh')) throw new Error('Terminal CLI uninstall left its source line in .zshrc')
+
+  for (const rc of ['.bashrc', '.config/fish/config.fish']) {
+    if ((await readFile(resolve(sandbox, rc), 'utf8')).includes('santi020k-terminal/santi020k')) throw new Error(`Terminal CLI uninstall left its source line in ${rc}`)
+  }
 
   try {
     await readFile(resolve(sandbox, '.config', 'santi020k-terminal', 'preset'), 'utf8')
@@ -161,4 +210,4 @@ try {
   await rm(sandbox, { force: true, recursive: true })
 }
 
-console.log(`Validated ${Object.keys(palettes).length} palettes across six terminal formats, ${Object.keys(palettes).length * Object.keys(promptVariants).length} parsed Starship presets, the Zsh setup, and the terminal CLI lifecycle.`)
+console.log(`Validated ${Object.keys(palettes).length} palettes across six terminal formats, ${Object.keys(palettes).length * Object.keys(promptVariants).length} parsed Starship presets, three shell integrations, and the extended terminal CLI lifecycle.`)

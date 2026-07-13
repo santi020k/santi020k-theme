@@ -1,7 +1,8 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignoreBinaries": [
-    "validate"
+    "validate",
+    "zsh"
   ],
   "ignoreDependencies": [
     "ovsx"
@@ -72,7 +73,7 @@
     },
     "packages/santi020k-terminal-theme": {
       "entry": ["package.json"],
-      "project": ["*.mjs", "scripts/**/*.mjs"]
+      "project": ["*.mjs", "scripts/**/*.mjs", "tests/**/*.mjs"]
     },
     "packages/santi020k-chrome-theme": {
       "entry": [

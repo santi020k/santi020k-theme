@@ -1,0 +1,27 @@
+---
+import TerminalPreview from '../components/TerminalPreview.astro'
+import SiteLayout from '../layouts/SiteLayout.astro'
+// cspell:ignore configurator
+const canonical = 'https://terminal.santi020k.com/configure/'
+const description = 'Choose a shell, terminal palette, prompt density, and runtime modules, then copy one setup command.'
+const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Santi020k Terminal configurator', url: canonical, description, applicationCategory: 'DeveloperApplication' }
+---
+<SiteLayout title="Configure Santi020k Terminal" {description} {canonical} {schema}>
+  <section class="shell configurator-page" data-configurator>
+    <header class="configurator-heading"><p class="eyebrow">Live configurator</p><h1>Build your terminal setup.</h1><p class="lede">Adjust the managed shell, terminal colors, prompt style, and visible runtime modules. The preview and command update together.</p></header>
+    <div class="configurator-layout">
+      <form class="configurator-controls" aria-label="Terminal configuration">
+        <fieldset><legend>Shell</legend><label><input type="radio" name="shell" value="zsh" checked /> Zsh</label><label><input type="radio" name="shell" value="bash" /> Bash</label><label><input type="radio" name="shell" value="fish" /> Fish</label><label><input type="radio" name="shell" value="all" /> All</label></fieldset>
+        <fieldset><legend>Prompt</legend><label><input type="radio" name="prompt" value="rich" checked /> Rich icons</label><label><input type="radio" name="prompt" value="portable" /> Portable labels</label><label><input type="radio" name="prompt" value="minimal" /> Minimal</label></fieldset>
+        <div class="configurator-row"><label>Terminal<select name="terminal"><option value="skip">Skip colors</option><option value="iterm2">iTerm2</option><option value="ghostty">Ghostty</option><option value="kitty">Kitty</option><option value="wezterm">WezTerm</option><option value="alacritty">Alacritty</option><option value="windows-terminal">Windows Terminal</option></select></label><label>Palette<select name="palette"><option value="dark">Dark</option><option value="light">Light</option></select></label></div>
+        <fieldset><legend>Runtime modules</legend><label><input type="checkbox" name="module" value="nodejs" checked /> Node.js</label><label><input type="checkbox" name="module" value="python" checked /> Python</label><label><input type="checkbox" name="module" value="rust" /> Rust</label><label><input type="checkbox" name="module" value="golang" /> Go</label><label><input type="checkbox" name="module" value="docker_context" checked /> Docker</label></fieldset>
+      </form>
+      <div class="configurator-result" aria-live="polite">
+        <TerminalPreview prompt id="configurator-preview" />
+        <h2>Your setup command</h2><p>Install the formula first, then run:</p><div class="command"><code data-config-command>santi020k-terminal configure zsh rich skip dark</code><button data-copy-dynamic aria-label="Copy generated setup command">Copy</button></div>
+        <div data-custom-command hidden><h3>Optional custom prompt</h3><div class="command"><code data-prompt-command></code><button data-copy-dynamic aria-label="Copy custom prompt command">Copy</button></div></div>
+        <p class="configurator-note">The CLI backs up managed files. Use <code>colors install … --dry-run</code> to inspect a color installation before writing it.</p>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

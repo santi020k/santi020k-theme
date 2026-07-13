@@ -29,7 +29,7 @@ cli = cli.replace('readonly VERSION=${SANTI020K_VERSION:-0.1.0}', `readonly VERS
 
 writeFileSync(resolve(stage, 'bin', 'santi020k-terminal'), cli, { mode: 0o755 })
 
-for (const directory of ['zsh', 'starship', 'iterm2', 'ghostty', 'kitty', 'wezterm', 'windows-terminal', 'alacritty', 'completions']) {
+for (const directory of ['zsh', 'bash', 'fish', 'starship', 'iterm2', 'ghostty', 'kitty', 'wezterm', 'windows-terminal', 'alacritty', 'completions']) {
   cpSync(resolve(root, directory), resolve(stage, 'share', 'santi020k-terminal', directory), { recursive: true })
 }
 

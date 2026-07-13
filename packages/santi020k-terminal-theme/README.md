@@ -6,7 +6,7 @@ The terminal edition of Santi020k Theme combines matching terminal colors and a 
 
 - `iterm2/`: generated dark and light iTerm2 color presets.
 - `starship/`: generated rich, portable, and minimal Starship configurations in dark and light.
-- `zsh/`: optional macOS appearance detection for switching Starship configurations.
+- `zsh/`, `bash/`, and `fish/`: managed shell integration with automatic appearance selection.
 - `zsh/install.zsh`: a one-command macOS installer for the curated Zsh setup.
 - `zsh/santi020k.zsh`: completions, history, key bindings, plugin loading, and tool initialization.
 
@@ -39,9 +39,14 @@ santi020k-terminal colors install iterm2 dark
 santi020k-terminal status
 santi020k-terminal preview dark
 santi020k-terminal doctor --fix
+santi020k-terminal configure
+santi020k-terminal config export
+santi020k-terminal prompt build work nodejs,python,rust dark
 ```
 
-`preset use` switches the rich, portable, or minimal Starship configuration while preserving automatic macOS light/dark selection. `colors path` prints the packaged file for any supported terminal. `colors install` imports iTerm2 presets and installs Ghostty, Kitty, or Alacritty theme files; for WezTerm and Windows Terminal it prints the packaged source path for manual integration. Repair asks before installing missing Homebrew dependencies; pass `--yes` after `--fix` for non-interactive use.
+`configure` guides an interactive install, or accepts `SHELL PRESET TERMINAL PALETTE` for reproducible setup. `preset use` switches the rich, portable, or minimal Starship configuration while preserving automatic macOS light/dark selection. `colors install` supports every packaged terminal, backs up files it changes, and accepts `--dry-run`. `config export` and `config import` move choices between machines. `prompt build` creates a custom runtime-module selection without changing generated presets. `doctor` checks the recommended Nerd Font and can offer its Homebrew cask during repair.
+
+The prompt shows an `ssh` segment only when `SSH_CONNECTION` is present, making remote sessions recognizable without adding noise locally. Set `SANTI020K_THEME=dark` or `light` to override automatic appearance selection in Bash or Fish.
 
 Homebrew owns the formula and its dependencies; the explicit `install` command keeps shell configuration changes reviewable.
 

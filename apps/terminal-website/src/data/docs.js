@@ -9,6 +9,7 @@ export const docsSections = [
     label: 'Components',
     items: [
       { href: '/docs/zsh/', label: 'Zsh setup' },
+      { href: '/docs/shells/', label: 'Bash and Fish' },
       { href: '/docs/starship/', label: 'Starship prompt' },
       { href: '/docs/terminal-colors/', label: 'Terminal colors' },
     ],

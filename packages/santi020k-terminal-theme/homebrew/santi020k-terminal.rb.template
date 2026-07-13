@@ -5,7 +5,7 @@
 
 # Formula for the Santi020k terminal theme and shell setup.
 class Santi020kTerminal < Formula
-  desc "Terminal colors, Starship prompt, and curated Zsh setup"
+  desc "Terminal colors, Starship prompt, and curated shell setup"
   homepage "https://terminal.santi020k.com"
   url "https://github.com/santi020k/santi020k-theme/releases/download/santi020k-terminal-v{{VERSION}}/santi020k-terminal-{{VERSION}}.tar.gz"
   sha256 "{{SHA256}}"
@@ -35,10 +35,10 @@ class Santi020kTerminal < Formula
   def caveats
     <<~EOS
       Finish setup by running:
-        santi020k-terminal install
+        santi020k-terminal configure
 
       This creates backed-up configuration under ~/.config and adds one source
-      line to ~/.zshrc. Homebrew does not modify your shell configuration itself.
+      line to your selected shell rc file. Homebrew does not modify shell configuration itself.
 
       Discover presets and terminal colors with:
         santi020k-terminal preset list

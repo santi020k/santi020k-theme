@@ -120,6 +120,12 @@ style_user = "bg:os fg:light_text"
 style_root = "bg:os fg:light_text bold"
 format = "[$user ]($style)"
 
+[env_var.SSH_CONNECTION]
+variable = "SSH_CONNECTION"
+symbol = "ssh "
+style = "bg:os fg:light_text bold"
+format = "[ $symbol]($style)"
+
 [directory]
 style = "bg:directory fg:light_text bold"
 format = "[${pad}$path${pad}]($style)"
@@ -143,6 +149,7 @@ success_symbol = "[❯](bold directory)"
 error_symbol = "[❯](bold error)"
 
 [cmd_duration]
+disabled = false
 min_time = 2000
 style = "bg:time fg:${dark ? 'light_text' : 'dark_text'}"
 format = "[ ${variant.symbols.duration}$duration ]($style)"
@@ -154,6 +161,7 @@ style = "bg:time fg:${dark ? 'light_text' : 'dark_text'}"
 format = "[${pad}$time${pad}]($style)"
 
 [docker_context]
+disabled = false
 symbol = "${variant.symbols.docker}"
 style = "bg:time fg:${dark ? 'light_text' : 'dark_text'}"
 format = "[ $symbol$context ]($style)"
