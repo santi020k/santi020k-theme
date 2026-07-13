@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
+      actions: write
       contents: write
       id-token: write
       pull-requests: write
@@ -92,6 +93,7 @@ jobs:
           github.event_name == 'push'
         env:
           BEFORE_SHA: ${{ github.event.before }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git checkout --detach "$GITHUB_SHA"
           if git diff --quiet "$BEFORE_SHA" "$GITHUB_SHA" -- packages/santi020k-terminal-theme/package.json; then
@@ -99,3 +101,5 @@ jobs:
             exit 0
           fi
           pnpm run release:terminal:tag
+          terminal_tag="santi020k-terminal-v$(node -p "require('./packages/santi020k-terminal-theme/package.json').version")"
+          gh workflow run terminal-release.yml --ref "$terminal_tag"
