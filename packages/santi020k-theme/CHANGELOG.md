@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.3
+
+### Patch Changes
+
+- [`17fb116`](https://github.com/santi020k/santi020k-theme/commit/17fb116966a18399e384ed492168450620674980) - Prevent parallel generated-theme tests from reading partially written JSON files by publishing theme artifacts atomically.
+
 ## 2.1.2
 
 ### Patch Changes

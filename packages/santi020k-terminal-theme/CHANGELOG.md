@@ -1,5 +1,11 @@
 # santi020k-terminal-theme
 
+## 1.0.2
+
+### Patch Changes
+
+- [`53ae3b7`](https://github.com/santi020k/santi020k-theme/commit/53ae3b77d0c96a6f58d590436f5bfe90987f0261) - Explicitly dispatch the Terminal release workflow after creating its tag so GitHub Actions does not suppress the follow-up run created with `GITHUB_TOKEN`.
+
 ## 1.0.1
 
 ### Patch Changes
