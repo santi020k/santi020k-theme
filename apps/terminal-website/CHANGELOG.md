@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`226883f`](https://github.com/santi020k/santi020k-theme/commit/226883f07ec185b237f52618744fbd7c253f59ec)]:
+  - santi020k-terminal-theme@1.0.1
+
 ## 1.1.0
 
 ### Minor Changes
