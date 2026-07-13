@@ -14,7 +14,7 @@
   <path d="M0 482c160-66 310-66 450 0 157 74 326 64 506-31 103-54 184-76 244-66v245H0Z" fill="#945df4" opacity="0.12"/>
   <rect x="64" y="64" width="1072" height="502" rx="26" fill="#110c1d" fill-opacity="0.78" stroke="#494158" stroke-width="2"/>
   <path d="M64 64h1072v8H64Z" fill="#945df4" opacity="0.72"/>
-  
+
   <g transform="translate(104 112) scale(0.85)">
     <rect width="80" height="80" rx="18" fill="#5a0fdb"/>
     <path d="M26 28 L40 40 L26 52" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -26,7 +26,7 @@
   <text x="104" y="318" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="850" letter-spacing="0">Santi020k Themes</text>
   <text x="108" y="374" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="550" letter-spacing="0"><tspan x="108" dy="0">A calm violet system for VS Code,</tspan><tspan x="108" dy="38">Chrome, npm packages, and more.</tspan></text>
   <text x="104" y="496" fill="#8d8896" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0">theme.santi020k.com</text>
-  
+
   <g transform="translate(722 144) scale(0.88)">
     <rect width="190" height="148" rx="18" fill="#0b0712" stroke="#494158" stroke-width="2"/>
     <rect x="26" y="34" width="92" height="12" rx="6" fill="#945df4"/>

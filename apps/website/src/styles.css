@@ -473,6 +473,10 @@ h3 {
 }
 
 .powerline-prompt {
+  --prompt-os: #602cba;
+  --prompt-dir: #752df0;
+  --prompt-git: #945df4;
+  --prompt-runtime: #89b8c8;
   display: flex;
   align-items: stretch;
   margin-bottom: 20px;
@@ -482,11 +486,24 @@ h3 {
   white-space: nowrap;
 }
 
-.powerline-prompt span { padding: 0 12px; }
-.prompt-os { background: #602cba; }
-.prompt-dir { background: #752df0; }
-.prompt-git { background: #945df4; color: #17141d; }
-.prompt-runtime { background: #89b8c8; color: #17141d; }
+.powerline-prompt > :not(:first-child) {
+  margin-left: -1px;
+}
+
+.powerline-prompt .prompt-segment { padding: 0 12px; }
+.prompt-os { background: var(--prompt-os); }
+.prompt-dir { background: var(--prompt-dir); }
+.prompt-git { background: var(--prompt-git); color: #17141d; }
+.prompt-runtime { background: var(--prompt-runtime); color: #17141d; }
+.prompt-cap { width: 9px; flex: 0 0 9px; }
+.prompt-cap.start { border-radius: 999px 0 0 999px; background: var(--prompt-os); }
+.prompt-cap.end { border-radius: 0 999px 999px 0; background: var(--prompt-runtime); }
+.prompt-join { position: relative; width: 12px; flex: 0 0 12px; background: var(--next); }
+.prompt-join::before { content: ""; position: absolute; inset: 0 auto 0 0; border-top: 17px solid transparent; border-bottom: 17px solid transparent; border-left: 12px solid var(--previous); }
+.prompt-join.os-dir { --previous: var(--prompt-os); --next: var(--prompt-dir); }
+.prompt-join.dir-git { --previous: var(--prompt-dir); --next: var(--prompt-git); }
+.prompt-join.git-runtime { --previous: var(--prompt-git); --next: var(--prompt-runtime); }
+.prompt-os svg { display: block; width: 1em; height: 1em; margin-block: 9px; }
 
 .terminal-screen code {
   display: block;
@@ -1201,12 +1218,18 @@ h3 {
     font-size: 0.58rem;
   }
 
-  .powerline-prompt span {
+  .powerline-prompt .prompt-segment {
     padding: 0 7px;
   }
 
-  .prompt-runtime {
+  .prompt-runtime,
+  .prompt-join.git-runtime,
+  .prompt-cap.end {
     display: none;
+  }
+
+  .prompt-git {
+    border-radius: 0 999px 999px 0;
   }
 
   .site-footer {

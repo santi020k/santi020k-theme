@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Terminal Ports social card">
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1030 60) rotate(130) scale(650)">
+      <stop stop-color="#7daea3" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#0d0718" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#494158" stroke-opacity="0.18"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0d0718"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M0 566c180-62 340-58 480 10 172 84 353 69 542-46 75-46 134-70 178-74v174H0Z" fill="#7daea3" opacity="0.07"/>
+
+  <g transform="translate(72 64) scale(0.675)">
+    <rect width="80" height="80" rx="18" fill="#5a0fdb"/>
+    <path d="M26 28 L40 40 L26 52" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="48" y1="52" x2="62" y2="52" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <text x="146" y="98" fill="#7daea3" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="850">SANTI020K · TERMINAL</text>
+  <rect x="146" y="116" width="86" height="4" rx="2" fill="#7daea3"/>
+  <text x="72" y="306" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="850">Terminal Ports</text>
+  <text x="76" y="358" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600"><tspan x="76" dy="0">One palette for five more terminals.</tspan></text>
+  <g transform="translate(-192 25) scale(1.2)">
+  <g transform="translate(668 164)">
+    <rect width="430" height="270" rx="18" fill="#0b0712" stroke="#494158" stroke-width="2"/>
+    <text x="30" y="52" fill="#945df4" font-family="monospace" font-size="17">Available presets</text>
+    <g font-family="monospace" font-size="16"><text x="30" y="98" fill="#dfdde3">Ghostty</text><text x="226" y="98" fill="#dfdde3">Kitty</text><text x="30" y="142" fill="#dfdde3">WezTerm</text><text x="226" y="142" fill="#dfdde3">Alacritty</text><text x="30" y="186" fill="#dfdde3">Windows Terminal</text></g>
+    <rect x="30" y="218" width="112" height="28" rx="8" fill="#752df0"/><text x="58" y="238" fill="#fff" font-family="monospace" font-size="14">dark</text>
+    <rect x="154" y="218" width="112" height="28" rx="8" fill="#f8f6fd"/><text x="181" y="238" fill="#302e36" font-family="monospace" font-size="14">light</text>
+  </g>
+</g>
+</svg>

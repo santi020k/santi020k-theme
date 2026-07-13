@@ -5,11 +5,42 @@ const {
   title,
   description,
   canonical,
+  image = 'og-image.png',
   imageAlt = 'Santi020k Terminal Theme preview',
   schema,
 } = Astro.props
 const siteUrls = getSiteUrls(import.meta.env.DEV)
-const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(schema)}</script>`
+const siteUrl = 'https://terminal.santi020k.com/'
+const socialImage = new URL(image, siteUrl).href
+const { '@context': _context, ...pageSchema } = schema
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: siteUrl,
+      name: 'Santi020k Terminal Theme',
+      description: 'Calm violet terminal colors, prompts, and shell tools for long technical sessions.',
+      inLanguage: 'en',
+      publisher: { '@id': `${siteUrl}#creator` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}#creator`,
+      name: 'Santiago Molina',
+      url: 'https://santi020k.com/',
+      sameAs: ['https://github.com/santi020k'],
+    },
+    {
+      ...pageSchema,
+      '@id': `${canonical}#page`,
+      isPartOf: { '@id': `${siteUrl}#website` },
+      inLanguage: 'en',
+    },
+  ],
+}
+const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>`
 ---
 <!doctype html>
 <html lang="en">
@@ -22,11 +53,11 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
     <meta name="description" content={description} /><meta name="author" content="Santiago Molina" /><meta name="language" content="en" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" /><meta name="color-scheme" content="dark light" />
-    <link rel="canonical" href={canonical} /><link rel="icon" href="/favicon.svg" type="image/svg+xml" /><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" /><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="canonical" href={canonical} /><link rel="alternate" hreflang="en" href={canonical} /><link rel="alternate" hreflang="x-default" href={canonical} /><link rel="icon" href="/favicon.svg" type="image/svg+xml" /><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" /><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <meta name="theme-color" content="#0d0a15" media="(prefers-color-scheme: dark)" /><meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
     <meta property="og:type" content="website" /><meta property="og:url" content={canonical} /><meta property="og:site_name" content="Santi020k Terminal Theme" /><meta property="og:locale" content="en_US" />
-    <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:image" content="https://terminal.santi020k.com/og-image.png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={imageAlt} />
-    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:site" content="@santi020k" /><meta name="twitter:creator" content="@santi020k" /><meta name="twitter:url" content={canonical} /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content="https://terminal.santi020k.com/og-image.png" /><meta name="twitter:image:alt" content={imageAlt} />
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:image" content={socialImage} /><meta property="og:image:secure_url" content={socialImage} /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:site" content="@santi020k" /><meta name="twitter:creator" content="@santi020k" /><meta name="twitter:url" content={canonical} /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={socialImage} /><meta name="twitter:image:alt" content={imageAlt} />
     <Fragment set:html={structuredDataHtml} />
   </head>
   <body>

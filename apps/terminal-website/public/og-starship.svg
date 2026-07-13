@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Terminal Theme social card">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Starship Prompt social card">
   <defs>
     <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1030 60) rotate(130) scale(650)">
       <stop stop-color="#945df4" stop-opacity="0.3"/>
@@ -21,8 +21,8 @@
 
   <text x="146" y="98" fill="#945df4" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="850">SANTI020K · TERMINAL</text>
   <rect x="146" y="116" width="86" height="4" rx="2" fill="#945df4"/>
-  <text x="72" y="306" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="850">Terminal Theme</text>
-  <text x="76" y="358" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600"><tspan x="76" dy="0">Color and prompt, in sync.</tspan></text>
+  <text x="72" y="306" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="850">Starship Prompt</text>
+  <text x="76" y="358" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600"><tspan x="76" dy="0">Powerline shape. Santi020k focus.</tspan></text>
   <g transform="translate(-192 25) scale(1.2)">
   <g transform="translate(668 164)">
     <rect width="430" height="270" rx="18" fill="#0b0712" stroke="#494158" stroke-width="2"/>

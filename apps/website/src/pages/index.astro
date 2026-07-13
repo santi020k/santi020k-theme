@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import { getSiteUrls } from '@santi020k/theme/site'
+import AppleIcon from '../../../../packages/theme/components/AppleIcon.astro'
 import wallpaperOne from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
 import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/wallpaper-2-desktop.webp'
 import wallpaperThree from '../../../../packages/theme/assets/wallpapers/wallpaper-3-desktop.webp'
@@ -213,7 +214,7 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
                 </div>
                 <div class="terminal-screen">
                   <div class="powerline-prompt">
-                    <span class="prompt-os">mac</span><span class="prompt-dir">~/Projects/theme</span><span class="prompt-git">git main</span><span class="prompt-runtime">node v22</span>
+                    <span class="prompt-cap start" aria-hidden="true"></span><span class="prompt-segment prompt-os" aria-label="macOS"><AppleIcon /></span><span class="prompt-join os-dir" aria-hidden="true"></span><span class="prompt-segment prompt-dir">~/Projects/theme</span><span class="prompt-join dir-git" aria-hidden="true"></span><span class="prompt-segment prompt-git">git main</span><span class="prompt-join git-runtime" aria-hidden="true"></span><span class="prompt-segment prompt-runtime">node v22</span><span class="prompt-cap end" aria-hidden="true"></span>
                   </div>
                   <code><span class="prompt-mark">❯</span> pnpm run focus</code>
                   <code class="terminal-result"><span>✓</span> Theme palette ready <b>dark · light</b></code>
