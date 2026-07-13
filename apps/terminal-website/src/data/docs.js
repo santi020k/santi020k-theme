@@ -2,8 +2,7 @@ export const docsSections = [
   {
     label: 'Start here',
     items: [
-      { href: '/docs/', label: 'Documentation' },
-      { href: '/docs/installation/', label: 'Installation' },
+      { href: '/docs/', label: 'Getting started' },
     ],
   },
   {

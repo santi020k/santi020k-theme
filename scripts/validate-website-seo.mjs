@@ -38,7 +38,6 @@ const sites = [
 const terminalPages = [
   { route: '', image: 'og-image.png' },
   { route: 'docs', image: 'og-image.png' },
-  { route: 'docs/installation', image: 'og-image.png' },
   { route: 'docs/zsh', image: 'og-image.png' },
   { route: 'docs/starship', image: 'og-image.png' },
   { route: 'docs/terminal-colors', image: 'og-image.png' },

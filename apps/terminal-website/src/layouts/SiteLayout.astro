@@ -63,11 +63,11 @@ const structuredDataHtml = `<script type="application/ld+json">${JSON.stringify(
   <body>
     <header class="site-header"><div class="shell header-inner">
       <a class="brand" href="/"><img src="/favicon.svg" width="36" height="36" alt="" /><span>Santi020k <b>Terminal</b></span></a>
-      <nav id="primary-navigation" aria-label="Primary navigation"><a href="/">Home</a><a href="/docs/">Documentation</a><a href="/docs/installation/">Install</a><a href={siteUrls.hub}>Theme family</a><a href="https://github.com/santi020k/santi020k-theme">GitHub</a></nav>
+      <nav id="primary-navigation" aria-label="Primary navigation"><a href="/">Home</a><a href="/docs/">Documentation</a><a href="/docs/#install">Install</a><a href={siteUrls.hub}>Theme family</a><a href="https://github.com/santi020k/santi020k-theme">GitHub</a></nav>
       <div class="header-actions"><button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation">☰</button><button class="theme-toggle" role="switch" aria-label="Toggle site color theme" aria-checked="true"><span aria-hidden="true">◐</span></button></div>
     </div></header>
     <main><slot /></main>
-    <footer class="shell"><p>Made by <a href="https://santi020k.com">Santiago Molina</a>.</p><div><a href="/docs/">Documentation</a><a href="/docs/installation/">Install</a><a href="/docs/cli/">CLI reference</a><a href={siteUrls.hub}>All themes</a></div></footer>
+    <footer class="shell"><p>Made by <a href="https://santi020k.com">Santiago Molina</a>.</p><div><a href="/docs/">Documentation</a><a href="/docs/#install">Install</a><a href="/docs/cli/">CLI reference</a><a href={siteUrls.hub}>All themes</a></div></footer>
     <script>import '../main.js'</script>
   </body>
 </html>

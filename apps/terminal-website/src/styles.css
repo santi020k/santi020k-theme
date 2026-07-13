@@ -3,6 +3,7 @@
 * { box-sizing: border-box; }
 :root { font-family: var(--santi020k-font-sans); background: var(--theme-bg); color: var(--ink); scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; overflow-x: hidden; background: radial-gradient(circle at 72% 8%, rgb(var(--glow-rgb) / .14), transparent 34rem), var(--theme-bg); }
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.external-mark{display:inline-block;text-decoration:none}
 a { color: inherit; text-decoration: none; } button { font: inherit; } .shell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--brand); outline-offset: 4px; }
 .site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--section-divider); background: color-mix(in srgb, var(--theme-bg) 88%, transparent); backdrop-filter: blur(18px); }

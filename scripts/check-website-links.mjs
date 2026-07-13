@@ -200,7 +200,10 @@ const resolveLocalCandidates = (site, value) => {
     resolve(site.root, 'public', pathname),
     ...(pathname === 'index.html'
       ? [resolve(site.root, 'src/pages/index.astro')]
-      : [resolve(site.root, 'src/pages', `${route}.astro`)])
+      : [
+          resolve(site.root, 'src/pages', `${route}.astro`),
+          resolve(site.root, 'src/pages', route, 'index.astro')
+        ])
   ]
 }
 
