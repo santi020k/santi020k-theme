@@ -50,3 +50,36 @@ for (const button of document.querySelectorAll('[data-copy]')) button.addEventLi
 
   setTimeout(() => { button.textContent = original }, 1800)
 })
+
+for (const tabList of document.querySelectorAll('[data-tabs]')) {
+  const tabs = [...tabList.querySelectorAll('[role="tab"]')]
+  const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls'))).filter(Boolean)
+
+  const selectTab = (selectedTab, focus = false) => {
+    for (const tab of tabs) {
+      const active = tab === selectedTab
+
+      tab.setAttribute('aria-selected', String(active))
+
+      tab.tabIndex = active ? 0 : -1
+    }
+
+    for (const panel of panels) panel.hidden = panel.id !== selectedTab.getAttribute('aria-controls')
+
+    if (focus) selectedTab.focus()
+  }
+
+  for (const [index, tab] of tabs.entries()) {
+    tab.addEventListener('click', () => selectTab(tab))
+
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+
+      event.preventDefault()
+
+      const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length
+
+      selectTab(tabs[nextIndex], true)
+    })
+  }
+}

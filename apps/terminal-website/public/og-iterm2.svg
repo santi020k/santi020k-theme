@@ -19,8 +19,8 @@
     <line x1="48" y1="52" x2="62" y2="52" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
   </g>
 
-  <text x="146" y="98" fill="#89b8c8" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="850">SANTI020K · TERMINAL</text>
-  <rect x="146" y="116" width="86" height="4" rx="2" fill="#89b8c8"/>
+  <text x="146" y="98" fill="#945df4" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="850">SANTI020K THEME</text>
+  <rect x="146" y="116" width="86" height="4" rx="2" fill="#945df4"/>
   <text x="72" y="306" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="850">iTerm2 Colors</text>
   <text x="76" y="358" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600"><tspan x="76" dy="0">Dark and light. Full ANSI coverage.</tspan></text>
   <g transform="translate(-192 25) scale(1.2)">

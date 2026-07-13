@@ -13,7 +13,7 @@ const cards = [
     badge: 'Theme family',
     domain: 'theme.santi020k.com',
     title: 'Theme Family',
-    subtitleLines: ['One calm violet system across every surface.'],
+    subtitleLines: ['One violet system across every surface.'],
     visual: 'hub',
   },
   {
@@ -22,7 +22,7 @@ const cards = [
     badge: 'VS Code color theme',
     domain: 'vscode.santi020k.com',
     title: 'VS Code Theme',
-    subtitleLines: ['Dark, light, and high contrast for long sessions.'],
+    subtitleLines: ['Six focused variants for long sessions.'],
     visual: 'editor',
   },
   {
@@ -31,7 +31,7 @@ const cards = [
     badge: 'Chrome browser theme',
     domain: 'chrome.santi020k.com',
     title: 'Chrome Theme',
-    subtitleLines: ['Browser chrome matched to the Santi020k palette.'],
+    subtitleLines: ['Dark and light browser chrome.'],
     visual: 'browser',
   },
   {
