@@ -2,7 +2,7 @@
 
 Static Astro site for [theme.santi020k.com](https://theme.santi020k.com), the entry point for the Santi020k Theme family.
 
-The hub links visitors to the dedicated VS Code and Chrome theme sites, gives a compact cross-surface preview, and keeps future theme surfaces visible without turning the root site into a portfolio page.
+The hub links visitors to the dedicated VS Code, Chrome, and iTerm2 theme sites, gives a compact cross-surface preview, and keeps future theme surfaces visible without turning the root site into a portfolio page.
 
 ## Stack
 

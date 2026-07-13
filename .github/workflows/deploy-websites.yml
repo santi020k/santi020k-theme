@@ -9,6 +9,8 @@ on:
       - "apps/website/**"
       - "apps/vscode-website/**"
       - "apps/chrome-website/**"
+      - "apps/terminal-website/**"
+      - "packages/santi020k-terminal-theme/**"
       - "package.json"
       - "packages/theme/**"
       - "packages/theme-core/**"
@@ -25,6 +27,7 @@ on:
           - theme
           - vscode
           - chrome
+          - terminal
         type: choice
 
 permissions:
@@ -42,6 +45,7 @@ jobs:
       theme: ${{ steps.manual.outputs.theme || steps.filter.outputs.theme }}
       vscode: ${{ steps.manual.outputs.vscode || steps.filter.outputs.vscode }}
       chrome: ${{ steps.manual.outputs.chrome || steps.filter.outputs.chrome }}
+      terminal: ${{ steps.manual.outputs.terminal || steps.filter.outputs.terminal }}
     steps:
       - name: Check out repository
         if: github.event_name == 'push'
@@ -56,6 +60,7 @@ jobs:
           echo "theme=false" >> "$GITHUB_OUTPUT"
           echo "vscode=false" >> "$GITHUB_OUTPUT"
           echo "chrome=false" >> "$GITHUB_OUTPUT"
+          echo "terminal=false" >> "$GITHUB_OUTPUT"
 
           if [ "$SITE" = "all" ] || [ "$SITE" = "theme" ]; then
             echo "theme=true" >> "$GITHUB_OUTPUT"
@@ -67,6 +72,10 @@ jobs:
 
           if [ "$SITE" = "all" ] || [ "$SITE" = "chrome" ]; then
             echo "chrome=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ "$SITE" = "all" ] || [ "$SITE" = "terminal" ]; then
+            echo "terminal=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Detect changed website paths
@@ -102,6 +111,16 @@ jobs:
               - 'pnpm-workspace.yaml'
               - 'turbo.json'
               - 'apps/chrome-website/**'
+            terminal:
+              - '.github/workflows/deploy-websites.yml'
+              - 'package.json'
+              - 'packages/theme/**'
+              - 'packages/theme-core/**'
+              - 'packages/santi020k-terminal-theme/**'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'turbo.json'
+              - 'apps/terminal-website/**'
 
   deploy-theme:
     name: Deploy theme.santi020k.com
@@ -130,11 +149,11 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_THEME_PROJECT_NAME }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_THEME_PROJECT_NAME repository variable"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_THEME_HUB repository variable"; exit 1; }
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -146,7 +165,7 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_THEME_PROJECT_NAME }}" --branch=main
+        run: pnpm exec wrangler pages deploy apps/website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}" --branch=main
 
   deploy-vscode:
     name: Deploy vscode.santi020k.com
@@ -175,11 +194,11 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_VSCODE }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME repository variable"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_VSCODE repository variable"; exit 1; }
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -191,7 +210,7 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/vscode-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_VSCODE_PROJECT_NAME }}" --branch=main
+        run: pnpm exec wrangler pages deploy apps/vscode-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_VSCODE }}" --branch=main
 
   deploy-chrome:
     name: Deploy chrome.santi020k.com
@@ -220,11 +239,11 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_CHROME_PROJECT_NAME }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_CHROME }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_CHROME_PROJECT_NAME repository variable"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_CHROME repository variable"; exit 1; }
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -236,4 +255,43 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/chrome-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_CHROME_PROJECT_NAME }}" --branch=main
+        run: pnpm exec wrangler pages deploy apps/chrome-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_CHROME }}" --branch=main
+
+  deploy-terminal:
+    name: Deploy terminal.santi020k.com
+    needs: changes
+    if: needs.changes.outputs.terminal == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - name: Validate Cloudflare deployment config
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_TERMINAL }}
+        run: |
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
+          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_TERMINAL repository variable"; exit 1; }
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build Terminal website
+        run: pnpm run site:terminal:build
+      - name: Deploy Terminal website to Cloudflare Pages
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: pnpm exec wrangler pages deploy apps/terminal-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_TERMINAL }}" --branch=main

@@ -1,0 +1,428 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+readonly COMMAND=${1:-help}
+readonly CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+readonly CONFIG_DIR="$CONFIG_HOME/santi020k-terminal"
+readonly STARSHIP_DIR="$CONFIG_HOME/starship"
+readonly ZSHRC=${ZDOTDIR:-$HOME}/.zshrc
+readonly BASHRC="$HOME/.bashrc"
+readonly FISH_CONFIG="$CONFIG_HOME/fish/config.fish"
+readonly SOURCE_LINE='source "${XDG_CONFIG_HOME:-$HOME/.config}/santi020k-terminal/santi020k.zsh"'
+readonly BASH_SOURCE_LINE='source "${XDG_CONFIG_HOME:-$HOME/.config}/santi020k-terminal/santi020k.bash"'
+readonly FISH_SOURCE_LINE='source "${XDG_CONFIG_HOME:-$HOME/.config}/santi020k-terminal/santi020k.fish"'
+readonly SCRIPT_DIR=${0:A:h}
+readonly PREFIX=${SCRIPT_DIR:h}
+readonly ASSET_DIR=${SANTI020K_ASSET_DIR:-$PREFIX/share/santi020k-terminal}
+readonly VERSION=${SANTI020K_VERSION:-0.1.0}
+readonly CONFIG_VERSION=1
+readonly PRESET_FILE="$CONFIG_DIR/preset"
+readonly CONFIG_VERSION_FILE="$CONFIG_DIR/version"
+readonly INSTALLED_VERSION_FILE="$CONFIG_DIR/installed-version"
+readonly SETTINGS_FILE="$CONFIG_DIR/settings"
+readonly PRESETS=(rich portable minimal)
+readonly PALETTES=(dark light)
+readonly TERMINALS=(iterm2 ghostty kitty wezterm alacritty windows-terminal)
+
+backup_file() {
+  local file=$1 timestamp=$2
+  if [[ -f "$file" ]]; then
+    cp "$file" "$file.backup-$timestamp"
+  fi
+}
+
+require_assets() {
+  local file
+  for file in zsh/santi020k.zsh zsh/santi020k-auto-theme.zsh bash/santi020k.bash fish/santi020k.fish \
+    starship/santi020k-dark.toml starship/santi020k-light.toml \
+    starship/santi020k-dark-portable.toml starship/santi020k-light-portable.toml \
+    starship/santi020k-dark-minimal.toml starship/santi020k-light-minimal.toml; do
+    if [[ ! -r "$ASSET_DIR/$file" ]]; then
+      print -u2 "Missing packaged asset: $ASSET_DIR/$file"
+      return 1
+    fi
+  done
+}
+
+install_config() {
+  local shell_name=${1:-zsh}
+  require_assets
+  mkdir -p "$CONFIG_DIR" "$STARSHIP_DIR"
+
+  local timestamp=$(date +%Y%m%d-%H%M%S)
+  backup_file "$CONFIG_DIR/santi020k.zsh" "$timestamp"
+  backup_file "$CONFIG_DIR/santi020k-auto-theme.zsh" "$timestamp"
+  local palette preset suffix file
+  for palette in $PALETTES; do
+    for preset in $PRESETS; do
+      suffix=${preset/rich/}
+      suffix=${suffix:+-$suffix}
+      backup_file "$STARSHIP_DIR/santi020k-$palette$suffix.toml" "$timestamp"
+    done
+  done
+
+  install -m 0644 "$ASSET_DIR/zsh/santi020k.zsh" "$CONFIG_DIR/santi020k.zsh"
+  install -m 0644 "$ASSET_DIR/zsh/santi020k-auto-theme.zsh" "$CONFIG_DIR/santi020k-auto-theme.zsh"
+  install -m 0644 "$ASSET_DIR/bash/santi020k.bash" "$CONFIG_DIR/santi020k.bash"
+  install -m 0644 "$ASSET_DIR/fish/santi020k.fish" "$CONFIG_DIR/santi020k.fish"
+  for palette in $PALETTES; do
+    for preset in $PRESETS; do
+      suffix=${preset/rich/}
+      suffix=${suffix:+-$suffix}
+      file="santi020k-$palette$suffix.toml"
+      install -m 0644 "$ASSET_DIR/starship/$file" "$STARSHIP_DIR/$file"
+    done
+  done
+
+  [[ -r "$PRESET_FILE" ]] || print -r -- rich > "$PRESET_FILE"
+  print -r -- "$CONFIG_VERSION" > "$CONFIG_VERSION_FILE"
+  print -r -- "$VERSION" > "$INSTALLED_VERSION_FILE"
+
+  case "$shell_name" in
+    zsh) add_source_line "$ZSHRC" "$SOURCE_LINE" ;;
+    bash) add_source_line "$BASHRC" "$BASH_SOURCE_LINE" ;;
+    fish) add_source_line "$FISH_CONFIG" "$FISH_SOURCE_LINE" ;;
+    all) add_source_line "$ZSHRC" "$SOURCE_LINE"; add_source_line "$BASHRC" "$BASH_SOURCE_LINE"; add_source_line "$FISH_CONFIG" "$FISH_SOURCE_LINE" ;;
+    *) print -u2 'Shell must be zsh, bash, fish, or all.'; return 2 ;;
+  esac
+
+  print "Santi020k Terminal is ready for $shell_name. Open a new shell session."
+}
+
+add_source_line() {
+  local file=$1 line=$2
+  mkdir -p "${file:h}"
+  touch "$file"
+  grep -Fqx "$line" "$file" || printf '%s\n' '' '# Santi020k Terminal' "$line" >> "$file"
+}
+
+contains() {
+  local needle=$1 item
+  shift
+  for item in "$@"; do [[ "$item" == "$needle" ]] && return 0; done
+  return 1
+}
+
+has_nerd_font() {
+  command -v fc-list >/dev/null 2>&1 && fc-list | grep -Eiq 'CaskaydiaCove Nerd Font|Nerd Font' && return 0
+  [[ -d "$HOME/Library/Fonts" ]] && find "$HOME/Library/Fonts" -iname '*NerdFont*' -print -quit 2>/dev/null | grep -q .
+}
+
+current_preset() {
+  local preset=rich
+  [[ -r "$PRESET_FILE" ]] && preset=$(<"$PRESET_FILE")
+  contains "$preset" $PRESETS || preset=rich
+  print -r -- "$preset"
+}
+
+preset_command() {
+  local action=${2:-list} preset=${3:-}
+  case "$action" in
+    list)
+      local current=$(current_preset) item
+      for item in $PRESETS; do
+        [[ "$item" == "$current" ]] && print "* $item" || print "  $item"
+      done
+      ;;
+    current) current_preset ;;
+    use)
+      contains "$preset" $PRESETS || { print -u2 "Unknown preset: ${preset:-<missing>}. Choose rich, portable, or minimal."; return 2; }
+      mkdir -p "$CONFIG_DIR"
+      print -r -- "$preset" > "$PRESET_FILE"
+      print "Using the $preset Starship preset. Open a new prompt to apply it."
+      ;;
+    *) print -u2 'Usage: santi020k-terminal preset <list|current|use PRESET>'; return 2 ;;
+  esac
+}
+
+color_asset() {
+  local terminal=$1 palette=$2
+  case "$terminal" in
+    iterm2) print -r -- "$ASSET_DIR/iterm2/Santi020k ${(C)palette}.itermcolors" ;;
+    ghostty) print -r -- "$ASSET_DIR/ghostty/santi020k-$palette" ;;
+    kitty) print -r -- "$ASSET_DIR/kitty/santi020k-$palette.conf" ;;
+    wezterm) print -r -- "$ASSET_DIR/wezterm/santi020k-$palette.lua" ;;
+    alacritty) print -r -- "$ASSET_DIR/alacritty/santi020k-$palette.toml" ;;
+    windows-terminal) print -r -- "$ASSET_DIR/windows-terminal/santi020k-$palette.json" ;;
+  esac
+}
+
+colors_command() {
+  local action=${2:-list} terminal=${3:-} palette=${4:-} dry_run=${5:-}
+  case "$action" in
+    list) printf '%s\n' $TERMINALS ;;
+    path)
+      contains "$terminal" $TERMINALS && contains "$palette" $PALETTES || {
+        print -u2 'Usage: santi020k-terminal colors path TERMINAL <dark|light>'; return 2
+      }
+      color_asset "$terminal" "$palette"
+      ;;
+    install)
+      contains "$terminal" $TERMINALS && contains "$palette" $PALETTES || {
+        print -u2 'Usage: santi020k-terminal colors install TERMINAL <dark|light>'; return 2
+      }
+      local asset=$(color_asset "$terminal" "$palette") destination
+      if [[ "$dry_run" == --dry-run ]]; then
+        print "Would install $terminal $palette colors from:"
+        print -r -- "$asset"
+        return
+      fi
+      case "$terminal" in
+        iterm2)
+          command -v open >/dev/null 2>&1 || { print -u2 'The open command is required to import an iTerm2 preset.'; return 1; }
+          open "$asset"
+          print "Opened the Santi020k $palette preset in iTerm2."
+          ;;
+        ghostty) destination="$CONFIG_HOME/ghostty/themes/santi020k-$palette" ;;
+        kitty) destination="$CONFIG_HOME/kitty/themes/santi020k-$palette.conf" ;;
+        alacritty) destination="$CONFIG_HOME/alacritty/themes/santi020k-$palette.toml" ;;
+        wezterm) destination="$CONFIG_HOME/wezterm/colors/Santi020k ${(C)palette}.lua" ;;
+        windows-terminal)
+          install_windows_terminal "$asset"
+          return
+          ;;
+      esac
+      if [[ -n ${destination:-} ]]; then
+        mkdir -p "${destination:h}"
+        backup_file "$destination" "$(date +%Y%m%d-%H%M%S)"
+        install -m 0644 "$asset" "$destination"
+        print "Installed $terminal $palette colors at $destination"
+      fi
+      ;;
+    *) print -u2 'Usage: santi020k-terminal colors <list|path|install>'; return 2 ;;
+  esac
+}
+
+install_windows_terminal() {
+  local asset=$1 settings=${WINDOWS_TERMINAL_SETTINGS:-}
+  if [[ -z "$settings" ]]; then
+    local candidate
+    for candidate in "${LOCALAPPDATA:-}/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json" "${LOCALAPPDATA:-}/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"; do
+      [[ -f "$candidate" ]] && { settings=$candidate; break; }
+    done
+  fi
+  [[ -n "$settings" && -f "$settings" ]] || { print -u2 'Windows Terminal settings.json was not found. Set WINDOWS_TERMINAL_SETTINGS to its path.'; return 1; }
+  command -v jq >/dev/null 2>&1 || { print -u2 'jq is required to update Windows Terminal safely.'; return 1; }
+  backup_file "$settings" "$(date +%Y%m%d-%H%M%S)"
+  local temporary=$(mktemp) name=$(jq -r .name "$asset")
+  jq --slurpfile scheme "$asset" --arg name "$name" '.schemes = ((.schemes // []) | map(select(.name != $name)) + [$scheme[0]])' "$settings" > "$temporary"
+  command cat "$temporary" > "$settings"
+  rm -f "$temporary"
+  print "Installed $name in $settings"
+}
+
+configure() {
+  local shell_name=${2:-} preset=${3:-} terminal=${4:-} palette=${5:-}
+  local interactive=0 answer
+  if [[ -z "$shell_name" ]]; then
+    interactive=1
+    print 'Shell [zsh/bash/fish/all] (zsh): ' -n; read -r shell_name; shell_name=${shell_name:-zsh}
+    print 'Prompt [rich/portable/minimal] (rich): ' -n; read -r preset; preset=${preset:-rich}
+    print 'Terminal [iterm2/ghostty/kitty/wezterm/alacritty/windows-terminal/skip] (skip): ' -n; read -r terminal; terminal=${terminal:-skip}
+    print 'Palette [dark/light] (dark): ' -n; read -r palette; palette=${palette:-dark}
+  fi
+  contains "$shell_name" zsh bash fish all || { print -u2 "Unknown shell: $shell_name"; return 2; }
+  contains "$preset" $PRESETS || { print -u2 "Unknown preset: $preset"; return 2; }
+  if (( interactive )); then
+    has_nerd_font && print 'Font: Nerd Font detected.' || print 'Font: Nerd Font not detected; doctor --fix can install the recommended font.'
+    print "Apply shell=$shell_name, prompt=$preset, terminal=${terminal:-skip}, palette=${palette:-dark}? [y/N] " -n
+    read -r answer
+    [[ "$answer" == [yY] ]] || { print 'Configuration cancelled without changes.'; return; }
+  fi
+  install_config "$shell_name"
+  preset_command preset use "$preset"
+  printf 'shell_name=%s\npreset=%s\nterminal=%s\npalette=%s\n' "$shell_name" "$preset" "${terminal:-skip}" "${palette:-dark}" > "$SETTINGS_FILE"
+  [[ -z "$terminal" || "$terminal" == skip ]] || colors_command colors install "$terminal" "${palette:-dark}"
+  print 'Configuration complete. Run `santi020k-terminal doctor` to verify it.'
+}
+
+config_command() {
+  local action=${2:-} file=${3:-}
+  case "$action" in
+    export)
+      file=${file:-santi020k-terminal-config.json}
+      local preset=$(current_preset) shell_name=zsh terminal=skip palette=dark
+      [[ -r "$SETTINGS_FILE" ]] && source "$SETTINGS_FILE"
+      printf '{\n  "schema": %d,\n  "preset": "%s",\n  "shell": "%s",\n  "terminal": "%s",\n  "palette": "%s"\n}\n' "$CONFIG_VERSION" "$preset" "$shell_name" "$terminal" "$palette" > "$file"
+      print "Exported configuration to $file"
+      ;;
+    import)
+      [[ -r "$file" ]] || { print -u2 'Usage: santi020k-terminal config import FILE'; return 2; }
+      command -v jq >/dev/null 2>&1 || { print -u2 'jq is required to import configuration.'; return 1; }
+      configure configure "$(jq -r '.shell // "zsh"' "$file")" "$(jq -r '.preset // "rich"' "$file")" "$(jq -r '.terminal // "skip"' "$file")" "$(jq -r '.palette // "dark"' "$file")"
+      ;;
+    *) print -u2 'Usage: santi020k-terminal config <export [FILE]|import FILE>'; return 2 ;;
+  esac
+}
+
+prompt_command() {
+  local action=${2:-} name=${3:-custom} modules=${4:-nodejs,python,docker_context,cmd_duration,time} palette=${5:-dark}
+  [[ "$action" == build ]] || { print -u2 'Usage: santi020k-terminal prompt build NAME MODULES [dark|light]'; return 2; }
+  contains "$palette" $PALETTES || return 2
+  mkdir -p "$STARSHIP_DIR"
+  local source="$ASSET_DIR/starship/santi020k-$palette.toml" destination="$STARSHIP_DIR/$name.toml" module
+  cp "$source" "$destination"
+  for module in c cpp deno golang java nodejs php python ruby rust docker_context cmd_duration time; do
+    if [[ ",$modules," != *",$module,"* ]]; then
+      sed -i.bak "/^\[$module\]/,/^$/ s/disabled = false/disabled = true/" "$destination" && rm -f "$destination.bak"
+    fi
+  done
+  print "Built custom prompt at $destination"
+  print "Preview with: STARSHIP_CONFIG='$destination' starship prompt"
+}
+
+doctor() {
+  local failed=0 command
+
+  for command in brew starship fzf zoxide eza bat rg fd jq delta; do
+    if command -v "$command" >/dev/null 2>&1; then
+      print "ok  $command"
+    else
+      print "missing  $command"
+      failed=1
+    fi
+  done
+
+  for file in "$CONFIG_DIR/santi020k.zsh" "$CONFIG_DIR/santi020k-auto-theme.zsh" \
+    "$STARSHIP_DIR/santi020k-dark.toml" "$STARSHIP_DIR/santi020k-light.toml" \
+    "$STARSHIP_DIR/santi020k-dark-portable.toml" "$STARSHIP_DIR/santi020k-light-portable.toml" \
+    "$STARSHIP_DIR/santi020k-dark-minimal.toml" "$STARSHIP_DIR/santi020k-light-minimal.toml"; do
+    if [[ -r "$file" ]]; then
+      print "ok  $file"
+    else
+      print "missing  $file"
+      failed=1
+    fi
+  done
+
+  if grep -Fqx "$SOURCE_LINE" "$ZSHRC" 2>/dev/null || grep -Fqx "$BASH_SOURCE_LINE" "$BASHRC" 2>/dev/null || grep -Fqx "$FISH_SOURCE_LINE" "$FISH_CONFIG" 2>/dev/null; then
+    print 'ok  shell integration'
+  else
+    print 'missing  shell integration'; failed=1
+  fi
+  if has_nerd_font; then
+    print 'ok  Nerd Font'
+  else
+    print 'missing  Nerd Font (rich preset icons may not render)'
+    failed=1
+  fi
+  return $failed
+}
+
+repair() {
+  local -a missing_formulae=()
+  local pair command formula answer
+  for pair in starship:starship fzf:fzf zoxide:zoxide eza:eza bat:bat rg:ripgrep fd:fd jq:jq delta:git-delta; do
+    command=${pair%%:*}
+    formula=${pair#*:}
+    command -v "$command" >/dev/null 2>&1 || missing_formulae+=("$formula")
+  done
+
+  if (( ${#missing_formulae} )); then
+    command -v brew >/dev/null 2>&1 || { print -u2 'Homebrew is required to repair missing dependencies.'; return 1; }
+    if [[ ${3:-} != --yes ]]; then
+      print "Install missing Homebrew formulae: ${missing_formulae[*]}? [y/N] " -n
+      read -r answer
+      [[ "$answer" == [yY] ]] || { print 'Repair cancelled.'; return 1; }
+    fi
+    brew install "${missing_formulae[@]}"
+  fi
+
+  if ! has_nerd_font; then
+    if [[ ${3:-} == --yes ]]; then brew install --cask font-caskaydia-cove-nerd-font
+    else print 'Font repair available: brew install --cask font-caskaydia-cove-nerd-font'; fi
+  fi
+  install_config
+  doctor
+}
+
+status() {
+  local preset=$(current_preset) installed_version=none config_version=none
+  [[ -r "$CONFIG_VERSION_FILE" ]] && config_version=$(<"$CONFIG_VERSION_FILE")
+  [[ -r "$INSTALLED_VERSION_FILE" ]] && installed_version=$(<"$INSTALLED_VERSION_FILE")
+  print "CLI version: $VERSION"
+  print "Managed configuration: $installed_version"
+  print "Configuration schema: $config_version"
+  print "Preset: $preset"
+  print "Configuration directory: $CONFIG_DIR"
+  print "Starship directory: $STARSHIP_DIR"
+}
+
+preview() {
+  local palette=${2:-dark} preset=$(current_preset) suffix='' config
+  contains "$palette" $PALETTES || { print -u2 'Usage: santi020k-terminal preview [dark|light]'; return 2; }
+  command -v starship >/dev/null 2>&1 || { print -u2 'Starship is required to render a prompt preview.'; return 1; }
+  [[ "$preset" != rich ]] && suffix="-$preset"
+  config="$STARSHIP_DIR/santi020k-$palette$suffix.toml"
+  [[ -r "$config" ]] || config="$ASSET_DIR/starship/santi020k-$palette$suffix.toml"
+  STARSHIP_CONFIG="$config" starship prompt --path "$PWD" --status 0
+}
+
+migrate() {
+  local installed=0
+  [[ -r "$CONFIG_VERSION_FILE" ]] && installed=$(<"$CONFIG_VERSION_FILE")
+  if (( installed >= CONFIG_VERSION )); then
+    print "Configuration schema $installed is current."
+  else
+    print "Migrating configuration schema $installed to $CONFIG_VERSION."
+    install_config
+  fi
+}
+
+uninstall_config() {
+  local rc line
+  for rc line in "$ZSHRC" "$SOURCE_LINE" "$BASHRC" "$BASH_SOURCE_LINE" "$FISH_CONFIG" "$FISH_SOURCE_LINE"; do
+    [[ -f "$rc" ]] || continue
+    local temporary=$(mktemp)
+    awk -v source="$line" '
+      $0 == "# Santi020k Terminal" { marker = 1; next }
+      $0 == source { marker = 0; next }
+      { if (marker) { print "# Santi020k Terminal"; marker = 0 }; print }
+    ' "$rc" > "$temporary"
+    command cat "$temporary" > "$rc"
+    rm -f "$temporary"
+  done
+
+  rm -f "$CONFIG_DIR/santi020k.zsh" "$CONFIG_DIR/santi020k-auto-theme.zsh" \
+    "$CONFIG_DIR/santi020k.bash" "$CONFIG_DIR/santi020k.fish" "$PRESET_FILE" "$SETTINGS_FILE" "$CONFIG_VERSION_FILE" "$INSTALLED_VERSION_FILE"
+  rm -f "$STARSHIP_DIR/santi020k-dark.toml" "$STARSHIP_DIR/santi020k-light.toml" \
+    "$STARSHIP_DIR/santi020k-dark-portable.toml" "$STARSHIP_DIR/santi020k-light-portable.toml" \
+    "$STARSHIP_DIR/santi020k-dark-minimal.toml" "$STARSHIP_DIR/santi020k-light-minimal.toml"
+  rmdir "$CONFIG_DIR" 2>/dev/null || true
+  print 'Removed Santi020k-managed configuration. Homebrew packages and backup files were kept.'
+}
+
+case "$COMMAND" in
+  install) install_config "${2:-zsh}" ;;
+  configure) configure "$@" ;;
+  config) config_command "$@" ;;
+  prompt) prompt_command "$@" ;;
+  update)
+    if command -v brew >/dev/null 2>&1 && brew list --formula santi020k-terminal >/dev/null 2>&1; then
+      brew upgrade santi020k/tap/santi020k-terminal
+    else
+      print 'Homebrew formula not detected; refreshing managed configuration only.'
+    fi
+    install_config
+    ;;
+  doctor)
+    if [[ ${2:-} == --fix ]]; then repair "$@"
+    else doctor
+    fi
+    ;;
+  preset) preset_command "$@" ;;
+  colors) colors_command "$@" ;;
+  status) status ;;
+  preview) preview "$@" ;;
+  migrate) migrate ;;
+  uninstall) uninstall_config ;;
+  version|--version|-v) print "santi020k-terminal $VERSION" ;;
+  help|--help|-h)
+    print 'Usage: santi020k-terminal <configure|install [zsh|bash|fish|all]|update|doctor|preset|prompt|colors|config|status|preview|migrate|uninstall|version>'
+    ;;
+  *)
+    print -u2 "Unknown command: $COMMAND"
+    print -u2 'Usage: santi020k-terminal <configure|install|update|doctor|preset|prompt|colors|config|status|preview|migrate|uninstall|version>'
+    exit 2
+    ;;
+esac

@@ -1,0 +1,9 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro'
+const headings = [{ id: 'install', label: 'Install' }, { id: 'appearance', label: 'Appearance' }, { id: 'remote', label: 'Remote sessions' }]
+---
+<DocsLayout title="Bash and Fish" description="Use the same Santi020k palette and Starship prompt with managed Bash or Fish integration." path="/docs/shells/" {headings}>
+  <section id="install"><h2>Choose your shell</h2><p>Install one integration or all three. Existing rc files are preserved and receive one managed source line.</p><div class="docs-command-list"><div><dt><code>santi020k-terminal install bash</code></dt><dd>Configure <code>~/.bashrc</code> with history, fzf, zoxide, and Starship.</dd></div><div><dt><code>santi020k-terminal install fish</code></dt><dd>Configure <code>~/.config/fish/config.fish</code> with zoxide and Starship.</dd></div><div><dt><code>santi020k-terminal install all</code></dt><dd>Install Zsh, Bash, and Fish integrations together.</dd></div></div></section>
+  <section id="appearance"><h2>Follow system appearance</h2><p>On macOS, every supported shell follows system light and dark appearance. In Bash and Fish, set <code>SANTI020K_THEME=dark</code> or <code>light</code> when you want an explicit palette.</p></section>
+  <section id="remote"><h2>Recognize SSH sessions</h2><p>Generated prompts show a compact SSH segment only when <code>SSH_CONNECTION</code> exists. Local prompts stay unchanged.</p></section>
+</DocsLayout>

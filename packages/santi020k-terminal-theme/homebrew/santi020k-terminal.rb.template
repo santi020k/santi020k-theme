@@ -1,0 +1,58 @@
+# typed: strict
+# frozen_string_literal: true
+
+# Formula for the Santi020k terminal theme and shell setup.
+class Santi020kTerminal < Formula
+  desc "Terminal colors, Starship prompt, and curated shell setup"
+  homepage "https://terminal.santi020k.com"
+  url "https://github.com/santi020k/santi020k-theme/releases/download/santi020k-terminal-v{{VERSION}}/santi020k-terminal-{{VERSION}}.tar.gz"
+  sha256 "{{SHA256}}"
+  license "MIT"
+
+  depends_on "bat"
+  depends_on "eza"
+  depends_on "fd"
+  depends_on "fzf"
+  depends_on "git-delta"
+  depends_on "jq"
+  depends_on "ripgrep"
+  depends_on "starship"
+  depends_on "zoxide"
+  depends_on "zsh-autosuggestions"
+  depends_on "zsh-completions"
+  depends_on "zsh-syntax-highlighting"
+
+  def install
+    bin.install "bin/santi020k-terminal"
+    bash_completion.install "share/santi020k-terminal/completions/santi020k-terminal.bash"
+    fish_completion.install "share/santi020k-terminal/completions/santi020k-terminal.fish"
+    zsh_completion.install "share/santi020k-terminal/completions/_santi020k-terminal"
+    pkgshare.install Dir["share/santi020k-terminal/*"]
+  end
+
+  def caveats
+    <<~EOS
+      Finish setup by running:
+        santi020k-terminal configure
+
+      This creates backed-up configuration under ~/.config and adds one source
+      line to your selected shell rc file. Homebrew does not modify shell configuration itself.
+
+      Discover presets and terminal colors with:
+        santi020k-terminal preset list
+        santi020k-terminal colors list
+    EOS
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/santi020k-terminal version")
+    assert_match "Usage:", shell_output("#{bin}/santi020k-terminal help")
+
+    ENV["HOME"] = testpath
+    ENV["XDG_CONFIG_HOME"] = testpath/".config"
+    ENV["ZDOTDIR"] = testpath
+    system bin/"santi020k-terminal", "install"
+    assert_path_exists testpath/".config/santi020k-terminal/santi020k.zsh"
+    assert_match "santi020k-terminal/santi020k.zsh", (testpath/".zshrc").read
+  end
+end

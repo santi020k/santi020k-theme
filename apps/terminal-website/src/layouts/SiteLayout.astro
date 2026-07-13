@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets'
+import { getSiteUrls } from '@santi020k/theme/site'
+
+const {
+  title,
+  description,
+  canonical,
+  image = 'og-image.png',
+  imageAlt = 'Santi020k Terminal Theme preview',
+  schema,
+} = Astro.props
+const siteUrls = getSiteUrls(import.meta.env.DEV)
+const siteUrl = 'https://terminal.santi020k.com/'
+const socialImage = new URL(image, siteUrl).href
+const { '@context': _context, ...pageSchema } = schema
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: siteUrl,
+      name: 'Santi020k Terminal Theme',
+      description: 'Calm violet terminal colors, prompts, and shell tools for long technical sessions.',
+      inLanguage: 'en',
+      publisher: { '@id': `${siteUrl}#creator` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}#creator`,
+      name: 'Santiago Molina',
+      url: 'https://santi020k.com/',
+      sameAs: ['https://github.com/santi020k'],
+    },
+    {
+      ...pageSchema,
+      '@id': `${canonical}#page`,
+      isPartOf: { '@id': `${siteUrl}#website` },
+      inLanguage: 'en',
+    },
+  ],
+}
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script is:inline>(function(){var s=localStorage.getItem('theme');var p=s==='light'||s==='dark'?s:window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=p})()</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content={description} /><meta name="author" content="Santiago Molina" /><meta name="language" content="en" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" /><meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href={canonical} /><link rel="alternate" hreflang="en" href={canonical} /><link rel="alternate" hreflang="x-default" href={canonical} /><link rel="icon" href="/favicon.svg" type="image/svg+xml" /><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" /><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <meta name="theme-color" content="#0d0a15" media="(prefers-color-scheme: dark)" /><meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" /><meta property="og:url" content={canonical} /><meta property="og:site_name" content="Santi020k Terminal Theme" /><meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:image" content={socialImage} /><meta property="og:image:secure_url" content={socialImage} /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:site" content="@santi020k" /><meta name="twitter:creator" content="@santi020k" /><meta name="twitter:url" content={canonical} /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={socialImage} /><meta name="twitter:image:alt" content={imageAlt} />
+    <script type="application/ld+json" set:html={structuredDataJson}></script>
+  </head>
+  <body>
+    <header class="site-header"><div class="shell header-inner">
+      <a class="brand" href="/"><Image src="/favicon.svg" width="36" height="36" alt="" inferSize /><span>Santi020k <b>Terminal</b></span></a>
+      <nav id="primary-navigation" aria-label="Primary navigation"><a href="/">Home</a><a href="/configure/">Configure</a><a href="/docs/">Documentation</a><a href="/docs/#install">Install</a><a href={siteUrls.hub}>Theme family</a><a href="https://github.com/santi020k/santi020k-theme">GitHub</a></nav>
+      <div class="header-actions"><button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation">☰</button><button class="theme-toggle" role="switch" aria-label="Toggle site color theme" aria-checked="true"><span aria-hidden="true">◐</span></button></div>
+    </div></header>
+    <main><slot /></main>
+    <footer class="shell"><p>Made by <a href="https://santi020k.com">Santiago Molina</a>.</p><div><a href="/configure/">Configure</a><a href="/docs/">Documentation</a><a href="/docs/#install">Install</a><a href="/docs/cli/">CLI reference</a><a href={siteUrls.hub}>All themes</a></div></footer>
+    <script>import '../main.js'</script>
+  </body>
+</html>
