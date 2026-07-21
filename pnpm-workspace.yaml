@@ -16,7 +16,7 @@ catalog:
   "@santi020k/eslint-config-basic": ^2.1.1
   "@types/node": ^26.1.1
   "@vscode/vsce": ^3.9.2
-  astro: ^7.0.7
+  astro: ^7.1.0
   archiver: ^8.0.0
   commitizen: ^4.3.2
   cspell: ^10.0.1
