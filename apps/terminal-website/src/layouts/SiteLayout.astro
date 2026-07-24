@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets'
+import { Button, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
 
 const {
@@ -63,12 +64,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   </head>
   <body>
     <header class="site-header"><div class="shell header-inner">
-      <a class="brand" href="/"><Image src="/favicon.svg" width="36" height="36" alt="" inferSize /><span>Santi020k <b>Terminal</b></span></a>
-      <nav id="primary-navigation" aria-label="Primary navigation"><a href="/">Home</a><a href="/configure/">Configure</a><a href="/docs/">Documentation</a><a href="/docs/#install">Install</a><a href={siteUrls.hub}>Theme family</a><a href="https://github.com/santi020k/santi020k-theme">GitHub</a></nav>
-      <div class="header-actions"><button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation">☰</button><button class="theme-toggle" role="switch" aria-label="Toggle site color theme" aria-checked="true"><span aria-hidden="true">◐</span></button></div>
+      <Link className="brand" href="/"><Image src="/favicon.svg" width="36" height="36" alt="" inferSize /><span>Santi020k <b>Terminal</b></span></Link>
+      <nav id="primary-navigation" aria-label="Primary navigation"><Link href="/">Home</Link><Link href="/configure/">Configure</Link><Link href="/docs/">Documentation</Link><Link href="/docs/#install">Install</Link><Link href={siteUrls.hub}>Theme family</Link><Link href="https://github.com/santi020k/santi020k-theme">GitHub</Link></nav>
+      <div class="header-actions"><Button className="nav-toggle" variant="ghost" size="icon" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation"><Icon name="menu" /></Button><ThemeToggle className="theme-toggle" role="switch" aria-label="Toggle site color theme" aria-checked="true" /></div>
     </div></header>
     <main><slot /></main>
-    <footer class="shell"><p>Made by <a href="https://santi020k.com">Santiago Molina</a>.</p><div><a href="/configure/">Configure</a><a href="/docs/">Documentation</a><a href="/docs/#install">Install</a><a href="/docs/cli/">CLI reference</a><a href={siteUrls.hub}>All themes</a></div></footer>
+    <footer class="shell"><p>Made by <Link href="https://santi020k.com">Santiago Molina</Link>.</p><div><Link href="/configure/">Configure</Link><Link href="/docs/">Documentation</Link><Link href="/docs/#install">Install</Link><Link href="/docs/cli/">CLI reference</Link><Link href={siteUrls.hub}>All themes</Link></div></footer>
+    <UIPrimitives />
     <script>import '../main.js'</script>
   </body>
 </html>

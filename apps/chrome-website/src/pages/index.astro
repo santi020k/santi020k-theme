@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets'
+import { Button, Card, Link, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
@@ -80,27 +81,27 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <body>
     <header class="site-header" aria-label="Site header">
       <div class="site-shell header-inner">
-        <a class="brand" href="#top" aria-label="Santi020k Theme home">
+        <Link class="brand" href="#top" aria-label="Santi020k Theme home">
           <Image src="/icons/icon.svg" alt="Santi020k Theme Logo" width="36" height="36" inferSize />
           <span>Santi020k Theme</span>
-        </a>
+        </Link>
         <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
-          <a href="#preview">Preview</a>
-          <a href="#palette">Palette</a>
-          <a href="#why">Why</a>
-          <a href="#install">Install</a>
+          <Link href="#preview">Preview</Link>
+          <Link href="#palette">Palette</Link>
+          <Link href="#why">Why</Link>
+          <Link href="#install">Install</Link>
           <span class="separator" aria-hidden="true"></span>
-          <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
-          <a href={siteUrls.vscode}>VS Code theme</a>
-          <a href={siteUrls.hub}>Theme hub</a>
+          <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
+          <Link href={siteUrls.vscode}>VS Code theme</Link>
+          <Link href={siteUrls.hub}>Theme hub</Link>
         </nav>
         <div class="header-actions">
-          <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+          <Button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
             <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <path d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
-          </button>
-          <button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
+          </Button>
+          <Button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
             <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <circle cx="12" cy="12" r="4"/>
               <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
@@ -108,7 +109,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
             </svg>
-          </button>
+          </Button>
         </div>
       </div>
     </header>
@@ -125,23 +126,23 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               Every surface — tab strip, omnibox, New Tab page, incognito — maps directly to a VS Code token from the Santi020k dark palette. Deep violet, muted lavender, no neon.
             </p>
             <div class="actions" aria-label="Theme actions">
-              <a class="button button-primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" target="_blank" rel="noopener noreferrer">
+              <Link class="button button-primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" target="_blank" rel="noopener noreferrer">
                 Dark theme
-              </a>
-              <a class="button button-secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
+              </Link>
+              <Link class="button button-secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
                 Light theme
-              </a>
-              <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">
+              </Link>
+              <Link class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">
                 GitHub
-              </a>
+              </Link>
             </div>
             <div class="install-action">
-              <button class="button-copy-install" type="button" aria-label="Copy load unpacked path hint">
+              <Button class="button-copy-install" type="button" aria-label="Copy load unpacked path hint">
                 <span class="command">chrome://extensions</span>
                 <span class="copy-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </span>
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -154,9 +155,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <h2>Every surface, matched.</h2>
           <p class="section-lede">The same token-level precision as the VS Code theme — no approximations, no guesswork.</p>
           <div class="preview-controls" aria-label="Browser preview mode">
-            <button class="preview-control is-active" type="button" data-preview-theme="dark" aria-pressed="true">Dark</button>
-            <button class="preview-control" type="button" data-preview-theme="light" aria-pressed="false">Light</button>
-            <button class="preview-control" type="button" data-preview-theme="incognito" aria-pressed="false">Incognito</button>
+            <Button class="preview-control is-active" type="button" data-preview-theme="dark" aria-pressed="true">Dark</Button>
+            <Button class="preview-control" type="button" data-preview-theme="light" aria-pressed="false">Light</Button>
+            <Button class="preview-control" type="button" data-preview-theme="incognito" aria-pressed="false">Incognito</Button>
           </div>
         </div>
 
@@ -179,7 +180,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 <span class="bm-tab-label">Docs</span>
                 <span class="bm-tab-close" aria-hidden="true">×</span>
               </div>
-              <button class="bm-tab-new" aria-label="New tab" aria-hidden="true">+</button>
+              <Button class="bm-tab-new" aria-label="New tab" aria-hidden="true">+</Button>
             </div>
             <div class="bm-toolbar">
               <div class="bm-nav-btns" aria-hidden="true">
@@ -255,34 +256,34 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <p class="section-lede">The Chrome theme is not a port — it is the same palette, mapped with the same token discipline as the VS Code extension.</p>
         </div>
         <div class="why-grid">
-          <article class="why-card">
+          <Card as="article" class="why-card">
             <div class="why-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
             <h3>Token-mapped</h3>
             <p>Every Chrome color key traces back to a named VS Code token. No hand-tuned guesses — if the VS Code theme changes, the sync script updates the manifest.</p>
-          </article>
-          <article class="why-card">
+          </Card>
+          <Card as="article" class="why-card">
             <div class="why-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <h3>No permissions</h3>
             <p>Themes ship as declarative JSON — no content scripts, no background workers, no host permissions. Zero attack surface. The extension can be audited in under a minute.</p>
-          </article>
-          <article class="why-card">
+          </Card>
+          <Card as="article" class="why-card">
             <div class="why-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
             </div>
             <h3>Privacy first</h3>
             <p>Incognito windows get a dedicated, slightly deeper frame variant rather than the same color as normal mode. This dark privacy signature is maintained even when using the light theme for visual consistency.</p>
-          </article>
-          <article class="why-card">
+          </Card>
+          <Card as="article" class="why-card">
             <div class="why-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
             <h3>Open source</h3>
             <p>Every color decision is documented in <code>manifest.json</code>. Fork it, adjust a token, reload unpacked — no build step needed.</p>
-          </article>
+          </Card>
         </div>
       </section>
 
@@ -300,7 +301,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <span style="--swatch: #945df4">Links</span>
           <span style="--swatch: #b48df7">Section links</span>
           <span style="--swatch: #dfdde3">Primary text</span>
-          <span style="--swatch: #8d8896; --swatch-text: var(--ink)">Muted text</span>
+          <span style="--swatch: #8d8896; --swatch-text: var(--site-ink)">Muted text</span>
         </div>
       </section>
 
@@ -311,29 +312,29 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <h2>Two ways to load it.</h2>
         </div>
         <div class="install-grid">
-          <article class="install-card">
+          <Card as="article" class="install-card">
             <div class="install-step-badge">01</div>
             <h3>Load unpacked (instant)</h3>
             <ol class="install-steps">
-              <li>Clone or download the <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub repo</a></li>
+              <li>Clone or download the <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub repo</Link></li>
               <li>Open <code>chrome://extensions</code> in Chrome</li>
               <li>Enable <strong>Developer mode</strong></li>
               <li>Click <strong>Load unpacked</strong> → select <code>packages/santi020k-chrome-theme</code></li>
             </ol>
-          </article>
-          <article class="install-card">
+          </Card>
+          <Card as="article" class="install-card">
             <div class="install-step-badge">02</div>
             <h3>Chrome Web Store</h3>
             <p class="install-card-body">One-click install, stays updated automatically. Choose the variant that matches your browser chrome.</p>
             <div class="install-store-actions">
-              <a class="button button-primary install-store-btn" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" target="_blank" rel="noopener noreferrer">
+              <Link class="button button-primary install-store-btn" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" target="_blank" rel="noopener noreferrer">
                 Dark theme
-              </a>
-              <a class="button button-secondary install-store-btn" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
+              </Link>
+              <Link class="button button-secondary install-store-btn" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
                 Light theme
-              </a>
+              </Link>
             </div>
-          </article>
+          </Card>
         </div>
       </section>
     </main>
@@ -341,21 +342,22 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <footer class="site-shell site-footer">
       <span>Built by Santiago Molina.</span>
       <div class="footer-links">
-        <a href="https://santi020k.com" rel="noopener noreferrer">santi020k.com</a>
-        <a href={siteUrls.vscode}>VS Code theme</a>
-        <a href={siteUrls.hub}>Theme hub</a>
-        <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer" aria-label="GitHub repository" class="github-link">
+        <Link href="https://santi020k.com" rel="noopener noreferrer">santi020k.com</Link>
+        <Link href={siteUrls.vscode}>VS Code theme</Link>
+        <Link href={siteUrls.hub}>Theme hub</Link>
+        <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer" aria-label="GitHub repository" class="github-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
             <path d="M9 18c-4.51 2-5-2-7-2"/>
           </svg>
           <span>GitHub</span>
-        </a>
+        </Link>
       </div>
     </footer>
 
     <script>
       import '../main.js'
     </script>
+    <UIPrimitives />
   </body>
 </html>

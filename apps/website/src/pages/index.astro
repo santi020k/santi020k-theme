@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets'
+import { Button, Card, Link, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
 import AppleIcon from '../../../../packages/theme/components/AppleIcon.astro'
 import wallpaperOne from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
@@ -102,29 +103,29 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
-      <a class="brand" href="#top" aria-label="Santi020k Themes home">
+      <Link class="brand" href="#top" aria-label="Santi020k Themes home">
         <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
           <rect width="80" height="80" rx="18" fill="currentColor" />
-          <path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-          <line x1="48" y1="52" x2="62" y2="52" stroke="var(--brand-mark-ink)" stroke-width="8" stroke-linecap="round" />
+          <path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+          <line x1="48" y1="52" x2="62" y2="52" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" />
         </svg>
         <span>Santi020k Themes</span>
-      </a>
+      </Link>
 
       <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
-        <a href="#themes">Themes</a>
-        <a href="#packages">Packages</a>
-        <a href="/gallery/">Gallery</a>
-        <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
+        <Link href="#themes">Themes</Link>
+        <Link href="#packages">Packages</Link>
+        <Link href="/gallery/">Gallery</Link>
+        <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
       </nav>
 
       <div class="header-actions">
-        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+        <Button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <path d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
-        </button>
-        <button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
+        </Button>
+        <Button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
           <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="4"/>
             <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
@@ -132,7 +133,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
-        </button>
+        </Button>
       </div>
     </header>
 
@@ -145,10 +146,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             A shared violet system for your editor, your browser, and the next surfaces that should feel like they belong together.
           </p>
           <div class="actions" aria-label="Primary theme links">
-            <a class="button button-primary" href={siteUrls.vscode}>Open VS Code</a>
-            <a class="button button-secondary" href={siteUrls.chrome}>Open Chrome</a>
-            <a class="button button-secondary" href={siteUrls.terminal}>Open Terminal</a>
-            <a class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</a>
+            <Link class="button button-primary" href={siteUrls.vscode}>Open VS Code</Link>
+            <Link class="button button-secondary" href={siteUrls.chrome}>Open Chrome</Link>
+            <Link class="button button-secondary" href={siteUrls.terminal}>Open Terminal</Link>
+            <Link class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</Link>
           </div>
         </div>
 
@@ -169,10 +170,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         </div>
 
         <div class="theme-grid">
-          <article class="theme-card theme-card-large">
-            <a class="theme-card-media" href={siteUrls.vscode} aria-label="Open VS Code theme site">
+          <Card as="article" class="theme-card theme-card-large">
+            <Link class="theme-card-media" href={siteUrls.vscode} aria-label="Open VS Code theme site">
               <Image src="/vscode-theme-art.png" width="1672" height="941" alt="Abstract Santi020k VS Code theme preview" loading="lazy" decoding="async" inferSize />
-            </a>
+            </Link>
             <div class="theme-card-body">
               <div class="card-kicker">
                 <span class="status-dot live"></span>
@@ -181,16 +182,16 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <h3>VS Code</h3>
               <p>Dark, light, high contrast, bold, and italic variants for VS Code-compatible editors.</p>
               <div class="card-actions">
-                <a class="button button-primary" href={siteUrls.vscode}>Open site</a>
-                <a class="button button-secondary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</a>
+                <Link class="button button-primary" href={siteUrls.vscode}>Open site</Link>
+                <Link class="button button-secondary" href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme" rel="noopener noreferrer">Marketplace</Link>
               </div>
             </div>
-          </article>
+          </Card>
 
-          <article class="theme-card">
-            <a class="theme-card-media" href={siteUrls.chrome} aria-label="Open Chrome theme site">
+          <Card as="article" class="theme-card">
+            <Link class="theme-card-media" href={siteUrls.chrome} aria-label="Open Chrome theme site">
               <Image src="/chrome-theme-art.png" width="1586" height="992" alt="Abstract Santi020k Chrome theme preview" loading="lazy" decoding="async" inferSize />
-            </a>
+            </Link>
             <div class="theme-card-body">
               <div class="card-kicker">
                 <span class="status-dot live"></span>
@@ -199,13 +200,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <h3>Chrome</h3>
               <p>Matching dark and light Chrome browser themes with the same violet system.</p>
               <div class="card-actions">
-                <a class="button button-primary" href={siteUrls.chrome}>Open site</a>
-                <a class="button button-secondary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" rel="noopener noreferrer">Web Store</a>
+                <Link class="button button-primary" href={siteUrls.chrome}>Open site</Link>
+                <Link class="button button-secondary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" rel="noopener noreferrer">Web Store</Link>
               </div>
             </div>
-          </article>
-          <article class="theme-card terminal-theme-card">
-            <a class="theme-card-media terminal-card" href={siteUrls.terminal} aria-label="Open Terminal theme site">
+          </Card>
+          <Card as="article" class="theme-card terminal-theme-card">
+            <Link class="theme-card-media terminal-card" href={siteUrls.terminal} aria-label="Open Terminal theme site">
               <div class="terminal-window" aria-hidden="true">
                 <div class="terminal-title-bar">
                   <span class="terminal-dots"><i></i><i></i><i></i></span>
@@ -221,14 +222,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                   <code><span class="prompt-mark">❯</span> <i class="terminal-cursor"></i></code>
                 </div>
               </div>
-            </a>
+            </Link>
             <div class="theme-card-body">
               <div class="card-kicker"><span class="status-dot live"></span>Live</div>
               <h3>Terminal</h3>
               <p>Matching iTerm2 colors and a Powerline-style Starship prompt in one terminal theme.</p>
-              <div class="card-actions"><a class="button button-primary" href={siteUrls.terminal}>Open site</a><a class="button button-secondary" href={`${siteUrls.terminal}starship/`}>Starship</a></div>
+              <div class="card-actions"><Link class="button button-primary" href={siteUrls.terminal}>Open site</Link><Link class="button button-secondary" href={`${siteUrls.terminal}starship/`}>Starship</Link></div>
             </div>
-          </article>
+          </Card>
         </div>
       </section>
 
@@ -238,7 +239,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <h2>Use the same tokens in your own surface.</h2>
         </div>
 
-        <article class="package-panel">
+        <Card as="article" class="package-panel">
           <div class="package-copy">
             <div class="card-kicker">
               <span class="status-dot live"></span>
@@ -247,7 +248,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <h3>@santi020k/theme</h3>
             <p>Design tokens, CSS custom properties, Tailwind mappings, and shared brand assets for Santi020k websites, apps, and theme-family surfaces.</p>
             <div class="card-actions">
-              <a class="button button-primary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">View source</a>
+              <Link class="button button-primary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">View source</Link>
             </div>
           </div>
 
@@ -256,7 +257,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <code>@import '@santi020k/theme/tokens.css';</code>
             <code>import &#123; config, projects &#125; from '@santi020k/theme'</code>
           </div>
-        </article>
+        </Card>
       </section>
 
       <section id="assets" class="site-shell section assets-section">
@@ -268,28 +269,29 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <h2>Bring the palette to your desktop.</h2>
         </div>
         <div class="wallpaper-grid">
-          {[wallpaperOne, wallpaperTwo, wallpaperThree].map((wallpaper, index) => <article class="wallpaper-card"><Image src={wallpaper} alt={`Santi020k violet wallpaper ${index + 1}`} loading="lazy" /><div><h3>Wallpaper {index + 1}</h3><a class="button button-primary" href={wallpaper.src} download={`santi020k-wallpaper-${index + 1}.webp`}>Download desktop</a></div></article>)}
+          {[wallpaperOne, wallpaperTwo, wallpaperThree].map((wallpaper, index) => <Card as="article" class="wallpaper-card"><Image src={wallpaper} alt={`Santi020k violet wallpaper ${index + 1}`} loading="lazy" /><div><h3>Wallpaper {index + 1}</h3><Link class="button button-primary" href={wallpaper.src} download={`santi020k-wallpaper-${index + 1}.webp`}>Download desktop</Link></div></Card>)}
         </div>
         <div class="section-cta">
-          <a class="button button-secondary" href="/gallery/">Browse all wallpapers, banners, previews, and logos</a>
+          <Link class="button button-secondary" href="/gallery/">Browse all wallpapers, banners, previews, and logos</Link>
         </div>
       </section>
     </main>
 
     <footer class="site-shell site-footer">
-      <p>Made by <a href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</a>.</p>
+      <p>Made by <Link href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</Link>.</p>
       <div class="footer-links">
-        <a href={siteUrls.vscode}>VS Code</a>
-        <a href={siteUrls.chrome}>Chrome</a>
-        <a href={siteUrls.terminal}>Terminal</a>
-        <a href="/gallery/">Gallery</a>
-        <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</a>
-        <a href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</a>
+        <Link href={siteUrls.vscode}>VS Code</Link>
+        <Link href={siteUrls.chrome}>Chrome</Link>
+        <Link href={siteUrls.terminal}>Terminal</Link>
+        <Link href="/gallery/">Gallery</Link>
+        <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</Link>
+        <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
       </div>
     </footer>
 
     <script>
       import '../main.js'
     </script>
+    <UIPrimitives />
   </body>
 </html>

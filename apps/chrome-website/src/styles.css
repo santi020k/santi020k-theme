@@ -1,3 +1,4 @@
+@import '@santi020k/lumen-astro/styles.css';
 @import '@santi020k/theme/site.css';
 
 :root,
@@ -17,7 +18,7 @@
 :root {
   font-family: var(--santi020k-font-sans);
   background: var(--theme-bg);
-  color: var(--ink);
+  color: var(--site-ink);
 }
 
 html { background: var(--theme-bg); scroll-behavior: smooth; }
@@ -37,15 +38,15 @@ a:focus-visible,
 .button:focus-visible,
 .nav-toggle:focus-visible,
 .theme-toggle:focus-visible {
-  outline: 3px solid var(--brand);
+  outline: 3px solid var(--site-brand);
   outline-offset: 4px;
 }
 
 code {
   font-family: "Fira Code", monospace;
   font-size: 0.88em;
-  color: var(--accent);
-  background: var(--surface-muted);
+  color: var(--site-accent);
+  background: var(--site-surface-muted);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -97,7 +98,7 @@ code {
   align-items: center;
   justify-content: flex-end;
   gap: clamp(12px, 2.5vw, 32px);
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   font-size: 0.92rem;
   font-weight: 700;
   white-space: nowrap;
@@ -113,12 +114,12 @@ code {
 .nav-links .separator {
   width: 1px;
   height: 14px;
-  background: var(--line);
+  background: var(--site-line);
   opacity: 0.5;
 }
 
 .nav-links a:hover,
-.site-footer a:hover { color: var(--brand); }
+.site-footer a:hover { color: var(--site-brand); }
 
 .nav-toggle {
   display: none;
@@ -126,19 +127,19 @@ code {
   height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--line);
+  border: 1px solid var(--site-line);
   border-radius: 999px;
   background: var(--btn-secondary-bg);
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
 .nav-toggle:hover,
 .nav-toggle[aria-expanded="true"] {
-  border-color: var(--brand);
-  background: var(--surface-strong);
-  color: var(--brand);
+  border-color: var(--site-brand);
+  background: var(--site-surface-strong);
+  color: var(--site-brand);
 }
 
 /* ─── Theme toggle ───────────────────────────────────────────────────────────── */
@@ -149,15 +150,15 @@ code {
   height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--line);
+  border: 1px solid var(--site-line);
   border-radius: 999px;
   background: transparent;
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
 }
 
-.theme-toggle:hover { border-color: var(--brand); color: var(--brand); }
+.theme-toggle:hover { border-color: var(--site-brand); color: var(--site-brand); }
 
 .icon-sun,
 .icon-moon {
@@ -231,7 +232,7 @@ code {
 
 .eyebrow {
   margin: 0 0 18px;
-  color: var(--brand);
+  color: var(--site-brand);
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -263,7 +264,7 @@ h3 {
 .lede {
   max-width: 560px;
   margin-bottom: 32px;
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   font-size: clamp(1rem, 2vw, 1.14rem);
   line-height: 1.72;
 }
@@ -282,11 +283,11 @@ h3 {
   width: 100%;
   max-width: 440px;
   min-height: 52px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--site-line);
   border-radius: 12px;
   padding: 0 16px;
-  background: var(--surface-muted);
-  color: var(--ink-soft);
+  background: var(--site-surface-muted);
+  color: var(--site-ink-soft);
   font-family: "Fira Code", monospace;
   font-size: 0.86rem;
   font-weight: 500;
@@ -295,9 +296,9 @@ h3 {
 }
 
 .button-copy-install:hover {
-  border-color: var(--brand);
-  background: var(--surface-strong);
-  color: var(--ink);
+  border-color: var(--site-brand);
+  background: var(--site-surface-strong);
+  color: var(--site-ink);
   transform: translateY(-2px);
   box-shadow: 0 12px 32px rgb(var(--glow-rgb) / 0.12);
 }
@@ -318,13 +319,13 @@ h3 {
   height: 32px;
   margin-left: 12px;
   border-radius: 8px;
-  background: var(--surface-strong);
-  color: var(--brand);
+  background: var(--site-surface-strong);
+  color: var(--site-brand);
   transition: all 0.2s;
 }
 
 .button-copy-install:hover .copy-icon {
-  background: var(--brand);
+  background: var(--site-brand);
   color: #ffffff;
 }
 
@@ -344,26 +345,26 @@ h3 {
 }
 
 .button-primary {
-  background: var(--brand-solid);
+  background: var(--site-brand-solid);
   color: #ffffff;
   box-shadow: 0 4px 14px rgb(var(--glow-rgb) / 0.3);
   transition: all 0.2s ease;
 }
 .button-primary:hover {
-  background: var(--brand-hover);
+  background: var(--site-brand-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgb(var(--glow-rgb) / 0.4);
 }
 .button-secondary {
-  border-color: var(--line);
+  border-color: var(--site-line);
   background: var(--btn-secondary-bg);
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   transition: all 0.2s ease;
 }
 .button-secondary:hover {
-  border-color: var(--brand-hover);
-  color: var(--ink);
-  background: var(--surface-strong);
+  border-color: var(--site-brand-hover);
+  color: var(--site-ink);
+  background: var(--site-surface-strong);
   transform: translateY(-2px);
 }
 
@@ -372,7 +373,7 @@ h3 {
   max-width: 580px;
   margin-top: 12px;
   margin-bottom: 0;
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   line-height: 1.7;
 }
@@ -393,10 +394,10 @@ h3 {
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 24px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--site-line);
   border-radius: 10px;
   padding: 4px;
-  background: var(--surface);
+  background: var(--site-surface);
 }
 
 .preview-control {
@@ -405,7 +406,7 @@ h3 {
   border-radius: 7px;
   padding: 0 12px;
   background: transparent;
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   font: inherit;
   font-size: 0.82rem;
   font-weight: 800;
@@ -414,16 +415,16 @@ h3 {
 
 .preview-control:hover,
 .preview-control:focus-visible {
-  color: var(--ink);
+  color: var(--site-ink);
 }
 
 .preview-control:focus-visible {
-  outline: 3px solid var(--brand);
+  outline: 3px solid var(--site-brand);
   outline-offset: 2px;
 }
 
 .preview-control.is-active {
-  background: var(--brand-solid);
+  background: var(--site-brand-solid);
   color: #fff;
 }
 
@@ -761,10 +762,10 @@ h3 {
   display: flex;
   align-items: center;
   gap: 12px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--site-line);
   border-radius: 12px;
   padding: 12px 16px;
-  background: var(--surface);
+  background: var(--site-surface);
   min-width: 280px;
   flex: 1;
 }
@@ -787,7 +788,7 @@ h3 {
   display: block;
   font-family: "Fira Code", monospace;
   font-size: 0.76rem;
-  color: var(--ink-muted);
+  color: var(--site-ink-muted);
 }
 
 /* ─── Why section ────────────────────────────────────────────────────────────── */
@@ -807,14 +808,14 @@ h3 {
 }
 
 .why-card {
-  border: 1px solid var(--line);
+  border: 1px solid var(--site-line);
   border-radius: 18px;
   padding: 24px;
-  background: var(--surface);
+  background: var(--site-surface);
   transition: border-color 0.2s;
 }
 
-.why-card:hover { border-color: var(--brand); }
+.why-card:hover { border-color: var(--site-brand); }
 
 .why-icon {
   display: flex;
@@ -823,13 +824,13 @@ h3 {
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background: var(--surface-strong);
-  color: var(--brand);
+  background: var(--site-surface-strong);
+  color: var(--site-brand);
   margin-bottom: 16px;
 }
 
 .why-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
-.why-card p { margin: 0; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.65; }
+.why-card p { margin: 0; color: var(--site-ink-soft); font-size: 0.9rem; line-height: 1.65; }
 
 /* ─── Palette section ────────────────────────────────────────────────────────── */
 .palette-section {
@@ -848,10 +849,10 @@ h3 {
   min-height: 42px;
   align-items: center;
   gap: 10px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--site-line);
   border-radius: 999px;
   padding: 0 14px 0 8px;
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   font-size: 0.86rem;
   font-weight: 700;
 }
@@ -882,10 +883,10 @@ h3 {
 }
 
 .install-card {
-  border: 1px solid var(--line);
+  border: 1px solid var(--site-line);
   border-radius: 18px;
   padding: 28px;
-  background: var(--surface);
+  background: var(--site-surface);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -898,19 +899,19 @@ h3 {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background: var(--brand-solid);
+  background: var(--site-brand-solid);
   color: #fff;
   font-size: 0.8rem;
   font-weight: 800;
 }
 
 .install-card h3 { margin: 0; font-size: 1.1rem; }
-.install-card-body { margin: 0; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.6; }
+.install-card-body { margin: 0; color: var(--site-ink-soft); font-size: 0.9rem; line-height: 1.6; }
 
 .install-steps {
   margin: 0;
   padding-left: 18px;
-  color: var(--ink-soft);
+  color: var(--site-ink-soft);
   font-size: 0.9rem;
   line-height: 1.7;
   display: flex;
@@ -918,9 +919,9 @@ h3 {
   gap: 6px;
 }
 
-.install-steps a { color: var(--brand); }
+.install-steps a { color: var(--site-brand); }
 .install-steps a:hover { text-decoration: underline; }
-.install-steps strong { color: var(--ink); }
+.install-steps strong { color: var(--site-ink); }
 
 .install-store-actions {
   display: flex;
@@ -939,7 +940,7 @@ h3 {
   gap: 24px;
   min-height: 104px;
   border-top: 1px solid var(--section-divider);
-  color: var(--ink-muted);
+  color: var(--site-ink-muted);
   font-size: 0.92rem;
   font-weight: 700;
 }
@@ -957,7 +958,7 @@ h3 {
   transition: color 0.2s;
 }
 
-.github-link:hover { color: var(--brand); }
+.github-link:hover { color: var(--site-brand); }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────────── */
 @media (max-width: 1080px) {
@@ -1002,12 +1003,12 @@ h3 {
     min-height: 42px;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--line);
+    border: 1px solid var(--site-line);
     border-radius: 10px;
     background: var(--btn-secondary-bg);
   }
 
-  .nav-links a:hover { border-color: var(--brand); background: var(--surface-strong); }
+  .nav-links a:hover { border-color: var(--site-brand); background: var(--site-surface-strong); }
   .nav-links .separator { display: none; }
 }
 
