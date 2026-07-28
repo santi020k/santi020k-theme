@@ -69,7 +69,7 @@ const validateTheme = variant => {
   const filePath = resolve(__dir, '..', manifestFile);
 
   console.log(`\n🔍 Validating ${manifestFile}...`);
-  
+
   if (!existsSync(filePath)) {
     console.error(`❌ File not found: ${filePath}`);
 
@@ -153,8 +153,10 @@ const validateTheme = variant => {
 
     errors++;
   }
-  
+
   // Image existence check
+  const ntpBackgroundImage = manifest.theme?.images?.theme_ntp_background;
+
   if (manifest.theme?.images) {
     for (const [key, path] of Object.entries(manifest.theme.images)) {
       const fullPath = resolveRuntimeAsset(path);
@@ -182,17 +184,19 @@ const validateTheme = variant => {
       }
     }
   } else {
-    console.warn(`⚠️  No images defined in theme`);
+    console.log(`✅ NTP background: solid color (no image)`);
   }
 
   const properties = manifest.theme?.properties ?? {};
 
-  if (properties.ntp_background_repeat === 'no-repeat') {
-    console.log(`✅ NTP background repeat: ${properties.ntp_background_repeat}`);
-  } else {
-    console.error(`❌ ntp_background_repeat must be "no-repeat" to avoid visible tiling artifacts`);
+  if (ntpBackgroundImage) {
+    if (properties.ntp_background_repeat === 'no-repeat') {
+      console.log(`✅ NTP background repeat: ${properties.ntp_background_repeat}`);
+    } else {
+      console.error(`❌ ntp_background_repeat must be "no-repeat" to avoid visible tiling artifacts`);
 
-    errors++;
+      errors++;
+    }
   }
 
   return errors;

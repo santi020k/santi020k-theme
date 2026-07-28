@@ -8,7 +8,7 @@ Use this guide for every Santi020k theme-family surface:
 - Chrome theme: `packages/santi020k-chrome-theme`
 - Terminal theme: `packages/santi020k-terminal-theme`
 - Shared token and asset packages: `packages/theme`, `packages/theme-core`
-- Websites: `apps/website`, `apps/vscode-website`, `apps/chrome-website`
+- Websites: `apps/website`, `apps/vscode-website`, `apps/chrome-website`, `apps/zed-website`
 - Terminal website: `apps/terminal-website`
 - Store listings, screenshots, release copy, Open Graph images, and AI agent guidance
 
@@ -33,17 +33,18 @@ Personality:
 
 Use these names exactly unless a platform forces a different casing:
 
-| Surface | Brand name |
-| --- | --- |
-| Family | `Santi020k Theme` |
+| Surface           | Brand name                             |
+| ----------------- | -------------------------------------- |
+| Family            | `Santi020k Theme`                      |
 | VS Code extension | `santi020k-theme` or `Santi020k Theme` |
-| Chrome package | `santi020k-chrome-theme` |
-| Shared package | `@santi020k/theme` |
-| Shared helpers | `@santi020k/theme-core` |
-| Theme hub | `theme.santi020k.com` |
-| VS Code site | `vscode.santi020k.com` |
-| Chrome site | `chrome.santi020k.com` |
-| Terminal site | `terminal.santi020k.com` |
+| Chrome package    | `santi020k-chrome-theme`               |
+| Shared package    | `@santi020k/theme`                     |
+| Shared helpers    | `@santi020k/theme-core`                |
+| Theme hub         | `theme.santi020k.com`                  |
+| VS Code site      | `vscode.santi020k.com`                 |
+| Chrome site       | `chrome.santi020k.com`                 |
+| Terminal site     | `terminal.santi020k.com`               |
+| Zed site          | `zed.santi020k.com`                    |
 
 Theme variant names stay lowercase in VS Code UI contexts:
 
@@ -75,22 +76,22 @@ The VS Code theme files are the practical palette authority:
 
 Core palette language:
 
-| Role | Dark direction | Light direction |
-| --- | --- | --- |
-| Canvas | deep indigo-black | purple-tinted white |
-| Surfaces | layered indigo/violet surfaces | soft lavender-tinted surfaces |
-| Brand accent | violet/purple, centered around active editor and UI states | rich violet for interaction and status |
+| Role           | Dark direction                                                          | Light direction                                         |
+| -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------- |
+| Canvas         | deep indigo-black                                                       | purple-tinted white                                     |
+| Surfaces       | layered indigo/violet surfaces                                          | soft lavender-tinted surfaces                           |
+| Brand accent   | violet/purple, centered around active editor and UI states              | rich violet for interaction and status                  |
 | Syntax support | muted semantic hues for strings, numbers, errors, warnings, and success | stronger semantic hues where light contrast requires it |
-| High contrast | same family with stronger borders and clearer separation | white canvas, black structure, saturated accents |
+| High contrast  | same family with stronger borders and clearer separation                | white canvas, black structure, saturated accents        |
 
 Current known anchor colors from package and website docs:
 
-| Token purpose | Example colors |
-| --- | --- |
-| Dark canvas | `#110c1d`, `#0d0718` |
-| Dark accent | `#752df0`, `#945df4` |
-| Light canvas | `#f8f6fd`, `#ffffff` for high contrast |
-| Light accent | `#6319be`, `#5a14b0`, `#7730b8` |
+| Token purpose                    | Example colors                             |
+| -------------------------------- | ------------------------------------------ |
+| Dark canvas                      | `#110c1d`, `#0d0718`                       |
+| Dark accent                      | `#752df0`, `#945df4`                       |
+| Light canvas                     | `#f8f6fd`, `#ffffff` for high contrast     |
+| Light accent                     | `#6319be`, `#5a14b0`, `#7730b8`            |
 | High-contrast dark border/accent | `#602cba`, `#60c8e0`, `#ffc060`, `#ff7070` |
 
 Rules:
@@ -178,12 +179,12 @@ Avoid:
 
 CTA pattern:
 
-| Weak | Preferred |
-| --- | --- |
-| Learn more | View the VS Code theme |
-| Click here | Install from Marketplace |
-| Check it out | Preview the Chrome theme |
-| Contact me | Open the GitHub repository |
+| Weak         | Preferred                  |
+| ------------ | -------------------------- |
+| Learn more   | View the VS Code theme     |
+| Click here   | Install from Marketplace   |
+| Check it out | Preview the Chrome theme   |
+| Contact me   | Open the GitHub repository |
 
 ## Accessibility
 

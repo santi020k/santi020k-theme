@@ -1,0 +1,10 @@
+{
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "onIgnoredFiles": "off",
+        "workingDirectories": ["."]
+      }
+    }
+  }
+}

@@ -5,22 +5,26 @@ on:
     branches:
       - main
     paths:
-      - '.changeset/**'
-      - 'package.json'
-      - 'packages/theme/**'
-      - 'packages/theme-core/**'
-      - 'packages/santi020k-theme/**'
+      - ".changeset/**"
+      - "package.json"
+      - "packages/theme/**"
+      - "packages/theme-core/**"
+      - "packages/santi020k-theme/**"
       - 'packages/santi020k-terminal-theme/**'
+      - 'packages/santi020k-zed-theme/**'
+      - 'apps/zed-website/**'
       - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - 'scripts/publish-npm-packages.mjs'
-      - 'apps/vscode-website/scripts/sync-website-version.mjs'
-      - 'packages/santi020k-theme/scripts/ensure-release-tag.mjs'
-      - 'packages/santi020k-theme/scripts/publish-registries.mjs'
-      - '.github/workflows/release.yml'
+      - "pnpm-workspace.yaml"
+      - "scripts/publish-npm-packages.mjs"
+      - "apps/vscode-website/scripts/sync-website-version.mjs"
+      - "packages/santi020k-theme/scripts/ensure-release-tag.mjs"
+      - "packages/santi020k-theme/scripts/publish-registries.mjs"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   release:
@@ -69,7 +73,7 @@ jobs:
           createGithubReleases: true
         env:
           HUSKY: 0
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CHANGESETS_TOKEN || github.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"

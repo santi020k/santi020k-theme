@@ -187,8 +187,6 @@ export const createChromeThemeFromVSCodeColors = (vscodeColors, variant = 'dark'
   }
 
   const properties = {
-    ntp_background_alignment: 'center',
-    ntp_background_repeat: 'no-repeat',
     ntp_logo_alternate: variant === 'dark' ? 1 : 0
   }
 

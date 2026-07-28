@@ -3,8 +3,6 @@ import './styles.css'
 import {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
-  rootInDarkMode,
-  setSiteTheme,
   SITE_HUB_DESKTOP_NAV_QUERY,
   syncSiteThemeToggle
 } from '@santi020k/theme/site'
@@ -18,11 +16,7 @@ const desktopNavQuery = window.matchMedia(SITE_HUB_DESKTOP_NAV_QUERY)
 syncSiteThemeToggle(toggle)
 
 if (toggle) {
-  toggle.addEventListener('click', () => {
-    setSiteTheme(rootInDarkMode() ? 'light' : 'dark')
-
-    syncSiteThemeToggle(toggle)
-  })
+  toggle.addEventListener('ui:theme-change', () => syncSiteThemeToggle(toggle))
 }
 
 bindSiteNavigation({
@@ -79,6 +73,20 @@ for (const previewButton of document.querySelectorAll('[data-preview-src]')) {
 
 assetDialog?.querySelector('.dialog-close')?.addEventListener('click', () => assetDialog.close())
 
-assetDialog?.addEventListener('click', (event) => {
+assetDialog?.addEventListener('click', event => {
   if (event.target === assetDialog) assetDialog.close()
 })
+
+const backToTop = document.querySelector('.back-to-top')
+
+if (backToTop) {
+  const toggleBackToTop = () => backToTop.classList.toggle('is-visible', window.scrollY > 600)
+
+  toggleBackToTop()
+
+  window.addEventListener('scroll', toggleBackToTop, { passive: true })
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  })
+}

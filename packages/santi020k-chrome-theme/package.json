@@ -37,7 +37,6 @@
     "@santi020k/theme": "workspace:^"
   },
   "devDependencies": {
-    "@santi020k/eslint-config-basic": "catalog:",
     "archiver": "catalog:",
     "eslint": "catalog:",
     "sharp": "catalog:"

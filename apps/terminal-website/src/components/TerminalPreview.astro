@@ -1,4 +1,5 @@
 ---
+import { Button } from '@santi020k/lumen-astro'
 import AppleIcon from '../../../../packages/theme/components/AppleIcon.astro'
 import { promptSegments } from '../../../../packages/santi020k-terminal-theme/prompt-presets.mjs'
 const { prompt = false, id } = Astro.props
@@ -15,5 +16,5 @@ const segment = Object.fromEntries(promptSegments.map(item => [item.key, item.pr
       <p><b class="green">➜</b> <b class="cyan">~/Projects/theme</b> <span class="purple">git:(main)</span> <span class="red">✗</span></p><p><span class="muted">$</span> pnpm run validate:terminal</p><p><span class="purple">›</span> Generating Santi020k presets...</p><p><span class="green">✓</span> Dark palette <span class="muted">16 ANSI colors</span></p><p><span class="green">✓</span> Light palette <span class="muted">16 ANSI colors</span></p><p><span class="yellow">!</span> Calm contrast. Durable focus.</p><p>&nbsp;</p><p><b class="green">➜</b> <b class="cyan">~/Projects/theme</b> <span class="cursor">&nbsp;</span></p>
     </>}
   </div>
-  <div class="terminal-switch"><button class="is-active" data-preset="dark" aria-pressed="true">Dark</button><button data-preset="light" aria-pressed="false">Light</button></div>
+  <div class="terminal-switch"><Button className="is-active" variant="ghost" data-preset="dark" aria-pressed="true">Dark</Button><Button variant="ghost" data-preset="light" aria-pressed="false">Light</Button></div>
 </div></div>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Zed Theme social card">
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1030 60) rotate(130) scale(650)">
+      <stop stop-color="#945df4" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#0d0718" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#494158" stroke-opacity="0.18"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0d0718"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M0 566c180-62 340-58 480 10 172 84 353 69 542-46 75-46 134-70 178-74v174H0Z" fill="#945df4" opacity="0.07"/>
+
+  <g transform="translate(72 64) scale(0.675)">
+    <rect width="80" height="80" rx="18" fill="#5a0fdb"/>
+    <path d="M26 28 L40 40 L26 52" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="48" y1="52" x2="62" y2="52" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <text x="146" y="98" fill="#945df4" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="850">SANTI020K THEME</text>
+  <rect x="146" y="116" width="86" height="4" rx="2" fill="#945df4"/>
+  <text x="72" y="306" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="850">Zed Theme</text>
+  <text x="76" y="358" fill="#b6b2bd" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600"><tspan x="76" dy="0">Calm violet variants for a fast editor.</tspan></text>
+  <g transform="translate(-300 10) scale(1.3)">
+  <g transform="translate(720 150) scale(0.86)">
+    <rect width="398" height="318" rx="18" fill="#0b0712" stroke="#494158" stroke-width="2"/>
+    <rect width="398" height="48" rx="18" fill="#1c1528"/>
+    <circle cx="31" cy="24" r="6" fill="#ea6962"/>
+    <circle cx="55" cy="24" r="6" fill="#e8b44a"/>
+    <circle cx="79" cy="24" r="6" fill="#7daea3"/>
+    <g font-family="SFMono-Regular, Consolas, monospace" font-size="19">
+      <text x="34" y="94" fill="#5e576b">1</text>
+      <text x="72" y="94" fill="#8445f2">const</text>
+      <text x="138" y="94" fill="#dfdde3">focus</text>
+      <text x="208" y="94" fill="#b6b2bd">=</text>
+      <text x="232" y="94" fill="#b48df7">'calm'</text>
+      <text x="34" y="136" fill="#5e576b">2</text>
+      <text x="72" y="136" fill="#8445f2">theme</text>
+      <text x="142" y="136" fill="#b6b2bd">.</text>
+      <text x="158" y="136" fill="#945df4">apply</text>
+      <text x="220" y="136" fill="#b6b2bd">(</text>
+      <text x="238" y="136" fill="#b48df7">'violet'</text>
+      <text x="326" y="136" fill="#b6b2bd">)</text>
+      <text x="34" y="178" fill="#5e576b">3</text>
+      <text x="72" y="178" fill="#7daea3">syntax</text>
+      <text x="148" y="178" fill="#dfdde3">.</text>
+      <text x="164" y="178" fill="#945df4">staysReadable</text>
+      <text x="34" y="220" fill="#5e576b">4</text>
+      <text x="72" y="220" fill="#e8b44a">session</text>
+      <text x="158" y="220" fill="#dfdde3">.</text>
+      <text x="174" y="220" fill="#945df4">continue</text>
+      <text x="262" y="220" fill="#b6b2bd">()</text>
+    </g>
+    <rect x="30" y="256" width="122" height="34" rx="8" fill="#1c1528" stroke="#945df4"/>
+    <text x="52" y="279" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">dark</text>
+    <rect x="166" y="256" width="122" height="34" rx="8" fill="#f8f6fd" stroke="#6319be"/>
+    <text x="190" y="279" fill="#302e36" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">light</text>
+  </g>
+</g>
+</svg>

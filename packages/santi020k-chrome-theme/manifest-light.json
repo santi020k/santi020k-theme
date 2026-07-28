@@ -10,12 +10,7 @@
     "128": "icons/icon-light128.png"
   },
   "theme": {
-    "images": {
-      "theme_ntp_background": "images/theme_ntp_background_light.png"
-    },
     "properties": {
-      "ntp_background_alignment": "center",
-      "ntp_background_repeat": "no-repeat",
       "ntp_logo_alternate": 0
     },
     "colors": {

@@ -35,3 +35,5 @@ jobs:
         uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: moderate
+          # No patched 1.x/2.x release exists; affected paths are development-only tooling.
+          allow-ghsas: GHSA-mh99-v99m-4gvg

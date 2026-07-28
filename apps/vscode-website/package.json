@@ -11,6 +11,7 @@
     "sync:website-version": "node scripts/sync-website-version.mjs"
   },
   "dependencies": {
+    "@santi020k/lumen-astro": "catalog:",
     "@santi020k/theme": "workspace:^"
   },
   "devDependencies": {

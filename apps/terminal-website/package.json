@@ -1,6 +1,6 @@
 {
   "name": "@santi020k/santi020k-terminal-theme-website",
-  "version": "1.1.2",
+  "version": "1.1.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,6 +10,7 @@
     "preview": "astro preview --host 127.0.0.1 --port 4177"
   },
   "dependencies": {
+    "@santi020k/lumen-astro": "catalog:",
     "@santi020k/theme": "workspace:^",
     "santi020k-terminal-theme": "workspace:*"
   },

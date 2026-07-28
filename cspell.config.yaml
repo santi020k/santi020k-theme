@@ -18,6 +18,7 @@ words:
   - pipefail
   - pkgshare
   - precmd
+  - preproc
   - SAVEHIST
   - slurpfile
   - testpath
@@ -35,6 +36,7 @@ words:
   - alpinejs
   - antialiased
   - archiver
+  - astrojs
   - auroraui
   - autoincrement
   - Avenir
@@ -86,6 +88,8 @@ words:
   - font-weight
   - FOUC
   - GITHUB_TOKEN
+  - GHSA
+  - Ghsas
   - Ghostty
   - glassmorphism
   - grid-column
@@ -125,12 +129,14 @@ words:
   - letter-spacing
   - linecap
   - ligatures
+  - linkify
   - lightningcss
   - line-height
   - linejoin
   - linearizing
   - llms
   - logomark
+  - manypkg
   - margin-inline
   - max-height
   - max-width
@@ -225,6 +231,7 @@ words:
   - urlset
   - v1.4.0
   - v1.5.0
+  - valibot
   - Wezterm
   - wezterm
   - vite

@@ -36,6 +36,15 @@ const cards = [
   },
   {
     accent: '#945df4',
+    app: 'zed-website',
+    badge: 'Zed theme',
+    domain: 'zed.santi020k.com',
+    title: 'Zed Theme',
+    subtitleLines: ['Calm violet variants for a fast editor.'],
+    visual: 'editor',
+  },
+  {
+    accent: '#945df4',
     app: 'terminal-website',
     badge: 'Terminal theme',
     domain: 'terminal.santi020k.com',

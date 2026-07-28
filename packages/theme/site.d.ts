@@ -1,9 +1,10 @@
 export {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
-  getSiteUrls,
   getPreferredSiteTheme,
+  getSiteUrls,
   isSiteTheme,
+  type PreferredSiteThemeSyncOptions,
   readStoredSiteTheme,
   rootInDarkMode,
   setSiteNavOpen,
@@ -20,11 +21,10 @@ export {
   SITE_THEME_STORAGE_KEY,
   SITE_TOUCH_POINTER_QUERY,
   SITE_URLS,
-  syncSiteThemeToggle,
-  type PreferredSiteThemeSyncOptions,
   type SiteNavigationOptions,
-  type SiteUrls,
   type SiteTheme,
   type SiteThemeOptions,
-  type SiteThemePreferenceOptions
+  type SiteThemePreferenceOptions,
+  type SiteUrls,
+  syncSiteThemeToggle
 } from '@santi020k/theme-core/site'

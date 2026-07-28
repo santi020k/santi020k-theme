@@ -1,4 +1,13 @@
-import { defineConfig, Runtime } from '@santi020k/eslint-config-basic'
+import path from 'node:path'
+
+import { includeIgnoreFile } from '@eslint/config-helpers'
+import { defineConfig, Runtime, Setting } from '@santi020k/eslint-config-basic'
+
+// `defineConfig`'s built-in gitignore support resolves `.gitignore` from
+// `process.cwd()` at import time, which editors (notably Zed's ESLint LSP)
+// don't always set to this repo's root. Resolving against `import.meta.dirname`
+// keeps `.gitignore` honored regardless of the linting process's cwd.
+const gitignoreConfig = includeIgnoreFile(path.resolve(import.meta.dirname, '.gitignore'))
 
 export default await defineConfig({
   detectRootDir: import.meta.dirname,
@@ -6,21 +15,36 @@ export default await defineConfig({
     '**/*.json',
     '**/*.md',
     '**/*.astro',
-    '**/*.d.ts',
-    '**/*.yml',
-    '**/*.yaml',
     'scratch/**',
-    'apps/*/dist/**',
-    'packages/*/dist/**',
-    'packages/santi020k-chrome-theme/scratch/**',
-    'packages/santi020k-theme/themes/*-bold-color-theme.json',
-    'packages/santi020k-theme/themes/*-italic-color-theme.json',
-    'packages/santi020k-theme/themes/santi020k-hc-light-color-theme.json'
+    'packages/santi020k-chrome-theme/scratch/**'
   ],
+  settings: [Setting.NoGitignore],
   features: {
     perfectionist: false
   },
-  runtime: Runtime.Node
+  runtime: Runtime.Node,
+  typescript: 'syntax',
+  projects: {
+    'packages/santi020k-chrome-theme': {
+      ignores: ['**/*.svg'],
+      features: {
+        jsonc: false,
+        markdown: false,
+        perfectionist: false,
+        zod: false
+      },
+      runtime: Runtime.Universal
+    }
+  }
+},
+gitignoreConfig,
+{
+  files: ['**/*.d.ts'],
+  languageOptions: {
+    parserOptions: {
+      tsconfigRootDir: import.meta.dirname
+    }
+  }
 },
 {
   files: [
@@ -43,7 +67,13 @@ export default await defineConfig({
   files: ['eslint.config.mjs'],
   rules: {
     'n/no-unpublished-import': 'off'
-  },
+  }
+},
+{
+  files: ['.github/workflows/*.{yml,yaml}'],
+  rules: {
+    'yml/no-empty-mapping-value': 'off'
+  }
 },
 {
   files: [
@@ -66,6 +96,23 @@ export default await defineConfig({
   ],
   rules: {
     'camelcase': 'off'
+  }
+},
+{
+  files: [
+    'packages/santi020k-zed-theme/scripts/build.mjs'
+  ],
+  rules: {
+    'camelcase': 'off',
+    'security/detect-object-injection': 'off'
+  }
+},
+{
+  files: [
+    'packages/santi020k-zed-theme/scripts/validate.mjs'
+  ],
+  rules: {
+    'security/detect-non-literal-regexp': 'off'
   }
 },
 {
