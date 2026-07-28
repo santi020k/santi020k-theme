@@ -92,6 +92,9 @@ importers:
 
   .:
     devDependencies:
+      '@astrojs/ts-plugin':
+        specifier: 'catalog:'
+        version: 1.10.10
       '@changesets/changelog-github':
         specifier: 'catalog:'
         version: 0.7.0
@@ -165,9 +168,6 @@ importers:
         specifier: workspace:^
         version: link:../../packages/theme
     devDependencies:
-      '@astrojs/ts-plugin':
-        specifier: 'catalog:'
-        version: 1.10.10
       astro:
         specifier: 'catalog:'
         version: 7.0.7(@azure/identity@4.13.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.1.1)(jiti@2.7.0)(yaml@2.9.0)
@@ -184,9 +184,6 @@ importers:
         specifier: workspace:*
         version: link:../../packages/santi020k-terminal-theme
     devDependencies:
-      '@astrojs/ts-plugin':
-        specifier: 'catalog:'
-        version: 1.10.10
       astro:
         specifier: 'catalog:'
         version: 7.0.7(@azure/identity@4.13.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.1.1)(jiti@2.7.0)(yaml@2.9.0)
@@ -200,9 +197,6 @@ importers:
         specifier: workspace:^
         version: link:../../packages/theme
     devDependencies:
-      '@astrojs/ts-plugin':
-        specifier: 'catalog:'
-        version: 1.10.10
       astro:
         specifier: 'catalog:'
         version: 7.0.7(@azure/identity@4.13.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.1.1)(jiti@2.7.0)(yaml@2.9.0)
@@ -216,9 +210,6 @@ importers:
         specifier: workspace:^
         version: link:../../packages/theme
     devDependencies:
-      '@astrojs/ts-plugin':
-        specifier: 'catalog:'
-        version: 1.10.10
       astro:
         specifier: 'catalog:'
         version: 7.0.7(@azure/identity@4.13.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.1.1)(jiti@2.7.0)(yaml@2.9.0)
@@ -232,9 +223,6 @@ importers:
         specifier: workspace:^
         version: link:../../packages/theme
     devDependencies:
-      '@astrojs/ts-plugin':
-        specifier: 'catalog:'
-        version: 1.10.10
       astro:
         specifier: 'catalog:'
         version: 7.0.7(@azure/identity@4.13.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.1.1)(jiti@2.7.0)(yaml@2.9.0)

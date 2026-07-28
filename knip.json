@@ -5,6 +5,7 @@
     "zsh"
   ],
   "ignoreDependencies": [
+    "@astrojs/ts-plugin",
     "ovsx"
   ],
   "workspaces": {
@@ -20,12 +21,6 @@
       "entry": [
         "src/pages/*.astro"
       ],
-      "ignore": [
-        "src/main.js"
-      ],
-      "ignoreDependencies": [
-        "@astrojs/ts-plugin"
-      ],
       "project": [
         "src/**/*.astro",
         "src/**/*.js"
@@ -36,12 +31,6 @@
         "package.json",
         "scripts/*.mjs",
         "src/pages/*.astro"
-      ],
-      "ignore": [
-        "src/main.js"
-      ],
-      "ignoreDependencies": [
-        "@astrojs/ts-plugin"
       ],
       "project": [
         "scripts/**/*.mjs",
@@ -54,12 +43,6 @@
       "entry": [
         "src/pages/*.astro"
       ],
-      "ignore": [
-        "src/main.js"
-      ],
-      "ignoreDependencies": [
-        "@astrojs/ts-plugin"
-      ],
       "project": [
         "src/**/*.astro",
         "src/**/*.js"
@@ -67,8 +50,7 @@
     },
     "apps/terminal-website": {
       "entry": ["package.json", "scripts/*.mjs", "src/pages/*.astro"],
-      "ignore": ["src/main.js"],
-      "ignoreDependencies": ["@astrojs/ts-plugin", "santi020k-terminal-theme"],
+      "ignoreDependencies": ["santi020k-terminal-theme"],
       "project": ["scripts/**/*.mjs", "src/**/*.astro", "src/**/*.js"]
     },
     "packages/santi020k-terminal-theme": {

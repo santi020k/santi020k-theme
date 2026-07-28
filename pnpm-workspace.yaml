@@ -3,7 +3,7 @@ packages:
   - "apps/*"
 
 ignoredBuiltDependencies:
-  - '@vscode/vsce-sign'
+  - "@vscode/vsce-sign"
   - esbuild
   - keytar
   - unrs-resolver
@@ -47,7 +47,7 @@ overrides:
   vite: ^8.1.4
 
 allowBuilds:
-  '@vscode/vsce-sign': false
+  "@vscode/vsce-sign": false
   esbuild: false
   keytar: false
   sharp: false

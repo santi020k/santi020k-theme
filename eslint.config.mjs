@@ -15,22 +15,15 @@ export default await defineConfig({
     '**/*.json',
     '**/*.md',
     '**/*.astro',
-    '**/*.d.ts',
-    '**/*.yml',
-    '**/*.yaml',
     'scratch/**',
-    'apps/*/dist/**',
-    'packages/*/dist/**',
-    'packages/santi020k-chrome-theme/scratch/**',
-    'packages/santi020k-theme/themes/*-bold-color-theme.json',
-    'packages/santi020k-theme/themes/*-italic-color-theme.json',
-    'packages/santi020k-theme/themes/santi020k-hc-light-color-theme.json'
+    'packages/santi020k-chrome-theme/scratch/**'
   ],
   settings: [Setting.NoGitignore],
   features: {
     perfectionist: false
   },
   runtime: Runtime.Node,
+  typescript: 'syntax',
   projects: {
     'packages/santi020k-chrome-theme': {
       ignores: ['**/*.svg'],
@@ -45,6 +38,14 @@ export default await defineConfig({
   }
 },
 gitignoreConfig,
+{
+  files: ['**/*.d.ts'],
+  languageOptions: {
+    parserOptions: {
+      tsconfigRootDir: import.meta.dirname
+    }
+  }
+},
 {
   files: [
     'apps/*/src/**/*.js'
@@ -66,7 +67,13 @@ gitignoreConfig,
   files: ['eslint.config.mjs'],
   rules: {
     'n/no-unpublished-import': 'off'
-  },
+  }
+},
+{
+  files: ['.github/workflows/*.{yml,yaml}'],
+  rules: {
+    'yml/no-empty-mapping-value': 'off'
+  }
 },
 {
   files: [

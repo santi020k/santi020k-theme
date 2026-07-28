@@ -1,5 +1,8 @@
 ---
+"@santi020k/santi020k-chrome-theme-website": patch
+"@santi020k/santi020k-terminal-theme-website": patch
 "@santi020k/santi020k-theme-website": patch
+"@santi020k/santi020k-vscode-theme-website": patch
 ---
 
-Expand Lumen UI usage across the theme hub and gallery pages: swap eyebrow labels, "Live" status kickers, and primary/secondary CTA links for `Eyebrow`, `Badge`, and `ButtonLink`, replace the nav toggle hamburger and dialog close glyphs with Lumen `Icon`, and add a `BackToTop` control to the gallery page. No visual regressions—existing brand CSS classes are preserved alongside the new component semantics.
+Expand Lumen UI usage across the theme websites with shared theme toggles, semantic links and icons, updated credits, and a `BackToTop` control on the hub gallery while preserving the existing brand styling.

@@ -67,6 +67,7 @@
     "commit": "cz"
   },
   "devDependencies": {
+    "@astrojs/ts-plugin": "catalog:",
     "@changesets/changelog-github": "catalog:",
     "@changesets/cli": "catalog:",
     "@commitlint/cli": "catalog:",
