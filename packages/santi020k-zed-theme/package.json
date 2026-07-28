@@ -1,6 +1,6 @@
 {
   "name": "santi020k-zed-theme",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Santi020k Theme for the Zed editor, generated from the VS Code palette.",
   "private": true,
   "type": "module",
