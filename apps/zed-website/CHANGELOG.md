@@ -1,5 +1,16 @@
 # @santi020k/santi020k-theme-website
 
+## 0.2.0
+
+### Minor Changes
+
+- [`887c2a5`](https://github.com/santi020k/santi020k-theme/commit/887c2a5e9768084fb8e6fab8c3b9897c4347627b) Thanks [@santi020k](https://github.com/santi020k)! - Add a dedicated public Zed theme website and surface it from the main Santi020k theme hub.
+
+### Patch Changes
+
+- Updated dependencies [[`887c2a5`](https://github.com/santi020k/santi020k-theme/commit/887c2a5e9768084fb8e6fab8c3b9897c4347627b), [`887c2a5`](https://github.com/santi020k/santi020k-theme/commit/887c2a5e9768084fb8e6fab8c3b9897c4347627b)]:
+  - @santi020k/theme@1.2.1
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @santi020k/theme
 
+## 1.2.1
+
+### Patch Changes
+
+- [`887c2a5`](https://github.com/santi020k/santi020k-theme/commit/887c2a5e9768084fb8e6fab8c3b9897c4347627b) Thanks [@santi020k](https://github.com/santi020k)! - Removed the New Tab Page background image from the Chrome theme (both dark and light variants) in favor of a solid `ntp_background` color. The bundled PNG background image was a recurring source of "could not decode image" errors in Chrome's theme engine; a solid color background avoids that failure mode entirely while keeping the same violet palette.
+
+- [`887c2a5`](https://github.com/santi020k/santi020k-theme/commit/887c2a5e9768084fb8e6fab8c3b9897c4347627b) Thanks [@santi020k](https://github.com/santi020k)! - Add Lumen-compatible semantic color channels while preserving the sites' exact colors through namespaced aliases.
+
 ## 1.2.0
 
 ### Minor Changes
