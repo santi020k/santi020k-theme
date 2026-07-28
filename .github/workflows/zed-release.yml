@@ -160,12 +160,15 @@ jobs:
         if: steps.zed-version.outputs.should-publish == 'true'
         working-directory: zed-extensions
         run: |
-          gh pr create \
+          if ! gh pr create \
             --repo zed-industries/extensions \
             --head "${ZED_EXTENSIONS_HEAD}:santi020k-theme-${ZED_VERSION}" \
             --base main \
             --title "Add santi020k-theme ${ZED_VERSION}" \
-            --body "Publishes santi020k-theme ${ZED_VERSION}.\n\nSource: https://github.com/santi020k/santi020k-theme/tree/${GITHUB_SHA}/packages/santi020k-zed-theme"
+            --body "Publishes santi020k-theme ${ZED_VERSION}.\n\nSource: https://github.com/santi020k/santi020k-theme/tree/${GITHUB_SHA}/packages/santi020k-zed-theme"; then
+            echo 'Failed to open the upstream PR. ZED_EXTENSIONS_TOKEN should be a classic PAT with the public_repo scope; a fine-grained token scoped only to the fork cannot create this PR.' >&2
+            exit 1
+          fi
         env:
           GH_TOKEN: ${{ secrets.ZED_EXTENSIONS_TOKEN }}
           ZED_EXTENSIONS_HEAD: ${{ vars.ZED_EXTENSIONS_HEAD || github.repository_owner }}

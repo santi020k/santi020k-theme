@@ -35,6 +35,6 @@ The package stays at `0.0.0` until the Changesets release PR is generated. The p
 
 Required GitHub configuration:
 
-- Secret `ZED_EXTENSIONS_TOKEN`: a token that can push to your fork of `zed-industries/extensions` and open pull requests upstream.
+- Secret `ZED_EXTENSIONS_TOKEN`: a classic personal access token owned by the fork owner, with the `public_repo` scope. It must be able to push to your fork and create pull requests in `zed-industries/extensions`. A fine-grained token scoped only to the fork can push the branch but cannot open the upstream pull request.
 - Variable `ZED_EXTENSIONS_FORK`: your fork, for example `santi020k/extensions`.
 - Optional variable `ZED_EXTENSIONS_HEAD`: the fork owner used in the upstream PR head. Defaults to the repository owner.
