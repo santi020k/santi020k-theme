@@ -108,8 +108,8 @@ jobs:
         if: steps.zed-version.outputs.should-publish == 'true'
         working-directory: zed-extensions
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "Santiago Molina"
+          git config user.email "17752391+santi020k@users.noreply.github.com"
 
           if git ls-files --error-unmatch extensions/santi020k-theme >/dev/null 2>&1; then
             git submodule update --init extensions/santi020k-theme
