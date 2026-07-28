@@ -13,7 +13,6 @@ const structuredData = {
   applicationCategory: 'DeveloperApplication',
   applicationSubCategory: 'Color Theme',
   operatingSystem: 'macOS, Linux',
-  softwareVersion: '0.1.0',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   url: 'https://zed.santi020k.com/',
   description: 'A calm violet Zed theme with dark and light variants generated from the Santi020k VS Code palette.',
@@ -64,6 +63,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta property="og:title" content="Santi020k Theme — Zed Theme" />
     <meta property="og:description" content="Dark and light Zed variants generated from the Santi020k VS Code palette for a consistent calm violet editor experience." />
     <meta property="og:image" content="https://zed.santi020k.com/og-image.png" />
+    <meta property="og:image:secure_url" content="https://zed.santi020k.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Santi020k Theme for Zed" />

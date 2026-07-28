@@ -24,6 +24,11 @@ const sites = [
     name: 'Terminal website',
     root: resolve(repoRoot, 'apps/terminal-website'),
     baseUrl: 'https://terminal.santi020k.com/'
+  },
+  {
+    name: 'Zed website',
+    root: resolve(repoRoot, 'apps/zed-website'),
+    baseUrl: 'https://zed.santi020k.com/'
   }
 ]
 
@@ -251,7 +256,7 @@ const checkExternalReference = async url => {
       return `${url} returned HTTP ${response.status}`
     }
 
-    
+
   } catch (error) {
     const reason = error.cause?.code
       ? `${error.message} (${error.cause.code})`

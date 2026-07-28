@@ -26,6 +26,13 @@ const sites = [
     schemaType: 'SoftwareApplication',
   },
   {
+    app: 'zed-website',
+    canonical: 'https://zed.santi020k.com/',
+    image: 'https://zed.santi020k.com/og-image.png',
+    keyword: 'Zed Theme',
+    schemaType: 'SoftwareApplication',
+  },
+  {
     app: 'terminal-website',
     canonical: 'https://terminal.santi020k.com/',
     image: 'https://terminal.santi020k.com/og-image.png',
