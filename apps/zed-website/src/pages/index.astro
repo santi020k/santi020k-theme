@@ -1,0 +1,268 @@
+---
+import { Image } from 'astro:assets'
+import { Button, Card, Link, UIPrimitives } from '@santi020k/lumen-astro'
+import { getSiteUrls } from '@santi020k/theme/site'
+
+const siteUrls = getSiteUrls(import.meta.env.DEV)
+const installCommand = 'cp packages/santi020k-zed-theme/themes/santi020k.json ~/.config/zed/themes/santi020k.json'
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Santi020k Theme for Zed',
+  applicationCategory: 'DeveloperApplication',
+  applicationSubCategory: 'Color Theme',
+  operatingSystem: 'macOS, Linux',
+  softwareVersion: '0.1.0',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: 'https://zed.santi020k.com/',
+  description: 'A calm violet Zed theme with dark and light variants generated from the Santi020k VS Code palette.',
+  screenshot: 'https://zed.santi020k.com/og-image.png',
+  author: {
+    '@type': 'Person',
+    name: 'Santiago Molina',
+    url: 'https://santi020k.com',
+    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k'],
+  },
+}
+
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        var s = localStorage.getItem('theme')
+        var pref = s === 'light' || s === 'dark'
+          ? s
+          : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        document.documentElement.setAttribute('data-theme', pref)
+      })()
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Santi020k Theme — Zed Theme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="/hub-hero-art.png" fetchpriority="high" />
+    <meta name="description" content="A calm violet Zed theme with dark and light variants generated from the Santi020k VS Code palette. Deep indigo canvas, soft lavender surfaces, and a direct local install path." />
+    <meta name="author" content="Santiago Molina" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href="https://zed.santi020k.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zed.santi020k.com/" />
+    <meta property="og:site_name" content="Santi020k Theme" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Santi020k Theme — Zed Theme" />
+    <meta property="og:description" content="Dark and light Zed variants generated from the Santi020k VS Code palette for a consistent calm violet editor experience." />
+    <meta property="og:image" content="https://zed.santi020k.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Santi020k Theme for Zed" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@santi020k" />
+    <meta name="twitter:creator" content="@santi020k" />
+    <meta name="twitter:url" content="https://zed.santi020k.com/" />
+    <meta name="twitter:title" content="Santi020k Theme — Zed Theme" />
+    <meta name="twitter:description" content="A calm violet Zed theme with dark and light variants generated from the Santi020k VS Code palette." />
+    <meta name="twitter:image" content="https://zed.santi020k.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Santi020k Theme - Zed Theme" />
+    <script type="application/ld+json" set:html={structuredDataJson}></script>
+  </head>
+  <body>
+    <header class="site-shell site-header" aria-label="Site header">
+      <Link class="brand" href="#top" aria-label="Santi020k Zed theme home">
+        <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+          <rect width="80" height="80" rx="18" fill="currentColor" />
+          <path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+          <line x1="48" y1="52" x2="62" y2="52" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" />
+        </svg>
+        <span>Santi020k Theme</span>
+      </Link>
+
+      <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
+        <Link href="#preview">Preview</Link>
+        <Link href="#variants">Variants</Link>
+        <Link href="#install">Install</Link>
+        <Link href="#why">Why Zed</Link>
+        <Link href={siteUrls.hub}>Theme hub</Link>
+        <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
+      </nav>
+
+      <div class="header-actions">
+        <Button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </Button>
+        <Button class="theme-toggle" type="button" role="switch" aria-label="Toggle color theme" aria-checked="true">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </Button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="site-shell hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Zed theme</p>
+          <h1>Fast editor. Quiet violet palette.</h1>
+          <p class="lede">
+            Dark and light Zed variants generated from the same Santi020k color system used across VS Code, Chrome, and Terminal. Calm contrast, minimal noise, direct install.
+          </p>
+          <div class="actions" aria-label="Primary theme links">
+            <Link class="button button-primary" href="#install">Install for Zed</Link>
+            <Link class="button button-secondary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">View package</Link>
+            <Link class="button button-secondary" href={siteUrls.hub}>Open theme hub</Link>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Zed theme preview">
+          <Image src="/preview-dark.png" width="1280" height="720" alt="Santi020k dark preview shown as the Zed theme hero image" fetchpriority="high" inferSize />
+          <div class="hero-art-caption" aria-hidden="true">
+            <span>Zed</span>
+            <span>Dark</span>
+            <span>Light</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="preview" class="site-shell section">
+        <div class="section-heading">
+          <p class="eyebrow">Preview</p>
+          <h2>Same palette. Zed-native workflow.</h2>
+        </div>
+
+        <div class="theme-grid">
+          <Card as="article" class="theme-card theme-card-large">
+            <div class="theme-card-media">
+              <Image src="/preview-dark.png" width="1280" height="720" alt="Santi020k dark variant preview" loading="lazy" decoding="async" inferSize />
+            </div>
+            <div class="theme-card-body">
+              <div class="card-kicker"><span class="status-dot live"></span>Dark</div>
+              <h3>Santi020k Dark</h3>
+              <p>Deep indigo-black editor surfaces with muted lavender foregrounds and violet focus states.</p>
+            </div>
+          </Card>
+
+          <Card as="article" class="theme-card">
+            <div class="theme-card-media">
+              <Image src="/preview-light.png" width="1280" height="720" alt="Santi020k light variant preview" loading="lazy" decoding="async" inferSize />
+            </div>
+            <div class="theme-card-body">
+              <div class="card-kicker"><span class="status-dot live"></span>Light</div>
+              <h3>Santi020k Light</h3>
+              <p>Lavender-tinted light surfaces with stronger purple accents where light-mode contrast needs them.</p>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      <section id="variants" class="site-shell section-grid">
+        <div>
+          <p class="eyebrow">Variants</p>
+          <h2>Two modes, one visual language.</h2>
+        </div>
+        <div class="variant-grid">
+          <Card as="article" class="variant-card variant-dark">
+            <p>Dark</p>
+            <h3>Santi020k Dark</h3>
+            <span>#110c1d</span>
+          </Card>
+          <Card as="article" class="variant-card variant-light">
+            <p>Light</p>
+            <h3>Santi020k Light</h3>
+            <span>#f8f6fd</span>
+          </Card>
+        </div>
+      </section>
+
+      <section id="install" class="site-shell section packages-section">
+        <div class="section-heading">
+          <p class="eyebrow">Install</p>
+          <h2>Copy the theme into your Zed config.</h2>
+        </div>
+
+        <Card as="article" class="package-panel">
+          <div class="package-copy">
+            <div class="card-kicker">
+              <span class="status-dot live"></span>
+              Local install
+            </div>
+            <h3>Use the generated theme file</h3>
+            <p>Build the theme package, copy `themes/santi020k.json` into `~/.config/zed/themes/`, then choose <code>Santi020k Dark</code> or <code>Santi020k Light</code> from Zed’s theme selector.</p>
+            <div class="card-actions">
+              <Link class="button button-primary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">Open package source</Link>
+            </div>
+          </div>
+
+          <div class="package-snippet" aria-label="Zed install commands">
+            <code>pnpm --filter santi020k-zed-theme run build</code>
+            <code>mkdir -p ~/.config/zed/themes</code>
+            <code>{installCommand}</code>
+          </div>
+        </Card>
+      </section>
+
+      <section id="why" class="site-shell why-section">
+        <div>
+          <p class="eyebrow">Why Zed</p>
+          <h2>Built from the same source, not hand-matched after the fact.</h2>
+          <p class="section-lede">The Zed theme is generated from the existing VS Code palette so the editor family stays aligned as colors evolve.</p>
+        </div>
+        <div class="why-grid">
+          <Card as="article" class="why-card">
+            <div class="why-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>Palette sync</h3>
+            <p>Zed dark and light variants inherit the same canvas, surface, accent, and semantic color intent as the VS Code release.</p>
+          </Card>
+          <Card as="article" class="why-card">
+            <div class="why-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+            </div>
+            <h3>Minimal install</h3>
+            <p>No extension packaging step is required. Zed reads the generated theme JSON directly from your local themes directory.</p>
+          </Card>
+          <Card as="article" class="why-card">
+            <div class="why-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+            </div>
+            <h3>Low-noise contrast</h3>
+            <p>The palette stays purple-forward without turning into neon. Focus states stay visible while long reading sessions remain calm.</p>
+          </Card>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-shell site-footer">
+      <p>Made by <Link href="https://santi020k.com" rel="noopener noreferrer">Santiago Molina</Link>.</p>
+      <div class="footer-links">
+        <Link href={siteUrls.hub}>Theme hub</Link>
+        <Link href={siteUrls.vscode}>VS Code</Link>
+        <Link href={siteUrls.chrome}>Chrome</Link>
+        <Link href={siteUrls.terminal}>Terminal</Link>
+        <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
+      </div>
+    </footer>
+
+    <script>
+      import '../main.js'
+    </script>
+    <UIPrimitives />
+  </body>
+</html>

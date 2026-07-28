@@ -1,6 +1,14 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["CI", "NPM_TOKEN", "NODE_AUTH_TOKEN", "OVSX_PAT", "STARSHIP_BIN", "VSCE_PAT", "VITEST"],
+  "globalEnv": [
+    "CI",
+    "NPM_TOKEN",
+    "NODE_AUTH_TOKEN",
+    "OVSX_PAT",
+    "STARSHIP_BIN",
+    "VSCE_PAT",
+    "VITEST"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -8,12 +16,26 @@
         "dist/**",
         "themes/*-bold-color-theme.json",
         "themes/*-italic-color-theme.json",
-        "themes/santi020k-hc-light-color-theme.json"
+        "themes/santi020k-hc-light-color-theme.json",
+        "themes/santi020k.json"
       ],
       "outputLogs": "errors-only"
     },
     "santi020k-terminal-theme#build": {
-      "outputs": ["alacritty/**", "assets/previews/**", "ghostty/**", "iterm2/**", "kitty/**", "starship/**", "wezterm/**", "windows-terminal/**"],
+      "outputs": [
+        "alacritty/**",
+        "assets/previews/**",
+        "ghostty/**",
+        "iterm2/**",
+        "kitty/**",
+        "starship/**",
+        "wezterm/**",
+        "windows-terminal/**"
+      ],
+      "outputLogs": "errors-only"
+    },
+    "santi020k-zed-theme#build": {
+      "outputs": ["themes/santi020k.json"],
       "outputLogs": "errors-only"
     },
     "dev": {

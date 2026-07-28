@@ -14,7 +14,7 @@ const structuredData = {
   '@type': 'CollectionPage',
   name: 'Santi020k Themes',
   url: 'https://theme.santi020k.com/',
-  description: 'The hub for Santi020k visual themes across editor, browser, and upcoming surfaces.',
+  description: 'The hub for Santi020k visual themes across editor, browser, terminal, and Zed surfaces.',
   author: {
     '@type': 'Person',
     name: 'Santiago Molina',
@@ -38,6 +38,12 @@ const structuredData = {
       '@type': 'SoftwareApplication',
       name: 'Santi020k Theme for iTerm2',
       url: 'https://terminal.santi020k.com/',
+      applicationCategory: 'DeveloperApplication',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Santi020k Theme for Zed',
+      url: 'https://zed.santi020k.com/',
       applicationCategory: 'DeveloperApplication',
     },
     {
@@ -67,12 +73,12 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       })()
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Santi020k Themes - VS Code, Chrome, npm, and More</title>
+    <title>Santi020k Themes - VS Code, Chrome, Zed, npm, and More</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="/hub-hero-art.png" fetchpriority="high" />
-    <meta name="description" content="The Santi020k theme family hub: VS Code color themes, Chrome browser themes, npm design tokens, and upcoming visual surfaces built around the same calm violet system." />
+    <meta name="description" content="The Santi020k theme family hub: VS Code, Chrome, Terminal, and Zed themes plus shared design tokens built around the same calm violet system." />
     <meta name="author" content="Santiago Molina" />
     <meta name="language" content="en" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -85,8 +91,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta property="og:url" content="https://theme.santi020k.com/" />
     <meta property="og:site_name" content="Santi020k Themes" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="Santi020k Themes - VS Code, Chrome, npm, and More" />
-    <meta property="og:description" content="A hub for the Santi020k theme family across editor, browser, npm packages, and upcoming surfaces." />
+    <meta property="og:title" content="Santi020k Themes - VS Code, Chrome, Zed, npm, and More" />
+    <meta property="og:description" content="A hub for the Santi020k theme family across VS Code, Chrome, Terminal, Zed, and shared packages." />
     <meta property="og:image" content="https://theme.santi020k.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -96,7 +102,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="twitter:creator" content="@santi020k" />
     <meta name="twitter:url" content="https://theme.santi020k.com/" />
     <meta name="twitter:title" content="Santi020k Themes" />
-    <meta name="twitter:description" content="VS Code, Chrome, npm packages, and upcoming Santi020k theme surfaces in one place." />
+    <meta name="twitter:description" content="VS Code, Chrome, Terminal, Zed, and shared Santi020k theme packages in one place." />
     <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Themes - VS Code, Chrome, npm, and more" />
     <script type="application/ld+json" set:html={structuredDataJson}></script>
@@ -149,6 +155,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <Link class="button button-primary" href={siteUrls.vscode}>Open VS Code</Link>
             <Link class="button button-secondary" href={siteUrls.chrome}>Open Chrome</Link>
             <Link class="button button-secondary" href={siteUrls.terminal}>Open Terminal</Link>
+            <Link class="button button-secondary" href={siteUrls.zed}>Open Zed</Link>
             <Link class="button button-secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</Link>
           </div>
         </div>
@@ -158,6 +165,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <div class="hero-art-caption" aria-hidden="true">
             <span>VS Code</span>
             <span>Chrome</span>
+            <span>Zed</span>
             <span>Tokens</span>
           </div>
         </div>
@@ -230,6 +238,23 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <div class="card-actions"><Link class="button button-primary" href={siteUrls.terminal}>Open site</Link><Link class="button button-secondary" href={`${siteUrls.terminal}starship/`}>Starship</Link></div>
             </div>
           </Card>
+          <Card as="article" class="theme-card">
+            <Link class="theme-card-media" href={siteUrls.zed} aria-label="Open Zed theme site">
+              <Image src="/preview-dark.png" width="1280" height="720" alt="Abstract Santi020k Zed theme preview" loading="lazy" decoding="async" inferSize />
+            </Link>
+            <div class="theme-card-body">
+              <div class="card-kicker">
+                <span class="status-dot live"></span>
+                Live
+              </div>
+              <h3>Zed</h3>
+              <p>Dark and light Zed variants generated from the same violet palette used across the rest of the theme family.</p>
+              <div class="card-actions">
+                <Link class="button button-primary" href={siteUrls.zed}>Open site</Link>
+                <Link class="button button-secondary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">Package</Link>
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
 
@@ -283,6 +308,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <Link href={siteUrls.vscode}>VS Code</Link>
         <Link href={siteUrls.chrome}>Chrome</Link>
         <Link href={siteUrls.terminal}>Terminal</Link>
+        <Link href={siteUrls.zed}>Zed</Link>
         <Link href="/gallery/">Gallery</Link>
         <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</Link>
         <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
