@@ -920,6 +920,10 @@ pre {
   font-weight: 700;
 }
 
+.site-footer p {
+  margin: 0;
+}
+
 .footer-links {
   display: flex;
   align-items: center;

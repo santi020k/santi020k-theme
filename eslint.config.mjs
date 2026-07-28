@@ -93,6 +93,23 @@ gitignoreConfig,
 },
 {
   files: [
+    'packages/santi020k-zed-theme/scripts/build.mjs'
+  ],
+  rules: {
+    'camelcase': 'off',
+    'security/detect-object-injection': 'off'
+  }
+},
+{
+  files: [
+    'packages/santi020k-zed-theme/scripts/validate.mjs'
+  ],
+  rules: {
+    'security/detect-non-literal-regexp': 'off'
+  }
+},
+{
+  files: [
     'apps/*/tests/*.test.mjs',
     'packages/*/tests/*.test.mjs'
   ],
