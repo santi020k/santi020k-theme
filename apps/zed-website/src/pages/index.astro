@@ -143,29 +143,35 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       <section id="preview" class="site-shell section">
         <div class="section-heading">
           <p class="eyebrow">Preview</p>
-          <h2>Same palette. Zed-native workflow.</h2>
+          <h2>Two variants, one calm rhythm.</h2>
         </div>
 
-        <div class="theme-grid">
-          <Card as="article" class="theme-card theme-card-large">
-            <div class="theme-card-media">
-              <Image src="/preview-dark.png" width="1280" height="720" alt="Santi020k dark variant preview" loading="lazy" decoding="async" inferSize />
+        <div class="preview-grid">
+          <Card as="article" class="preview-card">
+            <div class="preview-card-media">
+              <Image src="/preview-dark.png" width="1280" height="720" alt="Santi020k Dark variant preview" loading="lazy" decoding="async" inferSize />
             </div>
-            <div class="theme-card-body">
-              <div class="card-kicker"><span class="status-dot live"></span>Dark</div>
+            <div class="preview-card-body">
+              <div class="preview-meta">
+                <div class="card-kicker"><span class="status-dot live"></span>Dark</div>
+                <span class="preview-pill">#110c1d</span>
+              </div>
               <h3>Santi020k Dark</h3>
-              <p>Deep indigo-black editor surfaces with muted lavender foregrounds and violet focus states.</p>
+              <p>Deep indigo-black editor surfaces with muted lavender foregrounds and violet focus states for long sessions.</p>
             </div>
           </Card>
 
-          <Card as="article" class="theme-card">
-            <div class="theme-card-media">
-              <Image src="/preview-light.png" width="1280" height="720" alt="Santi020k light variant preview" loading="lazy" decoding="async" inferSize />
+          <Card as="article" class="preview-card">
+            <div class="preview-card-media">
+              <Image src="/preview-light.png" width="1280" height="720" alt="Santi020k Light variant preview" loading="lazy" decoding="async" inferSize />
             </div>
-            <div class="theme-card-body">
-              <div class="card-kicker"><span class="status-dot live"></span>Light</div>
+            <div class="preview-card-body">
+              <div class="preview-meta">
+                <div class="card-kicker"><span class="status-dot live"></span>Light</div>
+                <span class="preview-pill">#f8f6fd</span>
+              </div>
               <h3>Santi020k Light</h3>
-              <p>Lavender-tinted light surfaces with stronger purple accents where light-mode contrast needs them.</p>
+              <p>Lavender-tinted light surfaces with stronger purple accents where light-mode contrast needs more structure.</p>
             </div>
           </Card>
         </div>
@@ -174,42 +180,54 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       <section id="variants" class="site-shell section-grid">
         <div>
           <p class="eyebrow">Variants</p>
-          <h2>Two modes, one visual language.</h2>
+          <h2>Pick the mode that matches your day.</h2>
         </div>
-        <div class="variant-grid">
+        <div class="variant-stack">
           <Card as="article" class="variant-card variant-dark">
             <p>Dark</p>
             <h3>Santi020k Dark</h3>
-            <span>#110c1d</span>
+            <div class="variant-meta">
+              <span class="variant-swatch">Canvas · #110c1d</span>
+              <span class="variant-swatch">Accent · violet focus</span>
+            </div>
           </Card>
           <Card as="article" class="variant-card variant-light">
             <p>Light</p>
             <h3>Santi020k Light</h3>
-            <span>#f8f6fd</span>
+            <div class="variant-meta">
+              <span class="variant-swatch">Canvas · #f8f6fd</span>
+              <span class="variant-swatch">Accent · rich purple</span>
+            </div>
           </Card>
         </div>
       </section>
 
-      <section id="install" class="site-shell section packages-section">
+      <section id="install" class="site-shell section">
         <div class="section-heading">
           <p class="eyebrow">Install</p>
-          <h2>Copy the theme into your Zed config.</h2>
+          <h2>Get it into Zed in three steps.</h2>
         </div>
 
-        <Card as="article" class="package-panel">
-          <div class="package-copy">
+        <Card as="article" class="install-panel">
+          <div class="install-copy">
             <div class="card-kicker">
               <span class="status-dot live"></span>
               Local install
             </div>
             <h3>Use the generated theme file</h3>
-            <p>Build the theme package, copy `themes/santi020k.json` into `~/.config/zed/themes/`, then choose <code>Santi020k Dark</code> or <code>Santi020k Light</code> from Zed’s theme selector.</p>
+            <p>Build the package, place the generated JSON in your local Zed themes directory, then switch to <code>Santi020k Dark</code> or <code>Santi020k Light</code> inside the editor.</p>
+            <ol class="install-steps">
+              <li><span class="step-number">1</span><span>Build <code>packages/santi020k-zed-theme</code>.</span></li>
+              <li><span class="step-number">2</span><span>Create <code>~/.config/zed/themes</code> if it does not exist.</span></li>
+              <li><span class="step-number">3</span><span>Copy <code>santi020k.json</code> into that directory and select the theme in Zed.</span></li>
+            </ol>
+            <p class="install-note">The theme is generated from the same palette source as the VS Code release, so future updates stay aligned across editor surfaces.</p>
             <div class="card-actions">
               <Link class="button button-primary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">Open package source</Link>
             </div>
           </div>
 
-          <div class="package-snippet" aria-label="Zed install commands">
+          <div class="install-code" aria-label="Zed install commands">
             <code>pnpm --filter santi020k-zed-theme run build</code>
             <code>mkdir -p ~/.config/zed/themes</code>
             <code>{installCommand}</code>
@@ -220,30 +238,36 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       <section id="why" class="site-shell why-section">
         <div>
           <p class="eyebrow">Why Zed</p>
-          <h2>Built from the same source, not hand-matched after the fact.</h2>
-          <p class="section-lede">The Zed theme is generated from the existing VS Code palette so the editor family stays aligned as colors evolve.</p>
+          <h2>Generated from the source palette, not approximated later.</h2>
+          <p class="section-lede">The Zed theme comes from the same core color system as the rest of the Santi020k family, so updates stay consistent instead of drifting between products.</p>
         </div>
         <div class="why-grid">
           <Card as="article" class="why-card">
             <div class="why-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
-            <h3>Palette sync</h3>
-            <p>Zed dark and light variants inherit the same canvas, surface, accent, and semantic color intent as the VS Code release.</p>
+            <div class="why-copy">
+              <h3>Palette sync</h3>
+              <p>Zed dark and light variants inherit the same canvas, surface, accent, and semantic color intent as the VS Code release.</p>
+            </div>
           </Card>
           <Card as="article" class="why-card">
             <div class="why-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
             </div>
-            <h3>Minimal install</h3>
-            <p>No extension packaging step is required. Zed reads the generated theme JSON directly from your local themes directory.</p>
+            <div class="why-copy">
+              <h3>Minimal install</h3>
+              <p>No extension packaging step is required. Zed reads the generated theme JSON directly from your local themes directory.</p>
+            </div>
           </Card>
           <Card as="article" class="why-card">
             <div class="why-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
             </div>
-            <h3>Low-noise contrast</h3>
-            <p>The palette stays purple-forward without turning into neon. Focus states stay visible while long reading sessions remain calm.</p>
+            <div class="why-copy">
+              <h3>Low-noise contrast</h3>
+              <p>The palette stays purple-forward without turning neon. Focus states stay visible while long reading sessions remain calm.</p>
+            </div>
           </Card>
         </div>
       </section>

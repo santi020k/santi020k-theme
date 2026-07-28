@@ -44,7 +44,7 @@
     "generate:vscode-previews": "node scripts/generate-vscode-preview-assets.mjs",
     "report:accessibility": "node scripts/generate-accessibility-report.mjs",
     "changeset": "changeset",
-    "version-packages": "changeset version && pnpm --filter santi020k-chrome-theme run sync:manifest-version && pnpm install --lockfile-only && pnpm run sync:website-version",
+    "version-packages": "changeset version && pnpm --filter santi020k-chrome-theme run sync:manifest-version && pnpm --filter santi020k-zed-theme run sync:extension-version && pnpm install --lockfile-only && pnpm run sync:website-version",
     "site:dev": "pnpm --filter @santi020k/santi020k-theme-website run dev",
     "sites:dev": "pnpm --parallel --filter @santi020k/santi020k-theme-website --filter @santi020k/santi020k-vscode-theme-website --filter @santi020k/santi020k-chrome-theme-website --filter @santi020k/santi020k-terminal-theme-website --filter @santi020k/santi020k-zed-theme-website run dev",
     "site:build": "pnpm --filter @santi020k/santi020k-theme-website run build",

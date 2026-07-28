@@ -1,0 +1,154 @@
+name: Publish Zed Extension
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/santi020k-zed-theme/**"
+      - ".github/workflows/zed-release.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: zed-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-zed-extension:
+    name: Open Zed extensions registry PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: zed
+      url: https://zed.dev/extensions
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 10.32.1
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate Zed package
+        run: pnpm --filter santi020k-zed-theme run validate
+
+      - name: Read Zed extension version
+        id: zed-version
+        run: |
+          version="$(node -p "require('./packages/santi020k-zed-theme/package.json').version")"
+          manifest_version="$(node -e "const fs=require('node:fs'); const toml=fs.readFileSync('packages/santi020k-zed-theme/extension.toml','utf8'); console.log(toml.match(/^version = \\\"([^\\\"]+)\\\"$/m)[1])")"
+          if [ "$version" != "$manifest_version" ]; then
+            echo "package.json version ($version) does not match extension.toml version ($manifest_version)."
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Validate Zed publishing configuration
+        if: steps.zed-version.outputs.version != '0.0.0'
+        run: |
+          if [ -z "${ZED_EXTENSIONS_TOKEN}" ]; then
+            echo 'ZED_EXTENSIONS_TOKEN is required to push to your fork and open the registry PR.'
+            exit 1
+          fi
+          if [ -z "${ZED_EXTENSIONS_FORK}" ]; then
+            echo 'ZED_EXTENSIONS_FORK is required, for example: santi020k/extensions.'
+            exit 1
+          fi
+        env:
+          ZED_EXTENSIONS_TOKEN: ${{ secrets.ZED_EXTENSIONS_TOKEN }}
+          ZED_EXTENSIONS_FORK: ${{ vars.ZED_EXTENSIONS_FORK }}
+
+      - name: Check out Zed extensions fork
+        if: steps.zed-version.outputs.version != '0.0.0'
+        run: |
+          git clone "https://x-access-token:${ZED_EXTENSIONS_TOKEN}@github.com/${ZED_EXTENSIONS_FORK}.git" zed-extensions
+          cd zed-extensions
+          git remote add upstream https://github.com/zed-industries/extensions.git
+          git fetch upstream main
+          git checkout -B "santi020k-theme-${ZED_VERSION}" upstream/main
+        env:
+          ZED_EXTENSIONS_TOKEN: ${{ secrets.ZED_EXTENSIONS_TOKEN }}
+          ZED_EXTENSIONS_FORK: ${{ vars.ZED_EXTENSIONS_FORK }}
+          ZED_VERSION: ${{ steps.zed-version.outputs.version }}
+
+      - name: Update registry entry
+        if: steps.zed-version.outputs.version != '0.0.0'
+        working-directory: zed-extensions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ ! -d extensions/santi020k-theme ]; then
+            git submodule add https://github.com/santi020k/santi020k-theme extensions/santi020k-theme
+          fi
+
+          git -C extensions/santi020k-theme fetch origin "${GITHUB_SHA}"
+          git -C extensions/santi020k-theme checkout "${GITHUB_SHA}"
+
+          python - <<'PY'
+          from pathlib import Path
+          import os
+
+          path = Path('extensions.toml')
+          text = path.read_text()
+          version = os.environ['ZED_VERSION']
+          entry = f'''[santi020k-theme]\nsubmodule = "extensions/santi020k-theme"\npath = "packages/santi020k-zed-theme"\nversion = "{version}"\n'''
+
+          marker = '[santi020k-theme]'
+          if marker in text:
+              start = text.index(marker)
+              next_start = text.find('\n[', start + 1)
+              if next_start == -1:
+                  text = text[:start].rstrip() + '\n\n' + entry
+              else:
+                  text = text[:start].rstrip() + '\n\n' + entry + '\n' + text[next_start + 1:].lstrip()
+          else:
+              text = entry + '\n' + text.lstrip()
+
+          path.write_text(text)
+          PY
+
+          pnpm install --frozen-lockfile
+          pnpm run sort-extensions
+
+          git add .gitmodules extensions.toml extensions/santi020k-theme
+          if git diff --cached --quiet; then
+            echo 'Zed registry entry is already up to date.'
+            exit 0
+          fi
+          git commit -m "santi020k-theme ${ZED_VERSION}"
+          git push --force-with-lease origin "santi020k-theme-${ZED_VERSION}"
+        env:
+          ZED_VERSION: ${{ steps.zed-version.outputs.version }}
+
+      - name: Open Zed registry pull request
+        if: steps.zed-version.outputs.version != '0.0.0'
+        working-directory: zed-extensions
+        run: |
+          gh pr create \
+            --repo zed-industries/extensions \
+            --head "${ZED_EXTENSIONS_HEAD}:santi020k-theme-${ZED_VERSION}" \
+            --base main \
+            --title "Add santi020k-theme ${ZED_VERSION}" \
+            --body "Publishes santi020k-theme ${ZED_VERSION}.\n\nSource: https://github.com/santi020k/santi020k-theme/tree/${GITHUB_SHA}/packages/santi020k-zed-theme"
+        env:
+          GH_TOKEN: ${{ secrets.ZED_EXTENSIONS_TOKEN }}
+          ZED_EXTENSIONS_HEAD: ${{ vars.ZED_EXTENSIONS_HEAD || github.repository_owner }}
+          ZED_VERSION: ${{ steps.zed-version.outputs.version }}

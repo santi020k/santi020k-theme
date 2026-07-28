@@ -5,19 +5,21 @@ on:
     branches:
       - main
     paths:
-      - '.changeset/**'
-      - 'package.json'
-      - 'packages/theme/**'
-      - 'packages/theme-core/**'
-      - 'packages/santi020k-theme/**'
+      - ".changeset/**"
+      - "package.json"
+      - "packages/theme/**"
+      - "packages/theme-core/**"
+      - "packages/santi020k-theme/**"
       - 'packages/santi020k-terminal-theme/**'
+      - 'packages/santi020k-zed-theme/**'
+      - 'apps/zed-website/**'
       - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - 'scripts/publish-npm-packages.mjs'
-      - 'apps/vscode-website/scripts/sync-website-version.mjs'
-      - 'packages/santi020k-theme/scripts/ensure-release-tag.mjs'
-      - 'packages/santi020k-theme/scripts/publish-registries.mjs'
-      - '.github/workflows/release.yml'
+      - "pnpm-workspace.yaml"
+      - "scripts/publish-npm-packages.mjs"
+      - "apps/vscode-website/scripts/sync-website-version.mjs"
+      - "packages/santi020k-theme/scripts/ensure-release-tag.mjs"
+      - "packages/santi020k-theme/scripts/publish-registries.mjs"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
 
 concurrency:
