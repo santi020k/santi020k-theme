@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import { Button, Card, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
+import { Button, ButtonLink, Card, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
@@ -98,10 +98,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       </nav>
 
       <div class="header-actions">
-        <Button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <path d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
+        <Button class="nav-toggle" variant="ghost" size="icon" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+          <Icon name="menu" />
         </Button>
         <ThemeToggle class="theme-toggle" role="switch" aria-label="Toggle color theme" aria-checked="true" storageKey="theme" />
       </div>
@@ -116,9 +114,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             Dark and light Zed variants generated from the same Santi020k color system used across VS Code, Chrome, and Terminal. Calm contrast, minimal noise, direct install.
           </p>
           <div class="actions" aria-label="Primary theme links">
-            <Link class="button button-primary" href="#install">Install for Zed</Link>
-            <Link class="button button-secondary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">View package</Link>
-            <Link class="button button-secondary" href={siteUrls.hub}>Open theme hub</Link>
+            <ButtonLink class="button button-primary" variant="primary" href="#install">Install for Zed</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">View package</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.hub}>Open theme hub</ButtonLink>
           </div>
         </div>
 
@@ -215,7 +213,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             </ol>
             <p class="install-note">The theme is generated from the same palette source as the VS Code release, so future updates stay aligned across editor surfaces.</p>
             <div class="card-actions">
-              <Link class="button button-primary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">Open package source</Link>
+              <ButtonLink class="button button-primary" variant="primary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">Open package source</ButtonLink>
             </div>
           </div>
 
