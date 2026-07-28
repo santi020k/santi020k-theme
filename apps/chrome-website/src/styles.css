@@ -160,23 +160,6 @@ code {
 
 .theme-toggle:hover { border-color: var(--site-brand); color: var(--site-brand); }
 
-.icon-sun,
-.icon-moon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-:root[data-theme="dark"]  .icon-sun  { opacity: 1; transform: scale(1) rotate(0deg); }
-:root[data-theme="dark"]  .icon-moon { opacity: 0; transform: scale(0) rotate(-90deg); }
-:root[data-theme="light"] .icon-sun  { opacity: 0; transform: scale(0) rotate(90deg); }
-:root[data-theme="light"] .icon-moon { opacity: 1; transform: scale(1) rotate(0deg); }
-
 /* ─── Hero ───────────────────────────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -1028,6 +1011,6 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .icon-sun, .icon-moon, .why-card,
+  .why-card,
   .button-copy-install { transition: none; }
 }

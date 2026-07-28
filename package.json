@@ -71,6 +71,7 @@
     "@changesets/cli": "catalog:",
     "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
+    "@eslint/config-helpers": "catalog:",
     "@santi020k/eslint-config-basic": "catalog:",
     "@types/node": "catalog:",
     "@vscode/vsce": "catalog:",

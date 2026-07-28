@@ -154,39 +154,7 @@ img {
   transform: translateY(-1px);
 }
 
-.icon-sun,
-.icon-moon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
 
-:root[data-theme="dark"] .icon-sun {
-  opacity: 1;
-  transform: scale(1);
-}
-
-:root[data-theme="dark"] .icon-moon {
-  opacity: 0;
-  transform: scale(0.75) rotate(-45deg);
-}
-
-:root[data-theme="light"] .icon-sun {
-  opacity: 0;
-  transform: scale(0.75) rotate(45deg);
-}
-
-:root[data-theme="light"] .icon-moon {
-  opacity: 1;
-  transform: scale(1);
-}
 
 h1,
 h2,

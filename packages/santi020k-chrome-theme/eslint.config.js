@@ -1,4 +1,13 @@
-import { defineConfig, Runtime } from '@santi020k/eslint-config-basic'
+import path from 'node:path'
+
+import { includeIgnoreFile } from '@eslint/config-helpers'
+import { defineConfig, Runtime, Setting } from '@santi020k/eslint-config-basic'
+
+// `defineConfig`'s built-in gitignore support resolves `.gitignore` from
+// `process.cwd()` at import time, which editors (notably Zed's ESLint LSP)
+// don't always set to this package's root. Resolving against `import.meta.dirname`
+// keeps `.gitignore` honored regardless of the linting process's cwd.
+const gitignoreConfig = includeIgnoreFile(path.resolve(import.meta.dirname, '.gitignore'))
 
 export default await defineConfig({
   detectRootDir: import.meta.dirname,
@@ -9,6 +18,7 @@ export default await defineConfig({
     '**/*.md',
     '**/*.svg'
   ],
+  settings: [Setting.NoGitignore],
   features: {
     jsonc: false,
     markdown: false,
@@ -17,6 +27,7 @@ export default await defineConfig({
   },
   runtime: Runtime.Universal
 },
+gitignoreConfig,
 {
   files: ['eslint.config.js'],
   rules: {

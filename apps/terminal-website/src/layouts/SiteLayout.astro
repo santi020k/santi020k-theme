@@ -66,7 +66,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <header class="site-header"><div class="shell header-inner">
       <Link className="brand" href="/"><Image src="/favicon.svg" width="36" height="36" alt="" inferSize /><span>Santi020k <b>Terminal</b></span></Link>
       <nav id="primary-navigation" aria-label="Primary navigation"><Link href="/">Home</Link><Link href="/configure/">Configure</Link><Link href="/docs/">Documentation</Link><Link href="/docs/#install">Install</Link><Link href={siteUrls.hub}>Theme family</Link><Link href="https://github.com/santi020k/santi020k-theme">GitHub</Link></nav>
-      <div class="header-actions"><Button className="nav-toggle" variant="ghost" size="icon" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation"><Icon name="menu" /></Button><ThemeToggle className="theme-toggle" role="switch" aria-label="Toggle site color theme" aria-checked="true" /></div>
+      <div class="header-actions"><Button className="nav-toggle" variant="ghost" size="icon" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation"><Icon name="menu" /></Button><ThemeToggle className="theme-toggle" role="switch" aria-label="Toggle site color theme" aria-checked="true" storageKey="theme" /></div>
     </div></header>
     <main><slot /></main>
     <footer class="shell"><p>Made by <Link href="https://santi020k.com">Santiago Molina</Link>.</p><div><Link href="/configure/">Configure</Link><Link href="/docs/">Documentation</Link><Link href="/docs/#install">Install</Link><Link href="/docs/cli/">CLI reference</Link><Link href={siteUrls.hub}>All themes</Link></div></footer>

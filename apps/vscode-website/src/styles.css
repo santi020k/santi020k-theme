@@ -229,39 +229,7 @@ a:focus-visible,
   color: var(--site-brand);
 }
 
-.icon-sun,
-.icon-moon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
 
-/* Dark mode: show sun (user can click to go light) */
-:root[data-theme="dark"] .icon-sun {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
-}
-:root[data-theme="dark"] .icon-moon {
-  opacity: 0;
-  transform: scale(0) rotate(-90deg);
-}
-
-/* Light mode: show moon (user can click to go dark) */
-:root[data-theme="light"] .icon-sun {
-  opacity: 0;
-  transform: scale(0) rotate(90deg);
-}
-:root[data-theme="light"] .icon-moon {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
-}
 
 /* ─── Hero ────────────────────────────────────────────────────────────────── */
 .hero {
@@ -1077,8 +1045,6 @@ pre {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .icon-sun,
-  .icon-moon,
   .button-copy-install,
   .button-copy-install .copy-icon,
   .button-copy-settings,

@@ -4,12 +4,7 @@ import {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
   rootInDarkMode,
-  setSiteTheme,
   SITE_DESKTOP_NAV_QUERY,
-  SITE_REDUCED_MOTION_QUERY,
-  SITE_REVEAL_DARK_BACKGROUND,
-  SITE_REVEAL_LIGHT_BACKGROUND,
-  SITE_TOUCH_POINTER_QUERY,
   syncSiteThemeToggle
 } from '@santi020k/theme/site'
 
@@ -211,60 +206,11 @@ const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, v
   if (variantSelect) variantSelect.value = variant
 }
 
-const circularReveal = (button, isDark, newTheme) => {
-  // Skip clip-path animation on touch/coarse-pointer: GPU-expensive and hurts INP
-  if (window.matchMedia(SITE_TOUCH_POINTER_QUERY).matches) {
-    setSiteTheme(newTheme)
-
-    return
-  }
-
-  const rect = button.getBoundingClientRect()
-  const x = Math.round(rect.left + rect.width / 2)
-  const y = Math.round(rect.top + rect.height / 2)
-
-  const maxRadius = Math.hypot(
-    Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)
-  )
-
-  const overlay = document.createElement('div')
-
-  overlay.setAttribute('aria-hidden', 'true')
-
-  Object.assign(overlay.style, {
-    position: 'fixed',
-    inset: '0',
-    zIndex: '99999',
-    pointerEvents: 'none',
-    backgroundColor: isDark ? SITE_REVEAL_DARK_BACKGROUND : SITE_REVEAL_LIGHT_BACKGROUND,
-    clipPath: `circle(${maxRadius}px at ${x}px ${y}px)`,
-    willChange: 'clip-path'
-  })
-
-  document.body.appendChild(overlay)
-
-  setSiteTheme(newTheme)
-
-  // Double rAF: first frame commits the append + initial clip-path to the
-  // compositor; second frame starts the collapse. Avoids forced sync layout.
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      overlay.style.transition = 'clip-path 580ms cubic-bezier(0.4, 0, 0.2, 1)'
-
-      overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`
-
-      const done = () => overlay.remove()
-
-      overlay.addEventListener('transitionend', done, { once: true })
-
-      setTimeout(done, 750)
-    })
-  })
-}
-
 // ── Boot ──────────────────────────────────────────────────────────────────────
 // Theme is already set by the anti-FOUC inline script in <head>.
-// We just need to sync the toggle button state and preview content.
+// The theme toggle is Lumen's <ThemeToggle>, which already animates the
+// switch with its own circular reveal effect (see UIPrimitives). We just
+// need to sync the toggle button state and preview content when it fires.
 
 const toggle = document.querySelector('.theme-toggle')
 const header = document.querySelector('.site-header')
@@ -327,37 +273,10 @@ bindPreferredSiteThemeSync({
 
 // Theme toggle button
 if (toggle) {
-  let isAnimating = false
-
-  toggle.addEventListener('click', () => {
-    if (isAnimating) return
-
-    const isDark = rootInDarkMode()
-    const newTheme = isDark ? 'light' : 'dark'
-
-    isAnimating = true
-
-    if (window.matchMedia(SITE_REDUCED_MOTION_QUERY).matches) {
-      setSiteTheme(newTheme)
-
-      syncSiteThemeToggle(toggle)
-
-      syncPreviewWithSite()
-
-      isAnimating = false
-
-      return
-    }
-
-    circularReveal(toggle, isDark, newTheme)
-
+  toggle.addEventListener('ui:theme-change', () => {
     syncSiteThemeToggle(toggle)
 
     syncPreviewWithSite()
-
-    setTimeout(() => {
-      isAnimating = false
-    }, 800)
   })
 }
 

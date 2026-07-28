@@ -3,25 +3,22 @@ import './styles.css'
 import {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
-  rootInDarkMode,
-  setSiteTheme,
   SITE_DESKTOP_NAV_QUERY,
   syncSiteThemeToggle
 } from '@santi020k/theme/site'
 
+// The theme toggle is Lumen's <ThemeToggle>, which already animates the
+// switch with its own circular reveal effect (see UIPrimitives). We only
+// need to keep the button's aria state in sync with the current theme.
 const toggle = document.querySelector('.theme-toggle')
 
 syncSiteThemeToggle(toggle)
 
+toggle?.addEventListener('ui:theme-change', () => syncSiteThemeToggle(toggle))
+
 bindSiteNavigation({ desktopNavQuery: window.matchMedia(SITE_DESKTOP_NAV_QUERY), header: document.querySelector('.site-header'), navLinks: document.querySelectorAll('#primary-navigation a'), navToggle: document.querySelector('.nav-toggle') })
 
 bindPreferredSiteThemeSync({ onThemeChange: () => syncSiteThemeToggle(toggle) })
-
-toggle?.addEventListener('click', () => {
-  setSiteTheme(rootInDarkMode() ? 'light' : 'dark')
-
-  syncSiteThemeToggle(toggle)
-})
 
 for (const button of document.querySelectorAll('[data-preset]')) button.addEventListener('click', () => {
   const terminal = button.closest('.terminal')
