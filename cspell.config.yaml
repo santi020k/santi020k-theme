@@ -88,6 +88,8 @@ words:
   - font-weight
   - FOUC
   - GITHUB_TOKEN
+  - GHSA
+  - Ghsas
   - Ghostty
   - glassmorphism
   - grid-column
@@ -127,6 +129,7 @@ words:
   - letter-spacing
   - linecap
   - ligatures
+  - linkify
   - lightningcss
   - line-height
   - linejoin
@@ -227,6 +230,7 @@ words:
   - urlset
   - v1.4.0
   - v1.5.0
+  - valibot
   - Wezterm
   - wezterm
   - vite
