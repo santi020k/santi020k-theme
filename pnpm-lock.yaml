@@ -246,11 +246,7 @@ importers:
 
   packages/santi020k-theme: {}
 
-  packages/santi020k-zed-theme:
-    dependencies:
-      '@santi020k/theme':
-        specifier: workspace:^
-        version: link:../theme
+  packages/santi020k-zed-theme: {}
 
   packages/theme:
     dependencies:

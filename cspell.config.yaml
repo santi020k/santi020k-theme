@@ -18,6 +18,7 @@ words:
   - pipefail
   - pkgshare
   - precmd
+  - preproc
   - SAVEHIST
   - slurpfile
   - testpath

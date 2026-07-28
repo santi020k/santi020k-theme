@@ -1,5 +1,5 @@
-@import '@santi020k/lumen-astro/styles.css';
-@import '@santi020k/theme/site.css';
+@import "@santi020k/lumen-astro/styles.css";
+@import "@santi020k/theme/site.css";
 
 /* Editor preview (shared tokens for inheritance) */
 .editor-preview {
@@ -85,9 +85,17 @@ body {
   background:
     linear-gradient(90deg, rgb(var(--glow-rgb) / 0.06) 1px, transparent 1px),
     linear-gradient(180deg, rgb(var(--glow-rgb) / 0.06) 1px, transparent 1px),
-    radial-gradient(circle at 72% 12%, rgb(var(--glow-rgb) / 0.16), transparent 28rem),
+    radial-gradient(
+      circle at 72% 12%,
+      rgb(var(--glow-rgb) / 0.16),
+      transparent 28rem
+    ),
     var(--theme-bg);
-  background-size: 56px 56px, 56px 56px, auto, auto;
+  background-size:
+    56px 56px,
+    56px 56px,
+    auto,
+    auto;
 }
 
 a {
@@ -185,7 +193,10 @@ a:focus-visible,
   background: var(--btn-secondary-bg);
   color: var(--site-ink-soft);
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
 }
 
 .nav-toggle:hover,
@@ -208,7 +219,9 @@ a:focus-visible,
   background: transparent;
   color: var(--site-ink-soft);
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
 
 .theme-toggle:hover {
@@ -225,7 +238,9 @@ a:focus-visible,
   height: 20px;
   margin-top: -10px;
   margin-left: -10px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 /* Dark mode: show sun (user can click to go light) */
@@ -274,7 +289,11 @@ a:focus-visible,
   width: 60%;
   height: 60%;
   transform: translateY(-50%);
-  background: radial-gradient(circle, rgb(var(--glow-rgb) / 0.12) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgb(var(--glow-rgb) / 0.12) 0%,
+    transparent 70%
+  );
   filter: blur(80px);
   content: "";
   pointer-events: none;
@@ -463,9 +482,15 @@ h3 {
   border-radius: 999px;
 }
 
-.preview-dots span:nth-child(1) { background: var(--site-danger); }
-.preview-dots span:nth-child(2) { background: var(--site-warning); }
-.preview-dots span:nth-child(3) { background: var(--site-success); }
+.preview-dots span:nth-child(1) {
+  background: var(--site-danger);
+}
+.preview-dots span:nth-child(2) {
+  background: var(--site-warning);
+}
+.preview-dots span:nth-child(3) {
+  background: var(--site-success);
+}
 
 .preview-controls {
   display: flex;
@@ -485,7 +510,9 @@ h3 {
   border-radius: 6px;
   cursor: pointer;
   outline: none;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
 
 .preview-controls select:hover {
@@ -545,9 +572,13 @@ h3 {
   border-right: 1px solid var(--preview-topbar-border);
   padding: 24px 0;
   color: var(--preview-gutter-color);
-  font: 500 0.82rem/1.2 "Fira Code", monospace;
+  font:
+    500 0.82rem/1.2 "Fira Code",
+    monospace;
   text-align: center;
-  transition: color 0.3s, border-color 0.3s;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
 }
 
 .preview-body aside .active {
@@ -561,7 +592,9 @@ pre {
   overflow-x: auto;
   padding: 24px;
   color: var(--preview-pre-color);
-  font: 500 0.94rem/1.9 "Fira Code", monospace;
+  font:
+    500 0.94rem/1.9 "Fira Code",
+    monospace;
   font-variant-ligatures: contextual;
   transition: color 0.3s;
 }
@@ -601,7 +634,9 @@ pre {
 }
 
 .property {
-  color: var(--preview-function); /* properties usually share function/type color in this theme */
+  color: var(
+    --preview-function
+  ); /* properties usually share function/type color in this theme */
   transition: color 0.3s;
 }
 
@@ -746,7 +781,10 @@ pre {
   color: var(--site-ink-soft);
   font-size: 0.9rem;
   font-weight: 700;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
 }
 
 .editor-chip svg {
@@ -816,8 +854,6 @@ pre {
   border-style: solid;
   opacity: 1;
 }
-
-
 
 /* ─── Variant cards ───────────────────────────────────────────────────────── */
 .variant-grid {
@@ -1063,8 +1099,102 @@ pre {
   }
 }
 
-.compatibility-section,.settings-section{padding-block:110px;border-top:1px solid var(--section-divider)}
-.compatibility-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:42px}.compatibility-grid>div{display:flex;align-items:center;gap:10px;padding:18px;border:1px solid var(--site-line);border-radius:10px;background:var(--site-surface)}.compatibility-grid span{color:var(--site-brand);font-weight:800}.evidence-links{margin-top:24px;color:var(--site-ink-soft)}.evidence-links a{color:var(--site-brand);font-weight:700}
-.settings-builder{display:grid;grid-template-columns:.7fr 1.3fr;gap:24px;margin-top:42px}.settings-controls,.settings-output{min-width:0;padding:26px;border:1px solid var(--site-line);border-radius:14px;background:var(--site-surface)}.settings-controls{display:grid;align-content:start;gap:24px}.settings-controls label{display:grid;min-width:0;gap:9px;color:var(--site-ink-soft);line-height:1.5;font-weight:700}.settings-controls label:has(input){grid-template-columns:auto 1fr;align-items:start}.settings-controls select{width:100%;min-width:0;min-height:44px;padding:0 12px;border:1px solid var(--site-line);border-radius:8px;background:var(--theme-bg);color:var(--site-ink)}.settings-output pre{min-width:0;min-height:250px;margin:0 0 18px;overflow:auto;color:#dfdde3;background:#0d0a15;border-radius:9px;padding:18px;font:500 .76rem/1.7 "Fira Code",monospace}
-@media(max-width:900px){.compatibility-grid{grid-template-columns:repeat(2,1fr)}.settings-builder{grid-template-columns:1fr}}
-@media(max-width:560px){.compatibility-grid{grid-template-columns:1fr}}
+.compatibility-section,
+.settings-section {
+  padding-block: 110px;
+  border-top: 1px solid var(--section-divider);
+}
+.compatibility-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 42px;
+}
+.compatibility-grid > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--site-line);
+  border-radius: 10px;
+  background: var(--site-surface);
+}
+.compatibility-grid span {
+  color: var(--site-brand);
+  font-weight: 800;
+}
+.evidence-links {
+  margin-top: 24px;
+  color: var(--site-ink-soft);
+}
+.evidence-links a {
+  color: var(--site-brand);
+  font-weight: 700;
+}
+.settings-builder {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 24px;
+  margin-top: 42px;
+}
+.settings-controls,
+.settings-output {
+  min-width: 0;
+  padding: 26px;
+  border: 1px solid var(--site-line);
+  border-radius: 14px;
+  background: var(--site-surface);
+}
+.settings-controls {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+}
+.settings-controls label {
+  display: grid;
+  min-width: 0;
+  gap: 9px;
+  color: var(--site-ink-soft);
+  line-height: 1.5;
+  font-weight: 700;
+}
+.settings-controls label:has(input) {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+}
+.settings-controls select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--site-line);
+  border-radius: 8px;
+  background: var(--theme-bg);
+  color: var(--site-ink);
+}
+.settings-output pre {
+  min-width: 0;
+  min-height: 250px;
+  margin: 0 0 18px;
+  overflow: auto;
+  color: #dfdde3;
+  background: #0d0a15;
+  border-radius: 9px;
+  padding: 18px;
+  font:
+    500 0.76rem/1.7 "Fira Code",
+    monospace;
+}
+@media (max-width: 900px) {
+  .compatibility-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .settings-builder {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .compatibility-grid {
+    grid-template-columns: 1fr;
+  }
+}
