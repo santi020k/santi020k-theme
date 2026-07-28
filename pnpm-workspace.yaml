@@ -48,7 +48,7 @@ overrides:
   js-yaml: ^4.3.0
   linkify-it: ^5.0.2
   postcss: ^8.5.18
-  read-yaml-file: 3.0.0
+  "@manypkg/get-packages>read-yaml-file": 2.1.0
   svgo: ^4.0.2
   undici: ^8.9.0
   valibot: ^1.4.2

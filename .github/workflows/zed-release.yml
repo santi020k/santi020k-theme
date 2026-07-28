@@ -58,10 +58,26 @@ jobs:
             echo "package.json version ($version) does not match extension.toml version ($manifest_version)."
             exit 1
           fi
+
+          should_publish=false
+          if [ "$version" != '0.0.0' ]; then
+            if [ "$GITHUB_EVENT_NAME" = 'workflow_dispatch' ]; then
+              should_publish=true
+            elif previous_package="$(git show "${GITHUB_EVENT_BEFORE}:packages/santi020k-zed-theme/package.json" 2>/dev/null)"; then
+              previous_version="$(printf '%s' "$previous_package" | node -e "let input=''; process.stdin.on('data', chunk => input += chunk); process.stdin.on('end', () => console.log(JSON.parse(input).version))")"
+              if [ "$version" != "$previous_version" ]; then
+                should_publish=true
+              fi
+            fi
+          fi
+
           echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "should-publish=$should_publish" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
 
       - name: Validate Zed publishing configuration
-        if: steps.zed-version.outputs.version != '0.0.0'
+        if: steps.zed-version.outputs.should-publish == 'true'
         run: |
           if [ -z "${ZED_EXTENSIONS_TOKEN}" ]; then
             echo 'ZED_EXTENSIONS_TOKEN is required to push to your fork and open the registry PR.'
@@ -76,7 +92,7 @@ jobs:
           ZED_EXTENSIONS_FORK: ${{ vars.ZED_EXTENSIONS_FORK }}
 
       - name: Check out Zed extensions fork
-        if: steps.zed-version.outputs.version != '0.0.0'
+        if: steps.zed-version.outputs.should-publish == 'true'
         run: |
           git clone "https://x-access-token:${ZED_EXTENSIONS_TOKEN}@github.com/${ZED_EXTENSIONS_FORK}.git" zed-extensions
           cd zed-extensions
@@ -89,13 +105,15 @@ jobs:
           ZED_VERSION: ${{ steps.zed-version.outputs.version }}
 
       - name: Update registry entry
-        if: steps.zed-version.outputs.version != '0.0.0'
+        if: steps.zed-version.outputs.should-publish == 'true'
         working-directory: zed-extensions
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if [ ! -d extensions/santi020k-theme ]; then
+          if git ls-files --error-unmatch extensions/santi020k-theme >/dev/null 2>&1; then
+            git submodule update --init extensions/santi020k-theme
+          else
             git submodule add https://github.com/santi020k/santi020k-theme extensions/santi020k-theme
           fi
 
@@ -139,7 +157,7 @@ jobs:
           ZED_VERSION: ${{ steps.zed-version.outputs.version }}
 
       - name: Open Zed registry pull request
-        if: steps.zed-version.outputs.version != '0.0.0'
+        if: steps.zed-version.outputs.should-publish == 'true'
         working-directory: zed-extensions
         run: |
           gh pr create \
