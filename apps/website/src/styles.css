@@ -24,6 +24,7 @@ body {
     linear-gradient(90deg, color-mix(in srgb, var(--site-brand) 7%, transparent) 1px, transparent 1px),
     linear-gradient(180deg, color-mix(in srgb, var(--site-brand) 6%, transparent) 1px, transparent 1px),
     linear-gradient(155deg, color-mix(in srgb, var(--site-surface) 82%, var(--theme-bg)) 0%, var(--theme-bg) 48%, color-mix(in srgb, var(--chrome) 13%, var(--theme-bg)) 100%);
+  background-color: var(--theme-bg);
   background-attachment: fixed;
   background-position: center top;
   background-size: 80px 80px, 80px 80px, auto;
@@ -748,6 +749,9 @@ h3 {
 
 .filter-button,
 .dialog-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 44px;
   border: 1px solid var(--site-line);
   background: var(--btn-secondary-bg);
@@ -927,7 +931,7 @@ h3 {
   outline-offset: 2px;
 }
 
-.asset-formats span {
+.asset-format-icon {
   color: var(--site-brand);
   font-size: 0.9rem;
 }
@@ -972,8 +976,12 @@ h3 {
   width: 44px;
   flex: 0 0 44px;
   border-radius: 999px;
-  font-size: 1.6rem;
-  line-height: 1;
+  font-size: 1.375rem;
+}
+
+.dialog-close:hover {
+  border-color: var(--site-brand);
+  color: var(--site-brand);
 }
 
 .dialog-media {
@@ -1015,10 +1023,6 @@ h3 {
   h1,
   h2 {
     max-width: 13ch;
-  }
-
-  .soon-grid {
-    grid-template-columns: 1fr;
   }
 
   .package-panel {
@@ -1272,5 +1276,46 @@ h3 {
 
   .assets-section .section-cta .button {
     width: 100%;
+  }
+}
+
+.back-to-top {
+  position: fixed;
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 30;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--site-line);
+  border-radius: 999px;
+  background: var(--site-surface);
+  box-shadow: 0 18px 42px var(--shadow);
+  color: var(--site-ink-soft);
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  pointer-events: none;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  border-color: var(--site-brand);
+  color: var(--site-brand);
+}
+
+@media (max-width: 640px) {
+  .back-to-top {
+    width: 44px;
+    height: 44px;
   }
 }

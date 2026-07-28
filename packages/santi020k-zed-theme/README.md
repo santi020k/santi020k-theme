@@ -28,3 +28,13 @@ cp packages/santi020k-zed-theme/themes/santi020k.json ~/.config/zed/themes/santi
 ```
 
 Then select `Santi020k Dark` or `Santi020k Light` from Zed's theme selector.
+
+## Publishing
+
+The package stays at `0.0.0` until the Changesets release PR is generated. The pending major changeset bumps it to `1.0.0`, syncs `extension.toml`, and then `.github/workflows/zed-release.yml` opens a PR against `zed-industries/extensions`.
+
+Required GitHub configuration:
+
+- Secret `ZED_EXTENSIONS_TOKEN`: a token that can push to your fork of `zed-industries/extensions` and open pull requests upstream.
+- Variable `ZED_EXTENSIONS_FORK`: your fork, for example `santi020k/extensions`.
+- Optional variable `ZED_EXTENSIONS_HEAD`: the fork owner used in the upstream PR head. Defaults to the repository owner.
