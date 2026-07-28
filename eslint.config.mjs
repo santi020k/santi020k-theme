@@ -30,7 +30,19 @@ export default await defineConfig({
   features: {
     perfectionist: false
   },
-  runtime: Runtime.Node
+  runtime: Runtime.Node,
+  projects: {
+    'packages/santi020k-chrome-theme': {
+      ignores: ['**/*.svg'],
+      features: {
+        jsonc: false,
+        markdown: false,
+        perfectionist: false,
+        zod: false
+      },
+      runtime: Runtime.Universal
+    }
+  }
 },
 gitignoreConfig,
 {
