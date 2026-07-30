@@ -1,4 +1,6 @@
 ---
+/* eslint-disable @stylistic/indent, @stylistic/jsx-closing-tag-location, @stylistic/max-len -- Astro inline-script indentation conflicts with JSX closing-tag fixes; long declarative markup is clearer unwrapped. */
+
 import { Image } from 'astro:assets'
 
 import { Button, ButtonLink, Card, Checkbox, Icon, Link, NativeSelect, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
@@ -36,16 +38,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta charset="UTF-8" />
     <!-- Anti-FOUC: sets data-theme before CSS renders to prevent a flash -->
     <script>
-    (function () {
-      var s = localStorage.getItem('theme')
+  (function () {
+    var s = localStorage.getItem('theme')
+    var pref = s
 
-      var pref = s === 'light' || s === 'dark' ?
-    s :
-    window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    if (pref !== 'light' && pref !== 'dark') {
+      pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    }
 
-      document.documentElement.setAttribute('data-theme', pref)
-    })()
-    </script>
+    document.documentElement.setAttribute('data-theme', pref)
+  })()
+  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Theme — VS Code Color Theme</title>
     <!-- Fonts -->

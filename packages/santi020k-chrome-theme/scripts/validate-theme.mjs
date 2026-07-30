@@ -1,3 +1,5 @@
+/* eslint-disable n/no-process-exit, no-console -- This validation CLI owns its process lifecycle and terminal output. */
+
 import { existsSync, readFileSync } from 'fs'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
@@ -57,6 +59,7 @@ const readVSCodeColors = variant => {
 
 const formatValue = value => JSON.stringify(value)
 
+// eslint-disable-next-line complexity -- The validator accumulates every independent theme failure for one complete report.
 const validateTheme = variant => {
   const manifestConfig = MANIFEST_MAP.get(variant)
 
@@ -96,7 +99,10 @@ const validateTheme = variant => {
       continue
     }
 
-    console.error(`❌ Token drift: ${key} is ${formatValue(actualValue)}, expected ${formatValue(expectedValue)} from @santi020k/theme`)
+    console.error(
+      `❌ Token drift: ${key} is ${formatValue(actualValue)}, ` +
+      `expected ${formatValue(expectedValue)} from @santi020k/theme`
+    )
 
     errors++
   }
@@ -108,7 +114,10 @@ const validateTheme = variant => {
       continue
     }
 
-    console.error(`❌ Property drift: ${key} is ${formatValue(actualValue)}, expected ${formatValue(expectedValue)} from @santi020k/theme`)
+    console.error(
+      `❌ Property drift: ${key} is ${formatValue(actualValue)}, ` +
+      `expected ${formatValue(expectedValue)} from @santi020k/theme`
+    )
 
     errors++
   }
@@ -148,7 +157,9 @@ const validateTheme = variant => {
   if (manifest.version === pkg.version) {
     console.log(`✅ Version consistency: ${manifest.version}`)
   } else {
-    console.error(`❌ Version mismatch: manifest version (${manifest.version}) does not match package.json (${pkg.version})`)
+    console.error(
+      `❌ Version mismatch: manifest version (${manifest.version}) does not match package.json (${pkg.version})`
+    )
 
     errors++
   }
@@ -166,6 +177,7 @@ const validateTheme = variant => {
         if (key === 'theme_ntp_background') {
           const requirement = IMAGE_REQUIREMENTS.get(key)
 
+          // eslint-disable-next-line max-depth -- The catch belongs at the exact optional-image validation boundary.
           try {
             const { width, height } = assertStoreSafeNtpPng(fullPath, requirement, path)
 

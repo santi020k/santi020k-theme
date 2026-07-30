@@ -1,5 +1,6 @@
 import './styles.css'
 
+/* eslint-disable @stylistic/max-len -- Embedded code samples preserve the lines displayed in the editor preview. */
 import {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
@@ -172,6 +173,7 @@ let currentPreviewLang = 'json'
 let currentPreviewTheme = 'dark'
 let currentPreviewVariant = 'normal'
 
+// eslint-disable-next-line complexity -- Preview state synchronization intentionally handles each optional DOM control.
 const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
   currentPreviewLang = lang
 
@@ -309,7 +311,7 @@ const setupClipboard = () => {
           }, 2000)
         }
       } catch (error) {
-        console.error('Failed to copy: ', error)
+        globalThis.reportError(error)
       }
     })
   }
@@ -335,7 +337,7 @@ const setupClipboard = () => {
           settingsBtn.innerHTML = originalHtml
         }, 2000)
       } catch (error) {
-        console.error('Failed to copy settings: ', error)
+        globalThis.reportError(error)
       }
     })
   }

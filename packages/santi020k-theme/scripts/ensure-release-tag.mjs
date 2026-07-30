@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'

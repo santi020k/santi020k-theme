@@ -26,7 +26,7 @@
     "validate:terminal": "pnpm --filter santi020k-terminal-theme run validate",
     "validate:zed": "pnpm --filter santi020k-zed-theme run validate",
     "lint": "eslint . --cache --no-warn-ignored --max-warnings=0",
-    "lint:fix": "eslint . --cache --fix --no-warn-ignored",
+    "lint:fix": "eslint . --cache --fix --no-warn-ignored --max-warnings=0",
     "lint:spell": "cspell \"**\" --gitignore --cache --show-suggestions --show-context",
     "lint:knip": "knip",
     "typecheck": "pnpm --filter './apps/*' exec astro check --minimumFailingSeverity warning",
@@ -101,7 +101,7 @@
   },
   "lint-staged": {
     "*.{js,mjs}": [
-      "eslint --fix --no-warn-ignored"
+      "eslint --fix --no-warn-ignored --max-warnings=0"
     ]
   },
   "config": {
@@ -110,6 +110,6 @@
     }
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=22.19.0"
   }
 }

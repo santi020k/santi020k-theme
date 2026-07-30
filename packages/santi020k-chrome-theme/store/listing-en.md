@@ -6,7 +6,7 @@
 
 ## Summary (≤132 chars — paste into "Short description" field)
 
-```
+```text
 Deep violet browser theme matching the Santi020k VS Code color scheme — dark surfaces, muted lavender, violet accents.
 ```
 Character count: 119 ✓
@@ -17,7 +17,7 @@ Character count: 119 ✓
 
 ## Long description (paste into "Detailed description" field)
 
-```
+```text
 Santi020k Theme brings the exact color palette from the popular Santi020k VS Code extension to your browser chrome.
 
 Every surface maps directly to a VS Code token — no guesswork, no approximations:
@@ -38,7 +38,7 @@ VS Code extension: https://marketplace.visualstudio.com/items?itemName=santi020k
 
 ## Homepage URL (optional field)
 
-```
+```text
 https://chrome.santi020k.com
 ```
 

@@ -1,8 +1,19 @@
 ---
+/* eslint-disable @stylistic/jsx-closing-tag-location -- Astro inline-script closing-tag fixes conflict. */
+
 import { Image } from 'astro:assets'
 
 import { Button, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
+
+interface Props {
+  canonical: string
+  description: string
+  image?: string
+  imageAlt?: string
+  schema: Record<string, unknown>
+  title: string
+}
 
 const {
   title,
@@ -52,11 +63,16 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script is:inline>(function () {
-  var s = localStorage.getItem('theme'); var p = s === 'light' || s === 'dark' ? s : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    <script is:inline>
+      (function () {
+        var p = localStorage.getItem('theme')
 
-  document.documentElement.dataset.theme = p
-})()
+        if (p !== 'light' && p !== 'dark') {
+          p = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
+
+        document.documentElement.dataset.theme = p
+      })()
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
@@ -81,7 +97,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <main><slot /></main>
     <footer class="shell"><p>Made by <Link href="https://santi020k.com">santi020k</Link> with <Link href="https://lumen.santi020k.com">Lumen</Link>.</p><div><Link href="/configure/">Configure</Link><Link href="/docs/">Documentation</Link><Link href="/docs/#install">Install</Link><Link href="/docs/cli/">CLI reference</Link><Link href={siteUrls.hub}>All themes</Link></div></footer>
     <UIPrimitives />
-    <script>import '../main.js'
+    <script>
+      import '../main.js'
     </script>
   </body>
 </html>

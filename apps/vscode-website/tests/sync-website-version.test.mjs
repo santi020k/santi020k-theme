@@ -48,6 +48,18 @@ describe('website version sync', () => {
     expect(readFileSync(fixture.websitePath, 'utf8')).toContain('"softwareVersion": "9.8.7"')
   })
 
+  test('updates single-quoted JavaScript metadata produced by ESLint formatting', () => {
+    const fixture = createFixture('1.0.0', '1.0.0')
+
+    writeFileSync(fixture.websitePath, '<script>{ softwareVersion: \'1.0.0\' }</script>')
+
+    writeFileSync(fixture.packagePath, JSON.stringify({ version: '9.8.7' }))
+
+    syncWebsiteVersion(fixture)
+
+    expect(readFileSync(fixture.websitePath, 'utf8')).toContain('softwareVersion: \'9.8.7\'')
+  })
+
   test('rejects website HTML without softwareVersion metadata', () => {
     const fixture = createFixture()
 

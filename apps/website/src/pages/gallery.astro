@@ -1,4 +1,6 @@
 ---
+/* eslint-disable @stylistic/indent, @stylistic/jsx-closing-tag-location, @stylistic/max-len -- Astro inline-script indentation conflicts with JSX closing-tag fixes; long declarative markup is clearer unwrapped. */
+
 import { Image } from 'astro:assets'
 
 import { BackToTop, Button, ButtonLink, Card, Dialog, Eyebrow, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
@@ -36,7 +38,11 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <script is:inline>
       (function () {
         var saved = localStorage.getItem('theme')
-        var preferred = saved === 'light' || saved === 'dark' ? saved : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        var preferred = saved
+
+        if (preferred !== 'light' && preferred !== 'dark') {
+          preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
 
         document.documentElement.setAttribute('data-theme', preferred)
       })()
@@ -152,7 +158,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
     <footer class="site-shell site-footer"><p>Made by <Link href="https://santi020k.com" rel="noopener noreferrer">santi020k</Link> with <Link href="https://lumen.santi020k.com" rel="noopener noreferrer">Lumen</Link>.</p><div class="footer-links"><Link href="/">Theme hub</Link><Link href={siteUrls.vscode}>VS Code</Link><Link href={siteUrls.chrome}>Chrome</Link><Link href={siteUrls.terminal}>Terminal</Link><Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link></div></footer>
     <script>import '../main.js'
-    </script>
+</script>
     <UIPrimitives />
   </body>
 </html>

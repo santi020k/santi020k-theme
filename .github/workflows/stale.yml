@@ -3,7 +3,7 @@ name: Stale Issues & PRs
 on:
   schedule:
     - cron: '17 6 * * *'
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   issues: write
@@ -32,4 +32,3 @@ jobs:
           stale-pr-label: stale
           exempt-issue-labels: pinned,security,release
           exempt-pr-labels: pinned,security,release
-

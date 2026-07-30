@@ -90,6 +90,7 @@ export const stripPngAncillaryChunks = filePath => {
   writeFileSync(filePath, Buffer.concat(parts))
 }
 
+// eslint-disable-next-line complexity -- Each PNG header invariant needs its own actionable validation error.
 export const assertStoreSafeNtpPng = (filePath, requirement = {}, label = filePath) => {
   const info = readPngInfo(filePath)
   const expectedWidth = requirement.width

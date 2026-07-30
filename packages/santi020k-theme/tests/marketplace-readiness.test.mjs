@@ -127,7 +127,7 @@ const createFixturePackage = ({
   }
 
   writeFile(
-    root, 'website/src/pages/index.astro', `<script type="application/ld+json">{ "softwareVersion": "${pkg.version}" }</script>`
+    root, 'website/src/pages/index.astro', `<script>const metadata = { softwareVersion: '${pkg.version}' }</script>`
   )
 
   writeFile(root, '.vscodeignore', `${ignorePatterns.join('\n')}\n`)

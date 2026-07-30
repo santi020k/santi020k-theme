@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 /**
  * Converts images/theme_ntp_background.svg → images/theme_ntp_background.png
  * for the Santi020k Chrome theme.
@@ -53,4 +55,6 @@ stripPngAncillaryChunks(out)
 const { size } = statSync(out)
 const info = readPngInfo(out)
 
-console.log(`Converted theme_ntp_background.svg → theme_ntp_background.png (${info.width}×${info.height}, ${size} bytes)`)
+console.log(
+  `Converted theme_ntp_background.svg → theme_ntp_background.png (${info.width}×${info.height}, ${size} bytes)`
+)

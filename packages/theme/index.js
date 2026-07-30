@@ -1,3 +1,5 @@
+/* eslint-disable camelcase -- Chrome theme manifest schemas require snake_case property names. */
+
 import {
   getAssetByPath,
   getAssetsByCategory,
@@ -379,6 +381,7 @@ const assetPaths = [
 
 const formatFromPath = path => path.slice(path.lastIndexOf('.') + 1)
 
+// eslint-disable-next-line complexity -- Asset categories are an explicit ordered mapping of the public path taxonomy.
 const categoryFromPath = path => {
   if (path.startsWith('assets/projects/') && path.endsWith('/logo.webp')) {
     return 'logo'

@@ -1,4 +1,6 @@
 ---
+/* eslint-disable @stylistic/indent, @stylistic/jsx-closing-tag-location, @stylistic/max-len -- Astro inline-script indentation conflicts with JSX closing-tag fixes; long declarative markup is clearer unwrapped. */
+
 import { Image } from 'astro:assets'
 
 import { Badge, Button, ButtonLink, Card, Eyebrow, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
@@ -7,7 +9,7 @@ import { getSiteUrls } from '@santi020k/theme/site'
 import wallpaperOne from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
 import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/wallpaper-2-desktop.webp'
 import wallpaperThree from '../../../../packages/theme/assets/wallpapers/wallpaper-3-desktop.webp'
-import AppleIcon from '../../../../packages/theme/components/AppleIcon.astro'
+import AppleIcon from '../../../../packages/theme/components/AppleIcon.svg'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
 
@@ -66,16 +68,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <head>
     <meta charset="UTF-8" />
     <script>
-    (function () {
-      var s = localStorage.getItem('theme')
+  (function () {
+    var s = localStorage.getItem('theme')
+    var pref = s
 
-      var pref = s === 'light' || s === 'dark' ?
-    s :
-    window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    if (pref !== 'light' && pref !== 'dark') {
+      pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    }
 
-      document.documentElement.setAttribute('data-theme', pref)
-    })()
-    </script>
+    document.documentElement.setAttribute('data-theme', pref)
+  })()
+  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Themes - VS Code, Chrome, Zed, npm, and More</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">

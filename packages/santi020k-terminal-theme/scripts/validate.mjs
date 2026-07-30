@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { execFileSync, spawnSync } from 'node:child_process'
 import { chmod, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
@@ -63,7 +65,9 @@ for (const palette of Object.values(palettes)) {
     const configSections = new Map(Object.entries(config))
 
     for (const runtime of runtimeModules) {
-      if (configSections.get(runtime)?.disabled !== !variant.runtimes) throw new Error(`${palette.name} ${variant.name}: incorrect ${runtime} state`)
+      if (configSections.get(runtime)?.disabled !== !variant.runtimes) {
+        throw new Error(`${palette.name} ${variant.name}: incorrect ${runtime} state`)
+      }
     }
   }
 }
@@ -212,4 +216,10 @@ try {
   await rm(sandbox, { force: true, recursive: true })
 }
 
-console.log(`Validated ${Object.keys(palettes).length} palettes across six terminal formats, ${Object.keys(palettes).length * Object.keys(promptVariants).length} parsed Starship presets, three shell integrations, and the extended terminal CLI lifecycle.`)
+const paletteCount = Object.keys(palettes).length
+const presetCount = paletteCount * Object.keys(promptVariants).length
+
+console.log(
+  `Validated ${paletteCount} palettes across six terminal formats, ${presetCount} parsed Starship presets, ` +
+  'three shell integrations, and the extended terminal CLI lifecycle.'
+)

@@ -1,8 +1,15 @@
 ---
+/* eslint-disable @stylistic/jsx-closing-tag-location -- Astro fragment formatting conflicts with JSX closing-tag fixes. */
+
 import { Button } from '@santi020k/lumen-astro'
 
 import { promptSegments } from '../../../../packages/santi020k-terminal-theme/prompt-presets.mjs'
-import AppleIcon from '../../../../packages/theme/components/AppleIcon.astro'
+import AppleIcon from '../../../../packages/theme/components/AppleIcon.svg'
+
+interface Props {
+  id?: string
+  prompt?: boolean
+}
 
 const { prompt = false, id } = Astro.props
 const segment = Object.fromEntries(promptSegments.map(item => [item.key, item.preview]))

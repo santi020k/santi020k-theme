@@ -1,3 +1,5 @@
+/* eslint-disable @stylistic/max-len, no-console -- Embedded terminal formats preserve their generated line structure. */
+
 import { mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'

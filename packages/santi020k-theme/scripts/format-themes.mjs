@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { readFileSync } from 'node:fs'
 
 import { writeFileAtomicSync } from './atomic-write.mjs'
@@ -120,6 +122,7 @@ const formatTheme = file => {
             .split('\n')
             .find(line => line.trimStart().startsWith(`${serializedKey}:`))
 
+          // eslint-disable-next-line max-depth -- This guard is scoped to the selected JSON color block and key.
           if (lineMatch) {
             newColorsBlock += `    ${lineMatch.trim().replace(/,$/, '')},\n`
           }
@@ -132,7 +135,10 @@ const formatTheme = file => {
     // Remove last comma and fix closing brace indentation
     newColorsBlock = newColorsBlock.trimEnd().replace(/,$/, '') + '\n  '
 
-    output = output.slice(0, Math.max(0, colorsStart + colorsHeader.length)) + newColorsBlock + output.slice(Math.max(0, colorsEnd))
+    output =
+      output.slice(0, Math.max(0, colorsStart + colorsHeader.length)) +
+      newColorsBlock +
+      output.slice(Math.max(0, colorsEnd))
   }
 
   writeFileAtomicSync(file, output + '\n')

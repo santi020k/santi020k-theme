@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { readFileSync } from 'node:fs'
 
 import { writeFileAtomicSync } from './atomic-write.mjs'
@@ -47,17 +49,19 @@ for (const base of baseThemes) {
   boldTheme.name = `${base.name} bold`
 
   if (boldTheme.semanticTokenColors) {
-    boldTheme.semanticTokenColors = Object.fromEntries(Object.entries(boldTheme.semanticTokenColors).map(([key, val]) => {
-      if (typeof val === 'string') {
-        return [key, { foreground: val, bold: true }]
-      }
+    boldTheme.semanticTokenColors = Object.fromEntries(
+      Object.entries(boldTheme.semanticTokenColors).map(([key, val]) => {
+        if (typeof val === 'string') {
+          return [key, { foreground: val, bold: true }]
+        }
 
-      if (val && typeof val === 'object') {
-        return [key, { ...val, bold: true }]
-      }
+        if (val && typeof val === 'object') {
+          return [key, { ...val, bold: true }]
+        }
 
-      return [key, val]
-    }))
+        return [key, val]
+      })
+    )
   }
 
   if (boldTheme.tokenColors) {
@@ -78,17 +82,19 @@ for (const base of baseThemes) {
   italicTheme.name = `${base.name} italic`
 
   if (italicTheme.semanticTokenColors) {
-    italicTheme.semanticTokenColors = Object.fromEntries(Object.entries(italicTheme.semanticTokenColors).map(([key, val]) => {
-      if (typeof val === 'string') {
-        return [key, { foreground: val, italic: true }]
-      }
+    italicTheme.semanticTokenColors = Object.fromEntries(
+      Object.entries(italicTheme.semanticTokenColors).map(([key, val]) => {
+        if (typeof val === 'string') {
+          return [key, { foreground: val, italic: true }]
+        }
 
-      if (val && typeof val === 'object') {
-        return [key, { ...val, italic: true }]
-      }
+        if (val && typeof val === 'object') {
+          return [key, { ...val, italic: true }]
+        }
 
-      return [key, val]
-    }))
+        return [key, val]
+      })
+    )
   }
 
   if (italicTheme.tokenColors) {

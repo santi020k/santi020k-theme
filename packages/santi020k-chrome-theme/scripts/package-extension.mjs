@@ -1,3 +1,5 @@
+/* eslint-disable n/no-process-exit, no-console -- This CLI owns its process lifecycle and terminal output. */
+
 /**
  * Packages the Chrome theme extension into dist/santi020k-chrome-theme.zip.
  * Supports packaging both Dark and Light variants.
@@ -44,6 +46,7 @@ const getManifestRuntimeAssets = manifest => [
   ])
 ].sort()
 
+// eslint-disable-next-line complexity -- Manifest validation reports all independent packaging invariants in one pass.
 const validate = manifestFile => {
   const manifestPath = join(root, manifestFile)
 

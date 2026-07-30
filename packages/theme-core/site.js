@@ -1,3 +1,5 @@
+/* eslint-disable complexity -- Shared browser bindings handle optional DOM capabilities in cohesive lifecycle functions. */
+
 export const SITE_THEME_LIGHT = 'light'
 export const SITE_THEME_DARK = 'dark'
 export const SITE_THEME_ATTRIBUTE = 'data-theme'
@@ -58,7 +60,9 @@ export const getPreferredSiteTheme = ({
   return mediaQueryList?.matches ? SITE_THEME_LIGHT : SITE_THEME_DARK
 }
 
-export const rootInDarkMode = (root = globalThis.document?.documentElement) => root?.getAttribute(SITE_THEME_ATTRIBUTE) === SITE_THEME_DARK
+export const rootInDarkMode = (root = globalThis.document?.documentElement) => (
+  root?.getAttribute(SITE_THEME_ATTRIBUTE) === SITE_THEME_DARK
+)
 
 export const setSiteTheme = (
   theme,

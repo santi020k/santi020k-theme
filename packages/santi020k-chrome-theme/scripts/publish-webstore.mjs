@@ -1,3 +1,5 @@
+/* eslint-disable n/no-process-exit, no-console -- This publishing CLI owns its process lifecycle and terminal output. */
+
 /**
  * Uploads and submits the packaged Chrome theme variants to the Chrome Web Store.
  *
@@ -266,9 +268,11 @@ const getKnownVersions = status => ({
   submitted: getRevisionVersions(status.submittedItemRevisionStatus)
 })
 
-const getItemStatus = ({ accessToken, itemId, publisherId }) => webstoreRequest(`${itemPath(publisherId, itemId)}:fetchStatus`, {
-  accessToken
-})
+const getItemStatus = ({ accessToken, itemId, publisherId }) => (
+  webstoreRequest(`${itemPath(publisherId, itemId)}:fetchStatus`, {
+    accessToken
+  })
+)
 
 const parseServiceAccount = value => {
   let serviceAccount
@@ -386,6 +390,7 @@ const summarizeWarnings = response => {
   }
 }
 
+// eslint-disable-next-line complexity -- The release transaction preserves explicit status handling for every API phase.
 const releaseVariant = async ({ accessToken, publisherId, variant }) => {
   const itemId = variant.itemIdOverride() || variant.itemId
   const artifactPath = join(root, variant.artifact)

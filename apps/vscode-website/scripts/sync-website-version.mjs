@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
@@ -5,7 +7,7 @@ import { fromExtensionPackage, fromVscodeWebsite } from './paths.mjs'
 
 const packageJsonPath = fromExtensionPackage('package.json')
 const websiteIndexPath = fromVscodeWebsite('src/pages/index.astro')
-const softwareVersionPattern = /("softwareVersion":\s*")([^"]+)(")/
+const softwareVersionPattern = /((?:['"]softwareVersion['"]|softwareVersion)\s*:\s*)(['"])([^'"]+)\2/
 
 export const syncWebsiteVersion = ({
   packagePath = packageJsonPath,
@@ -18,7 +20,9 @@ export const syncWebsiteVersion = ({
     throw new Error(`${websitePath} is missing JSON-LD softwareVersion`)
   }
 
-  const updatedHtml = html.replace(softwareVersionPattern, `$1${pkg.version}$3`)
+  const updatedHtml = html.replace(
+    softwareVersionPattern, (_match, prefix, quote) => `${prefix}${quote}${pkg.version}${quote}`
+  )
 
   if (updatedHtml !== html) {
     writeFileSync(websitePath, updatedHtml)
