@@ -3,7 +3,20 @@ import { Link, Pagination } from '@santi020k/lumen-astro'
 import { docsItems, docsSections } from '../data/docs.js'
 import SiteLayout from './SiteLayout.astro'
 
-const { title, description, path, eyebrow = 'Documentation', headings = [] } = Astro.props
+interface Heading {
+  id: string
+  label: string
+}
+
+interface Props {
+  title: string
+  description: string
+  path: string
+  eyebrow?: string
+  headings?: Heading[]
+}
+
+const { title, description, path, eyebrow = 'Documentation', headings = [] }: Props = Astro.props
 const canonical = new URL(path, 'https://terminal.santi020k.com').href
 const schema = { '@context': 'https://schema.org', '@type': 'TechArticle', headline: title, description, url: canonical }
 const currentIndex = docsItems.findIndex(item => item.href === path)

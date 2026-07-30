@@ -84,7 +84,6 @@ const readSiteFiles = async site => {
 
 const getAttributes = tag => {
   const attrs = new Map()
-  // eslint-disable-next-line security/detect-unsafe-regex
   const attrPattern = /([^\s"'<>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/gu
 
   for (const match of tag.matchAll(attrPattern)) {
@@ -116,7 +115,6 @@ const isMetadataReference = value =>
 
 const extractTagReferences = html => {
   const references = []
-  // eslint-disable-next-line security/detect-unsafe-regex
   const tagPattern = /<([a-z][\w:-]*)(?:\s[^<>]*)?>/giu
 
   for (const match of html.matchAll(tagPattern)) {

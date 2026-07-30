@@ -83,7 +83,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="twitter:image" content="https://vscode.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Dark, Light, and High Contrast" />
     <!-- JSON-LD: SoftwareApplication -->
-    <script type="application/ld+json" set:html={structuredDataJson}></script>
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
@@ -368,7 +368,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <label><Checkbox class="settings-auto"  checked /> Follow the operating system light and dark mode</label>
             <label><Checkbox class="settings-font"  checked /> Include calm editor typography</label>
           </div>
-          <div class="settings-output"><pre><code class="settings-code"></code></pre><Button class="button button-primary settings-copy" variant="primary" type="button">Copy settings</Button></div>
+          <div class="settings-output"><pre><code class="settings-code"></code></pre><Button class="button button-primary settings-copy" type="button">Copy settings</Button></div>
         </div>
       </section>
 

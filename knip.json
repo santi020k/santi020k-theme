@@ -5,6 +5,7 @@
     "zsh"
   ],
   "ignoreDependencies": [
+    "@astrojs/check",
     "@astrojs/ts-plugin",
     "ovsx"
   ],

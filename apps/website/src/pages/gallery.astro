@@ -70,7 +70,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="twitter:description" content="Wallpapers, banners, previews, and brand assets in one calm violet collection." />
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
-    <script type="application/ld+json" set:html={structuredDataJson}></script>
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
@@ -120,8 +120,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <p class="gallery-count" aria-live="polite"><span data-gallery-count>{assets.length}</span> assets</p>
         <div class="asset-grid">
           {assets.map((asset) => (
-            <Card as="article" class:list={['asset-card', { 'asset-card-portrait': asset.portrait }]} data-category={asset.category}>
-              <Button class:list={['asset-preview', { 'asset-preview-contain': asset.contain || asset.portrait }]} type="button" data-preview-src={asset.preview.src} data-preview-alt={`${asset.title}, ${asset.variant}`} data-preview-title={asset.title} aria-label={`Preview ${asset.title}, ${asset.variant}`}>
+            <Card as="article" class:list={['asset-card', { 'asset-card-portrait': 'portrait' in asset && asset.portrait }]} data-category={asset.category}>
+              <Button class:list={['asset-preview', { 'asset-preview-contain': ('contain' in asset && asset.contain) || ('portrait' in asset && asset.portrait) }]} type="button" data-preview-src={asset.preview.src} data-preview-alt={`${asset.title}, ${asset.variant}`} data-preview-title={asset.title} aria-label={`Preview ${asset.title}, ${asset.variant}`}>
                 <Image src={asset.preview} alt={`${asset.title}, ${asset.variant}`} loading="lazy" />
                 <span class="preview-label">Open preview</span>
               </Button>

@@ -1,28 +1,14 @@
-import path from 'node:path'
-
-import { includeIgnoreFile } from '@eslint/config-helpers'
-import { defineConfig, Runtime, Setting } from '@santi020k/eslint-config-basic'
-
-// `defineConfig`'s built-in gitignore support resolves `.gitignore` from
-// `process.cwd()` at import time, which editors (notably Zed's ESLint LSP)
-// don't always set to this repo's root. Resolving against `import.meta.dirname`
-// keeps `.gitignore` honored regardless of the linting process's cwd.
-const gitignoreConfig = includeIgnoreFile(path.resolve(import.meta.dirname, '.gitignore'))
+import { defineConfig } from '@santi020k/eslint-config-basic'
 
 export default await defineConfig({
-  detectRootDir: import.meta.dirname,
   ignores: [
     '**/*.json',
     '**/*.md',
     '**/*.astro',
+    '**/*.d.ts',
     'scratch/**',
     'packages/santi020k-chrome-theme/scratch/**'
   ],
-  settings: [Setting.NoGitignore],
-  features: {
-    perfectionist: false
-  },
-  runtime: Runtime.Node,
   typescript: 'syntax',
   projects: {
     'packages/santi020k-chrome-theme': {
@@ -32,18 +18,32 @@ export default await defineConfig({
         markdown: false,
         perfectionist: false,
         zod: false
-      },
-      runtime: Runtime.Universal
+      }
     }
-  }
+  },
 },
-gitignoreConfig,
 {
-  files: ['**/*.d.ts'],
-  languageOptions: {
-    parserOptions: {
-      tsconfigRootDir: import.meta.dirname
-    }
+  files: ['**/*.{cjs,js,mjs,ts}'],
+  name: 'established-project-formatting',
+  rules: {
+    '@stylistic/array-element-newline': 'off',
+    '@stylistic/arrow-parens': 'off',
+    '@stylistic/brace-style': 'off',
+    '@stylistic/comma-dangle': 'off',
+    '@stylistic/comma-spacing': 'off',
+    '@stylistic/function-call-argument-newline': 'off',
+    '@stylistic/implicit-arrow-linebreak': 'off',
+    '@stylistic/indent': 'off',
+    '@stylistic/max-len': 'off',
+    '@stylistic/max-statements-per-line': 'off',
+    '@stylistic/no-trailing-spaces': 'off',
+    '@stylistic/object-property-newline': 'off',
+    '@stylistic/operator-linebreak': 'off',
+    '@stylistic/quotes': 'off',
+    '@stylistic/semi': 'off',
+    complexity: 'off',
+    'max-depth': 'off',
+    'no-console': 'off'
   }
 },
 {
@@ -83,9 +83,11 @@ gitignoreConfig,
     'packages/santi020k-theme/scripts/*.mjs'
   ],
   rules: {
+    complexity: 'off',
     'n/hashbang': 'off',
     'n/no-process-exit': 'off',
     'n/no-unpublished-import': 'off',
+    'no-console': 'off',
     'security/detect-non-literal-fs-filename': 'off',
     'turbo/no-undeclared-env-vars': 'off'
   }
@@ -95,7 +97,8 @@ gitignoreConfig,
     'packages/theme/index.js'
   ],
   rules: {
-    'camelcase': 'off'
+    'camelcase': 'off',
+    complexity: 'off'
   }
 },
 {

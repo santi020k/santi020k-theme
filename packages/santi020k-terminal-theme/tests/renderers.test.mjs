@@ -1,7 +1,6 @@
 import { parse } from 'smol-toml'
 import { describe, expect, it } from 'vitest'
 
-/* eslint-disable security/detect-object-injection -- Tests intentionally index parsed renderer output by canonical token names. */
 import { palettes } from '../palettes.mjs'
 import { promptVariants, runtimeModules } from '../prompt-presets.mjs'
 import {
