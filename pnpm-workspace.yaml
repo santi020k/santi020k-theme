@@ -15,6 +15,7 @@ catalog:
   "@changesets/cli": ^2.31.1
   "@commitlint/cli": ^21.2.1
   "@commitlint/config-conventional": ^21.2.0
+  "@santi020k/commitprompt": ^1.0.0
   "@santi020k/eslint-config-astro": ^3.1.0
   "@santi020k/eslint-config-basic": ^3.2.0
   "@santi020k/eslint-config-extensions": ^3.1.0
@@ -28,9 +29,7 @@ catalog:
   "@vscode/vsce": ^3.9.2
   astro: ^7.1.4
   archiver: ^8.0.0
-  commitizen: ^4.3.2
   cspell: ^10.0.1
-  cz-conventional-changelog: ^3.3.0
   eslint: ^10.7.0
   husky: ^9.1.7
   knip: ^6.29.0
@@ -75,5 +74,5 @@ allowBuilds:
   workerd: false
 
 minimumReleaseAgeExclude:
-  - '@santi020k/eslint-config-basic@3.2.0'
-  - '@santi020k/eslint-config-typescript'
+  - "@santi020k/eslint-config-basic@3.2.0"
+  - "@santi020k/eslint-config-typescript"

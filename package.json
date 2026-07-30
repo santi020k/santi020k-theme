@@ -65,7 +65,7 @@
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "pre-push": "pnpm run validate",
-    "commit": "cz"
+    "commit": "commitprompt"
   },
   "devDependencies": {
     "@astrojs/check": "catalog:",
@@ -74,6 +74,7 @@
     "@changesets/cli": "catalog:",
     "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
+    "@santi020k/commitprompt": "catalog:",
     "@santi020k/eslint-config-astro": "catalog:",
     "@santi020k/eslint-config-basic": "catalog:",
     "@santi020k/eslint-config-extensions": "catalog:",
@@ -84,9 +85,7 @@
     "@santi020k/eslint-config-vite": "catalog:",
     "@types/node": "catalog:",
     "@vscode/vsce": "catalog:",
-    "commitizen": "catalog:",
     "cspell": "catalog:",
-    "cz-conventional-changelog": "catalog:",
     "eslint": "catalog:",
     "husky": "catalog:",
     "knip": "catalog:",
@@ -103,11 +102,6 @@
     "*.{js,mjs}": [
       "eslint --fix --no-warn-ignored --max-warnings=0"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "engines": {
     "node": ">=22.19.0"
