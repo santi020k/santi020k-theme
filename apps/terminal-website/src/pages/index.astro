@@ -1,7 +1,9 @@
 ---
 import { ButtonLink, Link } from '@santi020k/lumen-astro'
+
 import TerminalPreview from '../components/TerminalPreview.astro'
 import SiteLayout from '../layouts/SiteLayout.astro'
+
 const canonical = 'https://terminal.santi020k.com/'
 const description = 'One calm violet terminal theme for iTerm2 colors and a Santi020k Powerline prompt for Starship.'
 const schema = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Santi020k Terminal Theme', url: canonical, description, hasPart: [{ '@type': 'SoftwareApplication', name: 'Santi020k Zsh setup', url: `${canonical}docs/zsh/` }, { '@type': 'SoftwareApplication', name: 'Santi020k terminal colors', url: `${canonical}docs/terminal-colors/` }, { '@type': 'SoftwareApplication', name: 'Santi020k for Starship', url: `${canonical}docs/starship/` }] }

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Uploads and submits the packaged Chrome theme variants to the Chrome Web Store.
  *
@@ -137,8 +136,7 @@ const formatServiceAccountTokenError = ({ body, response }) => {
 
   if (body?.error === 'invalid_grant') {
     lines.push(
-      'The configured CHROME_WEBSTORE_SERVICE_ACCOUNT_JSON is not usable. Check that the JSON key is active, belongs to the service account added in the Chrome Web Store Developer Dashboard, and has the Chrome Web Store API enabled in its Google Cloud project.',
-      `See ${SERVICE_ACCOUNT_GUIDE}.`
+      'The configured CHROME_WEBSTORE_SERVICE_ACCOUNT_JSON is not usable. Check that the JSON key is active, belongs to the service account added in the Chrome Web Store Developer Dashboard, and has the Chrome Web Store API enabled in its Google Cloud project.', `See ${SERVICE_ACCOUNT_GUIDE}.`
     )
   }
 

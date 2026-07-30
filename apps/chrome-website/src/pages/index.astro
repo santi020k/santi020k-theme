@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets'
+
 import { Button, ButtonLink, Card, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
 
@@ -21,8 +22,8 @@ const structuredData = {
     '@type': 'Person',
     name: 'Santiago Molina',
     url: 'https://santi020k.com',
-    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k'],
-  },
+    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k']
+  }
 }
 
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
@@ -34,13 +35,15 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta charset="UTF-8" />
     <!-- Anti-FOUC: sets data-theme before CSS renders -->
     <script>
-      (function () {
-        var s = localStorage.getItem('theme')
-        var pref = s === 'light' || s === 'dark'
-          ? s
-          : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        document.documentElement.setAttribute('data-theme', pref)
-      })()
+    (function () {
+      var s = localStorage.getItem('theme')
+
+      var pref = s === 'light' || s === 'dark' ?
+    s :
+    window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+
+      document.documentElement.setAttribute('data-theme', pref)
+    })()
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Theme — Chrome Browser Theme</title>

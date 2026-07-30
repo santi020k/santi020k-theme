@@ -51,7 +51,7 @@ const buildSettingsRecipe = () => {
   }
 
   if (document.querySelector('.settings-font')?.checked) {
-    settings['editor.fontFamily'] = "'Fira Code', monospace"
+    settings['editor.fontFamily'] = '\'Fira Code\', monospace'
 
     settings['editor.fontLigatures'] = true
 
@@ -73,7 +73,9 @@ document.querySelector('.settings-copy')?.addEventListener('click', async event 
 
   event.currentTarget.textContent = 'Copied'
 
-  window.setTimeout(() => { event.currentTarget.textContent = 'Copy settings' }, 1800)
+  window.setTimeout(() => {
+    event.currentTarget.textContent = 'Copy settings'
+  }, 1800)
 })
 
 buildSettingsRecipe()

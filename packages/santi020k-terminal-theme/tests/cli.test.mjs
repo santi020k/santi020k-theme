@@ -22,8 +22,8 @@ const createSandbox = () => {
       XDG_CONFIG_HOME: resolve(home, '.config'),
       ZDOTDIR: home,
       SANTI020K_ASSET_DIR: root,
-      SANTI020K_VERSION: '9.8.7-test',
-    },
+      SANTI020K_VERSION: '9.8.7-test'
+    }
   }
 }
 
@@ -68,7 +68,7 @@ describe('terminal CLI', () => {
       ...fixture.env,
       HOME: spacedHome,
       XDG_CONFIG_HOME: resolve(spacedHome, 'config with spaces'),
-      ZDOTDIR: spacedHome,
+      ZDOTDIR: spacedHome
     }
 
     run(['install'], env)
@@ -82,7 +82,7 @@ describe('terminal CLI', () => {
     [['preset', 'use', 'unknown'], 'Unknown preset'],
     [['colors', 'path', 'unknown', 'dark'], 'Usage: santi020k-terminal colors path'],
     [['preview', 'sepia'], 'Usage: santi020k-terminal preview'],
-    [['install', 'powershell'], 'Shell must be zsh, bash, fish, or all'],
+    [['install', 'powershell'], 'Shell must be zsh, bash, fish, or all']
   ])('rejects invalid arguments for %j', (args, message) => {
     const { env } = createSandbox()
     const result = tryRun(args, env)

@@ -45,18 +45,26 @@ for (const button of document.querySelectorAll('[data-copy]')) button.addEventLi
     button.textContent = 'Select text'
   }
 
-  setTimeout(() => { button.textContent = original }, 1800)
+  setTimeout(() => {
+    button.textContent = original
+  }, 1800)
 })
 
 for (const button of document.querySelectorAll('[data-copy-dynamic]')) button.addEventListener('click', async () => {
   const original = button.textContent
   const value = button.previousElementSibling?.textContent || ''
 
-  try { await navigator.clipboard.writeText(value);
+  try {
+    await navigator.clipboard.writeText(value)
 
- button.textContent = 'Copied' } catch { button.textContent = 'Select text' }
+    button.textContent = 'Copied'
+  } catch {
+    button.textContent = 'Select text'
+  }
 
-  setTimeout(() => { button.textContent = original }, 1800)
+  setTimeout(() => {
+    button.textContent = original
+  }, 1800)
 })
 
 const updateConfigurator = configurator => {

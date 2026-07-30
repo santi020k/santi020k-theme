@@ -8,7 +8,7 @@ const portFiles = new Map(Object.entries({
   ghostty: ['santi020k-dark', 'santi020k-light'],
   kitty: ['santi020k-dark.conf', 'santi020k-light.conf'],
   wezterm: ['santi020k-dark.lua', 'santi020k-light.lua'],
-  'windows-terminal': ['santi020k-dark.json', 'santi020k-light.json'],
+  'windows-terminal': ['santi020k-dark.json', 'santi020k-light.json']
 }))
 
 const destinations = [
@@ -18,8 +18,8 @@ const destinations = [
   ...['ghostty', 'kitty', 'wezterm', 'windows-terminal', 'alacritty'].map(format => ({
     source: resolve(root, 'packages/santi020k-terminal-theme', format),
     destination: resolve(root, 'apps/terminal-website/public/ports', format),
-    files: portFiles.get(format),
-  })),
+    files: portFiles.get(format)
+  }))
 ]
 
 for (const group of destinations) {

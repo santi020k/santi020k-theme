@@ -46,7 +46,9 @@ if (installBtn) {
 
       installBtn.innerHTML = '<span class="command">Copied chrome://extensions!</span>'
 
-      setTimeout(() => { installBtn.innerHTML = original }, 2000)
+      setTimeout(() => {
+        installBtn.innerHTML = original
+      }, 2000)
     } catch {
       // clipboard not available — no-op
     }

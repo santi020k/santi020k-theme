@@ -199,10 +199,22 @@ export const createChromeThemeFromVSCodeColors = (vscodeColors, variant = 'dark'
 }
 
 export const terminalAnsiTokenOrder = [
-  'terminal.ansiBlack', 'terminal.ansiRed', 'terminal.ansiGreen', 'terminal.ansiYellow',
-  'terminal.ansiBlue', 'terminal.ansiMagenta', 'terminal.ansiCyan', 'terminal.ansiWhite',
-  'terminal.ansiBrightBlack', 'terminal.ansiBrightRed', 'terminal.ansiBrightGreen', 'terminal.ansiBrightYellow',
-  'terminal.ansiBrightBlue', 'terminal.ansiBrightMagenta', 'terminal.ansiBrightCyan', 'terminal.ansiBrightWhite'
+  'terminal.ansiBlack',
+  'terminal.ansiRed',
+  'terminal.ansiGreen',
+  'terminal.ansiYellow',
+  'terminal.ansiBlue',
+  'terminal.ansiMagenta',
+  'terminal.ansiCyan',
+  'terminal.ansiWhite',
+  'terminal.ansiBrightBlack',
+  'terminal.ansiBrightRed',
+  'terminal.ansiBrightGreen',
+  'terminal.ansiBrightYellow',
+  'terminal.ansiBrightBlue',
+  'terminal.ansiBrightMagenta',
+  'terminal.ansiBrightCyan',
+  'terminal.ansiBrightWhite'
 ]
 
 export const createTerminalPaletteFromVSCodeColors = vscodeColors => {

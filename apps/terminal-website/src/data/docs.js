@@ -2,8 +2,8 @@ export const docsSections = [
   {
     label: 'Start here',
     items: [
-      { href: '/docs/', label: 'Getting started' },
-    ],
+      { href: '/docs/', label: 'Getting started' }
+    ]
   },
   {
     label: 'Components',
@@ -11,15 +11,15 @@ export const docsSections = [
       { href: '/docs/zsh/', label: 'Zsh setup' },
       { href: '/docs/shells/', label: 'Bash and Fish' },
       { href: '/docs/starship/', label: 'Starship prompt' },
-      { href: '/docs/terminal-colors/', label: 'Terminal colors' },
-    ],
+      { href: '/docs/terminal-colors/', label: 'Terminal colors' }
+    ]
   },
   {
     label: 'Reference',
     items: [
-      { href: '/docs/cli/', label: 'CLI reference' },
-    ],
-  },
+      { href: '/docs/cli/', label: 'CLI reference' }
+    ]
+  }
 ]
 
 export const docsItems = docsSections.flatMap(section => section.items)

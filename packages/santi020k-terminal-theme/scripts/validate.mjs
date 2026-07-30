@@ -28,7 +28,7 @@ for (const palette of Object.values(palettes)) {
     ['kitty', `santi020k-${palette.slug}.conf`],
     ['wezterm', `santi020k-${palette.slug}.lua`],
     ['windows-terminal', `santi020k-${palette.slug}.json`],
-    ['alacritty', `santi020k-${palette.slug}.toml`],
+    ['alacritty', `santi020k-${palette.slug}.toml`]
   ]
 
   for (const [directory, filename] of portFiles) {
@@ -48,7 +48,11 @@ for (const palette of Object.values(palettes)) {
     const starship = await readFile(starshipPath, 'utf8')
     let config
 
-    try { config = parse(starship) } catch (error) { throw new Error(`${palette.name} ${variant.name}: invalid TOML`, { cause: error }) }
+    try {
+      config = parse(starship)
+    } catch (error) {
+      throw new Error(`${palette.name} ${variant.name}: invalid TOML`, { cause: error })
+    }
 
     if (config.palette !== 'santi020k' || !config.palettes?.santi020k) throw new Error(`${palette.name} ${variant.name}: missing palette`)
 

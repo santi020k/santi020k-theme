@@ -5,9 +5,9 @@ const escapeXml = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;'
 export const renderPreviewSvg = palette => {
   const dark = palette.slug === 'dark'
 
-  const colors = new Map(Object.entries(dark
-    ? { canvas: '#0d0a15', text: '#dfdde3', os: '#602cba', directory: '#752df0', git: '#945df4', runtime: '#89b8c8', time: '#302545' }
-    : { canvas: '#f8f6fd', text: '#302e36', os: '#5a14b0', directory: '#6319be', git: '#9451cf', runtime: '#a8d6e5', time: '#ddd8f0' }))
+  const colors = new Map(Object.entries(dark ?
+    { canvas: '#0d0a15', text: '#dfdde3', os: '#602cba', directory: '#752df0', git: '#945df4', runtime: '#89b8c8', time: '#302545' } :
+    { canvas: '#f8f6fd', text: '#302e36', os: '#5a14b0', directory: '#6319be', git: '#9451cf', runtime: '#a8d6e5', time: '#ddd8f0' }))
 
   const widths = [76, 210, 140, 142, 104]
   let x = 38

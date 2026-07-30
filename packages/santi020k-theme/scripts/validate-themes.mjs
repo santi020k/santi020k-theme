@@ -267,29 +267,29 @@ const findDuplicateColorKeys = raw => {
 
   while (i < raw.length && depth > 0) {
     switch (raw.at(i)) {
-    case '"': {
-      i++
-
-      while (i < raw.length && raw.at(i) !== '"') {
-        if (raw.at(i) === '\\') i++
-
+      case '"': {
         i++
+
+        while (i < raw.length && raw.at(i) !== '"') {
+          if (raw.at(i) === '\\') i++
+
+          i++
+        }
+
+        break
       }
-    
-    break;
-    }
 
-    case '{': {
-      depth++
-    
-    break;
-    }
+      case '{': {
+        depth++
 
-    case '}': {
-      depth--
-    
-    break;
-    }
+        break
+      }
+
+      case '}': {
+        depth--
+
+        break
+      }
     // No default
     }
 

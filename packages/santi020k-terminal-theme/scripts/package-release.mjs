@@ -62,9 +62,12 @@ execFileSync('tar', [
   '--uname=root',
   '--gname=root',
   '--no-recursion',
-  '-cf', tarArchive,
-  '-C', dist,
-  '-T', fileList,
+  '-cf',
+  tarArchive,
+  '-C',
+  dist,
+  '-T',
+  fileList
 ], { env: { ...process.env, COPYFILE_DISABLE: '1' } })
 
 writeFileSync(archive, gzipSync(readFileSync(tarArchive), { level: 9, mtime: 0 }))

@@ -10,13 +10,26 @@ import {
   renderKitty,
   renderStarship,
   renderWezterm,
-  renderWindowsTerminal,
+  renderWindowsTerminal
 } from '../scripts/build.mjs'
 
 const ansiNames = [
-  'black', 'red', 'green', 'yellow', 'blue', 'purple', 'cyan', 'white',
-  'brightBlack', 'brightRed', 'brightGreen', 'brightYellow', 'brightBlue',
-  'brightPurple', 'brightCyan', 'brightWhite',
+  'black',
+  'red',
+  'green',
+  'yellow',
+  'blue',
+  'purple',
+  'cyan',
+  'white',
+  'brightBlack',
+  'brightRed',
+  'brightGreen',
+  'brightYellow',
+  'brightBlue',
+  'brightPurple',
+  'brightCyan',
+  'brightWhite'
 ]
 
 describe.each(Object.values(palettes))('$name terminal renderers', palette => {
@@ -28,7 +41,7 @@ describe.each(Object.values(palettes))('$name terminal renderers', palette => {
       background: palette.background,
       foreground: palette.foreground,
       cursorColor: palette.cursor,
-      selectionBackground: palette.selection,
+      selectionBackground: palette.selection
     })
 
     expect(ansiNames.map(name => rendered[name])).toEqual(palette.ansi)
@@ -39,7 +52,7 @@ describe.each(Object.values(palettes))('$name terminal renderers', palette => {
 
     expect(rendered.colors.primary).toEqual({
       background: palette.background,
-      foreground: palette.foreground,
+      foreground: palette.foreground
     })
 
     expect(Object.values(rendered.colors.normal)).toEqual(palette.ansi.slice(0, 8))
@@ -61,7 +74,7 @@ describe.each(Object.values(palettes))('$name terminal renderers', palette => {
     const outputs = [
       renderGhostty(palette),
       renderKitty(palette),
-      renderWezterm(palette),
+      renderWezterm(palette)
     ]
 
     for (const output of outputs) {
