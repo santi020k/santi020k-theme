@@ -30,7 +30,7 @@
     "lint:fix": "eslint . --cache --fix --no-warn-ignored --max-warnings=0",
     "lint:spell": "cspell \"**\" --gitignore --cache --show-suggestions --show-context",
     "lint:knip": "knip",
-    "typecheck": "pnpm --filter './apps/*' exec astro check --minimumFailingSeverity warning",
+    "typecheck": "pnpm --filter './apps/*' exec astro check --minimumFailingSeverity warning && pnpm exec tsc -p packages/theme-core/tsconfig.json && pnpm exec tsc -p packages/theme/tsconfig.json && pnpm exec tsc -p packages/santi020k-terminal-theme/tsconfig.json",
     "package": "pnpm run package:extension",
     "package:extension": "pnpm --filter santi020k-theme run package",
     "package:chrome": "pnpm --filter santi020k-chrome-theme run package",

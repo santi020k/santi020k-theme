@@ -465,6 +465,7 @@ const descriptionFromPath = path => {
   return `Santi020k ${readableName} asset`
 }
 
+/** @type {import('@santi020k/theme-core').BrandAsset[]} */
 export const assets = assetPaths.map(path => ({
   path,
   category: categoryFromPath(path),
@@ -474,6 +475,7 @@ export const assets = assetPaths.map(path => ({
   surface: surfaceFromPath(path)
 }))
 
+/** @type {import('@santi020k/theme-core').AssetManifest} */
 export const manifest = {
   packageName,
   staticAssets,
