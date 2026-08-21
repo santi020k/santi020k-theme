@@ -1,12 +1,10 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignoreBinaries": [
-    "validate",
-    "zsh"
+    "validate"
   ],
   "ignoreDependencies": [
     "@astrojs/check",
-    "@astrojs/ts-plugin",
     "ovsx"
   ],
   "workspaces": {
