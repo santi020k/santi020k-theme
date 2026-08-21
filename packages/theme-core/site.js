@@ -89,6 +89,10 @@ export const syncSiteThemeToggle = (
   if (toggle) toggle.setAttribute('aria-checked', String(rootInDarkMode(root)))
 }
 
+/**
+ * @param {boolean} isOpen
+ * @param {{ header?: Element | null, navToggle?: Element | null }} [options]
+ */
 export const setSiteNavOpen = (isOpen, { header, navToggle } = {}) => {
   if (!header || !navToggle) return
 
@@ -101,6 +105,15 @@ export const setSiteNavOpen = (isOpen, { header, navToggle } = {}) => {
   navToggle.setAttribute('aria-expanded', String(isOpen))
 }
 
+/**
+ * @param {{
+ *   desktopNavQuery?: MediaQueryList,
+ *   documentRef?: Document,
+ *   header?: Element | null,
+ *   navLinks?: Iterable<Element>,
+ *   navToggle?: Element | null
+ * }} [options]
+ */
 export const bindSiteNavigation = ({
   desktopNavQuery,
   documentRef = globalThis.document,
@@ -147,6 +160,14 @@ export const bindSiteNavigation = ({
   }
 }
 
+/**
+ * @param {{
+ *   mediaQueryList?: MediaQueryList,
+ *   onThemeChange?: () => void,
+ *   root?: HTMLElement,
+ *   storage?: Storage
+ * }} [options]
+ */
 export const bindPreferredSiteThemeSync = ({
   mediaQueryList = globalThis.matchMedia?.(SITE_THEME_PREFERENCE_QUERY),
   onThemeChange,
