@@ -51,6 +51,12 @@ const structuredData = {
       applicationCategory: 'DeveloperApplication'
     },
     {
+      '@type': 'SoftwareApplication',
+      name: 'ChatGPT Light Theme for Codex',
+      url: 'https://codex.santi020k.com/',
+      applicationCategory: 'DeveloperApplication'
+    },
+    {
       '@type': 'SoftwareSourceCode',
       name: '@santi020k/theme',
       url: 'https://github.com/santi020k/santi020k-theme',
@@ -153,6 +159,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.chrome}>Open Chrome</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.terminal}>Open Terminal</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.zed}>Open Zed</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.codex}>Open Codex</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</ButtonLink>
           </div>
         </div>
@@ -252,6 +259,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               </div>
             </div>
           </Card>
+          <Card as="article" class="theme-card">
+            <Link class="theme-card-media codex-card" href={siteUrls.codex} aria-label="Open Codex theme site">
+              <div class="codex-card-window" aria-hidden="true"><span></span><span></span><span></span><b>Codex</b><p>ChatGPT light</p><i>Paste-ready</i></div>
+            </Link>
+            <div class="theme-card-body">
+              <Badge class="card-kicker" variant="success"><span class="status-dot" aria-hidden="true"></span>Live</Badge>
+              <h3>Codex</h3>
+              <p>Dark and light Santi020k custom themes with exact settings values ready to copy.</p>
+              <div class="card-actions"><ButtonLink class="button button-primary" variant="primary" href={siteUrls.codex}>Open site</ButtonLink><ButtonLink class="button button-secondary" variant="secondary" href={`${siteUrls.codex}#copy`}>Copy theme</ButtonLink></div>
+            </div>
+          </Card>
         </div>
       </section>
 
@@ -306,6 +324,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <Link href={siteUrls.chrome}>Chrome</Link>
         <Link href={siteUrls.terminal}>Terminal</Link>
         <Link href={siteUrls.zed}>Zed</Link>
+        <Link href={siteUrls.codex}>Codex</Link>
         <Link href="/gallery/">Gallery</Link>
         <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</Link>
         <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>

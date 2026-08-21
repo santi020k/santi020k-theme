@@ -14,6 +14,7 @@ export interface SiteUrls {
   readonly hub: string
   readonly vscode: string
   readonly chrome: string
+  readonly codex: string
   readonly terminal: string
   readonly zed: string
 }

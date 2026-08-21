@@ -17,6 +17,7 @@ export const SITE_URLS = {
     hub: 'https://theme.santi020k.com/',
     vscode: 'https://vscode.santi020k.com/',
     chrome: 'https://chrome.santi020k.com/',
+    codex: 'https://codex.santi020k.com/',
     terminal: 'https://terminal.santi020k.com/',
     zed: 'https://zed.santi020k.com/'
   },
@@ -24,6 +25,7 @@ export const SITE_URLS = {
     hub: 'http://127.0.0.1:4174/',
     vscode: 'http://127.0.0.1:4176/',
     chrome: 'http://127.0.0.1:4175/',
+    codex: 'http://127.0.0.1:4179/',
     terminal: 'http://127.0.0.1:4177/',
     zed: 'http://127.0.0.1:4178/'
   }

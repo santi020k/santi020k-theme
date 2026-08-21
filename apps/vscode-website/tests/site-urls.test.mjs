@@ -13,6 +13,7 @@ describe('website environment URLs', () => {
       hub: 'http://127.0.0.1:4174/',
       vscode: 'http://127.0.0.1:4176/',
       chrome: 'http://127.0.0.1:4175/',
+      codex: 'http://127.0.0.1:4179/',
       terminal: 'http://127.0.0.1:4177/',
       zed: 'http://127.0.0.1:4178/'
     })
