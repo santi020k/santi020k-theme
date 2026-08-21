@@ -5,7 +5,6 @@ on:
     branches:
       - main
     paths:
-      - ".github/workflows/chrome-release.yml"
       - "package.json"
       - "packages/theme/**"
       - "packages/theme-core/**"
@@ -46,6 +45,9 @@ jobs:
     name: Package and publish Chrome theme
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment:
+      name: chrome-release
+      url: https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj
     env:
       CHROME_WEBSTORE_BLOCK_ON_WARNINGS: true
       CHROME_WEBSTORE_DARK_ITEM_ID: ${{ vars.CHROME_WEBSTORE_DARK_ITEM_ID }}
@@ -58,7 +60,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
         with:
           fetch-depth: 0
 
@@ -72,7 +74,6 @@ jobs:
           fi
 
           changed_files="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- \
-            .github/workflows/chrome-release.yml \
             packages/santi020k-chrome-theme \
             packages/theme \
             packages/theme-core \
@@ -93,14 +94,14 @@ jobs:
 
       - name: Set up pnpm
         if: steps.chrome-changes.outputs.should_publish == 'true'
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
         with:
           version: 10.32.1
           run_install: false
 
       - name: Set up Node.js
         if: steps.chrome-changes.outputs.should_publish == 'true'
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 22
           cache: pnpm
@@ -124,7 +125,7 @@ jobs:
 
       - name: Upload Chrome theme packages
         if: steps.chrome-changes.outputs.should_publish == 'true'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.0
         with:
           name: santi020k-chrome-theme-zips
           path: packages/santi020k-chrome-theme/dist/*.zip

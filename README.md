@@ -1,5 +1,11 @@
 # Santi020k Theme
 
+[![CI](https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml?branch=main&label=CI)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/codeql.yml?branch=main&label=CodeQL)](https://github.com/santi020k/santi020k-theme/actions/workflows/codeql.yml)
+[![VS Marketplace](https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?color=945df4&icon=terminal)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
+[![Open VSX](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme)](https://open-vsx.org/extension/santi020k/santi020k-theme)
+[![License](https://img.shields.io/github/license/santi020k/santi020k-theme)](LICENSE)
+
 Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Zed, Chrome, Codex, terminal themes, shared brand packages, and static product websites.
 
 The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.md). Read it before changing colors, product names, screenshots, icons, website copy, store metadata, or shared assets.
@@ -29,7 +35,7 @@ pnpm install
 pnpm run validate
 ```
 
-Use Node `>=22.18.0` and pnpm `10.32.1`.
+Use Node `>=22.19.0` and pnpm `10.32.1`.
 
 ## Common Commands
 
@@ -74,3 +80,5 @@ Use Node `>=22.18.0` and pnpm `10.32.1`.
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+For confidential vulnerability reports, see [SECURITY.md](SECURITY.md).

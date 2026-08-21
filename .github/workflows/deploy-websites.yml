@@ -2,21 +2,16 @@ name: Deploy Websites
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - ".github/workflows/deploy-websites.yml"
-      - "apps/website/**"
-      - "apps/vscode-website/**"
-      - "apps/chrome-website/**"
-      - "apps/codex-website/**"
-      - "apps/terminal-website/**"
-      - "apps/zed-website/**"
+      - "apps/**"
+      - "packages/theme/**"
+      - "packages/theme-core/**"
+      - "packages/santi020k-codex-theme/**"
       - "packages/santi020k-terminal-theme/**"
       - "packages/santi020k-zed-theme/**"
       - "package.json"
-      - "packages/theme/**"
-      - "packages/theme-core/**"
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
       - "turbo.json"
@@ -25,401 +20,131 @@ on:
       site:
         description: Website to deploy.
         default: all
-        options:
-          - all
-          - theme
-          - vscode
-          - chrome
-          - codex
-          - terminal
-          - zed
+        options: [all, theme, vscode, chrome, codex, terminal, zed]
         type: choice
 
 permissions:
   contents: read
 
 concurrency:
-  group: deploy-websites-${{ github.ref }}
+  group: deploy-websites
   cancel-in-progress: false
 
 jobs:
-  changes:
-    name: Detect website changes
+  deploy:
+    name: Build and deploy selected websites
     runs-on: ubuntu-latest
-    outputs:
-      theme: ${{ steps.manual.outputs.theme || steps.filter.outputs.theme }}
-      vscode: ${{ steps.manual.outputs.vscode || steps.filter.outputs.vscode }}
-      chrome: ${{ steps.manual.outputs.chrome || steps.filter.outputs.chrome }}
-      codex: ${{ steps.manual.outputs.codex || steps.filter.outputs.codex }}
-      terminal: ${{ steps.manual.outputs.terminal || steps.filter.outputs.terminal }}
-      zed: ${{ steps.manual.outputs.zed || steps.filter.outputs.zed }}
+    timeout-minutes: 25
+    environment:
+      name: websites-production
+      url: https://theme.santi020k.com
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      PROJECT_CHROME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_CHROME }}
+      PROJECT_CODEX: ${{ vars.CLOUDFLARE_PAGES_PROJECT_CODEX }}
+      PROJECT_TERMINAL: ${{ vars.CLOUDFLARE_PAGES_PROJECT_TERMINAL }}
+      PROJECT_THEME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}
+      PROJECT_VSCODE: ${{ vars.CLOUDFLARE_PAGES_PROJECT_VSCODE }}
+      PROJECT_ZED: ${{ vars.CLOUDFLARE_PAGES_PROJECT_ZED }}
     steps:
       - name: Check out repository
-        if: github.event_name == 'push'
-        uses: actions/checkout@v7
-
-      - name: Select manual deployment targets
-        id: manual
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          SITE: ${{ inputs.site }}
-        run: |
-          # shellcheck disable=SC2129
-          echo "theme=false" >> "$GITHUB_OUTPUT"
-          echo "vscode=false" >> "$GITHUB_OUTPUT"
-          echo "chrome=false" >> "$GITHUB_OUTPUT"
-          echo "codex=false" >> "$GITHUB_OUTPUT"
-          echo "terminal=false" >> "$GITHUB_OUTPUT"
-          echo "zed=false" >> "$GITHUB_OUTPUT"
-
-          if [ "$SITE" = "all" ] || [ "$SITE" = "theme" ]; then
-            echo "theme=true" >> "$GITHUB_OUTPUT"
-          fi
-
-          if [ "$SITE" = "all" ] || [ "$SITE" = "vscode" ]; then
-            echo "vscode=true" >> "$GITHUB_OUTPUT"
-          fi
-
-          if [ "$SITE" = "all" ] || [ "$SITE" = "chrome" ]; then
-            echo "chrome=true" >> "$GITHUB_OUTPUT"
-          fi
-
-          if [ "$SITE" = "all" ] || [ "$SITE" = "codex" ]; then
-            echo "codex=true" >> "$GITHUB_OUTPUT"
-          fi
-
-          if [ "$SITE" = "all" ] || [ "$SITE" = "terminal" ]; then
-            echo "terminal=true" >> "$GITHUB_OUTPUT"
-          fi
-
-          if [ "$SITE" = "all" ] || [ "$SITE" = "zed" ]; then
-            echo "zed=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Detect changed website paths
-        id: filter
-        if: github.event_name == 'push'
-        uses: dorny/paths-filter@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
         with:
-          filters: |
-            theme:
-              - '.github/workflows/deploy-websites.yml'
-              - 'package.json'
-              - 'packages/theme/**'
-              - 'packages/theme-core/**'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'turbo.json'
-              - 'apps/website/**'
-            vscode:
-              - '.github/workflows/deploy-websites.yml'
-              - 'package.json'
-              - 'packages/theme/**'
-              - 'packages/theme-core/**'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'turbo.json'
-              - 'apps/vscode-website/**'
-            chrome:
-              - '.github/workflows/deploy-websites.yml'
-              - 'package.json'
-              - 'packages/theme/**'
-              - 'packages/theme-core/**'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'turbo.json'
-              - 'apps/chrome-website/**'
-            codex:
-              - '.github/workflows/deploy-websites.yml'
-              - 'package.json'
-              - 'packages/theme/**'
-              - 'packages/theme-core/**'
-              - 'packages/santi020k-codex-theme/**'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'turbo.json'
-              - 'apps/codex-website/**'
-            terminal:
-              - '.github/workflows/deploy-websites.yml'
-              - 'package.json'
-              - 'packages/theme/**'
-              - 'packages/theme-core/**'
-              - 'packages/santi020k-terminal-theme/**'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'turbo.json'
-              - 'apps/terminal-website/**'
-            zed:
-              - '.github/workflows/deploy-websites.yml'
-              - 'package.json'
-              - 'packages/theme/**'
-              - 'packages/theme-core/**'
-              - 'packages/santi020k-zed-theme/**'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'turbo.json'
-              - 'apps/zed-website/**'
+          fetch-depth: 2
 
-  deploy-theme:
-    name: Deploy theme.santi020k.com
-    needs: changes
-    if: needs.changes.outputs.theme == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
+      - name: Select deployment targets
+        id: targets
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          REQUESTED_SITE: ${{ inputs.site }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$REQUESTED_SITE" == "all" ]]; then
+              sites="theme vscode chrome codex terminal zed"
+            else
+              sites="$REQUESTED_SITE"
+            fi
+            echo "sites=$sites" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [[ "$BEFORE_SHA" == "0000000000000000000000000000000000000000" ]]; then
+            BEFORE_SHA="$(git rev-parse HEAD^)"
+          fi
+          git fetch --no-tags --depth=1 origin "$BEFORE_SHA"
+          git diff --name-only "$BEFORE_SHA" HEAD > "$RUNNER_TEMP/changed-files"
+
+          global_pattern='^(\.github/workflows/deploy-websites\.yml|package\.json|pnpm-lock\.yaml|pnpm-workspace\.yaml|turbo\.json|packages/theme/|packages/theme-core/)'
+          if grep -Eq "$global_pattern" "$RUNNER_TEMP/changed-files"; then
+            sites="theme vscode chrome codex terminal zed"
+          else
+            sites=""
+            grep -Eq '^apps/website/' "$RUNNER_TEMP/changed-files" && sites+=" theme"
+            grep -Eq '^apps/vscode-website/' "$RUNNER_TEMP/changed-files" && sites+=" vscode"
+            grep -Eq '^apps/chrome-website/' "$RUNNER_TEMP/changed-files" && sites+=" chrome"
+            grep -Eq '^(apps/codex-website/|packages/santi020k-codex-theme/)' "$RUNNER_TEMP/changed-files" && sites+=" codex"
+            grep -Eq '^(apps/terminal-website/|packages/santi020k-terminal-theme/)' "$RUNNER_TEMP/changed-files" && sites+=" terminal"
+            grep -Eq '^(apps/zed-website/|packages/santi020k-zed-theme/)' "$RUNNER_TEMP/changed-files" && sites+=" zed"
+            sites="${sites# }"
+          fi
+          echo "sites=$sites" >> "$GITHUB_OUTPUT"
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v6
+        if: steps.targets.outputs.sites != ''
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
         with:
-          version: 10.32.1
           run_install: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        if: steps.targets.outputs.sites != ''
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 22
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
 
-      - name: Validate Cloudflare deployment config
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}
-        run: |
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_THEME_HUB repository variable"; exit 1; }
-
       - name: Install dependencies
+        if: steps.targets.outputs.sites != ''
         run: pnpm install --frozen-lockfile
 
-      - name: Build theme hub
-        run: pnpm run site:build
-
-      - name: Deploy theme hub to Cloudflare Pages
+      - name: Validate deployment configuration
+        if: steps.targets.outputs.sites != ''
         env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}" --branch=main
-
-  deploy-vscode:
-    name: Deploy vscode.santi020k.com
-    needs: changes
-    if: needs.changes.outputs.vscode == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 10.32.1
-          run_install: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
-      - name: Validate Cloudflare deployment config
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_VSCODE }}
+          SITES: ${{ steps.targets.outputs.sites }}
         run: |
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_VSCODE repository variable"; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          for site in $SITES; do
+            case "$site" in
+              theme) project="$PROJECT_THEME" ;;
+              vscode) project="$PROJECT_VSCODE" ;;
+              chrome) project="$PROJECT_CHROME" ;;
+              codex) project="$PROJECT_CODEX" ;;
+              terminal) project="$PROJECT_TERMINAL" ;;
+              zed) project="$PROJECT_ZED" ;;
+              *) echo "Unknown deployment target: $site"; exit 1 ;;
+            esac
+            test -n "$project" || { echo "Missing Cloudflare project for $site"; exit 1; }
+          done
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build VS Code website
-        run: pnpm run site:vscode:build
-
-      - name: Deploy VS Code website to Cloudflare Pages
+      - name: Build and deploy websites
+        if: steps.targets.outputs.sites != ''
         env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/vscode-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_VSCODE }}" --branch=main
-
-  deploy-chrome:
-    name: Deploy chrome.santi020k.com
-    needs: changes
-    if: needs.changes.outputs.chrome == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 10.32.1
-          run_install: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
-      - name: Validate Cloudflare deployment config
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_CHROME }}
+          SITES: ${{ steps.targets.outputs.sites }}
         run: |
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_CHROME repository variable"; exit 1; }
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build Chrome website
-        run: pnpm run site:chrome:build
-
-      - name: Deploy Chrome website to Cloudflare Pages
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/chrome-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_CHROME }}" --branch=main
-
-  deploy-codex:
-    name: Deploy codex.santi020k.com
-    needs: changes
-    if: needs.changes.outputs.codex == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 10.32.1
-          run_install: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
-      - name: Validate Cloudflare deployment config
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_CODEX }}
-        run: |
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_CODEX repository variable"; exit 1; }
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build Codex website
-        run: pnpm run site:codex:build
-
-      - name: Deploy Codex website to Cloudflare Pages
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/codex-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_CODEX }}" --branch=main
-
-  deploy-terminal:
-    name: Deploy terminal.santi020k.com
-    needs: changes
-    if: needs.changes.outputs.terminal == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.32.1
-          run_install: false
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-      - name: Validate Cloudflare deployment config
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_TERMINAL }}
-        run: |
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_TERMINAL repository variable"; exit 1; }
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Build Terminal website
-        run: pnpm run site:terminal:build
-      - name: Deploy Terminal website to Cloudflare Pages
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/terminal-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_TERMINAL }}" --branch=main
-
-  deploy-zed:
-    name: Deploy zed.santi020k.com
-    needs: changes
-    if: needs.changes.outputs.zed == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 10.32.1
-          run_install: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
-      - name: Validate Cloudflare deployment config
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_ZED }}
-        run: |
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
-          test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_ZED repository variable"; exit 1; }
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build Zed website
-        run: pnpm run site:zed:build
-
-      - name: Deploy Zed website to Cloudflare Pages
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/zed-website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_ZED }}" --branch=main
+          for site in $SITES; do
+            case "$site" in
+              theme) build="site:build"; output="apps/website/dist"; project="$PROJECT_THEME" ;;
+              vscode) build="site:vscode:build"; output="apps/vscode-website/dist"; project="$PROJECT_VSCODE" ;;
+              chrome) build="site:chrome:build"; output="apps/chrome-website/dist"; project="$PROJECT_CHROME" ;;
+              codex) build="site:codex:build"; output="apps/codex-website/dist"; project="$PROJECT_CODEX" ;;
+              terminal) build="site:terminal:build"; output="apps/terminal-website/dist"; project="$PROJECT_TERMINAL" ;;
+              zed) build="site:zed:build"; output="apps/zed-website/dist"; project="$PROJECT_ZED" ;;
+            esac
+            pnpm run "$build"
+            pnpm exec wrangler pages deploy "$output" \
+              --project-name="$project" \
+              --branch=main \
+              --commit-hash="$GITHUB_SHA"
+          done
