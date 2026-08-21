@@ -28,7 +28,7 @@ catalog:
   "@santi020k/eslint-config-testing": ^3.1.0
   "@santi020k/eslint-config-tools": ^3.1.0
   "@santi020k/lumen-astro": 1.0.0
-  "@types/node": ^26.1.2
+  "@types/node": ^26.2.0
   "@vscode/vsce": ^3.9.2
   archiver: ^8.0.0
   astro: ^7.1.4
