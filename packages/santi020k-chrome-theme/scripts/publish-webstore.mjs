@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+/* eslint-disable n/no-process-exit, no-console -- This publishing CLI owns its process lifecycle and terminal output. */
+
 /**
  * Uploads and submits the packaged Chrome theme variants to the Chrome Web Store.
  *
@@ -137,8 +138,7 @@ const formatServiceAccountTokenError = ({ body, response }) => {
 
   if (body?.error === 'invalid_grant') {
     lines.push(
-      'The configured CHROME_WEBSTORE_SERVICE_ACCOUNT_JSON is not usable. Check that the JSON key is active, belongs to the service account added in the Chrome Web Store Developer Dashboard, and has the Chrome Web Store API enabled in its Google Cloud project.',
-      `See ${SERVICE_ACCOUNT_GUIDE}.`
+      'The configured CHROME_WEBSTORE_SERVICE_ACCOUNT_JSON is not usable. Check that the JSON key is active, belongs to the service account added in the Chrome Web Store Developer Dashboard, and has the Chrome Web Store API enabled in its Google Cloud project.', `See ${SERVICE_ACCOUNT_GUIDE}.`
     )
   }
 
@@ -268,9 +268,11 @@ const getKnownVersions = status => ({
   submitted: getRevisionVersions(status.submittedItemRevisionStatus)
 })
 
-const getItemStatus = ({ accessToken, itemId, publisherId }) => webstoreRequest(`${itemPath(publisherId, itemId)}:fetchStatus`, {
-  accessToken
-})
+const getItemStatus = ({ accessToken, itemId, publisherId }) => (
+  webstoreRequest(`${itemPath(publisherId, itemId)}:fetchStatus`, {
+    accessToken
+  })
+)
 
 const parseServiceAccount = value => {
   let serviceAccount
@@ -388,6 +390,7 @@ const summarizeWarnings = response => {
   }
 }
 
+// eslint-disable-next-line complexity -- The release transaction preserves explicit status handling for every API phase.
 const releaseVariant = async ({ accessToken, publisherId, variant }) => {
   const itemId = variant.itemIdOverride() || variant.itemId
   const artifactPath = join(root, variant.artifact)

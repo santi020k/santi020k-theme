@@ -1,11 +1,15 @@
 ---
+/* eslint-disable @stylistic/indent, @stylistic/jsx-closing-tag-location, @stylistic/max-len -- Astro inline-script indentation conflicts with JSX closing-tag fixes; long declarative markup is clearer unwrapped. */
+
 import { Image } from 'astro:assets'
+
 import { Badge, Button, ButtonLink, Card, Eyebrow, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
-import AppleIcon from '../../../../packages/theme/components/AppleIcon.astro'
+
 import wallpaperOne from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
 import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/wallpaper-2-desktop.webp'
 import wallpaperThree from '../../../../packages/theme/assets/wallpapers/wallpaper-3-desktop.webp'
+import AppleIcon from '../../../../packages/theme/components/AppleIcon.svg'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
 
@@ -19,41 +23,47 @@ const structuredData = {
     '@type': 'Person',
     name: 'Santiago Molina',
     url: 'https://santi020k.com',
-    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k'],
+    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k']
   },
   hasPart: [
     {
       '@type': 'SoftwareApplication',
       name: 'Santi020k Theme for VS Code',
       url: 'https://vscode.santi020k.com/',
-      applicationCategory: 'DeveloperApplication',
+      applicationCategory: 'DeveloperApplication'
     },
     {
       '@type': 'SoftwareApplication',
       name: 'Santi020k Theme for Chrome',
       url: 'https://chrome.santi020k.com/',
-      applicationCategory: 'BrowserApplication',
+      applicationCategory: 'BrowserApplication'
     },
     {
       '@type': 'SoftwareApplication',
       name: 'Santi020k Theme for iTerm2',
       url: 'https://terminal.santi020k.com/',
-      applicationCategory: 'DeveloperApplication',
+      applicationCategory: 'DeveloperApplication'
     },
     {
       '@type': 'SoftwareApplication',
       name: 'Santi020k Theme for Zed',
       url: 'https://zed.santi020k.com/',
-      applicationCategory: 'DeveloperApplication',
+      applicationCategory: 'DeveloperApplication'
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'ChatGPT Light Theme for Codex',
+      url: 'https://codex.santi020k.com/',
+      applicationCategory: 'DeveloperApplication'
     },
     {
       '@type': 'SoftwareSourceCode',
       name: '@santi020k/theme',
       url: 'https://github.com/santi020k/santi020k-theme',
       codeRepository: 'https://github.com/santi020k/santi020k-theme',
-      programmingLanguage: ['CSS', 'JavaScript', 'TypeScript'],
-    },
-  ],
+      programmingLanguage: ['CSS', 'JavaScript', 'TypeScript']
+    }
+  ]
 }
 
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
@@ -64,14 +74,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <head>
     <meta charset="UTF-8" />
     <script>
-      (function () {
-        var s = localStorage.getItem('theme')
-        var pref = s === 'light' || s === 'dark'
-          ? s
-          : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        document.documentElement.setAttribute('data-theme', pref)
-      })()
-    </script>
+  (function () {
+    var s = localStorage.getItem('theme')
+    var pref = s
+
+    if (pref !== 'light' && pref !== 'dark') {
+      pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    }
+
+    document.documentElement.setAttribute('data-theme', pref)
+  })()
+  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Themes - VS Code, Chrome, Zed, npm, and More</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -105,7 +118,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="twitter:description" content="VS Code, Chrome, Terminal, Zed, and shared Santi020k theme packages in one place." />
     <meta name="twitter:image" content="https://theme.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Themes - VS Code, Chrome, npm, and more" />
-    <script type="application/ld+json" set:html={structuredDataJson}></script>
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
@@ -146,6 +159,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.chrome}>Open Chrome</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.terminal}>Open Terminal</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.zed}>Open Zed</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.codex}>Open Codex</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Open packages</ButtonLink>
           </div>
         </div>
@@ -245,6 +259,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               </div>
             </div>
           </Card>
+          <Card as="article" class="theme-card">
+            <Link class="theme-card-media codex-card" href={siteUrls.codex} aria-label="Open Codex theme site">
+              <div class="codex-card-window" aria-hidden="true"><span></span><span></span><span></span><b>Codex</b><p>ChatGPT light</p><i>Paste-ready</i></div>
+            </Link>
+            <div class="theme-card-body">
+              <Badge class="card-kicker" variant="success"><span class="status-dot" aria-hidden="true"></span>Live</Badge>
+              <h3>Codex</h3>
+              <p>Dark and light Santi020k custom themes with exact settings values ready to copy.</p>
+              <div class="card-actions"><ButtonLink class="button button-primary" variant="primary" href={siteUrls.codex}>Open site</ButtonLink><ButtonLink class="button button-secondary" variant="secondary" href={`${siteUrls.codex}#copy`}>Copy theme</ButtonLink></div>
+            </div>
+          </Card>
         </div>
       </section>
 
@@ -299,6 +324,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <Link href={siteUrls.chrome}>Chrome</Link>
         <Link href={siteUrls.terminal}>Terminal</Link>
         <Link href={siteUrls.zed}>Zed</Link>
+        <Link href={siteUrls.codex}>Codex</Link>
         <Link href="/gallery/">Gallery</Link>
         <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">Packages</Link>
         <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>

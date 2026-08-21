@@ -1,3 +1,5 @@
+/* eslint-disable @stylistic/max-len, no-console -- Embedded terminal formats preserve their generated line structure. */
+
 import { mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -8,9 +10,15 @@ import { getPromptVariant, promptVariants, runtimeModules, starshipFilename } fr
 const root = resolve(import.meta.dirname, '..')
 
 const colorKeys = [
-  ['Background Color', 'background'], ['Foreground Color', 'foreground'], ['Bold Color', 'bold'],
-  ['Cursor Color', 'cursor'], ['Cursor Text Color', 'cursorText'], ['Selection Color', 'selection'],
-  ['Selected Text Color', 'selectedText'], ['Link Color', 'link'], ['Badge Color', 'badge'],
+  ['Background Color', 'background'],
+  ['Foreground Color', 'foreground'],
+  ['Bold Color', 'bold'],
+  ['Cursor Color', 'cursor'],
+  ['Cursor Text Color', 'cursorText'],
+  ['Selection Color', 'selection'],
+  ['Selected Text Color', 'selectedText'],
+  ['Link Color', 'link'],
+  ['Badge Color', 'badge']
 ]
 
 const colorDict = hex => {
@@ -45,8 +53,22 @@ export const renderWindowsTerminal = palette => `${JSON.stringify({
   cursorColor: palette.cursor,
   selectionBackground: palette.selection,
   // ANSI positions are fixed by the terminal color specification.
-  black: palette.ansi[0], red: palette.ansi[1], green: palette.ansi[2], yellow: palette.ansi[3], blue: palette.ansi[4], purple: palette.ansi[5], cyan: palette.ansi[6], white: palette.ansi[7],
-  brightBlack: palette.ansi[8], brightRed: palette.ansi[9], brightGreen: palette.ansi[10], brightYellow: palette.ansi[11], brightBlue: palette.ansi[12], brightPurple: palette.ansi[13], brightCyan: palette.ansi[14], brightWhite: palette.ansi[15],
+  black: palette.ansi[0],
+  red: palette.ansi[1],
+  green: palette.ansi[2],
+  yellow: palette.ansi[3],
+  blue: palette.ansi[4],
+  purple: palette.ansi[5],
+  cyan: palette.ansi[6],
+  white: palette.ansi[7],
+  brightBlack: palette.ansi[8],
+  brightRed: palette.ansi[9],
+  brightGreen: palette.ansi[10],
+  brightYellow: palette.ansi[11],
+  brightBlue: palette.ansi[12],
+  brightPurple: palette.ansi[13],
+  brightCyan: palette.ansi[14],
+  brightWhite: palette.ansi[15]
 }, null, 2)}\n`
 
 export const renderAlacritty = palette => {
@@ -67,9 +89,9 @@ export const renderStarship = (palette, variantKey = 'rich') => {
     .map(([name, symbol]) => `"${name}" = "${symbol}"`)
     .join('\n')
 
-  const colors = dark
-    ? { os: '#602cba', directory: '#752df0', git: '#945df4', runtime: '#89b8c8', time: '#302545', lightText: '#ffffff', darkText: '#17141d', error: '#ea6962' }
-    : { os: '#5a14b0', directory: '#6319be', git: '#9451cf', runtime: '#a8d6e5', time: '#ddd8f0', lightText: '#ffffff', darkText: '#17141d', error: '#c0392b' }
+  const colors = dark ?
+    { os: '#602cba', directory: '#752df0', git: '#945df4', runtime: '#89b8c8', time: '#302545', lightText: '#ffffff', darkText: '#17141d', error: '#ea6962' } :
+    { os: '#5a14b0', directory: '#6319be', git: '#9451cf', runtime: '#a8d6e5', time: '#ddd8f0', lightText: '#ffffff', darkText: '#17141d', error: '#c0392b' }
 
   return `"$schema" = "https://starship.rs/config-schema.json"
 
@@ -177,18 +199,14 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   await Promise.all([
     mkdir(resolve(root, 'iterm2'), { recursive: true }),
     mkdir(resolve(root, 'starship'), { recursive: true }),
-    ...['ghostty', 'kitty', 'wezterm', 'windows-terminal', 'alacritty'].map(directory => mkdir(resolve(root, directory), { recursive: true })),
+    ...['ghostty', 'kitty', 'wezterm', 'windows-terminal', 'alacritty'].map(directory => mkdir(resolve(root, directory), { recursive: true }))
   ])
 
   for (const palette of Object.values(palettes)) {
     const outputs = [writeFile(resolve(root, 'iterm2', `${palette.name}.itermcolors`), renderIterm(palette))]
 
     outputs.push(
-      writeFile(resolve(root, 'ghostty', `santi020k-${palette.slug}`), renderGhostty(palette)),
-      writeFile(resolve(root, 'kitty', `santi020k-${palette.slug}.conf`), renderKitty(palette)),
-      writeFile(resolve(root, 'wezterm', `santi020k-${palette.slug}.lua`), renderWezterm(palette)),
-      writeFile(resolve(root, 'windows-terminal', `santi020k-${palette.slug}.json`), renderWindowsTerminal(palette)),
-      writeFile(resolve(root, 'alacritty', `santi020k-${palette.slug}.toml`), renderAlacritty(palette)),
+      writeFile(resolve(root, 'ghostty', `santi020k-${palette.slug}`), renderGhostty(palette)), writeFile(resolve(root, 'kitty', `santi020k-${palette.slug}.conf`), renderKitty(palette)), writeFile(resolve(root, 'wezterm', `santi020k-${palette.slug}.lua`), renderWezterm(palette)), writeFile(resolve(root, 'windows-terminal', `santi020k-${palette.slug}.json`), renderWindowsTerminal(palette)), writeFile(resolve(root, 'alacritty', `santi020k-${palette.slug}.toml`), renderAlacritty(palette))
     )
 
     for (const variantKey of Object.keys(promptVariants)) {

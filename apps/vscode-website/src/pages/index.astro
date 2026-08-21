@@ -1,5 +1,8 @@
 ---
+/* eslint-disable @stylistic/indent, @stylistic/jsx-closing-tag-location, @stylistic/max-len -- Astro inline-script indentation conflicts with JSX closing-tag fixes; long declarative markup is clearer unwrapped. */
+
 import { Image } from 'astro:assets'
+
 import { Button, ButtonLink, Card, Checkbox, Icon, Link, NativeSelect, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
 
@@ -12,7 +15,7 @@ const structuredData = {
   applicationCategory: 'DeveloperApplication',
   applicationSubCategory: 'Color Theme',
   operatingSystem: 'Windows, macOS, Linux',
-  "softwareVersion": "2.1.3",
+  softwareVersion: '2.1.3',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   downloadUrl: 'https://marketplace.visualstudio.com/items?itemName=Santi020k.santi020k-theme',
   url: 'https://vscode.santi020k.com',
@@ -22,8 +25,8 @@ const structuredData = {
     '@type': 'Person',
     name: 'Santiago Molina',
     url: 'https://santi020k.com',
-    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k'],
-  },
+    sameAs: ['https://github.com/santi020k', 'https://twitter.com/santi020k']
+  }
 }
 
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
@@ -35,14 +38,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta charset="UTF-8" />
     <!-- Anti-FOUC: sets data-theme before CSS renders to prevent a flash -->
     <script>
-      (function () {
-        var s = localStorage.getItem('theme')
-        var pref = s === 'light' || s === 'dark'
-          ? s
-          : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        document.documentElement.setAttribute('data-theme', pref)
-      })()
-    </script>
+  (function () {
+    var s = localStorage.getItem('theme')
+    var pref = s
+
+    if (pref !== 'light' && pref !== 'dark') {
+      pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    }
+
+    document.documentElement.setAttribute('data-theme', pref)
+  })()
+  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Theme — VS Code Color Theme</title>
     <!-- Fonts -->
@@ -83,7 +89,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="twitter:image" content="https://vscode.santi020k.com/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Dark, Light, and High Contrast" />
     <!-- JSON-LD: SoftwareApplication -->
-    <script type="application/ld+json" set:html={structuredDataJson}></script>
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
@@ -348,8 +354,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <div class="lang-tag lang-tag-more"><span>+50 more</span></div>
         </div>
 
-
-
       </section>
 
       <section id="compatibility" class="site-shell compatibility-section">
@@ -368,7 +372,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <label><Checkbox class="settings-auto"  checked /> Follow the operating system light and dark mode</label>
             <label><Checkbox class="settings-font"  checked /> Include calm editor typography</label>
           </div>
-          <div class="settings-output"><pre><code class="settings-code"></code></pre><Button class="button button-primary settings-copy" variant="primary" type="button">Copy settings</Button></div>
+          <div class="settings-output"><pre><code class="settings-code"></code></pre><Button class="button button-primary settings-copy" type="button">Copy settings</Button></div>
         </div>
       </section>
 

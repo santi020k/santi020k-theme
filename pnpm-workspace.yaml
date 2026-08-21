@@ -2,28 +2,37 @@ packages:
   - "packages/*"
   - "apps/*"
 
-ignoredBuiltDependencies:
-  - "@vscode/vsce-sign"
-  - esbuild
-  - keytar
-  - unrs-resolver
+allowBuilds:
+  "@vscode/vsce-sign": false
+  esbuild: false
+  keytar: false
+  sharp: false
+  unrs-resolver: false
+  workerd: false
+
+auditConfig:
+  ignoreGhsas:
+    - GHSA-mh99-v99m-4gvg
 
 catalog:
+  "@astrojs/check": ^0.9.9
   "@astrojs/ts-plugin": ^1.10.10
   "@changesets/changelog-github": ^0.7.0
   "@changesets/cli": ^2.31.1
-  "@commitlint/cli": ^21.2.1
-  "@commitlint/config-conventional": ^21.2.0
-  "@eslint/config-helpers": ^0.7.0
-  "@santi020k/eslint-config-basic": ^2.1.1
-  "@santi020k/lumen-astro": 0.4.0
+  "@santi020k/commitprompt": ^1.0.0
+  "@santi020k/eslint-config-astro": ^3.1.0
+  "@santi020k/eslint-config-basic": ^3.2.0
+  "@santi020k/eslint-config-extensions": ^3.1.0
+  "@santi020k/eslint-config-formats": ^3.1.0
+  "@santi020k/eslint-config-libraries": ^3.1.0
+  "@santi020k/eslint-config-testing": ^3.1.0
+  "@santi020k/eslint-config-tools": ^3.1.0
+  "@santi020k/lumen-astro": 1.0.0
   "@types/node": ^26.1.2
   "@vscode/vsce": ^3.9.2
-  astro: ^7.1.4
   archiver: ^8.0.0
-  commitizen: ^4.3.2
+  astro: ^7.1.4
   cspell: ^10.0.1
-  cz-conventional-changelog: ^3.3.0
   eslint: ^10.7.0
   husky: ^9.1.7
   knip: ^6.29.0
@@ -32,36 +41,35 @@ catalog:
   sharp: ^0.35.3
   smol-toml: ^1.7.1
   turbo: ^2.10.7
+  typescript: ^5.9.3
   vite: ^8.1.5
   vitest: ^4.1.10
   wrangler: ^4.114.0
 
-peerDependencyRules:
-  allowedVersions:
-    eslint: "10"
+ignoredBuiltDependencies:
+  - "@vscode/vsce-sign"
+  - esbuild
+  - keytar
+  - unrs-resolver
+
+minimumReleaseAgeExclude:
+  - "@santi020k/eslint-config-typescript"
 
 overrides:
-  "brace-expansion@1": ^1.1.16
-  "brace-expansion@2": ^2.1.2
-  "brace-expansion@5": ^5.0.8
-  fast-uri: ^4.1.1
-  js-yaml: ^4.3.0
-  linkify-it: ^5.0.2
-  postcss: ^8.5.18
   "@manypkg/get-packages>read-yaml-file": 2.1.0
+  "brace-expansion@1": ^1.1.18
+  "brace-expansion@2": ^2.1.4
+  "brace-expansion@5": ^5.0.9
+  fast-uri: ^4.1.2
+  js-yaml: ^4.3.1
+  linkify-it: ^5.0.2
+  nanoid: ^3.3.18
+  postcss: ^8.5.23
   svgo: ^4.0.2
   undici: ^8.9.0
   valibot: ^1.4.2
   vite: ^8.1.5
 
-auditConfig:
-  ignoreGhsas:
-    - GHSA-mh99-v99m-4gvg
-
-allowBuilds:
-  "@vscode/vsce-sign": false
-  esbuild: false
-  keytar: false
-  sharp: false
-  unrs-resolver: false
-  workerd: false
+peerDependencyRules:
+  allowedVersions:
+    eslint: "10"

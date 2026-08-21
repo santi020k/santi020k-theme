@@ -19,18 +19,18 @@ export interface TypographyConfig {
 }
 
 export type BrandAssetCategory =
-  | 'logo'
-  | 'favicon'
-  | 'banner'
-  | 'wallpaper'
-  | 'icon'
-  | 'font'
-  | 'og-image'
-  | 'photo'
-  | 'preview'
-  | 'screenshot'
-  | 'store'
-  | 'theme'
+  | 'logo' |
+  'favicon' |
+  'banner' |
+  'wallpaper' |
+  'icon' |
+  'font' |
+  'og-image' |
+  'photo' |
+  'preview' |
+  'screenshot' |
+  'store' |
+  'theme'
 
 export type BrandSurface = 'brand' | 'website' | 'vscode' | 'chrome'
 

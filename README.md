@@ -1,6 +1,6 @@
 # Santi020k Theme
 
-Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Zed, Chrome, terminal themes, shared brand packages, and static product websites.
+Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Zed, Chrome, Codex, terminal themes, shared brand packages, and static product websites.
 
 The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.md). Read it before changing colors, product names, screenshots, icons, website copy, store metadata, or shared assets.
 
@@ -11,6 +11,7 @@ The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.
 | `packages/santi020k-theme`          | Published VS Code extension with dark, light, high-contrast, bold, and italic variants                                         |
 | `packages/santi020k-chrome-theme`   | Chrome Web Store theme package, synced from the VS Code palette                                                                |
 | `packages/santi020k-zed-theme`      | Generated Zed theme family synced from the VS Code palette                                                                     |
+| `packages/santi020k-codex-theme`    | Copy-ready ChatGPT-inspired light custom theme preset for Codex                                                                |
 | `packages/santi020k-terminal-theme` | Generated terminal color schemes and prompt presets                                                                            |
 | `packages/theme`                    | Public `@santi020k/theme` package for tokens, website CSS, assets, metadata, and Chrome mapping helpers                        |
 | `packages/theme-core`               | Public `@santi020k/theme-core` helper package for package-neutral token generation, asset lookup, and site behavior primitives |
@@ -19,6 +20,7 @@ The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.
 | `apps/chrome-website`               | Chrome theme product site for `chrome.santi020k.com`                                                                           |
 | `apps/terminal-website`             | Terminal product site for `terminal.santi020k.com`                                                                             |
 | `apps/zed-website`                  | Zed theme product site for `zed.santi020k.com`                                                                                 |
+| `apps/codex-website`                | Codex theme product site for `codex.santi020k.com`                                                                             |
 
 ## Quick Start
 
@@ -39,13 +41,15 @@ Use Node `>=22.18.0` and pnpm `10.32.1`.
 | `pnpm run validate:chrome`      | Lints, validates contrast, and dry-runs Chrome packaging                                                                      |
 | `pnpm run validate:terminal`    | Validates generated terminal presets                                                                                          |
 | `pnpm run validate:zed`         | Builds and checks the generated Zed theme family                                                                              |
+| `pnpm run validate:codex`       | Checks that the saved Codex preset exactly matches its supplied values                                                        |
 | `pnpm run package:extension`    | Builds and packages the VS Code extension as a VSIX                                                                           |
 | `pnpm run package:chrome`       | Builds Chrome Web Store zip files                                                                                             |
-| `pnpm run sites:dev`            | Starts all five website development servers in parallel                                                                       |
+| `pnpm run sites:dev`            | Starts all six website development servers in parallel                                                                        |
 | `pnpm run site:dev`             | Starts the theme hub website                                                                                                  |
 | `pnpm run site:vscode:dev`      | Starts the VS Code theme website                                                                                              |
 | `pnpm run site:chrome:dev`      | Starts the Chrome theme website                                                                                               |
 | `pnpm run site:terminal:dev`    | Starts the Terminal theme website on port 4177                                                                                |
+| `pnpm run site:codex:dev`       | Starts the Codex theme website on port 4179                                                                                   |
 | `pnpm run changeset`            | Creates a release changeset                                                                                                   |
 | `pnpm run commit`               | Opens the conventional commit prompt                                                                                          |
 
@@ -62,6 +66,7 @@ Use Node `>=22.18.0` and pnpm `10.32.1`.
 - [`docs/architecture.md`](docs/architecture.md) explains the repo architecture.
 - [`packages/santi020k-theme/README.md`](packages/santi020k-theme/README.md) is the marketplace-facing VS Code extension README.
 - [`packages/santi020k-chrome-theme/README.md`](packages/santi020k-chrome-theme/README.md) covers Chrome theme development and Web Store packaging.
+- [`packages/santi020k-codex-theme/README.md`](packages/santi020k-codex-theme/README.md) documents the saved Codex preset.
 - [`packages/theme/README.md`](packages/theme/README.md) documents shared tokens and assets.
 - [`packages/theme-core/README.md`](packages/theme-core/README.md) documents lower-level shared helper APIs.
 - [`apps/website/README.md`](apps/website/README.md), [`apps/vscode-website/README.md`](apps/vscode-website/README.md), and [`apps/chrome-website/README.md`](apps/chrome-website/README.md) cover the static sites.

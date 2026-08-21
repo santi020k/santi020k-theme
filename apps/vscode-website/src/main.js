@@ -1,5 +1,6 @@
 import './styles.css'
 
+/* eslint-disable @stylistic/max-len -- Embedded code samples preserve the lines displayed in the editor preview. */
 import {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
@@ -51,7 +52,7 @@ const buildSettingsRecipe = () => {
   }
 
   if (document.querySelector('.settings-font')?.checked) {
-    settings['editor.fontFamily'] = "'Fira Code', monospace"
+    settings['editor.fontFamily'] = '\'Fira Code\', monospace'
 
     settings['editor.fontLigatures'] = true
 
@@ -73,7 +74,9 @@ document.querySelector('.settings-copy')?.addEventListener('click', async event 
 
   event.currentTarget.textContent = 'Copied'
 
-  window.setTimeout(() => { event.currentTarget.textContent = 'Copy settings' }, 1800)
+  window.setTimeout(() => {
+    event.currentTarget.textContent = 'Copy settings'
+  }, 1800)
 })
 
 buildSettingsRecipe()
@@ -170,6 +173,7 @@ let currentPreviewLang = 'json'
 let currentPreviewTheme = 'dark'
 let currentPreviewVariant = 'normal'
 
+// eslint-disable-next-line complexity -- Preview state synchronization intentionally handles each optional DOM control.
 const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
   currentPreviewLang = lang
 
@@ -307,7 +311,7 @@ const setupClipboard = () => {
           }, 2000)
         }
       } catch (error) {
-        console.error('Failed to copy: ', error)
+        globalThis.reportError(error)
       }
     })
   }
@@ -333,7 +337,7 @@ const setupClipboard = () => {
           settingsBtn.innerHTML = originalHtml
         }, 2000)
       } catch (error) {
-        console.error('Failed to copy settings: ', error)
+        globalThis.reportError(error)
       }
     })
   }

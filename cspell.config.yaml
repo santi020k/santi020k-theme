@@ -63,6 +63,7 @@ words:
   - command-center
   - commitizen
   - commitlint
+  - commitprompt
   - Consolas
   - crx
   - dasharray

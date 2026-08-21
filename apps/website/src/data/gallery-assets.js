@@ -61,8 +61,25 @@ import wallpaperThreeMobilePng from '../../../../packages/theme/assets/wallpaper
 import wallpaperThreeMobile from '../../../../packages/theme/assets/wallpapers/wallpaper-3-mobile.webp'
 import wallpaperThreeMobileWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-3-mobile.webp?url'
 
+/** @typedef {import('astro').ImageMetadata} ImageMetadata */
+
+/**
+ * @param {string} label
+ * @param {string} href
+ * @param {string} file
+ */
 const download = (label, href, file) => ({ label, href, file })
 
+/**
+ * @param {string} title
+ * @param {string} variant
+ * @param {string} dimensions
+ * @param {ImageMetadata} preview
+ * @param {string} base
+ * @param {string} png
+ * @param {string} webp
+ * @param {boolean} [portrait]
+ */
 const wallpaper = (title, variant, dimensions, preview, base, png, webp, portrait = false) => ({
   title,
   category: 'wallpapers',
@@ -73,6 +90,12 @@ const wallpaper = (title, variant, dimensions, preview, base, png, webp, portrai
   formats: [download('PNG', png, `${base}.png`), download('WEBP', webp, `${base}.webp`)]
 })
 
+/**
+ * @param {ImageMetadata} preview
+ * @param {number} index
+ * @param {string} png
+ * @param {string} webp
+ */
 const banner = (preview, index, png, webp) => ({
   title: `Social banner 0${index}`,
   category: 'banners',
@@ -83,6 +106,14 @@ const banner = (preview, index, png, webp) => ({
   formats: [download('PNG', png, `santi020k-banner-${index}.png`), download('WEBP', webp, `santi020k-banner-${index}.webp`)]
 })
 
+/**
+ * @param {string} title
+ * @param {string} variant
+ * @param {ImageMetadata} image
+ * @param {string} base
+ * @param {string} png
+ * @param {string} svg
+ */
 const preview = (title, variant, image, base, png, svg) => ({
   title,
   category: 'previews',
@@ -92,6 +123,16 @@ const preview = (title, variant, image, base, png, svg) => ({
   formats: [download('PNG', png, `${base}.png`), download('SVG', svg, `${base}.svg`)]
 })
 
+/**
+ * @param {string} title
+ * @param {string} variant
+ * @param {string} dimensions
+ * @param {ImageMetadata} image
+ * @param {string} base
+ * @param {string} png
+ * @param {string} svg
+ * @param {string} webp
+ */
 const logo = (title, variant, dimensions, image, base, png, svg, webp) => ({
   title,
   category: 'logos',

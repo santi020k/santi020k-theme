@@ -20,7 +20,7 @@ on:
       - "packages/santi020k-theme/scripts/ensure-release-tag.mjs"
       - "packages/santi020k-theme/scripts/publish-registries.mjs"
       - ".github/workflows/release.yml"
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

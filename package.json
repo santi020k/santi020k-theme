@@ -14,7 +14,7 @@
     "build:chrome-theme": "pnpm --filter santi020k-chrome-theme run build",
     "build:themes": "pnpm --filter santi020k-theme run build",
     "build:zed": "pnpm --filter santi020k-zed-theme run build",
-    "validate": "pnpm run build && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run validate:chrome && pnpm run validate:terminal && pnpm run validate:zed && pnpm run report:accessibility && pnpm run validate:seo && pnpm run test && pnpm run lint && pnpm run lint:knip && pnpm run package:extension",
+    "validate": "pnpm run typecheck && pnpm run build && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run validate:chrome && pnpm run validate:terminal && pnpm run validate:zed && pnpm run validate:codex && pnpm run report:accessibility && pnpm run validate:seo && pnpm run test && pnpm run lint && pnpm run lint:knip && pnpm run package:extension",
     "pretest": "pnpm run build:themes",
     "test": "vitest run packages/santi020k-theme/tests packages/santi020k-terminal-theme/tests apps/vscode-website/tests",
     "sync:website-version": "pnpm --filter @santi020k/santi020k-vscode-theme-website run sync:website-version",
@@ -25,10 +25,12 @@
     "validate:chrome": "pnpm --filter santi020k-chrome-theme run validate",
     "validate:terminal": "pnpm --filter santi020k-terminal-theme run validate",
     "validate:zed": "pnpm --filter santi020k-zed-theme run validate",
-    "lint": "eslint . --cache --no-warn-ignored",
-    "lint:fix": "eslint . --cache --fix --no-warn-ignored",
+    "validate:codex": "pnpm --filter santi020k-codex-theme run validate",
+    "lint": "eslint . --cache --no-warn-ignored --max-warnings=0",
+    "lint:fix": "eslint . --cache --fix --no-warn-ignored --max-warnings=0",
     "lint:spell": "cspell \"**\" --gitignore --cache --show-suggestions --show-context",
     "lint:knip": "knip",
+    "typecheck": "pnpm --filter './apps/*' exec astro check --minimumFailingSeverity warning",
     "package": "pnpm run package:extension",
     "package:extension": "pnpm --filter santi020k-theme run package",
     "package:chrome": "pnpm --filter santi020k-chrome-theme run package",
@@ -46,7 +48,7 @@
     "changeset": "changeset",
     "version-packages": "changeset version && pnpm --filter santi020k-chrome-theme run sync:manifest-version && pnpm --filter santi020k-zed-theme run sync:extension-version && pnpm install --lockfile-only && pnpm run sync:website-version",
     "site:dev": "pnpm --filter @santi020k/santi020k-theme-website run dev",
-    "sites:dev": "pnpm --parallel --filter @santi020k/santi020k-theme-website --filter @santi020k/santi020k-vscode-theme-website --filter @santi020k/santi020k-chrome-theme-website --filter @santi020k/santi020k-terminal-theme-website --filter @santi020k/santi020k-zed-theme-website run dev",
+    "sites:dev": "pnpm --parallel --filter @santi020k/santi020k-theme-website --filter @santi020k/santi020k-vscode-theme-website --filter @santi020k/santi020k-chrome-theme-website --filter @santi020k/santi020k-terminal-theme-website --filter @santi020k/santi020k-zed-theme-website --filter @santi020k/santi020k-codex-theme-website run dev",
     "site:build": "pnpm --filter @santi020k/santi020k-theme-website run build",
     "site:preview": "pnpm --filter @santi020k/santi020k-theme-website run preview",
     "site:vscode:dev": "pnpm --filter @santi020k/santi020k-vscode-theme-website run dev",
@@ -61,24 +63,30 @@
     "site:zed:dev": "pnpm --filter @santi020k/santi020k-zed-theme-website run dev",
     "site:zed:build": "pnpm --filter @santi020k/santi020k-zed-theme-website run build",
     "site:zed:preview": "pnpm --filter @santi020k/santi020k-zed-theme-website run preview",
+    "site:codex:dev": "pnpm --filter @santi020k/santi020k-codex-theme-website run dev",
+    "site:codex:build": "pnpm --filter @santi020k/santi020k-codex-theme-website run build",
+    "site:codex:preview": "pnpm --filter @santi020k/santi020k-codex-theme-website run preview",
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "pre-push": "pnpm run validate",
-    "commit": "cz"
+    "commit": "commitprompt"
   },
   "devDependencies": {
+    "@astrojs/check": "catalog:",
     "@astrojs/ts-plugin": "catalog:",
     "@changesets/changelog-github": "catalog:",
     "@changesets/cli": "catalog:",
-    "@commitlint/cli": "catalog:",
-    "@commitlint/config-conventional": "catalog:",
-    "@eslint/config-helpers": "catalog:",
+    "@santi020k/commitprompt": "catalog:",
+    "@santi020k/eslint-config-astro": "catalog:",
     "@santi020k/eslint-config-basic": "catalog:",
+    "@santi020k/eslint-config-extensions": "catalog:",
+    "@santi020k/eslint-config-formats": "catalog:",
+    "@santi020k/eslint-config-libraries": "catalog:",
+    "@santi020k/eslint-config-testing": "catalog:",
+    "@santi020k/eslint-config-tools": "catalog:",
     "@types/node": "catalog:",
     "@vscode/vsce": "catalog:",
-    "commitizen": "catalog:",
     "cspell": "catalog:",
-    "cz-conventional-changelog": "catalog:",
     "eslint": "catalog:",
     "husky": "catalog:",
     "knip": "catalog:",
@@ -86,21 +94,17 @@
     "ovsx": "catalog:",
     "sharp": "catalog:",
     "turbo": "catalog:",
+    "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:",
     "wrangler": "catalog:"
   },
   "lint-staged": {
     "*.{js,mjs}": [
-      "eslint --fix --no-warn-ignored"
+      "eslint --fix --no-warn-ignored --max-warnings=0"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=22.19.0"
   }
 }

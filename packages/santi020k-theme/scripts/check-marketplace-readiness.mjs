@@ -1,3 +1,5 @@
+/* eslint-disable complexity, no-console -- The release validator aggregates every marketplace check and reports all failures. */
+
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -91,9 +93,9 @@ const requiredAgentSkillFiles = [
 ]
 
 const getWebsiteSoftwareVersion = html => {
-  const match = html.match(/"softwareVersion"\s*:\s*"([^"]+)"/)
+  const match = html.match(/(?:['"]softwareVersion['"]|softwareVersion)\s*:\s*(['"])([^'"]+)\1/)
 
-  return match?.[1]
+  return match?.[2]
 }
 
 export const checkMarketplaceReadiness = (packageDir = extensionPackageDir, {

@@ -1,7 +1,11 @@
 ---
+/* eslint-disable @stylistic/indent, @stylistic/jsx-closing-tag-location, @stylistic/max-len -- Astro inline-script indentation conflicts with JSX closing-tag fixes; long declarative markup is clearer unwrapped. */
+
 import { Image } from 'astro:assets'
+
 import { BackToTop, Button, ButtonLink, Card, Dialog, Eyebrow, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
 import { getSiteUrls } from '@santi020k/theme/site'
+
 import { galleryAssets as assets } from '../data/gallery-assets.js'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
@@ -10,6 +14,7 @@ const title = 'Gallery & Downloads — Santi020k Theme'
 const description = 'Download Santi020k Theme wallpapers, banners, VS Code previews, and brand assets in their original resolution.'
 const socialImage = 'https://theme.santi020k.com/og-image.png'
 const imageAlt = 'Santi020k Theme gallery with wallpapers, banners, editor previews, and brand assets'
+
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -19,9 +24,10 @@ const structuredData = {
   isPartOf: {
     '@type': 'WebSite',
     name: 'Santi020k Themes',
-    url: 'https://theme.santi020k.com/',
-  },
+    url: 'https://theme.santi020k.com/'
+  }
 }
+
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
 ---
 
@@ -32,7 +38,12 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <script is:inline>
       (function () {
         var saved = localStorage.getItem('theme')
-        var preferred = saved === 'light' || saved === 'dark' ? saved : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        var preferred = saved
+
+        if (preferred !== 'light' && preferred !== 'dark') {
+          preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
+
         document.documentElement.setAttribute('data-theme', preferred)
       })()
     </script>
@@ -70,7 +81,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="twitter:description" content="Wallpapers, banners, previews, and brand assets in one calm violet collection." />
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
-    <script type="application/ld+json" set:html={structuredDataJson}></script>
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
     <header class="site-shell site-header" aria-label="Site header">
@@ -119,16 +130,16 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         </div>
         <p class="gallery-count" aria-live="polite"><span data-gallery-count>{assets.length}</span> assets</p>
         <div class="asset-grid">
-          {assets.map((asset) => (
-            <Card as="article" class:list={['asset-card', { 'asset-card-portrait': asset.portrait }]} data-category={asset.category}>
-              <Button class:list={['asset-preview', { 'asset-preview-contain': asset.contain || asset.portrait }]} type="button" data-preview-src={asset.preview.src} data-preview-alt={`${asset.title}, ${asset.variant}`} data-preview-title={asset.title} aria-label={`Preview ${asset.title}, ${asset.variant}`}>
+          {assets.map(asset => (
+            <Card as="article" class:list={['asset-card', { 'asset-card-portrait': 'portrait' in asset && asset.portrait }]} data-category={asset.category}>
+              <Button class:list={['asset-preview', { 'asset-preview-contain': ('contain' in asset && asset.contain) || ('portrait' in asset && asset.portrait) }]} type="button" data-preview-src={asset.preview.src} data-preview-alt={`${asset.title}, ${asset.variant}`} data-preview-title={asset.title} aria-label={`Preview ${asset.title}, ${asset.variant}`}>
                 <Image src={asset.preview} alt={`${asset.title}, ${asset.variant}`} loading="lazy" />
                 <span class="preview-label">Open preview</span>
               </Button>
               <div class="asset-card-body">
                 <div><p class="asset-category">{asset.category} · {asset.variant}</p><h3>{asset.title}</h3><p class="asset-meta">{asset.dimensions}</p></div>
                 <div class="asset-formats" aria-label={`Download ${asset.title} formats`}>
-                  {asset.formats.map((format) => <Link href={format.href} download={format.file} title={`Download ${asset.title} as ${format.label}`}>{format.label}<Icon name="download" class="asset-format-icon" /></Link>)}
+                  {asset.formats.map(format => <Link href={format.href} download={format.file} title={`Download ${asset.title} as ${format.label}`}>{format.label}<Icon name="download" class="asset-format-icon" /></Link>)}
                 </div>
               </div>
             </Card>
@@ -146,7 +157,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <BackToTop class="back-to-top" aria-label="Back to top"><Icon name="chevron-up" /></BackToTop>
 
     <footer class="site-shell site-footer"><p>Made by <Link href="https://santi020k.com" rel="noopener noreferrer">santi020k</Link> with <Link href="https://lumen.santi020k.com" rel="noopener noreferrer">Lumen</Link>.</p><div class="footer-links"><Link href="/">Theme hub</Link><Link href={siteUrls.vscode}>VS Code</Link><Link href={siteUrls.chrome}>Chrome</Link><Link href={siteUrls.terminal}>Terminal</Link><Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link></div></footer>
-    <script>import '../main.js'</script>
+    <script>import '../main.js'
+</script>
     <UIPrimitives />
   </body>
 </html>

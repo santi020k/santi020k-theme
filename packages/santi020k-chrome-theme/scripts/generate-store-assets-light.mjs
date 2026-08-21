@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+/* eslint-disable @stylistic/max-len, no-console -- Embedded CSS/HTML preserves exact generated store artwork. */
+
 /**
  * Generates Chrome Web Store assets for the light theme variant.
  *
@@ -6,16 +7,16 @@
  * This script writes light-specific files with a "-light" suffix.
  */
 
-import { spawnSync } from 'child_process';
-import { mkdirSync, rmSync, writeFileSync } from 'fs';
-import { tmpdir } from 'os';
-import { dirname, join } from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
+import { spawnSync } from 'child_process'
+import { mkdirSync, rmSync, writeFileSync } from 'fs'
+import { tmpdir } from 'os'
+import { dirname, join } from 'path'
+import { fileURLToPath, pathToFileURL } from 'url'
 
-const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
-const outDir = join(themePackageRoot, 'assets', 'chrome', 'store');
-const tmpDir = join(tmpdir(), 'santi020k-light-store-assets');
-const chromeBin = process.env.CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const themePackageRoot = dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')))
+const outDir = join(themePackageRoot, 'assets', 'chrome', 'store')
+const tmpDir = join(tmpdir(), 'santi020k-light-store-assets')
+const chromeBin = process.env.CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
 const html = ({ width, height, body }) => `<!doctype html>
 <html lang="en">
@@ -89,15 +90,15 @@ const html = ({ width, height, body }) => `<!doctype html>
   </style>
 </head>
 <body>${body}</body>
-</html>`;
+</html>`
 
-const swatches = (colors, size = 38) => colors.map((color) => `<span class="swatch" style="width:${size}px;height:${size}px;background:${color}"></span>`).join('');
+const swatches = (colors, size = 38) => colors.map(color => `<span class="swatch" style="width:${size}px;height:${size}px;background:${color}"></span>`).join('')
 
 const tile = index => {
-  const colors = ['#6319be', '#7744b8', '#9c72db', '#d3cde6'];
+  const colors = ['#6319be', '#7744b8', '#9c72db', '#d3cde6']
 
-  return `<div class="tile"><div class="tile-icon" style="background:${colors[index % colors.length]}"></div><div class="tile-line"></div></div>`;
-};
+  return `<div class="tile"><div class="tile-icon" style="background:${colors[index % colors.length]}"></div><div class="tile-line"></div></div>`
+}
 
 const chromeTop = (isIncognito = false) => `<div class="chrome-bar">
     <div class="tabs">
@@ -110,7 +111,7 @@ const chromeTop = (isIncognito = false) => `<div class="chrome-bar">
       <div class="omnibox">chrome.santi020k.com</div>
       <span class="star"></span>
     </div>
-  </div>`;
+  </div>`
 
 const promoTile = () => `<main class="asset">
   <div class="subtle-grid"></div>
@@ -123,7 +124,7 @@ const promoTile = () => `<main class="asset">
     </div>
   </section>
   <div class="ntp-mark" style="right:24px;top:58px;width:112px;height:112px;font-size:36px;border-width:2px">&gt;_</div>
-</main>`;
+</main>`
 
 const marqueeBanner = () => `<main class="asset">
   <div class="subtle-grid"></div>
@@ -145,10 +146,10 @@ const marqueeBanner = () => `<main class="asset">
       <div class="ntp-mark" style="right:56px;top:56px;width:190px;height:190px;font-size:56px">&gt;_</div>
     </div>
   </div>
-</main>`;
+</main>`
 
 const browserScreenshot = ({ mode }) => {
-  const isIncognito = mode === 'incognito';
+  const isIncognito = mode === 'incognito'
 
   return `<main class="asset ${isIncognito ? 'incognito' : ''}">
   <div class="chrome" style="inset:0;border:0;box-shadow:none;border-radius:0">
@@ -165,28 +166,28 @@ const browserScreenshot = ({ mode }) => {
       <div class="tiles" style="grid-template-columns:repeat(3, 104px);margin-top:320px;transform:translateX(-72px)">${Array.from({ length: 3 }, (_, i) => tile(i)).join('')}</div>
     </div>
   </div>
-</main>`;
-};
+</main>`
+}
 
 const pages = [
   { name: 'promo-tile-light.png', width: 440, height: 280, body: promoTile() },
   { name: 'marquee-banner-light.png', width: 1400, height: 560, body: marqueeBanner() },
   { name: 'screenshot-main-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'main' }) },
   { name: 'screenshot-ntp-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'ntp' }) },
-  { name: 'screenshot-incognito-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'incognito' }) },
-];
+  { name: 'screenshot-incognito-light.png', width: 1280, height: 800, body: browserScreenshot({ mode: 'incognito' }) }
+]
 
-mkdirSync(outDir, { recursive: true });
+mkdirSync(outDir, { recursive: true })
 
-rmSync(tmpDir, { recursive: true, force: true });
+rmSync(tmpDir, { recursive: true, force: true })
 
-mkdirSync(tmpDir, { recursive: true });
+mkdirSync(tmpDir, { recursive: true })
 
 for (const page of pages) {
-  const htmlPath = join(tmpDir, `${page.name}.html`);
-  const outPath = join(outDir, page.name);
+  const htmlPath = join(tmpDir, `${page.name}.html`)
+  const outPath = join(outDir, page.name)
 
-  writeFileSync(htmlPath, html(page), 'utf8');
+  writeFileSync(htmlPath, html(page), 'utf8')
 
   const result = spawnSync(chromeBin, [
     '--headless=new',
@@ -196,16 +197,16 @@ for (const page of pages) {
     '--no-first-run',
     `--window-size=${page.width},${page.height}`,
     `--screenshot=${outPath}`,
-    pathToFileURL(htmlPath).href,
-  ], { stdio: 'pipe' });
+    pathToFileURL(htmlPath).href
+  ], { stdio: 'pipe' })
 
   if (result.status !== 0) {
-    process.stderr.write(result.stderr.toString());
+    process.stderr.write(result.stderr.toString())
 
-    process.stderr.write(result.stdout.toString());
+    process.stderr.write(result.stdout.toString())
 
-    throw new Error(`Failed to render ${page.name}`);
+    throw new Error(`Failed to render ${page.name}`)
   }
 
-  console.log(`Generated store/assets/${page.name}`);
+  console.log(`Generated store/assets/${page.name}`)
 }

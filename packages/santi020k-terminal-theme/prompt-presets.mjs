@@ -3,7 +3,7 @@ export const promptSegments = [
   { key: 'directory', preview: '~/Projects/theme' },
   { key: 'git', preview: 'git main' },
   { key: 'runtime', preview: 'node v22' },
-  { key: 'time', preview: '14:32' },
+  { key: 'time', preview: '14:32' }
 ]
 
 export const promptVariants = {
@@ -14,7 +14,7 @@ export const promptVariants = {
     symbols: { macos: '', linux: '', windows: '󰍲', git: '', node: ' ', duration: '󰔟 ', docker: ' ' },
     substitutions: { Documents: '󰈙 ', Downloads: ' ', Music: ' ', Pictures: ' ' },
     padding: '  ',
-    runtimes: true,
+    runtimes: true
   },
   portable: {
     name: 'Portable labels',
@@ -23,7 +23,7 @@ export const promptVariants = {
     symbols: { macos: 'mac', linux: 'linux', windows: 'win', git: 'git', node: 'node ', duration: '', docker: 'docker ' },
     substitutions: {},
     padding: '  ',
-    runtimes: true,
+    runtimes: true
   },
   minimal: {
     name: 'Minimal',
@@ -32,8 +32,8 @@ export const promptVariants = {
     symbols: { macos: '', linux: '', windows: '', git: '', node: '', duration: '', docker: '' },
     substitutions: {},
     padding: ' ',
-    runtimes: false,
-  },
+    runtimes: false
+  }
 }
 
 export const runtimeModules = ['c', 'cpp', 'deno', 'golang', 'java', 'nodejs', 'php', 'python', 'ruby', 'rust']
@@ -46,5 +46,4 @@ export const getPromptVariant = variantKey => {
   return variant
 }
 
-export const starshipFilename = (paletteSlug, variantKey = 'rich') =>
-  `santi020k-${paletteSlug}${getPromptVariant(variantKey).suffix}.toml`
+export const starshipFilename = (paletteSlug, variantKey = 'rich') => `santi020k-${paletteSlug}${getPromptVariant(variantKey).suffix}.toml`

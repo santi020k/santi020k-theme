@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'

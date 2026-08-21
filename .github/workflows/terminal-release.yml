@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - 'santi020k-terminal-v*'
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   contents: write

@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { access, readdir,readFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -84,7 +86,6 @@ const readSiteFiles = async site => {
 
 const getAttributes = tag => {
   const attrs = new Map()
-  // eslint-disable-next-line security/detect-unsafe-regex
   const attrPattern = /([^\s"'<>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/gu
 
   for (const match of tag.matchAll(attrPattern)) {
@@ -114,9 +115,9 @@ const isMetadataReference = value =>
   value.startsWith('http://') ||
   value.startsWith('https://')
 
+// eslint-disable-next-line complexity -- The extractor keeps each supported HTML reference form explicit and auditable.
 const extractTagReferences = html => {
   const references = []
-  // eslint-disable-next-line security/detect-unsafe-regex
   const tagPattern = /<([a-z][\w:-]*)(?:\s[^<>]*)?>/giu
 
   for (const match of html.matchAll(tagPattern)) {
@@ -309,6 +310,7 @@ const checkSite = async site => {
 
           localReferenceCount += 1
 
+          // eslint-disable-next-line max-depth -- Failure collection belongs inside the internal-site reference branch.
           if (failure) failures.push(failure)
 
           continue

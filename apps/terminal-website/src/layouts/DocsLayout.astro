@@ -1,9 +1,24 @@
 ---
 import { Link, Pagination } from '@santi020k/lumen-astro'
+
 import { docsItems, docsSections } from '../data/docs.js'
+
 import SiteLayout from './SiteLayout.astro'
 
-const { title, description, path, eyebrow = 'Documentation', headings = [] } = Astro.props
+interface Heading {
+  id: string
+  label: string
+}
+
+interface Props {
+  title: string
+  description: string
+  path: string
+  eyebrow?: string
+  headings?: Heading[]
+}
+
+const { title, description, path, eyebrow = 'Documentation', headings = [] }: Props = Astro.props
 const canonical = new URL(path, 'https://terminal.santi020k.com').href
 const schema = { '@context': 'https://schema.org', '@type': 'TechArticle', headline: title, description, url: canonical }
 const currentIndex = docsItems.findIndex(item => item.href === path)
@@ -14,10 +29,12 @@ const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
   <div class="docs-shell shell">
     <aside class="docs-sidebar" aria-label="Documentation navigation">
       <Link className="docs-home" href="/docs/">Terminal documentation</Link>
-      {docsSections.map(section => <div class="docs-nav-group">
-        <span>{section.label}</span>
-        {section.items.map(item => <Link href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</Link>)}
-      </div>)}
+      {docsSections.map(section => (
+        <div class="docs-nav-group">
+          <span>{section.label}</span>
+          {section.items.map(item => <Link href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</Link>)}
+        </div>
+      ))}
     </aside>
     <article class="docs-article">
       <header class="docs-heading"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{description}</p></header>

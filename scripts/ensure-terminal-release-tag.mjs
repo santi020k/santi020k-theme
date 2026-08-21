@@ -1,3 +1,5 @@
+/* eslint-disable n/no-process-exit, no-console -- This release CLI intentionally exits early when the tag exists. */
+
 import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'

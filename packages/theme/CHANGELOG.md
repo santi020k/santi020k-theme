@@ -1,5 +1,11 @@
 # @santi020k/theme
 
+## 1.3.0
+
+### Minor Changes
+
+- Add Santi020k dark and light Codex presets, their copy-ready product page, and shared Codex site URL.
+
 ## 1.2.1
 
 ### Patch Changes

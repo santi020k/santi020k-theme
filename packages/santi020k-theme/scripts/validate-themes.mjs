@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
@@ -203,6 +205,7 @@ export const contrastRatio = (foreground, background) => {
   return (lighter + 0.05) / (darker + 0.05)
 }
 
+// eslint-disable-next-line complexity -- Contrast validation retains per-token diagnostics for every supported color form.
 const validateTokenContrast = (file, theme) => {
   const bg = theme.colors['editor.background']
   const errors = []
@@ -254,6 +257,7 @@ const validateTokenContrast = (file, theme) => {
   }
 }
 
+// eslint-disable-next-line complexity -- The scanner deliberately handles JSON strings, escapes, and nested objects without parsing away duplicates.
 const findDuplicateColorKeys = raw => {
   const colorsMatch = raw.match(/"colors"\s*:\s*\{/)
 
@@ -267,29 +271,29 @@ const findDuplicateColorKeys = raw => {
 
   while (i < raw.length && depth > 0) {
     switch (raw.at(i)) {
-    case '"': {
-      i++
-
-      while (i < raw.length && raw.at(i) !== '"') {
-        if (raw.at(i) === '\\') i++
-
+      case '"': {
         i++
+
+        while (i < raw.length && raw.at(i) !== '"') {
+          if (raw.at(i) === '\\') i++
+
+          i++
+        }
+
+        break
       }
-    
-    break;
-    }
 
-    case '{': {
-      depth++
-    
-    break;
-    }
+      case '{': {
+        depth++
 
-    case '}': {
-      depth--
-    
-    break;
-    }
+        break
+      }
+
+      case '}': {
+        depth--
+
+        break
+      }
     // No default
     }
 
@@ -347,6 +351,7 @@ const validateThemeColorParity = themes => {
   }
 }
 
+// eslint-disable-next-line complexity -- Full theme validation aggregates all independent release invariants in one pass.
 export const validateThemes = (files = themeFiles) => {
   const parsedThemes = []
 

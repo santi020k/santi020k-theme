@@ -1,3 +1,5 @@
+/* eslint-disable n/no-process-exit, no-console -- This validation CLI owns its process lifecycle and terminal output. */
+
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 

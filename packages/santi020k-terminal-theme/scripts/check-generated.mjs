@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
@@ -20,7 +22,7 @@ for (const palette of Object.values(palettes)) {
     ['kitty', `santi020k-${palette.slug}.conf`, renderKitty(palette)],
     ['wezterm', `santi020k-${palette.slug}.lua`, renderWezterm(palette)],
     ['windows-terminal', `santi020k-${palette.slug}.json`, renderWindowsTerminal(palette)],
-    ['alacritty', `santi020k-${palette.slug}.toml`, renderAlacritty(palette)],
+    ['alacritty', `santi020k-${palette.slug}.toml`, renderAlacritty(palette)]
   ]
 
   for (const [directory, filename, rendered] of portChecks) {

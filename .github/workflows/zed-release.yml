@@ -7,7 +7,7 @@ on:
     paths:
       - "packages/santi020k-zed-theme/**"
       - ".github/workflows/zed-release.yml"
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 concurrency:
   group: zed-release-${{ github.ref }}

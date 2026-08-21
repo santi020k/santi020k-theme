@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { readFileSync } from 'node:fs'
 
 import { writeFileAtomicSync } from './atomic-write.mjs'

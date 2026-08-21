@@ -1,0 +1,20 @@
+{
+  "name": "santi020k-codex-theme",
+  "version": "0.1.0",
+  "description": "Santi020k dark and light custom theme presets for Codex.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "packageManager": "pnpm@10.32.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santi020k/santi020k-theme",
+    "directory": "packages/santi020k-codex-theme"
+  }
+}

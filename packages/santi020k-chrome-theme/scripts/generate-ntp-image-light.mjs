@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 /**
  * Converts images/theme_ntp_background_light.svg →
  * images/theme_ntp_background_light.png for the Santi020k Chrome Theme
@@ -16,28 +17,28 @@
  *   pnpm run sync:assets
  */
 
-import { existsSync, mkdirSync, statSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { existsSync, mkdirSync, statSync } from 'node:fs'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-import sharp from 'sharp';
+import sharp from 'sharp'
 
-import { readPngInfo, stripPngAncillaryChunks } from './png-utils.mjs';
+import { readPngInfo, stripPngAncillaryChunks } from './png-utils.mjs'
 
-const __dir = dirname(fileURLToPath(import.meta.url));
-const workspaceThemePackageRoot = resolve(__dir, '..', '..', 'theme');
-const width = 1920;
-const height = 1080;
+const __dir = dirname(fileURLToPath(import.meta.url))
+const workspaceThemePackageRoot = resolve(__dir, '..', '..', 'theme')
+const width = 1920
+const height = 1080
 
-const themePackageRoot = existsSync(join(workspaceThemePackageRoot, 'package.json'))
-  ? workspaceThemePackageRoot
-  : dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')));
+const themePackageRoot = existsSync(join(workspaceThemePackageRoot, 'package.json')) ?
+  workspaceThemePackageRoot :
+  dirname(fileURLToPath(import.meta.resolve('@santi020k/theme/package.json')))
 
-const imagesDir = join(themePackageRoot, 'assets', 'chrome', 'images');
-const src = join(imagesDir, 'theme_ntp_background_light.svg');
-const out = join(imagesDir, 'theme_ntp_background_light.png');
+const imagesDir = join(themePackageRoot, 'assets', 'chrome', 'images')
+const src = join(imagesDir, 'theme_ntp_background_light.svg')
+const out = join(imagesDir, 'theme_ntp_background_light.png')
 
-mkdirSync(imagesDir, { recursive: true });
+mkdirSync(imagesDir, { recursive: true })
 
 // Render the SVG and flatten alpha to produce an opaque RGB PNG.
 // Chrome's theme engine does not support RGBA images for theme_ntp_background.
@@ -48,11 +49,14 @@ await sharp(src)
   .removeAlpha()
   .toColorspace('srgb')
   .png({ adaptiveFiltering: false, compressionLevel: 9, palette: false })
-  .toFile(out);
+  .toFile(out)
 
-stripPngAncillaryChunks(out);
+stripPngAncillaryChunks(out)
 
-const { size } = statSync(out);
-const info = readPngInfo(out);
+const { size } = statSync(out)
+const info = readPngInfo(out)
 
-console.log(`Converted theme_ntp_background_light.svg → theme_ntp_background_light.png (${info.width}×${info.height}, ${size} bytes)`);
+console.log(
+  'Converted theme_ntp_background_light.svg → theme_ntp_background_light.png ' +
+  `(${info.width}×${info.height}, ${size} bytes)`
+)

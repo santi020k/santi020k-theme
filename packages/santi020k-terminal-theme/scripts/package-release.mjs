@@ -1,3 +1,5 @@
+/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
+
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, unlinkSync, utimesSync, writeFileSync } from 'node:fs'
@@ -36,7 +38,10 @@ const archiveEntries = []
 const normalizeTree = (directory, relative = releaseName) => {
   archiveEntries.push(relative)
 
-  for (const entry of readdirSync(directory, { withFileTypes: true }).sort((left, right) => left.name.localeCompare(right.name))) {
+  const entries = readdirSync(directory, { withFileTypes: true })
+    .sort((left, right) => left.name.localeCompare(right.name))
+
+  for (const entry of entries) {
     const path = resolve(directory, entry.name)
     const archivePath = `${relative}/${entry.name}`
 
@@ -62,9 +67,12 @@ execFileSync('tar', [
   '--uname=root',
   '--gname=root',
   '--no-recursion',
-  '-cf', tarArchive,
-  '-C', dist,
-  '-T', fileList,
+  '-cf',
+  tarArchive,
+  '-C',
+  dist,
+  '-T',
+  fileList
 ], { env: { ...process.env, COPYFILE_DISABLE: '1' } })
 
 writeFileSync(archive, gzipSync(readFileSync(tarArchive), { level: 9, mtime: 0 }))

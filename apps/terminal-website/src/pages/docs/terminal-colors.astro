@@ -1,14 +1,17 @@
 ---
 import { Link } from '@santi020k/lumen-astro'
+
 import DocsLayout from '../../layouts/DocsLayout.astro'
+
 const terminals = [
   ['iTerm2', '/themes/Santi020k%20Dark.itermcolors', '/themes/Santi020k%20Light.itermcolors'],
   ['Ghostty', '/ports/ghostty/santi020k-dark', '/ports/ghostty/santi020k-light'],
   ['Kitty', '/ports/kitty/santi020k-dark.conf', '/ports/kitty/santi020k-light.conf'],
   ['WezTerm', '/ports/wezterm/santi020k-dark.lua', '/ports/wezterm/santi020k-light.lua'],
   ['Alacritty', '/ports/alacritty/santi020k-dark.toml', '/ports/alacritty/santi020k-light.toml'],
-  ['Windows Terminal', '/ports/windows-terminal/santi020k-dark.json', '/ports/windows-terminal/santi020k-light.json'],
+  ['Windows Terminal', '/ports/windows-terminal/santi020k-dark.json', '/ports/windows-terminal/santi020k-light.json']
 ]
+
 const headings = [{ id: 'downloads', label: 'Downloads' }, { id: 'iterm2', label: 'Install in iTerm2' }, { id: 'generated-presets', label: 'Generated presets' }]
 ---
 <DocsLayout title="Terminal colors" description="Download coordinated dark and light presets for six terminal applications." path="/docs/terminal-colors/" {headings}>
