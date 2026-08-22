@@ -1,0 +1,107 @@
+{
+  "cacheKey": "preset-v1",
+  "entries": {
+    "apps/website/public/og-image.svg": {
+      "digest": "d6b9a4a4d7450cf534fe2fb3a53da3771737e9ce42ff806ea28009369b6829d5",
+      "fingerprint": "df823acf8336981fe7f7c30d7b405ddd7f33cbe165191b51f06c0c3ec6de79f6",
+      "output": "apps/website/public/og-image.svg"
+    },
+    "apps/website/public/og-image.png": {
+      "digest": "c1b1f11dd38aab703a968ec9b765f3a3dc09bcbe1e17ced2db8949cfe0f87282",
+      "fingerprint": "e9e3610d4a76b002bbe43b2d8d8d47db41b6c5ae49a61546b404aed161153a6b",
+      "output": "apps/website/public/og-image.png"
+    },
+    "apps/vscode-website/public/og-image.svg": {
+      "digest": "22ce1bbad126b255da2912fe81723797f48d1ef47124ba1c1a39a7069f1ada41",
+      "fingerprint": "bdf876bcd3cd97ea80ea24efd8a5ca205f9573c1ab54f0bc52b3e9389e08bc59",
+      "output": "apps/vscode-website/public/og-image.svg"
+    },
+    "apps/vscode-website/public/og-image.png": {
+      "digest": "2f388326784624653f01c8dbf846d72f8c07b3be6f0cd0aee0e8639b8bfbe5c9",
+      "fingerprint": "78b5892fb0fee977452e4b708642f1fae5286afa9930370bd54b2431ab42d238",
+      "output": "apps/vscode-website/public/og-image.png"
+    },
+    "apps/chrome-website/public/og-image.svg": {
+      "digest": "987013ec03b086c7cd78149e41410fb179cd4e7cbfa856a9ef4aacbbd30951b9",
+      "fingerprint": "9de3b770b5ccf8aed0aba2b9ad947f5851061b862ae960c9e218958e37b49f42",
+      "output": "apps/chrome-website/public/og-image.svg"
+    },
+    "apps/chrome-website/public/og-image.png": {
+      "digest": "de9e62aa38278a161d543acad7800fe5f966b7f0e5eac4d3cc4c57956270935e",
+      "fingerprint": "b84da90085bd551eda474725f41ad9f4ea585825badacf89b9ccc02c2607f1ab",
+      "output": "apps/chrome-website/public/og-image.png"
+    },
+    "apps/zed-website/public/og-image.svg": {
+      "digest": "06599b23c0ff1b1a4ef30b0f486d5e8baf1430258122fdc4d896dc97dce09bd0",
+      "fingerprint": "8284e45e934fd8595757dea871cc8a5173c26bd5da0bc4878ccaf3056e957333",
+      "output": "apps/zed-website/public/og-image.svg"
+    },
+    "apps/zed-website/public/og-image.png": {
+      "digest": "60b81691321734b5fb82a8039a34098207d9695b2a91aefaf87c4d9e35bfc37a",
+      "fingerprint": "7fce281fcba16739a72b009a619f80d9d58c1af767daad0a64c809dcc0489435",
+      "output": "apps/zed-website/public/og-image.png"
+    },
+    "apps/codex-website/public/og-image.svg": {
+      "digest": "ce456be8b93a2dffe7dd371739c7d432900144dac15da32a8af6b1ce143bb8f3",
+      "fingerprint": "f4e0910a38a4bafdf0cbb57a2ce1c40f46bb7e92a3990c50a5265473297022be",
+      "output": "apps/codex-website/public/og-image.svg"
+    },
+    "apps/codex-website/public/og-image.png": {
+      "digest": "78460ac1268f1f9fde18c3884e24006b6c7058355456204ebf086ec3588b0107",
+      "fingerprint": "5836e94566bd320c36002c9fed3572d1cacc24442b692a19d7acdc603f08ff46",
+      "output": "apps/codex-website/public/og-image.png"
+    },
+    "apps/terminal-website/public/og-image.svg": {
+      "digest": "e0ff0e479ae675adeb7330b9010b5cc424c5af1e4314312647825f5e97d3d262",
+      "fingerprint": "9443aa4787b0352a10cba9858e8e9536f26217d9739211086d99349bcec4bf97",
+      "output": "apps/terminal-website/public/og-image.svg"
+    },
+    "apps/terminal-website/public/og-image.png": {
+      "digest": "c55c867add9350c6d7c04d4a9a1655fd4697d5b1c9e1912a221bd85962bf299d",
+      "fingerprint": "16f9155a43c9111b1df984ad31af05cf0944c00aea22200cce7d3b59608ab64c",
+      "output": "apps/terminal-website/public/og-image.png"
+    },
+    "apps/terminal-website/public/og-zsh.svg": {
+      "digest": "a01de65e0adc053e669d5f543a93c6239686ff2409044b38423e451d0d24b44f",
+      "fingerprint": "5cc7c4219be333ccfc899735be6162ce0f2fd7498bc25ace2cc3f396be82f99f",
+      "output": "apps/terminal-website/public/og-zsh.svg"
+    },
+    "apps/terminal-website/public/og-zsh.png": {
+      "digest": "bd8df8d09dfd7451c58ecb4c6ca410f885f3c62d5dc53ccf1a3a294d1ef90461",
+      "fingerprint": "7005af4d8a25fba4a2949f8a14480918dc7e9e4ae51ef00812cfc9181b8e2594",
+      "output": "apps/terminal-website/public/og-zsh.png"
+    },
+    "apps/terminal-website/public/og-iterm2.svg": {
+      "digest": "3ba23a5b2fb87bcd34b657f4869a2c12c7f4b78dde1fdd8b79ba4301581413c4",
+      "fingerprint": "2247eec31d8cb69ade9ec96e8d7c8095e8fe10dc357486728c618604316464a6",
+      "output": "apps/terminal-website/public/og-iterm2.svg"
+    },
+    "apps/terminal-website/public/og-iterm2.png": {
+      "digest": "0a984506a01b587a19e5f2a4f72fd67b2e4aab872b41d3e67b7c20d699b19d5d",
+      "fingerprint": "46e8fbae47d395ec96c3649b2034ed9d16a5f12b94737739db8885aa79778480",
+      "output": "apps/terminal-website/public/og-iterm2.png"
+    },
+    "apps/terminal-website/public/og-starship.svg": {
+      "digest": "35df09ae8fc83277b15af8d978f4f82f2d3711b9c9bb4f804d954073e73e7153",
+      "fingerprint": "457c90a6beeac98f524ce0ff580736c3e56bda3ba72ef4e524d7be4a75c0e60b",
+      "output": "apps/terminal-website/public/og-starship.svg"
+    },
+    "apps/terminal-website/public/og-starship.png": {
+      "digest": "99ca9435c3806c688a07c7caeb0b297822dd90bdc5888a3e64fb4c4d037bb312",
+      "fingerprint": "95501b39fd184ba01821fe0be710b628fd7377d01e384e8a309db2961ec4b96a",
+      "output": "apps/terminal-website/public/og-starship.png"
+    },
+    "apps/terminal-website/public/og-ports.svg": {
+      "digest": "00de21d014863b526683f2a3888b5dbc1df06b09ffe8d9cd2a56cb5cbb0ae073",
+      "fingerprint": "9b7a281d24662a3237c3ef59e14b58295cb4c2ea81285bd89d1b2e54bea9f5eb",
+      "output": "apps/terminal-website/public/og-ports.svg"
+    },
+    "apps/terminal-website/public/og-ports.png": {
+      "digest": "7243d63e91f56d66a79181546631f54d2baa1b92d8101ca7de8eb40cf547b6e7",
+      "fingerprint": "098ee44fc5fd7a4c012e22ec22c37dd4f9428e2b664f8cd8d1ed78a3986e9dc9",
+      "output": "apps/terminal-website/public/og-ports.png"
+    }
+  },
+  "generatorVersion": "0.4.0",
+  "version": 3
+}

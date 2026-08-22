@@ -2,6 +2,21 @@
 
 Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Zed, Chrome, Codex, JetBrains IDEs, Raycast, Slack, Xcode, terminals, shared brand packages, and static product websites.
 
+[Theme family](https://theme.santi020k.com) ·
+[VS Code](https://vscode.santi020k.com) ·
+[Terminal](https://terminal.santi020k.com) ·
+[npm](https://www.npmjs.com/package/@santi020k/theme) ·
+[Documentation](docs/brand-guidelines.md) ·
+[Releases](https://github.com/santi020k/santi020k-theme/releases) ·
+[Contributing](CONTRIBUTING.md)
+
+[![Validation](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
+[![CodeQL](https://github.com/santi020k/santi020k-theme/actions/workflows/codeql.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/codeql.yml)
+[![VS Marketplace](https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?label=VS%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
+[![Open VSX](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme)](https://open-vsx.org/extension/santi020k/santi020k-theme)
+[![npm tokens](https://img.shields.io/npm/v/@santi020k/theme.svg?label=%40santi020k%2Ftheme)](https://www.npmjs.com/package/@santi020k/theme)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.md). Read it before changing colors, product names, screenshots, icons, website copy, store metadata, or shared assets.
 
 ## Workspaces
