@@ -14,6 +14,7 @@
       "dependsOn": ["^build"],
       "outputs": [
         "dist/**",
+        "themes/**",
         "themes/*-bold-color-theme.json",
         "themes/*-italic-color-theme.json",
         "themes/santi020k-hc-light-color-theme.json",
@@ -36,6 +37,18 @@
     },
     "santi020k-zed-theme#build": {
       "outputs": ["themes/santi020k.json"],
+      "outputLogs": "errors-only"
+    },
+    "@santi020k/theme#build": {
+      "outputs": [],
+      "outputLogs": "errors-only"
+    },
+    "@santi020k/theme-core#build": {
+      "outputs": [],
+      "outputLogs": "errors-only"
+    },
+    "santi020k-chrome-theme#build": {
+      "outputs": [],
       "outputLogs": "errors-only"
     },
     "dev": {

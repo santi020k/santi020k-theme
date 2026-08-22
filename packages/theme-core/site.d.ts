@@ -17,6 +17,10 @@ export interface SiteUrls {
   readonly codex: string
   readonly terminal: string
   readonly zed: string
+  readonly raycast: string
+  readonly slack: string
+  readonly jetbrains: string
+  readonly xcode: string
 }
 
 export const SITE_URLS: {

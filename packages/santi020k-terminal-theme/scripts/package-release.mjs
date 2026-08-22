@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, unlinkSync, utimesSync, writeFileSync } from 'node:fs'

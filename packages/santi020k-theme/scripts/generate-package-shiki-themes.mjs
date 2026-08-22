@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 import { mkdirSync, readFileSync } from 'node:fs'
 import { dirname } from 'node:path'
 

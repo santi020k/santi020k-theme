@@ -1,0 +1,85 @@
+---
+
+import { UIPrimitives } from '@santi020k/lumen-astro'
+
+import SharedFooter from '../components/SharedFooter.astro'
+import SharedHeader from '../components/SharedHeader.astro'
+
+interface Props {
+  description: string
+  name: string
+  slug: string
+  title: string
+}
+
+const { description, name, slug, title } = Astro.props
+const canonical = `https://theme.santi020k.com/${slug}/`
+const socialImage = 'https://theme.santi020k.com/og-image.png'
+
+const structuredData = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: `Santi020k Theme for ${name}`,
+  url: canonical,
+  description,
+  applicationCategory: 'DeveloperApplication',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  author: { '@type': 'Person', name: 'Santiago Molina', url: 'https://santi020k.com/' }
+}).replace(/</g, '\\u003c')
+---
+
+<!doctype html>
+<html lang="en" data-santi020k-site="hub">
+  <head>
+    <meta charset="UTF-8" />
+    <script is:inline>
+      (function () {
+        var preference = localStorage.getItem('theme')
+
+        if (preference !== 'light' && preference !== 'dark') {
+          preference = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
+
+        document.documentElement.dataset.theme = preference
+      })()
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Santiago Molina" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Santi020k Themes" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`Santi020k Theme for ${name}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@santi020k" />
+    <meta name="twitter:creator" content="@santi020k" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={`Santi020k Theme for ${name}`} />
+    <script is:inline type="application/ld+json" set:html={structuredData}></script>
+  </head>
+  <body>
+    <SharedHeader currentProduct={slug} productLinks={[{ href: `/${slug}/`, label: 'Overview' }, { href: `/${slug}/#install`, label: 'Install' }, { href: `/${slug}/#coverage`, label: 'Coverage' }]} />
+    <main><slot /></main>
+    <SharedFooter />
+    <script>
+      import '../main.js'
+    </script>
+    <UIPrimitives />
+  </body>
+</html>

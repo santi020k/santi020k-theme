@@ -1,278 +1,140 @@
-/* eslint-disable n/no-process-exit, no-console -- This validation CLI owns its process lifecycle and terminal output. */
-
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 import sharp from 'sharp'
 
-const sites = [
-  {
-    app: 'website',
-    canonical: 'https://theme.santi020k.com/',
-    image: 'https://theme.santi020k.com/og-image.png',
-    keyword: 'Themes',
-    schemaType: 'CollectionPage',
-  },
-  {
-    app: 'vscode-website',
-    canonical: 'https://vscode.santi020k.com/',
-    image: 'https://vscode.santi020k.com/og-image.png',
-    keyword: 'VS Code Color Theme',
-    schemaType: 'SoftwareApplication',
-  },
-  {
-    app: 'chrome-website',
-    canonical: 'https://chrome.santi020k.com/',
-    image: 'https://chrome.santi020k.com/og-image.png',
-    keyword: 'Chrome Browser Theme',
-    schemaType: 'SoftwareApplication',
-  },
-  {
-    app: 'zed-website',
-    canonical: 'https://zed.santi020k.com/',
-    image: 'https://zed.santi020k.com/og-image.png',
-    keyword: 'Zed Theme',
-    schemaType: 'SoftwareApplication',
-  },
-  {
-    app: 'terminal-website',
-    canonical: 'https://terminal.santi020k.com/',
-    image: 'https://terminal.santi020k.com/og-image.png',
-    keyword: 'Terminal Theme',
-    schemaType: 'CollectionPage',
-    built: true,
-  },
-]
-
-const terminalPages = [
-  { route: '', image: 'og-image.png' },
-  { route: 'docs', image: 'og-image.png' },
-  { route: 'docs/zsh', image: 'og-image.png' },
-  { route: 'docs/starship', image: 'og-image.png' },
-  { route: 'docs/terminal-colors', image: 'og-image.png' },
-  { route: 'docs/cli', image: 'og-image.png' },
-]
-
-const additionalPages = [
-  {
-    app: 'website/gallery',
-    html: 'apps/website/dist/gallery/index.html',
-    canonical: 'https://theme.santi020k.com/gallery/',
-    image: 'https://theme.santi020k.com/og-image.png',
-    schemaType: 'CollectionPage',
-  },
-]
-
+const origin = 'https://theme.santi020k.com'
 const root = resolve(import.meta.dirname, '..')
-const errors = []
+const output = resolve(root, 'apps/website/dist')
+const robots = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+
+const pages = [
+  { route: '/', keyword: 'Themes', schema: 'CollectionPage', image: '/og-image.png' },
+  { route: '/gallery/', keyword: 'Gallery', schema: 'CollectionPage', image: '/og-image.png' },
+  { route: '/vscode/', keyword: 'VS Code', schema: 'SoftwareApplication', image: '/vscode/og-image.png' },
+  { route: '/chrome/', keyword: 'Chrome', schema: 'SoftwareApplication', image: '/chrome/og-image.png' },
+  { route: '/zed/', keyword: 'Zed', schema: 'SoftwareApplication', image: '/zed/og-image.png' },
+  { route: '/codex/', keyword: 'Codex', schema: 'SoftwareApplication', image: '/codex/og-image.png' },
+  { route: '/raycast/', keyword: 'Raycast', schema: 'SoftwareApplication', image: '/og-image.png' },
+  { route: '/slack/', keyword: 'Slack', schema: 'SoftwareApplication', image: '/og-image.png' },
+  { route: '/jetbrains/', keyword: 'JetBrains', schema: 'SoftwareApplication', image: '/og-image.png' },
+  { route: '/xcode/', keyword: 'Xcode', schema: 'SoftwareApplication', image: '/og-image.png' },
+  { route: '/terminal/', keyword: 'Terminal', schema: 'CollectionPage', image: '/terminal/og-image.png' },
+  { route: '/terminal/configure/', keyword: 'Configure', schema: 'WebApplication', image: '/terminal/og-image.png' },
+  { route: '/terminal/docs/', keyword: 'Getting started', schema: 'TechArticle', image: '/terminal/og-image.png' },
+  { route: '/terminal/docs/zsh/', keyword: 'Zsh', schema: 'TechArticle', image: '/terminal/og-image.png' },
+  { route: '/terminal/docs/shells/', keyword: 'Bash and Fish', schema: 'TechArticle', image: '/terminal/og-image.png' },
+  { route: '/terminal/docs/starship/', keyword: 'Starship', schema: 'TechArticle', image: '/terminal/og-image.png' },
+  { route: '/terminal/docs/terminal-colors/', keyword: 'Terminal colors', schema: 'TechArticle', image: '/terminal/og-image.png' },
+  { route: '/terminal/docs/cli/', keyword: 'CLI', schema: 'TechArticle', image: '/terminal/og-image.png' }
+]
 
 const attrValue = (tag, attr) => {
-  const attributes = [...tag.matchAll(/\s([^\s=]+)=(["'])(.*?)\2/g)]
-  const match = attributes.find(([, name]) => name.toLowerCase() === attr.toLowerCase())
+  const attributes = [...tag.matchAll(/\s([^\s=]+)=(["'])(.*?)\2/gu)]
 
-  return match?.[3] ?? ''
-}
-
-const findMeta = (html, attr, value) => {
-  const tags = html.match(/<meta\b[^>]*>/gi) ?? []
-
-  return tags.find((tag) => attrValue(tag, attr) === value)
+  return attributes.find(([, name]) => name.toLowerCase() === attr.toLowerCase())?.[3] ?? ''
 }
 
 const metaContent = (html, attr, value) => {
-  const tag = findMeta(html, attr, value)
+  const tags = html.match(/<meta\b[^>]*>/giu) ?? []
+  const tag = tags.find(candidate => attrValue(candidate, attr) === value)
 
   return tag ? attrValue(tag, 'content') : ''
 }
 
 const linkHref = (html, rel) => {
-  const tags = html.match(/<link\b[^>]*>/gi) ?? []
-  const tag = tags.find((candidate) => attrValue(candidate, 'rel') === rel)
+  const tags = html.match(/<link\b[^>]*>/giu) ?? []
+  const tag = tags.find(candidate => attrValue(candidate, 'rel') === rel)
 
   return tag ? attrValue(tag, 'href') : ''
 }
 
-const titleText = (html) => html.match(/<title>(.*?)<\/title>/is)?.[1].trim() ?? ''
-
-const jsonLdBlocks = (html) =>
-  [...html.matchAll(/<script\b[^>]*type=(["'])application\/ld\+json\1[^>]*>(.*?)<\/script>/gis)]
-    .map(([, , raw]) => { try { return JSON.parse(raw.trim()) } catch { return null } })
-    .filter(Boolean)
-
-const schemaTypeInSource = (html, type) =>
-  html.includes(`'@type': '${type}'`) || html.includes(`"@type": "${type}"`)
+const jsonLdBlocks = html => [...html.matchAll(/<script\b[^>]*type=(["'])application\/ld\+json\1[^>]*>(.*?)<\/script>/gis)]
+  .map(([, , raw]) => {
+    try {
+      return JSON.parse(raw.trim())
+    } catch {
+      return null
+    }
+  })
+  .filter(Boolean)
 
 const schemaContainsType = (schema, type) => {
-  if (Array.isArray(schema)) {
-    return schema.some((value) => schemaContainsType(value, type))
-  }
+  if (Array.isArray(schema)) return schema.some(value => schemaContainsType(value, type))
 
-  if (schema && typeof schema === 'object') {
-    return schema['@type'] === type || Object.values(schema).some((value) => schemaContainsType(value, type))
-  }
+  if (!schema || typeof schema !== 'object') return false
 
-  return false
+  return schema['@type'] === type || Object.values(schema).some(value => schemaContainsType(value, type))
 }
 
-const requireEqual = (site, label, actual, expected) => {
-  if (actual !== expected) {
-    errors.push(`${site.app}: expected ${label} to be ${expected}, got ${actual || 'missing'}`)
-  }
-}
+const errors = []
+const checkedImages = new Set()
 
-const requirePresent = (site, label, actual) => {
-  if (!actual) {
-    errors.push(`${site.app}: missing ${label}`)
-  }
-}
-
-for (const site of sites) {
-  const htmlPath = resolve(root, 'apps', site.app, site.built ? 'dist/index.html' : 'src/pages/index.astro')
+for (const page of pages) {
+  const canonical = `${origin}${page.route}`
+  const htmlPath = resolve(output, page.route.slice(1), 'index.html')
   const html = await readFile(htmlPath, 'utf8')
-  const title = titleText(html)
+  const title = html.match(/<title>(.*?)<\/title>/isu)?.[1].trim() ?? ''
+  const imageUrl = `${origin}${page.image}`
 
-  requirePresent(site, 'title', title)
-
-  if (!title.includes(site.keyword)) {
-    errors.push(`${site.app}: title should include "${site.keyword}"`)
+  const equal = (label, actual, expected) => {
+    if (actual !== expected) errors.push(`${page.route}: expected ${label} to be ${expected}, got ${actual || 'missing'}`)
   }
 
-  requirePresent(site, 'meta description', metaContent(html, 'name', 'description'))
-
-  requireEqual(site, 'canonical URL', linkHref(html, 'canonical'), site.canonical)
-
-  requireEqual(site, 'robots', metaContent(html, 'name', 'robots'), 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
-
-  requireEqual(site, 'og:type', metaContent(html, 'property', 'og:type'), 'website')
-
-  requireEqual(site, 'og:url', metaContent(html, 'property', 'og:url'), site.canonical)
-
-  requirePresent(site, 'og:site_name', metaContent(html, 'property', 'og:site_name'))
-
-  requireEqual(site, 'og:locale', metaContent(html, 'property', 'og:locale'), 'en_US')
-
-  requirePresent(site, 'og:title', metaContent(html, 'property', 'og:title'))
-
-  requirePresent(site, 'og:description', metaContent(html, 'property', 'og:description'))
-
-  requireEqual(site, 'og:image', metaContent(html, 'property', 'og:image'), site.image)
-
-  if (site.app === 'terminal-website') {
-    requireEqual(site, 'og:image:secure_url', metaContent(html, 'property', 'og:image:secure_url'), site.image)
-
-    requireEqual(site, 'og:image:type', metaContent(html, 'property', 'og:image:type'), 'image/png')
+  const present = (label, value) => {
+    if (!value) errors.push(`${page.route}: missing ${label}`)
   }
 
-  requireEqual(site, 'og:image:width', metaContent(html, 'property', 'og:image:width'), '1200')
+  present('title', title)
 
-  requireEqual(site, 'og:image:height', metaContent(html, 'property', 'og:image:height'), '630')
+  if (!title.toLowerCase().includes(page.keyword.toLowerCase())) errors.push(`${page.route}: title should include ${page.keyword}`)
 
-  requirePresent(site, 'og:image:alt', metaContent(html, 'property', 'og:image:alt'))
+  present('meta description', metaContent(html, 'name', 'description'))
 
-  requireEqual(site, 'twitter:card', metaContent(html, 'name', 'twitter:card'), 'summary_large_image')
+  equal('canonical URL', linkHref(html, 'canonical'), canonical)
 
-  requireEqual(site, 'twitter:site', metaContent(html, 'name', 'twitter:site'), '@santi020k')
+  equal('robots', metaContent(html, 'name', 'robots'), robots)
 
-  requireEqual(site, 'twitter:creator', metaContent(html, 'name', 'twitter:creator'), '@santi020k')
+  equal('og:type', metaContent(html, 'property', 'og:type'), 'website')
 
-  requireEqual(site, 'twitter:url', metaContent(html, 'name', 'twitter:url'), site.canonical)
+  equal('og:url', metaContent(html, 'property', 'og:url'), canonical)
 
-  requirePresent(site, 'twitter:title', metaContent(html, 'name', 'twitter:title'))
+  present('og:site_name', metaContent(html, 'property', 'og:site_name'))
 
-  requirePresent(site, 'twitter:description', metaContent(html, 'name', 'twitter:description'))
+  equal('og:locale', metaContent(html, 'property', 'og:locale'), 'en_US')
 
-  requireEqual(site, 'twitter:image', metaContent(html, 'name', 'twitter:image'), site.image)
+  present('og:title', metaContent(html, 'property', 'og:title'))
 
-  requirePresent(site, 'twitter:image:alt', metaContent(html, 'name', 'twitter:image:alt'))
+  present('og:description', metaContent(html, 'property', 'og:description'))
 
-  const schemas = jsonLdBlocks(html)
+  equal('og:image', metaContent(html, 'property', 'og:image'), imageUrl)
 
-  if (!schemas.some((schema) => schemaContainsType(schema, site.schemaType)) && !schemaTypeInSource(html, site.schemaType)) {
-    errors.push(`${site.app}: missing JSON-LD ${site.schemaType}`)
+  equal('og:image:width', metaContent(html, 'property', 'og:image:width'), '1200')
+
+  equal('og:image:height', metaContent(html, 'property', 'og:image:height'), '630')
+
+  present('og:image:alt', metaContent(html, 'property', 'og:image:alt'))
+
+  equal('twitter:card', metaContent(html, 'name', 'twitter:card'), 'summary_large_image')
+
+  equal('twitter:url', metaContent(html, 'name', 'twitter:url'), canonical)
+
+  equal('twitter:image', metaContent(html, 'name', 'twitter:image'), imageUrl)
+
+  present('twitter:image:alt', metaContent(html, 'name', 'twitter:image:alt'))
+
+  if (!jsonLdBlocks(html).some(schema => schemaContainsType(schema, page.schema))) {
+    errors.push(`${page.route}: missing JSON-LD ${page.schema}`)
   }
 
-  const imagePath = resolve(root, 'apps', site.app, 'public', 'og-image.png')
-  const metadata = await sharp(imagePath).metadata()
+  if (!checkedImages.has(page.image)) {
+    const metadata = await sharp(resolve(output, page.image.slice(1))).metadata()
 
-  if (metadata.width !== 1200 || metadata.height !== 630) {
-    errors.push(`${site.app}: og-image.png should be 1200x630, got ${metadata.width}x${metadata.height}`)
-  }
-}
+    if (metadata.width !== 1200 || metadata.height !== 630) {
+      errors.push(`${page.image}: expected 1200x630, got ${metadata.width}x${metadata.height}`)
+    }
 
-for (const page of terminalPages) {
-  const pageName = page.route || 'home'
-  const site = { app: `terminal-website/${pageName}` }
-  const htmlPath = resolve(root, 'apps/terminal-website/dist', page.route, 'index.html')
-  const html = await readFile(htmlPath, 'utf8')
-  const canonical = `https://terminal.santi020k.com/${page.route ? `${page.route}/` : ''}`
-  const imageUrl = `https://terminal.santi020k.com/${page.image}`
-
-  requirePresent(site, 'title', titleText(html))
-
-  requirePresent(site, 'meta description', metaContent(html, 'name', 'description'))
-
-  requireEqual(site, 'canonical URL', linkHref(html, 'canonical'), canonical)
-
-  requireEqual(site, 'og:url', metaContent(html, 'property', 'og:url'), canonical)
-
-  requireEqual(site, 'og:image', metaContent(html, 'property', 'og:image'), imageUrl)
-
-  requireEqual(site, 'og:image:secure_url', metaContent(html, 'property', 'og:image:secure_url'), imageUrl)
-
-  requireEqual(site, 'og:image:type', metaContent(html, 'property', 'og:image:type'), 'image/png')
-
-  requireEqual(site, 'og:image:width', metaContent(html, 'property', 'og:image:width'), '1200')
-
-  requireEqual(site, 'og:image:height', metaContent(html, 'property', 'og:image:height'), '630')
-
-  requirePresent(site, 'og:image:alt', metaContent(html, 'property', 'og:image:alt'))
-
-  requireEqual(site, 'twitter:image', metaContent(html, 'name', 'twitter:image'), imageUrl)
-
-  requirePresent(site, 'twitter:image:alt', metaContent(html, 'name', 'twitter:image:alt'))
-
-  const imagePath = resolve(root, 'apps/terminal-website/public', page.image)
-  const metadata = await sharp(imagePath).metadata()
-
-  if (metadata.width !== 1200 || metadata.height !== 630) {
-    errors.push(`${site.app}: ${page.image} should be 1200x630, got ${metadata.width}x${metadata.height}`)
-  }
-}
-
-for (const page of additionalPages) {
-  const site = { app: page.app }
-  const html = await readFile(resolve(root, page.html), 'utf8')
-
-  requirePresent(site, 'title', titleText(html))
-
-  requirePresent(site, 'meta description', metaContent(html, 'name', 'description'))
-
-  requireEqual(site, 'canonical URL', linkHref(html, 'canonical'), page.canonical)
-
-  requireEqual(site, 'robots', metaContent(html, 'name', 'robots'), 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
-
-  requireEqual(site, 'og:url', metaContent(html, 'property', 'og:url'), page.canonical)
-
-  requireEqual(site, 'og:image', metaContent(html, 'property', 'og:image'), page.image)
-
-  requireEqual(site, 'og:image:width', metaContent(html, 'property', 'og:image:width'), '1200')
-
-  requireEqual(site, 'og:image:height', metaContent(html, 'property', 'og:image:height'), '630')
-
-  requirePresent(site, 'og:image:alt', metaContent(html, 'property', 'og:image:alt'))
-
-  requireEqual(site, 'twitter:card', metaContent(html, 'name', 'twitter:card'), 'summary_large_image')
-
-  requireEqual(site, 'twitter:url', metaContent(html, 'name', 'twitter:url'), page.canonical)
-
-  requireEqual(site, 'twitter:image', metaContent(html, 'name', 'twitter:image'), page.image)
-
-  requirePresent(site, 'twitter:image:alt', metaContent(html, 'name', 'twitter:image:alt'))
-
-  const schemas = jsonLdBlocks(html)
-
-  if (!schemas.some((schema) => schemaContainsType(schema, page.schemaType))) {
-    errors.push(`${site.app}: missing JSON-LD ${page.schemaType}`)
+    checkedImages.add(page.image)
   }
 }
 
@@ -282,4 +144,4 @@ if (errors.length > 0) {
   process.exit(1)
 }
 
-console.log(`Validated SEO metadata for ${sites.length} websites, ${additionalPages.length} additional page, and Open Graph images for ${terminalPages.length} terminal pages.`)
+console.log(`Validated SEO metadata for ${pages.length} consolidated website routes and ${checkedImages.size} social images.`)

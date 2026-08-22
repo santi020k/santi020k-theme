@@ -1,12 +1,10 @@
 ---
 /* eslint-disable @stylistic/indent, @stylistic/jsx-closing-tag-location, @stylistic/max-len -- Astro inline-script indentation conflicts with JSX closing-tag fixes; long declarative markup is clearer unwrapped. */
 
-import { Image } from 'astro:assets'
+import { Button, ButtonLink, Card, Link, UIPrimitives } from '@santi020k/lumen-astro'
 
-import { Button, ButtonLink, Card, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
-import { getSiteUrls } from '@santi020k/theme/site'
-
-const siteUrls = getSiteUrls(import.meta.env.DEV)
+import SharedFooter from '../../../website/src/components/SharedFooter.astro'
+import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -17,9 +15,9 @@ const structuredData = {
   operatingSystem: 'Windows, macOS, Linux',
   softwareVersion: '1.3.3',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  url: 'https://chrome.santi020k.com/',
+  url: 'https://theme.santi020k.com/chrome/',
   description: 'A Chrome browser theme matching the Santi020k VS Code palette — deep violet surfaces, muted lavender text, and violet accents.',
-  screenshot: 'https://chrome.santi020k.com/og-image.png',
+  screenshot: 'https://theme.santi020k.com/chrome/og-image.png',
   author: {
     '@type': 'Person',
     name: 'Santiago Molina',
@@ -59,56 +57,33 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="keywords" content="Chrome theme, browser theme, dark theme, violet theme, Santi020k, developer theme, VS Code theme, minimalist theme" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="color-scheme" content="dark light" />
-    <link rel="canonical" href="https://chrome.santi020k.com/" />
-    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="https://theme.santi020k.com/chrome/" />
+    <link rel="icon" href="/chrome/icons/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/chrome/site.webmanifest" />
     <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://chrome.santi020k.com/" />
+    <meta property="og:url" content="https://theme.santi020k.com/chrome/" />
     <meta property="og:site_name" content="Santi020k Theme" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Santi020k Theme — Chrome Browser Theme" />
     <meta property="og:description" content="A professional Chrome browser theme with a deep violet palette. Mapped directly from the Santi020k VS Code theme for a consistent developer experience." />
-    <meta property="og:image" content="https://chrome.santi020k.com/og-image.png" />
+    <meta property="og:image" content="https://theme.santi020k.com/chrome/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Santi020k Theme — Chrome browser theme with dark and light variants" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@santi020k" />
     <meta name="twitter:creator" content="@santi020k" />
-    <meta name="twitter:url" content="https://chrome.santi020k.com/" />
+    <meta name="twitter:url" content="https://theme.santi020k.com/chrome/" />
     <meta name="twitter:title" content="Santi020k Theme — Chrome Browser Theme" />
     <meta name="twitter:description" content="A professional Chrome browser theme with a deep violet palette. Mapped directly from the Santi020k VS Code theme." />
-    <meta name="twitter:image" content="https://chrome.santi020k.com/og-image.png" />
+    <meta name="twitter:image" content="https://theme.santi020k.com/chrome/og-image.png" />
     <meta name="twitter:image:alt" content="Santi020k Theme - Chrome Browser Theme" />
     <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
-    <header class="site-header" aria-label="Site header">
-      <div class="site-shell header-inner">
-        <Link class="brand" href="#top" aria-label="Santi020k Theme home">
-          <Image src="/icons/icon.svg" alt="Santi020k Theme Logo" width="36" height="36" inferSize />
-          <span>Santi020k Theme</span>
-        </Link>
-        <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
-          <Link href="#preview">Preview</Link>
-          <Link href="#palette">Palette</Link>
-          <Link href="#why">Why</Link>
-          <Link href="#install">Install</Link>
-          <span class="separator" aria-hidden="true"></span>
-          <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
-          <Link href={siteUrls.vscode}>VS Code theme</Link>
-          <Link href={siteUrls.hub}>Theme hub</Link>
-        </nav>
-        <div class="header-actions">
-          <Button class="nav-toggle" variant="ghost" size="icon" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
-            <Icon name="menu" />
-          </Button>
-          <ThemeToggle class="theme-toggle" role="switch" aria-label="Toggle color theme" aria-checked="true" storageKey="theme" />
-        </div>
-      </div>
-    </header>
+    <SharedHeader currentProduct="chrome" productLinks={[{ href: '/chrome/', label: 'Overview' }, { href: '/chrome/#preview', label: 'Preview' }, { href: '/chrome/#palette', label: 'Palette' }, { href: '/chrome/#why', label: 'Why Chrome' }, { href: '/chrome/#install', label: 'Install' }]} />
 
     <main id="top">
       <!-- ── Hero ──────────────────────────────────────────────────────────── -->
@@ -335,20 +310,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       </section>
     </main>
 
-    <footer class="site-shell site-footer">
-      <p>Made by <Link href="https://santi020k.com" rel="noopener noreferrer">santi020k</Link> with <Link href="https://lumen.santi020k.com" rel="noopener noreferrer">Lumen</Link>.</p>
-      <div class="footer-links">
-        <Link href={siteUrls.vscode}>VS Code theme</Link>
-        <Link href={siteUrls.hub}>Theme hub</Link>
-        <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer" aria-label="GitHub repository" class="github-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-            <path d="M9 18c-4.51 2-5-2-7-2"/>
-          </svg>
-          <span>GitHub</span>
-        </Link>
-      </div>
-    </footer>
+    <SharedFooter />
 
     <script>
       import '../main.js'

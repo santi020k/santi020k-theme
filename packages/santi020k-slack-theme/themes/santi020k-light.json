@@ -1,0 +1,27 @@
+{
+  "appearance": "light",
+  "name": "Santi020k Light",
+  "legacy": [
+    "#F8F6FD",
+    "#F0EDF9",
+    "#6319BE",
+    "#FFFFFF",
+    "#EAE7F5",
+    "#302E36",
+    "#20823A",
+    "#C0392B"
+  ],
+  "roles": {
+    "canvas": "#F8F6FD",
+    "sidebar": "#F0EDF9",
+    "sidebarHover": "#EAE7F5",
+    "activeItem": "#6319BE",
+    "activeItemText": "#FFFFFF",
+    "primaryText": "#302E36",
+    "secondaryText": "#5F526F",
+    "link": "#6319BE",
+    "focus": "#6319BE",
+    "online": "#20823A",
+    "mention": "#C0392B"
+  }
+}

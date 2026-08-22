@@ -1,5 +1,3 @@
-/* eslint-disable n/no-process-exit, no-console -- This validation CLI owns its process lifecycle and terminal output. */
-
 import { existsSync, readFileSync } from 'fs'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'

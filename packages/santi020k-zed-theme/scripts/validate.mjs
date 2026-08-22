@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 

@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 import { execFileSync, spawnSync } from 'node:child_process'
 import { chmod, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'

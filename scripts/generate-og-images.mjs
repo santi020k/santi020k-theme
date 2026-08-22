@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -44,6 +42,15 @@ const cards = [
     title: 'Zed Theme',
     subtitleLines: ['Calm violet variants for a fast editor.'],
     visual: 'editor',
+  },
+  {
+    accent: '#945df4',
+    app: 'codex-website',
+    badge: 'Codex custom themes',
+    domain: 'codex.santi020k.com',
+    title: 'Codex Theme',
+    subtitleLines: ['Dark and light. One-line import.'],
+    visual: 'codex',
   },
   {
     accent: '#945df4',
@@ -187,6 +194,32 @@ const hubVisual = `
   </g>
 `
 
+const codexVisual = `
+  <g transform="translate(694 142) scale(0.9)">
+    <rect x="0" y="0" width="390" height="252" rx="18" fill="#0d0a15" stroke="#494158" stroke-width="2" transform="rotate(-1 195 126)"/>
+    <rect x="0" y="0" width="390" height="44" rx="18" fill="#181322" transform="rotate(-1 195 126)"/>
+    <circle cx="26" cy="22" r="5" fill="#55456f"/><circle cx="46" cy="22" r="5" fill="#55456f"/><circle cx="66" cy="22" r="5" fill="#55456f"/>
+    <text x="174" y="28" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800">Codex</text>
+    <text x="28" y="86" fill="#dfdde3" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="800">New task</text>
+    <rect x="28" y="112" width="334" height="62" rx="11" fill="#120f1a" stroke="#332849"/>
+    <text x="48" y="148" fill="#9b95a4" font-family="Inter, Arial, sans-serif" font-size="13">Ask Codex to work</text>
+    <rect x="314" y="124" width="36" height="36" rx="9" fill="#752df0"/>
+    <path d="M326 145l6-6 6 6M332 139v12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="34" cy="208" r="5" fill="#7daea3"/><text x="48" y="213" fill="#918b9c" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">Santi020k Dark</text>
+
+    <g transform="translate(148 128) rotate(1)">
+      <rect width="316" height="208" rx="16" fill="#f8f6fd" stroke="#d3cde6" stroke-width="2"/>
+      <rect width="316" height="40" rx="16" fill="#f0edf9"/>
+      <circle cx="22" cy="20" r="4" fill="#bcb5ca"/><circle cx="39" cy="20" r="4" fill="#bcb5ca"/><circle cx="56" cy="20" r="4" fill="#bcb5ca"/>
+      <text x="138" y="25" fill="#302e36" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">Codex</text>
+      <text x="24" y="78" fill="#302e36" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">Review changes</text>
+      <rect x="24" y="96" width="268" height="34" rx="8" fill="#e5f4e8"/>
+      <text x="38" y="118" fill="#237936" font-family="monospace" font-size="12">+ durableFocus: true</text>
+      <circle cx="29" cy="166" r="5" fill="#28a745"/><text x="43" y="171" fill="#625b6b" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700">Ready to import</text>
+    </g>
+  </g>
+`
+
 const applePath = 'M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.31.02-1.73-.81-3.22-.81-1.5 0-1.97.79-3.21.83-1.29.05-2.27-1.32-3.1-2.55-1.69-2.44-2.98-6.9-1.25-9.91.86-1.5 2.4-2.45 4.07-2.47 1.27-.02 2.47.86 3.22.86.75 0 2.15-1.06 3.63-.9.62.03 2.35.25 3.46 1.88-.09.06-2.07 1.22-2.05 3.65.03 2.9 2.54 3.87 2.57 3.88-.02.07-.4 1.39-1.32 2.75l.25.32ZM14.78 5.45c.69-.83 1.15-1.98 1.03-3.12-1 .04-2.21.67-2.91 1.5-.63.73-1.18 1.9-1.04 3.02 1.12.09 2.23-.57 2.92-1.4Z'
 
 const powerlineVisual = `
@@ -244,6 +277,9 @@ const getVisual = (visual) => {
   switch (visual) {
     case 'browser':
       return browserVisual
+
+    case 'codex':
+      return codexVisual
 
     case 'editor':
       return editorVisual

@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 import { access, readdir,readFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -8,29 +6,9 @@ const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 const sites = [
   {
-    name: 'theme hub',
+    name: 'consolidated theme website',
     root: resolve(repoRoot, 'apps/website'),
     baseUrl: 'https://theme.santi020k.com/'
-  },
-  {
-    name: 'VS Code website',
-    root: resolve(repoRoot, 'apps/vscode-website'),
-    baseUrl: 'https://vscode.santi020k.com/'
-  },
-  {
-    name: 'Chrome website',
-    root: resolve(repoRoot, 'apps/chrome-website'),
-    baseUrl: 'https://chrome.santi020k.com/'
-  },
-  {
-    name: 'Terminal website',
-    root: resolve(repoRoot, 'apps/terminal-website'),
-    baseUrl: 'https://terminal.santi020k.com/'
-  },
-  {
-    name: 'Zed website',
-    root: resolve(repoRoot, 'apps/zed-website'),
-    baseUrl: 'https://zed.santi020k.com/'
   }
 ]
 

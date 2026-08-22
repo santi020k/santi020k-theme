@@ -1,0 +1,1 @@
+raycast://theme?author=Santiago+Molina&authorUsername=santi020k&version=1&name=Santi020k+Light&appearance=light&colors=%23F8F6FD%2C%23E3DFF0%2C%23302E36%2C%236319BE%2C%236319BE%2C%23C0392B%2C%23A84F18%2C%23A06000%2C%2320823A%2C%232060C8%2C%236319BE%2C%237730B8
