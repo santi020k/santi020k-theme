@@ -92,24 +92,13 @@ jobs:
             echo "No Chrome publish inputs changed; skipping Chrome Web Store deployment." >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      - name: Set up pnpm
+      - name: Set up pnpm workspace
         if: steps.chrome-changes.outputs.should_publish == 'true'
-        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        uses: santi020k/quality/actions/setup-pnpm@eec1701b98bcc0b76d36af288ee78a0369cd84cc # v1
         with:
-          version: 10.32.1
-          run_install: false
-
-      - name: Set up Node.js
-        if: steps.chrome-changes.outputs.should_publish == 'true'
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
+          pnpm-version: 10.32.1
           node-version: 22
-          cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-
-      - name: Install dependencies
-        if: steps.chrome-changes.outputs.should_publish == 'true'
-        run: pnpm install --frozen-lockfile
 
       - name: Verify Chrome Web Store credentials
         if: steps.chrome-changes.outputs.should_publish == 'true' && env.CHROME_WEBSTORE_DRY_RUN != 'true'
