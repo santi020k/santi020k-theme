@@ -10,7 +10,7 @@ The page should connect the browser theme to the wider Santi020k Theme family, s
 - Shared tokens and helpers: `@santi020k/theme`
 - Source: `src/pages/index.astro`, `src/main.js`, `src/styles.css`
 - Public assets: `public/`
-- Build output: `dist/`
+- Composed build output: `apps/website/dist/chrome/`
 
 ## Commands
 

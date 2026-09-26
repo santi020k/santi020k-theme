@@ -12,7 +12,7 @@ The page should make the theme visible immediately, link directly to Marketplace
 - Version sync: `scripts/sync-website-version.mjs`
 - Tests: `tests/sync-website-version.test.mjs`
 - Public assets: `public/`
-- Build output: `dist/`
+- Composed build output: `apps/website/dist/vscode/`
 
 ## Commands
 

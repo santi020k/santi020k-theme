@@ -5,6 +5,7 @@ Astro source module for the [Terminal product route](https://theme.santi020k.com
 ```sh
 pnpm run site:dev
 pnpm run site:build
+pnpm run site:preview
 ```
 
 The consolidated development and preview servers run on `http://127.0.0.1:4174`.
