@@ -56,12 +56,13 @@ describe('Changesets v2 release reporting', () => {
     expect(writeChangesetsRelease({
       name: '@santi020k/theme',
       outputPath,
+      tag: 'v2.0.0',
       version: '2.0.0',
-    })).toBe('@santi020k/theme@2.0.0')
+    })).toBe('v2.0.0')
 
     expect(readFileSync(outputPath, 'utf8')).toBe(`${JSON.stringify({
       type: 'git-tag',
-      tag: '@santi020k/theme@2.0.0',
+      tag: 'v2.0.0',
       packageName: '@santi020k/theme',
     })}\n`)
   })
