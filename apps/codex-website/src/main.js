@@ -24,19 +24,3 @@ bindSiteNavigation({
 })
 
 bindPreferredSiteThemeSync({ onThemeChange: () => syncSiteThemeToggle(toggle) })
-
-for (const button of document.querySelectorAll('.copy-theme')) {
-  button.addEventListener('click', async () => {
-    const preset = button.dataset.theme
-
-    if (!preset) return
-
-    await navigator.clipboard.writeText(preset)
-
-    button.textContent = 'Copied'
-
-    window.setTimeout(() => {
-      button.textContent = 'Copy theme'
-    }, 1800)
-  })
-}

@@ -1,0 +1,489 @@
+---
+import { Button, Icon, Link, ThemeToggle } from '@santi020k/lumen-astro'
+
+import { products } from '../data/products.js'
+
+interface NavigationItem {
+  href: string
+  label: string
+}
+
+interface Props {
+  currentProduct?: string
+  productLinks?: NavigationItem[]
+}
+
+const { currentProduct, productLinks = [] } = Astro.props
+const pathname = Astro.url.pathname
+const product = products.find(item => item.slug === currentProduct)
+let contextualLinks = productLinks
+
+if (contextualLinks.length === 0 && product) {
+  contextualLinks = [{ href: `/${product.slug}/`, label: 'Overview' }]
+}
+
+const isActive = (href: string) => {
+  if (href.includes('#')) return false
+
+  return pathname === href
+}
+---
+
+<div class="family-header-stack">
+  <header class="family-header site-shell" aria-label="Site header">
+    <Link class="family-brand" href="/" aria-label="Santi020k Themes home">
+      <svg class="family-brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true" focusable="false"><rect width="80" height="80" rx="18" fill="currentColor" /><path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /><line x1="48" y1="52" x2="62" y2="52" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" /></svg>
+      <span>Santi020k <b>Themes</b></span>
+    </Link>
+
+    <nav id="family-primary-navigation" class="family-primary-navigation" aria-label="Primary navigation">
+      <Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>Home</Link>
+      <details class:list={['family-theme-menu', { 'has-current-product': product }]}>
+        <summary aria-label={product ? `Change theme. Current theme: ${product.name}` : 'Choose a theme'}>
+          <span class="family-theme-selector-copy">
+            <small>Theme</small>
+            <strong>{product?.name ?? 'All themes'}</strong>
+          </span>
+          <Icon name="chevron-down" />
+        </summary>
+        <div class="family-theme-panel">
+          <div class="family-theme-panel-heading">
+            <div><strong>Choose a surface</strong><small>Carry the same palette into your next tool.</small></div>
+            <span>{products.length} themes</span>
+          </div>
+          <div class="family-theme-panel-grid">
+            {products.map(item => (
+              <Link href={`/${item.slug}/`} aria-current={item.slug === currentProduct ? 'page' : undefined}>
+                <span class="family-theme-item-heading">
+                  <strong>{item.name}</strong>
+                  <i>{item.slug === currentProduct ? 'Current' : 'View'}</i>
+                </span>
+                <small>{item.summary}</small>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </details>
+      <Link href="/gallery/" aria-current={pathname === '/gallery/' ? 'page' : undefined}>Gallery</Link>
+      <Link href="/terminal/docs/" aria-current={pathname.startsWith('/terminal/docs/') ? 'page' : undefined}>Docs</Link>
+      <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
+    </nav>
+
+    <div class="family-header-actions">
+      <Button class="family-nav-toggle" variant="ghost" size="icon" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="family-primary-navigation"><Icon name="menu" /></Button>
+      <ThemeToggle class="family-theme-toggle theme-toggle" role="switch" aria-label="Toggle color theme" aria-checked="true" storageKey="theme" />
+    </div>
+  </header>
+
+  {product && (
+    <div class="family-context-navigation-wrap">
+      <div class="family-context-navigation site-shell">
+        <Link class="family-product-name" href={`/${product.slug}/`}>
+          <span>Theme for</span>
+          <strong>{product.name}</strong>
+        </Link>
+        <nav aria-label={`${product.name} navigation`}>
+          {contextualLinks.map(item => <Link href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</Link>)}
+        </nav>
+      </div>
+    </div>
+  )}
+</div>
+
+<script>
+  const navigation = document.querySelector<HTMLElement>('#family-primary-navigation')
+  const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
+  const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = navigation?.classList.toggle('is-open') ?? false
+
+    toggle.setAttribute('aria-expanded', String(isOpen))
+  })
+
+  navigation?.addEventListener('click', event => {
+    if (!(event.target instanceof Element) || !event.target.closest('a')) return
+
+    navigation.classList.remove('is-open')
+
+    toggle?.setAttribute('aria-expanded', 'false')
+  })
+
+  document.addEventListener('click', event => {
+    if (themeMenu?.open && event.target instanceof Node && !themeMenu.contains(event.target)) themeMenu.open = false
+  })
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && themeMenu?.open) {
+      themeMenu.open = false
+
+      themeMenu.querySelector('summary')?.focus()
+    }
+  })
+</script>
+
+<style>
+  :global(html) {
+    scroll-padding-top: 148px;
+  }
+  .family-header-stack {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--site-line);
+    background: color-mix(in srgb, var(--theme-bg) 90%, transparent);
+    backdrop-filter: blur(20px);
+  }
+  .family-header {
+    display: grid;
+    width: var(--site-shell-width);
+    min-height: 72px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: center;
+    margin-inline: auto;
+  }
+  .family-brand {
+    display: inline-flex;
+    gap: 11px;
+    align-items: center;
+    min-width: max-content;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .family-brand b {
+    color: var(--site-brand);
+  }
+  .family-brand-mark {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border-radius: 8px;
+    color: var(--site-brand-solid);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--site-brand) 30%, transparent);
+  }
+  .family-primary-navigation {
+    display: flex;
+    gap: clamp(6px, 1vw, 12px);
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--site-ink-soft);
+    font-size: .88rem;
+    font-weight: 750;
+  }
+  .family-primary-navigation > a,
+  .family-theme-menu > summary {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    border-radius: 9px;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .family-primary-navigation > a {
+    padding-inline: 11px;
+  }
+  .family-primary-navigation > a:hover,
+  .family-primary-navigation > a[aria-current='page'] {
+    background: color-mix(in srgb, var(--site-brand) 10%, transparent);
+    color: var(--site-brand);
+  }
+  .family-theme-menu > summary:hover,
+  .family-theme-menu[open] > summary {
+    border-color: color-mix(in srgb, var(--site-brand) 62%, var(--site-line));
+    background: color-mix(in srgb, var(--site-brand) 9%, var(--btn-secondary-bg));
+    color: var(--site-brand);
+  }
+  .family-theme-menu {
+    position: relative;
+  }
+  .family-theme-menu > summary {
+    min-width: 132px;
+    gap: 12px;
+    justify-content: space-between;
+    padding: 5px 10px 5px 12px;
+    border: 1px solid var(--site-line);
+    background: var(--btn-secondary-bg);
+    list-style: none;
+  }
+  .family-theme-selector-copy {
+    display: grid;
+    gap: 1px;
+  }
+  .family-theme-selector-copy small {
+    color: var(--site-ink-soft);
+    font-size: .54rem;
+    font-weight: 850;
+    letter-spacing: .09em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .family-theme-selector-copy strong {
+    color: var(--site-ink);
+    font-size: .76rem;
+    line-height: 1.2;
+  }
+  .family-theme-menu[open] .family-theme-selector-copy strong,
+  .family-theme-menu.has-current-product .family-theme-selector-copy strong {
+    color: var(--site-brand);
+  }
+  .family-theme-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+  .family-theme-menu > summary:focus-visible {
+    outline: 3px solid var(--site-brand);
+    outline-offset: 3px;
+  }
+  .family-theme-menu > summary :global(svg) {
+    width: 15px;
+    transition: transform .2s ease;
+  }
+  .family-theme-menu[open] > summary :global(svg) {
+    transform: rotate(180deg);
+  }
+  .family-theme-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: -176px;
+    display: grid;
+    width: min(680px, calc(100vw - var(--site-shell-gutter) - var(--site-shell-gutter)));
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid var(--site-line);
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--site-surface) 96%, var(--theme-bg));
+    box-shadow: 0 24px 70px color-mix(in srgb, #000 34%, transparent);
+  }
+  .family-theme-panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 4px 6px 12px;
+    border-bottom: 1px solid var(--section-divider);
+  }
+  .family-theme-panel-heading > div {
+    display: grid;
+    gap: 4px;
+  }
+  .family-theme-panel-heading strong {
+    color: var(--site-ink);
+    font-size: .82rem;
+  }
+  .family-theme-panel-heading small {
+    color: var(--site-ink-soft);
+    font-size: .68rem;
+  }
+  .family-theme-panel-heading > span {
+    flex: 0 0 auto;
+    padding: 5px 8px;
+    border: 1px solid var(--site-line);
+    border-radius: 999px;
+    color: var(--site-ink-soft);
+    font-size: .62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .family-theme-panel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .family-theme-panel-grid a {
+    display: grid;
+    gap: 5px;
+    padding: 13px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    text-decoration: none;
+  }
+  .family-theme-panel-grid a:hover,
+  .family-theme-panel-grid a[aria-current='page'] {
+    border-color: color-mix(in srgb, var(--site-brand) 28%, var(--site-line));
+    background: color-mix(in srgb, var(--site-brand) 12%, transparent);
+  }
+  .family-theme-item-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .family-theme-item-heading strong {
+    color: var(--site-ink);
+    font-size: .78rem;
+  }
+  .family-theme-item-heading i {
+    color: var(--site-ink-muted);
+    font-size: .58rem;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .family-theme-panel-grid a[aria-current='page'] .family-theme-item-heading strong,
+  .family-theme-panel-grid a[aria-current='page'] .family-theme-item-heading i {
+    color: var(--site-brand);
+  }
+  .family-theme-panel-grid a > small {
+    display: -webkit-box;
+    overflow: hidden;
+    color: var(--site-ink-soft);
+    font-size: .72rem;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .family-header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .family-nav-toggle,
+  .family-theme-toggle {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--site-line);
+    border-radius: 999px;
+    background: var(--btn-secondary-bg);
+    color: var(--site-ink);
+  }
+  .family-nav-toggle {
+    display: none;
+  }
+  .family-context-navigation-wrap {
+    border-top: 1px solid var(--section-divider);
+    background: color-mix(in srgb, var(--site-surface) 76%, transparent);
+  }
+  .family-context-navigation {
+    display: flex;
+    width: var(--site-shell-width);
+    min-height: 50px;
+    gap: 28px;
+    align-items: center;
+    margin-inline: auto;
+  }
+  .family-product-name {
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 7px;
+    align-items: baseline;
+    text-decoration: none;
+  }
+  .family-product-name span {
+    color: var(--site-ink-soft);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .family-product-name strong {
+    color: var(--site-ink);
+    font-size: .9rem;
+  }
+  .family-context-navigation nav {
+    display: flex;
+    min-width: 0;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .family-context-navigation nav::-webkit-scrollbar {
+    display: none;
+  }
+  .family-context-navigation nav a {
+    flex: 0 0 auto;
+    padding: 8px 11px;
+    border-radius: 7px;
+    color: var(--site-ink-soft);
+    font-size: .78rem;
+    font-weight: 750;
+    text-decoration: none;
+  }
+  .family-context-navigation nav a:hover,
+  .family-context-navigation nav a[aria-current='page'] {
+    background: color-mix(in srgb, var(--site-brand) 10%, transparent);
+    color: var(--site-brand);
+  }
+  @media (max-width: 980px) {
+    .family-header {
+      position: relative;
+      min-height: 66px;
+      gap: 12px;
+    }
+    .family-primary-navigation {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      left: 0;
+      display: none;
+      align-items: stretch;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px;
+      border: 1px solid var(--site-line);
+      border-radius: 14px;
+      background: var(--site-surface);
+      box-shadow: 0 20px 60px color-mix(in srgb, #000 30%, transparent);
+    }
+    .family-primary-navigation.is-open {
+      display: flex;
+    }
+    .family-primary-navigation > a,
+    .family-theme-menu > summary {
+      min-height: 42px;
+      padding-inline: 10px;
+    }
+    .family-theme-menu > summary {
+      width: 100%;
+    }
+    .family-theme-panel {
+      position: static;
+      width: 100%;
+      margin-top: 4px;
+      padding: 6px;
+      border: 0;
+      border-radius: 9px;
+      background: color-mix(in srgb, var(--theme-bg) 62%, transparent);
+      box-shadow: none;
+    }
+    .family-theme-panel-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .family-nav-toggle {
+      display: inline-flex;
+    }
+    .family-context-navigation {
+      gap: 18px;
+    }
+  }
+  @media (max-width: 600px) {
+    :global(html) {
+      scroll-padding-top: 134px;
+    }
+    .family-brand span {
+      font-size: .88rem;
+    }
+    .family-theme-panel-grid {
+      grid-template-columns: 1fr;
+    }
+    .family-theme-panel-grid a > small,
+    .family-theme-panel-heading small {
+      display: none;
+    }
+    .family-context-navigation {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 0;
+      padding-block: 7px;
+    }
+    .family-product-name {
+      padding-inline: 10px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .family-theme-menu > summary :global(svg) {
+      transition: none;
+    }
+  }
+</style>

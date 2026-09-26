@@ -1,6 +1,8 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignoreBinaries": [
+    "plutil",
+    "quality",
     "validate"
   ],
   "ignoreDependencies": [
@@ -10,7 +12,8 @@
   "workspaces": {
     ".": {
       "entry": [
-        "package.json"
+        "package.json",
+        "og.audit.config.mjs"
       ],
       "project": [
         "*.mjs"

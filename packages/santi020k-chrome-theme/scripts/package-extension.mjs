@@ -1,5 +1,3 @@
-/* eslint-disable n/no-process-exit, no-console -- This CLI owns its process lifecycle and terminal output. */
-
 /**
  * Packages the Chrome theme extension into dist/santi020k-chrome-theme.zip.
  * Supports packaging both Dark and Light variants.

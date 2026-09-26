@@ -1,5 +1,3 @@
-/* eslint-disable camelcase, no-console -- Zed schemas require snake_case property names; this CLI reports progress. */
-
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 

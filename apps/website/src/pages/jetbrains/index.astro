@@ -1,0 +1,12 @@
+---
+import SimpleProductPage from '../../components/SimpleProductPage.astro'
+
+const steps = [
+  { title: 'Build or download the plugin', detail: 'Use the packaged JAR produced by the JetBrains theme workspace.' },
+  { title: 'Install from disk', detail: 'Open Settings → Plugins, use the gear menu, and choose Install Plugin from Disk…' },
+  { title: 'Choose a variant', detail: 'Restart the IDE, then select Santi020k Dark or Light in Appearance settings.' }
+]
+
+const features = ['Android Studio and IntelliJ Platform 241+', 'Complete IDE UI and editor schemes', 'Diagnostics, popups, controls, and tool windows', 'Dark and light plugin variants']
+---
+<SimpleProductPage name="JetBrains IDEs" slug="jetbrains" eyebrow="JetBrains and Android Studio" title="One violet system across the whole IDE." description="A complete dark and light IntelliJ Platform plugin covering both the interface and editor syntax." availability="Package ready" packagePath="santi020k-jetbrains-theme" {steps} {features} />

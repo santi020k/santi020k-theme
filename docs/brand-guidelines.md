@@ -1,6 +1,6 @@
 # Santi020k Theme Brand Guidelines
 
-**Canonical source of truth.** Last updated: June 2026. Owner: Santiago Molina, `@santi020k`.
+**Canonical source of truth.** Last updated: August 2026. Owner: Santiago Molina, `@santi020k`.
 
 Use this guide for every Santi020k theme-family surface:
 
@@ -8,10 +8,12 @@ Use this guide for every Santi020k theme-family surface:
 - Chrome theme: `packages/santi020k-chrome-theme`
 - Codex theme: `packages/santi020k-codex-theme`
 - Terminal theme: `packages/santi020k-terminal-theme`
+- Raycast theme: `packages/santi020k-raycast-theme`
+- Slack theme: `packages/santi020k-slack-theme`
+- JetBrains theme: `packages/santi020k-jetbrains-theme`
+- Xcode theme: `packages/santi020k-xcode-theme`
 - Shared token and asset packages: `packages/theme`, `packages/theme-core`
-- Websites: `apps/website`, `apps/vscode-website`, `apps/chrome-website`, `apps/zed-website`
-- Terminal website: `apps/terminal-website`
-- Codex website: `apps/codex-website`
+- Consolidated website: `apps/website`, with product page source modules retained in the existing `apps/*-website` directories during migration
 - Store listings, screenshots, release copy, Open Graph images, and AI agent guidance
 
 When brand direction, tokens, assets, product copy, or visual rules change, update this document first, then update implementation files from it.
@@ -40,14 +42,22 @@ Use these names exactly unless a platform forces a different casing:
 | Family            | `Santi020k Theme`                      |
 | VS Code extension | `santi020k-theme` or `Santi020k Theme` |
 | Chrome package    | `santi020k-chrome-theme`               |
+| Raycast package   | `santi020k-raycast-theme`              |
+| Slack package     | `santi020k-slack-theme`                |
+| JetBrains package | `santi020k-jetbrains-theme`            |
+| Xcode package     | `santi020k-xcode-theme`                |
 | Shared package    | `@santi020k/theme`                     |
 | Shared helpers    | `@santi020k/theme-core`                |
 | Theme hub         | `theme.santi020k.com`                  |
-| VS Code site      | `vscode.santi020k.com`                 |
-| Chrome site       | `chrome.santi020k.com`                 |
-| Codex site        | `codex.santi020k.com`                  |
-| Terminal site     | `terminal.santi020k.com`               |
-| Zed site          | `zed.santi020k.com`                    |
+| VS Code page      | `theme.santi020k.com/vscode/`          |
+| Chrome page       | `theme.santi020k.com/chrome/`          |
+| Codex page        | `theme.santi020k.com/codex/`           |
+| Terminal page     | `theme.santi020k.com/terminal/`        |
+| Zed page          | `theme.santi020k.com/zed/`             |
+| Raycast page      | `theme.santi020k.com/raycast/`         |
+| Slack page        | `theme.santi020k.com/slack/`           |
+| JetBrains page    | `theme.santi020k.com/jetbrains/`       |
+| Xcode page        | `theme.santi020k.com/xcode/`           |
 
 Theme variant names stay lowercase in VS Code UI contexts:
 
@@ -68,6 +78,25 @@ Non-negotiables:
 - Use semantic tokens and shared sources before adding one-off colors.
 - Favor calm separation and readable hierarchy over decorative gradients or glow.
 - Keep Chrome and website previews aligned with the VS Code palette.
+
+### Brand mark
+
+The current Santi020k brand mark is the white terminal prompt (`>_`) on a solid brand-purple
+rounded square. Its canonical sources are:
+
+- `packages/theme/assets/logos/logo-square.svg`
+- `packages/theme/assets/logos/logo-square.png`
+- `packages/theme/assets/logos/logo-square.webp`
+
+Use this same mark for the theme-family favicon, app icon, VS Code Marketplace icon, shared brand
+surfaces, and portfolio project identity. Product-specific artwork may appear in screenshots, Open
+Graph images, and promotional compositions, but it must not replace the canonical mark as the
+product logo. Do not maintain decorative or wallpaper-inspired logo variants as alternate brand
+marks.
+
+Run `pnpm run generate:brand-assets` after changing the canonical square logo so the tracked
+theme-family favicon and app-icon copies remain byte-for-byte aligned. The full validation gate
+runs `pnpm run check:brand-assets` to reject drift.
 
 ## Color System
 
@@ -128,6 +157,14 @@ Maintain:
 - dark and light manifests in version sync
 - New Tab and store images that show actual browser UI, not abstract art
 - side-by-side alignment with VS Code when screenshots compare surfaces
+
+### Raycast, Slack, JetBrains, and Xcode
+
+- Raycast dark and light exports must preserve the official 12-color Theme Studio shape and matching one-click import URLs.
+- Slack presets must keep the supported eight-color legacy import string aligned with the richer semantic role map.
+- JetBrains themes must style both the complete IntelliJ Platform UI and the editor scheme; Android Studio is the primary installed test host.
+- Xcode themes cover the supported editor and debug-console color surfaces without claiming to recolor the full application UI.
+- All application ports ship dark and light together and validate primary text, selection, focus, error, warning, success, and link roles.
 
 ### Websites
 
@@ -218,6 +255,10 @@ Validation preference:
 
 - Theme-only changes: `pnpm run validate:themes`
 - Chrome changes: `pnpm run validate:chrome`
+- Raycast changes: `pnpm run validate:raycast`
+- Slack changes: `pnpm run validate:slack`
+- JetBrains or Android Studio changes: `pnpm run validate:jetbrains`
+- Xcode changes: `pnpm run validate:xcode`
 - Website changes: relevant `site:*:build` script
 - Cross-surface or release-ready changes: `pnpm run validate`
 
@@ -239,6 +280,4 @@ Agent rules:
 - `packages/theme/README.md`
 - `packages/theme-core/README.md`
 - `apps/website/WEBSITE.md`
-- `apps/vscode-website/WEBSITE.md`
-- `apps/chrome-website/WEBSITE.md`
 - `packages/santi020k-chrome-theme/store/image-specs.md`

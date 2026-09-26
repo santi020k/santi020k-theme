@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- This CLI reports a concise preset validation result. */
-
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 

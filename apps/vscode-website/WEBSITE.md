@@ -1,6 +1,6 @@
 # Website Style Guide
 
-Reference for the vscode.santi020k.com marketing site and the VS Code theme color system. Keep both sections in sync when the brand evolves.
+Reference for the VS Code product page source now published at `https://theme.santi020k.com/vscode/`, plus the VS Code theme color system. This module is composed into `apps/website` and is not deployed independently.
 
 ---
 
@@ -8,7 +8,7 @@ Reference for the vscode.santi020k.com marketing site and the VS Code theme colo
 
 - **Runtime**: Astro with plain HTML, CSS, and JavaScript
 - **Build**: `pnpm run site:vscode:build`
-- **Deploy**: static assets from `apps/vscode-website/dist/`
+- **Deploy**: composed into `apps/website/dist/vscode/`
 - **Font**: Montserrat (system fallbacks: Avenir Next → Segoe UI → sans-serif)
 
 ### Why Astro?
@@ -157,7 +157,7 @@ On click, `main.js` fires a circular clip-path animation that expands from the b
 - `<title>` includes the primary keyword "VS Code Color Theme"
 - `og:title`, `og:description`, `og:image`, `og:image:width/height/alt`, `og:site_name`, `og:locale` all set
 - `twitter:card` is `summary_large_image`; `twitter:site` and `twitter:creator` both set to `@santi020k`
-- `<link rel="canonical">` points to `https://vscode.santi020k.com/`
+- `<link rel="canonical">` points to `https://theme.santi020k.com/vscode/`
 - `robots` meta allows full indexing with large image preview
 - `robots.txt` present in `/public` to guide crawlers
 - `sitemap.xml` present in `/public` for faster indexing

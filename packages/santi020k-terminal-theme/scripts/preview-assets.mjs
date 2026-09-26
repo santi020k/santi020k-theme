@@ -1,5 +1,3 @@
-/* eslint-disable @stylistic/max-len -- Generated SVG nodes preserve their exact serialized structure. */
-
 import { promptSegments } from '../prompt-presets.mjs'
 
 const escapeXml = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')

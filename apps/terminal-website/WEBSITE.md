@@ -1,11 +1,11 @@
 # Terminal website
 
-- Production domain: `https://terminal.santi020k.com/`
+- Canonical route: `https://theme.santi020k.com/terminal/`
 - Routes: `/` and the documentation under `/docs/`
-- Build output: `apps/terminal-website/dist`
+- Build output: composed into `apps/website/dist/terminal`
 - Canonical theme source: `packages/santi020k-terminal-theme/palettes.mjs`
 
-Deploy this app as an independent static site. Generated iTerm2 and Starship downloads are copied into the app during every build. Redirect the former `iterm.santi020k.com` domain to `https://terminal.santi020k.com/iterm2/` at the hosting provider.
+This module is composed into the consolidated site and is not deployed independently. Generated iTerm2 and Starship downloads are copied beneath `/terminal/` during the consolidated build. Redirect the former `terminal.santi020k.com` and `iterm.santi020k.com` hosts using `cloudflare/legacy-website-redirects.csv`.
 
 ## Documentation
 

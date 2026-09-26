@@ -1,0 +1,12 @@
+---
+import SimpleProductPage from '../../components/SimpleProductPage.astro'
+
+const steps = [
+  { title: 'Download both theme files', detail: 'Use the dark and light .xccolortheme files from the package.' },
+  { title: 'Copy them into Xcode', detail: 'Place the files in Library/Developer/Xcode/UserData/FontAndColorThemes inside your home folder.' },
+  { title: 'Select the mode', detail: 'Restart Xcode, then choose Santi020k Dark or Light under Settings → Themes.' }
+]
+
+const features = ['Native Xcode color-theme files', 'Source syntax and debug-console coverage', 'Selections, caret, links, warnings, and errors', 'Property-list and contrast validation']
+---
+<SimpleProductPage name="Xcode" slug="xcode" eyebrow="Native Xcode editor themes" title="Calm syntax for Apple platform work." description="Dark and light Xcode editor themes covering source code, the debug console, selections, diagnostics, and links." availability="Available now" packagePath="santi020k-xcode-theme" {steps} {features} />
