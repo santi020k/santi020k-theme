@@ -66,6 +66,9 @@ catalogs:
     eslint:
       specifier: ^10.11.0
       version: 10.11.0
+    husky:
+      specifier: ^9.1.7
+      version: 9.1.7
     knip:
       specifier: ^6.38.0
       version: 6.38.0
@@ -181,6 +184,9 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 10.11.0(jiti@2.7.0)
+      husky:
+        specifier: 'catalog:'
+        version: 9.1.7
       knip:
         specifier: 'catalog:'
         version: 6.38.0
@@ -6000,6 +6006,11 @@ packages:
 
   human-id@4.2.1:
     resolution: {integrity: sha512-zPGsiS+dWoTZtZ4AtpA9Y+BdSFSNWvnouNlWNoUFyAM6xHOHmdCvqO3k8AIbdamCOv4gUFUVNPf6rJFfc4UiJw==}
+    hasBin: true
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
     hasBin: true
 
   iconv-lite@0.6.3:
@@ -14694,6 +14705,8 @@ snapshots:
       - supports-color
 
   human-id@4.2.1: {}
+
+  husky@9.1.7: {}
 
   iconv-lite@0.6.3:
     dependencies:

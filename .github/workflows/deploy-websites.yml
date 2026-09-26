@@ -41,6 +41,9 @@ jobs:
     name: Deploy theme.santi020k.com
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    environment:
+      name: websites-production
+      url: https://theme.santi020k.com
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0

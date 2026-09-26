@@ -32,6 +32,7 @@ catalog:
   astro: ^7.3.5
   cspell: ^10.3.4
   eslint: ^10.11.0
+  husky: ^9.1.7
   knip: ^6.38.0
   lint-staged: ^17.6.0
   ovsx: ^1.2.0

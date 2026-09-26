@@ -1,6 +1,6 @@
 ---
-'@santi020k/theme': minor
-'@santi020k/theme-core': minor
+'@santi020k/theme': major
+'@santi020k/theme-core': major
 '@santi020k/santi020k-theme-website': minor
 ---
 

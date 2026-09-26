@@ -81,17 +81,24 @@ const splitSrcset = value => value
   .map(candidate => candidate.trim().split(/\s+/u)[0])
   .filter(Boolean)
 
+const isDynamicReference = value =>
+  value.includes('${') || value.includes('{') || value.includes('}') || value.includes('`')
+
 const isLinkReference = value =>
-  value.startsWith('#') ||
-  value.startsWith('/') ||
-  value.startsWith('http://') ||
-  value.startsWith('https://') ||
-  value.startsWith('mailto:')
+  !isDynamicReference(value) && (
+    value.startsWith('#') ||
+    value.startsWith('/') ||
+    value.startsWith('http://') ||
+    value.startsWith('https://') ||
+    value.startsWith('mailto:')
+  )
 
 const isMetadataReference = value =>
-  value.startsWith('/') ||
-  value.startsWith('http://') ||
-  value.startsWith('https://')
+  !isDynamicReference(value) && (
+    value.startsWith('/') ||
+    value.startsWith('http://') ||
+    value.startsWith('https://')
+  )
 
 // eslint-disable-next-line complexity -- The extractor keeps each supported HTML reference form explicit and auditable.
 const extractTagReferences = html => {
@@ -142,6 +149,8 @@ const extractInlineUrls = text => {
   const urlPattern = /https?:\/\/[^\s"'<>)\\]+/gu
 
   for (const match of text.matchAll(urlPattern)) {
+    if (isDynamicReference(match[0])) continue
+
     references.push({
       source: 'inline URL',
       value: match[0]

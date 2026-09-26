@@ -62,7 +62,7 @@
     "sites:dev": "pnpm run site:dev",
     "site:build": "pnpm --filter @santi020k/santi020k-theme-website run build",
     "site:preview": "pnpm --filter @santi020k/santi020k-theme-website run preview",
-    "hooks:install": "quality hooks install",
+    "prepare": "husky",
     "pre-commit": "lint-staged",
     "pre-push": "pnpm run validate",
     "commit": "commitprompt"
@@ -85,6 +85,7 @@
     "@vscode/vsce": "catalog:",
     "cspell": "catalog:",
     "eslint": "catalog:",
+    "husky": "catalog:",
     "knip": "catalog:",
     "lint-staged": "catalog:",
     "ovsx": "catalog:",
