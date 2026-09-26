@@ -9,15 +9,15 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 const catalog = [
   ['website', 'og-image', 'Theme family', 'theme.santi020k.com', 'Theme Family', 'One violet system across every surface.', '#945df4'],
-  ['vscode-website', 'og-image', 'VS Code color theme', 'vscode.santi020k.com', 'VS Code Theme', 'Six focused variants for long sessions.', '#945df4'],
-  ['chrome-website', 'og-image', 'Chrome browser theme', 'chrome.santi020k.com', 'Chrome Theme', 'Dark and light browser chrome.', '#b48df7'],
-  ['zed-website', 'og-image', 'Zed theme', 'zed.santi020k.com', 'Zed Theme', 'Calm violet variants for a fast editor.', '#945df4'],
-  ['codex-website', 'og-image', 'Codex custom themes', 'codex.santi020k.com', 'Codex Theme', 'Dark and light. One-line import.', '#945df4'],
-  ['terminal-website', 'og-image', 'Terminal theme', 'terminal.santi020k.com', 'Terminal Theme', 'Color and prompt, in sync.', '#945df4'],
-  ['terminal-website', 'og-zsh', 'Curated shell setup', 'terminal.santi020k.com/zsh', 'Zsh Setup', 'Fast shell tools, configured together.', '#b48df7'],
-  ['terminal-website', 'og-iterm2', 'Terminal color scheme', 'terminal.santi020k.com/iterm2', 'iTerm2 Colors', 'Dark and light. Full ANSI coverage.', '#89b8c8'],
-  ['terminal-website', 'og-starship', 'Powerline prompt preset', 'terminal.santi020k.com/starship', 'Starship Prompt', 'Powerline shape. Santi020k focus.', '#945df4'],
-  ['terminal-website', 'og-ports', 'Generated color presets', 'terminal.santi020k.com/ports', 'Terminal Ports', 'One palette for five more terminals.', '#7daea3']
+  ['vscode-website', 'og-image', 'VS Code color theme', 'theme.santi020k.com/vscode/', 'VS Code Theme', 'Six focused variants for long sessions.', '#945df4'],
+  ['chrome-website', 'og-image', 'Chrome browser theme', 'theme.santi020k.com/chrome/', 'Chrome Theme', 'Dark and light browser chrome.', '#b48df7'],
+  ['zed-website', 'og-image', 'Zed theme', 'theme.santi020k.com/zed/', 'Zed Theme', 'Calm violet variants for a fast editor.', '#945df4'],
+  ['codex-website', 'og-image', 'Codex custom themes', 'theme.santi020k.com/codex/', 'Codex Theme', 'Dark and light. One-line import.', '#945df4'],
+  ['terminal-website', 'og-image', 'Terminal theme', 'theme.santi020k.com/terminal/', 'Terminal Theme', 'Color and prompt, in sync.', '#945df4'],
+  ['terminal-website', 'og-zsh', 'Curated shell setup', 'theme.santi020k.com/terminal/docs/zsh/', 'Zsh Setup', 'Fast shell tools, configured together.', '#b48df7'],
+  ['terminal-website', 'og-iterm2', 'Terminal color scheme', 'theme.santi020k.com/terminal/docs/terminal-colors/', 'iTerm2 Colors', 'Dark and light. Full ANSI coverage.', '#89b8c8'],
+  ['terminal-website', 'og-starship', 'Powerline prompt preset', 'theme.santi020k.com/terminal/docs/starship/', 'Starship Prompt', 'Powerline shape. Santi020k focus.', '#945df4'],
+  ['terminal-website', 'og-ports', 'Generated color presets', 'theme.santi020k.com/terminal/docs/terminal-colors/', 'Terminal Ports', 'One palette for five more terminals.', '#7daea3']
 ]
 
 const pages = catalog.map(([app, output, badge, domain, title, description, accent]) => definePageMetadata({

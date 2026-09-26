@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
+    "sync:plugin-version": "node scripts/sync-plugin-version.mjs",
     "validate": "pnpm run build && node scripts/validate.mjs"
   },
   "engines": {
