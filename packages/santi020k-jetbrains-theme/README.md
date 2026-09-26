@@ -12,7 +12,7 @@ pnpm --filter santi020k-jetbrains-theme run build
 
 1. Open **Settings → Plugins** in Android Studio or a JetBrains IDE.
 2. Open the gear menu and choose **Install Plugin from Disk…**.
-3. Select `dist/santi020k-jetbrains-theme-0.1.0.jar`.
+3. Select the generated `dist/santi020k-jetbrains-theme-<version>.jar` file.
 4. Restart when requested.
 5. Select **Santi020k Dark** or **Santi020k Light** under **Settings → Appearance & Behavior → Appearance**.
 

@@ -6,6 +6,13 @@ const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 const sites = [
   {
+    composedApps: [
+      { route: 'chrome', root: resolve(repoRoot, 'apps/chrome-website') },
+      { route: 'codex', root: resolve(repoRoot, 'apps/codex-website') },
+      { route: 'terminal', root: resolve(repoRoot, 'apps/terminal-website') },
+      { route: 'vscode', root: resolve(repoRoot, 'apps/vscode-website') },
+      { route: 'zed', root: resolve(repoRoot, 'apps/zed-website') }
+    ],
     name: 'consolidated theme website',
     root: resolve(repoRoot, 'apps/website'),
     baseUrl: 'https://theme.santi020k.com/'
@@ -50,14 +57,18 @@ const listPublicFiles = async dir => {
 const readSiteFiles = async site => {
   const publicDir = join(site.root, 'public')
   const publicFiles = await listPublicFiles(publicDir)
-  const pageFiles = await listPublicFiles(join(site.root, 'src/pages'))
+  const sourceRoots = [site.root, ...site.composedApps.map(app => app.root)]
+
+  const sourceFiles = (await Promise.all(
+    sourceRoots.map(root => listPublicFiles(join(root, 'src')))
+  )).flat()
 
   const checkablePublicFiles = publicFiles.filter(file =>
     /\.(?:html|txt|xml|webmanifest)$/u.test(file)
   )
 
   return [
-    ...pageFiles.filter(file => file.endsWith('.astro')),
+    ...sourceFiles.filter(file => file.endsWith('.astro')),
     ...checkablePublicFiles
   ]
 }
@@ -188,9 +199,18 @@ const resolveLocalCandidates = (site, value) => {
 
   if (pathname.endsWith('/index.html')) route = pathname.slice(0, -'/index.html'.length)
 
+  const composedPublicCandidates = site.composedApps.flatMap(app => {
+    const prefix = `${app.route}/`
+
+    if (!pathname.startsWith(prefix)) return []
+
+    return [resolve(app.root, 'public', pathname.slice(prefix.length))]
+  })
+
   return [
     resolve(site.root, pathname),
     resolve(site.root, 'public', pathname),
+    ...composedPublicCandidates,
     ...(pathname === 'index.html'
       ? [resolve(site.root, 'src/pages/index.astro')]
       : [
