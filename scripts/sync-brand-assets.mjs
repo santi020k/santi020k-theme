@@ -17,7 +17,9 @@ const assetGroups = [
       'apps/vscode-website/public/favicon.svg',
       'apps/zed-website/public/favicon.svg',
       'apps/chrome-website/public/icons/icon.svg',
-      'apps/terminal-website/public/favicon.svg'
+      'apps/terminal-website/public/favicon.svg',
+      'packages/theme/assets/chrome/icons/icon.svg',
+      'packages/theme/assets/chrome/icons/icon-light.svg'
     ]
   },
   {
@@ -39,8 +41,41 @@ const assetGroups = [
   },
   {
     source: canonicalPng,
+    size: 16,
+    targets: [
+      'packages/theme/assets/chrome/icons/icon16.png',
+      'packages/theme/assets/chrome/icons/icon-light16.png'
+    ]
+  },
+  {
+    source: canonicalPng,
+    size: 48,
+    targets: [
+      'packages/theme/assets/chrome/icons/icon48.png',
+      'packages/theme/assets/chrome/icons/icon-light48.png'
+    ]
+  },
+  {
+    source: canonicalPng,
+    size: 128,
+    targets: [
+      'packages/santi020k-theme/icon.png',
+      'packages/theme/assets/chrome/icons/icon128.png',
+      'packages/theme/assets/chrome/icons/icon-light128.png'
+    ]
+  },
+  {
+    source: canonicalPng,
     size: 180,
     targets: ['apps/terminal-website/public/apple-touch-icon.png']
+  },
+  {
+    source: canonicalPng,
+    size: 512,
+    targets: [
+      'packages/theme/assets/chrome/icons/icon512.png',
+      'packages/theme/assets/chrome/icons/icon-light512.png'
+    ]
   }
 ]
 
