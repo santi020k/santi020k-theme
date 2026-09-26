@@ -1,4 +1,4 @@
-/* eslint-disable complexity, no-console -- The release validator aggregates every marketplace check and reports all failures. */
+/* eslint-disable complexity -- The release validator aggregates every marketplace check and reports all failures. */
 
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'

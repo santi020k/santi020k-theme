@@ -4,17 +4,17 @@ import { Link } from '@santi020k/lumen-astro'
 import DocsLayout from '../../layouts/DocsLayout.astro'
 
 const terminals = [
-  ['iTerm2', '/themes/Santi020k%20Dark.itermcolors', '/themes/Santi020k%20Light.itermcolors'],
-  ['Ghostty', '/ports/ghostty/santi020k-dark', '/ports/ghostty/santi020k-light'],
-  ['Kitty', '/ports/kitty/santi020k-dark.conf', '/ports/kitty/santi020k-light.conf'],
-  ['WezTerm', '/ports/wezterm/santi020k-dark.lua', '/ports/wezterm/santi020k-light.lua'],
-  ['Alacritty', '/ports/alacritty/santi020k-dark.toml', '/ports/alacritty/santi020k-light.toml'],
-  ['Windows Terminal', '/ports/windows-terminal/santi020k-dark.json', '/ports/windows-terminal/santi020k-light.json']
+  ['iTerm2', '/terminal/themes/Santi020k%20Dark.itermcolors', '/terminal/themes/Santi020k%20Light.itermcolors'],
+  ['Ghostty', '/terminal/ports/ghostty/santi020k-dark', '/terminal/ports/ghostty/santi020k-light'],
+  ['Kitty', '/terminal/ports/kitty/santi020k-dark.conf', '/terminal/ports/kitty/santi020k-light.conf'],
+  ['WezTerm', '/terminal/ports/wezterm/santi020k-dark.lua', '/terminal/ports/wezterm/santi020k-light.lua'],
+  ['Alacritty', '/terminal/ports/alacritty/santi020k-dark.toml', '/terminal/ports/alacritty/santi020k-light.toml'],
+  ['Windows Terminal', '/terminal/ports/windows-terminal/santi020k-dark.json', '/terminal/ports/windows-terminal/santi020k-light.json']
 ]
 
 const headings = [{ id: 'downloads', label: 'Downloads' }, { id: 'iterm2', label: 'Install in iTerm2' }, { id: 'generated-presets', label: 'Generated presets' }]
 ---
-<DocsLayout title="Terminal colors" description="Download coordinated dark and light presets for six terminal applications." path="/docs/terminal-colors/" {headings}>
+<DocsLayout title="Terminal colors" description="Download coordinated dark and light presets for six terminal applications." path="/terminal/docs/terminal-colors/" {headings}>
   <section id="downloads"><h2>Choose your terminal</h2><div class="docs-download-table">{terminals.map(([name, dark, light]) => <div><b>{name}</b><Link href={dark} download>Dark</Link><Link href={light} download>Light</Link></div>)}</div></section>
   <section id="iterm2"><h2>Install in iTerm2</h2><ol><li>Download the dark or light <code>.itermcolors</code> preset.</li><li>Open Settings → Profiles → Colors → Color Presets…</li><li>Choose Import…, open the downloaded file, then select Santi020k.</li></ol><aside class="docs-callout"><b>Using window transparency?</b><p>Under Profiles → Window, enable <strong>Keep background colors opaque</strong>. The canvas remains translucent while Starship segments keep their intended contrast.</p></aside></section>
   <section id="generated-presets"><h2>One canonical palette</h2><p>The Ghostty, Kitty, WezTerm, Alacritty, and Windows Terminal files are generated from the same ANSI palette as the iTerm2 presets. Install any format with <code>santi020k-terminal colors install TERMINAL PALETTE</code>; add <code>--dry-run</code> to inspect its source path first.</p></section>

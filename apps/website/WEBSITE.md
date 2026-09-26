@@ -11,17 +11,23 @@ Reference for the theme.santi020k.com hub.
 
 ## Role
 
-This site is the entry point for the Santi020k theme family. It links to the dedicated VS Code site at `https://vscode.santi020k.com/`, the Chrome site at `https://chrome.santi020k.com/`, the Terminal site at `https://terminal.santi020k.com/`, the Zed site at `https://zed.santi020k.com/`, the public npm package at `https://www.npmjs.com/package/@santi020k/theme`, and other theme surfaces.
+This is the only public Santi020k theme website and Cloudflare Pages deployment. Every product lives beneath `theme.santi020k.com`:
+
+- `/vscode/`, `/chrome/`, `/zed/`, and `/codex/` preserve the complete existing product pages.
+- `/terminal/` includes the overview, configurator, documentation tree, and generated downloads.
+- `/raycast/`, `/slack/`, `/jetbrains/`, and `/xcode/` provide focused install and coverage pages.
+- Former product subdomains permanently redirect to the matching route through the list in `cloudflare/legacy-website-redirects.csv`.
 
 ## Assets
 
-- VS Code previews live in `apps/website/public/preview-*.png`.
-- Chrome previews live in `apps/website/public/chrome-preview*.png`.
-- Shared favicon and social preview assets remain in `apps/website/public/`.
+- Shared hub assets live in `apps/website/public/`.
+- Product-owned public assets are copied into their route namespace before Astro development and builds by `scripts/sync-consolidated-site-assets.mjs`.
+- Terminal downloads continue to be generated from `packages/santi020k-terminal-theme`; the consolidated build publishes them beneath `/terminal/`.
 
 ## Maintenance
 
-- Keep public product links in `src/pages/index.astro` aligned with the deployed domains and npm package URLs.
+- Add new products to `src/data/products.js`, then create their route beneath `src/pages/`.
+- Keep canonical URLs on `theme.santi020k.com`; legacy subdomains are redirect-only.
 - Keep visible focus styles and the dark/light toggle intact.
 - Run `pnpm run generate:og` after changing product positioning or social card copy.
 - Run `pnpm run validate:seo` before shipping metadata or OG asset changes.

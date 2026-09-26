@@ -1,5 +1,3 @@
-/* eslint-disable n/no-process-exit, no-console -- This CLI owns its process lifecycle and terminal output. */
-
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
 import { dirname, join, resolve } from 'path'
 import { fileURLToPath } from 'url'

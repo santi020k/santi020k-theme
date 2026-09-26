@@ -8,14 +8,18 @@ describe('website environment URLs', () => {
     expect(getSiteUrls().hub).toBe('https://theme.santi020k.com/')
   })
 
-  it('uses distinct local ports in development', () => {
+  it('uses one local site with product routes in development', () => {
     expect(getSiteUrls(true)).toEqual({
       hub: 'http://127.0.0.1:4174/',
-      vscode: 'http://127.0.0.1:4176/',
-      chrome: 'http://127.0.0.1:4175/',
-      codex: 'http://127.0.0.1:4179/',
-      terminal: 'http://127.0.0.1:4177/',
-      zed: 'http://127.0.0.1:4178/'
+      vscode: 'http://127.0.0.1:4174/vscode/',
+      chrome: 'http://127.0.0.1:4174/chrome/',
+      codex: 'http://127.0.0.1:4174/codex/',
+      terminal: 'http://127.0.0.1:4174/terminal/',
+      zed: 'http://127.0.0.1:4174/zed/',
+      raycast: 'http://127.0.0.1:4174/raycast/',
+      slack: 'http://127.0.0.1:4174/slack/',
+      jetbrains: 'http://127.0.0.1:4174/jetbrains/',
+      xcode: 'http://127.0.0.1:4174/xcode/'
     })
   })
 })

@@ -1,5 +1,3 @@
-/* eslint-disable n/no-process-exit, no-console -- This publishing CLI owns its process lifecycle and terminal output. */
-
 /**
  * Uploads and submits the packaged Chrome theme variants to the Chrome Web Store.
  *

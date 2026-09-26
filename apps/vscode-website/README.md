@@ -1,6 +1,6 @@
 # VS Code Theme Website
 
-Static Astro site for [vscode.santi020k.com](https://vscode.santi020k.com), the product page for the `santi020k-theme` VS Code extension.
+Astro source module for the [`santi020k-theme` VS Code page](https://theme.santi020k.com/vscode/) in the consolidated theme-family site.
 
 The page should make the theme visible immediately, link directly to Marketplace and Open VSX install paths, and show real previews of the dark, light, and high-contrast variants.
 
@@ -12,7 +12,7 @@ The page should make the theme visible immediately, link directly to Marketplace
 - Version sync: `scripts/sync-website-version.mjs`
 - Tests: `tests/sync-website-version.test.mjs`
 - Public assets: `public/`
-- Build output: `dist/`
+- Composed build output: `apps/website/dist/vscode/`
 
 ## Commands
 
@@ -20,9 +20,9 @@ Run commands from the repository root.
 
 | Command | What it does |
 | --- | --- |
-| `pnpm run site:vscode:dev` | Starts the local VS Code site dev server on port 4176 |
-| `pnpm run site:vscode:build` | Builds the production site |
-| `pnpm run site:vscode:preview` | Previews the production build on port 4176 |
+| `pnpm run site:dev` | Starts the consolidated site dev server on port 4174 |
+| `pnpm run site:build` | Builds the consolidated production site |
+| `pnpm run site:preview` | Previews the consolidated production build on port 4174 |
 | `pnpm run sync:website-version` | Syncs website JSON-LD version data from the VS Code extension package |
 | `pnpm run test` | Runs repo tests, including website version sync tests |
 | `pnpm run validate` | Runs the full monorepo validation suite |

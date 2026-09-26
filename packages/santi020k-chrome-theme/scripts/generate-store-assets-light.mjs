@@ -1,5 +1,3 @@
-/* eslint-disable @stylistic/max-len, no-console -- Embedded CSS/HTML preserves exact generated store artwork. */
-
 /**
  * Generates Chrome Web Store assets for the light theme variant.
  *

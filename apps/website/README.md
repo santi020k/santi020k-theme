@@ -25,7 +25,7 @@ Run commands from the repository root.
 
 ## Maintenance Notes
 
-- Keep product links aligned with `https://vscode.santi020k.com/`, `https://chrome.santi020k.com/`, `https://terminal.santi020k.com/`, and `https://zed.santi020k.com/`.
+- Keep product links aligned with their canonical routes under `https://theme.santi020k.com/`.
 - Preserve visible focus styles, external-link safety, and the dark/light toggle.
 - Keep preview assets in `public/` aligned with current package screenshots.
 - Read [`../../docs/brand-guidelines.md`](../../docs/brand-guidelines.md) before changing copy, color, imagery, or product naming.

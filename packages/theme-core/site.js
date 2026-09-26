@@ -15,19 +15,27 @@ export const SITE_REVEAL_LIGHT_BACKGROUND = '#f8f6fd'
 export const SITE_URLS = {
   production: {
     hub: 'https://theme.santi020k.com/',
-    vscode: 'https://vscode.santi020k.com/',
-    chrome: 'https://chrome.santi020k.com/',
-    codex: 'https://codex.santi020k.com/',
-    terminal: 'https://terminal.santi020k.com/',
-    zed: 'https://zed.santi020k.com/'
+    vscode: 'https://theme.santi020k.com/vscode/',
+    chrome: 'https://theme.santi020k.com/chrome/',
+    codex: 'https://theme.santi020k.com/codex/',
+    terminal: 'https://theme.santi020k.com/terminal/',
+    zed: 'https://theme.santi020k.com/zed/',
+    raycast: 'https://theme.santi020k.com/raycast/',
+    slack: 'https://theme.santi020k.com/slack/',
+    jetbrains: 'https://theme.santi020k.com/jetbrains/',
+    xcode: 'https://theme.santi020k.com/xcode/'
   },
   development: {
     hub: 'http://127.0.0.1:4174/',
-    vscode: 'http://127.0.0.1:4176/',
-    chrome: 'http://127.0.0.1:4175/',
-    codex: 'http://127.0.0.1:4179/',
-    terminal: 'http://127.0.0.1:4177/',
-    zed: 'http://127.0.0.1:4178/'
+    vscode: 'http://127.0.0.1:4174/vscode/',
+    chrome: 'http://127.0.0.1:4174/chrome/',
+    codex: 'http://127.0.0.1:4174/codex/',
+    terminal: 'http://127.0.0.1:4174/terminal/',
+    zed: 'http://127.0.0.1:4174/zed/',
+    raycast: 'http://127.0.0.1:4174/raycast/',
+    slack: 'http://127.0.0.1:4174/slack/',
+    jetbrains: 'http://127.0.0.1:4174/jetbrains/',
+    xcode: 'http://127.0.0.1:4174/xcode/'
   }
 }
 

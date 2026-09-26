@@ -9,20 +9,24 @@ The brand source of truth is [`brand-guidelines.md`](brand-guidelines.md). Archi
 Use one root monorepo with two kinds of workspaces:
 
 - `packages/*` are distributable theme artifacts and package-specific tooling.
-- `apps/*` are deployable websites.
+- `apps/website` is the only deployable website. Existing `apps/*-website` directories are product page source modules composed into it during the migration.
 - shared libraries live under `packages/*` when at least two surfaces need the same tokens, assets, or helpers.
 
-Each future public theme surface should follow this pairing:
+Every public theme surface pairs its package with a route in the consolidated site:
 
 | Surface | Theme package | Website app |
 | --- | --- | --- |
-| Theme hub | none | `apps/website` |
-| VS Code | `packages/santi020k-theme` | `apps/vscode-website` |
-| Chrome | `packages/santi020k-chrome-theme` | `apps/chrome-website` |
-| Codex | `packages/santi020k-codex-theme` | `apps/codex-website` |
-| Terminal | `packages/santi020k-terminal-theme` | `apps/terminal-website` |
+| Theme hub | none | `/` |
+| VS Code | `packages/santi020k-theme` | `/vscode/` |
+| Chrome | `packages/santi020k-chrome-theme` | `/chrome/` |
+| Codex | `packages/santi020k-codex-theme` | `/codex/` |
+| Terminal | `packages/santi020k-terminal-theme` | `/terminal/` and `/terminal/docs/` |
+| Raycast | `packages/santi020k-raycast-theme` | `/raycast/` |
+| Slack | `packages/santi020k-slack-theme` | `/slack/` |
+| JetBrains / Android Studio | `packages/santi020k-jetbrains-theme` | `/jetbrains/` |
+| Xcode | `packages/santi020k-xcode-theme` | `/xcode/` |
 | Shared brand assets | `packages/theme` / `packages/theme-core` | none |
-| Future surface | `packages/santi020k-<surface>-theme` | `apps/<surface>-website` |
+| Future surface | `packages/santi020k-<surface>-theme` | `apps/website/src/pages/<surface>/` |
 
 ## Workspace Map
 
@@ -32,13 +36,14 @@ Each future public theme surface should follow this pairing:
 | `packages/santi020k-chrome-theme` | Chrome Web Store theme package | Owns Chrome manifests, browser-theme generation, Web Store packaging, Chrome-specific validation, store copy, and store media. |
 | `packages/santi020k-codex-theme` | Codex custom theme preset | Owns the copy-ready ChatGPT-inspired light preset and validates its supplied schema values. |
 | `packages/santi020k-terminal-theme` | Generated terminal presets | Owns the dark and light palette source, `.itermcolors` and Starship TOML generation, and preset validation. |
+| `packages/santi020k-raycast-theme` | Raycast custom themes | Owns Theme Studio-compatible JSON, one-click import URLs, generation, and contrast validation. |
+| `packages/santi020k-slack-theme` | Slack custom themes | Owns legacy import strings, semantic color maps, generation, and contrast validation. |
+| `packages/santi020k-jetbrains-theme` | IntelliJ Platform theme plugin | Owns dark/light UI themes, editor schemes, plugin metadata, JAR packaging, and Android Studio compatibility. |
+| `packages/santi020k-xcode-theme` | Xcode editor themes | Owns generated `.xccolortheme` files and native property-list validation. |
 | `packages/theme` | Public shared package | Public entry point for reusable Santi020k tokens, website CSS variables, typography variables, assets, project metadata, and Chrome color mapping helpers. Most consumers should use this package. |
 | `packages/theme-core` | Public low-level helper package | Package-neutral types, token CSS generation helpers, asset manifest helpers, and shared browser behavior used by `@santi020k/theme`. Use directly only when building shared packages or lower-level tooling. |
-| `apps/website` | Static Astro app | Theme family hub for `theme.santi020k.com`. Links the VS Code, Chrome, npm, and future surfaces together. |
-| `apps/vscode-website` | Static Astro app | Product page for the VS Code extension at `vscode.santi020k.com`, including Marketplace/Open VSX install paths and preview assets. |
-| `apps/chrome-website` | Static Astro app | Product page for the Chrome browser theme at `chrome.santi020k.com`, including Chrome Web Store install paths and browser previews. |
-| `apps/codex-website` | Static Astro app | Product page for the Codex preset at `codex.santi020k.com`, including a direct copy action for theme settings. |
-| `apps/terminal-website` | Static Astro app | Terminal product site at `terminal.santi020k.com`, with overview, iTerm2, and Starship routes, downloads, previews, and install instructions. |
+| `apps/website` | Static Astro app | The only deployed website. Owns the hub, all product routes, shared product navigation, consolidated SEO, and the Cloudflare Pages output for `theme.santi020k.com`. |
+| `apps/*-website` | Product source modules | Existing detailed page, style, behavior, documentation, and public-asset sources reused by `apps/website` during migration. They are no longer deployment targets. |
 
 ## Dependency Flow
 
@@ -121,6 +126,7 @@ Use these files as the primary ownership locations:
 | Shared raw token data | `packages/theme/tokens/tokens.json` and generated token CSS |
 | Chrome color mappings | `packages/theme` Chrome helper exports plus Chrome package manifests |
 | Chrome store copy and publishing notes | `packages/santi020k-chrome-theme/store/` |
+| Raycast, Slack, JetBrains, and Xcode mappings | Their respective `packages/santi020k-*-theme/` workspaces |
 | Website copy, SEO, and website-only public assets | Owning `apps/*` workspace |
 | Root orchestration scripts | Root `package.json` |
 
@@ -137,7 +143,8 @@ Workspace-local scripts still provide the isolation we want:
 ## Ownership Rules
 
 - Put store manifests, publish assets, zipping scripts, and package validation in `packages/<surface>-theme`.
-- Put marketing pages, static website assets, SEO metadata, and site-specific Astro config in `apps/<surface>-website`.
+- Put new marketing pages, SEO metadata, and route-specific presentation in `apps/website/src/pages/<surface>/`.
+- Keep product assets with their current source module until they are moved into shared packages; the consolidated build publishes them beneath the matching route.
 - Keep package/app-owned scripts and tests inside the owning workspace; root commands should orchestrate workspace scripts.
 - Put only truly shared cross-project tooling at the root.
 - Add reusable libraries under `packages/<name>` only when at least two workspaces need the same code.
@@ -146,7 +153,7 @@ Workspace-local scripts still provide the isolation we want:
 
 ## Website Architecture
 
-The product websites are intentionally plain Astro apps with static HTML, CSS, and JavaScript:
+The consolidated product website is an Astro app with static HTML, CSS, and JavaScript:
 
 - `src/pages/index.astro` owns metadata, JSON-LD, first-render theme bootstrapping, and page structure.
 - `src/styles.css` owns layout and site-specific component styling.
@@ -163,7 +170,7 @@ Shared website behavior comes from `@santi020k/theme/site`:
 
 Shared website colors and fonts come from `@santi020k/theme/site.css`. Apps may add variables for local effects, such as Chrome hero gradients or editor preview token colors, but should not duplicate the base `--theme-bg`, `--surface`, `--ink`, `--brand`, `--accent`, or typography stacks.
 
-Website deployment output is always the owning app's `dist/` directory.
+Website deployment output is always `apps/website/dist/`. Product routes must not regain independent Pages projects.
 
 ## Theme Package Architecture
 
@@ -179,26 +186,28 @@ Keep these behaviors package-owned:
 
 The Chrome package is a sibling surface that maps the same palette into browser chrome. It should use the shared Chrome helpers from `@santi020k/theme`, read the VS Code theme palette where needed, and keep Chrome manifests plus store assets inside `packages/santi020k-chrome-theme`.
 
+Application ports for Raycast, Slack, JetBrains IDEs, Android Studio, and Xcode remain package-owned. Generated output must be reproducible from the package palette source, and each package must validate its native artifact format plus core contrast pairs.
+
 ## CI And Release Boundaries
 
 - Validation can run from the root because it proves the whole workspace still composes.
 - Release publishing should stay package-driven through Changesets and only run when package/release paths change.
-- Website deployment should be app-specific. A hub-only change should not deploy the VS Code or Chrome sites, and a Chrome package-only change should not deploy a website unless assets or website copy changed.
+- Website deployment is a single atomic build so shared navigation, canonical URLs, assets, and product routes cannot drift across independent deployments.
 
 ## Versioning
 
 - `packages/santi020k-theme` uses Changesets. A v2 launch is represented by a major changeset, then the release PR updates the package version, changelog, and VS Code website `softwareVersion`.
 - `packages/theme` and `packages/theme-core` use Changesets for public package changes such as new exports, token changes, or asset manifest changes.
 - `packages/santi020k-chrome-theme` is private but its Chrome Web Store manifests are release artifacts. Keep `package.json`, `manifest.json`, and `manifest-light.json` on the same version before packaging.
-- `apps/*` are private deployable websites. Their package versions are workspace metadata, not public theme versions.
+- `apps/website` is a private deployable website. Its package version is workspace metadata, not a public theme version.
 
 Recommended workflow split:
 
 - `validate.yml`: root validation for PR confidence.
 - `release.yml`: Changesets and marketplace publishing for package/release changes only.
-- `deploy-websites.yml`: Cloudflare Pages direct-upload deployments for `theme.santi020k.com`, `vscode.santi020k.com`, `chrome.santi020k.com`, and `terminal.santi020k.com`, with one path-filtered job per app.
+- `deploy-websites.yml`: one Cloudflare Pages direct-upload deployment for `theme.santi020k.com` containing every product route.
 
-Cloudflare deployment uses repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, plus repository variables `CLOUDFLARE_PAGES_PROJECT_THEME_HUB`, `CLOUDFLARE_PAGES_PROJECT_VSCODE`, `CLOUDFLARE_PAGES_PROJECT_CHROME`, and `CLOUDFLARE_PAGES_PROJECT_TERMINAL`.
+Cloudflare deployment uses repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, plus the repository variable `CLOUDFLARE_PAGES_PROJECT_THEME_HUB`. Former product subdomains stay proxied and use the Bulk Redirect list in `cloudflare/legacy-website-redirects.csv`.
 
 ## Naming
 
@@ -216,10 +225,10 @@ The shared npm token package uses the shorter scoped name `@santi020k/theme` bec
 When adding a new public theme surface:
 
 1. Add `packages/santi020k-<surface>-theme` if the surface has a packaged artifact.
-2. Add `apps/<surface>-website` if the surface needs a public product page.
+2. Add the product to `apps/website/src/data/products.js` and create `apps/website/src/pages/<surface>/index.astro`.
 3. Put reusable palette, assets, and shared browser behavior in `@santi020k/theme` only after a second workspace needs them.
 4. Keep low-level helpers in `@santi020k/theme-core` only when they are package-neutral.
-5. Add root scripts following `site:<surface>:dev`, `site:<surface>:build`, and `site:<surface>:preview`.
+5. Use the shared `site:dev`, `site:build`, and `site:preview` scripts; do not add product-specific website commands.
 6. Add validation or release commands at the root only when they orchestrate workspace-owned scripts.
 7. Add a changeset for public package, website, theme, or docs changes.
 
@@ -232,7 +241,8 @@ Run the narrowest useful check first, then broaden when the change crosses works
 | Shared package exports or token CSS | `pnpm --filter @santi020k/theme run build` plus affected app builds |
 | VS Code theme JSON or extension metadata | `pnpm run validate:themes` and `pnpm run validate:marketplace` |
 | Chrome manifests, Chrome mappings, or store package changes | `pnpm run validate:chrome` |
-| Website-only changes | owning `site:*:build` script |
+| Raycast, Slack, JetBrains, or Xcode theme changes | The matching `pnpm run validate:<surface>` command |
+| Website-only changes | `pnpm run site:build` |
 | Cross-surface or release-ready changes | `pnpm run validate` |
 
 If pnpm policy checks block local script execution, document the exact policy failure and run direct equivalent checks where practical, such as package entrypoint syntax checks and direct Astro builds from the affected apps.

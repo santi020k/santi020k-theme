@@ -1,0 +1,12 @@
+---
+import SimpleProductPage from '../../components/SimpleProductPage.astro'
+
+const steps = [
+  { title: 'Open Appearance', detail: 'In Slack, open your profile menu and choose Preferences → Appearance → Custom theme.' },
+  { title: 'Import the colors', detail: 'Paste the dark or light legacy import string included in the package.' },
+  { title: 'Apply and share', detail: 'Apply the imported palette to your account and use Slack’s Share action when teammates want it.' }
+]
+
+const features = ['Supported eight-color import strings', 'Richer semantic role maps', 'Dark and light mode parity', 'Validated text and interaction contrast']
+---
+<SimpleProductPage name="Slack" slug="slack" eyebrow="Slack custom theme" title="Keep team conversations in the family." description="Dark and light Slack color presets that carry the same calm violet language into your workspace." availability="Available now" packagePath="santi020k-slack-theme" {steps} {features} />

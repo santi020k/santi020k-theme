@@ -2,22 +2,22 @@ export const docsSections = [
   {
     label: 'Start here',
     items: [
-      { href: '/docs/', label: 'Getting started' }
+      { href: '/terminal/docs/', label: 'Getting started' }
     ]
   },
   {
     label: 'Components',
     items: [
-      { href: '/docs/zsh/', label: 'Zsh setup' },
-      { href: '/docs/shells/', label: 'Bash and Fish' },
-      { href: '/docs/starship/', label: 'Starship prompt' },
-      { href: '/docs/terminal-colors/', label: 'Terminal colors' }
+      { href: '/terminal/docs/zsh/', label: 'Zsh setup' },
+      { href: '/terminal/docs/shells/', label: 'Bash and Fish' },
+      { href: '/terminal/docs/starship/', label: 'Starship prompt' },
+      { href: '/terminal/docs/terminal-colors/', label: 'Terminal colors' }
     ]
   },
   {
     label: 'Reference',
     items: [
-      { href: '/docs/cli/', label: 'CLI reference' }
+      { href: '/terminal/docs/cli/', label: 'CLI reference' }
     ]
   }
 ]

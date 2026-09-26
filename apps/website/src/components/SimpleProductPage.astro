@@ -1,0 +1,52 @@
+---
+import { Badge, ButtonLink, Card, Eyebrow, Icon } from '@santi020k/lumen-astro'
+
+import ProductLayout from '../layouts/ProductLayout.astro'
+
+interface Step {
+  detail: string
+  title: string
+}
+
+interface Props {
+  availability: string
+  description: string
+  eyebrow: string
+  features: string[]
+  name: string
+  packagePath: string
+  primaryAction?: { href: string, label: string }
+  slug: string
+  steps: Step[]
+  title: string
+}
+
+const {
+  availability, description, eyebrow, features, name, packagePath,
+  primaryAction, slug, steps, title
+} = Astro.props
+
+const sourceUrl = `https://github.com/santi020k/santi020k-theme/tree/main/packages/${packagePath}`
+const mainAction = primaryAction ?? { href: '#install', label: `Install for ${name}` }
+---
+
+<ProductLayout {name} {slug} title={`Santi020k Theme — ${name}`} {description}>
+  <section class="site-shell simple-product-hero">
+    <div>
+      <Eyebrow class="eyebrow">{eyebrow}</Eyebrow>
+      <h1>{title}</h1>
+      <p class="lede">{description}</p>
+      <div class="product-status" aria-label="Theme status"><Badge variant="success"><span class="status-dot" aria-hidden="true"></span>{availability}</Badge><span>Dark + light</span><span>Open source</span></div>
+      <div class="actions"><ButtonLink class="button button-primary" variant="primary" href={mainAction.href}>{mainAction.label}</ButtonLink><ButtonLink class="button button-secondary" variant="secondary" href={sourceUrl} newTab>View package source</ButtonLink></div>
+    </div>
+    <aside aria-label={`${name} theme qualities`}><Card as="section" class="product-preview"><div class="product-preview-top"><Icon name="swatch-book" /><span>Dark / Light</span></div><p>Santi020k theme for</p><strong>{name}</strong><div class="product-preview-swatches" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><small>Calm contrast · violet focus</small><span class="product-preview-glow" aria-hidden="true"></span></Card></aside>
+  </section>
+  <section id="install" class="site-shell simple-product-section">
+    <div class="section-heading"><Eyebrow class="eyebrow">Install</Eyebrow><h2>Bring the palette into {name}.</h2></div>
+    <ol class="install-steps">{steps.map((step, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{step.title}</h3><p>{step.detail}</p></div></li>)}</ol>
+  </section>
+  <section id="coverage" class="site-shell simple-product-section product-details">
+    <div><Eyebrow class="eyebrow">Coverage</Eyebrow><h2>Built from the shared system.</h2><p class="lede">This port stays generated or validated alongside the rest of the theme family, so its colors do not drift into a separate visual identity.</p></div>
+    <Card><ul>{features.map(feature => <li><Icon name="check" /><span>{feature}</span></li>)}</ul></Card>
+  </section>
+</ProductLayout>

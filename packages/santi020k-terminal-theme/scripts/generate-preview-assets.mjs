@@ -1,5 +1,3 @@
-/* eslint-disable @stylistic/max-len, no-console -- Generated SVG asset paths are clearer as complete expressions. */
-
 import { mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 

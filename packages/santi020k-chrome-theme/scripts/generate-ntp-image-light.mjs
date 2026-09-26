@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 /**
  * Converts images/theme_ntp_background_light.svg →
  * images/theme_ntp_background_light.png for the Santi020k Chrome Theme

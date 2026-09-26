@@ -33,6 +33,7 @@ bindPreferredSiteThemeSync({
 const filterButtons = document.querySelectorAll('[data-filter]')
 const assetCards = document.querySelectorAll('[data-category]')
 const galleryCount = document.querySelector('[data-gallery-count]')
+const galleryCountLabel = document.querySelector('[data-gallery-count-label]')
 
 for (const button of filterButtons) {
   button.addEventListener('click', () => {
@@ -50,6 +51,8 @@ for (const button of filterButtons) {
     }
 
     if (galleryCount) galleryCount.textContent = String(visibleCount)
+
+    if (galleryCountLabel) galleryCountLabel.textContent = visibleCount === 1 ? 'asset shown' : 'assets shown'
   })
 }
 

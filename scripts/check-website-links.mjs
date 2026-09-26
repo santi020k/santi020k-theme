@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 import { access, readdir,readFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -8,29 +6,16 @@ const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 const sites = [
   {
-    name: 'theme hub',
+    composedApps: [
+      { route: 'chrome', root: resolve(repoRoot, 'apps/chrome-website') },
+      { route: 'codex', root: resolve(repoRoot, 'apps/codex-website') },
+      { route: 'terminal', root: resolve(repoRoot, 'apps/terminal-website') },
+      { route: 'vscode', root: resolve(repoRoot, 'apps/vscode-website') },
+      { route: 'zed', root: resolve(repoRoot, 'apps/zed-website') }
+    ],
+    name: 'consolidated theme website',
     root: resolve(repoRoot, 'apps/website'),
     baseUrl: 'https://theme.santi020k.com/'
-  },
-  {
-    name: 'VS Code website',
-    root: resolve(repoRoot, 'apps/vscode-website'),
-    baseUrl: 'https://vscode.santi020k.com/'
-  },
-  {
-    name: 'Chrome website',
-    root: resolve(repoRoot, 'apps/chrome-website'),
-    baseUrl: 'https://chrome.santi020k.com/'
-  },
-  {
-    name: 'Terminal website',
-    root: resolve(repoRoot, 'apps/terminal-website'),
-    baseUrl: 'https://terminal.santi020k.com/'
-  },
-  {
-    name: 'Zed website',
-    root: resolve(repoRoot, 'apps/zed-website'),
-    baseUrl: 'https://zed.santi020k.com/'
   }
 ]
 
@@ -72,14 +57,18 @@ const listPublicFiles = async dir => {
 const readSiteFiles = async site => {
   const publicDir = join(site.root, 'public')
   const publicFiles = await listPublicFiles(publicDir)
-  const pageFiles = await listPublicFiles(join(site.root, 'src/pages'))
+  const sourceRoots = [site.root, ...site.composedApps.map(app => app.root)]
+
+  const sourceFiles = (await Promise.all(
+    sourceRoots.map(root => listPublicFiles(join(root, 'src')))
+  )).flat()
 
   const checkablePublicFiles = publicFiles.filter(file =>
     /\.(?:html|txt|xml|webmanifest)$/u.test(file)
   )
 
   return [
-    ...pageFiles.filter(file => file.endsWith('.astro')),
+    ...sourceFiles.filter(file => file.endsWith('.astro')),
     ...checkablePublicFiles
   ]
 }
@@ -103,17 +92,24 @@ const splitSrcset = value => value
   .map(candidate => candidate.trim().split(/\s+/u)[0])
   .filter(Boolean)
 
+const isDynamicReference = value =>
+  value.includes('${') || value.includes('{') || value.includes('}') || value.includes('`')
+
 const isLinkReference = value =>
-  value.startsWith('#') ||
-  value.startsWith('/') ||
-  value.startsWith('http://') ||
-  value.startsWith('https://') ||
-  value.startsWith('mailto:')
+  !isDynamicReference(value) && (
+    value.startsWith('#') ||
+    value.startsWith('/') ||
+    value.startsWith('http://') ||
+    value.startsWith('https://') ||
+    value.startsWith('mailto:')
+  )
 
 const isMetadataReference = value =>
-  value.startsWith('/') ||
-  value.startsWith('http://') ||
-  value.startsWith('https://')
+  !isDynamicReference(value) && (
+    value.startsWith('/') ||
+    value.startsWith('http://') ||
+    value.startsWith('https://')
+  )
 
 // eslint-disable-next-line complexity -- The extractor keeps each supported HTML reference form explicit and auditable.
 const extractTagReferences = html => {
@@ -164,6 +160,8 @@ const extractInlineUrls = text => {
   const urlPattern = /https?:\/\/[^\s"'<>)\\]+/gu
 
   for (const match of text.matchAll(urlPattern)) {
+    if (isDynamicReference(match[0])) continue
+
     references.push({
       source: 'inline URL',
       value: match[0]
@@ -201,9 +199,18 @@ const resolveLocalCandidates = (site, value) => {
 
   if (pathname.endsWith('/index.html')) route = pathname.slice(0, -'/index.html'.length)
 
+  const composedPublicCandidates = site.composedApps.flatMap(app => {
+    const prefix = `${app.route}/`
+
+    if (!pathname.startsWith(prefix)) return []
+
+    return [resolve(app.root, 'public', pathname.slice(prefix.length))]
+  })
+
   return [
     resolve(site.root, pathname),
     resolve(site.root, 'public', pathname),
+    ...composedPublicCandidates,
     ...(pathname === 'index.html'
       ? [resolve(site.root, 'src/pages/index.astro')]
       : [

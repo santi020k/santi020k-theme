@@ -19,7 +19,7 @@ interface Props {
 }
 
 const { title, description, path, eyebrow = 'Documentation', headings = [] }: Props = Astro.props
-const canonical = new URL(path, 'https://terminal.santi020k.com').href
+const canonical = new URL(path, 'https://theme.santi020k.com').href
 const schema = { '@context': 'https://schema.org', '@type': 'TechArticle', headline: title, description, url: canonical }
 const currentIndex = docsItems.findIndex(item => item.href === path)
 const previous = currentIndex > 0 ? docsItems[currentIndex - 1] : undefined
@@ -28,7 +28,7 @@ const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
 <SiteLayout title={`${title} — Santi020k Terminal docs`} {description} {canonical} {schema}>
   <div class="docs-shell shell">
     <aside class="docs-sidebar" aria-label="Documentation navigation">
-      <Link className="docs-home" href="/docs/">Terminal documentation</Link>
+      <Link className="docs-home" href="/terminal/docs/">Terminal documentation</Link>
       {docsSections.map(section => (
         <div class="docs-nav-group">
           <span>{section.label}</span>

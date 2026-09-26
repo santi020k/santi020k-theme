@@ -34,7 +34,7 @@ Install from the Chrome Web Store:
 | `pnpm --filter santi020k-chrome-theme run validate` | Lints, checks contrast, and dry-runs packaging |
 | `pnpm --filter santi020k-chrome-theme run package` | Builds `dist/*.zip` packages for the Chrome Web Store |
 | `pnpm run validate:chrome` | Runs the root Chrome validation shortcut |
-| `pnpm run site:chrome:dev` | Starts the Chrome theme website |
+| `pnpm run site:dev` | Starts the consolidated theme-family website |
 
 The VS Code Run and Debug entries use the preview runner. Chrome 137+ ignores `--load-extension` in branded Google Chrome builds, so the runner starts Chrome with remote debugging and installs the unpacked theme through Chrome DevTools Protocol.
 

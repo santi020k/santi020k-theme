@@ -1,0 +1,12 @@
+---
+import SimpleProductPage from '../../components/SimpleProductPage.astro'
+
+const steps = [
+  { title: 'Choose a mode', detail: 'Open the dark or light one-click import URL included with the package.' },
+  { title: 'Approve the import', detail: 'Raycast opens Theme Studio and asks you to confirm the custom theme.' },
+  { title: 'Match system appearance', detail: 'Assign each variant under Raycast Settings → General → Appearance.' }
+]
+
+const features = ['Official 12-color Theme Studio shape', 'One-click import URLs for both modes', 'Primary text contrast validation', 'Raycast Pro custom-theme compatibility']
+---
+<SimpleProductPage name="Raycast" slug="raycast" eyebrow="Raycast custom theme" title="Fast commands. Quiet violet focus." description="Dark and light Raycast custom themes mapped from the shared Santi020k palette." availability="Available now" packagePath="santi020k-raycast-theme" {steps} {features} />

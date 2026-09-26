@@ -1,0 +1,62 @@
+export const xcodeThemes = [
+  {
+    appearance: 'dark',
+    name: 'Santi020k Dark',
+    colors: {
+      background: '#0D0A15',
+      foreground: '#DFDDE3',
+      selection: '#322B40',
+      currentLine: '#151221',
+      whitespace: '#494158',
+      caret: '#945DF4',
+      comment: '#9D80D0',
+      docComment: '#9D80D0',
+      docKeyword: '#B48DF7',
+      keyword: '#9B69F6',
+      string: '#F0C870',
+      number: '#A8D0E0',
+      type: '#945DF4',
+      systemType: '#A475F5',
+      function: '#89B8C8',
+      systemFunction: '#B48DF7',
+      variable: '#DBD4E8',
+      systemVariable: '#A475F5',
+      attribute: '#A475F5',
+      preprocessor: '#E8B44A',
+      url: '#B48DF7',
+      error: '#EA6962',
+      warning: '#E8B44A',
+      success: '#7DAEA3'
+    }
+  },
+  {
+    appearance: 'light',
+    name: 'Santi020k Light',
+    colors: {
+      background: '#F8F6FD',
+      foreground: '#302E36',
+      selection: '#E3DFF0',
+      currentLine: '#F0EDF9',
+      whitespace: '#D3CDE6',
+      caret: '#6319BE',
+      comment: '#7860A8',
+      docComment: '#7860A8',
+      docKeyword: '#6319BE',
+      keyword: '#5A1AB0',
+      string: '#A06000',
+      number: '#006090',
+      type: '#5A18A8',
+      systemType: '#6020B8',
+      function: '#006080',
+      systemFunction: '#6319BE',
+      variable: '#403860',
+      systemVariable: '#6020B8',
+      attribute: '#6020B8',
+      preprocessor: '#A06000',
+      url: '#6319BE',
+      error: '#C0392B',
+      warning: '#A06000',
+      success: '#20823A'
+    }
+  }
+]

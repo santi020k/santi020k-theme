@@ -1,0 +1,15 @@
+<idea-plugin>
+  <id>com.santi020k.theme</id>
+  <name>Santi020k Theme</name>
+  <version>0.1.0</version>
+  <vendor url="https://santi020k.com">Santiago Molina</vendor>
+  <description><![CDATA[
+    Calm, purple-forward dark and light themes for JetBrains IDEs and Android Studio.
+  ]]></description>
+  <idea-version since-build="241" />
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="com.santi020k.theme.dark" path="/themes/santi020k-dark.theme.json" />
+    <themeProvider id="com.santi020k.theme.light" path="/themes/santi020k-light.theme.json" />
+  </extensions>
+</idea-plugin>

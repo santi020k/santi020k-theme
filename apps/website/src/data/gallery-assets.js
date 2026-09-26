@@ -60,6 +60,18 @@ import wallpaperThreeDesktopWebp from '../../../../packages/theme/assets/wallpap
 import wallpaperThreeMobilePng from '../../../../packages/theme/assets/wallpapers/wallpaper-3-mobile.png?url'
 import wallpaperThreeMobile from '../../../../packages/theme/assets/wallpapers/wallpaper-3-mobile.webp'
 import wallpaperThreeMobileWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-3-mobile.webp?url'
+import wallpaperFourDesktopPng from '../../../../packages/theme/assets/wallpapers/wallpaper-4-desktop.png?url'
+import wallpaperFourDesktop from '../../../../packages/theme/assets/wallpapers/wallpaper-4-desktop.webp'
+import wallpaperFourDesktopWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-4-desktop.webp?url'
+import wallpaperFourMobilePng from '../../../../packages/theme/assets/wallpapers/wallpaper-4-mobile.png?url'
+import wallpaperFourMobile from '../../../../packages/theme/assets/wallpapers/wallpaper-4-mobile.webp'
+import wallpaperFourMobileWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-4-mobile.webp?url'
+import wallpaperFiveDesktopPng from '../../../../packages/theme/assets/wallpapers/wallpaper-5-desktop.png?url'
+import wallpaperFiveDesktop from '../../../../packages/theme/assets/wallpapers/wallpaper-5-desktop.webp'
+import wallpaperFiveDesktopWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-5-desktop.webp?url'
+import wallpaperFiveMobilePng from '../../../../packages/theme/assets/wallpapers/wallpaper-5-mobile.png?url'
+import wallpaperFiveMobile from '../../../../packages/theme/assets/wallpapers/wallpaper-5-mobile.webp'
+import wallpaperFiveMobileWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-5-mobile.webp?url'
 
 /** @typedef {import('astro').ImageMetadata} ImageMetadata */
 
@@ -150,6 +162,10 @@ export const galleryAssets = [
   wallpaper('Violet horizon 02', 'Mobile', '1170 × 2532', wallpaperTwoMobile, 'santi020k-wallpaper-2-mobile', wallpaperTwoMobilePng, wallpaperTwoMobileWebp, true),
   wallpaper('Violet horizon 03', 'Desktop', '3840 × 2160', wallpaperThreeDesktop, 'santi020k-wallpaper-3-desktop', wallpaperThreeDesktopPng, wallpaperThreeDesktopWebp),
   wallpaper('Violet horizon 03', 'Mobile', '1170 × 2532', wallpaperThreeMobile, 'santi020k-wallpaper-3-mobile', wallpaperThreeMobilePng, wallpaperThreeMobileWebp, true),
+  wallpaper('Signal flow · light', 'Desktop', '3840 × 2160', wallpaperFourDesktop, 'santi020k-wallpaper-4-desktop', wallpaperFourDesktopPng, wallpaperFourDesktopWebp),
+  wallpaper('Signal flow · light', 'Mobile', '1170 × 2532', wallpaperFourMobile, 'santi020k-wallpaper-4-mobile', wallpaperFourMobilePng, wallpaperFourMobileWebp, true),
+  wallpaper('Signal flow · dark', 'Desktop', '3840 × 2160', wallpaperFiveDesktop, 'santi020k-wallpaper-5-desktop', wallpaperFiveDesktopPng, wallpaperFiveDesktopWebp),
+  wallpaper('Signal flow · dark', 'Mobile', '1170 × 2532', wallpaperFiveMobile, 'santi020k-wallpaper-5-mobile', wallpaperFiveMobilePng, wallpaperFiveMobileWebp, true),
   {
     title: 'Chrome new tab wallpaper',
     category: 'wallpapers',

@@ -1,5 +1,3 @@
-/* eslint-disable n/no-process-exit, no-console -- This CLI owns its process lifecycle and terminal output. */
-
 /**
  * Synchronizes Chrome theme manifests with VS Code theme colors.
  * Supports both Dark and Light variants.

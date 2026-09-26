@@ -1,5 +1,3 @@
-/* eslint-disable n/no-process-exit, no-console -- This long-running CLI owns its process lifecycle and terminal output. */
-
 import { spawn, spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
