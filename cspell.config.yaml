@@ -173,6 +173,7 @@ words:
   - outfit
   - outline-offset
   - ovsx
+  - oxlint
   - OVSX_PAT
   - OAuth
   - pnpm-lock
