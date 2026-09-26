@@ -53,7 +53,7 @@ code {
 
 /* ─── Layout shell ───────────────────────────────────────────────────────────── */
 .site-shell {
-  width: min(1320px, calc(100% - 48px));
+  width: var(--site-shell-width);
   margin-inline: auto;
 }
 
@@ -174,7 +174,7 @@ code {
   inset: 0;
   background-image:
     linear-gradient(to bottom, var(--hero-gradient-1) 0%, var(--hero-gradient-2) 100%),
-    url('/wallpaper-dark.svg');
+    url('../public/wallpaper-dark.svg');
   background-size: cover;
   background-position: center 30%;
   z-index: 0;
@@ -184,7 +184,7 @@ code {
 :root[data-theme="light"] .hero-wallpaper {
   background-image:
     linear-gradient(to bottom, var(--hero-gradient-1) 0%, var(--hero-gradient-2) 100%),
-    url('/wallpaper-light.svg');
+    url('../public/wallpaper-light.svg');
 }
 
 @keyframes hero-ken-burns {
@@ -196,13 +196,13 @@ code {
   .hero-wallpaper {
     background-image:
       linear-gradient(to bottom, var(--hero-gradient-1) 0%, var(--hero-gradient-2) 100%),
-      url('/wallpaper-dark-mobile.svg');
+      url('../public/wallpaper-dark-mobile.svg');
     background-position: center center;
   }
   :root[data-theme="light"] .hero-wallpaper {
     background-image:
       linear-gradient(to bottom, var(--hero-gradient-1) 0%, var(--hero-gradient-2) 100%),
-      url('/wallpaper-light-mobile.svg');
+      url('../public/wallpaper-light-mobile.svg');
   }
 }
 
@@ -210,6 +210,9 @@ code {
   position: relative;
   z-index: 1;
   padding-block: 120px 100px;
+}
+
+.hero-copy {
   max-width: 760px;
 }
 
@@ -226,17 +229,18 @@ h1, h2, h3, p { margin-top: 0; }
 h1, h2 { letter-spacing: 0; }
 
 h1 {
-  max-width: 860px;
+  max-width: var(--site-page-title-measure);
   margin-bottom: 32px;
-  font-size: clamp(3.2rem, 6vw, 5.6rem);
-  line-height: 0.98;
+  font-size: var(--site-page-title-size);
+  line-height: var(--site-page-title-line-height);
   letter-spacing: -0.02em;
 }
 
 h2 {
   margin-bottom: 0;
-  font-size: clamp(2rem, 4.5vw, 3.6rem);
-  line-height: 0.96;
+  max-width: var(--site-section-title-measure);
+  font-size: var(--site-section-title-size);
+  line-height: var(--site-section-title-line-height);
 }
 
 h3 {
@@ -1010,7 +1014,6 @@ h3 {
 }
 
 @media (max-width: 560px) {
-  .site-shell { width: min(100% - 24px, 1320px); }
   .hero-inner { padding-block: 80px 72px; }
 }
 

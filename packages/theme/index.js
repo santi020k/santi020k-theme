@@ -1,5 +1,3 @@
-/* eslint-disable camelcase -- Chrome theme manifest schemas require snake_case property names. */
-
 import {
   getAssetByPath,
   getAssetsByCategory,
@@ -375,6 +373,14 @@ const assetPaths = [
   'assets/wallpapers/wallpaper-3-desktop.webp',
   'assets/wallpapers/wallpaper-3-mobile.png',
   'assets/wallpapers/wallpaper-3-mobile.webp',
+  'assets/wallpapers/wallpaper-4-desktop.png',
+  'assets/wallpapers/wallpaper-4-desktop.webp',
+  'assets/wallpapers/wallpaper-4-mobile.png',
+  'assets/wallpapers/wallpaper-4-mobile.webp',
+  'assets/wallpapers/wallpaper-5-desktop.png',
+  'assets/wallpapers/wallpaper-5-desktop.webp',
+  'assets/wallpapers/wallpaper-5-mobile.png',
+  'assets/wallpapers/wallpaper-5-mobile.webp',
   'assets/wallpapers/wallpaper.png',
   'assets/wallpapers/wallpaper.webp'
 ]

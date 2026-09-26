@@ -1,0 +1,21 @@
+{
+  "author": "Santiago Molina",
+  "authorUsername": "santi020k",
+  "version": "1",
+  "name": "Santi020k Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0D0A15",
+    "backgroundSecondary": "#231D30",
+    "text": "#DFDDE3",
+    "selection": "#945DF4",
+    "loader": "#752DF0",
+    "red": "#EA6962",
+    "orange": "#D98A55",
+    "yellow": "#E8B44A",
+    "green": "#7DAEA3",
+    "blue": "#6B82C8",
+    "purple": "#945DF4",
+    "magenta": "#B48DF7"
+  }
+}

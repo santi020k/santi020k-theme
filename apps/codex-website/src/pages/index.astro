@@ -1,15 +1,25 @@
 ---
-import { Button, ButtonLink, Icon, Link, ThemeToggle, UIPrimitives } from '@santi020k/lumen-astro'
+import { Badge, ButtonLink, Card, CodeTabs, Eyebrow, Icon } from '@santi020k/lumen-astro'
+import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import { getSiteUrls } from '@santi020k/theme/site'
 
 import darkPreset from '../../../../packages/santi020k-codex-theme/themes/santi020k-dark.codex-theme.json'
 import lightPreset from '../../../../packages/santi020k-codex-theme/themes/santi020k-light.codex-theme.json'
+import favicon from '../../../../packages/theme/assets/favicons/favicon.svg'
+import SharedFooter from '../../../website/src/components/SharedFooter.astro'
+import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
 const copyableLightTheme = `codex-theme-v1:${JSON.stringify(lightPreset)}`
 const copyableDarkTheme = `codex-theme-v1:${JSON.stringify(darkPreset)}`
-const prettyLightTheme = JSON.stringify(lightPreset, null, 2)
-const prettyDarkTheme = JSON.stringify(darkPreset, null, 2)
+
+const themeTabs = [
+  { value: 'dark', label: 'Santi020k Dark', code: copyableDarkTheme, language: 'json' },
+  { value: 'light', label: 'Santi020k Light', code: copyableLightTheme, language: 'json' }
+]
+
+const darkStyle = `--preview-surface:${darkPreset.theme.surface};--preview-ink:${darkPreset.theme.ink};--preview-accent:${darkPreset.theme.accent};--preview-added:${darkPreset.theme.semanticColors.diffAdded};--preview-removed:${darkPreset.theme.semanticColors.diffRemoved}`
+const lightStyle = `--preview-surface:${lightPreset.theme.surface};--preview-ink:${lightPreset.theme.ink};--preview-accent:${lightPreset.theme.accent};--preview-added:${lightPreset.theme.semanticColors.diffAdded};--preview-removed:${lightPreset.theme.semanticColors.diffRemoved}`
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -18,7 +28,8 @@ const structuredData = {
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'macOS, Windows, Linux',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  url: 'https://codex.santi020k.com/',
+  url: 'https://theme.santi020k.com/codex/',
+  image: 'https://theme.santi020k.com/codex/og-image.png',
   description: 'Copy-ready Santi020k dark and light custom theme presets for Codex.'
 }
 
@@ -42,65 +53,140 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       })()
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Santi020k Theme — Codex Theme</title>
-    <meta name="description" content="Copy the Santi020k dark or light theme preset for Codex and paste it directly into your theme settings." />
+    <title>Santi020k Codex Theme — Dark and Light Presets</title>
+    <meta name="description" content="Copy Santi020k Dark or Light for Codex: two import-ready presets with calm violet focus, durable contrast, and exact one-line settings values." />
     <meta name="author" content="Santiago Molina" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="canonical" href="https://codex.santi020k.com/" />
-    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://theme.santi020k.com/codex/" />
+    <link rel="icon" href={favicon.src} type="image/svg+xml" />
+    <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://codex.santi020k.com/" />
+    <meta property="og:url" content="https://theme.santi020k.com/codex/" />
     <meta property="og:site_name" content="Santi020k Theme" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="Santi020k Theme — Codex Theme" />
-    <meta property="og:description" content="Copy-ready Santi020k dark and light custom theme presets for Codex." />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Santi020k Theme — Codex Theme" />
-    <meta name="twitter:description" content="Copy the Santi020k dark or light theme preset for Codex." />
+    <meta property="og:title" content="Santi020k Codex Theme — Dark and Light Presets" />
+    <meta property="og:description" content="Two import-ready Codex presets built around calm violet focus and durable contrast." />
+    <meta property="og:image" content="https://theme.santi020k.com/codex/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Santi020k dark and light Codex theme previews" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@santi020k" />
+    <meta name="twitter:creator" content="@santi020k" />
+    <meta name="twitter:url" content="https://theme.santi020k.com/codex/" />
+    <meta name="twitter:title" content="Santi020k Codex Theme" />
+    <meta name="twitter:description" content="Copy the dark or light Santi020k preset and import it directly into Codex." />
+    <meta name="twitter:image" content="https://theme.santi020k.com/codex/og-image.png" />
+    <meta name="twitter:image:alt" content="Santi020k dark and light Codex theme previews" />
     <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
   <body>
-    <header class="site-shell site-header" aria-label="Site header">
-      <Link class="brand" href="#top" aria-label="Santi020k Codex theme home"><span aria-hidden="true">✦</span> Santi020k Codex</Link>
-      <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
-        <Link href="#copy">Copy theme</Link>
-        <Link href="#palette">Palette</Link>
-        <Link href={siteUrls.hub}>Theme hub</Link>
-        <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
-      </nav>
-      <div class="header-actions">
-        <Button class="nav-toggle" variant="ghost" size="icon" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation"><Icon name="menu" /></Button>
-        <ThemeToggle class="theme-toggle" role="switch" aria-label="Toggle color theme" aria-checked="true" storageKey="theme" />
-      </div>
-    </header>
+    <SharedHeader currentProduct="codex" productLinks={[{ href: '/codex/', label: 'Overview' }, { href: '/codex/#presets', label: 'Presets' }, { href: '/codex/#details', label: 'Details' }]} />
+
     <main id="top">
       <section class="site-shell hero">
+        <div class="hero-copy">
+          <Eyebrow class="eyebrow">Codex custom themes</Eyebrow>
+          <h1>Bring Santi020k focus to Codex.</h1>
+          <p class="lede">Two native, import-ready presets shaped by the same quiet violet system as the rest of the Santi020k theme family.</p>
+          <div class="hero-meta" aria-label="Theme availability">
+            <Badge variant="success"><span class="status-dot" aria-hidden="true"></span>Available now</Badge>
+            <span>Dark + light</span>
+            <span>No extension required</span>
+          </div>
+          <div class="actions">
+            <ButtonLink class="button button-primary" variant="primary" href="#presets" showArrow>Copy a preset</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-codex-theme" newTab>View source</ButtonLink>
+          </div>
+        </div>
+
+        <div class="theme-stage" aria-label="Santi020k dark and light Codex theme preview">
+          <div class="preview-orbit preview-orbit-one" aria-hidden="true"></div>
+          <div class="preview-orbit preview-orbit-two" aria-hidden="true"></div>
+
+          <article class="theme-window theme-window-dark" style={darkStyle}>
+            <div class="window-top"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>Codex</b><Badge variant="secondary">Dark</Badge></div>
+            <div class="window-body">
+              <div class="window-heading"><span>New task</span><small>Local</small></div>
+              <div class="conversation-row"><span class="conversation-mark" aria-hidden="true"></span><p>Polish the launch experience.</p></div>
+              <div class="prompt"><span>Ask Codex to work</span><button type="button" tabindex="-1" aria-hidden="true"><Icon name="arrow-up" /></button></div>
+              <div class="window-status"><span><i class="status-added"></i> Calm contrast</span><span>45% contrast</span></div>
+            </div>
+          </article>
+
+          <article class="theme-window theme-window-light" style={lightStyle}>
+            <div class="window-top"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>Codex</b><Badge variant="secondary">Light</Badge></div>
+            <div class="window-body">
+              <div class="window-heading"><span>Review changes</span><small>2 files</small></div>
+              <div class="diff-row diff-added"><span>+</span><code>durableFocus: true</code></div>
+              <div class="diff-row diff-removed"><span>−</span><code>visualNoise: true</code></div>
+              <div class="window-status"><span><i class="status-added"></i> Ready to import</span><span>System fonts</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="presets" class="site-shell section presets-section">
+        <div class="section-heading">
+          <div>
+            <Eyebrow class="eyebrow">Copy and import</Eyebrow>
+            <h2>Pick a mode. Copy one line.</h2>
+          </div>
+          <p class="section-lede">Choose your preset below, copy its complete value, then import it from Codex Settings → Appearance. Your existing settings stay untouched.</p>
+        </div>
+
+        <Card as="section" class="preset-panel">
+          <div class="steps" aria-label="Installation steps">
+            <div><span>01</span><strong>Choose dark or light</strong><small>Each preset is tuned independently.</small></div>
+            <div><span>02</span><strong>Copy the preset</strong><small>Use the copy control in the code panel.</small></div>
+            <div><span>03</span><strong>Import in Codex</strong><small>Open Settings → Appearance → Import.</small></div>
+          </div>
+          <CodeTabs class="theme-tabs" ariaLabel="Codex theme preset" items={themeTabs} initialValue="dark" storageKey="santi020k-codex-mode" theme="santi020k" wrap={false} />
+          <p class="preset-note"><Icon name="shield-check" /> These presets change appearance only. They contain colors, contrast, and font preferences—no account or project data.</p>
+        </Card>
+      </section>
+
+      <section id="details" class="site-shell section details-section">
+        <div class="section-heading">
+          <div>
+            <Eyebrow class="eyebrow">One visual language</Eyebrow>
+            <h2>Designed as a pair.</h2>
+          </div>
+          <p class="section-lede">Both modes keep hierarchy quiet and focus obvious, while added and removed states remain easy to distinguish during review.</p>
+        </div>
+
+        <div class="variant-grid">
+          <Card as="article" class="variant-card variant-dark" style={darkStyle}>
+            <div class="variant-card-header"><span><Icon name="moon" /> Santi020k Dark</span><code>{darkPreset.theme.surface}</code></div>
+            <div class="palette-strip" aria-label="Dark preset colors"><i class="palette-surface"></i><i class="palette-ink"></i><i class="palette-accent"></i><i class="palette-added"></i><i class="palette-removed"></i></div>
+            <p>Deep indigo-black surfaces, soft lavender text, and a vivid violet accent built for long sessions.</p>
+            <dl><div><dt>Contrast</dt><dd>{darkPreset.theme.contrast}</dd></div><div><dt>Code theme</dt><dd>{darkPreset.codeThemeId}</dd></div><div><dt>Fonts</dt><dd>System</dd></div></dl>
+          </Card>
+
+          <Card as="article" class="variant-card variant-light" style={lightStyle}>
+            <div class="variant-card-header"><span><Icon name="sun" /> Santi020k Light</span><code>{lightPreset.theme.surface}</code></div>
+            <div class="palette-strip" aria-label="Light preset colors"><i class="palette-surface"></i><i class="palette-ink"></i><i class="palette-accent"></i><i class="palette-added"></i><i class="palette-removed"></i></div>
+            <p>Purple-tinted white surfaces, grounded charcoal text, and a rich violet interaction color.</p>
+            <dl><div><dt>Contrast</dt><dd>{lightPreset.theme.contrast}</dd></div><div><dt>Code theme</dt><dd>{lightPreset.codeThemeId}</dd></div><div><dt>Fonts</dt><dd>System</dd></div></dl>
+          </Card>
+        </div>
+      </section>
+
+      <section class="site-shell closing-section">
         <div>
-          <p class="eyebrow">Codex custom theme</p>
-          <h1>Santi020k violet focus, ready for Codex.</h1>
-          <p class="lede">Dark and light presets built from the established Santi020k palette: quiet indigo surfaces, durable contrast, and clear violet focus.</p>
-          <div class="actions"><ButtonLink class="button button-primary" variant="primary" href="#copy">Copy theme</ButtonLink><ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.hub}>Theme hub</ButtonLink></div>
+          <Eyebrow class="eyebrow">Ready when you are</Eyebrow>
+          <h2>Make Codex feel like part of the family.</h2>
         </div>
-        <div class="theme-window" aria-label="Theme color preview">
-          <div class="window-top"><span></span><span></span><span></span><b>Codex</b></div>
-          <div class="window-body"><p>New task</p><div class="prompt">Build a thoughtful idea <button>Send</button></div><small>Santi020k dark · contrast 45</small></div>
+        <div class="actions">
+          <ButtonLink class="button button-primary" variant="primary" href="#presets">Copy a preset</ButtonLink>
+          <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.hub}>Explore every theme</ButtonLink>
         </div>
-      </section>
-      <section id="copy" class="site-shell section">
-        <p class="eyebrow">One click</p><h2>Copy either mode, then paste in Codex settings.</h2>
-        <p class="section-lede">Each button copies its exact <code>codex-theme-v1:</code> value. No installation or file editing is needed.</p>
-        <div class="preset-grid">
-          <div class="theme-code"><h3>Light</h3><pre><code>{prettyLightTheme}</code></pre><Button class="button button-primary copy-theme" type="button" data-theme={copyableLightTheme}>Copy light theme</Button></div>
-          <div class="theme-code dark-theme-code"><h3>Dark</h3><pre><code>{prettyDarkTheme}</code></pre><Button class="button button-primary copy-theme" type="button" data-theme={copyableDarkTheme}>Copy dark theme</Button></div>
-        </div>
-      </section>
-      <section id="palette" class="site-shell section palette-section">
-        <p class="eyebrow">Palette</p><h2>Two modes, one violet system.</h2>
-        <div class="swatches"><article><i style="background:#f8f6fd"></i><b>Light surface</b><code>#f8f6fd</code></article><article><i style="background:#0d0a15"></i><b>Dark surface</b><code>#0d0a15</code></article><article><i style="background:#6319be"></i><b>Light accent</b><code>#6319be</code></article><article><i style="background:#752df0"></i><b>Dark accent</b><code>#752df0</code></article><article><i style="background:#28a745"></i><b>Light added</b><code>#28a745</code></article><article><i style="background:#7daea3"></i><b>Dark added</b><code>#7daea3</code></article></div>
       </section>
     </main>
-    <footer class="site-shell footer"><span>Santi020k dark and light presets for Codex.</span><Link href={siteUrls.hub}>Santi020k Theme hub</Link></footer>
+
+    <SharedFooter />
     <script>
       import '../main.js'
     </script>

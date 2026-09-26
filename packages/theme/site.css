@@ -2,6 +2,18 @@
 
 :root,
 :root[data-theme="dark"] {
+  --site-shell-max-width: 1180px;
+  --site-shell-gutter: clamp(15px, 4vw, 24px);
+  --site-shell-width: min(
+    var(--site-shell-max-width),
+    calc(100% - var(--site-shell-gutter) - var(--site-shell-gutter))
+  );
+  --site-page-title-size: clamp(2.75rem, 5vw, 4.75rem);
+  --site-page-title-line-height: 0.98;
+  --site-page-title-measure: 15ch;
+  --site-section-title-size: clamp(2rem, 3.6vw, 3.5rem);
+  --site-section-title-line-height: 1.06;
+  --site-section-title-measure: 18ch;
   color-scheme: dark;
   --canvas: 258 41% 8%;
   --surface: 262 31% 12%;
@@ -38,6 +50,10 @@
   --btn-secondary-bg: rgb(28 21 40 / 0.72);
   --section-divider: rgb(73 65 88 / 0.7);
   --swatch-circle-border: rgb(223 221 227 / 0.22);
+}
+
+:where(h1, h2, h3) {
+  text-wrap: balance;
 }
 
 :root[data-theme="light"] {

@@ -1,5 +1,3 @@
-/* eslint-disable no-console -- CLI scripts intentionally report progress and diagnostics. */
-
 import { copyFile, mkdir, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 

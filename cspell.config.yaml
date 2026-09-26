@@ -1,6 +1,14 @@
 version: "0.2"
 language: en
 words:
+  # Native JetBrains and Xcode theme identifiers that cannot be renamed.
+  - Darcula
+  - DFDDE3
+  - Exectuable
+  - Invisibles
+  - PARENTHS
+  - plutil
+  - xccolortheme
   # Shell, packaging, and platform identifiers used by the terminal tooling.
   - bbwe
   - checkwinsize
@@ -165,6 +173,7 @@ words:
   - outfit
   - outline-offset
   - ovsx
+  - oxlint
   - OVSX_PAT
   - OAuth
   - pnpm-lock
@@ -179,7 +188,8 @@ words:
   - rasterizes
   - readonly
   - readwrite
-  - rgbaf
+  - rgba
+  - RRGGBBAA
   - roboto
   - santi
   - santi020k
