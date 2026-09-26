@@ -2,6 +2,12 @@ import { spawnSync } from 'node:child_process'
 import { appendFileSync, mkdirSync } from 'node:fs'
 import { dirname } from 'node:path'
 
+const gitEnvironment = { ...process.env }
+
+for (const name of ['GIT_COMMON_DIR', 'GIT_DIR', 'GIT_INDEX_FILE', 'GIT_PREFIX', 'GIT_WORK_TREE']) {
+  delete gitEnvironment[name]
+}
+
 export const changesetsReleaseTag = (name, version) => `${name}@${version}`
 
 export const shouldReportChangesetsRelease = ({ currentVersion, previousVersion, releaseExists }) => (
@@ -24,12 +30,50 @@ export const writeChangesetsRelease = ({
   return tag
 }
 
+export const ensureLocalReleaseTag = ({ root, tag }) => {
+  const existingTag = spawnSync('git', ['show-ref', '--verify', '--quiet', `refs/tags/${tag}`], {
+    cwd: root,
+    env: gitEnvironment,
+    stdio: 'ignore',
+  })
+
+  if (existingTag.error) {
+    throw existingTag.error
+  }
+
+  if (existingTag.status === 0) {
+    return false
+  }
+
+  if (existingTag.status !== 1) {
+    throw new Error(`Unable to inspect git tag ${tag}; git exited with code ${existingTag.status ?? 1}`)
+  }
+
+  const createdTag = spawnSync('git', ['tag', '-a', tag, '-m', tag], {
+    cwd: root,
+    encoding: 'utf8',
+    env: gitEnvironment,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  })
+
+  if (createdTag.error) {
+    throw createdTag.error
+  }
+
+  if (createdTag.status !== 0) {
+    throw new Error(`Unable to create git tag ${tag}: ${createdTag.stderr.trim()}`)
+  }
+
+  return true
+}
+
 const readPreviousPackageVersion = ({ directory, root }) => {
   const packagePath = `${directory}/package.json`
 
   const result = spawnSync('git', ['show', `HEAD^:${packagePath}`], {
     cwd: root,
     encoding: 'utf8',
+    env: gitEnvironment,
     stdio: ['ignore', 'pipe', 'pipe'],
   })
 
@@ -91,6 +135,8 @@ export const reportChangesetsRelease = async ({
   if (!shouldReportChangesetsRelease({ currentVersion: version, previousVersion, releaseExists })) {
     return false
   }
+
+  ensureLocalReleaseTag({ root, tag })
 
   writeChangesetsRelease({ name, outputPath, tag, version })
 

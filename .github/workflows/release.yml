@@ -66,6 +66,7 @@ jobs:
           commit-message: "chore(release): version package"
           pr-title: "chore(release): version package"
           create-github-releases: true
+          push-with-git-cli: true
         env:
           HUSKY: 0
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
