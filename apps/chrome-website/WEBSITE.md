@@ -1,12 +1,12 @@
 # Chrome Theme Website
 
-Reference for the chrome.santi020k.com site.
+Reference for the Chrome product route in the consolidated theme-family site.
 
 ## Stack
 
 - Runtime: Astro with plain HTML, CSS, and JavaScript
-- Build: `pnpm run site:chrome:build`
-- Dev server: `pnpm run site:chrome:dev`
+- Build: `pnpm run site:build`
+- Dev server: `pnpm run site:dev`
 - Deploy output: composed into `apps/website/dist/chrome/`
 - Canonical route: `https://theme.santi020k.com/chrome/`
 

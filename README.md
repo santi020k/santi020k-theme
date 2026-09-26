@@ -3,8 +3,8 @@
 Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Zed, Chrome, Codex, JetBrains IDEs, Raycast, Slack, Xcode, terminals, shared brand packages, and static product websites.
 
 [Theme family](https://theme.santi020k.com) ·
-[VS Code](https://vscode.santi020k.com) ·
-[Terminal](https://terminal.santi020k.com) ·
+[VS Code](https://theme.santi020k.com/vscode/) ·
+[Terminal](https://theme.santi020k.com/terminal/) ·
 [npm](https://www.npmjs.com/package/@santi020k/theme) ·
 [Documentation](docs/brand-guidelines.md) ·
 [Releases](https://github.com/santi020k/santi020k-theme/releases) ·

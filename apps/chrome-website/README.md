@@ -1,6 +1,6 @@
 # Chrome Theme Website
 
-Static Astro site for [chrome.santi020k.com](https://chrome.santi020k.com), the product page for the Santi020k Chrome browser theme.
+Astro source module for the [Santi020k Chrome theme page](https://theme.santi020k.com/chrome/) in the consolidated theme-family site.
 
 The page should connect the browser theme to the wider Santi020k Theme family, show the actual Chrome visual direction, and send users to the dark and light Chrome Web Store listings.
 
@@ -18,9 +18,9 @@ Run commands from the repository root.
 
 | Command | What it does |
 | --- | --- |
-| `pnpm run site:chrome:dev` | Starts the local Chrome site dev server on port 4175 |
-| `pnpm run site:chrome:build` | Builds the production site |
-| `pnpm run site:chrome:preview` | Previews the production build on port 4175 |
+| `pnpm run site:dev` | Starts the consolidated site dev server on port 4174 |
+| `pnpm run site:build` | Builds the consolidated production site |
+| `pnpm run site:preview` | Previews the consolidated production build on port 4174 |
 | `pnpm run validate:chrome` | Validates the Chrome theme package |
 | `pnpm run validate` | Runs the full monorepo validation suite |
 

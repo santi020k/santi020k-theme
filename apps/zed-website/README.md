@@ -1,6 +1,6 @@
 # Zed Theme Website
 
-Static Astro site for [zed.santi020k.com](https://zed.santi020k.com), the product page for the Santi020k Zed theme.
+Astro source module for the [Santi020k Zed theme page](https://theme.santi020k.com/zed/) in the consolidated theme-family site.
 
 The page should connect the Zed theme to the wider Santi020k Theme family, show the actual Zed visual direction, and give users a clear local install path for the generated theme package.
 
@@ -18,9 +18,9 @@ Run commands from the repository root.
 
 | Command                     | What it does                                      |
 | --------------------------- | ------------------------------------------------- |
-| `pnpm run site:zed:dev`     | Starts the local Zed site dev server on port 4178 |
-| `pnpm run site:zed:build`   | Builds the production site                        |
-| `pnpm run site:zed:preview` | Previews the production build on port 4178        |
+| `pnpm run site:dev`         | Starts the consolidated site dev server on port 4174 |
+| `pnpm run site:build`       | Builds the consolidated production site              |
+| `pnpm run site:preview`     | Previews the consolidated production build on port 4174 |
 | `pnpm run validate:zed`     | Validates the Zed theme package                   |
 | `pnpm run validate`         | Runs the full monorepo validation suite           |
 

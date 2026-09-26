@@ -7,7 +7,7 @@ Reference for the VS Code product page source now published at `https://theme.sa
 ## Stack
 
 - **Runtime**: Astro with plain HTML, CSS, and JavaScript
-- **Build**: `pnpm run site:vscode:build`
+- **Build**: `pnpm run site:build`
 - **Deploy**: composed into `apps/website/dist/vscode/`
 - **Font**: Montserrat (system fallbacks: Avenir Next → Segoe UI → sans-serif)
 
@@ -196,4 +196,4 @@ When adding new syntax or workbench colors to the theme JSON, pick from this pal
 1. **Token change** → edit the `:root` blocks in `src/styles.css`. Dark and light tokens are adjacent; keep them in sync.
 2. **New section** → add a `<section class="site-shell ...">` to `src/pages/index.astro` and a matching `border-top: 1px solid var(--section-divider)` rule in `styles.css`.
 3. **Version bump** → update `softwareVersion` in the JSON-LD block in `src/pages/index.astro`.
-4. **Build** -> `pnpm run site:vscode:build` from the repo root; output goes to `apps/vscode-website/dist/`.
+4. **Build** -> `pnpm run site:build` from the repo root; the composed route is written to `apps/website/dist/vscode/`.

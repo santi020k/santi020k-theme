@@ -1,12 +1,12 @@
 # Zed Theme Website
 
-Reference for the zed.santi020k.com site.
+Reference for the Zed product route in the consolidated theme-family site.
 
 ## Stack
 
 - Runtime: Astro with plain HTML, CSS, and JavaScript
-- Build: `pnpm run site:zed:build`
-- Dev server: `pnpm run site:zed:dev`
+- Build: `pnpm run site:build`
+- Dev server: `pnpm run site:dev`
 - Deploy output: composed into `apps/website/dist/zed/`
 - Canonical route: `https://theme.santi020k.com/zed/`
 
