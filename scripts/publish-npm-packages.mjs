@@ -4,6 +4,10 @@ import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import {
+  reportChangesetsRelease,
+} from './changesets-release-output.mjs'
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const isCI = process.env.CI === 'true'
 const registry = process.env.NPM_CONFIG_REGISTRY || 'https://registry.npmjs.org/'
@@ -84,6 +88,12 @@ for (const { dir, name } of publishPackages) {
 if (unpublished.length === 0) {
   console.log('All npm packages are already published. Skipping npm publish.')
 
+  for (const { dir, name } of publishPackages) {
+    const pkg = readPackage(dir)
+
+    await reportChangesetsRelease({ directory: dir, name, root, version: pkg.version })
+  }
+
   process.exit(0)
 }
 
@@ -116,4 +126,10 @@ try {
   }
 } finally {
   rmSync(configDir, { force: true, recursive: true })
+}
+
+for (const { dir, name } of publishPackages) {
+  const pkg = readPackage(dir)
+
+  await reportChangesetsRelease({ directory: dir, name, root, version: pkg.version })
 }
