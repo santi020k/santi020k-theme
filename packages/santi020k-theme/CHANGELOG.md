@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.4
+
+### Patch Changes
+
+- [#55](https://github.com/santi020k/santi020k-theme/pull/55) [`2d8716a`](https://github.com/santi020k/santi020k-theme/commit/2d8716a28fa5a7ef64c24170997af4e7b0bf5368) Thanks [@santi020k](https://github.com/santi020k)! - Synchronize the published Marketplace icon with the canonical Santi020k brand mark.
+
+- [#56](https://github.com/santi020k/santi020k-theme/pull/56) [`b5f3aa8`](https://github.com/santi020k/santi020k-theme/commit/b5f3aa8f076f48e00d46b5bc07b0b6ae322adfd1) Thanks [@santi020k](https://github.com/santi020k)! - Migrate the release workflow and custom npm publisher to the Changesets Action v2 contract so automated tags and GitHub Releases are created reliably.
+
+- [#57](https://github.com/santi020k/santi020k-theme/pull/57) [`027b4ab`](https://github.com/santi020k/santi020k-theme/commit/027b4ab6a22771e28308f11f57e178da814b55f7) Thanks [@santi020k](https://github.com/santi020k)! - Use Changesets Action's Git CLI push mode so release pull requests remain compatible with repository branch-deletion protection.
+
 ## 2.1.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @santi020k/theme-core
 
+## 2.0.0
+
+### Major Changes
+
+- [#55](https://github.com/santi020k/santi020k-theme/pull/55) [`2d8716a`](https://github.com/santi020k/santi020k-theme/commit/2d8716a28fa5a7ef64c24170997af4e7b0bf5368) Thanks [@santi020k](https://github.com/santi020k)! - Consolidate every public theme page and the complete Terminal documentation under theme.santi020k.com, add shared global and contextual navigation with a theme selector, polish every page family, introduce a compact family-wide footer, and update shared site URLs for the new route-based architecture.
+  
+  Breaking change: `SiteUrls` now requires `raycast`, `slack`, `jetbrains`, and `xcode` URLs. Consumers that construct `SiteUrls` values must add those fields. Existing product URLs now resolve to routes under `https://theme.santi020k.com/` instead of separate product domains.
+
 ## 1.2.0
 
 ### Minor Changes

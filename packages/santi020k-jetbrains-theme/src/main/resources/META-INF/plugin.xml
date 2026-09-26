@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.santi020k.theme</id>
   <name>Santi020k Theme</name>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <vendor url="https://santi020k.com">Santiago Molina</vendor>
   <description><![CDATA[
     Calm, purple-forward dark and light themes for JetBrains IDEs and Android Studio.
