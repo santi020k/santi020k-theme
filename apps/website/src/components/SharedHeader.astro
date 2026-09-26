@@ -95,6 +95,12 @@ const isActive = (href: string) => {
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
   const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
 
+  const closeNavigation = () => {
+    navigation?.classList.remove('is-open')
+
+    toggle?.setAttribute('aria-expanded', 'false')
+  }
+
   toggle?.addEventListener('click', () => {
     const isOpen = navigation?.classList.toggle('is-open') ?? false
 
@@ -104,9 +110,7 @@ const isActive = (href: string) => {
   navigation?.addEventListener('click', event => {
     if (!(event.target instanceof Element) || !event.target.closest('a')) return
 
-    navigation.classList.remove('is-open')
-
-    toggle?.setAttribute('aria-expanded', 'false')
+    closeNavigation()
   })
 
   document.addEventListener('click', event => {
@@ -114,7 +118,19 @@ const isActive = (href: string) => {
   })
 
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && themeMenu?.open) {
+    if (event.key !== 'Escape') return
+
+    if (navigation?.classList.contains('is-open')) {
+      closeNavigation()
+
+      if (themeMenu?.open) themeMenu.open = false
+
+      toggle?.focus()
+
+      return
+    }
+
+    if (themeMenu?.open) {
       themeMenu.open = false
 
       themeMenu.querySelector('summary')?.focus()
