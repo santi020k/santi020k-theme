@@ -4,12 +4,12 @@
   "description": "Premium Chrome browser theme with a deep violet palette.",
   "icons": [
     {
-      "src": "/icons/icon.svg",
+      "src": "/chrome/icons/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }
   ],
-  "start_url": "/",
+  "start_url": "/chrome/",
   "display": "standalone",
   "background_color": "#110c1d",
   "theme_color": "#110c1d"

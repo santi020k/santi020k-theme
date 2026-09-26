@@ -21,7 +21,7 @@ This is the only public Santi020k theme website and Cloudflare Pages deployment.
 ## Assets
 
 - Shared hub assets live in `apps/website/public/`.
-- Product-owned public assets are copied into their route namespace after the Astro build by `scripts/sync-consolidated-site-assets.mjs`.
+- Product-owned public assets are copied into their route namespace before Astro development and builds by `scripts/sync-consolidated-site-assets.mjs`.
 - Terminal downloads continue to be generated from `packages/santi020k-terminal-theme`; the consolidated build publishes them beneath `/terminal/`.
 
 ## Maintenance
