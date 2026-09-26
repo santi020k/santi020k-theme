@@ -188,6 +188,7 @@ words:
   - readonly
   - readwrite
   - rgba
+  - RRGGBBAA
   - roboto
   - santi
   - santi020k

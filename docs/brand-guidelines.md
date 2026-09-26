@@ -126,6 +126,63 @@ Current known anchor colors from package and website docs:
 | Light accent                     | `#6319be`, `#5a14b0`, `#7730b8`            |
 | High-contrast dark border/accent | `#602cba`, `#60c8e0`, `#ffc060`, `#ff7070` |
 
+### Color format reference
+
+Use this semantic palette for shared brand UI, documentation, marketing assets, and new platform
+ports. The VS Code theme JSON remains the authority for the complete workbench and syntax palette;
+these tables document the reusable core colors exposed by `packages/theme/site.css`.
+
+#### Dark palette
+
+| Role and default usage             | Shared CSS token        | HEX       | RGB                 | HSL                  |
+| ---------------------------------- | ----------------------- | --------- | ------------------- | -------------------- |
+| Canvas — page or editor base       | `--theme-bg`            | `#110c1d` | `rgb(17 12 29)`     | `hsl(258 41% 8%)`    |
+| Surface — cards and primary panels | `--site-surface`        | `#1c1528` | `rgb(28 21 40)`     | `hsl(262 31% 12%)`   |
+| Surface muted — quiet regions      | `--site-surface-muted`  | `#231d30` | `rgb(35 29 48)`     | `hsl(259 25% 15%)`   |
+| Surface strong — raised regions    | `--site-surface-strong` | `#322b40` | `rgb(50 43 64)`     | `hsl(260 20% 21%)`   |
+| Line — borders and dividers        | `--site-line`           | `#494158` | `rgb(73 65 88)`     | `hsl(261 15% 30%)`   |
+| Ink — primary text                 | `--site-ink`            | `#dfdde3` | `rgb(223 221 227)`  | `hsl(260 10% 88%)`   |
+| Ink soft — supporting text         | `--site-ink-soft`       | `#b6b2bd` | `rgb(182 178 189)`  | `hsl(262 8% 72%)`    |
+| Ink muted — metadata               | `--site-ink-muted`      | `#8d8896` | `rgb(141 136 150)`  | `hsl(261 6% 56%)`    |
+| Brand — links and focus            | `--site-brand`          | `#945df4` | `rgb(148 93 244)`   | `hsl(262 87% 66%)`   |
+| Brand solid — primary controls     | `--site-brand-solid`    | `#5a0fdb` | `rgb(90 15 219)`    | `hsl(262 87% 46%)`   |
+| Brand hover — active controls      | `--site-brand-hover`    | `#752df0` | `rgb(117 45 240)`   | `hsl(262 87% 56%)`   |
+| Accent — secondary highlights      | `--site-accent`         | `#b48df7` | `rgb(180 141 247)`  | `hsl(262 87% 76%)`   |
+| Success — positive status          | `--site-success`        | `#7daea3` | `rgb(125 174 163)`  | `hsl(167 23% 59%)`   |
+| Warning — caution status           | `--site-warning`        | `#e8b44a` | `rgb(232 180 74)`   | `hsl(40 77% 60%)`    |
+| Danger — error status              | `--site-danger`         | `#ea6962` | `rgb(234 105 98)`   | `hsl(3 76% 65%)`     |
+
+#### Light palette
+
+| Role and default usage             | Shared CSS token        | HEX       | RGB                 | HSL                  |
+| ---------------------------------- | ----------------------- | --------- | ------------------- | -------------------- |
+| Canvas — page or editor base       | `--theme-bg`            | `#f8f6fd` | `rgb(248 246 253)`  | `hsl(257 64% 98%)`   |
+| Surface — cards and primary panels | `--site-surface`        | `#f0edf9` | `rgb(240 237 249)`  | `hsl(255 50% 95%)`   |
+| Surface muted — quiet regions      | `--site-surface-muted`  | `#eae7f5` | `rgb(234 231 245)`  | `hsl(253 41% 93%)`   |
+| Surface strong — raised regions    | `--site-surface-strong` | `#e3dff0` | `rgb(227 223 240)`  | `hsl(254 36% 91%)`   |
+| Line — borders and dividers        | `--site-line`           | `#d3cde6` | `rgb(211 205 230)`  | `hsl(254 33% 85%)`   |
+| Ink — primary text                 | `--site-ink`            | `#302e36` | `rgb(48 46 54)`     | `hsl(255 8% 20%)`    |
+| Ink soft — supporting text         | `--site-ink-soft`       | `#403850` | `rgb(64 56 80)`     | `hsl(260 18% 27%)`   |
+| Ink muted — metadata               | `--site-ink-muted`      | `#9880c0` | `rgb(152 128 192)`  | `hsl(263 34% 63%)`   |
+| Brand — links and focus            | `--site-brand`          | `#6319be` | `rgb(99 25 190)`    | `hsl(267 77% 42%)`   |
+| Brand solid — primary controls     | `--site-brand-solid`    | `#5a14b0` | `rgb(90 20 176)`    | `hsl(267 80% 38%)`   |
+| Brand hover — active controls      | `--site-brand-hover`    | `#7730b8` | `rgb(119 48 184)`   | `hsl(271 59% 45%)`   |
+| Accent — secondary highlights      | `--site-accent`         | `#7030b0` | `rgb(112 48 176)`   | `hsl(270 57% 44%)`   |
+| Success — positive status          | `--site-success`        | `#28a745` | `rgb(40 167 69)`    | `hsl(134 61% 41%)`   |
+| Warning — caution status           | `--site-warning`        | `#c07a10` | `rgb(192 122 16)`   | `hsl(36 85% 41%)`    |
+| Danger — error status              | `--site-danger`         | `#c0392b` | `rgb(192 57 43)`    | `hsl(6 63% 46%)`     |
+
+Format guidance:
+
+- Use six-digit HEX in JSON, store metadata, and platform theme files that do not support semantic
+  variables. VS Code also accepts eight-digit `#RRGGBBAA` when a token needs opacity.
+- Use modern space-separated `rgb()` in CSS when an alpha channel is useful, for example
+  `rgb(148 93 244 / 40%)`.
+- Use `hsl()` for controlled tone adjustments in CSS. Keep the semantic role stable when changing
+  lightness or saturation; do not create a new named color for a temporary state.
+- Prefer the shared CSS token over a literal value in website code. Platform ports should map the
+  semantic role to their native format rather than copying unrelated surface colors.
+
 Rules:
 
 - Add related UI states as a set: background, foreground, border, hover, focus, inactive, and unfocused.
