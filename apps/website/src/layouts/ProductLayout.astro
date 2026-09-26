@@ -1,6 +1,9 @@
 ---
 
 import { UIPrimitives } from '@santi020k/lumen-astro'
+import MetadataHead from '@santi020k/og/astro/head'
+import { personSchema, serializeJsonLd, softwareApplicationSchema } from '@santi020k/og/schema'
+import { defineSite } from '@santi020k/og/site'
 
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
@@ -16,16 +19,29 @@ const { description, name, slug, title } = Astro.props
 const canonical = `https://theme.santi020k.com/${slug}/`
 const socialImage = 'https://theme.santi020k.com/og-image.png'
 
-const structuredData = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
+const site = defineSite({
+  locale: 'en_US',
+  siteName: 'Santi020k Themes',
+  siteUrl: 'https://theme.santi020k.com',
+  twitter: { creator: '@santi020k', site: '@santi020k' }
+})
+
+const page = site.page({
+  canonical,
+  description,
+  image: { alt: `Santi020k Theme for ${name}`, url: socialImage },
+  pathname: `/${slug}/`,
+  title
+})
+
+const structuredData = serializeJsonLd(softwareApplicationSchema({
   name: `Santi020k Theme for ${name}`,
   url: canonical,
   description,
   applicationCategory: 'DeveloperApplication',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  author: { '@type': 'Person', name: 'Santiago Molina', url: 'https://santi020k.com/' }
-}).replace(/</g, '\\u003c')
+  author: personSchema({ name: 'Santiago Molina', url: 'https://santi020k.com/' })
+}))
 ---
 
 <!doctype html>
@@ -44,33 +60,12 @@ const structuredData = JSON.stringify({
       })()
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <MetadataHead {page} site={site.options} />
     <meta name="author" content="Santiago Molina" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="color-scheme" content="dark light" />
-    <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content="Santi020k Themes" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={socialImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`Santi020k Theme for ${name}`} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@santi020k" />
-    <meta name="twitter:creator" content="@santi020k" />
-    <meta name="twitter:url" content={canonical} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={socialImage} />
-    <meta name="twitter:image:alt" content={`Santi020k Theme for ${name}`} />
     <script is:inline type="application/ld+json" set:html={structuredData}></script>
   </head>
   <body>

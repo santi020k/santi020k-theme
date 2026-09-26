@@ -14,7 +14,7 @@
   <rect width="100%" height="100%" fill="url(#glow)"/>
   <rect width="100%" height="100%" fill="url(#grid)"/>
   <rect x="28" y="28" width="1144" height="574" rx="38" fill="none" stroke="white" stroke-opacity="0.08"/>
-  <rect x="72" y="62" width="64" height="64" rx="18" fill="#945df4"/><circle cx="104" cy="94" r="12" fill="white" opacity="0.92"/>
+  <image href="data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJTMksgTWFyayI+CiAgPHJlY3Qgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIHJ4PSIyOCIgZmlsbD0iIzVhMGZkYiIgLz4KICA8cGF0aCBkPSJNIDQwIDQ0IEwgNjQgNjQgTCA0MCA4NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIC8+CiAgPGxpbmUgeDE9Ijc0IiB5MT0iODQiIHgyPSI5NiIgeTI9Ijg0IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgLz4KPC9zdmc+Cg==" x="72" y="62" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
   <text x="154" y="91" fill="#f8fafc" font-family="Inter Variable" font-size="26" font-weight="800">Santi020k Theme</text>
   <text x="154" y="118" fill="#cbd5e1" font-family="Inter Variable" font-size="15" font-weight="600">theme.santi020k.com</text>
   <g transform="translate(72 166)">
@@ -26,12 +26,18 @@
   <text x="74" y="400" fill="#cbd5e1" font-family="Inter Variable" font-size="23" font-weight="500">One violet system across every surface.</text>
   <rect x="72" y="578" width="190" height="5" rx="2.5" fill="#945df4"/>
 
-      <g transform="translate(796 164)">
-        <rect width="320" height="340" rx="44" fill="#945df4" opacity="0.16"/>
-        <rect x="34" y="32" width="252" height="276" rx="30" fill="#0f172abd" stroke="#ffffff29"/>
-        <circle cx="160" cy="132" r="62" fill="#945df4" opacity="0.88"/>
-        <path d="M132 132h56M160 104v56" stroke="white" stroke-width="12" stroke-linecap="round"/>
-        <rect x="78" y="230" width="164" height="16" rx="8" fill="#ffffff6b"/>
-        <rect x="108" y="262" width="104" height="11" rx="5.5" fill="#ffffff3d"/>
+      <g transform="translate(786 174)">
+        <rect x="8" y="12" width="164" height="118" rx="24" fill="#1c1528" stroke="#945df4" stroke-opacity="0.58"/>
+        <rect x="38" y="42" width="78" height="13" rx="6.5" fill="#945df4"/>
+        <rect x="38" y="76" width="104" height="13" rx="6.5" fill="#f8fafc" opacity="0.38"/>
+        <rect x="38" y="101" width="62" height="10" rx="5" fill="#f8fafc" opacity="0.22"/>
+        <rect x="192" y="54" width="146" height="112" rx="24" fill="#1c1528" stroke="#f8fafc" stroke-opacity="0.20"/>
+        <rect x="218" y="80" width="94" height="18" rx="9" fill="#f8fafc" opacity="0.16"/>
+        <rect x="218" y="116" width="44" height="28" rx="9" fill="#945df4"/>
+        <rect x="274" y="116" width="38" height="28" rx="9" fill="#f8fafc"/>
+        <rect x="78" y="158" width="202" height="112" rx="24" fill="#1c1528" stroke="#f8fafc" stroke-opacity="0.20"/>
+        <circle cx="118" cy="214" r="20" fill="#945df4"/>
+        <rect x="154" y="192" width="90" height="14" rx="7" fill="#f8fafc" opacity="0.60"/>
+        <rect x="154" y="224" width="64" height="11" rx="5.5" fill="#f8fafc" opacity="0.26"/>
       </g>
 </svg>

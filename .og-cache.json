@@ -1,107 +1,107 @@
 {
-  "cacheKey": "preset-v1",
+  "cacheKey": "preset-v4",
   "entries": {
-    "apps/website/public/og-image.svg": {
-      "digest": "d6b9a4a4d7450cf534fe2fb3a53da3771737e9ce42ff806ea28009369b6829d5",
-      "fingerprint": "df823acf8336981fe7f7c30d7b405ddd7f33cbe165191b51f06c0c3ec6de79f6",
-      "output": "apps/website/public/og-image.svg"
-    },
     "apps/website/public/og-image.png": {
-      "digest": "c1b1f11dd38aab703a968ec9b765f3a3dc09bcbe1e17ced2db8949cfe0f87282",
-      "fingerprint": "e9e3610d4a76b002bbe43b2d8d8d47db41b6c5ae49a61546b404aed161153a6b",
+      "digest": "27cfcc06555a268cf2525229614230c637019354e9171cfe387bf308a83e4d10",
+      "fingerprint": "e1d9f1f14bced8c4593f70ba241aa3953184a2195050c502e4da6771b2dbefe8",
       "output": "apps/website/public/og-image.png"
     },
-    "apps/vscode-website/public/og-image.svg": {
-      "digest": "22ce1bbad126b255da2912fe81723797f48d1ef47124ba1c1a39a7069f1ada41",
-      "fingerprint": "bdf876bcd3cd97ea80ea24efd8a5ca205f9573c1ab54f0bc52b3e9389e08bc59",
-      "output": "apps/vscode-website/public/og-image.svg"
+    "apps/website/public/og-image.svg": {
+      "digest": "15f6f81e5ca6a708cc73229cfac18ef4e67710333dc5c7063796c86254f822d3",
+      "fingerprint": "11c1f6e591af699e90b73e9caa72af200b8186b9500e97d8c2ce726d3d36bd30",
+      "output": "apps/website/public/og-image.svg"
     },
     "apps/vscode-website/public/og-image.png": {
-      "digest": "2f388326784624653f01c8dbf846d72f8c07b3be6f0cd0aee0e8639b8bfbe5c9",
-      "fingerprint": "78b5892fb0fee977452e4b708642f1fae5286afa9930370bd54b2431ab42d238",
+      "digest": "93950a115f8cf7c4ec7847123d62234fe3cb3abebe5898edf3111f9f934de5bf",
+      "fingerprint": "8f2bae5df4909659c4a4677f256a78b0254271004c1e0c0c1909d5670d9a80a8",
       "output": "apps/vscode-website/public/og-image.png"
     },
-    "apps/chrome-website/public/og-image.svg": {
-      "digest": "987013ec03b086c7cd78149e41410fb179cd4e7cbfa856a9ef4aacbbd30951b9",
-      "fingerprint": "9de3b770b5ccf8aed0aba2b9ad947f5851061b862ae960c9e218958e37b49f42",
-      "output": "apps/chrome-website/public/og-image.svg"
+    "apps/vscode-website/public/og-image.svg": {
+      "digest": "e407a82f50e03496d506ffb20508941ff87540501f4a221160832b16524de198",
+      "fingerprint": "5c04a8f972fdc3450ac2bb01925998bcdb6d1d30b0844a698148780050f6e997",
+      "output": "apps/vscode-website/public/og-image.svg"
     },
     "apps/chrome-website/public/og-image.png": {
-      "digest": "de9e62aa38278a161d543acad7800fe5f966b7f0e5eac4d3cc4c57956270935e",
-      "fingerprint": "b84da90085bd551eda474725f41ad9f4ea585825badacf89b9ccc02c2607f1ab",
+      "digest": "e666bda3cc1b84449029ee5cf774b4b18ca980c4a0cae758996143970b479847",
+      "fingerprint": "da06888be616a81ff5d38412c7f839a13e0d7b9eba5428542f7d244e73132bb9",
       "output": "apps/chrome-website/public/og-image.png"
     },
-    "apps/zed-website/public/og-image.svg": {
-      "digest": "06599b23c0ff1b1a4ef30b0f486d5e8baf1430258122fdc4d896dc97dce09bd0",
-      "fingerprint": "8284e45e934fd8595757dea871cc8a5173c26bd5da0bc4878ccaf3056e957333",
-      "output": "apps/zed-website/public/og-image.svg"
+    "apps/chrome-website/public/og-image.svg": {
+      "digest": "74d32f703df2c6a1e6ee4bedafa89b37ccb96ff97f709698f7fc42ab3ab523d7",
+      "fingerprint": "30dd05a556b150ec1ca2e58164e394f95d7c4f60544ed763753b0de00ed92d98",
+      "output": "apps/chrome-website/public/og-image.svg"
     },
     "apps/zed-website/public/og-image.png": {
-      "digest": "60b81691321734b5fb82a8039a34098207d9695b2a91aefaf87c4d9e35bfc37a",
-      "fingerprint": "7fce281fcba16739a72b009a619f80d9d58c1af767daad0a64c809dcc0489435",
+      "digest": "874c3b7d2a47b58c0a0da78f0016ff9133a7f7717777c44bbccc31aafe05937e",
+      "fingerprint": "c1792a6e42bbb18770baaefc2619ee36d27b757f2528d74f1bec7c9a56d34e6d",
       "output": "apps/zed-website/public/og-image.png"
     },
-    "apps/codex-website/public/og-image.svg": {
-      "digest": "ce456be8b93a2dffe7dd371739c7d432900144dac15da32a8af6b1ce143bb8f3",
-      "fingerprint": "f4e0910a38a4bafdf0cbb57a2ce1c40f46bb7e92a3990c50a5265473297022be",
-      "output": "apps/codex-website/public/og-image.svg"
+    "apps/zed-website/public/og-image.svg": {
+      "digest": "2efaded059e969643b0478ae04e1d1c75c832639cedb054269737e28d181755f",
+      "fingerprint": "e83f0308d046a54605578bfcb586de4be0aa566e5b6bca4d41813701e1f3e023",
+      "output": "apps/zed-website/public/og-image.svg"
     },
     "apps/codex-website/public/og-image.png": {
-      "digest": "78460ac1268f1f9fde18c3884e24006b6c7058355456204ebf086ec3588b0107",
-      "fingerprint": "5836e94566bd320c36002c9fed3572d1cacc24442b692a19d7acdc603f08ff46",
+      "digest": "2a21fa0a04a5818c0910cdabdc88a4f9f25b7ad3b727e8aa5d7b8f59ae906aaf",
+      "fingerprint": "d7fedca7dfcce56bd5325956f603fdd4e0a35cd2e0589917f6020427b24d0f20",
       "output": "apps/codex-website/public/og-image.png"
     },
-    "apps/terminal-website/public/og-image.svg": {
-      "digest": "e0ff0e479ae675adeb7330b9010b5cc424c5af1e4314312647825f5e97d3d262",
-      "fingerprint": "9443aa4787b0352a10cba9858e8e9536f26217d9739211086d99349bcec4bf97",
-      "output": "apps/terminal-website/public/og-image.svg"
+    "apps/codex-website/public/og-image.svg": {
+      "digest": "597df383a86dca8600f13c0e9be07ccd3207607133a35af3fa4f6c4e7d557dea",
+      "fingerprint": "9f3024eda607b21d6e9015096b50f541cc150d114a8a3e309c2a80a84e36c40d",
+      "output": "apps/codex-website/public/og-image.svg"
     },
     "apps/terminal-website/public/og-image.png": {
-      "digest": "c55c867add9350c6d7c04d4a9a1655fd4697d5b1c9e1912a221bd85962bf299d",
-      "fingerprint": "16f9155a43c9111b1df984ad31af05cf0944c00aea22200cce7d3b59608ab64c",
+      "digest": "3fff6697c3a2675c28427aadc03bb97f55603a02a05bcda7501210cbe8c50e84",
+      "fingerprint": "8df9a9f2a9008784c719c53cd453b983b632dc96368e6952a80ce0938abb50f7",
       "output": "apps/terminal-website/public/og-image.png"
     },
-    "apps/terminal-website/public/og-zsh.svg": {
-      "digest": "a01de65e0adc053e669d5f543a93c6239686ff2409044b38423e451d0d24b44f",
-      "fingerprint": "5cc7c4219be333ccfc899735be6162ce0f2fd7498bc25ace2cc3f396be82f99f",
-      "output": "apps/terminal-website/public/og-zsh.svg"
+    "apps/terminal-website/public/og-image.svg": {
+      "digest": "3c08dff8c1adac2d711cf16dde7272be54ce61953d81feaa6d19371c334a84c3",
+      "fingerprint": "2ac1601a83b8e2eb89faa38144cb5f0ec489d2ba9b2ab7349f673cb681e4bc2a",
+      "output": "apps/terminal-website/public/og-image.svg"
     },
     "apps/terminal-website/public/og-zsh.png": {
-      "digest": "bd8df8d09dfd7451c58ecb4c6ca410f885f3c62d5dc53ccf1a3a294d1ef90461",
-      "fingerprint": "7005af4d8a25fba4a2949f8a14480918dc7e9e4ae51ef00812cfc9181b8e2594",
+      "digest": "44a54569c71316dd020ddef279ed29a8ba9a114cbc96db00096bfc6aa40fe20a",
+      "fingerprint": "7c995e55aa80ee2bad48caa3801f14014a5d7c0cb2db8b8c22e1a0b9076454a9",
       "output": "apps/terminal-website/public/og-zsh.png"
     },
-    "apps/terminal-website/public/og-iterm2.svg": {
-      "digest": "3ba23a5b2fb87bcd34b657f4869a2c12c7f4b78dde1fdd8b79ba4301581413c4",
-      "fingerprint": "2247eec31d8cb69ade9ec96e8d7c8095e8fe10dc357486728c618604316464a6",
-      "output": "apps/terminal-website/public/og-iterm2.svg"
+    "apps/terminal-website/public/og-zsh.svg": {
+      "digest": "cf566b34aeab50aaf7d389250f4d29bc9c9b491edc16ef33aeaf2864b7079e9a",
+      "fingerprint": "d5a7332f8d54ec97043cb7b9f8d196474eab5a3891c202a587c59571e989a984",
+      "output": "apps/terminal-website/public/og-zsh.svg"
     },
     "apps/terminal-website/public/og-iterm2.png": {
-      "digest": "0a984506a01b587a19e5f2a4f72fd67b2e4aab872b41d3e67b7c20d699b19d5d",
-      "fingerprint": "46e8fbae47d395ec96c3649b2034ed9d16a5f12b94737739db8885aa79778480",
+      "digest": "68d27248055eb312b0037f631d3848fa1fd686b34feee6139e3b21d6b18b3dbd",
+      "fingerprint": "b77edaa7a52e10c63ea46cd2a437a8def6ed11dd63d6dfbb5af64d2bd1125f2e",
       "output": "apps/terminal-website/public/og-iterm2.png"
     },
-    "apps/terminal-website/public/og-starship.svg": {
-      "digest": "35df09ae8fc83277b15af8d978f4f82f2d3711b9c9bb4f804d954073e73e7153",
-      "fingerprint": "457c90a6beeac98f524ce0ff580736c3e56bda3ba72ef4e524d7be4a75c0e60b",
-      "output": "apps/terminal-website/public/og-starship.svg"
+    "apps/terminal-website/public/og-iterm2.svg": {
+      "digest": "653f6efad1e9116259a7eeebc50bc9e9dca4945e5ee0f25b4d4bff24fb0c588c",
+      "fingerprint": "ceeab548b6b90e11d83441d37d90a4ee08f981bba8f964db5952dfbddc787308",
+      "output": "apps/terminal-website/public/og-iterm2.svg"
     },
     "apps/terminal-website/public/og-starship.png": {
-      "digest": "99ca9435c3806c688a07c7caeb0b297822dd90bdc5888a3e64fb4c4d037bb312",
-      "fingerprint": "95501b39fd184ba01821fe0be710b628fd7377d01e384e8a309db2961ec4b96a",
+      "digest": "02d98dce34899c767283dd4dc9296034e4747ebdce401d982f5ce3aa2fb642fd",
+      "fingerprint": "310186c7dae21a989cb1f22917a7bed55df182f528ecb57f37887b726c332230",
       "output": "apps/terminal-website/public/og-starship.png"
     },
-    "apps/terminal-website/public/og-ports.svg": {
-      "digest": "00de21d014863b526683f2a3888b5dbc1df06b09ffe8d9cd2a56cb5cbb0ae073",
-      "fingerprint": "9b7a281d24662a3237c3ef59e14b58295cb4c2ea81285bd89d1b2e54bea9f5eb",
-      "output": "apps/terminal-website/public/og-ports.svg"
+    "apps/terminal-website/public/og-starship.svg": {
+      "digest": "c482a0401b7cb882b850dd4d08c9e8d52991063c28fcd6b7a919bf9d2f155d67",
+      "fingerprint": "dbccb7bef1049ac938939a8d49c9ea0c889e88292e4997d3491db1f10ce9ed6f",
+      "output": "apps/terminal-website/public/og-starship.svg"
     },
     "apps/terminal-website/public/og-ports.png": {
-      "digest": "7243d63e91f56d66a79181546631f54d2baa1b92d8101ca7de8eb40cf547b6e7",
-      "fingerprint": "098ee44fc5fd7a4c012e22ec22c37dd4f9428e2b664f8cd8d1ed78a3986e9dc9",
+      "digest": "8070b482d8b4bb9cf0be80cc9ab6f50d94177f1a8c4adf80200beea6d22013a1",
+      "fingerprint": "727eba96d64d2f81e46492db4747c083e9e988f0ce999c524ba53b6be2636cf0",
       "output": "apps/terminal-website/public/og-ports.png"
+    },
+    "apps/terminal-website/public/og-ports.svg": {
+      "digest": "93226311796bec9b3e84f7ddf552acced45105d6cf729d756a98bb0aab7ba37e",
+      "fingerprint": "e432c2496041cf3b5d6d6d2b7cbe399266b80d7c9f3e124736e64a658c5b791a",
+      "output": "apps/terminal-website/public/og-ports.svg"
     }
   },
-  "generatorVersion": "0.4.0",
+  "generatorVersion": "1.1.1",
   "version": 3
 }

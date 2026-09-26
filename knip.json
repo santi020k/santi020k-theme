@@ -12,7 +12,8 @@
   "workspaces": {
     ".": {
       "entry": [
-        "package.json"
+        "package.json",
+        "og.audit.config.mjs"
       ],
       "project": [
         "*.mjs"

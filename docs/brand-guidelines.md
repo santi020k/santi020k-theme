@@ -1,6 +1,6 @@
 # Santi020k Theme Brand Guidelines
 
-**Canonical source of truth.** Last updated: June 2026. Owner: Santiago Molina, `@santi020k`.
+**Canonical source of truth.** Last updated: August 2026. Owner: Santiago Molina, `@santi020k`.
 
 Use this guide for every Santi020k theme-family surface:
 
@@ -78,6 +78,25 @@ Non-negotiables:
 - Use semantic tokens and shared sources before adding one-off colors.
 - Favor calm separation and readable hierarchy over decorative gradients or glow.
 - Keep Chrome and website previews aligned with the VS Code palette.
+
+### Brand mark
+
+The current Santi020k brand mark is the white terminal prompt (`>_`) on a solid brand-purple
+rounded square. Its canonical sources are:
+
+- `packages/theme/assets/logos/logo-square.svg`
+- `packages/theme/assets/logos/logo-square.png`
+- `packages/theme/assets/logos/logo-square.webp`
+
+Use this same mark for the theme-family favicon, app icon, VS Code Marketplace icon, shared brand
+surfaces, and portfolio project identity. Product-specific artwork may appear in screenshots, Open
+Graph images, and promotional compositions, but it must not replace the canonical mark as the
+product logo. Do not maintain decorative or wallpaper-inspired logo variants as alternate brand
+marks.
+
+Run `pnpm run generate:brand-assets` after changing the canonical square logo so the tracked
+theme-family favicon and app-icon copies remain byte-for-byte aligned. The full validation gate
+runs `pnpm run check:brand-assets` to reject drift.
 
 ## Color System
 
