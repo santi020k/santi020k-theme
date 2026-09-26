@@ -1,4 +1,5 @@
-import { readFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { mkdtemp, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -7,11 +8,25 @@ import { afterEach, describe, expect, test } from 'vitest'
 
 import {
   changesetsReleaseTag,
+  ensureLocalReleaseTag,
   shouldReportChangesetsRelease,
   writeChangesetsRelease,
 } from '../changesets-release-output.mjs'
 
 const temporaryDirectories = []
+
+const gitEnvironment = Object.fromEntries(
+  Object.entries(process.env).filter(([name]) => !name.startsWith('GIT_')),
+)
+
+const runGit = (directory, args, options = {}) => execFileSync('git', [
+  `--git-dir=${join(directory, '.git')}`,
+  `--work-tree=${directory}`,
+  ...args,
+], {
+  env: gitEnvironment,
+  ...options,
+})
 
 afterEach(async () => {
   await Promise.all(temporaryDirectories.splice(0).map((directory) => rm(directory, {
@@ -65,5 +80,33 @@ describe('Changesets v2 release reporting', () => {
       tag: 'v2.0.0',
       packageName: '@santi020k/theme',
     })}\n`)
+  })
+
+  test('creates an annotated local tag at the release commit once', async () => {
+    const directory = await mkdtemp(join(tmpdir(), 'santi020k-release-tag-'))
+
+    temporaryDirectories.push(directory)
+
+    execFileSync('git', ['init', '--quiet', directory], { env: gitEnvironment })
+
+    runGit(directory, ['config', 'user.name', 'Santi020k test'])
+
+    runGit(directory, ['config', 'user.email', 'test@santi020k.com'])
+
+    writeFileSync(join(directory, 'fixture.txt'), 'release\n')
+
+    runGit(directory, ['add', 'fixture.txt'])
+
+    runGit(directory, ['commit', '--quiet', '-m', 'test: release'])
+
+    expect(ensureLocalReleaseTag({ root: directory, tag: 'v2.0.0' })).toBe(true)
+
+    expect(ensureLocalReleaseTag({ root: directory, tag: 'v2.0.0' })).toBe(false)
+
+    expect(runGit(directory, ['rev-parse', 'v2.0.0^{}'], {
+      encoding: 'utf8',
+    }).trim()).toBe(runGit(directory, ['rev-parse', 'HEAD'], {
+      encoding: 'utf8',
+    }).trim())
   })
 })
