@@ -775,7 +775,7 @@ h3 {
   display: block;
   font-family: "Fira Code", monospace;
   font-size: 0.76rem;
-  color: var(--site-ink-muted);
+  color: var(--site-ink-soft);
 }
 
 /* ─── Why section ────────────────────────────────────────────────────────────── */
@@ -927,7 +927,7 @@ h3 {
   gap: 24px;
   min-height: 104px;
   border-top: 1px solid var(--section-divider);
-  color: var(--site-ink-muted);
+  color: var(--site-ink-soft);
   font-size: 0.92rem;
   font-weight: 700;
 }

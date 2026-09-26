@@ -165,7 +165,7 @@ h2 {
 .hero-meta {
   flex-wrap: wrap;
   gap: 9px 16px;
-  color: var(--site-ink-muted);
+  color: var(--site-ink-soft);
   font-size: 0.78rem;
   font-weight: 750;
 }
@@ -516,7 +516,7 @@ h2 {
 }
 
 .steps small {
-  color: var(--site-ink-muted);
+  color: var(--site-ink-soft);
   line-height: 1.5;
 }
 
@@ -552,7 +552,7 @@ h2 {
   margin: 0;
   border-top: 1px solid var(--site-line);
   padding: 18px clamp(20px, 3vw, 30px);
-  color: var(--site-ink-muted);
+  color: var(--site-ink-soft);
   font-size: 0.78rem;
   line-height: 1.55;
 }
@@ -682,7 +682,7 @@ h2 {
   justify-content: space-between;
   gap: 20px;
   border-top: 1px solid var(--section-divider);
-  color: var(--site-ink-muted);
+  color: var(--site-ink-soft);
   font-size: 0.86rem;
 }
 
