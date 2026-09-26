@@ -94,6 +94,7 @@ const isActive = (href: string) => {
   const navigation = document.querySelector<HTMLElement>('#family-primary-navigation')
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
   const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
+  const desktopBreakpoint = window.matchMedia('(min-width: 981px)')
 
   const closeNavigation = () => {
     navigation?.classList.remove('is-open')
@@ -111,6 +112,10 @@ const isActive = (href: string) => {
     if (!(event.target instanceof Element) || !event.target.closest('a')) return
 
     closeNavigation()
+  })
+
+  desktopBreakpoint.addEventListener('change', event => {
+    if (event.matches) closeNavigation()
   })
 
   document.addEventListener('click', event => {
@@ -436,6 +441,10 @@ const isActive = (href: string) => {
       align-items: stretch;
       flex-direction: column;
       gap: 4px;
+      max-height: calc(100vh - 82px);
+      max-height: calc(100dvh - 82px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       padding: 12px;
       border: 1px solid var(--site-line);
       border-radius: 14px;
