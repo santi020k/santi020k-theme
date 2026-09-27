@@ -207,6 +207,13 @@ Recommended workflow split:
 - `release.yml`: Changesets and marketplace publishing for package/release changes only.
 - `deploy-websites.yml`: one Cloudflare Pages direct-upload deployment for `theme.santi020k.com` containing every product route.
 
+The public npm packages publish exclusively through npm Trusted Publishing from the GitHub-hosted
+`release.yml` workflow. The npm publisher records must match the `santi020k/santi020k-theme`
+repository, `release.yml` workflow filename, and `release` GitHub environment. The workflow grants
+`id-token: write` and installs a compatible npm CLI before publishing. The release script packs each
+workspace package with pnpm so internal `workspace:` dependencies become registry versions, then
+publishes the resulting tarball with npm through OIDC; no long-lived `NPM_TOKEN` is used.
+
 Cloudflare deployment uses repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, plus the repository variable `CLOUDFLARE_PAGES_PROJECT_THEME_HUB`. Former product subdomains stay proxied and use the Bulk Redirect list in `cloudflare/legacy-website-redirects.csv`.
 
 ## Naming
@@ -218,7 +225,7 @@ Keep names literal and boring:
 - root scripts: `site:<surface>:dev`, `site:<surface>:build`, `site:<surface>:preview`
 
 The hub keeps the shorter package name `@santi020k/santi020k-theme-website` because it owns `theme.santi020k.com`.
-The shared npm token package uses the shorter scoped name `@santi020k/theme` because it is not tied to one extension surface.
+The shared npm theme package uses the shorter scoped name `@santi020k/theme` because it is not tied to one extension surface.
 
 ## Adding A New Surface
 
