@@ -1,5 +1,11 @@
 # @santi020k/theme-core
 
+## 2.0.1
+
+### Patch Changes
+
+- [#59](https://github.com/santi020k/santi020k-theme/pull/59) [`4ee3419`](https://github.com/santi020k/santi020k-theme/commit/4ee341923c7812b2dd7a557977d9bae213edb649) Thanks [@santi020k](https://github.com/santi020k)! - Publish the shared theme packages through npm Trusted Publishing with GitHub Actions OIDC instead of a long-lived npm token.
+
 ## 2.0.0
 
 ### Major Changes
