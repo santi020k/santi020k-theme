@@ -20,6 +20,7 @@ const hasGitHubOidc = Boolean(
 
 const {
   NODE_AUTH_TOKEN: _nodeAuthToken,
+  NPM_CONFIG_USERCONFIG: _npmUserConfig,
   NPM_TOKEN: _npmToken,
   ...trustedPublishingEnv
 } = process.env
