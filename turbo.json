@@ -2,8 +2,6 @@
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": [
     "CI",
-    "NPM_TOKEN",
-    "NODE_AUTH_TOKEN",
     "OVSX_PAT",
     "STARSHIP_BIN",
     "VSCE_PAT",

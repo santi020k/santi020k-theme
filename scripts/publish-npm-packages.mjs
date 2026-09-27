@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process'
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -12,6 +12,18 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const isCI = process.env.CI === 'true'
 const registry = process.env.NPM_CONFIG_REGISTRY || 'https://registry.npmjs.org/'
 
+const hasGitHubOidc = Boolean(
+  process.env.GITHUB_ACTIONS === 'true'
+  && process.env.ACTIONS_ID_TOKEN_REQUEST_URL
+  && process.env.ACTIONS_ID_TOKEN_REQUEST_TOKEN,
+)
+
+const {
+  NODE_AUTH_TOKEN: _nodeAuthToken,
+  NPM_TOKEN: _npmToken,
+  ...trustedPublishingEnv
+} = process.env
+
 const publishPackages = [
   { dir: 'packages/theme-core', name: '@santi020k/theme-core' },
   { dir: 'packages/theme', name: '@santi020k/theme' },
@@ -23,7 +35,7 @@ const run = (command, args, options = {}) => {
   const result = spawnSync(command, args, {
     cwd: root,
     env: {
-      ...process.env,
+      ...trustedPublishingEnv,
       ...env,
     },
     stdio: 'inherit',
@@ -60,21 +72,6 @@ const isPublished = async (name, version) => {
   return versionMap.has(version)
 }
 
-const createNpmUserConfig = (token) => {
-  const configDir = mkdtempSync(join(tmpdir(), 'santi020k-npm-'))
-  const configPath = join(configDir, '.npmrc')
-  const registryUrl = new URL(registry)
-
-  writeFileSync(configPath, [
-    `registry=${registry}`,
-    `//${registryUrl.host}${registryUrl.pathname}:_authToken=${token}`,
-    '',
-  ].join('\n'), { mode: 0o600 })
-
-  return { configDir, configPath }
-}
-
-const token = process.env.NODE_AUTH_TOKEN || process.env.NPM_TOKEN
 const unpublished = []
 
 for (const { dir, name } of publishPackages) {
@@ -97,8 +94,8 @@ if (unpublished.length === 0) {
   process.exit(0)
 }
 
-if (!token) {
-  const message = `NPM_TOKEN is not set. Skipping npm publish for ${unpublished.map(({ name, pkg }) => `${name}@${pkg.version}`).join(', ')}.`
+if (!hasGitHubOidc) {
+  const message = `GitHub Actions OIDC is unavailable. Skipping npm Trusted Publishing for ${unpublished.map(({ name, pkg }) => `${name}@${pkg.version}`).join(', ')}.`
 
   if (isCI) {
     throw new Error(message)
@@ -109,23 +106,29 @@ if (!token) {
   process.exit(0)
 }
 
-const { configDir, configPath } = createNpmUserConfig(token)
+for (const { dir, name, pkg } of unpublished) {
+  console.log(`Publishing ${name}@${pkg.version} to npm with Trusted Publishing...`)
 
-try {
-  for (const { dir, name, pkg } of unpublished) {
-    console.log(`Publishing ${name}@${pkg.version} to npm...`)
+  const packageDirectory = resolve(root, dir)
+  const packDirectory = mkdtempSync(join(tmpdir(), 'santi020k-npm-pack-'))
 
-    run('pnpm', ['publish', '--access', 'public'], {
-      cwd: resolve(root, dir),
-      env: {
-        NPM_CONFIG_USERCONFIG: configPath,
-        NODE_AUTH_TOKEN: token,
-        NPM_CONFIG_PROVENANCE: 'true',
-      },
+  try {
+    run('pnpm', ['pack', '--pack-destination', packDirectory], {
+      cwd: packageDirectory,
     })
+
+    const tarballs = readdirSync(packDirectory).filter((filename) => filename.endsWith('.tgz'))
+
+    if (tarballs.length !== 1) {
+      throw new Error(`Expected one packed tarball for ${name}, found ${tarballs.length}.`)
+    }
+
+    run('npm', ['publish', resolve(packDirectory, tarballs[0]), '--access', 'public'], {
+      cwd: packageDirectory,
+    })
+  } finally {
+    rmSync(packDirectory, { force: true, recursive: true })
   }
-} finally {
-  rmSync(configDir, { force: true, recursive: true })
 }
 
 for (const { dir, name } of publishPackages) {
