@@ -4,7 +4,7 @@ Santi020k dark and light custom theme presets for Codex, derived from the establ
 
 ## Use it
 
-Open either file in `themes/`, copy its contents, prefix it with `codex-theme-v1:`, and paste the result into Codex theme settings. The product page at [codex.santi020k.com](https://codex.santi020k.com/) provides exact copy-ready values.
+Open either file in `themes/`, copy its contents, prefix it with `codex-theme-v1:`, and paste the result into Codex theme settings. The product page at [theme.santi020k.com/codex](https://theme.santi020k.com/codex/) provides exact copy-ready values.
 
 ## Validate
 

@@ -58,17 +58,6 @@ softwareApplicationSchema({
   <head>
     <PageTransitions page="hub" />
     <meta charset="UTF-8" />
-    <script is:inline>
-      (function () {
-        var preference = localStorage.getItem('theme')
-
-        if (preference !== 'light' && preference !== 'dark') {
-          preference = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        }
-
-        document.documentElement.dataset.theme = preference
-      })()
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <MetadataHead {page} site={site.options} />
     <meta name="author" content="Santiago Molina" />

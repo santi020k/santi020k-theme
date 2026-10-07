@@ -124,7 +124,19 @@ export const contrastPairs = [
   ['tab.activeForeground', 'tab.activeBackground', 4.5],
   ['button.secondaryForeground', 'button.secondaryBackground', 4.5],
   ['editorGhostText.foreground', 'editor.background', 3],
-  ['inlineChatInput.foreground', 'inlineChatInput.background', 4.5]
+  ['inlineChatInput.foreground', 'inlineChatInput.background', 4.5],
+  ['input.placeholderForeground', 'input.background', 3],
+  ['dropdown.foreground', 'dropdown.background', 4.5],
+  ['editorWidget.foreground', 'editorWidget.background', 4.5],
+  ['editorSuggestWidget.foreground', 'editorSuggestWidget.background', 4.5],
+  ['list.activeSelectionForeground', 'list.activeSelectionBackground', 4.5],
+  ['list.inactiveSelectionForeground', 'list.inactiveSelectionBackground', 4.5],
+  ['list.hoverForeground', 'list.hoverBackground', 4.5],
+  ['sideBar.foreground', 'sideBar.background', 4.5],
+  ['menu.foreground', 'menu.background', 4.5],
+  ['menu.selectionForeground', 'menu.selectionBackground', 4.5],
+  ['editorLineNumber.foreground', 'editor.background', 3],
+  ['textLink.foreground', 'editor.background', 4.5]
 ]
 
 // Minimum contrast for syntax token foreground against editor.background.

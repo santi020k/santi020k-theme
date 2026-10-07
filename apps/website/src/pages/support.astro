@@ -48,19 +48,6 @@ const options = [
     <PageTransitions page="hub" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script is:inline>
-      try {
-        var preference = localStorage.getItem('theme')
-
-        if (preference !== 'light' && preference !== 'dark') {
-          preference = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        }
-
-        document.documentElement.dataset.theme = preference
-      } catch {
-        document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-      }
-    </script>
     <MetadataHead {page} site={site.options} />
     <meta name="author" content="Santiago Molina" />
     <meta name="color-scheme" content="dark light" />
