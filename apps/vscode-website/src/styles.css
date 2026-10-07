@@ -419,12 +419,12 @@ h3 {
 }
 
 .preview-topbar {
-  display: flex;
-  min-height: 48px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: 10px;
+  gap: 0 16px;
   border-bottom: 1px solid var(--preview-topbar-border);
-  padding: 0 16px;
+  padding: 12px 16px 8px;
   color: var(--site-ink-soft);
   font-size: 0.8rem;
   transition: border-color 0.3s;
@@ -451,33 +451,81 @@ h3 {
   background: var(--site-success);
 }
 
+.preview-filename {
+  overflow: hidden;
+  min-width: 0;
+  color: var(--preview-pre-color);
+  font-family: var(--santi020k-font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .preview-controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
+  grid-column: 1 / -1;
   gap: 8px;
-  margin-left: 12px;
+  margin-top: 12px;
 }
 
-.preview-controls select {
+.preview-control {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.preview-control-label {
+  padding-left: 10px;
+  color: var(--preview-pre-color);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.preview-controls .ui-select {
+  width: 100%;
+  min-width: 0;
   min-height: var(--site-control-min-height);
+  height: var(--site-control-min-height);
   appearance: none;
-  background: var(--site-surface-muted);
-  border: 1px solid var(--site-line);
-  color: var(--site-ink-soft);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--preview-pre-color);
   font-family: inherit;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0 28px 0 10px;
+  border-radius: 8px;
+  box-shadow: none;
   cursor: pointer;
-  outline: none;
-  transition:
-    border-color 0.2s,
-    color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
-.preview-controls select:hover {
-  border-color: var(--site-brand);
-  color: var(--site-ink);
+.preview-controls .ui-select:hover {
+  background: color-mix(in srgb, var(--preview-pre-color) 6%, var(--preview-bg));
+  border-color: var(--preview-topbar-border);
+}
+
+.preview-controls .ui-select:focus-visible {
+  outline: 2px solid var(--preview-gutter-active);
+  outline-offset: -2px;
+  background: color-mix(in srgb, var(--preview-pre-color) 6%, var(--preview-bg));
+}
+
+.preview-controls option {
+  background: var(--preview-bg);
+  color: var(--preview-pre-color);
+}
+
+.preview-control-chevron {
+  position: absolute;
+  right: 8px;
+  bottom: 14px;
+  color: var(--preview-pre-color);
+  pointer-events: none;
 }
 
 .button-copy-settings {
@@ -509,15 +557,6 @@ h3 {
 
 .button-copy-settings:active {
   transform: scale(0.96);
-}
-
-.preview-topbar strong {
-  margin-left: 8px;
-  overflow: hidden;
-  color: var(--site-ink-soft);
-  font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .preview-body {
@@ -1046,6 +1085,7 @@ pre {
   pre,
   .editor-preview,
   .preview-topbar,
+  .preview-controls .ui-select,
   .preview-body aside,
   .preview-body aside .active,
   .screenshot-img,

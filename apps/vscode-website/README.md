@@ -27,6 +27,8 @@ Run commands from the repository root.
 | `pnpm run test` | Runs repo tests, including website version sync tests |
 | `pnpm run validate` | Runs the full monorepo validation suite |
 
+The interactive editor preview separates the filename from its labeled language, theme, and style controls. Native selects retain keyboard navigation and 44px targets, with colors following the selected editor theme independently of the page theme.
+
 ## Maintenance Notes
 
 - Keep install links pointed at the Visual Studio Marketplace and Open VSX listings.
