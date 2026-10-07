@@ -54,6 +54,18 @@ import ContourLightDesktopWebp from '../../../../packages/theme/assets/wallpaper
 import ContourLightMobilePng from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-mobile.png?url'
 import ContourLightMobile from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-mobile.webp'
 import ContourLightMobileWebp from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-mobile.webp?url'
+import HaloDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-desktop.png?url'
+import HaloDarkDesktop from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-desktop.webp'
+import HaloDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-desktop.webp?url'
+import HaloDarkMobilePng from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-mobile.png?url'
+import HaloDarkMobile from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-mobile.webp'
+import HaloDarkMobileWebp from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-mobile.webp?url'
+import HaloLightDesktopPng from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-light-desktop.png?url'
+import HaloLightDesktop from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-light-desktop.webp'
+import HaloLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-light-desktop.webp?url'
+import HaloLightMobilePng from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-light-mobile.png?url'
+import HaloLightMobile from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-light-mobile.webp'
+import HaloLightMobileWebp from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-light-mobile.webp?url'
 import DuneDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.png?url'
 import DuneDarkDesktop from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp'
 import DuneDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp?url'
@@ -241,6 +253,10 @@ const logo = (title, variant, dimensions, image, base, png, svg, webp) => ({
 })
 
 export const galleryAssets = [
+  { ...wallpaper('Halo · dark', 'Desktop', '3840 × 2160', HaloDarkDesktop, 'santi020k-halo-dark-desktop', HaloDarkDesktopPng, HaloDarkDesktopWebp, false), collection: 'minimal' },
+  { ...wallpaper('Halo · dark', 'Mobile', '1170 × 2532', HaloDarkMobile, 'santi020k-halo-dark-mobile', HaloDarkMobilePng, HaloDarkMobileWebp, true), collection: 'minimal' },
+  { ...wallpaper('Halo · light', 'Desktop', '3840 × 2160', HaloLightDesktop, 'santi020k-halo-light-desktop', HaloLightDesktopPng, HaloLightDesktopWebp, false), collection: 'minimal' },
+  { ...wallpaper('Halo · light', 'Mobile', '1170 × 2532', HaloLightMobile, 'santi020k-halo-light-mobile', HaloLightMobilePng, HaloLightMobileWebp, true), collection: 'minimal' },
   { ...wallpaper('Contour · dark', 'Desktop', '3840 × 2160', ContourDarkDesktop, 'santi020k-contour-dark-desktop', ContourDarkDesktopPng, ContourDarkDesktopWebp, false), collection: 'minimal' },
   { ...wallpaper('Contour · dark', 'Mobile', '1170 × 2532', ContourDarkMobile, 'santi020k-contour-dark-mobile', ContourDarkMobilePng, ContourDarkMobileWebp, true), collection: 'minimal' },
   { ...wallpaper('Contour · light', 'Desktop', '3840 × 2160', ContourLightDesktop, 'santi020k-contour-light-desktop', ContourLightDesktopPng, ContourLightDesktopWebp, false), collection: 'minimal' },

@@ -1,0 +1,33 @@
+{
+  "mode": "built-in imagegen",
+  "prompts": {
+    "halo-light-desktop": {
+      "references": [
+        "artwork/minimal-v1/contour-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create a new premium ultra-minimal wallpaper called Halo for santi020k, a sibling of the supplied Contour reference. Landscape 16:9, high resolution. Leave the left 70% and upper 50% completely empty. Use the reference only for restrained tone, barely-there matte relief and tiny brand presence; make a distinctly NEW composition. A near-uniform porcelain pale lilac #f8f6fd canvas, with very gentle diffuse daylight. The subject is ONE very large perfect circular shallow recess, like an architectural aperture pressed into fine matte paper. It is cropped by the right and bottom image edges and occupies the lower right quarter. One exquisite thin pale lavender circular rim, soft inward shadow, smooth restrained depth. NOT a sphere, NOT a glowing ring, NOT a stack, NOT a wave or S-curve. The circle's empty inner surface is nearly the same neutral color as the canvas. A tiny flat canonical purple rounded square with the exact white >_ prompt of reference image 2 is inset inside the circular area at x=85%, y=80%, width 2.8% of the canvas. A single minuscule violet dot sits just outside the rim. No lettering, UI, devices, noise, rough grain, glass, chrome, fabric, extra objects, watermark, or loud gradients. Clean full-bleed editorial wallpaper, calm, beautiful, precise, generous negative space."
+    },
+    "halo-light-mobile": {
+      "references": [
+        "artwork/minimal-v1/contour-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create a new premium ultra-minimal wallpaper called Halo for santi020k, a sibling of the supplied Contour reference. Tall portrait 1170:2532 aspect ratio, high resolution. Leave the top 65% completely empty for the phone clock. Use the reference only for restrained tone, barely-there matte relief and tiny brand presence; make a distinctly NEW composition. A near-uniform porcelain pale lilac #f8f6fd canvas, with very gentle diffuse daylight. The subject is ONE very large perfect circular shallow recess, like an architectural aperture pressed into fine matte paper. It is cropped by the right and bottom image edges and occupies the lower third. One exquisite thin pale lavender circular rim, soft inward shadow, smooth restrained depth. NOT a sphere, NOT a glowing ring, NOT a stack, NOT a wave or S-curve. The circle's empty inner surface is nearly the same neutral color as the canvas. A tiny flat canonical purple rounded square with the exact white >_ prompt of reference image 2 is inset inside the circular area at x=72%, y=82%, width 7% of the canvas. A single minuscule violet dot sits just outside the rim. No lettering, UI, devices, noise, rough grain, glass, chrome, fabric, extra objects, watermark, or loud gradients. Clean full-bleed editorial wallpaper, calm, beautiful, precise, generous negative space."
+    },
+    "halo-dark-desktop": {
+      "references": [
+        "artwork/minimal-v1/contour-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create a new premium ultra-minimal wallpaper called Halo for santi020k, a sibling of the supplied Contour reference. Landscape 16:9, high resolution. Leave the left 70% and upper 50% completely empty. Use the reference only for restrained tone, barely-there matte relief and tiny brand presence; make a distinctly NEW composition. A near-uniform deep plum ink #110c1d canvas, with muted violet edge light and almost invisible diffuse shading. The subject is ONE very large perfect circular shallow recess, like an architectural aperture pressed into fine matte paper. It is cropped by the right and bottom image edges and occupies the lower right quarter. One exquisite thin subdued violet circular rim, soft inward shadow, smooth restrained depth. NOT a sphere, NOT a glowing ring, NOT a stack, NOT a wave or S-curve. The circle's empty inner surface is nearly the same neutral color as the canvas. A tiny flat canonical purple rounded square with the exact white >_ prompt of reference image 2 is inset inside the circular area at x=85%, y=80%, width 2.8% of the canvas. A single minuscule violet dot sits just outside the rim. No lettering, UI, devices, noise, rough grain, glass, chrome, fabric, extra objects, watermark, or loud gradients. Clean full-bleed editorial wallpaper, calm, beautiful, precise, generous negative space."
+    },
+    "halo-dark-mobile": {
+      "references": [
+        "artwork/minimal-v1/contour-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create a new premium ultra-minimal wallpaper called Halo for santi020k, a sibling of the supplied Contour reference. Tall portrait 1170:2532 aspect ratio, high resolution. Leave the top 65% completely empty for the phone clock. Use the reference only for restrained tone, barely-there matte relief and tiny brand presence; make a distinctly NEW composition. A near-uniform deep plum ink #110c1d canvas, with muted violet edge light and almost invisible diffuse shading. The subject is ONE very large perfect circular shallow recess, like an architectural aperture pressed into fine matte paper. It is cropped by the right and bottom image edges and occupies the lower third. One exquisite thin subdued violet circular rim, soft inward shadow, smooth restrained depth. NOT a sphere, NOT a glowing ring, NOT a stack, NOT a wave or S-curve. The circle's empty inner surface is nearly the same neutral color as the canvas. A tiny flat canonical purple rounded square with the exact white >_ prompt of reference image 2 is inset inside the circular area at x=72%, y=82%, width 7% of the canvas. A single minuscule violet dot sits just outside the rim. No lettering, UI, devices, noise, rough grain, glass, chrome, fabric, extra objects, watermark, or loud gradients. Clean full-bleed editorial wallpaper, calm, beautiful, precise, generous negative space."
+    }
+  }
+}

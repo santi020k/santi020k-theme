@@ -71,3 +71,16 @@ After an approved release, verify tags resolve to the merged commit, both extens
 The [theme family audit](theme-family-audit.md) records architecture, duplication, dependencies, native contrast, and website appearance improvements for this candidate. It consolidates initial appearance setup, fixes OS synchronization and high-contrast CSS generation, corrects Turbo ordering/cache inputs, strengthens VS Code and native artifact validation, and improves Xcode selected/current-line readability. Public exports and theme names stay stable. The Changesets plan still targets VS Code 3.0.0; this work remains local and unpublished. The existing full-audit and runtime decision boundaries above remain open.
 
 Audit follow-up verification: the full local validation gate passes with 127 tests across 23 files, zero-warning lint, strict checks, all native validators, SEO, and VSIX packaging. The final preview/clipboard fixes additionally pass the affected website build and 12 browser preview combinations with clipboard success/denied/reset checks. Website links pass with 100 local references and 31 external URLs; appearance/navigation smoke checks pass 36 cases. Independent review's Codex cache-input finding is fixed and verified by changed Turbo hashes. Native Xcode rendering remains unverified without changing user preferences.
+
+## Curated wallpaper pages
+
+Halo adds four minimal circular compositions, and the Minimal v2 pack includes both Halo and
+Contour. The gallery now features one entry per current design, while Classic wallpapers live
+in an archive with their existing file and pack URLs preserved.
+
+Eight design pages group dark/light and desktop/phone artwork with unique descriptions,
+canonical URLs, artwork-specific social previews, ImageObject metadata, related designs,
+and image sitemap entries. Downloads include PNG, JPG, and two WEBP quality levels across
+three desktop sizes and two phone sizes. Site preparation exports these files from saved
+masters; production remains static. Pages disclose resizing and retain native download links
+without JavaScript. Rollback can restore the previous gallery while keeping existing assets.

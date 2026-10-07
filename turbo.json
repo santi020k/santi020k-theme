@@ -91,6 +91,8 @@
         "$TURBO_ROOT$/apps/*-website/src/**",
         "$TURBO_ROOT$/apps/*-website/public/**",
         "$TURBO_ROOT$/scripts/sync-consolidated-site-assets.mjs",
+        "$TURBO_ROOT$/scripts/generate-wallpaper-downloads.mjs",
+        "$TURBO_ROOT$/artwork/**",
         "$TURBO_ROOT$/packages/santi020k-codex-theme/themes/**",
         "$TURBO_ROOT$/packages/santi020k-terminal-theme/prompt-presets.mjs",
         "$TURBO_ROOT$/packages/santi020k-terminal-theme/zsh/**"

@@ -36,6 +36,13 @@ a quiet matte surface. PNG and WEBP exports live under `assets/wallpapers/minima
 a separate four-file WEBP pack. These use the same display sizes, resized from native masters.
 See [Minimal artwork sources and prompts](../../artwork/minimal-v1/README.md).
 
+**Halo** adds four circular compositions under `assets/wallpapers/minimal-v2/`. The second
+Minimal pack includes Halo and Contour. See [Halo sources and prompts](../../artwork/minimal-v2/README.md).
+The website gives each current design a page with PNG/JPG/WEBP format and quality choices,
+three desktop sizes, and two phone sizes. Classic wallpapers remain in the archive at their
+existing file URLs. The shared package retains its original PNG/WEBP asset exports; the
+additional resolution downloads are generated specifically for the static website.
+
 ## Install
 
 ```bash

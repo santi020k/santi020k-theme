@@ -1,0 +1,85 @@
+---
+import '../../styles/wallpapers.css'
+
+import { Breadcrumb, ButtonLink, Eyebrow, Field, Icon, Label, NativeSelect } from '@santi020k/lumen-astro'
+
+import { appearances, devices, downloadHref, exportProfiles, previewHref, resolutions, socialPreviewHref, wallpaperDesigns, wallpaperHref } from '../../../../../artwork/wallpaper-catalog.mjs'
+import ArtworkLayout from '../../layouts/ArtworkLayout.astro'
+
+interface Props { design: (typeof wallpaperDesigns)[number] }
+
+export const getStaticPaths = () => wallpaperDesigns.map(design => ({ params: { slug: design.slug }, props: { design } }))
+
+const { design } = Astro.props
+const pathname = wallpaperHref(design.slug)
+const canonical = `https://theme.santi020k.com${pathname}`
+const title = `${design.name} Wallpaper — Light & Dark Downloads | Santi020k`
+const variants = appearances.flatMap(appearance => devices.map(device => ({ appearance, device, src: previewHref(design.slug, appearance, device), alt: `${design.alt}, ${appearance} ${device === 'mobile' ? 'phone' : 'desktop'} composition` })))
+const related = [...wallpaperDesigns.filter(item => item.collection === design.collection), ...wallpaperDesigns.filter(item => item.collection !== design.collection)].filter(item => item.slug !== design.slug).slice(0, 3)
+
+const imageObjects = variants.map(variant => ({
+  '@type': 'ImageObject',
+  name: `${design.name} — ${variant.appearance} ${variant.device}`,
+  description: variant.alt,
+  contentUrl: `https://theme.santi020k.com${variant.src}`,
+  encodingFormat: 'image/webp',
+  width: variant.device === 'desktop' ? 1920 : 1080,
+  height: variant.device === 'desktop' ? 1080 : 2340,
+  creator: { '@type': 'Person', name: 'Santiago Molina', url: 'https://santi020k.com' },
+  creditText: 'Santi020k · AI-generated artwork directed by Santiago Molina'
+}))
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description: design.description,
+  url: canonical,
+  primaryImageOfPage: imageObjects[0],
+  mainEntity: imageObjects,
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Gallery', item: 'https://theme.santi020k.com/gallery/' },
+      { '@type': 'ListItem', position: 2, name: design.name, item: canonical }
+    ]
+  }
+}
+---
+<ArtworkLayout {title} description={design.description} {pathname} image={socialPreviewHref(design.slug)} imageAlt={design.alt} {structuredData}>
+  <div class="site-shell wallpaper-detail" data-wallpaper-design={design.slug}>
+    <Breadcrumb class="wallpaper-breadcrumb"><a href="/gallery/">Gallery</a><span aria-hidden="true">/</span><span aria-current="page">{design.name}</span></Breadcrumb>
+    <header class="wallpaper-heading"><Eyebrow>{design.collection} collection · Wallpaper</Eyebrow><h1>{design.name}<span>.</span></h1><p>{design.tagline}</p></header>
+    <div class="wallpaper-workspace">
+      <div>
+        <div class="wallpaper-stage" data-wallpaper-stage>
+          {variants.map((variant, index) => <img data-wallpaper-preview data-appearance={variant.appearance} data-device={variant.device} src={variant.src} alt={variant.alt} width={variant.device === 'desktop' ? 1920 : 1080} height={variant.device === 'desktop' ? 1080 : 2340} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} hidden={index !== 0} />)}
+        </div>
+        <p class="wallpaper-caption"><span data-wallpaper-caption>Dark · Desktop</span><a href="#all-downloads">All versions & downloads <Icon name="arrow-down" /></a></p>
+      </div>
+      <aside class="wallpaper-download-panel" aria-labelledby="download-heading">
+        <Eyebrow>Make it yours</Eyebrow><h2 id="download-heading">Your screen.<br /> Your version.</h2>
+        <form data-wallpaper-form>
+          <div class="wallpaper-control-pair">
+            <Field><Label for="wallpaper-appearance">Appearance</Label><NativeSelect id="wallpaper-appearance" name="appearance" options={[{ label: 'Dark', value: 'dark' }, { label: 'Light', value: 'light' }]} /></Field>
+            <Field><Label for="wallpaper-device">Screen</Label><NativeSelect id="wallpaper-device" name="device" options={[{ label: 'Desktop', value: 'desktop' }, { label: 'Phone', value: 'mobile' }]} /></Field>
+          </div>
+          <Field><Label for="wallpaper-resolution">Resolution</Label><NativeSelect id="wallpaper-resolution" name="resolution">{resolutions.map(size => <option value={size.id} data-device={size.device} hidden={size.device !== 'desktop'} disabled={size.device !== 'desktop'} selected={size.id === '2560x1440'}>{size.label}</option>)}</NativeSelect></Field>
+          <Field><Label for="wallpaper-profile">Format & quality</Label><NativeSelect id="wallpaper-profile" name="profile">{exportProfiles.map(profile => <option value={profile.id} selected={profile.id === 'webp-high'}>{profile.label}</option>)}</NativeSelect></Field>
+          <ButtonLink class="wallpaper-download" variant="unstyled" href={downloadHref(design.slug, 'dark', '2560x1440', 'webp-high') ?? ''} download data-wallpaper-download><span>Download wallpaper</span><Icon name="download" /></ButtonLink>
+          <p class="wallpaper-selection" data-wallpaper-selection aria-live="polite">Dark · Desktop · 2560 × 1440 · WEBP · High quality</p>
+        </form>
+        <p class="wallpaper-export-note">All sizes are resized from AI-generated raster artwork. A 4K-size export fits a 4K screen; it does not add native detail.</p>
+        <noscript><p>Use the complete download list below to choose another version without JavaScript.</p></noscript>
+      </aside>
+    </div>
+    <section class="wallpaper-story" aria-labelledby="about-wallpaper"><Eyebrow>Behind the artwork</Eyebrow><div><h2 id="about-wallpaper">{design.tagline}</h2><p>{design.story}</p><p>{design.detail}</p></div></section>
+    <section class="wallpaper-files" id="all-downloads" aria-labelledby="files-heading">
+      <div><Eyebrow>Every option</Eyebrow><h2 id="files-heading">Find your fit.</h2><p>WEBP keeps files compact. JPG offers broad compatibility. PNG preserves the export without lossy compression. Use your screen’s closest size; its wallpaper settings can adjust the crop.</p></div>
+      <div class="wallpaper-file-groups">{variants.map(variant => <details><summary>{variant.appearance === 'dark' ? 'Dark' : 'Light'} · {variant.device === 'mobile' ? 'Phone' : 'Desktop'}<Icon name="plus" /></summary><img class="wallpaper-file-preview" src={variant.src} alt={variant.alt} width={variant.device === 'desktop' ? 1920 : 1080} height={variant.device === 'desktop' ? 1080 : 2340} loading="lazy" />{resolutions.filter(size => size.device === variant.device).map(size => <div class="wallpaper-file-row"><h3>{size.label}</h3><div>{exportProfiles.map(profile => <a href={downloadHref(design.slug, variant.appearance, size.id, profile.id)} download>{profile.label}<span class="sr-only"> — {design.name}, {variant.appearance}, {size.label}</span></a>)}</div></div>)}</details>)}</div>
+    </section>
+    <section class="wallpaper-related" aria-labelledby="related-heading"><Eyebrow>Keep exploring</Eyebrow><h2 id="related-heading">More for your screen.</h2><div>{related.map(item => <a href={wallpaperHref(item.slug)}><img src={previewHref(item.slug)} width="1920" height="1080" loading="lazy" alt={item.alt} /><h3>{item.name}<Icon name="arrow-up-right" /></h3><p>{item.tagline}</p></a>)}</div></section>
+  </div>
+  <script>import '../../scripts/wallpaper-downloads'
+</script>
+</ArtworkLayout>

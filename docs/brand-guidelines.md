@@ -389,6 +389,19 @@ in `artwork/minimal-v1/`, PNG and WEBP display exports in
 `packages/theme/assets/wallpapers/minimal-v1/`, and four WEBP files in a separate Minimal
 archive. These are resized raster masters, not native 4K renders or vector artwork.
 
+**Halo** extends Minimal with a single circular recess, a fine violet rim, and a small prompt
+detail. Its four masters live in `artwork/minimal-v2/`; the second Minimal pack includes both
+Halo and Contour while preserving the first pack.
+
+Keep the main gallery curated around current designs. Place Classic wallpapers in a clearly
+labeled archive and preserve their individual files and packs. Give each current design one
+descriptive page grouping its four appearance/orientation variants, rather than indexing every
+compression option as a separate page. Use meaningful image descriptions, artwork-specific
+social previews, canonical URLs, and truthful ImageObject metadata. Download options include
+PNG, JPG, and WEBP at practical desktop and phone sizes; distinguish lossless PNG from smaller
+and higher-quality WEBP compression. Explain that display exports resize generated raster
+masters, so a 3840 × 2160 file does not imply native 4K detail.
+
 ## Voice And Copy
 
 Use clear developer-facing language.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://theme.santi020k.com/</loc>
     <changefreq>monthly</changefreq>
@@ -28,4 +28,13 @@
   <url><loc>https://theme.santi020k.com/xcode/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://theme.santi020k.com/design/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://theme.santi020k.com/support/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://theme.santi020k.com/gallery/halo/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/halo/halo-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
+  <url><loc>https://theme.santi020k.com/gallery/contour/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/contour/contour-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
+  <url><loc>https://theme.santi020k.com/gallery/glass/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/glass/glass-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
+  <url><loc>https://theme.santi020k.com/gallery/satin/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/satin/satin-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
+  <url><loc>https://theme.santi020k.com/gallery/ceramic/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/ceramic/ceramic-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
+  <url><loc>https://theme.santi020k.com/gallery/tide/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/tide/tide-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
+  <url><loc>https://theme.santi020k.com/gallery/dune/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/dune/dune-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
+  <url><loc>https://theme.santi020k.com/gallery/veil/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/veil/veil-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
+  <url><loc>https://theme.santi020k.com/gallery/archive/</loc></url>
 </urlset>

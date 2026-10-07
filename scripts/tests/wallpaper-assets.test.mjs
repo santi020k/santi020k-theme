@@ -12,7 +12,8 @@ describe('Branded wallpaper downloads', () => {
   it.each([
     { directory: 'signature-v1', families: ['signature'], archive: 'santi020k-signature-wallpapers-v1.zip' },
     { directory: 'signature-v2', families: ['satin', 'ceramic'], archive: 'santi020k-signature-wallpapers-v2.zip' },
-    { directory: 'minimal-v1', families: ['contour'], archive: 'santi020k-minimal-wallpapers-v1.zip' }
+    { directory: 'minimal-v1', families: ['contour'], archive: 'santi020k-minimal-wallpapers-v1.zip' },
+    { directory: 'minimal-v2', families: ['halo'], archive: 'santi020k-minimal-wallpapers-v2.zip' }
   ])('exposes complete dark/light desktop/phone downloads for $directory', async ({ directory, families, archive }) => {
     const assets = getAssets('wallpaper').filter(asset => asset.path.includes(`/${directory}/`))
 
