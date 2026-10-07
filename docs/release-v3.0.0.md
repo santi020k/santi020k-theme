@@ -1,15 +1,19 @@
-# Release v2.2.0 preparation
+# Release v3.0.0 preparation
 
-The integration branch is `release/v2.2.0`, based on `main` at `28b5dfc`. Changesets plans the VS Code package update from 2.1.4 to 2.2.0; version and changelog generation remains in the existing GitHub release workflow. This candidate is not a published release.
+The integration branch is `release/v3.0.0`, based on `main` at `28b5dfc`. Changesets plans the VS Code package update from 2.1.4 to 3.0.0; version and changelog generation remains in the existing GitHub release workflow. This candidate is not a published release.
 
 ## Consolidation
 
 - Both remote Dependabot branches are contained in the release history: actions at `4b1fd57` and production dependencies at `25ddb1d`.
 - The uncommitted root README improvements are preserved and extended with real dark/light and high-contrast previews.
 - Three old stashes were inspected. The Zed selection token already exists in the current generator and generated themes; its lockfile additions are already represented. The two older dependency override stashes are duplicated and superseded by newer compatible security resolutions. They remain preserved rather than being reapplied over current versions.
-- The later `feature/sculpted-theme-family` worktree belongs to an active, separately requested redesign. It is excluded from this candidate; its v3 proposal requires a separate version decision.
+- The complete `feature/sculpted-theme-family` redesign at `0bfce48` is integrated after the owner confirmed v3.0.0. The former v2.2.0 candidate at `ee5d864` is contained in this release; no work is lost when its superseded branch is retired.
 
 ## Changes
+
+The Sculpted visual direction is now canonical in `docs/brand-guidelines.md` and the live `/design/` guide. All product websites and terminal documentation use local Montserrat fonts, solid surfaces, quieter headings, neutral primary controls, and violet focus indicators. Fold, Orbit, and Monolith add 12 light/dark desktop/mobile wallpaper compositions, a separate download archive, and collection filters. Classic assets and URLs remain available. Paired editor primary action and focus colors are updated with regenerated variants.
+
+Migration: theme variant names and syntax coverage remain available, while editor action and focus styling changes deliberately for v3. Existing wallpaper links and shared package import paths remain supported. Consumers of the shared website CSS should review typography, spacing, and control styling against the new brand guide.
 
 Published npm Lumen 4.0.0 powers all six website sources. Terminal documentation uses command tabs, clipboard feedback, breadcrumbs, and reading progress. The shared theme toggle now preserves native button or switch state semantics. The support page links to family-wide GitHub issue forms, published releases, and private vulnerability reporting. Canonical metadata, the sitemap, the extension homepage, and contribution instructions match the consolidated website.
 
@@ -27,9 +31,9 @@ The declared development Node minimum also needs alignment with the existing lin
 
 ## Verification and recovery
 
-Run `pnpm install --frozen-lockfile`, `pnpm run validate`, `pnpm run validate:links`, and the full dependency audit before publication. Confirm the generated Changesets plan still targets 2.2.0. Review the complete current release diff independently before the first release-branch push or pull request. Required hosted checks and actionable review findings must pass before merging.
+Run `pnpm install --frozen-lockfile`, `pnpm run validate`, `pnpm run validate:links`, and the full dependency audit before publication. Confirm the generated Changesets plan still targets 3.0.0. Review the complete current release diff independently before the first release-branch push or pull request. Required hosted checks and actionable review findings must pass before merging.
 
-Local completion checks passed: frozen install; the complete `pnpm run validate` gate, including 66 tests, strict type checks, zero-warning lint, spelling, theme/package checks, SEO, and extension packaging; and website link validation with 94 local references and 32 external URLs. Changesets plans VS Code 2.2.0 and `@santi020k/theme-core` 2.0.2. A fresh read-only Codex reviewer examined the complete candidate against `origin/main` and found no new actionable defects after the lint findings were fixed. The full audit still fails on the documented development dependency advisory; hosted release checks and publication have not been performed.
+On the integrated v3 candidate, local completion checks passed: frozen install; the complete `pnpm run validate` gate, including 66 tests, strict type checks, zero-warning lint, spelling, theme/package checks, SEO, and extension packaging; and website link validation with 102 local references and 31 external URLs. The SEO audit covers 20 pages with no errors or warnings. Changesets must plan VS Code 3.0.0; shared packages and website versions follow their individual changesets and the existing linked-package policy. The preceding v2 candidate received a fresh independent read-only review; the complete v3 diff receives a separate review before handoff. The full audit still fails on the documented development dependency advisory; the v3 branch remains local, with no new hosted release checks or publication.
 
 Desktop and mobile dark/light checks cover the home page, support, getting started, and Starship docs, including no horizontal overflow, theme switching, keyboard tabs, clipboard success and denied access, and mobile navigation. Local compressed Lighthouse results are support 100/100/100/100 and documentation 90/100/100/100 for performance/accessibility/best practices/SEO. These are local candidate measurements, not production evidence. Documentation still loads blocking fonts and CSS. The build's large optional phone-input chunk is not requested by these pages; the initial Lumen runtime transfers approximately 32.6 KB compressed.
 
