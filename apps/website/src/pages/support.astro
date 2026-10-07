@@ -1,0 +1,124 @@
+---
+import { Badge, ButtonLink, Card, Icon, Link } from '@santi020k/lumen-astro'
+import UIPrimitives from '@santi020k/lumen-astro/runtime'
+import MetadataHead from '@santi020k/og/astro/head'
+import { personSchema, serializeJsonLd } from '@santi020k/og/schema'
+import { defineSite } from '@santi020k/og/site'
+
+import SharedFooter from '../components/SharedFooter.astro'
+import SharedHeader from '../components/SharedHeader.astro'
+
+const repository = 'https://github.com/santi020k/santi020k-theme'
+const description = 'Report theme bugs, request coverage, suggest improvements, and follow published releases for the Santi020k Theme family.'
+
+const site = defineSite({
+  locale: 'en_US',
+  siteName: 'Santi020k Themes',
+  siteUrl: 'https://theme.santi020k.com',
+  twitter: { creator: '@santi020k', site: '@santi020k' }
+})
+
+const page = site.page({
+  canonical: 'https://theme.santi020k.com/support/',
+  description,
+  image: { alt: 'Santi020k Theme family', url: 'https://theme.santi020k.com/og-image.png' },
+  pathname: '/support/',
+  title: 'Feedback & support — Santi020k Themes'
+})
+
+const structuredData = serializeJsonLd({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Feedback & support — Santi020k Themes',
+  url: 'https://theme.santi020k.com/support/',
+  description,
+  author: personSchema({ name: 'Santiago Molina', url: 'https://santi020k.com' })
+})
+
+const options = [
+  { title: 'Report a bug', icon: 'bug', template: 'bug_report.yml', description: 'Unexpected colors, broken installs, or a website problem? Include the affected tool, package version, theme variant, and steps to reproduce.' },
+  { title: 'Improve theme coverage', icon: 'swatch-book', template: 'theme_request.yml', description: 'Request a missing UI color, language scope, or accessibility improvement. Add the token or a small code sample and compare dark and light modes.' },
+  { title: 'Suggest a feature', icon: 'lightbulb', template: 'feature_request.yml', description: 'Bring an idea for a platform, package, documentation, or workflow. Explain the goal and how the change would help your everyday setup.' }
+] as const
+---
+<!doctype html>
+<html lang="en" data-santi020k-site="hub">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      try {
+        var preference = localStorage.getItem('theme')
+
+        if (preference !== 'light' && preference !== 'dark') {
+          preference = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
+
+        document.documentElement.dataset.theme = preference
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+      }
+    </script>
+    <MetadataHead {page} site={site.options} />
+    <meta name="author" content="Santiago Molina" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
+    <script is:inline type="application/ld+json" set:html={structuredData}></script>
+  </head>
+  <body>
+    <SharedHeader />
+    <main class="site-shell support-page">
+      <section class="support-intro" aria-labelledby="support-title">
+        <Badge variant="outline">Build the theme family together</Badge>
+        <h1 id="support-title">Feedback &amp; support</h1>
+        <p class="lede">Help make your next session calmer. Show us what needs fixing, or bring an idea for your favorite tool.</p>
+        <p>Browse existing reports first. GitHub keeps questions, reproductions, and follow-up in one place; sign in to post or subscribe.</p>
+        <Link href={`${repository}/issues`}>Search existing issues <Icon name="arrow-up-right" /></Link>
+      </section>
+      <div class="support-options">
+        {options.map(option => (
+          <Card as="section" class="support-option">
+            <Icon name={option.icon} size="lg" />
+            <h2>{option.title}</h2>
+            <p>{option.description}</p>
+            <ButtonLink href={`${repository}/issues/new?template=${option.template}`} variant="secondary" showArrow>{option.title}</ButtonLink>
+          </Card>
+        ))}
+      </div>
+      <div class="support-details">
+        <section aria-labelledby="progress-title">
+          <h2 id="progress-title">Follow a change to release</h2>
+          <p>Subscribe to an issue for updates and linked pull requests. A closed issue or merged pull request can still be waiting for publication; check the release notes for the version that includes it.</p>
+          <Link href={`${repository}/releases`}>Read published releases <Icon name="arrow-up-right" /></Link>
+        </section>
+        <section aria-labelledby="security-title">
+          <h2 id="security-title">Private security reports</h2>
+          <p>Public reports are visible to everyone. Remove credentials, private code, and personal details from screenshots and reproductions. Report suspected vulnerabilities through the project's private reporting channel.</p>
+          <Link href={`${repository}/security/advisories/new`}>Report a vulnerability privately <Icon name="arrow-up-right" /></Link>
+        </section>
+      </div>
+    </main>
+    <SharedFooter />
+    <script>import '../main.js'
+</script>
+    <UIPrimitives />
+  </body>
+</html>
+<style>
+  .support-page { padding-block: clamp(48px, 7vw, 96px); }
+  .support-intro { max-width: 760px; }
+  h1 { margin-block: 20px; font-size: clamp(2.3rem, 5vw, 4rem); letter-spacing: -.04em; line-height: 1.1; }
+  h2 { color: var(--site-ink); font-size: 1.2rem; letter-spacing: -.02em; }
+  p { color: var(--site-ink-soft); line-height: 1.7; }
+  .support-page :global(a:not(.ui-button-link)) { color: var(--site-brand); }
+  .support-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-block: 48px; }
+  .support-options :global(.support-option) { display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border: 1px solid var(--site-line); background: var(--site-surface); border-radius: 16px; }
+  .support-option :global(.ui-icon) { color: var(--site-brand); }
+  .support-option p { flex: 1; margin-bottom: 24px; }
+  .support-option :global(.ui-button-link) { max-width: 100%; }
+  .support-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; border-top: 1px solid var(--section-divider); padding-top: 24px; }
+  @media (max-width: 900px) { .support-options { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .support-details { grid-template-columns: 1fr; gap: 24px; } }
+</style>

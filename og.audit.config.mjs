@@ -5,6 +5,7 @@ const siteUrl = 'https://theme.santi020k.com'
 
 const expectations = new Map([
   ['/', { image: '/og-image.png', keyword: 'Themes', schema: 'CollectionPage' }],
+  ['/support/', { image: '/og-image.png', keyword: 'Support', schema: 'WebPage' }],
   ['/gallery/', { image: '/og-image.png', keyword: 'Gallery', schema: 'CollectionPage' }],
   ['/vscode/', { image: '/vscode/og-image.png', keyword: 'VS Code', schema: 'SoftwareApplication' }],
   ['/chrome/', { image: '/chrome/og-image.png', keyword: 'Chrome', schema: 'SoftwareApplication' }],

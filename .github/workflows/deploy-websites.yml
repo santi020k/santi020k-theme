@@ -38,6 +38,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.ref == 'refs/heads/main'
     name: Deploy theme.santi020k.com
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -69,6 +70,9 @@ jobs:
 
       - name: Build consolidated website
         run: pnpm run site:build
+
+      - name: Validate website SEO and links
+        run: pnpm run validate:seo && pnpm run validate:links
 
       - name: Deploy consolidated website to Cloudflare Pages
         env:

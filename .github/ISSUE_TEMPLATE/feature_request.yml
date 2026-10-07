@@ -18,9 +18,14 @@ body:
       options:
         - VS Code extension / themes
         - Chrome theme
-        - Theme hub website
-        - VS Code website
-        - Chrome website
+        - Zed theme
+        - Codex theme
+        - Terminal themes / CLI
+        - Raycast / Slack themes
+        - JetBrains / Android Studio theme
+        - Xcode theme
+        - Shared npm tokens / helpers
+        - Theme family website
         - Release automation / packaging
         - Documentation / metadata
         - GitHub templates / project maintenance

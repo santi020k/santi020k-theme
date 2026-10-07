@@ -5,7 +5,7 @@
   "description": "Calm violet themes and design tokens for editors, browsers, terminals, and the web.",
   "license": "MIT",
   "type": "module",
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@10.34.6",
   "scripts": {
     "dev": "pnpm run site:dev",
     "dev:vscode": "pnpm run build:themes",

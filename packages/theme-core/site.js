@@ -94,7 +94,15 @@ export const syncSiteThemeToggle = (
   toggle,
   root = globalThis.document?.documentElement
 ) => {
-  if (toggle) toggle.setAttribute('aria-checked', String(rootInDarkMode(root)))
+  if (!toggle) return
+
+  const isSwitch = toggle.getAttribute('role') === 'switch'
+  const stateAttribute = isSwitch ? 'aria-checked' : 'aria-pressed'
+  const incompatibleAttribute = isSwitch ? 'aria-pressed' : 'aria-checked'
+
+  toggle.removeAttribute(incompatibleAttribute)
+
+  toggle.setAttribute(stateAttribute, String(rootInDarkMode(root)))
 }
 
 /**

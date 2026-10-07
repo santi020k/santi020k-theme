@@ -15,6 +15,7 @@ This is the only public Santi020k theme website and Cloudflare Pages deployment.
 
 - `/vscode/`, `/chrome/`, `/zed/`, and `/codex/` preserve the complete existing product pages.
 - `/terminal/` includes the overview, configurator, documentation tree, and generated downloads.
+- `/support/` connects bug, theme coverage, and feature reports to the existing GitHub issue forms, with private security reporting and published release links.
 - `/raycast/`, `/slack/`, `/jetbrains/`, and `/xcode/` provide focused install and coverage pages.
 - Former product subdomains permanently redirect to the matching route through the list in `cloudflare/legacy-website-redirects.csv`.
 
@@ -30,5 +31,6 @@ This is the only public Santi020k theme website and Cloudflare Pages deployment.
 - Keep canonical URLs on `theme.santi020k.com`; legacy subdomains are redirect-only.
 - Keep visible focus styles and the dark/light toggle intact.
 - Run `pnpm run generate:og` after changing product positioning or social card copy.
+- Keep `public/sitemap.xml` aligned with every indexable route. Omit `lastmod` unless it reflects an actual content update; do not use build dates as content timestamps.
 - Run `pnpm run validate:seo` before shipping metadata or OG asset changes.
 - If a new theme surface becomes public, add it to the available theme cards and move any placeholder item out of the coming-soon section.

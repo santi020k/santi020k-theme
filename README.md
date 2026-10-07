@@ -1,4 +1,10 @@
-# Santi020k Theme
+<p align="center">
+  <img src="packages/theme/assets/logos/logo-square.svg" alt="Santi020k Theme" width="88">
+</p>
+
+<h1 align="center">Santi020k Theme</h1>
+
+<p align="center">Calm contrast and a consistent violet language across your tools.</p>
 
 Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS Code, Zed, Chrome, Codex, JetBrains IDEs, Raycast, Slack, Xcode, terminals, shared brand packages, and static product websites.
 
@@ -10,14 +16,49 @@ Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS 
 [Releases](https://github.com/santi020k/santi020k-theme/releases) ·
 [Contributing](CONTRIBUTING.md)
 
-[![Validation](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
-[![CodeQL](https://github.com/santi020k/santi020k-theme/actions/workflows/codeql.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/codeql.yml)
-[![VS Marketplace](https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?label=VS%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
-[![Open VSX](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme)](https://open-vsx.org/extension/santi020k/santi020k-theme)
-[![npm tokens](https://img.shields.io/npm/v/@santi020k/theme.svg?label=%40santi020k%2Ftheme)](https://www.npmjs.com/package/@santi020k/theme)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml"><img src="https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg" alt="Validation"></a>
+  <a href="https://github.com/santi020k/santi020k-theme/actions/workflows/codeql.yml"><img src="https://github.com/santi020k/santi020k-theme/actions/workflows/codeql.yml/badge.svg" alt="CodeQL"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme"><img src="https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?label=VS%20Marketplace" alt="VS Marketplace"></a>
+  <a href="https://open-vsx.org/extension/santi020k/santi020k-theme"><img src="https://img.shields.io/open-vsx/v/santi020k/santi020k-theme" alt="Open VSX"></a>
+  <a href="https://www.npmjs.com/package/@santi020k/theme"><img src="https://img.shields.io/npm/v/@santi020k/theme.svg?label=%40santi020k%2Ftheme" alt="npm tokens"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"></a>
+</p>
 
 The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.md). Read it before changing colors, product names, screenshots, icons, website copy, store metadata, or shared assets.
+
+**Explore:** [Workspaces](#workspaces) · [Quick Start](#quick-start) · [Common Commands](#common-commands) · [Working On The Theme Family](#working-on-the-theme-family) · [Documentation Map](#documentation-map)
+
+## One palette, your whole workspace
+
+<p align="center">
+  <a href="https://theme.santi020k.com/vscode/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="packages/santi020k-theme/assets/previews/preview-dark.png">
+      <img src="packages/santi020k-theme/assets/previews/preview-light.png" alt="Santi020k Theme in VS Code: coordinated editor syntax, sidebar, tabs, terminal, and status bar" width="1200">
+    </picture>
+  </a>
+</p>
+
+*Dark and light previews from the theme's generated assets. [Explore every variant →](https://theme.santi020k.com/vscode/)*
+
+| Make it yours | Start here |
+| :--- | :--- |
+| **VS Code and compatible editors** | [Marketplace](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme) · [Open VSX](https://open-vsx.org/extension/santi020k/santi020k-theme) · dark, light, high contrast, bold, and italic variants |
+| **Your terminal** | [Guided setup](https://theme.santi020k.com/terminal/configure/) · [Installation guide](https://theme.santi020k.com/terminal/docs/) · colors, Starship prompts, and managed shell integration |
+| **More tools** | [Zed](https://theme.santi020k.com/zed/) · [Chrome](https://theme.santi020k.com/chrome/) · [Codex](https://theme.santi020k.com/codex/) · [JetBrains](https://theme.santi020k.com/jetbrains/) · [Xcode](https://theme.santi020k.com/xcode/) · [Raycast](https://theme.santi020k.com/raycast/) · [Slack](https://theme.santi020k.com/slack/) |
+| **Your own interface** | [Shared tokens and assets](packages/theme/README.md) · [Theme helpers](packages/theme-core/README.md) · [Lumen UI](https://lumen.santi020k.com/) |
+
+<details>
+<summary>Compare high-contrast variants</summary>
+
+| High-contrast dark | High-contrast light |
+| :---: | :---: |
+| ![High-contrast dark editor preview](packages/santi020k-theme/assets/previews/preview-hc-dark.png) | ![High-contrast light editor preview](packages/santi020k-theme/assets/previews/preview-hc-light.png) |
+
+The high-contrast variants strengthen borders and separation while retaining the violet identity.
+
+</details>
 
 ## Workspaces
 
@@ -44,7 +85,7 @@ pnpm install
 pnpm run validate
 ```
 
-Use Node `>=22.19.0` and pnpm `10.32.1`.
+Use the Node minimum declared in [`package.json`](package.json) and pnpm `10.34.6`.
 
 ## Common Commands
 
@@ -88,6 +129,21 @@ Use Node `>=22.19.0` and pnpm `10.32.1`.
 - [`packages/theme-core/README.md`](packages/theme-core/README.md) documents lower-level shared helper APIs.
 - [`apps/website/README.md`](apps/website/README.md) and [`apps/website/WEBSITE.md`](apps/website/WEBSITE.md) cover the consolidated static site.
 
+## Find your next step
+
+| Resource | Use it for |
+| --- | --- |
+| [Brand guidelines](docs/brand-guidelines.md) | Canonical identity and cross-surface conventions. |
+| [Architecture](docs/architecture.md) | Package responsibilities and runtime boundaries. |
+| [Contributing](CONTRIBUTING.md) | Contributor setup and validation workflow. |
+| [Security policy](SECURITY.md) | Private vulnerability reporting and support boundaries. |
+
+## Feedback and community
+
+Found a hard-to-read token or a platform mismatch? [Report a bug](https://github.com/santi020k/santi020k-theme/issues/new?template=bug_report.yml) with your app version, theme variant, steps, and a screenshot without private content. [Suggest an improvement](https://github.com/santi020k/santi020k-theme/issues/new?template=feature_request.yml) or [browse existing issues](https://github.com/santi020k/santi020k-theme/issues) before opening a duplicate.
+
+Please report vulnerabilities privately using the [security policy](SECURITY.md).
+
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE). Created and maintained by [Santiago Molina](https://santi020k.com).
