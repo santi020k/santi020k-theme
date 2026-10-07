@@ -25,6 +25,14 @@ This is the only public Santi020k theme website and Cloudflare Pages deployment.
 - Product-owned public assets are copied into their route namespace before Astro development and builds by `scripts/sync-consolidated-site-assets.mjs`.
 - Terminal downloads continue to be generated from `packages/santi020k-terminal-theme`; the consolidated build publishes them beneath `/terminal/`.
 
+## Mobile navigation
+
+The shared header uses a raised signature tab and an attached, numbered navigation panel below
+1101px. Menu and Close labels reflect its state. Links retain native Tab order; Escape returns
+focus to the toggle, and outside clicks, leaving the header with keyboard focus, route changes,
+and breakpoint changes close the panel. The theme chooser remains a native disclosure, with a
+two-column product list and scrolling for short screens. Desktop navigation retains its layout.
+
 ## Maintenance
 
 - Add new products to `src/data/products.js`, then create their route beneath `src/pages/`.
