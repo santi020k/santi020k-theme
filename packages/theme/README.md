@@ -30,6 +30,12 @@ four WEBP files. See [Signature artwork sources and prompts](../../artwork/signa
 including the original glass set. Both material directions have dark/light desktop and phone
 artwork. See [additional artwork sources and prompts](../../artwork/signature-v2/README.md).
 
+The **Minimal collection** adds **Contour**, inspired by the personal website's open canvas
+and sculpted corners. Four dark/light desktop and phone scenes keep a small prompt detail on
+a quiet matte surface. PNG and WEBP exports live under `assets/wallpapers/minimal-v1/`, with
+a separate four-file WEBP pack. These use the same display sizes, resized from native masters.
+See [Minimal artwork sources and prompts](../../artwork/minimal-v1/README.md).
+
 ## Install
 
 ```bash

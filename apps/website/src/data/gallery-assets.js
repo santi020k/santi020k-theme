@@ -42,6 +42,18 @@ import previewHcLightSvg from '../../../../packages/theme/assets/vscode/previews
 import previewLight from '../../../../packages/theme/assets/vscode/previews/preview-light.png'
 import previewLightPng from '../../../../packages/theme/assets/vscode/previews/preview-light.png?url'
 import previewLightSvg from '../../../../packages/theme/assets/vscode/previews/preview-light.svg?url'
+import ContourDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-desktop.png?url'
+import ContourDarkDesktop from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-desktop.webp'
+import ContourDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-desktop.webp?url'
+import ContourDarkMobilePng from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-mobile.png?url'
+import ContourDarkMobile from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-mobile.webp'
+import ContourDarkMobileWebp from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-mobile.webp?url'
+import ContourLightDesktopPng from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-desktop.png?url'
+import ContourLightDesktop from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-desktop.webp'
+import ContourLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-desktop.webp?url'
+import ContourLightMobilePng from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-mobile.png?url'
+import ContourLightMobile from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-mobile.webp'
+import ContourLightMobileWebp from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-mobile.webp?url'
 import DuneDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.png?url'
 import DuneDarkDesktop from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp'
 import DuneDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp?url'
@@ -229,6 +241,10 @@ const logo = (title, variant, dimensions, image, base, png, svg, webp) => ({
 })
 
 export const galleryAssets = [
+  { ...wallpaper('Contour · dark', 'Desktop', '3840 × 2160', ContourDarkDesktop, 'santi020k-contour-dark-desktop', ContourDarkDesktopPng, ContourDarkDesktopWebp, false), collection: 'minimal' },
+  { ...wallpaper('Contour · dark', 'Mobile', '1170 × 2532', ContourDarkMobile, 'santi020k-contour-dark-mobile', ContourDarkMobilePng, ContourDarkMobileWebp, true), collection: 'minimal' },
+  { ...wallpaper('Contour · light', 'Desktop', '3840 × 2160', ContourLightDesktop, 'santi020k-contour-light-desktop', ContourLightDesktopPng, ContourLightDesktopWebp, false), collection: 'minimal' },
+  { ...wallpaper('Contour · light', 'Mobile', '1170 × 2532', ContourLightMobile, 'santi020k-contour-light-mobile', ContourLightMobilePng, ContourLightMobileWebp, true), collection: 'minimal' },
   { ...wallpaper('Glass · dark', 'Desktop', '3840 × 2160', SignatureDarkDesktop, 'santi020k-signature-dark-desktop', SignatureDarkDesktopPng, SignatureDarkDesktopWebp, false), collection: 'signature' },
   { ...wallpaper('Glass · dark', 'Mobile', '1170 × 2532', SignatureDarkMobile, 'santi020k-signature-dark-mobile', SignatureDarkMobilePng, SignatureDarkMobileWebp, true), collection: 'signature' },
   { ...wallpaper('Glass · light', 'Desktop', '3840 × 2160', SignatureLightDesktop, 'santi020k-signature-light-desktop', SignatureLightDesktopPng, SignatureLightDesktopWebp, false), collection: 'signature' },

@@ -344,7 +344,7 @@ Verify mobile and desktop, light and dark, keyboard focus, and horizontal overfl
 ### Wallpaper generations
 
 Keep historical assets available as the **Classic collection**. Current artwork belongs to the
-**Sculpted** or **Signature collection**, with descriptive file names and collection metadata. Never
+**Sculpted**, **Signature**, or **Minimal collection**, with descriptive file names and collection metadata. Never
 replace an existing downloadable asset with different artwork at the same URL. New wallpapers
 use violet identity, generous negative space, and a restrained focal form; they are artwork,
 not alternate product logos. Pair dark and light options and preserve clear collection labels
@@ -378,6 +378,16 @@ material feel distinct. These additional masters and prompts live in `artwork/si
 with exports under `packages/theme/assets/wallpapers/signature-v2/`. The second Signature
 archive contains all twelve wallpapers, including the original four glass compositions;
 the first archive and every existing asset URL remain available unchanged.
+
+The **Minimal collection** translates the personal website's open canvas, fine outlines, and
+sculpted navbar corners into quiet wallpaper artwork. **Contour** uses a single shallow matte
+surface at the edge of the canvas, with the canonical purple prompt reduced to a small inset
+detail. Preserve generous empty space, neutral pale-lilac or deep-ink surfaces, and restrained
+violet accents. Do not reproduce page UI, portraits, navigation, or marketing copy. Pair dark
+and light desktop and independently composed phone scenes. Keep native masters and prompts
+in `artwork/minimal-v1/`, PNG and WEBP display exports in
+`packages/theme/assets/wallpapers/minimal-v1/`, and four WEBP files in a separate Minimal
+archive. These are resized raster masters, not native 4K renders or vector artwork.
 
 ## Voice And Copy
 

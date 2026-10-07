@@ -30,6 +30,12 @@ The second Signature archive includes all twelve branded compositions, including
 glass set. Every first-edition file and archive remains intact; native artwork and prompts
 for the added options are retained in `artwork/signature-v2/`.
 
+The Minimal collection adds Contour: four dark/light desktop and phone compositions inspired
+by the personal website's quiet canvas, fine outlines, and sculpted corners. A small prompt
+detail and shallow matte surface leave generous negative space. Native masters and prompts
+live under `artwork/minimal-v1/`; PNG/WEBP display exports, a separate gallery filter, and a
+four-file WEBP pack accompany the existing collections without replacing their URLs.
+
 Migration: theme variant names and syntax coverage remain available, while editor action and focus styling changes deliberately for v3. Existing wallpaper links and shared package import paths remain supported. Consumers of the shared website CSS should review typography, spacing, and control styling against the new brand guide.
 
 Published npm Lumen 4.0.0 powers all six website sources. Terminal documentation uses command tabs, clipboard feedback, breadcrumbs, and reading progress. The shared theme toggle now preserves native button or switch state semantics. The support page links to family-wide GitHub issue forms, published releases, and private vulnerability reporting. Canonical metadata, the sitemap, the extension homepage, and contribution instructions match the consolidated website.

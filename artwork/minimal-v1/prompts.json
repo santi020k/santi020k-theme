@@ -1,0 +1,34 @@
+{
+  "mode": "built-in imagegen",
+  "collection": "Minimal — Contour",
+  "prompts": {
+    "contour-light-desktop": {
+      "prompt": "Use case: stylized-concept.\nCreate a premium ultra-minimal desktop wallpaper for santi020k. Landscape 16:9, ideally 2560x1440 or larger.\nReference image 1 is the current santi020k personal website: use only its calm off-white/lilac canvas, restrained fine outlines, and its sculpted navbar's soft concave/convex corner transitions. Do NOT reproduce the website UI, portrait, text or navigation.\nReference image 2 is the canonical brand icon: a white >_ prompt on a solid purple rounded square. Preserve this icon exactly as a very small flat inset detail.\nComposition: 85 percent of the image is an exceptionally quiet, nearly uniform pale lilac white #f8f6fd surface. In the lower right quarter, one oversized matte off-white paper-like plane enters from the right and bottom edges, with an elegant broad rounded corner and subtle concave shoulder suggesting the website's attached signature tab. It is a shallow architectural relief, not a floating object, not a stack of cards. An exquisitely fine soft shadow and narrow lavender edge describe this one continuous contour. Only one small purple icon inset flush with the surface at roughly x=82%, y=78%, width 2.5% of the canvas. Keep it sharp and restrained, no glow and no separate raised app tile. An almost imperceptible small lavender circle near the far right edge may echo the website's particles.\nLighting: soft diffuse daylight, luxurious understated editorial art direction, smooth monochrome matte surfaces, barely-there depth. Beautiful subtle tonal variation with no visible noise or rough texture. Strong negative space for icons. Keep center and all upper regions empty.\nNo words, captions, gradients with saturated glow, glass spheres, chrome, fabric, screens, UI, watermark, visible frame or extra logos. Full bleed wallpaper.",
+      "references": [
+        "santi020k personal website v4 screenshot (temporary reference)",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    "contour-dark-desktop": {
+      "prompt": "Use case: stylized-concept. Create the DARK edition of the reference desktop wallpaper. Landscape 16:9 at high resolution. Preserve precisely the minimal layout: a large empty canvas, a single matte shallow surface flowing into the bottom right, a fine smooth S-shaped sculpted contour, a tiny flat purple rounded-square icon with the white >_ prompt in the lower right surface, and one quiet dot near the far right edge. Change only the palette and lighting: deep plum ink #110c1d canvas, slightly lighter matte plum #171022 relief, exquisitely fine muted violet edge, a restrained purple #5a0fdb icon. The small dot is faint violet. Smooth, premium, near-uniform dark negative space across at least 80% of the canvas. Keep subtle depth legible without neon or dramatic glow. The icon should be at x=82%, y=78%, approximately 3% of the image width. Preserve the exact white prompt shape in reference 2. Do not add text, UI, floating objects, large logos, grain, glass or fabric. Full bleed, not a device mockup.",
+      "references": [
+        "artwork/minimal-v1/contour-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    "contour-light-mobile": {
+      "prompt": "Use case: stylized-concept. Create an independently composed PHONE wallpaper in the same minimal visual family as reference 1. Tall portrait aspect ratio 1170:2532, approximately 9:19.5. Pale lilac white #f8f6fd matte canvas, with the TOP 70% completely calm and empty for a phone clock and widgets. One shallow matte off-white plane enters from the lower right and bottom edges only. Its broad rounded corner and concave shoulder trace an elegant smooth sculpted contour, like the attached signature tab of the santi020k website. Faint soft shadow and hairline lavender edge. A very small flat purple rounded-square inset with the exact white >_ prompt from reference 2 sits near x=73%, y=82%, width around 7% of canvas. A single almost imperceptible lavender dot near x=90%, y=66%. Keep bottom 8% visually quiet. Exquisite restraint, smooth neutral surfaces, tiny violet accent, no raised app tile, no words, no screen UI, no portrait, no glow, no glass, no rough texture or noise. Full bleed wallpaper, not a phone mockup.",
+      "references": [
+        "artwork/minimal-v1/contour-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    "contour-dark-mobile": {
+      "prompt": "Use case: stylized-concept. Create an independently composed DARK PHONE wallpaper in the same minimal visual family as reference 1. Tall portrait aspect ratio 1170:2532, approximately 9:19.5. Deep plum ink #110c1d matte canvas, with the TOP 70% completely calm and empty for a phone clock and widgets. One shallow matte slightly lighter plum #171022 plane enters from the lower right and bottom edges only. Its broad rounded corner and concave shoulder trace an elegant smooth sculpted contour, like the attached signature tab of the santi020k website. Faint soft shadow and hairline muted violet edge, no glow. A very small flat purple #5a0fdb rounded-square inset with the exact white >_ prompt from reference 2 sits near x=73%, y=82%, width around 7% of canvas. A single almost imperceptible muted violet dot near x=90%, y=66%. Keep bottom 8% visually quiet. Exquisite restraint, smooth neutral surfaces, tiny violet accent, no raised app tile, no words, no screen UI, no portrait, no glass, no rough texture or noise. Full bleed wallpaper, not a phone mockup.",
+      "references": [
+        "artwork/minimal-v1/contour-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    }
+  }
+}

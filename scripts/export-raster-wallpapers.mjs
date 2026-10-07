@@ -17,7 +17,8 @@ const dimensions = {
 const collections = [
   { directory: 'sculpted-v2', families: ['tide', 'dune', 'veil'], archive: 'santi020k-sculpted-wallpapers-v2.zip', include: [] },
   { directory: 'signature-v1', families: ['signature'], archive: 'santi020k-signature-wallpapers-v1.zip', include: [] },
-  { directory: 'signature-v2', families: ['satin', 'ceramic'], archive: 'santi020k-signature-wallpapers-v2.zip', include: ['signature-v1'] }
+  { directory: 'signature-v2', families: ['satin', 'ceramic'], archive: 'santi020k-signature-wallpapers-v2.zip', include: ['signature-v1'] },
+  { directory: 'minimal-v1', families: ['contour'], archive: 'santi020k-minimal-wallpapers-v1.zip', include: [] }
 ]
 
 /** @param {string[]} families */
