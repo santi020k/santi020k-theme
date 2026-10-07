@@ -1,9 +1,25 @@
 /* Santi020k typography tokens.
- * Font loading is left to the consuming app. The canonical web font is Montserrat.
+ * Montserrat variable fonts are bundled under assets/fonts with their SIL OFL license.
  */
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./assets/fonts/montserrat-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./assets/fonts/montserrat-italic-variable.woff2') format('woff2');
+}
 
 :root {
   --santi020k-font-sans: "Montserrat", "Avenir Next", "Segoe UI", sans-serif;
   --santi020k-font-display: "Montserrat", "Avenir Next", sans-serif;
-  --santi020k-font-mono: "Montserrat", "SFMono-Regular", "SF Mono", monospace;
+  --santi020k-font-mono: "Fira Code", "SFMono-Regular", "SF Mono", monospace;
 }

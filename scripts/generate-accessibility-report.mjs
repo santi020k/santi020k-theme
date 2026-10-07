@@ -33,7 +33,7 @@ ${rows.join('\n')}
 
 ## Website requirements
 
-- Visible keyboard focus uses a three-pixel violet outline with offset.
+- Visible keyboard focus uses a two-pixel violet outline with offset.
 - Light and dark modes are exposed through \`color-scheme\` and preserve readable foreground/background roles.
 - Motion is disabled or reduced under \`prefers-reduced-motion: reduce\`.
 - Theme controls use native buttons, selects, checkboxes, and accessible labels.

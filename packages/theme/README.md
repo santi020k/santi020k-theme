@@ -8,6 +8,12 @@ Use this package when a website, app, or theme surface needs the public Santi020
 
 **npm:** [npmjs.com/package/@santi020k/theme](https://www.npmjs.com/package/@santi020k/theme)
 
+## Visual direction
+
+The Sculpted direction follows the personal website v4: locally served Montserrat, a 72rem grid, medium-weight headings, solid surfaces, neutral primary actions, and violet focus. Use the [canonical visual guide](../../docs/brand-guidelines.md) and [live specimens](https://theme.santi020k.com/design/) when composing a new surface.
+
+New wallpapers live under `assets/wallpapers/sculpted/` with Fold, Orbit, and Monolith families in light/dark and desktop/mobile formats. Existing wallpaper paths remain available as the Classic collection. The gallery provides separate collection filters and ZIP downloads.
+
 ## Install
 
 ```bash

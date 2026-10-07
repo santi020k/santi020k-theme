@@ -36,8 +36,8 @@ const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
         </div>
       ))}
     </aside>
-    <article class="docs-article">
-      <header class="docs-heading"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{description}</p></header>
+    <article class="docs-article" aria-labelledby="docs-page-title">
+      <header class="docs-heading"><p class="eyebrow">{eyebrow}</p><h1 id="docs-page-title">{title}</h1><p>{description}</p></header>
       <div class="docs-content"><slot /></div>
       <Pagination className="docs-pagination" aria-label="Documentation pagination">
         {previous ? <Link href={previous.href}><span>Previous</span><b>← {previous.label}</b></Link> : <span></span>}

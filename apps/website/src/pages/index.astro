@@ -4,12 +4,18 @@ import { Image } from 'astro:assets'
 import { Badge, ButtonLink, Card, Eyebrow, Icon, Link } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
-import wallpaperOne from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
-import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/wallpaper-2-desktop.webp'
-import wallpaperThree from '../../../../packages/theme/assets/wallpapers/wallpaper-3-desktop.webp'
+import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp'
+import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp'
+import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 import { products } from '../data/products.js'
+
+const featuredWallpapers = [
+  { image: wallpaperOne, name: 'Fold', slug: 'fold' },
+  { image: wallpaperTwo, name: 'Orbit', slug: 'orbit' },
+  { image: wallpaperThree, name: 'Monolith', slug: 'monolith' }
+]
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -93,7 +99,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <title>Santi020k Themes — One violet system across your tools</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="/hub-hero-art.png" fetchpriority="high" />
     <meta name="description" content="The Santi020k theme family hub: coordinated themes for editors, terminals, browsers, launchers, and collaboration tools." />
     <meta name="author" content="Santiago Molina" />
@@ -130,15 +136,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <main id="top">
       <section class="site-shell hero">
         <div class="hero-copy">
-          <Eyebrow class="eyebrow">Theme family</Eyebrow>
-          <h1>Santi020k Themes</h1>
+          <Eyebrow class="eyebrow">01 / A considered workspace</Eyebrow>
+          <h1>A calmer place<br />to <span>create.</span></h1>
           <p class="lede">
-            Calm contrast and one violet color language across the tools you use every day.
+            Santi020k Themes. One considered violet palette for the editors, terminals, and tools you make things with.
           </p>
           <div class="actions" aria-label="Primary theme links">
-            <ButtonLink class="button button-primary" variant="primary" href="#themes">Browse all themes</ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="/gallery/">Open the gallery</ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme" newTab>View on GitHub</ButtonLink>
+            <ButtonLink class="button button-primary" variant="unstyled" href="#themes">Browse themes <span class="button-arrow"><Icon name="arrow-up-right" /></span></ButtonLink>
+            <ButtonLink class="button button-text" variant="unstyled" href="/gallery/">Explore the gallery <Icon name="arrow-right" /></ButtonLink>
           </div>
         </div>
 
@@ -156,10 +161,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       <section id="themes" class="site-shell section">
         <div class="section-heading">
           <div>
-            <Eyebrow class="eyebrow">Nine themes. One system.</Eyebrow>
+            <Eyebrow class="eyebrow">02 / The theme family</Eyebrow>
             <p class="section-intro">Every port ships from the same purple-forward foundation, with install guidance and platform-specific coverage.</p>
           </div>
-          <h2>Choose your surface.</h2>
+          <h2>Different tools.<br />The same feeling.</h2>
         </div>
 
         <div class="theme-grid">
@@ -175,7 +180,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 <div class="theme-card-meta"><Badge class="card-kicker" variant="success"><span class="status-dot" aria-hidden="true"></span>Available</Badge><span>{product.category}</span></div>
                 <h3><Link href={`/${product.slug}/`}>{product.name}</Link></h3>
                 <p>{product.summary}</p>
-                <ButtonLink class="button button-secondary theme-card-action" variant="secondary" href={`/${product.slug}/`}>View {product.name} theme</ButtonLink>
+                <ButtonLink class="button button-secondary theme-card-action" variant="unstyled" href={`/${product.slug}/`}>View {product.name} <Icon name="arrow-up-right" /></ButtonLink>
               </div>
             </Card>
           ))}
@@ -184,7 +189,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
       <section id="packages" class="site-shell section packages-section">
         <div class="section-heading">
-          <Eyebrow class="eyebrow">npm package</Eyebrow>
+          <Eyebrow class="eyebrow">03 / Make it your own</Eyebrow>
           <h2>Use the same tokens in your own surface.</h2>
         </div>
 
@@ -212,30 +217,30 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       <section id="assets" class="site-shell section assets-section">
         <div class="section-heading assets-heading">
           <div class="assets-heading-copy">
-            <Eyebrow class="eyebrow">Wallpapers</Eyebrow>
+            <Eyebrow class="eyebrow">04 / Beyond the window</Eyebrow>
             <h2>Bring the palette to your desktop.</h2>
-            <p>Three production-ready backgrounds, available directly from the shared theme asset package.</p>
+            <p>The Sculpted collection. Quiet plum forms, generous space, and a considered home for your desktop.</p>
           </div>
         </div>
         <div class="wallpaper-grid">
-          {[wallpaperOne, wallpaperTwo, wallpaperThree].map((wallpaper, index) => (
+          {featuredWallpapers.map((wallpaper, index) => (
             <Card as="article" class="wallpaper-card">
               <div class="wallpaper-card-media">
-                <Image src={wallpaper} alt={`Santi020k violet horizon wallpaper ${index + 1}`} loading="lazy" />
+                <Image src={wallpaper.image} alt={`${wallpaper.name}: a sculpted plum form on a calm dark background`} loading="lazy" />
                 <span aria-hidden="true">0{index + 1}</span>
               </div>
               <div class="wallpaper-card-body">
                 <div>
                   <p>3840 × 2160 · WEBP</p>
-                  <h3>Violet horizon {String(index + 1).padStart(2, '0')}</h3>
+                  <h3>{wallpaper.name}</h3>
                 </div>
-                <ButtonLink class="button button-primary" variant="primary" href={wallpaper.src} download={`santi020k-wallpaper-${index + 1}.webp`}>Download <Icon name="download" /></ButtonLink>
+                <ButtonLink class="button button-primary" variant="primary" href={`/wallpapers/sculpted/${wallpaper.slug}-dark-desktop.webp`} download={`santi020k-sculpted-${wallpaper.slug}-dark.webp`}>Download <Icon name="download" /></ButtonLink>
               </div>
             </Card>
           ))}
         </div>
         <div class="section-cta">
-          <p>Need another size or format? The complete library includes mobile wallpapers, banners, editor previews, and brand marks.</p>
+          <p>Explore both collections: Sculpted for the new visual line, and Classic for the original violet horizons. Desktop and mobile sizes are available.</p>
           <ButtonLink class="button button-secondary" variant="secondary" href="/gallery/">Browse all assets <Icon name="arrow-right" /></ButtonLink>
         </div>
       </section>

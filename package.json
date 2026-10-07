@@ -83,6 +83,7 @@
     "@santi020k/og": "catalog:",
     "@types/node": "catalog:",
     "@vscode/vsce": "catalog:",
+    "archiver": "catalog:",
     "cspell": "catalog:",
     "eslint": "catalog:",
     "husky": "catalog:",

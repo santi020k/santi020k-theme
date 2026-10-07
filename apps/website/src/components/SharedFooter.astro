@@ -46,7 +46,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
 
     <nav aria-label="Project links">
       <b>Explore</b>
-      <div><Link href="/">Home</Link><Link href="/gallery/">Gallery</Link><Link href="/terminal/docs/">Documentation</Link><Link href="https://santi020k.com" rel="noopener noreferrer">About Santi020k</Link></div>
+      <div><Link href="/">Home</Link><Link href="/gallery/">Gallery</Link><Link href="/design/">Design guide</Link><Link href="/terminal/docs/">Documentation</Link><Link href="https://santi020k.com" rel="noopener noreferrer">About Santi020k</Link></div>
     </nav>
   </div>
 
@@ -63,9 +63,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     margin-top: 0;
     padding-top: clamp(28px, 4vw, 48px);
     border-top: 1px solid var(--section-divider);
-    background:
-      radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--site-brand) 11%, transparent), transparent 28rem),
-      color-mix(in srgb, var(--site-surface) 74%, var(--theme-bg));
+    background: var(--theme-bg);
     color: var(--site-ink-soft);
   }
   .family-footer-callout {
@@ -79,20 +77,17 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     margin-inline: auto;
     padding: clamp(26px, 3.5vw, 38px);
     border: 1px solid color-mix(in srgb, var(--site-brand) 40%, var(--site-line));
-    border-radius: 22px;
-    background: linear-gradient(
-      120deg,
-      color-mix(in srgb, var(--site-brand-solid) 18%, var(--site-surface)),
-      color-mix(in srgb, var(--site-surface) 94%, var(--theme-bg)) 64%
-    );
-    box-shadow: 0 28px 90px color-mix(in srgb, #000 20%, transparent);
+    border-radius: 1.75rem;
+    background: var(--site-surface-muted);
+
   }
   .family-footer-callout h2 {
     max-width: 28ch;
     margin: 0;
     color: var(--site-ink);
     font-size: clamp(1.45rem, 2.3vw, 2.1rem);
-    letter-spacing: -.035em;
+    font-weight: 500;
+    letter-spacing: -.065em;
     line-height: 1.12;
   }
   .family-footer-callout p:not(.family-footer-eyebrow) {
@@ -103,8 +98,8 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
   .family-footer-eyebrow {
     margin: 0 0 9px;
     color: var(--site-brand);
-    font-size: .7rem;
-    font-weight: 850;
+    font-size: .625rem;
+    font-weight: 600;
     letter-spacing: .1em;
     text-transform: uppercase;
   }
@@ -122,9 +117,9 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     justify-content: center;
     padding: 0 18px;
     border: 1px solid var(--site-line);
-    border-radius: 9px;
+    border-radius: 1rem;
     font-size: .84rem;
-    font-weight: 800;
+    font-weight: 500;
     text-decoration: none;
   }
   .family-footer-callout-actions a:global(.family-footer-primary) {
@@ -138,6 +133,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     color: var(--site-ink);
   }
   .family-footer-callout-actions :global(svg) { width: 16px; }
+  .family-footer-callout h2 { font-weight: 500; }
   .family-footer-palette {
     position: absolute;
     right: 30px;
@@ -163,7 +159,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     grid-template-columns: minmax(260px, 1.35fr) .75fr .65fr .75fr;
     gap: clamp(34px, 6vw, 76px);
     margin: 0 auto;
-    padding-block: 38px 48px;
+    padding-block: 64px;
   }
   .family-footer-brand { max-width: 390px; }
   .family-footer-brand :global(.family-footer-logo) {
@@ -171,7 +167,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     gap: 11px;
     align-items: center;
     color: var(--site-ink);
-    font-weight: 850;
+    font-weight: 600;
   }
   .family-footer-brand :global(.family-footer-logo) svg {
     width: 36px;
@@ -188,7 +184,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     gap: 8px;
     align-items: center;
     font-size: .76rem;
-    font-weight: 750;
+    font-weight: 500;
   }
   .family-footer-open i {
     width: 8px;
@@ -208,13 +204,13 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
   }
   .family-footer nav div {
     display: grid;
-    gap: 12px;
+    gap: 4px;
   }
   .family-footer a {
     color: inherit;
     text-decoration: none;
   }
-  .family-footer nav a { font-size: .84rem; }
+  .family-footer nav a { display: inline-flex; min-height: 44px; align-items: center; font-size: .84rem; }
   .family-footer nav a:hover,
   .family-footer-meta a:hover { color: var(--site-brand); }
   .family-footer-meta {

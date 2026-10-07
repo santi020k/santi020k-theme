@@ -22,14 +22,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: clip;
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--site-brand) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(180deg, color-mix(in srgb, var(--site-brand) 6%, transparent) 1px, transparent 1px),
-    linear-gradient(155deg, color-mix(in srgb, var(--site-surface) 82%, var(--theme-bg)) 0%, var(--theme-bg) 48%, color-mix(in srgb, var(--chrome) 13%, var(--theme-bg)) 100%);
-  background-color: var(--theme-bg);
-  background-attachment: fixed;
-  background-position: center top;
-  background-size: 80px 80px, 80px 80px, auto;
+  background: var(--theme-bg);
 }
 
 a {
@@ -76,7 +69,7 @@ img {
 .brand {
   gap: 12px;
   min-width: max-content;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .brand-mark {
@@ -123,16 +116,15 @@ img {
 .nav-toggle:hover {
   border-color: var(--site-brand);
   color: var(--site-brand);
-  transform: translateY(-1px);
 }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(34px, 5vw, 68px);
   align-items: center;
   min-height: clamp(560px, calc(100vh - 150px), 740px);
-  padding: clamp(44px, 6vw, 76px) 0 clamp(54px, 7vw, 90px);
+  padding: clamp(56px, 7vw, 96px) 0 clamp(72px, 8vw, 112px);
 }
 
 .hero-copy {
@@ -142,9 +134,9 @@ img {
 .eyebrow {
   margin: 0 0 18px;
   color: var(--site-brand);
-  font-size: 0.76rem;
-  font-weight: 850;
-  letter-spacing: 0.08em;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -160,6 +152,8 @@ h1 {
   margin-bottom: 24px;
   font-size: var(--site-page-title-size);
   line-height: var(--site-page-title-line-height);
+  font-weight: 500;
+  letter-spacing: -0.065em;
 }
 
 h2 {
@@ -167,11 +161,15 @@ h2 {
   margin-bottom: 0;
   font-size: var(--site-section-title-size);
   line-height: var(--site-section-title-line-height);
+  font-weight: 500;
+  letter-spacing: -0.065em;
 }
 
 h3 {
   margin-bottom: 12px;
   font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
 }
 
 .lede,
@@ -195,25 +193,24 @@ h3 {
 
 .button {
   display: inline-flex;
-  min-height: 44px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 1rem;
   padding: 0 18px;
   font-size: 0.92rem;
-  font-weight: 800;
+  font-weight: 500;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .button-primary {
-  background: var(--site-brand-solid);
-  color: #ffffff;
+  background: var(--site-ink);
+  color: var(--theme-bg);
 }
 
 .button-primary:hover {
-  background: var(--site-brand-hover);
-  transform: translateY(-1px);
+  background: var(--site-ink-soft);
 }
 
 .button-secondary {
@@ -231,7 +228,6 @@ h3 {
 .button-secondary:hover {
   border-color: var(--site-brand);
   color: var(--site-brand);
-  transform: translateY(-1px);
 }
 
 .hero-art {
@@ -240,11 +236,8 @@ h3 {
   overflow: hidden;
   padding: clamp(10px, 1.5vw, 18px);
   border: 1px solid color-mix(in srgb, var(--site-brand) 34%, var(--site-line));
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--site-brand) 18%, transparent), transparent 34%),
-    color-mix(in srgb, var(--site-surface) 92%, transparent);
-  box-shadow: 0 34px 88px var(--shadow);
+  border-radius: 1.5rem;
+  background: var(--site-surface);
 }
 
 .codex-card {
@@ -420,13 +413,7 @@ h3 {
 }
 
 .hero-art::after {
-  position: absolute;
-  z-index: -1;
-  inset: 12% -5% 8% 16%;
-  border: 1px solid color-mix(in srgb, var(--site-brand) 30%, transparent);
-  border-radius: 8px;
-  content: "";
-  transform: translate(26px, 24px);
+  display: none;
 }
 
 .hero-art img {
@@ -460,7 +447,7 @@ h3 {
 }
 
 .section {
-  padding: clamp(66px, 8vw, 106px) 0;
+  padding: clamp(72px, 8vw, 112px) 0;
   border-top: 1px solid var(--section-divider);
 }
 
@@ -469,7 +456,7 @@ h3 {
   grid-template-columns: minmax(180px, 0.62fr) minmax(260px, 1fr);
   gap: 24px;
   align-items: end;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .packages-section .section-heading {
@@ -494,11 +481,8 @@ h3 {
 .package-panel {
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--site-brand) 34%, var(--site-line));
-  border-radius: 8px;
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--site-surface-muted) 42%, transparent), transparent 56%),
-    color-mix(in srgb, var(--site-surface) 92%, transparent);
-  box-shadow: 0 24px 56px color-mix(in srgb, var(--shadow) 68%, transparent);
+  border-radius: 1.5rem;
+  background: var(--site-surface);
 }
 
 .theme-card {
@@ -509,7 +493,6 @@ h3 {
 
 .theme-card:hover {
   border-color: color-mix(in srgb, var(--site-brand) 68%, var(--site-line));
-  transform: translateY(-3px);
 }
 
 .theme-card-media {
@@ -987,7 +970,7 @@ h3 {
   color: var(--site-ink-soft);
   cursor: pointer;
   font: inherit;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .filter-button {
@@ -1024,7 +1007,7 @@ h3 {
   margin: 0;
   color: var(--site-ink-soft);
   font-size: 0.86rem;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .gallery-count strong {
@@ -1053,7 +1036,6 @@ h3 {
 .asset-card:hover {
   border-color: color-mix(in srgb, var(--site-brand) 48%, var(--site-line));
   box-shadow: 0 24px 56px color-mix(in srgb, var(--shadow) 72%, transparent);
-  transform: translateY(-3px);
 }
 
 .asset-card:focus-within {
@@ -1142,7 +1124,7 @@ h3 {
 .asset-meta {
   color: var(--site-ink-soft);
   font-size: 0.76rem;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .asset-category {
@@ -1590,10 +1572,7 @@ h3 {
   min-height: 370px;
   padding: clamp(28px, 5vw, 56px);
   border-color: color-mix(in srgb, var(--site-brand) 38%, var(--site-line));
-  background:
-    radial-gradient(circle at 82% 15%, color-mix(in srgb, var(--site-brand) 26%, transparent), transparent 42%),
-    color-mix(in srgb, var(--site-surface) 92%, var(--theme-bg));
-  box-shadow: 0 28px 80px var(--shadow);
+  background: var(--site-surface);
 }
 
 .product-preview-top {
@@ -1671,14 +1650,7 @@ h3 {
 }
 
 .product-preview-glow {
-  position: absolute;
-  right: -85px;
-  bottom: -100px;
-  width: 290px;
-  height: 290px;
-  border: 1px solid color-mix(in srgb, var(--site-brand) 25%, transparent);
-  border-radius: 50%;
-  box-shadow: 0 0 0 34px color-mix(in srgb, var(--site-brand) 5%, transparent), 0 0 0 72px color-mix(in srgb, var(--site-brand) 4%, transparent);
+  display: none;
 }
 
 .simple-product-section {
@@ -1777,7 +1749,7 @@ h3 {
   gap: 5px;
   padding: 16px 18px;
   border: 1px solid var(--site-line);
-  border-radius: 8px;
+  border-radius: 1.5rem;
   background: var(--site-surface);
 }
 
@@ -1852,17 +1824,14 @@ h3 {
   position: relative;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--site-brand) 30%, var(--site-line));
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--site-surface) 94%, transparent);
-  box-shadow: 0 18px 42px color-mix(in srgb, var(--shadow) 44%, transparent);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  border-radius: 1.5rem;
+  background: var(--site-surface);
+  transition: border-color 0.2s ease;
 }
 
 .wallpaper-card:hover,
 .wallpaper-card:focus-within {
   border-color: color-mix(in srgb, var(--site-brand) 62%, var(--site-line));
-  box-shadow: 0 24px 54px color-mix(in srgb, var(--shadow) 66%, transparent);
-  transform: translateY(-3px);
 }
 
 .wallpaper-card-media {
@@ -2013,22 +1982,20 @@ h3 {
 
 .theme-card {
   min-width: 0;
-  border-radius: 12px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  border-radius: 1.5rem;
+  transition: border-color 0.2s ease;
 }
 
 .theme-card:hover,
 .theme-card:focus-within {
-  box-shadow: 0 30px 68px color-mix(in srgb, var(--shadow) 82%, transparent);
+  border-color: var(--site-brand);
 }
 
 .theme-card-preview {
   display: block;
-  padding: 18px;
-  border-bottom: 1px solid var(--site-line);
-  background:
-    radial-gradient(circle at 82% 12%, color-mix(in srgb, var(--site-brand) 28%, transparent), transparent 38%),
-    linear-gradient(145deg, color-mix(in srgb, var(--site-surface-muted) 86%, var(--theme-bg)), var(--theme-bg));
+  padding: 24px;
+  border-bottom: 1px solid var(--section-divider);
+  background: var(--site-surface-muted);
 }
 
 .theme-card-preview:focus-visible {
@@ -2040,15 +2007,14 @@ h3 {
   aspect-ratio: 16 / 9;
   border: 1px solid color-mix(in srgb, var(--site-brand) 35%, var(--site-line));
   border-radius: 9px;
-  background: color-mix(in srgb, var(--theme-bg) 88%, var(--site-surface));
-  box-shadow: 0 20px 42px color-mix(in srgb, var(--shadow) 75%, transparent);
+  background: var(--theme-bg);
+  box-shadow: none;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .theme-card:hover .theme-card-window,
 .theme-card:focus-within .theme-card-window {
   border-color: color-mix(in srgb, var(--site-brand) 74%, var(--site-line));
-  transform: translateY(-2px);
 }
 
 .theme-card-toolbar {
@@ -2170,7 +2136,7 @@ h3 {
   margin-bottom: 15px;
   color: var(--site-ink-soft);
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .theme-card-meta .card-kicker {
@@ -2205,4 +2171,57 @@ h3 {
   .theme-card-preview {
     padding: 14px;
   }
+}
+
+/* The hero uses the same restrained typography and solid action as website v4. */
+.hero h1 {
+  max-width: 11ch;
+  font-size: clamp(3.25rem, 6.2vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1.02;
+}
+
+.hero h1 span { color: var(--site-brand); }
+
+.hero .lede {
+  max-width: 38ch;
+  font-size: 0.9375rem;
+  line-height: 1.85;
+}
+
+.button-arrow {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  margin-left: 16px;
+  border-radius: 0.625rem;
+  background: var(--theme-bg);
+  color: var(--site-ink);
+}
+
+.button:has(.button-arrow) { padding-right: 7px; }
+
+.button-text {
+  gap: 12px;
+  padding-inline: 10px;
+  background: transparent;
+  color: var(--site-ink-soft);
+}
+
+.button-text:hover { color: var(--site-brand); }
+
+.theme-card-action {
+  justify-content: space-between;
+  padding-inline: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: clamp(3rem, 12vw, 4.3rem); }
+  .hero .actions { align-items: flex-start; }
+  .hero .button { width: auto; }
 }

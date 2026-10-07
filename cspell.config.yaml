@@ -234,6 +234,7 @@ words:
   - transition-property
   - transition-timing-function
   - tsconfck
+  - evenodd
   - tspan
   - undici
   - unrs

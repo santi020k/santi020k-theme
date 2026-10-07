@@ -65,6 +65,7 @@ const isActive = (href: string) => {
         </div>
       </details>
       <Link href="/gallery/" aria-current={pathname === '/gallery/' ? 'page' : undefined}>Gallery</Link>
+      <Link href="/design/" aria-current={pathname === '/design/' ? 'page' : undefined}>Design</Link>
       <Link href="/terminal/docs/" aria-current={pathname.startsWith('/terminal/docs/') ? 'page' : undefined}>Docs</Link>
       <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
     </nav>
@@ -94,7 +95,7 @@ const isActive = (href: string) => {
   const navigation = document.querySelector<HTMLElement>('#family-primary-navigation')
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
   const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
-  const desktopBreakpoint = window.matchMedia('(min-width: 981px)')
+  const desktopBreakpoint = window.matchMedia('(min-width: 1101px)')
 
   const closeNavigation = () => {
     navigation?.classList.remove('is-open')
@@ -152,13 +153,12 @@ const isActive = (href: string) => {
     top: 0;
     z-index: 50;
     border-bottom: 1px solid var(--site-line);
-    background: color-mix(in srgb, var(--theme-bg) 90%, transparent);
-    backdrop-filter: blur(20px);
+    background: var(--theme-bg);
   }
   .family-header {
     display: grid;
     width: var(--site-shell-width);
-    min-height: 72px;
+    min-height: 88px;
     grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 24px;
     align-items: center;
@@ -169,7 +169,7 @@ const isActive = (href: string) => {
     gap: 11px;
     align-items: center;
     min-width: max-content;
-    font-weight: 800;
+    font-weight: 500;
     text-decoration: none;
   }
   .family-brand b {
@@ -181,7 +181,7 @@ const isActive = (href: string) => {
     flex: 0 0 34px;
     border-radius: 8px;
     color: var(--site-brand-solid);
-    box-shadow: 0 0 22px color-mix(in srgb, var(--site-brand) 30%, transparent);
+
   }
   .family-primary-navigation {
     display: flex;
@@ -190,14 +190,14 @@ const isActive = (href: string) => {
     justify-content: flex-end;
     color: var(--site-ink-soft);
     font-size: .88rem;
-    font-weight: 750;
+    font-weight: 500;
   }
   .family-primary-navigation > a,
   .family-theme-menu > summary {
     display: inline-flex;
     min-height: 44px;
     align-items: center;
-    border-radius: 9px;
+    border-radius: 1rem;
     color: inherit;
     text-decoration: none;
     cursor: pointer;
@@ -235,7 +235,7 @@ const isActive = (href: string) => {
   .family-theme-selector-copy small {
     color: var(--site-ink-soft);
     font-size: .54rem;
-    font-weight: 850;
+    font-weight: 600;
     letter-spacing: .09em;
     line-height: 1;
     text-transform: uppercase;
@@ -273,7 +273,7 @@ const isActive = (href: string) => {
     padding: 14px;
     border: 1px solid var(--site-line);
     border-radius: 16px;
-    background: color-mix(in srgb, var(--site-surface) 96%, var(--theme-bg));
+    background: var(--site-surface);
     box-shadow: 0 24px 70px color-mix(in srgb, #000 34%, transparent);
   }
   .family-theme-panel-heading {
@@ -303,7 +303,7 @@ const isActive = (href: string) => {
     border-radius: 999px;
     color: var(--site-ink-soft);
     font-size: .62rem;
-    font-weight: 800;
+    font-weight: 500;
     text-transform: uppercase;
   }
   .family-theme-panel-grid {
@@ -316,7 +316,7 @@ const isActive = (href: string) => {
     gap: 5px;
     padding: 13px;
     border: 1px solid transparent;
-    border-radius: 9px;
+    border-radius: 1rem;
     text-decoration: none;
   }
   .family-theme-panel-grid a:hover,
@@ -338,7 +338,7 @@ const isActive = (href: string) => {
     color: var(--site-ink-soft);
     font-size: .58rem;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 500;
     letter-spacing: .04em;
     text-transform: uppercase;
   }
@@ -362,11 +362,11 @@ const isActive = (href: string) => {
   }
   .family-nav-toggle,
   .family-theme-toggle {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border: 1px solid var(--site-line);
-    border-radius: 999px;
-    background: var(--btn-secondary-bg);
+    border-radius: 1rem;
+    background: var(--site-surface);
     color: var(--site-ink);
   }
   .family-nav-toggle {
@@ -374,7 +374,7 @@ const isActive = (href: string) => {
   }
   .family-context-navigation-wrap {
     border-top: 1px solid var(--section-divider);
-    background: color-mix(in srgb, var(--site-surface) 76%, transparent);
+    background: var(--site-surface);
   }
   .family-context-navigation {
     display: flex;
@@ -414,11 +414,14 @@ const isActive = (href: string) => {
   }
   .family-context-navigation nav a {
     flex: 0 0 auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
     padding: 8px 11px;
-    border-radius: 7px;
+    border-radius: 0.75rem;
     color: var(--site-ink-soft);
     font-size: .78rem;
-    font-weight: 750;
+    font-weight: 500;
     text-decoration: none;
   }
   .family-context-navigation nav a:hover,
@@ -426,7 +429,7 @@ const isActive = (href: string) => {
     background: color-mix(in srgb, var(--site-brand) 10%, transparent);
     color: var(--site-brand);
   }
-  @media (max-width: 980px) {
+  @media (max-width: 1100px) {
     .family-header {
       position: relative;
       min-height: 66px;
@@ -456,7 +459,7 @@ const isActive = (href: string) => {
     }
     .family-primary-navigation > a,
     .family-theme-menu > summary {
-      min-height: 42px;
+      min-height: 44px;
       padding-inline: 10px;
     }
     .family-theme-menu > summary {
@@ -468,7 +471,7 @@ const isActive = (href: string) => {
       margin-top: 4px;
       padding: 6px;
       border: 0;
-      border-radius: 9px;
+      border-radius: 1rem;
       background: color-mix(in srgb, var(--theme-bg) 62%, transparent);
       box-shadow: none;
     }

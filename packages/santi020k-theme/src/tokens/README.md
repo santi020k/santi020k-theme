@@ -12,3 +12,5 @@ Edit token sources first, then run:
 ```bash
 pnpm --filter santi020k-theme run build:themes
 ```
+
+The Sculpted visual direction uses solid neutral primary actions and violet focus indicators in both standard modes. Syntax colors and the high-contrast dark palette retain their established roles. Platform typography and control geometry remain native to each host; the complete visual direction is defined in [`docs/brand-guidelines.md`](../../../../docs/brand-guidelines.md).

@@ -13,7 +13,7 @@ const title = 'Gallery & Downloads — Santi020k Theme'
 const description = 'Download Santi020k Theme wallpapers, banners, VS Code previews, and brand assets in their original resolution.'
 const socialImage = 'https://theme.santi020k.com/og-image.png'
 const imageAlt = 'Santi020k Theme gallery with wallpapers, banners, editor previews, and brand assets'
-const categories = ['wallpapers', 'banners', 'previews', 'logos']
+const categories = ['sculpted', 'classic', 'wallpapers', 'banners', 'previews', 'logos']
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -58,7 +58,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet" />
     <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
     <meta property="og:type" content="website" />
@@ -83,7 +83,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="twitter:image:alt" content={imageAlt} />
     <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
   </head>
-  <body>
+  <body data-gallery-page>
     <SharedHeader />
 
     <main id="top">
@@ -91,10 +91,11 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div class="gallery-hero-copy">
           <Eyebrow class="eyebrow">Gallery & downloads</Eyebrow>
           <h1 id="gallery-hero-title">The Santi020k asset library.</h1>
-          <p class="lede">Wallpapers, social banners, editor previews, and brand marks—organized by collection and ready in the format you need.</p>
+          <p class="lede">Quiet forms, soft light, and space to focus. Explore the new Sculpted wallpapers alongside the original Classic collection, banners, previews, and brand marks.</p>
           <div class="collection-downloads" aria-label="Collection downloads">
             <ButtonLink class="button button-primary" variant="primary" href="#asset-library">Browse all assets</ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-wallpapers.zip" download>Wallpapers ZIP</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-sculpted-wallpapers.zip" download>Sculpted wallpapers ZIP</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-wallpapers.zip" download>Classic wallpapers ZIP</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-banners.zip" download>Banners ZIP</ButtonLink>
           </div>
         </div>
@@ -102,7 +103,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <Eyebrow class="gallery-index-label">Available now</Eyebrow>
           <dl>
             <div><dt>{assets.length}</dt><dd>assets</dd></div>
-            <div><dt>4</dt><dd>collections</dd></div>
+            <div><dt>2</dt><dd>wallpaper collections</dd></div>
             <div><dt>4</dt><dd>file formats</dd></div>
           </dl>
           <p>PNG · WEBP · SVG · HEIC</p>
@@ -114,20 +115,20 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <div class="gallery-toolbar-copy"><Eyebrow class="eyebrow">Asset library</Eyebrow><h2 id="gallery-heading">Choose a collection.</h2><p>Preview each asset at full size, then download only the format you need.</p></div>
           <div class="gallery-controls">
             <div class="filter-group" role="group" aria-label="Filter assets">
-              {['all', ...categories].map((filter, index) => <Button class="filter-button" type="button" data-filter={filter} aria-pressed={index === 0 ? 'true' : 'false'}><span>{filter === 'all' ? 'All assets' : filter}</span><span class="filter-count" aria-hidden="true">{filter === 'all' ? assets.length : assets.filter(asset => asset.category === filter).length}</span></Button>)}
+              {['all', ...categories].map((filter, index) => <Button class="filter-button" type="button" data-filter={filter} aria-pressed={index === 0 ? 'true' : 'false'}><span>{filter === 'all' ? 'All assets' : filter.charAt(0).toUpperCase() + filter.slice(1)}</span><span class="filter-count" aria-hidden="true">{filter === 'all' ? assets.length : assets.filter(asset => asset.category === filter || ('collection' in asset && asset.collection === filter)).length}</span></Button>)}
             </div>
             <p class="gallery-count" aria-live="polite"><strong data-gallery-count>{assets.length}</strong> <span data-gallery-count-label>assets shown</span></p>
           </div>
         </div>
         <div class="asset-grid">
           {assets.map(asset => (
-            <Card as="article" class:list={['asset-card', { 'asset-card-portrait': 'portrait' in asset && asset.portrait }]} data-category={asset.category}>
+            <Card as="article" class:list={['asset-card', { 'asset-card-portrait': 'portrait' in asset && asset.portrait }]} data-category={asset.category} data-collection={'collection' in asset ? asset.collection : undefined}>
               <Button class:list={['asset-preview', { 'asset-preview-contain': ('contain' in asset && asset.contain) || ('portrait' in asset && asset.portrait) }]} type="button" data-preview-src={asset.preview.src} data-preview-alt={`${asset.title}, ${asset.variant}`} data-preview-title={`${asset.title} — ${asset.variant}`} aria-label={`Preview ${asset.title}, ${asset.variant}`}>
                 <Image src={asset.preview} alt="" loading="lazy" />
                 <span class="preview-label">Open preview</span>
               </Button>
               <div class="asset-card-body">
-                <div><p class="asset-category"><span>{asset.category}</span><span>{asset.variant}</span></p><h3>{asset.title}</h3><p class="asset-meta">{asset.dimensions}</p></div>
+                <div><p class="asset-category"><span>{'collection' in asset ? `${asset.collection.charAt(0).toUpperCase() + asset.collection.slice(1)} wallpaper` : asset.category}</span><span>{asset.variant}</span></p><h3>{asset.title}</h3><p class="asset-meta">{asset.dimensions}</p></div>
                 <div class="asset-formats" aria-label={`Download ${asset.title} formats`}>
                   {asset.formats.map(format => <Link href={format.href} download={format.file} title={`Download ${asset.title} as ${format.label}`}>{format.label}<Icon name="download" class="asset-format-icon" /></Link>)}
                 </div>
@@ -152,3 +153,109 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <UIPrimitives />
   </body>
 </html>
+
+<style>
+  :global([data-gallery-page] .gallery-hero h1) {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 500;
+    letter-spacing: -.065em;
+    line-height: 1.04;
+  }
+
+  :global([data-gallery-page] .gallery-toolbar h2) {
+    font-weight: 500;
+    letter-spacing: -.055em;
+  }
+
+  :global([data-gallery-page] .gallery-hero-index) {
+    border-color: var(--site-line);
+  }
+
+  :global([data-gallery-page] .gallery-hero-index dt),
+  :global([data-gallery-page] .gallery-hero-index dd),
+  :global([data-gallery-page] .gallery-index-label),
+  :global([data-gallery-page] .gallery-hero-index > p:last-child) {
+    font-weight: 500;
+  }
+
+  :global([data-gallery-page] .button-primary) {
+    background: var(--site-ink);
+    border-color: var(--site-ink);
+    color: var(--theme-bg);
+    box-shadow: none;
+  }
+
+  :global([data-gallery-page] .button-secondary),
+  :global([data-gallery-page] .filter-button),
+  :global([data-gallery-page] .asset-formats a) {
+    min-height: 44px;
+    border-radius: 1rem;
+    background: var(--site-surface);
+    box-shadow: none;
+    font-weight: 500;
+  }
+
+  :global([data-gallery-page] .filter-button[aria-pressed="true"]) {
+    background: var(--site-ink);
+    border-color: var(--site-ink);
+    color: var(--theme-bg);
+  }
+
+  :global([data-gallery-page] .filter-button[aria-pressed="true"] .filter-count) {
+    background: var(--theme-bg);
+    color: var(--site-ink);
+  }
+
+  :global([data-gallery-page] .asset-grid) {
+    gap: 1.5rem;
+  }
+
+  :global([data-gallery-page] .asset-card),
+  :global([data-gallery-page] .asset-card:hover),
+  :global([data-gallery-page] .asset-card:focus-within) {
+    border-radius: 1.5rem;
+    background: var(--site-surface);
+    box-shadow: none;
+    transform: none;
+    transition: border-color 200ms ease;
+  }
+
+  :global([data-gallery-page] .asset-preview) {
+    background: var(--site-surface-muted);
+    background-image: none;
+  }
+
+  :global([data-gallery-page] .asset-card-body) {
+    padding: 1.5rem;
+  }
+
+  :global([data-gallery-page] .asset-card-body h3),
+  :global([data-gallery-page] .preview-label) {
+    font-weight: 500;
+  }
+
+  :global([data-gallery-page] .asset-dialog) {
+    border-color: var(--site-line);
+    border-radius: 1.5rem;
+  }
+
+  :global([data-gallery-page] .asset-dialog::backdrop) {
+    backdrop-filter: none;
+  }
+
+  :global([data-gallery-page] button:focus-visible),
+  :global([data-gallery-page] a:focus-visible) {
+    outline: 2px solid var(--site-accent);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global([data-gallery-page] .asset-card),
+    :global([data-gallery-page] .asset-preview img),
+    :global([data-gallery-page] .asset-preview:hover img),
+    :global([data-gallery-page] .preview-label) {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

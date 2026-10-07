@@ -178,6 +178,9 @@ importers:
       '@vscode/vsce':
         specifier: 'catalog:'
         version: 4.0.0
+      archiver:
+        specifier: 'catalog:'
+        version: 8.0.0
       cspell:
         specifier: 'catalog:'
         version: 10.3.5
@@ -3560,7 +3563,7 @@ packages:
     engines: {node: '>=22.12.0'}
     hasBin: true
     peerDependencies:
-      astro: '>=7.2.4'
+      astro: '>=7.2.8'
 
   '@santi020k/lumen-core@3.0.1':
     resolution: {integrity: sha512-AG0btQEuowB2zBKjYncMS3bgL842yqzJiS/l0/unqUcif5CmwxJvNYPS5rD4f6WFhRQGXGQUD5PVAbU+0Qh+ww==}

@@ -43,7 +43,7 @@ for (const button of filterButtons) {
     for (const item of filterButtons) item.setAttribute('aria-pressed', String(item === button))
 
     for (const card of assetCards) {
-      const visible = selectedFilter === 'all' || card.dataset.category === selectedFilter
+      const visible = selectedFilter === 'all' || card.dataset.category === selectedFilter || card.dataset.collection === selectedFilter
 
       card.hidden = !visible
 

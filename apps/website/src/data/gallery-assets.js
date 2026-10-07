@@ -42,6 +42,54 @@ import previewHcLightSvg from '../../../../packages/theme/assets/vscode/previews
 import previewLight from '../../../../packages/theme/assets/vscode/previews/preview-light.png'
 import previewLightPng from '../../../../packages/theme/assets/vscode/previews/preview-light.png?url'
 import previewLightSvg from '../../../../packages/theme/assets/vscode/previews/preview-light.svg?url'
+import FoldDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.png?url'
+import FoldDarkDesktopSvg from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.svg?url'
+import FoldDarkDesktop from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp'
+import FoldDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp?url'
+import FoldDarkMobilePng from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-mobile.png?url'
+import FoldDarkMobileSvg from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-mobile.svg?url'
+import FoldDarkMobile from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-mobile.webp'
+import FoldDarkMobileWebp from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-mobile.webp?url'
+import FoldLightDesktopPng from '../../../../packages/theme/assets/wallpapers/sculpted/fold-light-desktop.png?url'
+import FoldLightDesktopSvg from '../../../../packages/theme/assets/wallpapers/sculpted/fold-light-desktop.svg?url'
+import FoldLightDesktop from '../../../../packages/theme/assets/wallpapers/sculpted/fold-light-desktop.webp'
+import FoldLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/sculpted/fold-light-desktop.webp?url'
+import FoldLightMobilePng from '../../../../packages/theme/assets/wallpapers/sculpted/fold-light-mobile.png?url'
+import FoldLightMobileSvg from '../../../../packages/theme/assets/wallpapers/sculpted/fold-light-mobile.svg?url'
+import FoldLightMobile from '../../../../packages/theme/assets/wallpapers/sculpted/fold-light-mobile.webp'
+import FoldLightMobileWebp from '../../../../packages/theme/assets/wallpapers/sculpted/fold-light-mobile.webp?url'
+import MonolithDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.png?url'
+import MonolithDarkDesktopSvg from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.svg?url'
+import MonolithDarkDesktop from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp'
+import MonolithDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp?url'
+import MonolithDarkMobilePng from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-mobile.png?url'
+import MonolithDarkMobileSvg from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-mobile.svg?url'
+import MonolithDarkMobile from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-mobile.webp'
+import MonolithDarkMobileWebp from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-mobile.webp?url'
+import MonolithLightDesktopPng from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-light-desktop.png?url'
+import MonolithLightDesktopSvg from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-light-desktop.svg?url'
+import MonolithLightDesktop from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-light-desktop.webp'
+import MonolithLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-light-desktop.webp?url'
+import MonolithLightMobilePng from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-light-mobile.png?url'
+import MonolithLightMobileSvg from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-light-mobile.svg?url'
+import MonolithLightMobile from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-light-mobile.webp'
+import MonolithLightMobileWebp from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-light-mobile.webp?url'
+import OrbitDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.png?url'
+import OrbitDarkDesktopSvg from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.svg?url'
+import OrbitDarkDesktop from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp'
+import OrbitDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp?url'
+import OrbitDarkMobilePng from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-mobile.png?url'
+import OrbitDarkMobileSvg from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-mobile.svg?url'
+import OrbitDarkMobile from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-mobile.webp'
+import OrbitDarkMobileWebp from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-mobile.webp?url'
+import OrbitLightDesktopPng from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-light-desktop.png?url'
+import OrbitLightDesktopSvg from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-light-desktop.svg?url'
+import OrbitLightDesktop from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-light-desktop.webp'
+import OrbitLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-light-desktop.webp?url'
+import OrbitLightMobilePng from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-light-mobile.png?url'
+import OrbitLightMobileSvg from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-light-mobile.svg?url'
+import OrbitLightMobile from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-light-mobile.webp'
+import OrbitLightMobileWebp from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-light-mobile.webp?url'
 import wallpaperOneDesktopPng from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.png?url'
 import wallpaperOneDesktop from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
 import wallpaperOneDesktopWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp?url'
@@ -95,6 +143,7 @@ const download = (label, href, file) => ({ label, href, file })
 const wallpaper = (title, variant, dimensions, preview, base, png, webp, portrait = false) => ({
   title,
   category: 'wallpapers',
+  collection: 'classic',
   variant,
   dimensions,
   preview,
@@ -156,6 +205,18 @@ const logo = (title, variant, dimensions, image, base, png, svg, webp) => ({
 })
 
 export const galleryAssets = [
+  { ...wallpaper('Fold · light', 'Desktop', '3840 × 2160', FoldLightDesktop, 'santi020k-fold-light-desktop', FoldLightDesktopPng, FoldLightDesktopWebp, false), collection: 'sculpted', formats: [download('PNG', FoldLightDesktopPng, 'fold-light-desktop.png'), download('WEBP', FoldLightDesktopWebp, 'fold-light-desktop.webp'), download('SVG', FoldLightDesktopSvg, 'fold-light-desktop.svg')] },
+  { ...wallpaper('Fold · light', 'Mobile', '1170 × 2532', FoldLightMobile, 'santi020k-fold-light-mobile', FoldLightMobilePng, FoldLightMobileWebp, true), collection: 'sculpted', formats: [download('PNG', FoldLightMobilePng, 'fold-light-mobile.png'), download('WEBP', FoldLightMobileWebp, 'fold-light-mobile.webp'), download('SVG', FoldLightMobileSvg, 'fold-light-mobile.svg')] },
+  { ...wallpaper('Fold · dark', 'Desktop', '3840 × 2160', FoldDarkDesktop, 'santi020k-fold-dark-desktop', FoldDarkDesktopPng, FoldDarkDesktopWebp, false), collection: 'sculpted', formats: [download('PNG', FoldDarkDesktopPng, 'fold-dark-desktop.png'), download('WEBP', FoldDarkDesktopWebp, 'fold-dark-desktop.webp'), download('SVG', FoldDarkDesktopSvg, 'fold-dark-desktop.svg')] },
+  { ...wallpaper('Fold · dark', 'Mobile', '1170 × 2532', FoldDarkMobile, 'santi020k-fold-dark-mobile', FoldDarkMobilePng, FoldDarkMobileWebp, true), collection: 'sculpted', formats: [download('PNG', FoldDarkMobilePng, 'fold-dark-mobile.png'), download('WEBP', FoldDarkMobileWebp, 'fold-dark-mobile.webp'), download('SVG', FoldDarkMobileSvg, 'fold-dark-mobile.svg')] },
+  { ...wallpaper('Orbit · light', 'Desktop', '3840 × 2160', OrbitLightDesktop, 'santi020k-orbit-light-desktop', OrbitLightDesktopPng, OrbitLightDesktopWebp, false), collection: 'sculpted', formats: [download('PNG', OrbitLightDesktopPng, 'orbit-light-desktop.png'), download('WEBP', OrbitLightDesktopWebp, 'orbit-light-desktop.webp'), download('SVG', OrbitLightDesktopSvg, 'orbit-light-desktop.svg')] },
+  { ...wallpaper('Orbit · light', 'Mobile', '1170 × 2532', OrbitLightMobile, 'santi020k-orbit-light-mobile', OrbitLightMobilePng, OrbitLightMobileWebp, true), collection: 'sculpted', formats: [download('PNG', OrbitLightMobilePng, 'orbit-light-mobile.png'), download('WEBP', OrbitLightMobileWebp, 'orbit-light-mobile.webp'), download('SVG', OrbitLightMobileSvg, 'orbit-light-mobile.svg')] },
+  { ...wallpaper('Orbit · dark', 'Desktop', '3840 × 2160', OrbitDarkDesktop, 'santi020k-orbit-dark-desktop', OrbitDarkDesktopPng, OrbitDarkDesktopWebp, false), collection: 'sculpted', formats: [download('PNG', OrbitDarkDesktopPng, 'orbit-dark-desktop.png'), download('WEBP', OrbitDarkDesktopWebp, 'orbit-dark-desktop.webp'), download('SVG', OrbitDarkDesktopSvg, 'orbit-dark-desktop.svg')] },
+  { ...wallpaper('Orbit · dark', 'Mobile', '1170 × 2532', OrbitDarkMobile, 'santi020k-orbit-dark-mobile', OrbitDarkMobilePng, OrbitDarkMobileWebp, true), collection: 'sculpted', formats: [download('PNG', OrbitDarkMobilePng, 'orbit-dark-mobile.png'), download('WEBP', OrbitDarkMobileWebp, 'orbit-dark-mobile.webp'), download('SVG', OrbitDarkMobileSvg, 'orbit-dark-mobile.svg')] },
+  { ...wallpaper('Monolith · light', 'Desktop', '3840 × 2160', MonolithLightDesktop, 'santi020k-monolith-light-desktop', MonolithLightDesktopPng, MonolithLightDesktopWebp, false), collection: 'sculpted', formats: [download('PNG', MonolithLightDesktopPng, 'monolith-light-desktop.png'), download('WEBP', MonolithLightDesktopWebp, 'monolith-light-desktop.webp'), download('SVG', MonolithLightDesktopSvg, 'monolith-light-desktop.svg')] },
+  { ...wallpaper('Monolith · light', 'Mobile', '1170 × 2532', MonolithLightMobile, 'santi020k-monolith-light-mobile', MonolithLightMobilePng, MonolithLightMobileWebp, true), collection: 'sculpted', formats: [download('PNG', MonolithLightMobilePng, 'monolith-light-mobile.png'), download('WEBP', MonolithLightMobileWebp, 'monolith-light-mobile.webp'), download('SVG', MonolithLightMobileSvg, 'monolith-light-mobile.svg')] },
+  { ...wallpaper('Monolith · dark', 'Desktop', '3840 × 2160', MonolithDarkDesktop, 'santi020k-monolith-dark-desktop', MonolithDarkDesktopPng, MonolithDarkDesktopWebp, false), collection: 'sculpted', formats: [download('PNG', MonolithDarkDesktopPng, 'monolith-dark-desktop.png'), download('WEBP', MonolithDarkDesktopWebp, 'monolith-dark-desktop.webp'), download('SVG', MonolithDarkDesktopSvg, 'monolith-dark-desktop.svg')] },
+  { ...wallpaper('Monolith · dark', 'Mobile', '1170 × 2532', MonolithDarkMobile, 'santi020k-monolith-dark-mobile', MonolithDarkMobilePng, MonolithDarkMobileWebp, true), collection: 'sculpted', formats: [download('PNG', MonolithDarkMobilePng, 'monolith-dark-mobile.png'), download('WEBP', MonolithDarkMobileWebp, 'monolith-dark-mobile.webp'), download('SVG', MonolithDarkMobileSvg, 'monolith-dark-mobile.svg')] },
   wallpaper('Violet horizon 01', 'Desktop', '3840 × 2160', wallpaperOneDesktop, 'santi020k-wallpaper-1-desktop', wallpaperOneDesktopPng, wallpaperOneDesktopWebp),
   wallpaper('Violet horizon 01', 'Mobile', '1170 × 2532', wallpaperOneMobile, 'santi020k-wallpaper-1-mobile', wallpaperOneMobilePng, wallpaperOneMobileWebp, true),
   wallpaper('Violet horizon 02', 'Desktop', '3840 × 2160', wallpaperTwoDesktop, 'santi020k-wallpaper-2-desktop', wallpaperTwoDesktopPng, wallpaperTwoDesktopWebp),
@@ -168,6 +229,7 @@ export const galleryAssets = [
   wallpaper('Signal flow · dark', 'Mobile', '1170 × 2532', wallpaperFiveMobile, 'santi020k-wallpaper-5-mobile', wallpaperFiveMobilePng, wallpaperFiveMobileWebp, true),
   {
     title: 'Chrome new tab wallpaper',
+    collection: 'classic',
     category: 'wallpapers',
     variant: 'Browser',
     dimensions: '3840 × 2160 master',

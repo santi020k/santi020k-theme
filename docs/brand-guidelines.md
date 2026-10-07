@@ -1,6 +1,6 @@
 # Santi020k Theme Brand Guidelines
 
-**Canonical source of truth.** Last updated: August 2026. Owner: Santiago Molina, `@santi020k`.
+**Canonical source of truth.** Last updated: October 2026. Owner: Santiago Molina, `@santi020k`.
 
 Use this guide for every Santi020k theme-family surface:
 
@@ -255,6 +255,83 @@ Typography rules:
 - Keep marketing copy compact and concrete.
 - Avoid oversized hero text inside compact tools, cards, or previews.
 - Do not use decorative typography to compensate for weak hierarchy.
+
+## Sculpted visual line
+
+The website v4 redesign establishes the current visual line for the theme family. The visual
+reference is the personal website's `docs/sculpted-style-guide.md` on `release/v4.0.0`. This guide
+adapts that direction to developer tools: quiet, precise, personal, and immediately useful.
+The interactive examples at [the visual guide](https://theme.santi020k.com/design/) use the real
+shared tokens and the same navigation, controls, and appearance switch as product pages.
+
+### Hierarchy and typography
+
+Serve the shared Montserrat variable font locally. Keep technical commands in the existing
+monospace face; do not substitute display typography inside terminal or editor previews.
+Sentence case, complete titles, and medium-weight headings create hierarchy without shouting.
+
+| Role | Size | Weight | Leading and tracking |
+| --- | --- | --- | --- |
+| Product hero | Responsive, up to 5.5rem | 600 | 1.02; tight tracking |
+| Section heading | 2.25–3.75rem | 500 | 1.08; −0.065em |
+| Card or project title | 1.5–2rem | 500 | 1.2; −0.055em |
+| Reading body | 0.9375rem | 400 | 1.85 |
+| Supporting copy | 0.8125–0.875rem | 400 | 1.65–1.8 |
+| Metadata | 0.6875–0.75rem | 400–500 | Readable `--site-ink-soft` |
+| Eyebrow | 0.625rem | 600 | Uppercase; 0.13em tracking |
+
+Long-form documentation may use 1rem body text for comfort. Keep headings in `--site-ink`,
+paragraphs and metadata in `--site-ink-soft`, and violet as an identity and interaction accent.
+Never use muted display-only colors for essential text. The semantic palette tables above remain
+the reusable core authority; the hub's existing contextual tokens may retain their mapped values.
+
+### Grid, rhythm, and surfaces
+
+| Shared token | Value | Purpose |
+| --- | --- | --- |
+| `--site-shell-max-width` | 72rem | One alignment for navigation, hero, sections, and footer |
+| `--site-section-space` | 7rem desktop; 4.5rem mobile | Section rhythm |
+| `--site-heading-gap` | 2.5rem | Heading to content |
+| `--site-grid-gap` | 1.5rem | Repeated content |
+| `--site-editorial-gap` | 2.5–4rem | Reading and feature columns |
+| `--site-card-radius` | 1.5rem | Independent grouped surfaces |
+| `--site-panel-radius` | 1.75rem | Large community or collection panels |
+| `--site-control-radius` | 1rem | Buttons and inputs |
+| `--site-arrow-radius` | 0.75rem | Primary action arrow compartment |
+| `--site-control-min-height` | 44px | Minimum interactive target |
+
+Use a solid reading canvas and fine dividers, usually around 65% opacity. Prefer open numbered
+rows to repeated decorative cards. Group related content on one surface; do not nest ornamental
+panels. Depth belongs to the sculpted navbar, artwork, and actual product previews. Avoid
+page-wide glow, persistent grid textures, excessive glass, and continuously moving decoration.
+Below 768px, collapse editorial columns in reading order and retain every install action.
+
+### Controls, documentation, and motion
+
+Use Lumen primitives and public style hooks. Primary actions use neutral `--site-ink` backgrounds with `--theme-bg` text and a distinct
+arrow compartment. Violet remains the identity and focus accent. In native editor ports, map these
+roles to supported action and focus tokens; do not claim website typography or corner controls
+are available where the host does not support them. Secondary actions are quiet links or outlined controls with
+clear hit areas. Show visible 2px focus rings with an offset. Keep full linked rows and cards
+keyboard accessible; decorative arrows do not add a second accessible name.
+
+Documentation uses a calm sidebar, open heading, divided reading sections, and a light table
+of contents. Preserve command copy, code tabs, installation instructions, pagination, and anchor
+navigation when restyling. Sidebars may become a horizontal mobile navigation strip. Theme
+previews must continue to show actual product colors rather than decorative website colors.
+
+Transitions last 180–300ms and affect color, border, or artwork only. Do not lift entire cards.
+Reduced motion disables decorative transitions, scaling, blinking, and smooth scrolling.
+Verify mobile and desktop, light and dark, keyboard focus, and horizontal overflow.
+
+### Wallpaper generations
+
+Keep historical assets available as the **Classic collection**. Publish new artwork under the
+**Sculpted collection** with separate descriptive file names and collection metadata. Never
+replace an existing downloadable asset with different artwork at the same URL. New wallpapers
+use violet identity, generous negative space, and a restrained focal form; they are artwork,
+not alternate product logos. Pair dark and light options and preserve clear collection labels
+in galleries and download bundles.
 
 ## Voice And Copy
 

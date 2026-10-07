@@ -14,14 +14,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background:
-    radial-gradient(circle at 82% 9%, color-mix(in srgb, var(--site-brand) 20%, transparent), transparent 29rem),
-    radial-gradient(circle at 8% 42%, color-mix(in srgb, var(--site-accent) 9%, transparent), transparent 24rem),
-    linear-gradient(90deg, color-mix(in srgb, var(--site-brand) 5%, transparent) 1px, transparent 1px),
-    linear-gradient(180deg, color-mix(in srgb, var(--site-brand) 5%, transparent) 1px, transparent 1px),
-    var(--theme-bg);
-  background-attachment: fixed;
-  background-size: auto, auto, 72px 72px, 72px 72px, auto;
+  background: var(--theme-bg);
   color: var(--site-ink);
   font-family: var(--santi020k-font-sans);
 }
@@ -121,9 +114,9 @@ button:focus-visible,
 .eyebrow {
   margin: 0 0 18px;
   color: var(--site-brand);
-  font-size: 0.76rem;
-  font-weight: 850;
-  letter-spacing: 0.09em;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -138,16 +131,18 @@ h1 {
   max-width: var(--site-page-title-measure);
   margin-bottom: 24px;
   font-size: var(--site-page-title-size);
-  letter-spacing: -0.065em;
   line-height: var(--site-page-title-line-height);
+  font-weight: 500;
+  letter-spacing: -0.065em;
 }
 
 h2 {
   max-width: var(--site-section-title-measure);
   margin: 0;
   font-size: var(--site-section-title-size);
-  letter-spacing: -0.055em;
   line-height: var(--site-section-title-line-height);
+  font-weight: 500;
+  letter-spacing: -0.065em;
 }
 
 .lede,
@@ -206,22 +201,21 @@ h2 {
 }
 
 .button {
-  min-height: 46px;
-  border-radius: 9px;
+  min-height: 48px;
+  border-radius: 1rem;
   padding-inline: 20px;
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 500;
   transition: border-color 0.18s ease, color 0.18s ease, transform 0.18s ease, background 0.18s ease;
 }
 
 .button-primary {
-  background: var(--site-brand-solid);
-  color: #ffffff;
+  background: var(--site-ink);
+  color: var(--theme-bg);
 }
 
 .button-primary:hover {
-  background: var(--site-brand-hover);
-  transform: translateY(-1px);
+  background: var(--site-ink-soft);
 }
 
 .button-secondary {
@@ -233,7 +227,6 @@ h2 {
 .button-secondary:hover {
   border-color: var(--site-brand);
   color: var(--site-brand);
-  transform: translateY(-1px);
 }
 
 .theme-stage {
@@ -477,11 +470,8 @@ h2 {
 .preset-panel {
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--site-brand) 30%, var(--site-line));
-  border-radius: 14px;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--site-brand) 8%, transparent), transparent 35%),
-    color-mix(in srgb, var(--site-surface) 94%, transparent);
-  box-shadow: 0 26px 70px color-mix(in srgb, var(--shadow, rgb(0 0 0 / 0.3)) 56%, transparent);
+  border-radius: 1.5rem;
+  background: var(--site-surface);
 }
 
 .steps {
