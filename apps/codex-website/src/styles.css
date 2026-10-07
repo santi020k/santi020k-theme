@@ -852,3 +852,6 @@ h2 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Sculpted controls use solid surfaces rather than decorative depth. */
+.button, .button:hover, .button-copy-install, .button-copy-install:hover { box-shadow: none; }

@@ -665,3 +665,6 @@ code {
     justify-content: flex-start;
   }
 }
+
+/* Sculpted controls use solid surfaces rather than decorative depth. */
+.button, .button:hover, .button-copy-install, .button-copy-install:hover { box-shadow: none; }

@@ -9,13 +9,14 @@ import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 
 interface Props {
+  pageKind?: 'product' | 'guide'
   description: string
   name: string
   slug: string
   title: string
 }
 
-const { description, name, slug, title } = Astro.props
+const { description, name, slug, title, pageKind = 'product' } = Astro.props
 const canonical = `https://theme.santi020k.com/${slug}/`
 const socialImage = 'https://theme.santi020k.com/og-image.png'
 
@@ -34,7 +35,15 @@ const page = site.page({
   title
 })
 
-const structuredData = serializeJsonLd(softwareApplicationSchema({
+const structuredData = serializeJsonLd(pageKind === 'guide' ?
+{
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: canonical
+} :
+softwareApplicationSchema({
   name: `Santi020k Theme for ${name}`,
   url: canonical,
   description,

@@ -5,16 +5,19 @@ import { Badge, ButtonLink, Card, Eyebrow, Icon, Link } from '@santi020k/lumen-a
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp'
+import foldDownload from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp?url'
 import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp'
+import monolithDownload from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp?url'
 import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp'
+import orbitDownload from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp?url'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 import { products } from '../data/products.js'
 
 const featuredWallpapers = [
-  { image: wallpaperOne, name: 'Fold', slug: 'fold' },
-  { image: wallpaperTwo, name: 'Orbit', slug: 'orbit' },
-  { image: wallpaperThree, name: 'Monolith', slug: 'monolith' }
+  { image: wallpaperOne, name: 'Fold', slug: 'fold', download: foldDownload },
+  { image: wallpaperTwo, name: 'Orbit', slug: 'orbit', download: orbitDownload },
+  { image: wallpaperThree, name: 'Monolith', slug: 'monolith', download: monolithDownload }
 ]
 
 const structuredData = {
@@ -234,7 +237,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                   <p>3840 × 2160 · WEBP</p>
                   <h3>{wallpaper.name}</h3>
                 </div>
-                <ButtonLink class="button button-primary" variant="primary" href={`/wallpapers/sculpted/${wallpaper.slug}-dark-desktop.webp`} download={`santi020k-sculpted-${wallpaper.slug}-dark.webp`}>Download <Icon name="download" /></ButtonLink>
+                <ButtonLink class="button button-primary" variant="primary" href={wallpaper.download} download={`santi020k-sculpted-${wallpaper.slug}-dark.webp`}>Download <Icon name="download" /></ButtonLink>
               </div>
             </Card>
           ))}

@@ -380,7 +380,7 @@ h3 {
 }
 
 .preview-control {
-  min-height: 34px;
+  min-height: var(--site-control-min-height);
   border: 0;
   border-radius: 7px;
   padding: 0 12px;
@@ -1013,3 +1013,6 @@ h3 {
   .why-card,
   .button-copy-install { transition: none; }
 }
+
+/* Sculpted controls use solid surfaces rather than decorative depth. */
+.button, .button:hover, .button-copy-install, .button-copy-install:hover { box-shadow: none; }
