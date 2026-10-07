@@ -72,6 +72,10 @@ import {
 
 Theme toggle synchronization preserves the control semantics: native buttons use `aria-pressed`, switches use `aria-checked`, and the incompatible state attribute is removed.
 
+Preferred appearance sync follows repeated operating-system changes until a valid light/dark
+choice is stored. It does not save the operating-system preference as a user choice, and
+unavailable browser storage falls back to the operating-system appearance.
+
 ## License
 
 MIT.

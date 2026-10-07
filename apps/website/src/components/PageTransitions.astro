@@ -1,11 +1,31 @@
 ---
 import { ClientRouter } from 'astro:transitions'
 
+import { SITE_THEME_ATTRIBUTE, SITE_THEME_DARK, SITE_THEME_LIGHT, SITE_THEME_PREFERENCE_QUERY, SITE_THEME_STORAGE_KEY } from '@santi020k/theme/site'
+
 interface Props { page: string }
 
 const { page } = Astro.props
 ---
 <meta name="theme-page" content={page} />
+<!-- Set appearance synchronously before styles render, even when storage is blocked. -->
+<script is:inline define:vars={{ SITE_THEME_ATTRIBUTE, SITE_THEME_DARK, SITE_THEME_LIGHT, SITE_THEME_PREFERENCE_QUERY, SITE_THEME_STORAGE_KEY }}>
+  (function () {
+    var preference
+
+    try {
+      preference = localStorage.getItem(SITE_THEME_STORAGE_KEY)
+    } catch {
+      // Hardened browsers may deny access to the storage object itself.
+    }
+
+    if (preference !== SITE_THEME_LIGHT && preference !== SITE_THEME_DARK) {
+      preference = window.matchMedia(SITE_THEME_PREFERENCE_QUERY).matches ? SITE_THEME_LIGHT : SITE_THEME_DARK
+    }
+
+    document.documentElement.setAttribute(SITE_THEME_ATTRIBUTE, preference)
+  })()
+</script>
 <ClientRouter fallback="swap" />
 <script>
   import type { TransitionBeforeSwapEvent } from 'astro:transitions/client'
