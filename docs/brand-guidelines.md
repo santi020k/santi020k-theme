@@ -306,6 +306,14 @@ panels. Depth belongs to the sculpted navbar, artwork, and actual product previe
 page-wide glow, persistent grid textures, excessive glass, and continuously moving decoration.
 Below 768px, collapse editorial columns in reading order and retain every install action.
 
+### Mobile navigation
+
+The theme family's mobile navigation is a full-screen workspace switchboard: direct product
+routes, an editorial heading, category labels, and a separate strip for site navigation.
+Keep it distinct from the personal website's section menu. Share the interaction standard in
+[`mobile-navigation.md`](mobile-navigation.md), including modal focus, visible Close controls,
+scroll preservation, appearance controls, short-screen scrolling, and reduced motion.
+
 ### Controls, documentation, and motion
 
 Use Lumen primitives and public style hooks. Primary actions use neutral `--site-ink` backgrounds with `--theme-bg` text and a distinct
