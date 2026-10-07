@@ -96,9 +96,9 @@ const isActive = (href: string) => {
     <span class="family-mobile-wordmark">Santi020k <strong>Themes</strong></span>
     <div class="family-mobile-topbar-actions">
       <ThemeToggle class="family-mobile-appearance" aria-label="Toggle color theme" storageKey="theme" />
-    <Button class="family-mobile-close" variant="ghost" type="button" data-mobile-close autofocus>
-      <span>Close</span><Icon name="x" />
-    </Button>
+      <Button class="family-mobile-close" variant="ghost" type="button" data-mobile-close autofocus>
+        <span>Close</span><Icon name="x" />
+      </Button>
     </div>
   </div>
   <div class="family-mobile-body">
@@ -111,7 +111,7 @@ const isActive = (href: string) => {
       <div class="family-mobile-product-grid">
         {products.map(item => (
           <Link href={`/${item.slug}/`} aria-current={item.slug === currentProduct ? 'page' : undefined}>
-            <span class="family-mobile-product-category">{item.category}</span>
+            <span class="family-mobile-product-category"><span class="family-mobile-product-number" aria-hidden="true">{String(products.indexOf(item) + 1).padStart(2, '0')}</span>{item.category}</span>
             <span class="family-mobile-product-title">{item.name}<Icon name="arrow-up-right" /></span>
             {item.slug === currentProduct && <span class="family-mobile-current">You’re here</span>}
           </Link>
@@ -136,16 +136,68 @@ const isActive = (href: string) => {
 
 <script>
 import { bindContextNavigation, bindHeaderScrollOffset } from '../utils/context-navigation'
+import { createMenuMotion } from '../utils/menu-motion'
 import { bindPageLifecycle } from '../utils/page-lifecycle'
+
+const bindThemeMenu = (signal: AbortSignal) => {
+  const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
+  const themePanel = themeMenu?.querySelector<HTMLElement>('.family-theme-panel')
+  const themeMotion = themePanel ? createMenuMotion(themePanel, -8) : undefined
+  let themeClosing = false
+
+  const closeThemeMenu = () => {
+    if (!themeMenu?.open || themeClosing) return
+
+    themeClosing = true
+
+    themeMotion?.play(false, () => {
+      themeMenu.open = false
+
+      themeClosing = false
+    })
+  }
+
+  themeMenu?.querySelector('summary')?.addEventListener('click', event => {
+    event.preventDefault()
+
+    if (themeMenu.open && !themeClosing) closeThemeMenu()
+    else {
+      themeClosing = false
+
+      themeMenu.open = true
+
+      themeMotion?.play(true)
+    }
+  }, { signal })
+
+  document.addEventListener('click', event => {
+    if (themeMenu?.open && event.target instanceof Node && !themeMenu.contains(event.target)) closeThemeMenu()
+  }, { signal })
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && themeMenu?.open) {
+      closeThemeMenu()
+
+      themeMenu.querySelector('summary')?.focus()
+    }
+  }, { signal })
+
+  return () => {
+    themeMotion?.cancel()
+
+    if (themeMenu) themeMenu.open = false
+  }
+}
 
 bindPageLifecycle('*', signal => {
   const disposeScrollOffset = bindHeaderScrollOffset()
   const disposeContextNavigation = bindContextNavigation(signal)
+  const disposeThemeMenu = bindThemeMenu(signal)
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
   const dialog = document.querySelector<HTMLDialogElement>('#family-mobile-navigation')
-  const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
   const desktopBreakpoint = window.matchMedia('(min-width: 1101px)')
   const previousOverflow = document.documentElement.style.overflow
+  const mobileMotion = dialog ? createMenuMotion(dialog, 20) : undefined
   let restoreFocus = false
   let scrollPosition = { left: window.scrollX, top: window.scrollY }
 
@@ -163,22 +215,33 @@ bindPageLifecycle('*', signal => {
     }
   }
 
-  const closeNavigation = (returnFocus = true) => {
+  const closeNavigation = (returnFocus = true, animate = true) => {
     restoreFocus = returnFocus
 
-    dialog?.close()
+    const finish = () => {
+      dialog?.close()
 
-    syncClosedState()
+      syncClosedState()
+    }
+
+    if (dialog?.open && animate) mobileMotion?.play(false, finish)
+    else {
+      mobileMotion?.cancel()
+
+      finish()
+    }
   }
 
   toggle?.addEventListener('click', () => {
-    if (!dialog || desktopBreakpoint.matches) return
+    if (!dialog || dialog.open || desktopBreakpoint.matches) return
 
     restoreFocus = true
 
     scrollPosition = { left: window.scrollX, top: window.scrollY }
 
     dialog.showModal()
+
+    mobileMotion?.play(true)
 
     dialog.scrollTop = 0
 
@@ -195,7 +258,17 @@ bindPageLifecycle('*', signal => {
 
   dialog?.querySelector('[data-mobile-close]')?.addEventListener('click', () => closeNavigation(), { signal })
 
-  dialog?.addEventListener('close', syncClosedState, { signal })
+  dialog?.addEventListener('close', () => {
+    mobileMotion?.cancel()
+
+    syncClosedState()
+  }, { signal })
+
+  dialog?.addEventListener('cancel', event => {
+    event.preventDefault()
+
+    closeNavigation()
+  }, { signal })
 
   dialog?.addEventListener('keydown', event => {
     if (event.key !== 'Tab') return
@@ -216,29 +289,19 @@ bindPageLifecycle('*', signal => {
   }, { signal })
 
   dialog?.addEventListener('click', event => {
-    if (event.target instanceof Element && event.target.closest('a')) closeNavigation(false)
+    if (event.target instanceof Element && event.target.closest('a')) closeNavigation(false, false)
   }, { signal })
 
-  desktopBreakpoint.addEventListener('change', () => closeNavigation(false), { signal })
-
-  document.addEventListener('click', event => {
-    if (themeMenu?.open && event.target instanceof Node && !themeMenu.contains(event.target)) themeMenu.open = false
-  }, { signal })
-
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && themeMenu?.open) {
-      themeMenu.open = false
-
-      themeMenu.querySelector('summary')?.focus()
-    }
-  }, { signal })
+  desktopBreakpoint.addEventListener('change', () => closeNavigation(false, false), { signal })
 
   return () => {
     disposeScrollOffset()
 
     disposeContextNavigation()
 
-    closeNavigation(false)
+    disposeThemeMenu()
+
+    closeNavigation(false, false)
   }
 })
 </script>
@@ -373,12 +436,13 @@ bindPageLifecycle('*', signal => {
     position: absolute;
     top: calc(100% + 10px);
     right: -176px;
+    transform-origin: top right;
     display: grid;
     width: min(680px, calc(100vw - var(--site-shell-gutter) - var(--site-shell-gutter)));
     gap: 12px;
     padding: 14px;
     border: 1px solid var(--site-line);
-    border-radius: 16px;
+    border-radius: var(--site-arrow-radius);
     background: var(--site-surface);
     box-shadow: 0 24px 70px color-mix(in srgb, #000 34%, transparent);
   }
@@ -422,8 +486,9 @@ bindPageLifecycle('*', signal => {
     gap: 5px;
     padding: 13px;
     border: 1px solid transparent;
-    border-radius: 1rem;
+    border-radius: var(--site-arrow-radius);
     text-decoration: none;
+    transition: background-color 180ms ease, border-color 180ms ease;
   }
   .family-theme-panel-grid a:hover,
   .family-theme-panel-grid a[aria-current='page'] {
@@ -660,8 +725,9 @@ bindPageLifecycle('*', signal => {
     justify-content: center;
     gap: 8px;
     min-width: 0;
-    min-height: 72px;
-    padding: 12px;
+    min-height: 88px;
+    padding: 16px;
+    transition: background-color 180ms ease, border-color 180ms ease;
     border: 1px solid var(--site-line);
     border-radius: var(--site-arrow-radius);
     background: var(--site-surface);
@@ -677,11 +743,17 @@ bindPageLifecycle('*', signal => {
     grid-column: 1 / -1;
   }
   .family-mobile-product-category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: var(--site-ink-soft);
     font-size: .55rem;
     font-weight: 500;
     letter-spacing: .08em;
     text-transform: uppercase;
+  }
+  .family-mobile-product-number {
+    color: var(--site-brand);
   }
   .family-mobile-product-title {
     display: flex;
@@ -695,6 +767,10 @@ bindPageLifecycle('*', signal => {
   .family-mobile-product-title :global(svg) {
     width: 14px;
     color: var(--site-ink-soft);
+    transition: color 180ms ease;
+  }
+  .family-mobile-product-grid a:hover .family-mobile-product-title :global(svg) {
+    color: var(--site-brand);
   }
   .family-mobile-current {
     color: var(--site-ink-soft);
@@ -817,8 +893,26 @@ bindPageLifecycle('*', signal => {
       padding-inline: 10px;
     }
   }
+  @keyframes menu-content-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .family-mobile-navigation[open] .family-mobile-intro,
+    .family-mobile-navigation[open] .family-mobile-products,
+    .family-mobile-navigation[open] .family-mobile-explore,
+    .family-mobile-navigation[open] .family-mobile-footer {
+      animation: menu-content-enter 280ms cubic-bezier(.22, 1, .36, 1) both;
+    }
+    .family-mobile-navigation[open] .family-mobile-products { animation-delay: 35ms; }
+    .family-mobile-navigation[open] .family-mobile-explore,
+    .family-mobile-navigation[open] .family-mobile-footer { animation-delay: 60ms; }
+  }
   @media (prefers-reduced-motion: reduce) {
-    .family-theme-menu > summary :global(svg) {
+    .family-theme-menu > summary :global(svg),
+    .family-theme-panel-grid a,
+    .family-mobile-product-grid a,
+    .family-mobile-product-title :global(svg) {
       transition: none;
     }
   }

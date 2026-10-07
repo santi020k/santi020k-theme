@@ -25,6 +25,9 @@ package before both implementations prove a reusable API.
   utilities reachable inside an immersive menu.
 - Close on link activation and desktop breakpoint transitions. Dispose listeners and unlock
   scrolling before Astro replaces a document; initialize each new document exactly once.
+- Opening uses a 260ms fade and slide; Close and Escape keep the modal and scroll lock active
+  through a 180ms exit before restoring focus. Link activation, desktop resizing, and document
+  disposal close immediately. The desktop theme selector follows the same motion timing.
 - Motion must be brief and optional. Reduced-motion users receive the same navigation without
   movement. No animation is required to communicate open state.
 
