@@ -22,7 +22,8 @@
     },
     "@santi020k/theme#build": {
       "outputs": [],
-      "outputLogs": "errors-only"
+      "outputLogs": "errors-only",
+      "dependsOn": ["^build"]
     },
     "@santi020k/theme-core#build": {
       "outputs": [],
@@ -30,7 +31,8 @@
     },
     "santi020k-chrome-theme#build": {
       "outputs": [],
-      "outputLogs": "errors-only"
+      "outputLogs": "errors-only",
+      "dependsOn": ["^build"]
     },
     "santi020k-terminal-theme#build": {
       "outputs": [
@@ -43,11 +45,19 @@
         "wezterm/**",
         "windows-terminal/**"
       ],
-      "outputLogs": "errors-only"
+      "outputLogs": "errors-only",
+      "dependsOn": [
+        "^build",
+        "santi020k-theme#build"
+      ]
     },
     "santi020k-zed-theme#build": {
       "outputs": ["themes/santi020k.json"],
-      "outputLogs": "errors-only"
+      "outputLogs": "errors-only",
+      "dependsOn": [
+        "^build",
+        "santi020k-theme#build"
+      ]
     },
     "dev": {
       "cache": false,
@@ -70,6 +80,79 @@
     "//#lint:knip": {
       "dependsOn": ["build"],
       "outputLogs": "errors-only"
+    },
+    "@santi020k/santi020k-theme-website#build": {
+      "dependsOn": [
+        "^build",
+        "santi020k-terminal-theme#build"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/apps/*-website/src/**",
+        "$TURBO_ROOT$/apps/*-website/public/**",
+        "$TURBO_ROOT$/scripts/sync-consolidated-site-assets.mjs",
+        "$TURBO_ROOT$/packages/santi020k-codex-theme/themes/**",
+        "$TURBO_ROOT$/packages/santi020k-terminal-theme/prompt-presets.mjs",
+        "$TURBO_ROOT$/packages/santi020k-terminal-theme/zsh/**"
+      ],
+      "outputs": ["dist/**"],
+      "outputLogs": "errors-only"
+    },
+    "@santi020k/santi020k-vscode-theme-website#build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/apps/website/src/components/**",
+        "$TURBO_ROOT$/apps/website/src/data/**",
+        "$TURBO_ROOT$/apps/website/src/utils/**"
+      ],
+      "outputs": ["dist/**"],
+      "outputLogs": "errors-only",
+      "dependsOn": ["^build"]
+    },
+    "@santi020k/santi020k-chrome-theme-website#build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/apps/website/src/components/**",
+        "$TURBO_ROOT$/apps/website/src/data/**",
+        "$TURBO_ROOT$/apps/website/src/utils/**"
+      ],
+      "outputs": ["dist/**"],
+      "outputLogs": "errors-only",
+      "dependsOn": ["^build"]
+    },
+    "@santi020k/santi020k-terminal-theme-website#build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/apps/website/src/components/**",
+        "$TURBO_ROOT$/apps/website/src/data/**",
+        "$TURBO_ROOT$/apps/website/src/utils/**"
+      ],
+      "outputs": ["dist/**"],
+      "outputLogs": "errors-only",
+      "dependsOn": ["^build"]
+    },
+    "@santi020k/santi020k-zed-theme-website#build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/apps/website/src/components/**",
+        "$TURBO_ROOT$/apps/website/src/data/**",
+        "$TURBO_ROOT$/apps/website/src/utils/**"
+      ],
+      "outputs": ["dist/**"],
+      "outputLogs": "errors-only",
+      "dependsOn": ["^build"]
+    },
+    "@santi020k/santi020k-codex-theme-website#build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/packages/santi020k-codex-theme/themes/**",
+        "$TURBO_ROOT$/apps/website/src/components/**",
+        "$TURBO_ROOT$/apps/website/src/data/**",
+        "$TURBO_ROOT$/apps/website/src/utils/**"
+      ],
+      "outputs": ["dist/**"],
+      "outputLogs": "errors-only",
+      "dependsOn": ["^build"]
     }
   },
   "futureFlags": {

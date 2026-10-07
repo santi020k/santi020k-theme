@@ -37,18 +37,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <head>
     <PageTransitions page="hub" />
     <meta charset="UTF-8" />
-    <script is:inline>
-      (function () {
-        var saved = localStorage.getItem('theme')
-        var preferred = saved
-
-        if (preferred !== 'light' && preferred !== 'dark') {
-          preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        }
-
-        document.documentElement.setAttribute('data-theme', preferred)
-      })()
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />

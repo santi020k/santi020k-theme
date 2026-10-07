@@ -54,7 +54,7 @@ export const generateTokensCSS = config => {
     }
 
     if (darkContrastProps) {
-      css += `\n  ${darkSelector} {\n${darkContrastProps.replaceAll(/^/gm, '  ')}\n  }\n`
+      css += `\n  ${darkSelector} {\n${darkContrastProps.replaceAll(/^/gm, '  ')}\n  }${darkSelectorClose}\n`
     }
 
     css += '}\n'

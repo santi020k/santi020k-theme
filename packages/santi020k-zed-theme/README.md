@@ -16,7 +16,7 @@ pnpm --filter santi020k-zed-theme run build
 pnpm --filter santi020k-zed-theme run validate
 ```
 
-The generated theme file is written to `themes/santi020k.json`.
+The generated theme file is written to `themes/santi020k.json`. Validation requires a dark/light pair, valid native color values, and essential syntax roles. Selected elements use the supported `element.selected` token from [Zed's official theme schema](https://zed.dev/schema/themes/v0.2.0.json).
 
 ## Using locally in Zed
 
@@ -31,7 +31,7 @@ Then select `Santi020k Dark` or `Santi020k Light` from Zed's theme selector.
 
 ## Publishing
 
-The package stays at `0.0.0` until the Changesets release PR is generated. The pending major changeset bumps it to `1.0.0`, syncs `extension.toml`, and then `.github/workflows/zed-release.yml` opens a PR against `zed-industries/extensions`.
+Changesets manages the package version. Release preparation syncs `extension.toml` to that version, then `.github/workflows/zed-release.yml` opens a PR against `zed-industries/extensions`.
 
 Required GitHub configuration:
 
