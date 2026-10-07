@@ -13,6 +13,7 @@ import veilDownload from '../../../../packages/theme/assets/wallpapers/sculpted-
 import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
+import ThemeCardPreview from '../components/ThemeCardPreview.astro'
 import { products } from '../data/products.js'
 
 const featuredWallpapers = [
@@ -162,13 +163,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         </div>
 
         <RevealGroup class="theme-grid" animation="fade" duration="standard" stagger={35}>
-          {products.map((product, index) => (
+          {products.map(product => (
             <Card as="article" class="theme-card" data-product={product.slug}>
               <Link class="theme-card-preview" href={`/${product.slug}/`} aria-label={`View the ${product.name} theme`}>
-                <div class="theme-card-window" aria-hidden="true">
-                  <div class="theme-card-toolbar"><span><i></i><i></i><i></i></span><b>{product.name}</b><small>{String(index + 1).padStart(2, '0')}</small></div>
-                  <div class="theme-card-canvas"><span class="theme-card-rail"><i></i><i></i><i></i><i></i></span><span class="theme-card-lines"><i></i><i></i><i></i><i></i><i></i></span></div>
-                </div>
+                <ThemeCardPreview slug={product.slug} name={product.name} />
               </Link>
               <div class="theme-card-body">
                 <div class="theme-card-meta"><Badge class="card-kicker" variant="success"><span class="status-dot" aria-hidden="true"></span>Available</Badge><span>{product.category}</span></div>
