@@ -40,7 +40,7 @@ The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.
   </a>
 </p>
 
-*Dark and light previews from the theme's generated assets. [Explore every variant →](https://theme.santi020k.com/vscode/)*
+*Dark and light screenshots captured in VS Code. [Explore every variant →](https://theme.santi020k.com/vscode/)*
 
 | Make it yours | Start here |
 | :--- | :--- |

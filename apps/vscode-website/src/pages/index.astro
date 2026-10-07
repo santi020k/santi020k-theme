@@ -4,7 +4,10 @@ import { Image } from 'astro:assets'
 import { Button, ButtonLink, Card, Checkbox, Link, NativeSelect } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
+import previewDark from '../../../../packages/theme/assets/vscode/previews/preview-dark.png'
+import previewHcDark from '../../../../packages/theme/assets/vscode/previews/preview-hc-dark.png'
 import previewHcLight from '../../../../packages/theme/assets/vscode/previews/preview-hc-light.png'
+import previewLight from '../../../../packages/theme/assets/vscode/previews/preview-light.png'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
@@ -209,23 +212,23 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div>
           <p class="eyebrow">Preview</p>
           <h2>See every surface, across modes.</h2>
-          <p class="section-lede">Real editor layout — activity bar, sidebar, tabs, minimap, and terminal — styled exactly as they appear in VS Code.</p>
+          <p class="section-lede">Captured in VS Code with real theme-family code, the Explorer, editor tabs, syntax highlighting, and minimap.</p>
         </div>
         <div class="screenshot-grid">
           <figure class="screenshot-card">
-            <Image class="screenshot-img" src="/vscode/preview-dark.png" alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1280" height="720" loading="lazy" inferSize />
+            <Image class="screenshot-img" src={previewDark} alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1200" height="800" loading="lazy" />
             <figcaption>santi020k dark</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <Image class="screenshot-img" src="/vscode/preview-light.png" alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1280" height="720" loading="lazy" inferSize />
+            <Image class="screenshot-img" src={previewLight} alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1200" height="800" loading="lazy" />
             <figcaption>santi020k light</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <Image class="screenshot-img" src="/vscode/preview-hc-dark.png" alt="santi020k high contrast dark theme applied in VS Code — near-black surfaces with vivid purple and amber accents" width="1280" height="720" loading="lazy" inferSize />
+            <Image class="screenshot-img" src={previewHcDark} alt="santi020k high contrast dark theme applied in VS Code — near-black surfaces with vivid purple and amber accents" width="1200" height="800" loading="lazy" />
             <figcaption>santi020k hc dark</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <Image class="screenshot-img" src={previewHcLight} alt="santi020k high contrast light theme applied in VS Code — white surfaces with strong purple structure and clear syntax contrast" width="1280" height="720" loading="lazy" />
+            <Image class="screenshot-img" src={previewHcLight} alt="santi020k high contrast light theme applied in VS Code — lavender surfaces with strong borders and clear syntax contrast" width="1200" height="800" loading="lazy" />
             <figcaption>santi020k hc light</figcaption>
           </figure>
         </div>
