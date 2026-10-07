@@ -3,4 +3,4 @@
 "@santi020k/santi020k-theme-website": patch
 ---
 
-Refine the editor preview toolbar with labeled, compact native selectors, dropdown indicators, theme-aware colors, and visible keyboard focus. Separate the filename so every control fits on mobile.
+Refine the editor preview toolbar with compact native selectors with accessible labels, dropdown indicators, theme-aware colors, and visible keyboard focus. Separate the filename, give the language an editor-tab treatment, and size controls to their selected values with wrapping on narrow screens.
