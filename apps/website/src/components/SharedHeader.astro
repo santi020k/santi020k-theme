@@ -31,12 +31,14 @@ const isActive = (href: string) => {
 
 <div class="family-header-stack">
   <header class="family-header site-shell" aria-label="Site header">
+    <span class="family-header-signature" aria-hidden="true">One violet. Every surface.</span>
     <Link class="family-brand" href="/" aria-label="Santi020k Themes home">
       <svg class="family-brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true" focusable="false"><rect width="80" height="80" rx="18" fill="currentColor" /><path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /><line x1="48" y1="52" x2="62" y2="52" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" /></svg>
       <span>Santi020k <b>Themes</b></span>
     </Link>
 
     <nav id="family-primary-navigation" class="family-primary-navigation" aria-label="Primary navigation">
+      <div class="family-menu-heading" aria-hidden="true"><span>Explore the family</span><small>One palette, your whole workspace.</small></div>
       <Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>Home</Link>
       <details class:list={['family-theme-menu', { 'has-current-product': product }]}>
         <summary aria-label={product ? `Change theme. Current theme: ${product.name}` : 'Choose a theme'}>
@@ -71,7 +73,7 @@ const isActive = (href: string) => {
     </nav>
 
     <div class="family-header-actions">
-      <Button class="family-nav-toggle" variant="ghost" size="icon" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="family-primary-navigation"><Icon name="menu" /></Button>
+      <Button class="family-nav-toggle" variant="ghost" size="icon" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="family-primary-navigation"><span class="family-nav-label">Menu</span><span class="family-nav-open-icon"><Icon name="menu" /></span><span class="family-nav-close-icon" hidden><Icon name="x" /></span></Button>
       <ThemeToggle class="family-theme-toggle theme-toggle" aria-label="Toggle color theme" storageKey="theme" />
     </div>
   </header>
@@ -99,33 +101,61 @@ bindPageLifecycle('*', signal => {
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
   const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
   const desktopBreakpoint = window.matchMedia('(min-width: 1101px)')
+  const header = document.querySelector<HTMLElement>('.family-header')
+  const label = toggle?.querySelector('.family-nav-label')
+  const openIcon = toggle?.querySelector<HTMLElement>('.family-nav-open-icon')
+  const closeIcon = toggle?.querySelector<HTMLElement>('.family-nav-close-icon')
 
-  const closeNavigation = () => {
-    navigation?.classList.remove('is-open')
+  const syncToggle = (isOpen: boolean) => {
+    if (label) label.textContent = isOpen ? 'Close' : 'Menu'
 
-    toggle?.setAttribute('aria-expanded', 'false')
+    if (openIcon) openIcon.hidden = isOpen
+
+    if (closeIcon) closeIcon.hidden = !isOpen
   }
 
-  toggle?.addEventListener('click', () => {
-    const isOpen = navigation?.classList.toggle('is-open') ?? false
+  const setNavigation = (isOpen: boolean) => {
+    navigation?.classList.toggle('is-open', isOpen)
 
-    toggle.setAttribute('aria-expanded', String(isOpen))
-  })
+    header?.classList.toggle('has-open-menu', isOpen)
+
+    toggle?.setAttribute('aria-expanded', String(isOpen))
+
+    toggle?.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation')
+
+    syncToggle(isOpen)
+
+    if (!isOpen && themeMenu) themeMenu.open = false
+  }
+
+  const closeNavigation = () => setNavigation(false)
+
+  toggle?.addEventListener('click', () => {
+    setNavigation(toggle.getAttribute('aria-expanded') !== 'true')
+  }, { signal })
 
   navigation?.addEventListener('click', event => {
-    if (!(event.target instanceof Element) || !event.target.closest('a')) return
+    if (event.target instanceof Element && event.target.closest('a')) closeNavigation()
+  }, { signal })
+
+  desktopBreakpoint.addEventListener('change', () => {
+    const focusWasInNavigation = navigation?.contains(document.activeElement)
 
     closeNavigation()
-  })
 
-  const closeOnDesktop = (event: MediaQueryListEvent) => {
- if (event.matches) closeNavigation()
-}
-
-  desktopBreakpoint.addEventListener('change', closeOnDesktop, { signal })
+    if (!desktopBreakpoint.matches && focusWasInNavigation) toggle?.focus()
+  }, { signal })
 
   document.addEventListener('click', event => {
-    if (themeMenu?.open && event.target instanceof Node && !themeMenu.contains(event.target)) themeMenu.open = false
+    if (!(event.target instanceof Node)) return
+
+    if (navigation?.classList.contains('is-open') && !header?.contains(event.target)) closeNavigation()
+
+    if (themeMenu?.open && !themeMenu.contains(event.target)) themeMenu.open = false
+  }, { signal })
+
+  document.addEventListener('focusin', event => {
+    if (event.target instanceof Node && !header?.contains(event.target)) closeNavigation()
   }, { signal })
 
   document.addEventListener('keydown', event => {
@@ -134,14 +164,8 @@ bindPageLifecycle('*', signal => {
     if (navigation?.classList.contains('is-open')) {
       closeNavigation()
 
-      if (themeMenu?.open) themeMenu.open = false
-
       toggle?.focus()
-
-      return
-    }
-
-    if (themeMenu?.open) {
+    } else if (themeMenu?.open) {
       themeMenu.open = false
 
       themeMenu.querySelector('summary')?.focus()
@@ -155,6 +179,14 @@ return undefined
 <style>
   :global(html) {
     scroll-padding-top: 148px;
+  }
+  .family-header-signature,
+  .family-menu-heading {
+    display: none;
+  }
+  .family-header :is(a, button):focus-visible {
+    outline: 2px solid var(--site-brand);
+    outline-offset: 3px;
   }
   .family-header-stack {
     position: sticky;
@@ -438,56 +470,181 @@ return undefined
     color: var(--site-brand);
   }
   @media (max-width: 1100px) {
+    .family-header-stack {
+      padding-top: 28px;
+      border-bottom: 0;
+    }
     .family-header {
       position: relative;
-      min-height: 66px;
+      min-height: 68px;
+      grid-template-columns: minmax(0, 1fr) auto;
       gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--site-line);
+      border-radius: 0 18px 18px 18px;
+      background: var(--site-surface);
+    }
+    .family-header.has-open-menu {
+      border-bottom-color: transparent;
+      border-radius: 0 18px 0 0;
+    }
+    .family-header-signature {
+      position: absolute;
+      top: -20px;
+      left: -1px;
+      display: block;
+      padding: 4px 18px 4px 12px;
+      border: 1px solid var(--site-line);
+      border-bottom: 0;
+      border-radius: 10px 12px 0 0;
+      background: var(--site-surface);
+      color: var(--site-ink-soft);
+      font-size: .56rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      line-height: 12px;
+      text-transform: uppercase;
+    }
+    .family-brand {
+      min-width: 0;
+      gap: 8px;
     }
     .family-primary-navigation {
       position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      left: 0;
+      top: 100%;
+      right: -1px;
+      left: -1px;
       display: none;
       align-items: stretch;
+      justify-content: flex-start;
       flex-direction: column;
-      gap: 4px;
-      max-height: calc(100vh - 82px);
-      max-height: calc(100dvh - 82px);
+      gap: 0;
+      max-height: calc(100dvh - 110px);
       overflow-y: auto;
       overscroll-behavior: contain;
-      padding: 12px;
+      padding: 12px 20px 20px;
       border: 1px solid var(--site-line);
-      border-radius: 14px;
+      border-top: 0;
+      border-radius: 0 0 18px 18px;
       background: var(--site-surface);
-      box-shadow: 0 20px 60px color-mix(in srgb, #000 30%, transparent);
+      box-shadow: 0 24px 40px color-mix(in srgb, var(--site-ink) 12%, transparent);
+      counter-reset: navigation;
     }
     .family-primary-navigation.is-open {
       display: flex;
     }
+    .family-primary-navigation > * {
+      flex-shrink: 0;
+    }
+    .family-primary-navigation > a[aria-current='page'],
+    .family-theme-menu[open] .family-theme-selector-copy strong,
+    .family-theme-menu.has-current-product .family-theme-selector-copy strong {
+      color: var(--site-ink);
+    }
+    .family-menu-heading {
+      display: grid;
+      gap: 6px;
+      padding: 8px 0 20px;
+      border-bottom: 1px solid var(--section-divider);
+    }
+    .family-menu-heading span {
+      color: var(--site-ink);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .family-menu-heading small {
+      color: var(--site-ink-soft);
+      font-size: .75rem;
+    }
     .family-primary-navigation > a,
     .family-theme-menu > summary {
-      min-height: 44px;
-      padding-inline: 10px;
+      min-height: 62px;
+      gap: 14px;
+      padding: 12px 6px;
+      border: 0;
+      border-bottom: 1px solid var(--section-divider);
+      border-radius: 0;
+      background: transparent;
+      color: var(--site-ink);
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      font-weight: 500;
+      letter-spacing: -.04em;
+      counter-increment: navigation;
+    }
+    .family-primary-navigation > a::before,
+    .family-theme-menu > summary::before {
+      content: counter(navigation, decimal-leading-zero);
+      color: var(--site-ink-soft);
+      font-size: .65rem;
+      letter-spacing: 0;
+    }
+    .family-primary-navigation > a::after {
+      margin-left: auto;
+      content: '↗';
+      color: var(--site-ink-soft);
+      font-size: 1.1rem;
     }
     .family-theme-menu > summary {
       width: 100%;
+      justify-content: flex-start;
+    }
+    .family-theme-menu > summary :global(svg) {
+      width: 20px;
+    }
+    .family-theme-menu > summary > :last-child {
+      margin-left: auto;
+    }
+    .family-theme-selector-copy small {
+      display: none;
+    }
+    .family-theme-selector-copy strong {
+      font-size: inherit;
+      font-weight: inherit;
     }
     .family-theme-panel {
       position: static;
       width: 100%;
-      margin-top: 4px;
-      padding: 6px;
+      margin: 0;
+      padding: 16px 0;
       border: 0;
-      border-radius: 1rem;
-      background: color-mix(in srgb, var(--theme-bg) 62%, transparent);
+      border-bottom: 1px solid var(--section-divider);
+      border-radius: 0;
+      background: transparent;
       box-shadow: none;
     }
     .family-theme-panel-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .family-theme-panel-grid a {
+      min-height: 48px;
+      padding: 12px 8px;
+      border-radius: 8px;
+    }
     .family-nav-toggle {
       display: inline-flex;
+      width: auto;
+      min-width: 82px;
+      padding-inline: 10px;
+      border-radius: 10px;
+      font-size: .7rem;
+    }
+    .family-nav-toggle :global(.ui-button__content) {
+      gap: 8px;
+    }
+    .family-nav-toggle[aria-expanded='true'] {
+      background: var(--site-ink);
+      color: var(--theme-bg);
+    }
+    .family-header-actions {
+      gap: 8px;
+    }
+    .family-theme-toggle {
+      border-radius: 10px;
+    }
+    .family-context-navigation-wrap {
+      margin-top: 12px;
     }
     .family-context-navigation {
       gap: 18px;
@@ -498,10 +655,15 @@ return undefined
       scroll-padding-top: 134px;
     }
     .family-brand span {
-      font-size: .88rem;
+      font-size: .78rem;
+      line-height: 1.35;
+    }
+    .family-brand b {
+      display: block;
+      font-weight: 500;
     }
     .family-theme-panel-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .family-theme-panel-grid a > small,
     .family-theme-panel-heading small {
