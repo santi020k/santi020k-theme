@@ -27,7 +27,7 @@ Run commands from the repository root.
 | `pnpm run test` | Runs repo tests, including website version sync tests |
 | `pnpm run validate` | Runs the full monorepo validation suite |
 
-The interactive editor preview separates the filename from its a compact segmented toolbar for language, theme, and style. Native selects retain keyboard navigation and 44px targets, with colors following the selected editor theme independently of the page theme.
+The interactive editor preview separates the filename from an open toolbar: the language sits on the left as an editor tab, with theme and style controls on the right. Controls size to their values and wrap when space is limited. Native selects retain keyboard navigation and 44px targets, with colors following the selected editor theme independently of the page theme.
 
 ## Maintenance Notes
 
