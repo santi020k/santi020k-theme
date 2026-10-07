@@ -43,7 +43,7 @@ const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
           <li><Link href="/">Theme family</Link></li>
           <li><Link href="/terminal/">Terminal</Link></li>
           {path !== '/terminal/docs/' && <li><Link href="/terminal/docs/">Documentation</Link></li>}
-          <li aria-current="page">{title}</li>
+          <li aria-current="page"><span>{title}</span></li>
         </ol>
       </Breadcrumb>
       <header class="docs-heading"><p class="eyebrow">{eyebrow}</p><h1 id="docs-page-title">{title}</h1><p>{description}</p></header>
@@ -58,10 +58,15 @@ const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
 </SiteLayout>
 
 <style>
-  .docs-breadcrumb { margin-bottom: 24px; }
-  .docs-breadcrumb ol { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; font-size: .8rem; color: var(--site-ink-soft); }
-  .docs-breadcrumb li + li::before { content: '/'; margin-right: 8px; color: var(--site-ink-soft); }
-  .docs-breadcrumb a { color: var(--site-brand); }
+  .docs-breadcrumb { margin-bottom: 20px; font-size: .8125rem; line-height: 1.5; }
+  .docs-breadcrumb ol { column-gap: 0; row-gap: 0; }
+  .docs-breadcrumb li { max-width: 100%; min-height: var(--site-control-min-height); }
+  .docs-breadcrumb li + li::before { flex-shrink: 0; margin-inline: 12px; color: var(--site-ink-soft); }
+  .docs-breadcrumb :global(a) { display: inline-flex; align-items: center; min-height: var(--site-control-min-height); color: var(--site-ink-soft); font-weight: 500; white-space: nowrap; }
+  .docs-breadcrumb :global(a:hover) { color: var(--site-brand); }
+  .docs-breadcrumb :global(a:focus-visible) { outline: 2px solid var(--site-brand); outline-offset: 3px; }
+  .docs-breadcrumb [aria-current="page"] { color: var(--site-ink); font-weight: 600; }
+  .docs-breadcrumb [aria-current="page"] span { min-width: 0; overflow-wrap: anywhere; }
   .docs-article { min-width: 0; }
   .docs-content :global(.ui-code-tabs), .docs-content :global(.ui-code--block) { max-width: 100%; min-width: 0; margin-block: 22px; }
   .docs-content :global(.ui-code-tabs__list) { overflow-x: auto; }
