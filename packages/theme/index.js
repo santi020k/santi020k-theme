@@ -255,7 +255,7 @@ export const colors = [
 export const typography = {
   display: '"Montserrat", "Avenir Next", sans-serif',
   body: '"Montserrat", "Avenir Next", "Segoe UI", sans-serif',
-  mono: '"Montserrat", "SFMono-Regular", "SF Mono", monospace',
+  mono: '"Fira Code", "SFMono-Regular", "SF Mono", monospace',
   source: 'google-fonts',
   importUrl: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap',
   weights: [100, 200, 300, 400, 500, 600, 700, 800, 900]

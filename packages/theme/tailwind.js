@@ -1,9 +1,7 @@
+import { fontFamily } from './index.js'
+
 export const theme = {
-  fonts: {
-    sans: '"Montserrat", "Avenir Next", "Segoe UI", sans-serif',
-    display: '"Montserrat", "Avenir Next", sans-serif',
-    mono: '"Montserrat", "SFMono-Regular", "SF Mono", monospace'
-  },
+  fonts: fontFamily,
   colors: {
     canvas: 'hsl(var(--theme-bg))',
     surface: 'hsl(var(--surface))',

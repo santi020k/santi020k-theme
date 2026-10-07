@@ -15,3 +15,5 @@ Adopt the Sculpted visual direction from the personal website v4: medium-weight 
 Add Fold, Orbit, and Monolith wallpapers in paired light/dark desktop/mobile formats, with a separate Sculpted download archive and gallery filters. Keep Classic wallpaper paths and downloads available. Refresh paired VS Code button and focus colors and regenerate derived themes.
 
 Migration: v3 changes the visual treatment of editor primary actions and focus indicators; syntax and installed theme variant names remain available. Websites adopt the Sculpted layout and typography. Classic wallpaper URLs and downloads remain available alongside the new collection. Existing shared package import paths remain supported.
+
+Keep the Fira Code monospace stack consistent across CSS, JSON, JavaScript, and Tailwind exports.
