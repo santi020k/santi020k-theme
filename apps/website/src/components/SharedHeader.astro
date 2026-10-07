@@ -66,12 +66,12 @@ const isActive = (href: string) => {
       </details>
       <Link href="/gallery/" aria-current={pathname === '/gallery/' ? 'page' : undefined}>Gallery</Link>
       <Link href="/terminal/docs/" aria-current={pathname.startsWith('/terminal/docs/') ? 'page' : undefined}>Docs</Link>
-      <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub</Link>
+      <Link href="/support/" aria-current={pathname === '/support/' ? 'page' : undefined}>Support</Link>
     </nav>
 
     <div class="family-header-actions">
       <Button class="family-nav-toggle" variant="ghost" size="icon" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="family-primary-navigation"><Icon name="menu" /></Button>
-      <ThemeToggle class="family-theme-toggle theme-toggle" role="switch" aria-label="Toggle color theme" aria-checked="true" storageKey="theme" />
+      <ThemeToggle class="family-theme-toggle theme-toggle" aria-label="Toggle color theme" storageKey="theme" />
     </div>
   </header>
 

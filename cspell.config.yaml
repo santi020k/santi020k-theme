@@ -84,6 +84,7 @@ words:
   - esbuild
   - eslint
   - favicons
+  - fastify
   - fira
   - flex-shrink
   - flex-wrap
@@ -128,6 +129,7 @@ words:
   - inter
   - justify-content
   - justify-self
+  - katex
   - keybinding
   - keytar
   - knip

@@ -12,6 +12,13 @@ body:
       description: Name the UI surface, token, language, grammar, or file format.
     validations:
       required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Tool or package
+      placeholder: "VS Code, Zed, Chrome, Terminal, Raycast, Slack, JetBrains, Xcode, or shared tokens"
+    validations:
+      required: true
   - type: dropdown
     id: variant
     attributes:
@@ -21,6 +28,9 @@ body:
         - santi020k dark
         - santi020k light
         - santi020k hc dark
+        - santi020k hc light
+        - Bold / italic variant
+        - Platform-specific preset
     validations:
       required: true
   - type: textarea

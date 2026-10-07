@@ -108,5 +108,18 @@ describe('Changesets v2 release reporting', () => {
     }).trim()).toBe(runGit(directory, ['rev-parse', 'HEAD'], {
       encoding: 'utf8',
     }).trim())
+
+    writeFileSync(join(directory, 'fixture.txt'), 'next release\n')
+
+    runGit(directory, ['add', 'fixture.txt'])
+
+    runGit(directory, ['commit', '--quiet', '-m', 'test: next release'])
+
+    expect(() => ensureLocalReleaseTag({ root: directory, tag: 'v2.0.0' }))
+      .toThrow('does not point to the current release commit')
+
+    expect(runGit(directory, ['show', 'v2.0.0:fixture.txt'], {
+      encoding: 'utf8',
+    })).toBe('release\n')
   })
 })

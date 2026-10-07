@@ -23,13 +23,6 @@ updates:
         update-types:
           - minor
           - patch
-    ignore:
-      - dependency-name: "@changesets/changelog-github"
-        versions:
-          - ">=1.0.0"
-      - dependency-name: "@changesets/cli"
-        versions:
-          - ">=3.0.0"
 
   - package-ecosystem: github-actions
     directory: /

@@ -42,6 +42,7 @@ concurrency:
 
 jobs:
   release:
+    if: github.ref == 'refs/heads/main'
     name: Package and publish Chrome theme
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -96,7 +97,7 @@ jobs:
         if: steps.chrome-changes.outputs.should_publish == 'true'
         uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
         with:
-          pnpm-version: 10.32.1
+          pnpm-version: 10.34.6
           node-version: 22
           cache-dependency-path: pnpm-lock.yaml
 

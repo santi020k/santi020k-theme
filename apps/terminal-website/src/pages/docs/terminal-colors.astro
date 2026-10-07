@@ -1,5 +1,5 @@
 ---
-import { Link } from '@santi020k/lumen-astro'
+import { Callout, Link } from '@santi020k/lumen-astro'
 
 import DocsLayout from '../../layouts/DocsLayout.astro'
 
@@ -16,6 +16,6 @@ const headings = [{ id: 'downloads', label: 'Downloads' }, { id: 'iterm2', label
 ---
 <DocsLayout title="Terminal colors" description="Download coordinated dark and light presets for six terminal applications." path="/terminal/docs/terminal-colors/" {headings}>
   <section id="downloads"><h2>Choose your terminal</h2><div class="docs-download-table">{terminals.map(([name, dark, light]) => <div><b>{name}</b><Link href={dark} download>Dark</Link><Link href={light} download>Light</Link></div>)}</div></section>
-  <section id="iterm2"><h2>Install in iTerm2</h2><ol><li>Download the dark or light <code>.itermcolors</code> preset.</li><li>Open Settings → Profiles → Colors → Color Presets…</li><li>Choose Import…, open the downloaded file, then select Santi020k.</li></ol><aside class="docs-callout"><b>Using window transparency?</b><p>Under Profiles → Window, enable <strong>Keep background colors opaque</strong>. The canvas remains translucent while Starship segments keep their intended contrast.</p></aside></section>
+  <section id="iterm2"><h2>Install in iTerm2</h2><ol><li>Download the dark or light <code>.itermcolors</code> preset.</li><li>Open Settings → Profiles → Colors → Color Presets…</li><li>Choose Import…, open the downloaded file, then select Santi020k.</li></ol><Callout className="docs-callout"><b>Using window transparency?</b><p>Under Profiles → Window, enable <strong>Keep background colors opaque</strong>. The canvas remains translucent while Starship segments keep their intended contrast.</p></Callout></section>
   <section id="generated-presets"><h2>One canonical palette</h2><p>The Ghostty, Kitty, WezTerm, Alacritty, and Windows Terminal files are generated from the same ANSI palette as the iTerm2 presets. Install any format with <code>santi020k-terminal colors install TERMINAL PALETTE</code>; add <code>--dry-run</code> to inspect its source path first.</p></section>
 </DocsLayout>

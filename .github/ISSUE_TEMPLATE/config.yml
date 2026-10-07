@@ -6,3 +6,9 @@ contact_links:
   - name: Contributing guide
     url: https://github.com/santi020k/santi020k-theme/blob/main/CONTRIBUTING.md
     about: Review setup, validation, release, and local testing guidance before opening larger changes.
+  - name: Feedback and support
+    url: https://theme.santi020k.com/support/
+    about: Choose the right reporting form and find published release notes.
+  - name: Private security report
+    url: https://github.com/santi020k/santi020k-theme/security/advisories/new
+    about: Report suspected vulnerabilities privately; do not post secrets or undisclosed vulnerabilities in public issues.

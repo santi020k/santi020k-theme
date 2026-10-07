@@ -70,6 +70,8 @@ import {
 | `pnpm --filter @santi020k/theme-core run validate` | Runs the package validation shortcut |
 | `pnpm run validate` | Runs the full monorepo validation suite |
 
+Theme toggle synchronization preserves the control semantics: native buttons use `aria-pressed`, switches use `aria-checked`, and the incompatible state attribute is removed.
+
 ## License
 
 MIT.

@@ -49,18 +49,6 @@
       "outputs": ["themes/santi020k.json"],
       "outputLogs": "errors-only"
     },
-    "@santi020k/theme#build": {
-      "outputs": [],
-      "outputLogs": "errors-only"
-    },
-    "@santi020k/theme-core#build": {
-      "outputs": [],
-      "outputLogs": "errors-only"
-    },
-    "santi020k-chrome-theme#build": {
-      "outputs": [],
-      "outputLogs": "errors-only"
-    },
     "dev": {
       "cache": false,
       "persistent": true
