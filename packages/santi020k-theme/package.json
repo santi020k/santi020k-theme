@@ -3,13 +3,13 @@
   "displayName": "Santi020k Theme",
   "description": "A coordinated dark, light, and high-contrast VS Code theme with muted violet accents, validated contrast, and semantic highlighting for long sessions.",
   "version": "2.1.4",
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@10.34.6",
   "publisher": "santi020k",
   "author": {
     "name": "Santiago Molina",
     "url": "https://santi020k.com"
   },
-  "homepage": "https://vscode.santi020k.com",
+  "homepage": "https://theme.santi020k.com/vscode/",
   "repository": {
     "type": "git",
     "url": "https://github.com/santi020k/santi020k-theme"
