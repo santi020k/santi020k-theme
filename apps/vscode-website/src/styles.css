@@ -424,7 +424,7 @@ h3 {
   align-items: center;
   gap: 0 16px;
   border-bottom: 1px solid var(--preview-topbar-border);
-  padding: 12px 16px 8px;
+  padding: 14px 16px 12px;
   color: var(--site-ink-soft);
   font-size: 0.8rem;
   transition: border-color 0.3s;
@@ -466,23 +466,43 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
   grid-column: 1 / -1;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 0;
+  margin-top: 14px;
+  padding: 3px;
+  border: 1px solid var(--preview-topbar-border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--preview-pre-color) 4%, var(--preview-bg));
 }
 
 .preview-control {
   position: relative;
   display: grid;
   min-width: 0;
-  gap: 2px;
+  border-radius: 8px;
+}
+
+.preview-control + .preview-control::before {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  width: 1px;
+  background: var(--preview-topbar-border);
+  content: '';
+  pointer-events: none;
 }
 
 .preview-control-label {
-  padding-left: 10px;
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  z-index: 1;
+  pointer-events: none;
   color: var(--preview-pre-color);
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
 }
 
 .preview-controls .ui-select {
@@ -496,8 +516,8 @@ h3 {
   color: var(--preview-pre-color);
   font-family: inherit;
   font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0 28px 0 10px;
+  font-weight: 600;
+  padding: 14px 28px 0 12px;
   border-radius: 8px;
   box-shadow: none;
   cursor: pointer;
@@ -523,7 +543,7 @@ h3 {
 .preview-control-chevron {
   position: absolute;
   right: 8px;
-  bottom: 14px;
+  bottom: 10px;
   color: var(--preview-pre-color);
   pointer-events: none;
 }
@@ -1061,6 +1081,28 @@ pre {
 
   .editor-preview {
     border-radius: 18px;
+  }
+
+  .preview-topbar {
+    padding-inline: 12px;
+  }
+
+  .preview-controls {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .preview-control-label {
+    left: 8px;
+  }
+
+  .preview-controls .ui-select {
+    padding-inline: 8px 20px;
+    font-size: 0.6875rem;
+    font-weight: 500;
+  }
+
+  .preview-control-chevron {
+    right: 4px;
   }
 
   .preview-body {
