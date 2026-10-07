@@ -21,4 +21,4 @@ Xcode color themes style the editor and console; Xcode does not expose a support
 pnpm --filter santi020k-xcode-theme run validate
 ```
 
-Validation regenerates both themes, checks required syntax roles and contrast, and runs Apple's property-list validator on macOS.
+Validation regenerates both themes and reads the serialized native colors. Editor and console text must meet 4.5:1 contrast on their canvas and selection backgrounds; syntax also remains readable on the highlighted current line. Comments retain a 3:1 minimum. On macOS, validation also runs Apple's property-list validator.

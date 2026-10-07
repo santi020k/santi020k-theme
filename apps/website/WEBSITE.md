@@ -27,11 +27,15 @@ This is the only public Santi020k theme website and Cloudflare Pages deployment.
 
 ## Mobile navigation
 
-The shared header uses a raised signature tab and an attached, numbered navigation panel below
-1101px. Menu and Close labels reflect its state. Links retain native Tab order; Escape returns
-focus to the toggle, and outside clicks, leaving the header with keyboard focus, route changes,
-and breakpoint changes close the panel. The theme chooser remains a native disclosure, with a
-two-column product list and scrolling for short screens. Desktop navigation retains its layout.
+Below 1101px, the shared header opens a full-screen Lumen Dialog as a workspace switchboard.
+All nine product routes are available directly, with categories and a current-product marker.
+Home, Gallery, Design, Docs, and Support form a separate exploration strip; appearance lives
+inside the panel. The close control stays visible while the content scrolls on short screens.
+Desktop retains its theme selector and primary navigation.
+
+The interaction contract shared with the personal-site direction is documented in
+[`../../docs/mobile-navigation.md`](../../docs/mobile-navigation.md). Native modal focus,
+Escape, scroll restoration, breakpoint cleanup, and Astro route disposal are required.
 
 ## Maintenance
 

@@ -225,7 +225,6 @@ const buildTheme = variant => {
           colors, 'list.activeSelectionBackground', hex(colors, 'tab.activeBackground')
         )
       ),
-      element_selection_background: dark ? '#5a0fdb66' : '#6319be40',
       'elevated_surface.background': hex(
         colors, 'editorWidget.background', hex(colors, 'menu.background')
       ),

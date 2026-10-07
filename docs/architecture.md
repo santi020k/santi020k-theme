@@ -18,6 +18,7 @@ Every public theme surface pairs its package with a route in the consolidated si
 | --- | --- | --- |
 | Theme hub | none | `/` |
 | VS Code | `packages/santi020k-theme` | `/vscode/` |
+| Zed | `packages/santi020k-zed-theme` | `/zed/` |
 | Chrome | `packages/santi020k-chrome-theme` | `/chrome/` |
 | Codex | `packages/santi020k-codex-theme` | `/codex/` |
 | Terminal | `packages/santi020k-terminal-theme` | `/terminal/` and `/terminal/docs/` |
@@ -34,7 +35,8 @@ Every public theme surface pairs its package with a route in the consolidated si
 | --- | --- | --- |
 | `packages/santi020k-theme` | Published VS Code extension | Owns VS Code `package.json`, marketplace metadata, theme JSON files, validation scripts, VSIX packaging, and Visual Studio Marketplace/Open VSX publishing. |
 | `packages/santi020k-chrome-theme` | Chrome Web Store theme package | Owns Chrome manifests, browser-theme generation, Web Store packaging, Chrome-specific validation, store copy, and store media. |
-| `packages/santi020k-codex-theme` | Codex custom theme preset | Owns the copy-ready ChatGPT-inspired light preset and validates its supplied schema values. |
+| `packages/santi020k-zed-theme` | Generated Zed themes | Owns dark/light editor mappings, generated theme JSON, and native token validation. |
+| `packages/santi020k-codex-theme` | Codex custom theme presets | Owns copy-ready dark/light presets derived from the VS Code palette and validates their schema values. |
 | `packages/santi020k-terminal-theme` | Generated terminal presets | Owns the dark and light palette source, `.itermcolors` and Starship TOML generation, and preset validation. |
 | `packages/santi020k-raycast-theme` | Raycast custom themes | Owns Theme Studio-compatible JSON, one-click import URLs, generation, and contrast validation. |
 | `packages/santi020k-slack-theme` | Slack custom themes | Owns legacy import strings, semantic color maps, generation, and contrast validation. |
@@ -132,7 +134,7 @@ Use these files as the primary ownership locations:
 
 ## Why One Root Turbo
 
-One root Turbo graph keeps dependency caching, CI filtering, lockfile management, and developer commands simple. Nested Turbo repos would duplicate package manager state, make cross-theme asset sharing harder, and blur whether a command should run from the root or from a subproject.
+One root Turbo graph keeps dependency caching, CI filtering, lockfile management, and developer commands simple. Explicit task edges order VS Code generation before Terminal and Zed, and Terminal downloads before the consolidated website. Website cache inputs include the retained product source modules, their assets, and the root synchronization script; retained product builds also include shared website components, data, and lifecycle utilities. Nested Turbo repos would duplicate package manager state, make cross-theme asset sharing harder, and blur whether a command should run from the root or from a subproject.
 
 Workspace-local scripts still provide the isolation we want:
 
@@ -155,7 +157,8 @@ Workspace-local scripts still provide the isolation we want:
 
 The consolidated product website is an Astro app with static HTML, CSS, and JavaScript:
 
-- `src/pages/index.astro` owns metadata, JSON-LD, first-render theme bootstrapping, and page structure.
+- `src/pages/index.astro` owns metadata, JSON-LD, and page structure.
+- `src/components/PageTransitions.astro` owns synchronous first-render appearance and route transitions for every product page. It uses shared theme constants and falls back to OS appearance when browser storage is blocked.
 - `src/styles.css` owns layout and site-specific component styling.
 - `src/main.js` owns small browser behaviors.
 - `public/` owns website-only deploy assets such as social images, screenshots, favicons, wallpapers, and robots/sitemap files.

@@ -42,18 +42,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <head>
     <PageTransitions page="codex" />
     <meta charset="UTF-8" />
-    <script>
-      (function () {
-        var saved = localStorage.getItem('theme')
-        var theme = saved
-
-        if (theme !== 'light' && theme !== 'dark') {
-          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        }
-
-        document.documentElement.setAttribute('data-theme', theme)
-      })()
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Codex Theme — Dark and Light Presets</title>
     <meta name="description" content="Copy Santi020k Dark or Light for Codex: two import-ready presets with calm violet focus, durable contrast, and exact one-line settings values." />

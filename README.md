@@ -67,7 +67,7 @@ The high-contrast variants strengthen borders and separation while retaining the
 | `packages/santi020k-theme`          | Published VS Code extension with dark, light, high-contrast, bold, and italic variants                                         |
 | `packages/santi020k-chrome-theme`   | Chrome Web Store theme package, synced from the VS Code palette                                                                |
 | `packages/santi020k-zed-theme`      | Generated Zed theme family synced from the VS Code palette                                                                     |
-| `packages/santi020k-codex-theme`    | Copy-ready ChatGPT-inspired light custom theme preset for Codex                                                                |
+| `packages/santi020k-codex-theme`    | Copy-ready dark and light custom theme presets derived from the VS Code palette                                                                |
 | `packages/santi020k-terminal-theme` | Generated terminal color schemes and prompt presets                                                                            |
 | `packages/santi020k-raycast-theme`  | Shareable Raycast Theme Studio JSON and one-click dark/light import URLs                                                        |
 | `packages/santi020k-slack-theme`    | Paste-ready Slack custom themes with legacy import strings and semantic role maps                                               |
@@ -97,7 +97,7 @@ Use the Node minimum declared in [`package.json`](package.json) and pnpm `10.34.
 | `pnpm run validate:chrome`      | Lints, validates contrast, and dry-runs Chrome packaging                                                                      |
 | `pnpm run validate:terminal`    | Validates generated terminal presets                                                                                          |
 | `pnpm run validate:zed`         | Builds and checks the generated Zed theme family                                                                              |
-| `pnpm run validate:codex`       | Checks that the saved Codex preset exactly matches its supplied values                                                        |
+| `pnpm run validate:codex`       | Validates generated dark and light Codex presets                                                        |
 | `pnpm run validate:raycast`     | Regenerates and validates Raycast themes and import URLs                                                                       |
 | `pnpm run validate:slack`       | Regenerates and validates Slack themes and legacy import strings                                                              |
 | `pnpm run validate:jetbrains`   | Packages and validates the JetBrains/Android Studio plugin                                                                     |

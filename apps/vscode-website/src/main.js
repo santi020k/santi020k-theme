@@ -73,22 +73,30 @@ bindPageLifecycle('vscode', () => {
   for (const control of document.querySelectorAll('.settings-builder input, .settings-builder select')) control.addEventListener('change', buildSettingsRecipe)
 
   document.querySelector('.settings-copy')?.addEventListener('click', async event => {
-    await navigator.clipboard.writeText(buildSettingsRecipe())
+    const button = event.currentTarget
 
-    event.currentTarget.textContent = 'Copied'
+    if (!(button instanceof HTMLButtonElement)) return
+
+    try {
+      await navigator.clipboard.writeText(buildSettingsRecipe())
+
+      button.textContent = 'Copied'
+    } catch {
+      button.textContent = 'Could not copy'
+    }
 
     window.setTimeout(() => {
-      event.currentTarget.textContent = 'Copy settings'
+      if (button.isConnected) button.textContent = 'Copy settings'
     }, 1800)
   })
 
   buildSettingsRecipe()
 
   const SNIPPETS = {
-    json: data => `<span class="muted">// focused without glare</span>
+    json: (data, themeType) => `<span class="muted">// focused without glare</span>
 {
   <span class="property">"name"</span>: <span class="string">"${data.themeName}"</span>,
-  <span class="property">"type"</span>: <span class="string">"dark"</span>,
+  <span class="property">"type"</span>: <span class="string">"${themeType}"</span>,
   <span class="property">"semanticHighlighting"</span>: <span class="keyword">true</span>
 }`,
     ts: () => `<span class="muted">// Type-safe logic</span>
@@ -171,6 +179,7 @@ bindPageLifecycle('vscode', () => {
   }
 
   const previewData = new Map(Object.entries(PREVIEW_DATA).map(([theme, variants]) => [theme, new Map(Object.entries(variants))]))
+  const previewThemeTypes = new Map([['dark', 'dark'], ['light', 'light'], ['hc', 'hc-dark'], ['hclight', 'hc-light']])
   const snippets = new Map(Object.entries(SNIPPETS))
   let currentPreviewLang = 'json'
   let currentPreviewTheme = 'dark'
@@ -204,7 +213,7 @@ bindPageLifecycle('vscode', () => {
 
     if (filenameEl) filenameEl.textContent = data.filename
 
-    if (codeEl) codeEl.innerHTML = renderSnippet(data)
+    if (codeEl) codeEl.innerHTML = renderSnippet(data, previewThemeTypes.get(theme))
 
     if (langSelect) langSelect.value = lang
 

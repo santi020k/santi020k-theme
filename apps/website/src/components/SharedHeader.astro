@@ -1,5 +1,5 @@
 ---
-import { Button, Icon, Link, ThemeToggle } from '@santi020k/lumen-astro'
+import { Button, Dialog, Icon, Link, ThemeToggle } from '@santi020k/lumen-astro'
 
 import { products } from '../data/products.js'
 
@@ -31,14 +31,12 @@ const isActive = (href: string) => {
 
 <div class="family-header-stack">
   <header class="family-header site-shell" aria-label="Site header">
-    <span class="family-header-signature" aria-hidden="true">One violet. Every surface.</span>
     <Link class="family-brand" href="/" aria-label="Santi020k Themes home">
       <svg class="family-brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true" focusable="false"><rect width="80" height="80" rx="18" fill="currentColor" /><path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /><line x1="48" y1="52" x2="62" y2="52" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" /></svg>
       <span>Santi020k <b>Themes</b></span>
     </Link>
 
     <nav id="family-primary-navigation" class="family-primary-navigation" aria-label="Primary navigation">
-      <div class="family-menu-heading" aria-hidden="true"><span>Explore the family</span><small>One palette, your whole workspace.</small></div>
       <Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>Home</Link>
       <details class:list={['family-theme-menu', { 'has-current-product': product }]}>
         <summary aria-label={product ? `Change theme. Current theme: ${product.name}` : 'Choose a theme'}>
@@ -73,7 +71,7 @@ const isActive = (href: string) => {
     </nav>
 
     <div class="family-header-actions">
-      <Button class="family-nav-toggle" variant="ghost" size="icon" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="family-primary-navigation"><span class="family-nav-label">Menu</span><span class="family-nav-open-icon"><Icon name="menu" /></span><span class="family-nav-close-icon" hidden><Icon name="x" /></span></Button>
+      <Button class="family-nav-toggle" variant="ghost" size="icon" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="family-mobile-navigation" aria-haspopup="dialog"><span class="family-nav-label">Menu</span><span class="family-nav-open-icon"><Icon name="layout-grid" /></span></Button>
       <ThemeToggle class="family-theme-toggle theme-toggle" aria-label="Toggle color theme" storageKey="theme" />
     </div>
   </header>
@@ -93,96 +91,152 @@ const isActive = (href: string) => {
   )}
 </div>
 
+<Dialog id="family-mobile-navigation" class="family-mobile-navigation" layout="fullscreen" aria-labelledby="family-mobile-title">
+  <div class="family-mobile-topbar">
+    <span class="family-mobile-wordmark">Santi020k <strong>Themes</strong></span>
+    <div class="family-mobile-topbar-actions">
+      <ThemeToggle class="family-mobile-appearance" aria-label="Toggle color theme" storageKey="theme" />
+    <Button class="family-mobile-close" variant="ghost" type="button" data-mobile-close autofocus>
+      <span>Close</span><Icon name="x" />
+    </Button>
+    </div>
+  </div>
+  <div class="family-mobile-body">
+    <div class="family-mobile-intro">
+      <p><span class="family-mobile-status" aria-hidden="true"></span> One violet. Every surface.</p>
+      <h2 id="family-mobile-title">Your workspace.<br /><span>In one palette.</span></h2>
+    </div>
+    <nav class="family-mobile-products" aria-label="Theme products">
+      <div class="family-mobile-section-heading"><h3>Choose your surface</h3><span>{products.length} themes</span></div>
+      <div class="family-mobile-product-grid">
+        {products.map(item => (
+          <Link href={`/${item.slug}/`} aria-current={item.slug === currentProduct ? 'page' : undefined}>
+            <span class="family-mobile-product-category">{item.category}</span>
+            <span class="family-mobile-product-title">{item.name}<Icon name="arrow-up-right" /></span>
+            {item.slug === currentProduct && <span class="family-mobile-current">You’re here</span>}
+          </Link>
+        ))}
+      </div>
+    </nav>
+    <nav class="family-mobile-explore" aria-label="Explore the website">
+      <h3>More to explore</h3>
+      <div>
+        <Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>Home</Link>
+        <Link href="/gallery/" aria-current={pathname === '/gallery/' ? 'page' : undefined}>Gallery</Link>
+        <Link href="/design/" aria-current={pathname === '/design/' ? 'page' : undefined}>Design</Link>
+        <Link href="/terminal/docs/" aria-current={pathname.startsWith('/terminal/docs/') ? 'page' : undefined}>Docs</Link>
+        <Link href="/support/" aria-current={pathname === '/support/' ? 'page' : undefined}>Support</Link>
+      </div>
+    </nav>
+    <div class="family-mobile-footer">
+      <span>Make yourself at home.</span>
+    </div>
+  </div>
+</Dialog>
+
 <script>
 import { bindPageLifecycle } from '../utils/page-lifecycle'
 
 bindPageLifecycle('*', signal => {
-  const navigation = document.querySelector<HTMLElement>('#family-primary-navigation')
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
+  const dialog = document.querySelector<HTMLDialogElement>('#family-mobile-navigation')
   const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
   const desktopBreakpoint = window.matchMedia('(min-width: 1101px)')
-  const header = document.querySelector<HTMLElement>('.family-header')
-  const label = toggle?.querySelector('.family-nav-label')
-  const openIcon = toggle?.querySelector<HTMLElement>('.family-nav-open-icon')
-  const closeIcon = toggle?.querySelector<HTMLElement>('.family-nav-close-icon')
+  const previousOverflow = document.documentElement.style.overflow
+  let restoreFocus = false
+  let scrollPosition = { left: window.scrollX, top: window.scrollY }
 
-  const syncToggle = (isOpen: boolean) => {
-    if (label) label.textContent = isOpen ? 'Close' : 'Menu'
+  const syncClosedState = () => {
+    if (dialog?.open) return
 
-    if (openIcon) openIcon.hidden = isOpen
+    toggle?.setAttribute('aria-expanded', 'false')
 
-    if (closeIcon) closeIcon.hidden = !isOpen
+    document.documentElement.style.overflow = previousOverflow
+
+    if (restoreFocus && toggle?.isConnected && !desktopBreakpoint.matches) {
+      toggle.focus({ preventScroll: true })
+
+      window.scrollTo({ ...scrollPosition, behavior: 'instant' })
+    }
   }
 
-  const setNavigation = (isOpen: boolean) => {
-    navigation?.classList.toggle('is-open', isOpen)
+  const closeNavigation = (returnFocus = true) => {
+    restoreFocus = returnFocus
 
-    header?.classList.toggle('has-open-menu', isOpen)
+    dialog?.close()
 
-    toggle?.setAttribute('aria-expanded', String(isOpen))
-
-    toggle?.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation')
-
-    syncToggle(isOpen)
-
-    if (!isOpen && themeMenu) themeMenu.open = false
+    syncClosedState()
   }
-
-  const closeNavigation = () => setNavigation(false)
 
   toggle?.addEventListener('click', () => {
-    setNavigation(toggle.getAttribute('aria-expanded') !== 'true')
+    if (!dialog || desktopBreakpoint.matches) return
+
+    restoreFocus = true
+
+    scrollPosition = { left: window.scrollX, top: window.scrollY }
+
+    dialog.showModal()
+
+    dialog.scrollTop = 0
+
+    const body = dialog.querySelector('.family-mobile-body')
+
+    if (body) body.scrollTop = 0
+
+    document.documentElement.style.overflow = 'hidden'
+
+    window.scrollTo({ ...scrollPosition, behavior: 'instant' })
+
+    toggle.setAttribute('aria-expanded', 'true')
   }, { signal })
 
-  navigation?.addEventListener('click', event => {
-    if (event.target instanceof Element && event.target.closest('a')) closeNavigation()
+  dialog?.querySelector('[data-mobile-close]')?.addEventListener('click', () => closeNavigation(), { signal })
+
+  dialog?.addEventListener('close', syncClosedState, { signal })
+
+  dialog?.addEventListener('keydown', event => {
+    if (event.key !== 'Tab') return
+
+    const controls = Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'))
+      .filter(control => control.getClientRects().length > 0)
+
+    const first = controls.at(0)
+    const last = controls.at(-1)
+    const destination = event.shiftKey ? last : first
+    const boundary = event.shiftKey ? first : last
+
+    if (document.activeElement === boundary && destination) {
+      event.preventDefault()
+
+      destination.focus({ preventScroll: true })
+    }
   }, { signal })
 
-  desktopBreakpoint.addEventListener('change', () => {
-    const focusWasInNavigation = navigation?.contains(document.activeElement)
-
-    closeNavigation()
-
-    if (!desktopBreakpoint.matches && focusWasInNavigation) toggle?.focus()
+  dialog?.addEventListener('click', event => {
+    if (event.target instanceof Element && event.target.closest('a')) closeNavigation(false)
   }, { signal })
+
+  desktopBreakpoint.addEventListener('change', () => closeNavigation(false), { signal })
 
   document.addEventListener('click', event => {
-    if (!(event.target instanceof Node)) return
-
-    if (navigation?.classList.contains('is-open') && !header?.contains(event.target)) closeNavigation()
-
-    if (themeMenu?.open && !themeMenu.contains(event.target)) themeMenu.open = false
-  }, { signal })
-
-  document.addEventListener('focusin', event => {
-    if (event.target instanceof Node && !header?.contains(event.target)) closeNavigation()
+    if (themeMenu?.open && event.target instanceof Node && !themeMenu.contains(event.target)) themeMenu.open = false
   }, { signal })
 
   document.addEventListener('keydown', event => {
-    if (event.key !== 'Escape') return
-
-    if (navigation?.classList.contains('is-open')) {
-      closeNavigation()
-
-      toggle?.focus()
-    } else if (themeMenu?.open) {
+    if (event.key === 'Escape' && themeMenu?.open) {
       themeMenu.open = false
 
       themeMenu.querySelector('summary')?.focus()
     }
   }, { signal })
 
-return undefined
+  return () => closeNavigation(false)
 })
 </script>
 
 <style>
   :global(html) {
     scroll-padding-top: 148px;
-  }
-  .family-header-signature,
-  .family-menu-heading {
-    display: none;
   }
   .family-header :is(a, button):focus-visible {
     outline: 2px solid var(--site-brand);
@@ -469,182 +523,257 @@ return undefined
     background: color-mix(in srgb, var(--site-brand) 10%, transparent);
     color: var(--site-brand);
   }
-  @media (max-width: 1100px) {
-    .family-header-stack {
-      padding-top: 28px;
-      border-bottom: 0;
+  .family-mobile-navigation {
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: var(--theme-bg);
+    color: var(--site-ink);
+  }
+  .family-mobile-navigation[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .family-mobile-navigation::backdrop {
+    background: var(--theme-bg);
+  }
+  .family-mobile-topbar {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: max(16px, env(safe-area-inset-top)) 20px 16px;
+    border-bottom: 1px solid var(--section-divider);
+  }
+  .family-mobile-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .family-mobile-wordmark {
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: -.02em;
+  }
+  .family-mobile-wordmark strong {
+    color: var(--site-brand);
+    font-weight: 500;
+  }
+  .family-mobile-close {
+    min-height: 48px;
+    padding: 0 12px;
+    border: 1px solid var(--site-line);
+    border-radius: var(--site-arrow-radius);
+    background: var(--site-surface);
+    color: var(--site-ink);
+    font-size: .75rem;
+  }
+  .family-mobile-close :global(.ui-button__content) {
+    gap: 12px;
+  }
+  .family-mobile-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 28px 24px max(24px, env(safe-area-inset-bottom));
+  }
+  .family-mobile-intro p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+    color: var(--site-ink-soft);
+    font-size: .6rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .family-mobile-status {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--site-brand);
+  }
+  .family-mobile-intro h2 {
+    margin: 0 0 32px;
+    font-size: clamp(1.9rem, 8vw, 3.75rem);
+    font-weight: 500;
+    letter-spacing: -.065em;
+    line-height: 1.12;
+  }
+  .family-mobile-intro h2 span {
+    color: var(--site-brand);
+  }
+  .family-mobile-section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .family-mobile-navigation h3 {
+    margin: 0;
+    color: var(--site-ink-soft);
+    font-size: .65rem;
+    font-weight: 500;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  .family-mobile-section-heading > span {
+    color: var(--site-ink-soft);
+    font-size: .65rem;
+  }
+  .family-mobile-product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .family-mobile-product-grid a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 72px;
+    padding: 12px;
+    border: 1px solid var(--site-line);
+    border-radius: var(--site-arrow-radius);
+    background: var(--site-surface);
+    color: var(--site-ink);
+    text-decoration: none;
+  }
+  .family-mobile-product-grid a:hover,
+  .family-mobile-product-grid a[aria-current='page'] {
+    border-color: var(--site-brand);
+    background: var(--site-surface-muted);
+  }
+  .family-mobile-product-grid a:last-child {
+    grid-column: 1 / -1;
+  }
+  .family-mobile-product-category {
+    color: var(--site-ink-soft);
+    font-size: .55rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .family-mobile-product-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    font-size: .9rem;
+    font-weight: 500;
+    letter-spacing: -.03em;
+  }
+  .family-mobile-product-title :global(svg) {
+    width: 14px;
+    color: var(--site-ink-soft);
+  }
+  .family-mobile-current {
+    color: var(--site-ink-soft);
+    font-size: .6rem;
+  }
+  .family-mobile-explore {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--section-divider);
+  }
+  .family-mobile-explore > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px 8px;
+    margin-top: 8px;
+  }
+  .family-mobile-explore a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--site-ink);
+    font-size: .75rem;
+    text-decoration: none;
+  }
+  .family-mobile-explore a:hover,
+  .family-mobile-explore a[aria-current='page'] {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+  .family-mobile-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--section-divider);
+    color: var(--site-ink-soft);
+    font-size: .65rem;
+  }
+  .family-mobile-appearance {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--site-line);
+    border-radius: var(--site-arrow-radius);
+    color: var(--site-ink);
+  }
+  .family-mobile-navigation :is(a, button):focus-visible {
+    outline: 2px solid var(--site-brand);
+    outline-offset: 3px;
+  }
+  @media (min-width: 601px) {
+    .family-mobile-body {
+      width: min(100%, 680px);
+      margin-inline: auto;
     }
+    .family-mobile-product-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .family-mobile-product-grid a:last-child {
+      grid-column: auto;
+    }
+  }
+  @media (max-width: 1100px) {
     .family-header {
-      position: relative;
-      min-height: 68px;
+      min-height: 72px;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 12px;
-      padding: 10px 12px;
-      border: 1px solid var(--site-line);
-      border-radius: 0 18px 18px 18px;
-      background: var(--site-surface);
-    }
-    .family-header.has-open-menu {
-      border-bottom-color: transparent;
-      border-radius: 0 18px 0 0;
-    }
-    .family-header-signature {
-      position: absolute;
-      top: -20px;
-      left: -1px;
-      display: block;
-      padding: 4px 18px 4px 12px;
-      border: 1px solid var(--site-line);
-      border-bottom: 0;
-      border-radius: 10px 12px 0 0;
-      background: var(--site-surface);
-      color: var(--site-ink-soft);
-      font-size: .56rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      line-height: 12px;
-      text-transform: uppercase;
     }
     .family-brand {
       min-width: 0;
       gap: 8px;
     }
     .family-primary-navigation {
-      position: absolute;
-      top: 100%;
-      right: -1px;
-      left: -1px;
-      display: none;
-      align-items: stretch;
-      justify-content: flex-start;
-      flex-direction: column;
-      gap: 0;
-      max-height: calc(100dvh - 110px);
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      padding: 12px 20px 20px;
-      border: 1px solid var(--site-line);
-      border-top: 0;
-      border-radius: 0 0 18px 18px;
-      background: var(--site-surface);
-      box-shadow: 0 24px 40px color-mix(in srgb, var(--site-ink) 12%, transparent);
-      counter-reset: navigation;
-    }
-    .family-primary-navigation.is-open {
-      display: flex;
-    }
-    .family-primary-navigation > * {
-      flex-shrink: 0;
-    }
-    .family-primary-navigation > a[aria-current='page'],
-    .family-theme-menu[open] .family-theme-selector-copy strong,
-    .family-theme-menu.has-current-product .family-theme-selector-copy strong {
-      color: var(--site-ink);
-    }
-    .family-menu-heading {
-      display: grid;
-      gap: 6px;
-      padding: 8px 0 20px;
-      border-bottom: 1px solid var(--section-divider);
-    }
-    .family-menu-heading span {
-      color: var(--site-ink);
-      font-size: .65rem;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    .family-menu-heading small {
-      color: var(--site-ink-soft);
-      font-size: .75rem;
-    }
-    .family-primary-navigation > a,
-    .family-theme-menu > summary {
-      min-height: 62px;
-      gap: 14px;
-      padding: 12px 6px;
-      border: 0;
-      border-bottom: 1px solid var(--section-divider);
-      border-radius: 0;
-      background: transparent;
-      color: var(--site-ink);
-      font-size: clamp(1.35rem, 4vw, 1.75rem);
-      font-weight: 500;
-      letter-spacing: -.04em;
-      counter-increment: navigation;
-    }
-    .family-primary-navigation > a::before,
-    .family-theme-menu > summary::before {
-      content: counter(navigation, decimal-leading-zero);
-      color: var(--site-ink-soft);
-      font-size: .65rem;
-      letter-spacing: 0;
-    }
-    .family-primary-navigation > a::after {
-      margin-left: auto;
-      content: '↗';
-      color: var(--site-ink-soft);
-      font-size: 1.1rem;
-    }
-    .family-theme-menu > summary {
-      width: 100%;
-      justify-content: flex-start;
-    }
-    .family-theme-menu > summary :global(svg) {
-      width: 20px;
-    }
-    .family-theme-menu > summary > :last-child {
-      margin-left: auto;
-    }
-    .family-theme-selector-copy small {
       display: none;
     }
-    .family-theme-selector-copy strong {
-      font-size: inherit;
-      font-weight: inherit;
-    }
-    .family-theme-panel {
-      position: static;
-      width: 100%;
-      margin: 0;
-      padding: 16px 0;
-      border: 0;
-      border-bottom: 1px solid var(--section-divider);
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-    }
-    .family-theme-panel-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .family-theme-panel-grid a {
-      min-height: 48px;
-      padding: 12px 8px;
-      border-radius: 8px;
+    .family-header-actions {
+      gap: 8px;
     }
     .family-nav-toggle {
       display: inline-flex;
       width: auto;
       min-width: 82px;
       padding-inline: 10px;
-      border-radius: 10px;
+      border-radius: var(--site-arrow-radius);
+      background: var(--site-ink);
+      color: var(--theme-bg);
       font-size: .7rem;
     }
     .family-nav-toggle :global(.ui-button__content) {
       gap: 8px;
     }
-    .family-nav-toggle[aria-expanded='true'] {
-      background: var(--site-ink);
-      color: var(--theme-bg);
-    }
-    .family-header-actions {
-      gap: 8px;
-    }
     .family-theme-toggle {
-      border-radius: 10px;
-    }
-    .family-context-navigation-wrap {
-      margin-top: 12px;
+      border-radius: var(--site-arrow-radius);
     }
     .family-context-navigation {
       gap: 18px;
@@ -661,13 +790,6 @@ return undefined
     .family-brand b {
       display: block;
       font-weight: 500;
-    }
-    .family-theme-panel-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .family-theme-panel-grid a > small,
-    .family-theme-panel-heading small {
-      display: none;
     }
     .family-context-navigation {
       align-items: stretch;

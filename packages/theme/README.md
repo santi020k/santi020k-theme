@@ -25,6 +25,11 @@ under `assets/wallpapers/signature-v1/`. The Santi020k prompt sits among translu
 glass forms. PNG and WEBP exports use the same display dimensions; its separate ZIP contains
 four WEBP files. See [Signature artwork sources and prompts](../../artwork/signature-v1/README.md).
 
+**Satin** and **Ceramic** expand Signature with eight more wallpapers under
+`assets/wallpapers/signature-v2/`. The current Signature pack includes all twelve WEBP files,
+including the original glass set. Both material directions have dark/light desktop and phone
+artwork. See [additional artwork sources and prompts](../../artwork/signature-v2/README.md).
+
 ## Install
 
 ```bash
