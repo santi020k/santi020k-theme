@@ -55,7 +55,7 @@
 .home-wallpaper-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--site-grid-gap); }
 .home-page .home-wallpaper { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; min-width: 0; }
 .home-wallpaper-image { display: block; overflow: hidden; border-radius: var(--site-card-radius); }
-.home-wallpaper-image img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 250ms ease; }
+.home-wallpaper-image img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 250ms ease; }
 .home-wallpaper-image:hover img { transform: scale(1.02); }
 .home-wallpaper-heading { display: flex; align-items: center; gap: .75rem; margin-top: 1rem; }
 .home-wallpaper-heading > span { color: var(--home-emphasis); font-size: .6875rem; }
@@ -86,7 +86,6 @@
   .home-page .home-package-code { padding: 1.5rem; }
   .home-code-block code { font-size: .75rem; }
   .home-wallpaper-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .home-wallpaper-image img { aspect-ratio: 16 / 10; }
   .home-assets-footer { align-items: flex-start; flex-direction: column; gap: .75rem; }
 }
 @media (prefers-reduced-motion: reduce) {

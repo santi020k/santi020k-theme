@@ -6,12 +6,12 @@ import '../styles/home.css'
 import { ButtonLink, Card, Eyebrow, Icon, Link, Particles, RevealGroup, ScrollReveal } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
-import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp'
-import duneDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp?url'
-import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted-v2/tide-dark-desktop.webp'
-import tideDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/tide-dark-desktop.webp?url'
-import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp'
-import veilDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp?url'
+import duneWallpaper from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-light-desktop.webp'
+import duneDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-light-desktop.webp?url'
+import ceramicWallpaper from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-desktop.webp'
+import ceramicDownload from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-desktop.webp?url'
+import satinWallpaper from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.webp'
+import satinDownload from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.webp?url'
 import heroArtwork from '../../public/hub-hero-art.png'
 import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
@@ -20,9 +20,9 @@ import ThemeCardPreview from '../components/ThemeCardPreview.astro'
 import { products } from '../data/products.js'
 
 const featuredWallpapers = [
-  { image: wallpaperOne, name: 'Tide', slug: 'tide', download: tideDownload, description: 'Flowing violet satin with soft silver highlights' },
-  { image: wallpaperTwo, name: 'Dune', slug: 'dune', download: duneDownload, description: 'Violet sand ridges fading into blue-hour light' },
-  { image: wallpaperThree, name: 'Veil', slug: 'veil', download: veilDownload, description: 'Layers of frosted amethyst glass against deep indigo' }
+  { image: ceramicWallpaper, name: 'Ceramic', collection: 'Signature', edition: 'Light', filename: 'santi020k-signature-ceramic-light-desktop.webp', download: ceramicDownload, description: 'A violet prompt tile among pale sculptural ceramic forms' },
+  { image: satinWallpaper, name: 'Satin', collection: 'Signature', edition: 'Dark', filename: 'santi020k-signature-satin-dark-desktop.webp', download: satinDownload, description: 'A violet prompt tile resting in rich indigo satin folds' },
+  { image: duneWallpaper, name: 'Dune', collection: 'Sculpted', edition: 'Light', filename: 'santi020k-sculpted-dune-light-desktop.webp', download: duneDownload, description: 'Soft lavender dunes beneath a warm pastel sky' }
 ]
 
 const structuredData = {
@@ -197,20 +197,20 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <Eyebrow class="home-eyebrow"><span>04</span> / Beyond the window</Eyebrow>
             <h2 id="assets-title">A little violet.<br />A little more yours.</h2>
           </div>
-          <p class="home-section-intro">Flowing satin, violet dunes, and frosted glass. The Sculpted collection brings the palette to your desktop.</p>
+          <p class="home-section-intro">Sculptural ceramic, deep violet satin, and sunlit dunes. Three favorites to bring a little of the palette to your desktop.</p>
         </div>
         <div class="home-wallpaper-grid">
           {featuredWallpapers.map((wallpaper, index) => (
             <Card as="article" variant="unstyled" class="home-wallpaper">
-              <Link class="home-wallpaper-image" variant="inherit" href={wallpaper.download} download={`santi020k-sculpted-${wallpaper.slug}-dark.webp`} aria-label={`Download ${wallpaper.name} dark desktop wallpaper`}>
+              <Link class="home-wallpaper-image" variant="inherit" href={wallpaper.download} download={wallpaper.filename} aria-label={`Download ${wallpaper.name} ${wallpaper.edition.toLowerCase()} desktop wallpaper`}>
                 <Image src={wallpaper.image} alt={wallpaper.description} widths={[480, 800, 1200]} sizes="(max-width: 767px) 92vw, 30vw" loading="lazy" />
               </Link>
-              <div class="home-wallpaper-heading"><span>{String(index + 1).padStart(2, '0')}</span><h3>{wallpaper.name}</h3><ButtonLink class="home-wallpaper-download" variant="unstyled" href={wallpaper.download} download={`santi020k-sculpted-${wallpaper.slug}-dark.webp`} aria-label={`Download ${wallpaper.name} dark desktop wallpaper`}><Icon name="download" /></ButtonLink></div>
-              <p>Dark desktop · 3840 × 2160 · WEBP</p>
+              <div class="home-wallpaper-heading"><span>{String(index + 1).padStart(2, '0')}</span><h3>{wallpaper.name}</h3><ButtonLink class="home-wallpaper-download" variant="unstyled" href={wallpaper.download} download={wallpaper.filename} aria-label={`Download ${wallpaper.name} ${wallpaper.edition.toLowerCase()} desktop wallpaper`}><Icon name="download" /></ButtonLink></div>
+              <p>{wallpaper.collection} · {wallpaper.edition} desktop · 3840 × 2160 · WEBP</p>
             </Card>
           ))}
         </div>
-        <div class="home-assets-footer"><p>Find light editions, phone compositions, and the original Classic collection in the gallery.</p><ButtonLink class="home-button home-text-link" variant="unstyled" href="/gallery/">Browse all assets <Icon name="arrow-right" /></ButtonLink></div>
+        <div class="home-assets-footer"><p>Explore every collection, both light and dark editions, and phone compositions in the gallery.</p><ButtonLink class="home-button home-text-link" variant="unstyled" href="/gallery/">Browse all assets <Icon name="arrow-right" /></ButtonLink></div>
       </section>
     </main>
 
