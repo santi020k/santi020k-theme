@@ -742,37 +742,66 @@ pre {
 }
 
 
-/* Artwork gives each real capture a stage; the window keeps its own border. */
-.screenshot-grid {
+/* One consistent stage keeps the actual editor capture large and readable. */
+.screenshot-showcase {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: end;
-  gap: 3.5rem var(--site-grid-gap);
+  gap: 1.5rem;
   margin-top: var(--site-heading-gap);
+}
+
+.screenshot-showcase .screenshot-modes[role="tablist"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.25rem;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--section-divider);
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.screenshot-showcase .screenshot-modes [role="tab"] {
+  min-height: var(--site-control-min-height);
+  padding: .75rem .25rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--site-ink-soft);
+  font: 500 .8125rem/1.4 var(--santi020k-font-sans);
+  cursor: pointer;
+}
+
+.screenshot-showcase .screenshot-modes [role="tab"][aria-selected="true"] {
+  border-bottom-color: var(--site-brand);
+  background: transparent;
+  box-shadow: none;
+  color: var(--site-ink);
+}
+
+.screenshot-showcase .screenshot-modes [role="tab"]:focus-visible,
+.screenshot-panel:focus-visible {
+  outline: 2px solid var(--site-brand);
+  outline-offset: 3px;
+}
+
+.screenshot-panel {
+  min-width: 0;
 }
 
 .screenshot-card {
   margin: 0;
   min-width: 0;
-  grid-column: span 6;
-}
-
-.screenshot-card:nth-child(1), .screenshot-card:nth-child(4) {
-  grid-column: span 7;
-}
-
-.screenshot-card:nth-child(2), .screenshot-card:nth-child(3) {
-  grid-column: span 5;
 }
 
 
 .screenshot-stage {
   position: relative;
   isolation: isolate;
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 11;
-  padding: clamp(18px, 3.2vw, 46px);
+  display: block;
+  padding: clamp(12px, 3vw, 40px);
   border-radius: var(--site-card-radius);
   background: var(--site-surface);
   color: var(--site-ink);
@@ -799,13 +828,13 @@ pre {
   height: auto;
   border: 0;
   border-radius: 1.25% / 1.875%;
-  box-shadow: 0 16px 32px rgb(5 2 10 / 24%);
+  box-shadow: 0 12px 28px rgb(5 2 10 / 18%);
 }
 
 .screenshot-expand {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 8px;
+  bottom: 8px;
   display: grid;
   place-items: center;
   width: 32px;
@@ -813,33 +842,33 @@ pre {
   border-radius: var(--site-arrow-radius);
   background: var(--theme-bg);
   color: var(--site-ink);
-  transition: background-color 200ms;
 }
 
-.screenshot-stage:hover .screenshot-expand {
-  background: var(--site-surface-strong);
-}
-
-.screenshot-stage:focus-visible {
+.screenshot-showcase .screenshot-stage:focus-visible {
   outline: 2px solid var(--site-brand);
   outline-offset: 5px;
 }
 
 .screenshot-card figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
   padding-top: 1.25rem;
 }
 
 .screenshot-number {
   display: block;
-  margin-bottom: .75rem;
+  margin-bottom: .5rem;
   color: var(--site-ink-soft);
   font: 400 .6875rem/1.6 var(--santi020k-font-mono);
 }
 
 .screenshot-card h3 {
-  margin: 0 0 .5rem;
+  margin: 0;
   font-size: 1.5rem;
   line-height: 1.2;
+  color: var(--site-ink);
 }
 
 .screenshot-card figcaption p {
@@ -849,20 +878,22 @@ pre {
   line-height: 1.8;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .screenshot-expand {
-    transition: none;
-  }
-}
 
-@media (max-width: 767px) {
-  .screenshot-card:nth-child(n) {
-    grid-column: 1 / -1;
+@media (max-width: 560px) {
+  .screenshot-card figcaption {
+    align-items: start;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .screenshot-showcase .screenshot-modes[role="tablist"] {
+    gap: .25rem .75rem;
   }
 
   .screenshot-stage {
-    padding: 24px 18px;
+    border-radius: var(--site-control-radius);
   }
+
 }
 
 .variant-grid {
