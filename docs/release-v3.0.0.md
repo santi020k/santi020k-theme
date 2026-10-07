@@ -25,6 +25,11 @@ PNG/WEBP exports, and compact WEBP archive; the approved Tide, Dune, and Veil ar
 Native masters and prompts are in `artwork/signature-v1/`; the shared raster exporter produces
 both current collections without changing earlier download URLs.
 
+Satin and Ceramic expand Signature with eight more dark/light desktop and phone wallpapers.
+The second Signature archive includes all twelve branded compositions, including the original
+glass set. Every first-edition file and archive remains intact; native artwork and prompts
+for the added options are retained in `artwork/signature-v2/`.
+
 Migration: theme variant names and syntax coverage remain available, while editor action and focus styling changes deliberately for v3. Existing wallpaper links and shared package import paths remain supported. Consumers of the shared website CSS should review typography, spacing, and control styling against the new brand guide.
 
 Published npm Lumen 4.0.0 powers all six website sources. Terminal documentation uses command tabs, clipboard feedback, breadcrumbs, and reading progress. The shared theme toggle now preserves native button or switch state semantics. The support page links to family-wide GitHub issue forms, published releases, and private vulnerability reporting. Canonical metadata, the sitemap, the extension homepage, and contribution instructions match the consolidated website.

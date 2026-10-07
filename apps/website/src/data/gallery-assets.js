@@ -90,6 +90,30 @@ import SignatureLightDesktopWebp from '../../../../packages/theme/assets/wallpap
 import SignatureLightMobilePng from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-mobile.png?url'
 import SignatureLightMobile from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-mobile.webp'
 import SignatureLightMobileWebp from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-mobile.webp?url'
+import CeramicDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-dark-desktop.png?url'
+import CeramicDarkDesktop from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-dark-desktop.webp'
+import CeramicDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-dark-desktop.webp?url'
+import CeramicDarkMobilePng from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-dark-mobile.png?url'
+import CeramicDarkMobile from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-dark-mobile.webp'
+import CeramicDarkMobileWebp from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-dark-mobile.webp?url'
+import CeramicLightDesktopPng from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-desktop.png?url'
+import CeramicLightDesktop from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-desktop.webp'
+import CeramicLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-desktop.webp?url'
+import CeramicLightMobilePng from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-mobile.png?url'
+import CeramicLightMobile from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-mobile.webp'
+import CeramicLightMobileWebp from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-mobile.webp?url'
+import SatinDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.png?url'
+import SatinDarkDesktop from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.webp'
+import SatinDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.webp?url'
+import SatinDarkMobilePng from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-mobile.png?url'
+import SatinDarkMobile from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-mobile.webp'
+import SatinDarkMobileWebp from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-mobile.webp?url'
+import SatinLightDesktopPng from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-light-desktop.png?url'
+import SatinLightDesktop from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-light-desktop.webp'
+import SatinLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-light-desktop.webp?url'
+import SatinLightMobilePng from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-light-mobile.png?url'
+import SatinLightMobile from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-light-mobile.webp'
+import SatinLightMobileWebp from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-light-mobile.webp?url'
 import wallpaperOneDesktopPng from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.png?url'
 import wallpaperOneDesktop from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
 import wallpaperOneDesktopWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp?url'
@@ -205,10 +229,18 @@ const logo = (title, variant, dimensions, image, base, png, svg, webp) => ({
 })
 
 export const galleryAssets = [
-  { ...wallpaper('Signature · dark', 'Desktop', '3840 × 2160', SignatureDarkDesktop, 'santi020k-signature-dark-desktop', SignatureDarkDesktopPng, SignatureDarkDesktopWebp, false), collection: 'signature' },
-  { ...wallpaper('Signature · dark', 'Mobile', '1170 × 2532', SignatureDarkMobile, 'santi020k-signature-dark-mobile', SignatureDarkMobilePng, SignatureDarkMobileWebp, true), collection: 'signature' },
-  { ...wallpaper('Signature · light', 'Desktop', '3840 × 2160', SignatureLightDesktop, 'santi020k-signature-light-desktop', SignatureLightDesktopPng, SignatureLightDesktopWebp, false), collection: 'signature' },
-  { ...wallpaper('Signature · light', 'Mobile', '1170 × 2532', SignatureLightMobile, 'santi020k-signature-light-mobile', SignatureLightMobilePng, SignatureLightMobileWebp, true), collection: 'signature' },
+  { ...wallpaper('Glass · dark', 'Desktop', '3840 × 2160', SignatureDarkDesktop, 'santi020k-signature-dark-desktop', SignatureDarkDesktopPng, SignatureDarkDesktopWebp, false), collection: 'signature' },
+  { ...wallpaper('Glass · dark', 'Mobile', '1170 × 2532', SignatureDarkMobile, 'santi020k-signature-dark-mobile', SignatureDarkMobilePng, SignatureDarkMobileWebp, true), collection: 'signature' },
+  { ...wallpaper('Glass · light', 'Desktop', '3840 × 2160', SignatureLightDesktop, 'santi020k-signature-light-desktop', SignatureLightDesktopPng, SignatureLightDesktopWebp, false), collection: 'signature' },
+  { ...wallpaper('Glass · light', 'Mobile', '1170 × 2532', SignatureLightMobile, 'santi020k-signature-light-mobile', SignatureLightMobilePng, SignatureLightMobileWebp, true), collection: 'signature' },
+  { ...wallpaper('Satin · dark', 'Desktop', '3840 × 2160', SatinDarkDesktop, 'santi020k-satin-dark-desktop', SatinDarkDesktopPng, SatinDarkDesktopWebp, false), collection: 'signature' },
+  { ...wallpaper('Satin · dark', 'Mobile', '1170 × 2532', SatinDarkMobile, 'santi020k-satin-dark-mobile', SatinDarkMobilePng, SatinDarkMobileWebp, true), collection: 'signature' },
+  { ...wallpaper('Satin · light', 'Desktop', '3840 × 2160', SatinLightDesktop, 'santi020k-satin-light-desktop', SatinLightDesktopPng, SatinLightDesktopWebp, false), collection: 'signature' },
+  { ...wallpaper('Satin · light', 'Mobile', '1170 × 2532', SatinLightMobile, 'santi020k-satin-light-mobile', SatinLightMobilePng, SatinLightMobileWebp, true), collection: 'signature' },
+  { ...wallpaper('Ceramic · dark', 'Desktop', '3840 × 2160', CeramicDarkDesktop, 'santi020k-ceramic-dark-desktop', CeramicDarkDesktopPng, CeramicDarkDesktopWebp, false), collection: 'signature' },
+  { ...wallpaper('Ceramic · dark', 'Mobile', '1170 × 2532', CeramicDarkMobile, 'santi020k-ceramic-dark-mobile', CeramicDarkMobilePng, CeramicDarkMobileWebp, true), collection: 'signature' },
+  { ...wallpaper('Ceramic · light', 'Desktop', '3840 × 2160', CeramicLightDesktop, 'santi020k-ceramic-light-desktop', CeramicLightDesktopPng, CeramicLightDesktopWebp, false), collection: 'signature' },
+  { ...wallpaper('Ceramic · light', 'Mobile', '1170 × 2532', CeramicLightMobile, 'santi020k-ceramic-light-mobile', CeramicLightMobilePng, CeramicLightMobileWebp, true), collection: 'signature' },
   { ...wallpaper('Tide · dark', 'Desktop', '3840 × 2160', TideDarkDesktop, 'santi020k-tide-dark-desktop', TideDarkDesktopPng, TideDarkDesktopWebp, false), collection: 'sculpted' },
   { ...wallpaper('Tide · dark', 'Mobile', '1170 × 2532', TideDarkMobile, 'santi020k-tide-dark-mobile', TideDarkMobilePng, TideDarkMobileWebp, true), collection: 'sculpted' },
   { ...wallpaper('Tide · light', 'Desktop', '3840 × 2160', TideLightDesktop, 'santi020k-tide-light-desktop', TideLightDesktopPng, TideLightDesktopWebp, false), collection: 'sculpted' },

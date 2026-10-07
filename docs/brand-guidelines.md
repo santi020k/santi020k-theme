@@ -343,8 +343,8 @@ Verify mobile and desktop, light and dark, keyboard focus, and horizontal overfl
 
 ### Wallpaper generations
 
-Keep historical assets available as the **Classic collection**. Publish new artwork under the
-**Sculpted collection** with separate descriptive file names and collection metadata. Never
+Keep historical assets available as the **Classic collection**. Current artwork belongs to the
+**Sculpted** or **Signature collection**, with descriptive file names and collection metadata. Never
 replace an existing downloadable asset with different artwork at the same URL. New wallpapers
 use violet identity, generous negative space, and a restrained focal form; they are artwork,
 not alternate product logos. Pair dark and light options and preserve clear collection labels
@@ -365,12 +365,19 @@ asset paths and archives remain intact.
 
 The **Signature collection** adds explicitly branded wallpaper artwork alongside Sculpted.
 Use the canonical white `>_` prompt on its solid purple rounded square as the single focal
-detail, surrounded by restrained violet glass forms. Keep the mark recognizable and the
-canvas calm, without slogans or repeated logos. This is a wallpaper composition, not an
+detail. The original edition surrounds it with restrained violet glass forms. Keep the mark
+recognizable and the canvas calm, without slogans or repeated logos. This is a wallpaper composition, not an
 alternate logo. Pair dark and light scenes and compose phone versions separately, leaving
 room above the artwork for a clock. Keep masters and prompts in `artwork/signature-v1/`,
 display exports in `packages/theme/assets/wallpapers/signature-v1/`, and a separate WEBP
 archive. Like Sculpted, display exports are resized raster masters, not native 4K renders.
+
+Signature also includes **Satin** (flowing violet fabric) and **Ceramic** (matte sculptural
+forms). Keep the same recognizable prompt tile and restrained composition while making each
+material feel distinct. These additional masters and prompts live in `artwork/signature-v2/`,
+with exports under `packages/theme/assets/wallpapers/signature-v2/`. The second Signature
+archive contains all twelve wallpapers, including the original four glass compositions;
+the first archive and every existing asset URL remain available unchanged.
 
 ## Voice And Copy
 
