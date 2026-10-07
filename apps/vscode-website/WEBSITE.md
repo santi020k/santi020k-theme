@@ -9,7 +9,7 @@ The canonical visual direction lives in [the brand guide](../../docs/brand-guide
 - A solid reading canvas, one shared content grid, sentence-case headings, and fine section rules.
 - One primary Marketplace action, quiet alternative install links, and a copyable installation command.
 - An interactive editor with compact Lumen custom lists, keyboard navigation, visible focus, and larger touch targets.
-- Four solid mode samples and real VS Code screenshots. Screenshot assets already include their window borders and corners: do not wrap them in a second bordered card or join captions to the image frame.
+- Four solid mode samples and real VS Code screenshots in an asymmetric gallery. Decorative AI studio backdrops sit behind the unmodified captures; captions sit outside the artwork and each image links to its full-size original. Screenshot assets already include their window borders and corners: do not add a second window frame.
 - Open numbered philosophy rows and quiet editor, language, and compatibility lists.
 - One settings panel with a custom syntax-style list, optional settings, and copy feedback.
 

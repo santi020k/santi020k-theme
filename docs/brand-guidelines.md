@@ -204,6 +204,8 @@ Maintain:
 - syntax distinction without rainbow noise
 - marketplace screenshots that show real editor usage and the actual palette
 
+Product-page screenshot galleries may place these captures on sculpted, AI-generated studio backdrops. Keep artwork decorative and separate from the original image, preserve the complete editor window and its palette, and provide full-size capture links. Use restrained depth and an asymmetric editorial layout; do not generate replacement editor UI or add a second window border.
+
 ### Chrome
 
 Chrome should feel like the same theme moved into browser chrome.
