@@ -333,6 +333,19 @@ use violet identity, generous negative space, and a restrained focal form; they 
 not alternate product logos. Pair dark and light options and preserve clear collection labels
 in galleries and download bundles.
 
+The current Sculpted edition features **Tide** (flowing satin), **Dune** (violet sand ridges),
+and **Veil** (frosted glass). Compose immersive, full-bleed scenes with convincing material,
+soft light, and depth. Avoid isolated flat shapes, badges, text, and logos. Leave quiet space
+for desktop icons and phone clocks. Light and dark editions share their subject; phone artwork
+is composed separately rather than cut from the center of a desktop image.
+
+Keep native raster masters and generation prompts in `artwork/sculpted-v2/`. The deterministic
+`pnpm run generate:wallpapers` pipeline exports PNG and WEBP display sizes to
+`packages/theme/assets/wallpapers/sculpted-v2/`. These are resized imagegen masters, not native
+4K renders or vector artwork; do not advertise SVG versions. The current ZIP contains WEBP
+files to keep the complete collection practical to download. Earlier Sculpted and Classic
+asset paths and archives remain intact.
+
 ## Voice And Copy
 
 Use clear developer-facing language.

@@ -4,20 +4,20 @@ import { Image } from 'astro:assets'
 import { Badge, ButtonLink, Card, Eyebrow, Icon, Link } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
-import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp'
-import foldDownload from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp?url'
-import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp'
-import monolithDownload from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp?url'
-import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp'
-import orbitDownload from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp?url'
+import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp'
+import duneDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp?url'
+import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted-v2/tide-dark-desktop.webp'
+import tideDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/tide-dark-desktop.webp?url'
+import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp'
+import veilDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp?url'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 import { products } from '../data/products.js'
 
 const featuredWallpapers = [
-  { image: wallpaperOne, name: 'Fold', slug: 'fold', download: foldDownload },
-  { image: wallpaperTwo, name: 'Orbit', slug: 'orbit', download: orbitDownload },
-  { image: wallpaperThree, name: 'Monolith', slug: 'monolith', download: monolithDownload }
+  { image: wallpaperOne, name: 'Tide', slug: 'tide', download: tideDownload, description: 'Flowing violet satin with soft silver highlights' },
+  { image: wallpaperTwo, name: 'Dune', slug: 'dune', download: duneDownload, description: 'Violet sand ridges fading into blue-hour light' },
+  { image: wallpaperThree, name: 'Veil', slug: 'veil', download: veilDownload, description: 'Layers of frosted amethyst glass against deep indigo' }
 ]
 
 const structuredData = {
@@ -222,14 +222,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <div class="assets-heading-copy">
             <Eyebrow class="eyebrow">04 / Beyond the window</Eyebrow>
             <h2>Bring the palette to your desktop.</h2>
-            <p>The Sculpted collection. Quiet plum forms, generous space, and a considered home for your desktop.</p>
+            <p>Violet dunes, flowing satin, and frosted glass. Three new ways to make your screen feel like yours.</p>
           </div>
         </div>
         <div class="wallpaper-grid">
           {featuredWallpapers.map((wallpaper, index) => (
             <Card as="article" class="wallpaper-card">
               <div class="wallpaper-card-media">
-                <Image src={wallpaper.image} alt={`${wallpaper.name}: a sculpted plum form on a calm dark background`} loading="lazy" />
+                <Image src={wallpaper.image} alt={wallpaper.description} loading="lazy" />
                 <span aria-hidden="true">0{index + 1}</span>
               </div>
               <div class="wallpaper-card-body">
@@ -243,7 +243,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           ))}
         </div>
         <div class="section-cta">
-          <p>Explore both collections: Sculpted for the new visual line, and Classic for the original violet horizons. Desktop and mobile sizes are available.</p>
+          <p>Choose light or dark, with separate compositions for your desktop and phone. The original Classic collection is here too.</p>
           <ButtonLink class="button button-secondary" variant="secondary" href="/gallery/">Browse all assets <Icon name="arrow-right" /></ButtonLink>
         </div>
       </section>

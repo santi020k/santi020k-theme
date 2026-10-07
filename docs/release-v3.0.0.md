@@ -13,6 +13,12 @@ The integration branch is `release/v3.0.0`, based on `main` at `28b5dfc`. Change
 
 The Sculpted visual direction is now canonical in `docs/brand-guidelines.md` and the live `/design/` guide. All product websites and terminal documentation use local Montserrat fonts, solid surfaces, quieter headings, neutral primary controls, and violet focus indicators. Fold, Orbit, and Monolith add 12 light/dark desktop/mobile wallpaper compositions, a separate download archive, and collection filters. Classic assets and URLs remain available. Paired editor primary action and focus colors are updated with regenerated variants.
 
+The featured wallpaper edition is now Tide, Dune, and Veil: flowing satin, violet landscapes,
+and frosted glass, each with light/dark desktop and separately composed phone artwork. Native
+raster masters and prompts are retained; display exports are resized to 3840 × 2160 and
+1170 × 2532. Individual PNG/WEBP downloads and a compact WEBP archive replace the first edition
+in the homepage and gallery. Earlier Sculpted and Classic files and archives remain available.
+
 Migration: theme variant names and syntax coverage remain available, while editor action and focus styling changes deliberately for v3. Existing wallpaper links and shared package import paths remain supported. Consumers of the shared website CSS should review typography, spacing, and control styling against the new brand guide.
 
 Published npm Lumen 4.0.0 powers all six website sources. Terminal documentation uses command tabs, clipboard feedback, breadcrumbs, and reading progress. The shared theme toggle now preserves native button or switch state semantics. The support page links to family-wide GitHub issue forms, published releases, and private vulnerability reporting. Canonical metadata, the sitemap, the extension homepage, and contribution instructions match the consolidated website.

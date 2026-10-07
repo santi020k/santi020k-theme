@@ -1,6 +1,9 @@
 version: "0.2"
 language: en
 words:
+  # Image-generation tool and material terminology in the saved artwork prompts.
+  - imagegen
+  - microtexture
   # Native JetBrains and Xcode theme identifiers that cannot be renamed.
   - Darcula
   - DFDDE3
