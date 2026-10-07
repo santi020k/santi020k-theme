@@ -14,6 +14,9 @@ package before both implementations prove a reusable API.
   scroll position and restore the previous scroll styles on every close path.
 - Keep navigation as native links in ordinary Tab order, including current-page links. Use
   `aria-current="page"`; do not apply application menu roles or roving tab stops to site links.
+- Product section navigation uses `aria-current="location"` for the current section and
+  `aria-current="page"` for Overview. Keep a single highlight synchronized with anchor clicks,
+  scrolling, deep links, and browser history, including after an Astro page transition.
 - Keep Close visible and allow the content to scroll independently on short screens. Support
   safe-area insets, dynamic viewport height, enlarged text, and at least 44px controls.
 - Show visible focus and readable contrast in both appearances. Keep appearance and other
