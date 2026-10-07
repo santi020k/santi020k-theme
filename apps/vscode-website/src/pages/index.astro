@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Button, ButtonLink, Card, Checkbox, Icon, Link, NativeSelect, Select } from '@santi020k/lumen-astro'
+import { Button, ButtonLink, Card, Checkbox, Icon, Link, Select } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import previewDark from '../../../../packages/theme/assets/vscode/previews/preview-dark.png'
@@ -92,19 +92,19 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <p class="eyebrow">VS Code color theme</p>
           <h1>Calm editor surfaces. Clear purple focus.</h1>
           <p class="lede">
-            Available in 12 fine-tuned variants (Dark, Light, HC Dark, HC Light) across Base, Bold, and Italic styles — all built around the deep indigo-black depth and violet accents of the santi020k brand.
+            Four color modes. Three syntax styles. A considered violet palette for your editor, terminal, and the work between them.
           </p>
           <div class="actions" aria-label="Theme actions">
-            <ButtonLink class="button button-primary" variant="primary" href="https://marketplace.visualstudio.com/items?itemName=Santi020k.santi020k-theme" newTab>
-              VS Marketplace
+            <ButtonLink class="button button-primary" variant="unstyled" href="https://marketplace.visualstudio.com/items?itemName=Santi020k.santi020k-theme" newTab>
+              <span>VS Marketplace</span><span class="button-arrow"><Icon name="arrow-up-right" size="sm" decorative /></span>
             </ButtonLink>
-            <ButtonLink class="button button-primary" variant="primary" href="https://open-vsx.org/extension/santi020k/santi020k-theme" newTab>
+            <ButtonLink class="button button-secondary" variant="unstyled" href="https://open-vsx.org/extension/santi020k/santi020k-theme" newTab>
               Open VSX
             </ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="https://vscode.dev/editor/theme/santi020k.santi020k-theme" newTab>
+            <ButtonLink class="button button-secondary" variant="unstyled" href="https://vscode.dev/editor/theme/santi020k.santi020k-theme" newTab>
               Try in vscode.dev
             </ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme" newTab>
+            <ButtonLink class="button button-secondary" variant="unstyled" href="https://github.com/santi020k/santi020k-theme" newTab>
               GitHub
             </ButtonLink>
           </div>
@@ -206,27 +206,27 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       <section id="variants" class="site-shell section-grid">
         <div>
           <p class="eyebrow">Variants</p>
-          <h2>Three surfaces, one visual rhythm.</h2>
+          <h2>Four modes. One visual rhythm.</h2>
         </div>
         <div class="variant-grid">
-          <Card as="article" class="variant-card variant-dark">
+          <Card as="article" variant="unstyled" class="variant-card variant-dark">
             <p>Dark</p>
-            <h3>santi020k dark</h3>
+            <h3>Quiet depth.</h3>
             <span>#110c1d</span>
           </Card>
-          <Card as="article" class="variant-card variant-light">
+          <Card as="article" variant="unstyled" class="variant-card variant-light">
             <p>Light</p>
-            <h3>santi020k light</h3>
+            <h3>Room to breathe.</h3>
             <span>#f8f6fd</span>
           </Card>
-          <Card as="article" class="variant-card variant-hc">
+          <Card as="article" variant="unstyled" class="variant-card variant-hc">
             <p>HC Dark</p>
-            <h3>santi020k hc dark</h3>
+            <h3>Defined in the dark.</h3>
             <span>#0d0718</span>
           </Card>
-          <Card as="article" class="variant-card variant-hc-light">
+          <Card as="article" variant="unstyled" class="variant-card variant-hc-light">
             <p>HC Light</p>
-            <h3>santi020k hc light</h3>
+            <h3>Clarity in the light.</h3>
             <span>#ffffff</span>
           </Card>
         </div>
@@ -241,19 +241,19 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div class="screenshot-grid">
           <figure class="screenshot-card">
             <Image class="screenshot-img" src={previewDark} alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1200" height="800" loading="lazy" />
-            <figcaption>santi020k dark</figcaption>
+            <figcaption>Dark</figcaption>
           </figure>
           <figure class="screenshot-card">
             <Image class="screenshot-img" src={previewLight} alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1200" height="800" loading="lazy" />
-            <figcaption>santi020k light</figcaption>
+            <figcaption>Light</figcaption>
           </figure>
           <figure class="screenshot-card">
             <Image class="screenshot-img" src={previewHcDark} alt="santi020k high contrast dark theme applied in VS Code — near-black surfaces with vivid purple and amber accents" width="1200" height="800" loading="lazy" />
-            <figcaption>santi020k hc dark</figcaption>
+            <figcaption>High contrast dark</figcaption>
           </figure>
           <figure class="screenshot-card">
             <Image class="screenshot-img" src={previewHcLight} alt="santi020k high contrast light theme applied in VS Code — lavender surfaces with strong borders and clear syntax contrast" width="1200" height="800" loading="lazy" />
-            <figcaption>santi020k hc light</figcaption>
+            <figcaption>High contrast light</figcaption>
           </figure>
         </div>
       </section>
@@ -265,31 +265,23 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <p class="section-lede">Every decision in the palette came from a question: does this help you read code faster?</p>
         </div>
         <div class="why-grid">
-          <Card as="article" class="why-card">
-            <div class="why-icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-            </div>
+          <Card as="article" variant="unstyled" class="why-card">
+            <span class="why-number" aria-hidden="true">01</span>
             <h3>No neon</h3>
-            <p>Saturated syntax colors destroy contrast at 2 AM. Every hue is pulled back until it guides the eye without demanding attention.</p>
+            <p>Muted violets keep the canvas quiet, with distinct accents for the parts of your code that need attention.</p>
           </Card>
-          <Card as="article" class="why-card">
-            <div class="why-icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
-            </div>
+          <Card as="article" variant="unstyled" class="why-card">
+            <span class="why-number" aria-hidden="true">02</span>
             <h3>Keywords recede</h3>
             <p>Control-flow keywords are muted italic — present but quiet. Your identifiers and values carry the visual weight because they carry the logic.</p>
           </Card>
-          <Card as="article" class="why-card">
-            <div class="why-icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
+          <Card as="article" variant="unstyled" class="why-card">
+            <span class="why-number" aria-hidden="true">03</span>
             <h3>Semantic-aware</h3>
             <p>Semantic highlighting is on by default. Class names, type parameters, and mutable variables get distinct shades — no extra config needed.</p>
           </Card>
-          <Card as="article" class="why-card">
-            <div class="why-icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><polyline points="7 8 12 13 17 8"/></svg>
-            </div>
+          <Card as="article" variant="unstyled" class="why-card">
+            <span class="why-number" aria-hidden="true">04</span>
             <h3>Terminal included</h3>
             <p>The 16 ANSI colors are calibrated to the same violet palette. Shell output reads like part of the editor, not an afterthought.</p>
           </Card>
@@ -336,9 +328,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
       <section id="languages" class="site-shell languages-section">
         <div>
-          <p class="eyebrow">Supported Technologies</p>
+          <p class="eyebrow">Language coverage</p>
           <h2>Deep coverage for your stack.</h2>
-          <p class="section-lede">Optimized TextMate and Semantic tokens for 20+ languages, frameworks, and tools — built to stay expressive over long sessions.</p>
+          <p class="section-lede">TextMate and semantic colors for the languages, frameworks, and tools across your stack.</p>
         </div>
         <div class="language-grid">
           <div class="lang-tag"><span>TypeScript</span></div>
@@ -355,7 +347,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <div class="lang-tag"><span>HTML / CSS</span></div>
           <div class="lang-tag"><span>Svelte / Vue</span></div>
           <div class="lang-tag"><span>Shell / Docker</span></div>
-          <div class="lang-tag lang-tag-more"><span>+50 more</span></div>
         </div>
 
       </section>
@@ -372,7 +363,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div><p class="eyebrow">Settings recipe</p><h2>Copy a complete theme setup.</h2><p class="section-lede">Choose a syntax style and optional OS switching. The recipe uses standard VS Code settings and keeps the extension itself lightweight.</p></div>
         <div class="settings-builder">
           <div class="settings-controls">
-            <label>Syntax style<NativeSelect class="settings-style"><option value="base">Base</option><option value="bold">Bold</option><option value="italic">Italic</option></NativeSelect></label>
+            <div class="settings-style-field"><label for="settings-style">Syntax style</label><Select id="settings-style" class="settings-style" aria-label="Settings syntax style" value="base" options={[{ value: 'base', label: 'Base' }, { value: 'bold', label: 'Bold' }, { value: 'italic', label: 'Italic' }]} /></div>
             <label><Checkbox class="settings-auto"  checked /> Follow the operating system light and dark mode</label>
             <label><Checkbox class="settings-font"  checked /> Include calm editor typography</label>
           </div>

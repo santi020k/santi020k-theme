@@ -36,7 +36,7 @@ bindPageLifecycle('vscode', () => {
   }
 
   const buildSettingsRecipe = () => {
-    const style = document.querySelector('.settings-style')?.value ?? 'base'
+    const style = document.querySelector('.settings-style select')?.value ?? 'base'
     const suffix = style === 'base' ? '' : ` ${style}`
     const settings = { 'workbench.colorTheme': `santi020k dark${suffix}` }
 
