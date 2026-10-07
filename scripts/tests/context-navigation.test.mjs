@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { bindContextNavigation } from '../../apps/website/src/utils/context-navigation.ts'
+import { bindContextNavigation, bindHeaderScrollOffset } from '../../apps/website/src/utils/context-navigation.ts'
 
 class NavigationLink extends EventTarget {
   constructor(href) {
@@ -187,5 +187,49 @@ describe('product section navigation', () => {
     expect(page.window.cancelAnimationFrame).toHaveBeenCalledWith(1)
 
     expect(page.window.requestAnimationFrame).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('section anchor offset', () => {
+  it('tracks the rendered header height and disposes its observer on page replacement', () => {
+    const properties = new Map()
+
+    const style = {
+      getPropertyValue: name => properties.get(name) ?? '',
+      setProperty: (name, value) => properties.set(name, value),
+      removeProperty: name => properties.delete(name),
+    }
+
+    let height = 140
+    const header = { getBoundingClientRect: () => ({ height }) }
+    let resize
+    const disconnect = vi.fn()
+    const observe = vi.fn()
+
+    vi.stubGlobal('document', { documentElement: { style }, querySelector: () => header })
+
+    vi.stubGlobal('ResizeObserver', class {
+      constructor(callback) { resize = callback }
+      observe = observe
+      disconnect = disconnect
+    })
+
+    const dispose = bindHeaderScrollOffset()
+
+    expect(properties.get('--family-header-height')).toBe('140px')
+
+    expect(observe).toHaveBeenCalledWith(header)
+
+    height = 150
+
+    resize()
+
+    expect(properties.get('--family-header-height')).toBe('150px')
+
+    dispose()
+
+    expect(disconnect).toHaveBeenCalledTimes(1)
+
+    expect(properties.has('--family-header-height')).toBe(false)
   })
 })

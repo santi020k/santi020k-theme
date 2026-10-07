@@ -17,6 +17,8 @@ package before both implementations prove a reusable API.
 - Product section navigation uses `aria-current="location"` for the current section and
   `aria-current="page"` for Overview. Keep a single highlight synchronized with anchor clicks,
   scrolling, deep links, and browser history, including after an Astro page transition.
+- Align section anchor dividers with the bottom of the sticky header. Measure its rendered
+  height as the layout changes instead of adding fixed scroll padding and section margins.
 - Keep Close visible and allow the content to scroll independently on short screens. Support
   safe-area insets, dynamic viewport height, enlarged text, and at least 44px controls.
 - Show visible focus and readable contrast in both appearances. Keep appearance and other

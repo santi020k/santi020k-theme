@@ -1,3 +1,27 @@
+/** Native anchor scrolling uses the same boundary as the visible sticky header. */
+export const bindHeaderScrollOffset = (): (() => void) => {
+  const header = document.querySelector('.family-header-stack')
+  const root = document.documentElement
+  const previousHeight = root.style.getPropertyValue('--family-header-height')
+
+  const measure = () => {
+    if (header) root.style.setProperty('--family-header-height', `${header.getBoundingClientRect().height}px`)
+  }
+
+  const observer = new ResizeObserver(measure)
+
+  if (header) observer.observe(header)
+
+  measure()
+
+  return () => {
+    observer.disconnect()
+
+    if (previousHeight) root.style.setProperty('--family-header-height', previousHeight)
+    else root.style.removeProperty('--family-header-height')
+  }
+}
+
 /** Keep native section links current without changing URLs or scroll behavior. */
 export const bindContextNavigation = (signal: AbortSignal): (() => void) => {
   const navigation = document.querySelector('.family-context-navigation nav')

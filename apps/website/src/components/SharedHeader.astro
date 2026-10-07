@@ -135,10 +135,11 @@ const isActive = (href: string) => {
 </Dialog>
 
 <script>
-import { bindContextNavigation } from '../utils/context-navigation'
+import { bindContextNavigation, bindHeaderScrollOffset } from '../utils/context-navigation'
 import { bindPageLifecycle } from '../utils/page-lifecycle'
 
 bindPageLifecycle('*', signal => {
+  const disposeScrollOffset = bindHeaderScrollOffset()
   const disposeContextNavigation = bindContextNavigation(signal)
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
   const dialog = document.querySelector<HTMLDialogElement>('#family-mobile-navigation')
@@ -233,6 +234,8 @@ bindPageLifecycle('*', signal => {
   }, { signal })
 
   return () => {
+    disposeScrollOffset()
+
     disposeContextNavigation()
 
     closeNavigation(false)
@@ -242,7 +245,10 @@ bindPageLifecycle('*', signal => {
 
 <style>
   :global(html) {
-    scroll-padding-top: 148px;
+    scroll-padding-top: var(--family-header-height, 140px);
+  }
+  :global(main section[id]) {
+    scroll-margin-top: 0;
   }
   .family-header :is(a, button):focus-visible {
     outline: 2px solid var(--site-brand);
@@ -791,7 +797,7 @@ bindPageLifecycle('*', signal => {
   }
   @media (max-width: 600px) {
     :global(html) {
-      scroll-padding-top: 134px;
+      scroll-padding-top: var(--family-header-height, 150px);
     }
     .family-brand span {
       font-size: .78rem;
