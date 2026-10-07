@@ -179,7 +179,7 @@ const preview = (title, variant, image, base, png, svg) => ({
   title,
   category: 'previews',
   variant,
-  dimensions: '1280 × 720',
+  dimensions: `${image.width} × ${image.height}`,
   preview: image,
   formats: [download('PNG', png, `${base}.png`), download('SVG', svg, `${base}.svg`)]
 })

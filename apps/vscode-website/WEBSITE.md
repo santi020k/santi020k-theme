@@ -117,7 +117,7 @@ Decorative code widget in the hero. Always shows the active theme variant (filen
 Shows the dark, light, high-contrast dark, and high-contrast light theme thumbnails side-by-side. Always styled with their respective theme colors — `.variant-dark` is always dark, `.variant-light` is always light, `.variant-hc` is always high contrast dark, and `.variant-hc-light` is always high contrast light, regardless of the current site theme.
 
 ### `.screenshots-section`
-Two-column grid (left: heading, right: screenshot cards). The cards show all shipped base variants with real preview assets. Images (`preview-dark.png`, `preview-light.png`, `preview-hc-dark.png`, `preview-hc-light.png`, 1280x720) live in `apps/vscode-website/public/`.
+Two-column grid (left: heading, right: screenshot cards). The cards show all shipped base variants with real preview assets. Images (`preview-dark.png`, `preview-light.png`, `preview-hc-dark.png`, `preview-hc-light.png`, 2400x1600) live in `apps/vscode-website/public/`.
 
 ### `.why-grid`
 A 2×2 grid of `.why-card` articles inside the `#why` section. Each card has a `.why-icon` (44×44 rounded square, brand color), an `h3`, and a short `p`. Cards show the `--brand` border on hover.
