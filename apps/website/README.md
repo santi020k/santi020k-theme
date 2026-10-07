@@ -29,6 +29,7 @@ Run commands from the repository root.
 - Preserve visible focus styles, external-link safety, and the dark/light toggle.
 - The `/design/` palette reveals HEX, RGB, and HSL values through each swatch's keyboard-accessible Color codes disclosure. Values read active shared CSS tokens and stay synchronized with appearance changes and page navigation instead of maintaining a second palette.
 - Keep preview assets in `public/` aligned with current package screenshots.
+- The home theme cards use `src/components/ThemeCardPreview.astro`: canonical VS Code screenshots, generated Chrome store artwork, and labeled illustrative previews for other tools. Preview colors derive from the paired VS Code theme sources and follow site appearance. Keep illustrative scenes free of private data and do not present them as native captures.
 - Read [`../../docs/brand-guidelines.md`](../../docs/brand-guidelines.md) before changing copy, color, imagery, or product naming.
 
 For deeper implementation notes, see [`WEBSITE.md`](WEBSITE.md).
