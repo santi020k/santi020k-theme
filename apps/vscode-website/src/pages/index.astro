@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Button, ButtonLink, Card, Checkbox, Link, NativeSelect } from '@santi020k/lumen-astro'
+import { Button, ButtonLink, Card, Checkbox, Icon, Link, NativeSelect } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import previewDark from '../../../../packages/theme/assets/vscode/previews/preview-dark.png'
@@ -138,33 +138,45 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <span></span>
               <span></span>
             </div>
-            <div class="preview-controls">
-              <NativeSelect class="preview-lang-select" aria-label="Select preview language">
-                <option value="json">JSON</option>
-                <option value="ts">TypeScript</option>
-                <option value="js">JavaScript</option>
-                <option value="react">React</option>
-                <option value="rust">Rust</option>
-                <option value="go">Go</option>
-                <option value="prisma">Prisma</option>
-                <option value="java">Java</option>
-                <option value="cpp">C++</option>
-                <option value="elixir">Elixir</option>
-                <option value="tailwind">Tailwind CSS</option>
-              </NativeSelect>
-              <NativeSelect class="preview-theme-select" aria-label="Select preview theme">
-                <option value="dark">Dark</option>
-                <option value="light">Light</option>
-                <option value="hc">HC Dark</option>
-                <option value="hclight">HC Light</option>
-              </NativeSelect>
-              <NativeSelect class="preview-variant-select" aria-label="Select preview variant">
-                <option value="normal">Normal (Default)</option>
-                <option value="bold">Bold</option>
-                <option value="italic">Italic</option>
-              </NativeSelect>
-            </div>
             <strong class="preview-filename">santi020k-dark-color-theme.json</strong>
+            <div class="preview-controls" role="group" aria-label="Preview settings">
+              <label class="preview-control">
+                <span class="preview-control-label">Language</span>
+                <NativeSelect visualSize="sm" class="preview-lang-select" aria-label="Select preview language">
+                  <option value="json">JSON</option>
+                  <option value="ts">TypeScript</option>
+                  <option value="js">JavaScript</option>
+                  <option value="react">React</option>
+                  <option value="rust">Rust</option>
+                  <option value="go">Go</option>
+                  <option value="prisma">Prisma</option>
+                  <option value="java">Java</option>
+                  <option value="cpp">C++</option>
+                  <option value="elixir">Elixir</option>
+                  <option value="tailwind">Tailwind CSS</option>
+                </NativeSelect>
+                <Icon class="preview-control-chevron" name="chevron-down" size="sm" decorative />
+              </label>
+              <label class="preview-control">
+                <span class="preview-control-label">Theme</span>
+                <NativeSelect visualSize="sm" class="preview-theme-select" aria-label="Select preview theme">
+                  <option value="dark">Dark</option>
+                  <option value="light">Light</option>
+                  <option value="hc">HC Dark</option>
+                  <option value="hclight">HC Light</option>
+                </NativeSelect>
+                <Icon class="preview-control-chevron" name="chevron-down" size="sm" decorative />
+              </label>
+              <label class="preview-control">
+                <span class="preview-control-label">Style</span>
+                <NativeSelect visualSize="sm" class="preview-variant-select" aria-label="Select preview style">
+                  <option value="normal">Normal</option>
+                  <option value="bold">Bold</option>
+                  <option value="italic">Italic</option>
+                </NativeSelect>
+                <Icon class="preview-control-chevron" name="chevron-down" size="sm" decorative />
+              </label>
+            </div>
           </div>
           <div class="preview-body">
             <aside aria-hidden="true">
