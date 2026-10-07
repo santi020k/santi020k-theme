@@ -18,14 +18,14 @@ const pngDirectories = [
 // Screenshots are the source of truth. Never draw or recolor an editor preview.
 for (const variant of variants) {
   const file = `preview-${variant}`
-  const capture = await readFile(resolve(sourceDirectory, `${file}.jpg`))
-  const { width, height } = await sharp(capture).metadata()
+  const capture = await readFile(resolve(sourceDirectory, `${file}.png`))
+  const { width, height, format } = await sharp(capture).metadata()
 
-  if (!width || !height) {
+  if (!width || !height || format !== 'png') {
     throw new Error(`Missing screenshot dimensions: ${file}`)
   }
 
-  const png = await sharp(capture).png().toBuffer()
+  const png = capture
 
   for (const directory of pngDirectories) {
     await mkdir(resolve(repoRoot, directory), { recursive: true })

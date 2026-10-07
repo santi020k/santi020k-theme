@@ -258,7 +258,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <figure class="screenshot-card">
                 <Link class="screenshot-stage" data-mode={screenshot.mode} href={screenshot.image.src} aria-label={`Open ${screenshot.name.toLowerCase()} VS Code screenshot at full size in a new tab`} newTab>
                   <Image class="screenshot-art" src={screenshot.mode === 'dark' || screenshot.mode === 'hc' ? previewBackdropDark : previewBackdropLight} alt="" aria-hidden="true" width="1200" format="webp" quality={80} sizes="(min-width: 1200px) 1152px, 100vw" loading="lazy" />
-                  <Image class="screenshot-img" src={screenshot.image} alt={screenshot.alt} width="2400" height="1600" format="png" sizes="(min-width: 1200px) 1072px, 100vw" loading="lazy" />
+                  <Image class="screenshot-img" src={screenshot.image} alt={screenshot.alt} format="png" sizes="(min-width: 1200px) 1072px, 100vw" loading="lazy" />
                   <span class="screenshot-expand" aria-hidden="true"><Icon name="maximize-2" size="sm" decorative /></span>
                 </Link>
                 <figcaption>

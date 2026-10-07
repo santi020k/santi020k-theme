@@ -35,7 +35,7 @@ The brand source of truth is [`docs/brand-guidelines.md`](docs/brand-guidelines.
   <a href="https://theme.santi020k.com/vscode/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="packages/santi020k-theme/assets/previews/preview-dark.png">
-      <img src="packages/santi020k-theme/assets/previews/preview-light.png" alt="Santi020k Theme in VS Code: coordinated editor syntax, sidebar, tabs, terminal, and status bar" width="1200">
+      <img src="packages/santi020k-theme/assets/previews/preview-light.png" alt="Santi020k Theme in VS Code: coordinated editor syntax, sidebar, tabs, and status bar" width="1200">
     </picture>
   </a>
 </p>
