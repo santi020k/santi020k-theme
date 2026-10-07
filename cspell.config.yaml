@@ -237,6 +237,7 @@ words:
   - transition-timing-function
   - tsconfck
   - evenodd
+  - unstub
   - tspan
   - undici
   - unrs

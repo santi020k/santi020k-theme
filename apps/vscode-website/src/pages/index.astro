@@ -5,6 +5,7 @@ import { Button, ButtonLink, Card, Checkbox, Link, NativeSelect } from '@santi02
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import previewHcLight from '../../../../packages/theme/assets/vscode/previews/preview-hc-light.png'
+import PageTransitions from '../../../website/src/components/PageTransitions.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
@@ -35,6 +36,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en">
   <head>
+    <PageTransitions page="vscode" />
     <meta charset="UTF-8" />
     <!-- Anti-FOUC: sets data-theme before CSS renders to prevent a flash -->
     <script>

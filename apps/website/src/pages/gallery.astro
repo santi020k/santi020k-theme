@@ -4,6 +4,7 @@ import { Image } from 'astro:assets'
 import { BackToTop, Button, ButtonLink, Card, Dialog, Eyebrow, Icon, Link } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
+import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 import { galleryAssets as assets } from '../data/gallery-assets.js'
@@ -34,6 +35,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en" data-santi020k-site="hub">
   <head>
+    <PageTransitions page="hub" />
     <meta charset="UTF-8" />
     <script is:inline>
       (function () {

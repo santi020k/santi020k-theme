@@ -92,6 +92,9 @@ const isActive = (href: string) => {
 </div>
 
 <script>
+import { bindPageLifecycle } from '../utils/page-lifecycle'
+
+bindPageLifecycle('*', signal => {
   const navigation = document.querySelector<HTMLElement>('#family-primary-navigation')
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
   const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
@@ -115,13 +118,15 @@ const isActive = (href: string) => {
     closeNavigation()
   })
 
-  desktopBreakpoint.addEventListener('change', event => {
-    if (event.matches) closeNavigation()
-  })
+  const closeOnDesktop = (event: MediaQueryListEvent) => {
+ if (event.matches) closeNavigation()
+}
+
+  desktopBreakpoint.addEventListener('change', closeOnDesktop, { signal })
 
   document.addEventListener('click', event => {
     if (themeMenu?.open && event.target instanceof Node && !themeMenu.contains(event.target)) themeMenu.open = false
-  })
+  }, { signal })
 
   document.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return
@@ -141,7 +146,10 @@ const isActive = (href: string) => {
 
       themeMenu.querySelector('summary')?.focus()
     }
-  })
+  }, { signal })
+
+return undefined
+})
 </script>
 
 <style>

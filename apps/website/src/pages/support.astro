@@ -5,6 +5,7 @@ import MetadataHead from '@santi020k/og/astro/head'
 import { personSchema, serializeJsonLd } from '@santi020k/og/schema'
 import { defineSite } from '@santi020k/og/site'
 
+import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 
@@ -44,6 +45,7 @@ const options = [
 <!doctype html>
 <html lang="en" data-santi020k-site="hub">
   <head>
+    <PageTransitions page="hub" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script is:inline>
