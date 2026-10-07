@@ -75,7 +75,7 @@ const options = [
         <h1 id="support-title">Feedback &amp; support</h1>
         <p class="lede">Help make your next session calmer. Show us what needs fixing, or bring an idea for your favorite tool.</p>
         <p>Browse existing reports first. GitHub keeps questions, reproductions, and follow-up in one place; sign in to post or subscribe.</p>
-        <Link href={`${repository}/issues`}>Search existing issues <Icon name="arrow-up-right" /></Link>
+        <Link href={`${repository}/issues`} newTab>Search existing issues <Icon name="arrow-up-right" /></Link>
       </section>
       <div class="support-options">
         {options.map(option => (
@@ -83,7 +83,7 @@ const options = [
             <Icon name={option.icon} size="lg" />
             <h2>{option.title}</h2>
             <p>{option.description}</p>
-            <ButtonLink href={`${repository}/issues/new?template=${option.template}`} variant="secondary" showArrow>{option.title}</ButtonLink>
+            <ButtonLink href={`${repository}/issues/new?template=${option.template}`} variant="secondary" showArrow newTab>{option.title}</ButtonLink>
           </Card>
         ))}
       </div>
@@ -91,12 +91,12 @@ const options = [
         <section aria-labelledby="progress-title">
           <h2 id="progress-title">Follow a change to release</h2>
           <p>Subscribe to an issue for updates and linked pull requests. A closed issue or merged pull request can still be waiting for publication; check the release notes for the version that includes it.</p>
-          <Link href={`${repository}/releases`}>Read published releases <Icon name="arrow-up-right" /></Link>
+          <Link href={`${repository}/releases`} newTab>Read published releases <Icon name="arrow-up-right" /></Link>
         </section>
         <section aria-labelledby="security-title">
           <h2 id="security-title">Private security reports</h2>
           <p>Public reports are visible to everyone. Remove credentials, private code, and personal details from screenshots and reproductions. Report suspected vulnerabilities through the project's private reporting channel.</p>
-          <Link href={`${repository}/security/advisories/new`}>Report a vulnerability privately <Icon name="arrow-up-right" /></Link>
+          <Link href={`${repository}/security/advisories/new`} newTab>Report a vulnerability privately <Icon name="arrow-up-right" /></Link>
         </section>
       </div>
     </main>
