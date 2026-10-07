@@ -30,6 +30,7 @@ This is the only public Santi020k theme website and Cloudflare Pages deployment.
 - Add new products to `src/data/products.js`, then create their route beneath `src/pages/`.
 - Keep canonical URLs on `theme.santi020k.com`; legacy subdomains are redirect-only.
 - Keep visible focus styles and the dark/light toggle intact.
+- Open external web links in a new tab using Lumen’s `newTab` prop, which adds `noopener noreferrer`. Keep product routes, section anchors, and local downloads in the current tab.
 - Run `pnpm run generate:og` after changing product positioning or social card copy.
 - Keep `public/sitemap.xml` aligned with every indexable route. Omit `lastmod` unless it reflects an actual content update; do not use build dates as content timestamps.
 - Run `pnpm run validate:seo` before shipping metadata or OG asset changes.

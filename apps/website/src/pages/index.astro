@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Badge, ButtonLink, Card, Eyebrow, Icon, Link } from '@santi020k/lumen-astro'
+import { Badge, ButtonLink, Card, Eyebrow, Icon, Link, Particles, RevealGroup, ScrollReveal } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp'
@@ -10,6 +10,7 @@ import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted-
 import tideDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/tide-dark-desktop.webp?url'
 import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp'
 import veilDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp?url'
+import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 import { products } from '../data/products.js'
@@ -85,6 +86,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en" data-santi020k-site="hub">
   <head>
+    <PageTransitions page="hub" />
     <meta charset="UTF-8" />
     <script>
   (function () {
@@ -138,7 +140,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
     <main id="top">
       <section class="site-shell hero">
-        <div class="hero-copy">
+        <Particles class="signature-bubbles" density="low" />
+        <ScrollReveal class="hero-copy" animation="slide-up" duration="standard" threshold={0}>
           <Eyebrow class="eyebrow">01 / A considered workspace</Eyebrow>
           <h1>A calmer place<br />to <span>create.</span></h1>
           <p class="lede">
@@ -148,7 +151,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <ButtonLink class="button button-primary" variant="unstyled" href="#themes">Browse themes <span class="button-arrow"><Icon name="arrow-up-right" /></span></ButtonLink>
             <ButtonLink class="button button-text" variant="unstyled" href="/gallery/">Explore the gallery <Icon name="arrow-right" /></ButtonLink>
           </div>
-        </div>
+        </ScrollReveal>
 
         <div class="hero-art" aria-label="Theme previews">
           <Image src="/hub-hero-art.png" width="1536" height="1024" alt="Abstract editor and browser windows using the Santi020k theme palette" fetchpriority="high" inferSize />
@@ -170,7 +173,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <h2>Different tools.<br />The same feeling.</h2>
         </div>
 
-        <div class="theme-grid">
+        <RevealGroup class="theme-grid" animation="fade" duration="standard" stagger={35}>
           {products.map((product, index) => (
             <Card as="article" class="theme-card" data-product={product.slug}>
               <Link class="theme-card-preview" href={`/${product.slug}/`} aria-label={`View the ${product.name} theme`}>
@@ -187,7 +190,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               </div>
             </Card>
           ))}
-        </div>
+        </RevealGroup>
       </section>
 
       <section id="packages" class="site-shell section packages-section">
@@ -205,7 +208,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <h3>@santi020k/theme</h3>
             <p>Design tokens, CSS custom properties, Tailwind mappings, and shared brand assets for Santi020k websites, apps, and theme-family surfaces.</p>
             <div class="card-actions">
-              <ButtonLink class="button button-primary" variant="primary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">View source</ButtonLink>
+              <ButtonLink class="button button-primary" variant="primary" href="https://github.com/santi020k/santi020k-theme" newTab>View source</ButtonLink>
             </div>
           </div>
 

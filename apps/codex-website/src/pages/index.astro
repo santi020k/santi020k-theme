@@ -6,6 +6,7 @@ import { getSiteUrls } from '@santi020k/theme/site'
 import darkPreset from '../../../../packages/santi020k-codex-theme/themes/santi020k-dark.codex-theme.json'
 import lightPreset from '../../../../packages/santi020k-codex-theme/themes/santi020k-light.codex-theme.json'
 import favicon from '../../../../packages/theme/assets/favicons/favicon.svg'
+import PageTransitions from '../../../website/src/components/PageTransitions.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
@@ -39,6 +40,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en">
   <head>
+    <PageTransitions page="codex" />
     <meta charset="UTF-8" />
     <script>
       (function () {

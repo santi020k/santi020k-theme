@@ -2,6 +2,7 @@
 import { Button, ButtonLink, Card, Link } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
+import PageTransitions from '../../../website/src/components/PageTransitions.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
@@ -31,6 +32,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en">
   <head>
+    <PageTransitions page="chrome" />
     <meta charset="UTF-8" />
     <!-- Anti-FOUC: sets data-theme before CSS renders -->
     <script>
@@ -96,13 +98,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               Every surface — tab strip, omnibox, New Tab page, incognito — maps directly to a VS Code token from the Santi020k dark palette. Deep violet, muted lavender, no neon.
             </p>
             <div class="actions" aria-label="Theme actions">
-              <ButtonLink class="button button-primary" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" target="_blank" rel="noopener noreferrer">
+              <ButtonLink class="button button-primary" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab>
                 Dark theme
               </ButtonLink>
-              <ButtonLink class="button button-secondary" variant="secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
+              <ButtonLink class="button button-secondary" variant="secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" newTab>
                 Light theme
               </ButtonLink>
-              <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">
+              <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme" newTab>
                 GitHub
               </ButtonLink>
             </div>
@@ -286,7 +288,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <div class="install-step-badge">01</div>
             <h3>Load unpacked (instant)</h3>
             <ol class="install-steps">
-              <li>Clone or download the <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub repo</Link></li>
+              <li>Clone or download the <Link href="https://github.com/santi020k/santi020k-theme" newTab>GitHub repo</Link></li>
               <li>Open <code>chrome://extensions</code> in Chrome</li>
               <li>Enable <strong>Developer mode</strong></li>
               <li>Click <strong>Load unpacked</strong> → select <code>packages/santi020k-chrome-theme</code></li>
@@ -297,10 +299,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <h3>Chrome Web Store</h3>
             <p class="install-card-body">One-click install, stays updated automatically. Choose the variant that matches your browser chrome.</p>
             <div class="install-store-actions">
-              <ButtonLink class="button button-primary install-store-btn" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" target="_blank" rel="noopener noreferrer">
+              <ButtonLink class="button button-primary install-store-btn" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab>
                 Dark theme
               </ButtonLink>
-              <ButtonLink class="button button-secondary install-store-btn" variant="secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
+              <ButtonLink class="button button-secondary install-store-btn" variant="secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" newTab>
                 Light theme
               </ButtonLink>
             </div>

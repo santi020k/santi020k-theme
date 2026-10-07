@@ -320,7 +320,16 @@ of contents. Preserve command copy, code tabs, installation instructions, pagina
 navigation when restyling. Sidebars may become a horizontal mobile navigation strip. Theme
 previews must continue to show actual product colors rather than decorative website colors.
 
-Transitions last 180–300ms and affect color, border, or artwork only. Do not lift entire cards.
+Use Lumen 4 `ScrollReveal` for a short, one-time content entrance and `RevealGroup` for a
+35ms stagger between theme previews. Keep reading content visible without JavaScript.
+Astro `ClientRouter` uses a 180ms fade with an immediate swap fallback, preserving appearance
+and native browser history. Rebind page controls on `astro:page-load` and dispose document/media
+listeners before swaps. Do not persist navigation with stale active links.
+
+The personal bubble signature uses Lumen `Particles` at low density, confined to the home and
+visual-guide heroes. Slow ambient drift is the only exception to the still-canvas rule. Keep it
+behind content, out of the accessibility tree, and away from documentation/code. Do not introduce
+pointer trails or page-wide parallax. Transitions last 180–300ms. Do not lift entire cards.
 Reduced motion disables decorative transitions, scaling, blinking, and smooth scrolling.
 Verify mobile and desktop, light and dark, keyboard focus, and horizontal overflow.
 

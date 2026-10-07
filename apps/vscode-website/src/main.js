@@ -9,86 +9,89 @@ import {
   syncSiteThemeToggle
 } from '@santi020k/theme/site'
 
-const PREVIEW_DATA = {
-  dark: {
-    normal: { filename: 'santi020k-dark-color-theme.json', themeName: 'santi020k dark' },
-    bold: { filename: 'santi020k-dark-bold-color-theme.json', themeName: 'santi020k dark bold' },
-    italic: { filename: 'santi020k-dark-italic-color-theme.json', themeName: 'santi020k dark italic' }
-  },
-  light: {
-    normal: { filename: 'santi020k-light-color-theme.json', themeName: 'santi020k light' },
-    bold: { filename: 'santi020k-light-bold-color-theme.json', themeName: 'santi020k light bold' },
-    italic: { filename: 'santi020k-light-italic-color-theme.json', themeName: 'santi020k light italic' }
-  },
-  hc: {
-    normal: { filename: 'santi020k-hc-dark-color-theme.json', themeName: 'santi020k hc dark' },
-    bold: { filename: 'santi020k-hc-dark-bold-color-theme.json', themeName: 'santi020k hc dark bold' },
-    italic: { filename: 'santi020k-hc-dark-italic-color-theme.json', themeName: 'santi020k hc dark italic' }
-  },
-  hclight: {
-    normal: { filename: 'santi020k-hc-light-color-theme.json', themeName: 'santi020k hc light' },
-    bold: { filename: 'santi020k-hc-light-bold-color-theme.json', themeName: 'santi020k hc light bold' },
-    italic: { filename: 'santi020k-hc-light-italic-color-theme.json', themeName: 'santi020k hc light italic' }
-  }
-}
+import { bindPageLifecycle } from '../../website/src/utils/page-lifecycle'
 
-const buildSettingsRecipe = () => {
-  const style = document.querySelector('.settings-style')?.value ?? 'base'
-  const suffix = style === 'base' ? '' : ` ${style}`
-  const settings = { 'workbench.colorTheme': `santi020k dark${suffix}` }
-
-  if (document.querySelector('.settings-auto')?.checked) {
-    settings['window.autoDetectColorScheme'] = true
-
-    settings['window.autoDetectHighContrast'] = true
-
-    settings['workbench.preferredDarkColorTheme'] = `santi020k dark${suffix}`
-
-    settings['workbench.preferredLightColorTheme'] = `santi020k light${suffix}`
-
-    settings['workbench.preferredHighContrastColorTheme'] = `santi020k hc dark${suffix}`
-
-    settings['workbench.preferredHighContrastLightColorTheme'] = `santi020k hc light${suffix}`
+bindPageLifecycle('vscode', () => {
+  const PREVIEW_DATA = {
+    dark: {
+      normal: { filename: 'santi020k-dark-color-theme.json', themeName: 'santi020k dark' },
+      bold: { filename: 'santi020k-dark-bold-color-theme.json', themeName: 'santi020k dark bold' },
+      italic: { filename: 'santi020k-dark-italic-color-theme.json', themeName: 'santi020k dark italic' }
+    },
+    light: {
+      normal: { filename: 'santi020k-light-color-theme.json', themeName: 'santi020k light' },
+      bold: { filename: 'santi020k-light-bold-color-theme.json', themeName: 'santi020k light bold' },
+      italic: { filename: 'santi020k-light-italic-color-theme.json', themeName: 'santi020k light italic' }
+    },
+    hc: {
+      normal: { filename: 'santi020k-hc-dark-color-theme.json', themeName: 'santi020k hc dark' },
+      bold: { filename: 'santi020k-hc-dark-bold-color-theme.json', themeName: 'santi020k hc dark bold' },
+      italic: { filename: 'santi020k-hc-dark-italic-color-theme.json', themeName: 'santi020k hc dark italic' }
+    },
+    hclight: {
+      normal: { filename: 'santi020k-hc-light-color-theme.json', themeName: 'santi020k hc light' },
+      bold: { filename: 'santi020k-hc-light-bold-color-theme.json', themeName: 'santi020k hc light bold' },
+      italic: { filename: 'santi020k-hc-light-italic-color-theme.json', themeName: 'santi020k hc light italic' }
+    }
   }
 
-  if (document.querySelector('.settings-font')?.checked) {
-    settings['editor.fontFamily'] = '\'Fira Code\', monospace'
+  const buildSettingsRecipe = () => {
+    const style = document.querySelector('.settings-style')?.value ?? 'base'
+    const suffix = style === 'base' ? '' : ` ${style}`
+    const settings = { 'workbench.colorTheme': `santi020k dark${suffix}` }
 
-    settings['editor.fontLigatures'] = true
+    if (document.querySelector('.settings-auto')?.checked) {
+      settings['window.autoDetectColorScheme'] = true
 
-    settings['editor.lineHeight'] = 1.55
+      settings['window.autoDetectHighContrast'] = true
+
+      settings['workbench.preferredDarkColorTheme'] = `santi020k dark${suffix}`
+
+      settings['workbench.preferredLightColorTheme'] = `santi020k light${suffix}`
+
+      settings['workbench.preferredHighContrastColorTheme'] = `santi020k hc dark${suffix}`
+
+      settings['workbench.preferredHighContrastLightColorTheme'] = `santi020k hc light${suffix}`
+    }
+
+    if (document.querySelector('.settings-font')?.checked) {
+      settings['editor.fontFamily'] = '\'Fira Code\', monospace'
+
+      settings['editor.fontLigatures'] = true
+
+      settings['editor.lineHeight'] = 1.55
+    }
+
+    const output = `${JSON.stringify(settings, null, 2)}\n`
+    const code = document.querySelector('.settings-code')
+
+    if (code) code.textContent = output
+
+    return output
   }
 
-  const output = `${JSON.stringify(settings, null, 2)}\n`
-  const code = document.querySelector('.settings-code')
+  for (const control of document.querySelectorAll('.settings-builder input, .settings-builder select')) control.addEventListener('change', buildSettingsRecipe)
 
-  if (code) code.textContent = output
+  document.querySelector('.settings-copy')?.addEventListener('click', async event => {
+    await navigator.clipboard.writeText(buildSettingsRecipe())
 
-  return output
-}
+    event.currentTarget.textContent = 'Copied'
 
-for (const control of document.querySelectorAll('.settings-builder input, .settings-builder select')) control.addEventListener('change', buildSettingsRecipe)
+    window.setTimeout(() => {
+      event.currentTarget.textContent = 'Copy settings'
+    }, 1800)
+  })
 
-document.querySelector('.settings-copy')?.addEventListener('click', async event => {
-  await navigator.clipboard.writeText(buildSettingsRecipe())
+  buildSettingsRecipe()
 
-  event.currentTarget.textContent = 'Copied'
-
-  window.setTimeout(() => {
-    event.currentTarget.textContent = 'Copy settings'
-  }, 1800)
-})
-
-buildSettingsRecipe()
-
-const SNIPPETS = {
-  json: data => `<span class="muted">// focused without glare</span>
+  const SNIPPETS = {
+    json: data => `<span class="muted">// focused without glare</span>
 {
   <span class="property">"name"</span>: <span class="string">"${data.themeName}"</span>,
   <span class="property">"type"</span>: <span class="string">"dark"</span>,
   <span class="property">"semanticHighlighting"</span>: <span class="keyword">true</span>
 }`,
-  ts: () => `<span class="muted">// Type-safe logic</span>
+    ts: () => `<span class="muted">// Type-safe logic</span>
 <span class="keyword">interface</span> <span class="function">Config</span> {
   <span class="property">id</span>: <span class="keyword">string</span>;
   <span class="property">active</span>: <span class="keyword">boolean</span>;
@@ -98,28 +101,28 @@ const SNIPPETS = {
     : <span class="keyword">void</span> {
   console.<span class="function">log</span>(config.id);
 }`,
-  js: () => `<span class="muted">// Standard JS</span>
+    js: () => `<span class="muted">// Standard JS</span>
 <span class="keyword">export async function</span> <span class="function">fetchData</span>(url) {
   <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="function">fetch</span>(url);
   <span class="keyword">const</span> { <span class="property">data</span> } = <span class="keyword">await</span> res
     .<span class="function">json</span>();
   <span class="keyword">return</span> data;
 }`,
-  rust: () => `<span class="muted">// Precise lifetimes</span>
+    rust: () => `<span class="muted">// Precise lifetimes</span>
 <span class="keyword">impl</span>&lt;<span class="string">'a</span>&gt; Parser&lt;<span class="string">'a</span>&gt; {
   <span class="keyword">pub fn</span> <span class="function">new</span>(input: <span class="keyword">&'a</span> str)
     -&gt; <span class="keyword">Self</span> {
     <span class="keyword">Self</span> { input }
   }
 }`,
-  go: () => `<span class="muted">// Clear built-ins</span>
+    go: () => `<span class="muted">// Clear built-ins</span>
 <span class="keyword">func</span> <span class="function">main</span>() {
   items := <span class="function">make</span>([]<span class="keyword">string</span>, <span class="number">0</span>)
   <span class="keyword">if</span> <span class="function">len</span>(items) == <span class="number">0</span> {
     <span class="function">println</span>(<span class="string">"Empty"</span>)
   }
 }`,
-  react: () => `<span class="muted">// Interactive components</span>
+    react: () => `<span class="muted">// Interactive components</span>
 <span class="keyword">export const</span> <span class="function">Button</span> = ({ children, onClick }) =&gt; {
   <span class="keyword">const</span> [count, setCount] = <span class="function">useState</span>(
     <span class="number">0</span>
@@ -134,213 +137,220 @@ const SNIPPETS = {
     &lt;/<span class="keyword">button</span>&gt;
   );
 }`,
-  prisma: () => `<span class="muted">// Type-safe schemas</span>
+    prisma: () => `<span class="muted">// Type-safe schemas</span>
 <span class="keyword">model</span> <span class="function">User</span> {
   <span class="property">id</span>    <span class="keyword">Int</span>     @id @default(autoincrement())
   <span class="property">email</span> <span class="keyword">String</span>  @unique
   <span class="property">name</span>  <span class="keyword">String</span>?
   <span class="property">posts</span> <span class="function">Post</span>[]
 }`,
-  java: () => `<span class="muted">// Typed and structured</span>
+    java: () => `<span class="muted">// Typed and structured</span>
 <span class="keyword">public class</span> <span class="function">Service</span> {
   <span class="keyword">private final</span> <span class="keyword">String</span> name;
   <span class="keyword">public</span> <span class="function">Service</span>(<span class="keyword">String</span> name) {
     <span class="keyword">this</span>.name = name;
   }
 }`,
-  cpp: () => `<span class="muted">// Memory managed</span>
+    cpp: () => `<span class="muted">// Memory managed</span>
 <span class="keyword">auto</span> <span class="function">main</span>() -&gt; <span class="keyword">int</span> {
   <span class="keyword">auto</span> ptr = std::make_unique&lt;Data&gt;();
   <span class="keyword">return</span> <span class="number">0</span>;
 }`,
-  elixir: () => `<span class="muted">// Functional Elixir</span>
+    elixir: () => `<span class="muted">// Functional Elixir</span>
 <span class="keyword">defmodule</span> <span class="function">App</span> <span class="keyword">do</span>
   <span class="keyword">def</span> <span class="function">start</span>(<span class="property">_type</span>, <span class="property">_args</span>) <span class="keyword">do</span>
     <span class="function">Supervisor</span>.start_link([], strategy: :one_for_one)
   <span class="keyword">end</span>
 <span class="keyword">end</span>`,
-  tailwind: () => `<span class="muted">// Utility-first CSS</span>
+    tailwind: () => `<span class="muted">// Utility-first CSS</span>
 &lt;<span class="keyword">div</span> <span class="function">class</span>=<span class="string">"flex items-center justify-between p-6 bg-indigo-900/20 border-b border-indigo-500/30"</span>&gt;
   &lt;<span class="keyword">h1</span> <span class="function">class</span>=<span class="string">"text-2xl font-bold text-violet-400"</span>&gt;
     Aurora UI
   &lt;/<span class="keyword">h1</span>&gt;
 &lt;/<span class="keyword">div</span>&gt;`
-}
+  }
 
-const previewData = new Map(Object.entries(PREVIEW_DATA).map(([theme, variants]) => [theme, new Map(Object.entries(variants))]))
-const snippets = new Map(Object.entries(SNIPPETS))
-let currentPreviewLang = 'json'
-let currentPreviewTheme = 'dark'
-let currentPreviewVariant = 'normal'
+  const previewData = new Map(Object.entries(PREVIEW_DATA).map(([theme, variants]) => [theme, new Map(Object.entries(variants))]))
+  const snippets = new Map(Object.entries(SNIPPETS))
+  let currentPreviewLang = 'json'
+  let currentPreviewTheme = 'dark'
+  let currentPreviewVariant = 'normal'
 
-// eslint-disable-next-line complexity -- Preview state synchronization intentionally handles each optional DOM control.
-const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
-  currentPreviewLang = lang
+  // eslint-disable-next-line complexity -- Preview state synchronization intentionally handles each optional DOM control.
+  const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
+    currentPreviewLang = lang
 
-  currentPreviewTheme = theme
+    currentPreviewTheme = theme
 
-  currentPreviewVariant = variant
+    currentPreviewVariant = variant
 
-  const data = previewData.get(theme)?.get(variant)
-  const renderSnippet = snippets.get(lang)
+    const data = previewData.get(theme)?.get(variant)
+    const renderSnippet = snippets.get(lang)
 
-  if (!data || !renderSnippet) throw new Error('Unknown preview selection')
+    if (!data || !renderSnippet) throw new Error('Unknown preview selection')
 
-  const container = document.querySelector('.editor-preview')
-  const codeEl = document.querySelector('.preview-code')
-  const filenameEl = document.querySelector('.preview-filename')
+    const container = document.querySelector('.editor-preview')
+    const codeEl = document.querySelector('.preview-code')
+    const filenameEl = document.querySelector('.preview-filename')
+    const langSelect = document.querySelector('.preview-lang-select')
+    const themeSelect = document.querySelector('.preview-theme-select')
+    const variantSelect = document.querySelector('.preview-variant-select')
+
+    if (container) {
+      container.setAttribute('data-preview-theme', theme)
+
+      container.setAttribute('data-preview-variant', variant)
+    }
+
+    if (filenameEl) filenameEl.textContent = data.filename
+
+    if (codeEl) codeEl.innerHTML = renderSnippet(data)
+
+    if (langSelect) langSelect.value = lang
+
+    if (themeSelect) themeSelect.value = theme
+
+    if (variantSelect) variantSelect.value = variant
+  }
+
+  // ── Boot ──────────────────────────────────────────────────────────────────────
+  // Theme is already set by the anti-FOUC inline script in <head>.
+  // The theme toggle is Lumen's <ThemeToggle>, which already animates the
+  // switch with its own circular reveal effect (see UIPrimitives). We just
+  // need to sync the toggle button state and preview content when it fires.
+
+  const toggle = document.querySelector('.theme-toggle')
+  const header = document.querySelector('.site-header')
+  const navToggle = document.querySelector('.nav-toggle')
+  const navLinks = document.querySelectorAll('.nav-links a')
+  const desktopNavQuery = window.matchMedia(SITE_DESKTOP_NAV_QUERY)
+
+  syncSiteThemeToggle(toggle)
+
   const langSelect = document.querySelector('.preview-lang-select')
   const themeSelect = document.querySelector('.preview-theme-select')
   const variantSelect = document.querySelector('.preview-variant-select')
+  let manualPreviewTheme = false
 
-  if (container) {
-    container.setAttribute('data-preview-theme', theme)
-
-    container.setAttribute('data-preview-variant', variant)
+  if (langSelect) {
+    langSelect.addEventListener('change', e => {
+      updatePreview(e.target.value, currentPreviewTheme, currentPreviewVariant)
+    })
   }
 
-  if (filenameEl) filenameEl.textContent = data.filename
+  if (themeSelect) {
+    themeSelect.addEventListener('change', e => {
+      manualPreviewTheme = true
 
-  if (codeEl) codeEl.innerHTML = renderSnippet(data)
-
-  if (langSelect) langSelect.value = lang
-
-  if (themeSelect) themeSelect.value = theme
-
-  if (variantSelect) variantSelect.value = variant
-}
-
-// ── Boot ──────────────────────────────────────────────────────────────────────
-// Theme is already set by the anti-FOUC inline script in <head>.
-// The theme toggle is Lumen's <ThemeToggle>, which already animates the
-// switch with its own circular reveal effect (see UIPrimitives). We just
-// need to sync the toggle button state and preview content when it fires.
-
-const toggle = document.querySelector('.theme-toggle')
-const header = document.querySelector('.site-header')
-const navToggle = document.querySelector('.nav-toggle')
-const navLinks = document.querySelectorAll('.nav-links a')
-const desktopNavQuery = window.matchMedia(SITE_DESKTOP_NAV_QUERY)
-
-syncSiteThemeToggle(toggle)
-
-const langSelect = document.querySelector('.preview-lang-select')
-const themeSelect = document.querySelector('.preview-theme-select')
-const variantSelect = document.querySelector('.preview-variant-select')
-let manualPreviewTheme = false
-
-if (langSelect) {
-  langSelect.addEventListener('change', e => {
-    updatePreview(e.target.value, currentPreviewTheme, currentPreviewVariant)
-  })
-}
-
-if (themeSelect) {
-  themeSelect.addEventListener('change', e => {
-    manualPreviewTheme = true
-
-    updatePreview(currentPreviewLang, e.target.value, currentPreviewVariant)
-  })
-}
-
-if (variantSelect) {
-  variantSelect.addEventListener('change', e => {
-    updatePreview(currentPreviewLang, currentPreviewTheme, e.target.value)
-  })
-}
-
-const syncPreviewWithSite = () => {
-  if (manualPreviewTheme) {
-    updatePreview()
-  } else {
-    updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light', currentPreviewVariant)
+      updatePreview(currentPreviewLang, e.target.value, currentPreviewVariant)
+    })
   }
-}
 
-syncPreviewWithSite()
-
-bindSiteNavigation({
-  desktopNavQuery,
-  header,
-  navLinks,
-  navToggle
-})
-
-// Respect OS-level theme changes (only when user has no stored preference)
-bindPreferredSiteThemeSync({
-  onThemeChange: () => {
-    syncSiteThemeToggle(toggle)
-
-    syncPreviewWithSite()
+  if (variantSelect) {
+    variantSelect.addEventListener('change', e => {
+      updatePreview(currentPreviewLang, currentPreviewTheme, e.target.value)
+    })
   }
-})
 
-// Theme toggle button
-if (toggle) {
-  toggle.addEventListener('ui:theme-change', () => {
-    syncSiteThemeToggle(toggle)
+  const syncPreviewWithSite = () => {
+    if (manualPreviewTheme) {
+      updatePreview()
+    } else {
+      updatePreview(currentPreviewLang, rootInDarkMode() ? 'dark' : 'light', currentPreviewVariant)
+    }
+  }
 
-    syncPreviewWithSite()
+  syncPreviewWithSite()
+
+  const disposeNavigation = bindSiteNavigation({
+    desktopNavQuery,
+    header,
+    navLinks,
+    navToggle
   })
-}
 
-// Clipboard handlers
-const setupClipboard = () => {
-  const installBtn = document.querySelector('.button-copy-install')
-  const settingsBtn = document.querySelector('.button-copy-settings')
+  // Respect OS-level theme changes (only when user has no stored preference)
+  const disposePreference = bindPreferredSiteThemeSync({
+    onThemeChange: () => {
+      syncSiteThemeToggle(toggle)
 
-  if (installBtn) {
-    const commandText = installBtn.querySelector('.command')
-    const originalText = commandText?.textContent ?? 'ext install santi020k.santi020k-theme'
+      syncPreviewWithSite()
+    }
+  })
 
-    installBtn.addEventListener('click', async () => {
-      const command = 'ext install santi020k.santi020k-theme'
+  // Theme toggle button
+  if (toggle) {
+    toggle.addEventListener('ui:theme-change', () => {
+      syncSiteThemeToggle(toggle)
 
-      try {
-        await navigator.clipboard.writeText(command)
+      syncPreviewWithSite()
+    })
+  }
 
-        if (commandText) {
-          commandText.textContent = 'Copied to clipboard!'
+  // Clipboard handlers
+  const setupClipboard = () => {
+    const installBtn = document.querySelector('.button-copy-install')
+    const settingsBtn = document.querySelector('.button-copy-settings')
 
-          installBtn.setAttribute('aria-label', 'Installation command copied')
+    if (installBtn) {
+      const commandText = installBtn.querySelector('.command')
+      const originalText = commandText?.textContent ?? 'ext install santi020k.santi020k-theme'
+
+      installBtn.addEventListener('click', async () => {
+        const command = 'ext install santi020k.santi020k-theme'
+
+        try {
+          await navigator.clipboard.writeText(command)
+
+          if (commandText) {
+            commandText.textContent = 'Copied to clipboard!'
+
+            installBtn.setAttribute('aria-label', 'Installation command copied')
+
+            setTimeout(() => {
+              commandText.textContent = originalText
+
+              installBtn.setAttribute('aria-label', 'Copy installation command')
+            }, 2000)
+          }
+        } catch (error) {
+          globalThis.reportError(error)
+        }
+      })
+    }
+
+    if (settingsBtn) {
+      settingsBtn.addEventListener('click', async () => {
+        const settings = {
+          'editor.fontFamily': '\'Fira Code\', \'Montserrat\', monospace',
+          'editor.fontLigatures': true,
+          'editor.fontWeight': '500',
+          'editor.lineHeight': 1.9,
+          'editor.letterSpacing': -0.2
+        }
+
+        try {
+          await navigator.clipboard.writeText(JSON.stringify(settings, null, 2))
+
+          const originalHtml = settingsBtn.innerHTML
+
+          settingsBtn.innerHTML = '<span>Copied!</span>'
 
           setTimeout(() => {
-            commandText.textContent = originalText
-
-            installBtn.setAttribute('aria-label', 'Copy installation command')
+            settingsBtn.innerHTML = originalHtml
           }, 2000)
+        } catch (error) {
+          globalThis.reportError(error)
         }
-      } catch (error) {
-        globalThis.reportError(error)
-      }
-    })
+      })
+    }
   }
 
-  if (settingsBtn) {
-    settingsBtn.addEventListener('click', async () => {
-      const settings = {
-        'editor.fontFamily': '\'Fira Code\', \'Montserrat\', monospace',
-        'editor.fontLigatures': true,
-        'editor.fontWeight': '500',
-        'editor.lineHeight': 1.9,
-        'editor.letterSpacing': -0.2
-      }
+  setupClipboard()
 
-      try {
-        await navigator.clipboard.writeText(JSON.stringify(settings, null, 2))
+  return () => {
+    disposeNavigation()
 
-        const originalHtml = settingsBtn.innerHTML
-
-        settingsBtn.innerHTML = '<span>Copied!</span>'
-
-        setTimeout(() => {
-          settingsBtn.innerHTML = originalHtml
-        }, 2000)
-      } catch (error) {
-        globalThis.reportError(error)
-      }
-    })
+    disposePreference()
   }
-}
-
-setupClipboard()
+})

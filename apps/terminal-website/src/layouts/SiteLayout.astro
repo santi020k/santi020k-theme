@@ -1,7 +1,7 @@
 ---
-
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
+import PageTransitions from '../../../website/src/components/PageTransitions.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
@@ -60,6 +60,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en">
   <head>
+    <PageTransitions page="terminal" />
     <meta charset="UTF-8" />
     <script is:inline>
       (function () {
