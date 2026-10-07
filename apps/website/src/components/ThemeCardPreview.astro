@@ -12,9 +12,10 @@ import vscodeLight from '../../../../packages/theme/assets/vscode/previews/previ
 interface Props {
   slug: string
   name: string
+  featured?: boolean
 }
 
-const { slug, name } = Astro.props
+const { slug, name, featured = false } = Astro.props
 const screenshots = slug === 'vscode' ? [vscodeDark, vscodeLight] : undefined
 let previewImages = screenshots
 
@@ -48,8 +49,8 @@ const previewCaption = slug === 'vscode' ? 'Theme screenshot' : 'Illustrative pr
   <div class="family-preview-stage" aria-hidden="true">
     {previewImages && (
       <div class="family-capture">
-        <Image class="capture-dark" src={previewImages[0]} alt="" widths={[480, 800]} sizes="(max-width: 640px) 90vw, 360px" loading="lazy" />
-        <Image class="capture-light" src={previewImages[1]} alt="" widths={[480, 800]} sizes="(max-width: 640px) 90vw, 360px" loading="lazy" />
+        <Image class="capture-dark" src={previewImages[0]} alt="" widths={[480, 800, 1200]} sizes={featured ? '(max-width: 767px) 92vw, 55vw' : '(max-width: 767px) 92vw, 360px'} loading="lazy" />
+        <Image class="capture-light" src={previewImages[1]} alt="" widths={[480, 800, 1200]} sizes={featured ? '(max-width: 767px) 92vw, 55vw' : '(max-width: 767px) 92vw, 360px'} loading="lazy" />
       </div>
     )}
     {!previewImages && (
@@ -102,7 +103,7 @@ const previewCaption = slug === 'vscode' ? 'Theme screenshot' : 'Illustrative pr
 </div>
 
 <style>
-  .family-preview { --preview-bg: var(--preview-dark-bg); --preview-surface: var(--preview-dark-surface); --preview-ink: var(--preview-dark-ink); --preview-accent: var(--preview-dark-accent); --preview-line: var(--preview-dark-line); --preview-selection: var(--preview-dark-selection); --preview-success: var(--preview-dark-success); }
+  .family-preview { font-weight: 400; --preview-bg: var(--preview-dark-bg); --preview-surface: var(--preview-dark-surface); --preview-ink: var(--preview-dark-ink); --preview-accent: var(--preview-dark-accent); --preview-line: var(--preview-dark-line); --preview-selection: var(--preview-dark-selection); --preview-success: var(--preview-dark-success); }
   :global([data-theme="light"]) .family-preview { --preview-bg: var(--preview-light-bg); --preview-surface: var(--preview-light-surface); --preview-ink: var(--preview-light-ink); --preview-accent: var(--preview-light-accent); --preview-line: var(--preview-light-line); --preview-selection: var(--preview-light-selection); --preview-success: var(--preview-light-success); }
   .family-preview-stage { display: grid; align-items: center; width: 100%; min-width: 0; aspect-ratio: 3 / 2; min-height: 250px; }
   .family-window, .family-capture { overflow: hidden; width: 100%; border: 1px solid var(--preview-line); border-radius: 10px; background: var(--preview-bg); color: var(--preview-ink); box-shadow: 0 14px 28px -18px color-mix(in srgb, var(--site-ink) 30%, transparent); }
@@ -114,7 +115,7 @@ const previewCaption = slug === 'vscode' ? 'Theme screenshot' : 'Illustrative pr
   .family-title-bar { display: flex; align-items: center; justify-content: space-between; height: 27px; padding: 0 10px; background: var(--preview-surface); border-bottom: 1px solid var(--preview-line); }
   .family-dots { display: flex; gap: 4px; }
   .family-dots i { width: 5px; height: 5px; background: var(--preview-accent); opacity: .6; border-radius: 50%; }
-  .family-preview-caption { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; color: var(--site-ink-soft); font-size: .625rem; }
+  .family-preview-caption { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; color: var(--site-ink-soft); font-size: .6875rem; }
   .family-window p { margin: 0; font-size: inherit; line-height: inherit; }
   .family-muted { opacity: .72; }
   .family-success, .family-code em { color: var(--preview-success); font-style: normal; }

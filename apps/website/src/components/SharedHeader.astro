@@ -135,9 +135,11 @@ const isActive = (href: string) => {
 </Dialog>
 
 <script>
+import { bindContextNavigation } from '../utils/context-navigation'
 import { bindPageLifecycle } from '../utils/page-lifecycle'
 
 bindPageLifecycle('*', signal => {
+  const disposeContextNavigation = bindContextNavigation(signal)
   const toggle = document.querySelector<HTMLButtonElement>('.family-nav-toggle')
   const dialog = document.querySelector<HTMLDialogElement>('#family-mobile-navigation')
   const themeMenu = document.querySelector<HTMLDetailsElement>('.family-theme-menu')
@@ -230,7 +232,11 @@ bindPageLifecycle('*', signal => {
     }
   }, { signal })
 
-  return () => closeNavigation(false)
+  return () => {
+    disposeContextNavigation()
+
+    closeNavigation(false)
+  }
 })
 </script>
 
@@ -519,9 +525,13 @@ bindPageLifecycle('*', signal => {
     text-decoration: none;
   }
   .family-context-navigation nav a:hover,
-  .family-context-navigation nav a[aria-current='page'] {
+  .family-context-navigation nav a[aria-current] {
     background: color-mix(in srgb, var(--site-brand) 10%, transparent);
     color: var(--site-brand);
+  }
+  .family-context-navigation nav a:focus-visible {
+    outline: 2px solid var(--site-brand);
+    outline-offset: -2px;
   }
   .family-mobile-navigation {
     width: 100%;

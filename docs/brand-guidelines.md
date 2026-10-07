@@ -204,6 +204,8 @@ Maintain:
 - syntax distinction without rainbow noise
 - marketplace screenshots that show real editor usage and the actual palette
 
+Product-page screenshot galleries may place these captures on sculpted, AI-generated studio backdrops. Keep artwork decorative and separate from the original image, preserve the complete editor window and its palette, and provide full-size capture links. Use restrained depth and a consistent large capture with accessible mode tabs; do not generate replacement editor UI or add a second window border.
+
 ### Chrome
 
 Chrome should feel like the same theme moved into browser chrome.
@@ -305,6 +307,12 @@ rows to repeated decorative cards. Group related content on one surface; do not 
 panels. Depth belongs to the sculpted navbar, artwork, and actual product previews. Avoid
 page-wide glow, persistent grid textures, excessive glass, and continuously moving decoration.
 Below 768px, collapse editorial columns in reading order and retain every install action.
+
+The hub home page features VS Code with a larger real preview, followed by numbered tool
+rows with fine rules and full-row links. Keep the remaining previews distinct and label
+illustrative scenes. Present package examples on one solid code surface, and let wallpaper
+artwork stand on the canvas with open captions. Home compositions live in
+`apps/website/src/styles/home.css`; retain the shared navigation and product-page owners.
 
 ### Mobile navigation
 

@@ -34,6 +34,7 @@ The interactive editor preview separates the filename from an open toolbar: the 
 - Keep install links pointed at the Visual Studio Marketplace and Open VSX listings.
 - Keep visible focus styles, reduced-motion handling, external-link safety, and responsive navigation intact.
 - Update `softwareVersion` through `pnpm run sync:website-version` rather than editing it by hand.
+- Capture instructions and lossless masters live in `packages/santi020k-theme/assets/source/previews/`. Run `pnpm run generate:vscode-previews` after replacing them; let image metadata preserve their native proportions.
 - Keep real screenshots aligned with `packages/theme/assets/vscode/previews/`; the captured window owns its frame and captions remain outside it.
 - Read [`../../docs/brand-guidelines.md`](../../docs/brand-guidelines.md) before changing copy, color, imagery, or product naming.
 

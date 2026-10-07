@@ -1,9 +1,11 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Button, ButtonLink, Card, Checkbox, Icon, Link, Select } from '@santi020k/lumen-astro'
+import { Button, ButtonLink, Card, Checkbox, Icon, Link, Select, Tabs, TabsList, TabsPanel, TabsTrigger } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
+import previewBackdropDark from '../../../../artwork/vscode-gallery-v1/indigo-studio.png'
+import previewBackdropLight from '../../../../artwork/vscode-gallery-v1/lavender-studio.png'
 import previewDark from '../../../../packages/theme/assets/vscode/previews/preview-dark.png'
 import previewHcDark from '../../../../packages/theme/assets/vscode/previews/preview-hc-dark.png'
 import previewHcLight from '../../../../packages/theme/assets/vscode/previews/preview-hc-light.png'
@@ -11,6 +13,13 @@ import previewLight from '../../../../packages/theme/assets/vscode/previews/prev
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
+
+const screenshots = [
+  { image: previewDark, mode: 'dark', name: 'Dark', detail: 'Indigo depth. Muted violet syntax.', alt: 'santi020k dark theme in VS Code with the Explorer, editor tabs, and minimap' },
+  { image: previewLight, mode: 'light', name: 'Light', detail: 'A lavender canvas with room to breathe.', alt: 'santi020k light theme in VS Code with purple syntax on a lavender canvas' },
+  { image: previewHcDark, mode: 'hc', name: 'High contrast dark', detail: 'Near-black surfaces. Clearly defined edges.', alt: 'santi020k high contrast dark theme in VS Code with strong borders and vivid syntax accents' },
+  { image: previewHcLight, mode: 'hclight', name: 'High contrast light', detail: 'A white canvas. Strong, readable structure.', alt: 'santi020k high contrast light theme in VS Code with clear syntax and dark borders' }
+]
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -235,27 +244,31 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       <section id="screenshots" class="site-shell screenshots-section">
         <div>
           <p class="eyebrow">Preview</p>
-          <h2>See every surface, across modes.</h2>
-          <p class="section-lede">Captured in VS Code with real theme-family code, the Explorer, editor tabs, syntax highlighting, and minimap.</p>
+          <h2>The theme, in your editor.</h2>
+          <p class="section-lede">Explore real VS Code captures in each color mode. Open any image to inspect the complete window at full resolution.</p>
         </div>
-        <div class="screenshot-grid">
-          <figure class="screenshot-card">
-            <Image class="screenshot-img" src={previewDark} alt="santi020k dark theme applied in VS Code — deep indigo background with violet accents" width="1200" height="800" loading="lazy" />
-            <figcaption>Dark</figcaption>
-          </figure>
-          <figure class="screenshot-card">
-            <Image class="screenshot-img" src={previewLight} alt="santi020k light theme applied in VS Code — soft lavender background with purple accents" width="1200" height="800" loading="lazy" />
-            <figcaption>Light</figcaption>
-          </figure>
-          <figure class="screenshot-card">
-            <Image class="screenshot-img" src={previewHcDark} alt="santi020k high contrast dark theme applied in VS Code — near-black surfaces with vivid purple and amber accents" width="1200" height="800" loading="lazy" />
-            <figcaption>High contrast dark</figcaption>
-          </figure>
-          <figure class="screenshot-card">
-            <Image class="screenshot-img" src={previewHcLight} alt="santi020k high contrast light theme applied in VS Code — lavender surfaces with strong borders and clear syntax contrast" width="1200" height="800" loading="lazy" />
-            <figcaption>High contrast light</figcaption>
-          </figure>
-        </div>
+        <Tabs class="screenshot-showcase" initialValue="dark">
+          <TabsList class="screenshot-modes" aria-label="Screenshot color mode">
+            {screenshots.map(screenshot => (
+              <TabsTrigger value={screenshot.mode}>{screenshot.name.replace('High contrast', 'HC')}</TabsTrigger>
+            ))}
+          </TabsList>
+          {screenshots.map((screenshot, index) => (
+            <TabsPanel value={screenshot.mode} class="screenshot-panel">
+              <figure class="screenshot-card">
+                <Link class="screenshot-stage" data-mode={screenshot.mode} href={screenshot.image.src} aria-label={`Open ${screenshot.name.toLowerCase()} VS Code screenshot at full size in a new tab`} newTab>
+                  <Image class="screenshot-art" src={screenshot.mode === 'dark' || screenshot.mode === 'hc' ? previewBackdropDark : previewBackdropLight} alt="" aria-hidden="true" width="1200" format="webp" quality={80} sizes="(min-width: 1200px) 1152px, 100vw" loading="lazy" />
+                  <Image class="screenshot-img" src={screenshot.image} alt={screenshot.alt} format="png" sizes="(min-width: 1200px) 1072px, 100vw" loading="lazy" />
+                  <span class="screenshot-expand" aria-hidden="true"><Icon name="maximize-2" size="sm" decorative /></span>
+                </Link>
+                <figcaption>
+                  <div><span class="screenshot-number">0{index + 1} / VS Code</span><h3>{screenshot.name}</h3></div>
+                  <p>{screenshot.detail}</p>
+                </figcaption>
+              </figure>
+            </TabsPanel>
+          ))}
+        </Tabs>
       </section>
 
       <section id="why" class="site-shell why-section">

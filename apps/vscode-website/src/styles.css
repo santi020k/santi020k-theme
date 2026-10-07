@@ -742,30 +742,159 @@ pre {
 }
 
 
-/* The captured window owns its border; captions sit outside it. */
-.screenshot-grid {
+/* One consistent stage keeps the actual editor capture large and readable. */
+.screenshot-showcase {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.5rem var(--site-grid-gap);
+  gap: 1.5rem;
   margin-top: var(--site-heading-gap);
 }
 
-.screenshot-card { margin: 0; min-width: 0; }
+.screenshot-showcase .screenshot-modes[role="tablist"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.25rem;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--section-divider);
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.screenshot-showcase .screenshot-modes [role="tab"] {
+  min-height: var(--site-control-min-height);
+  padding: .75rem .25rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--site-ink-soft);
+  font: 500 .8125rem/1.4 var(--santi020k-font-sans);
+  cursor: pointer;
+}
+
+.screenshot-showcase .screenshot-modes [role="tab"][aria-selected="true"] {
+  border-bottom-color: var(--site-brand);
+  background: transparent;
+  box-shadow: none;
+  color: var(--site-ink);
+}
+
+.screenshot-showcase .screenshot-modes [role="tab"]:focus-visible,
+.screenshot-panel:focus-visible {
+  outline: 2px solid var(--site-brand);
+  outline-offset: 3px;
+}
+
+.screenshot-panel {
+  min-width: 0;
+}
+
+.screenshot-card {
+  margin: 0;
+  min-width: 0;
+}
+
+
+.screenshot-stage {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  padding: clamp(12px, 3vw, 40px);
+  border-radius: var(--site-card-radius);
+  background: var(--site-surface);
+  color: var(--site-ink);
+  text-decoration: none;
+}
+
+.screenshot-art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.screenshot-stage:is([data-mode="dark"], [data-mode="hc"]) {
+  background: #110c1d;
+}
+
 .screenshot-img {
   display: block;
   width: 100%;
   height: auto;
   border: 0;
   border-radius: 1.25% / 1.875%;
+  box-shadow: 0 12px 28px rgb(5 2 10 / 18%);
+}
+
+.screenshot-expand {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--site-arrow-radius);
+  background: var(--theme-bg);
+  color: var(--site-ink);
+}
+
+.screenshot-showcase .screenshot-stage:focus-visible {
+  outline: 2px solid var(--site-brand);
+  outline-offset: 5px;
 }
 
 .screenshot-card figcaption {
-  padding-top: 1rem;
-  color: var(--site-ink-soft);
-  font-size: .8125rem;
-  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  padding-top: 1.25rem;
 }
 
+.screenshot-number {
+  display: block;
+  margin-bottom: .5rem;
+  color: var(--site-ink-soft);
+  font: 400 .6875rem/1.6 var(--santi020k-font-mono);
+}
+
+.screenshot-card h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--site-ink);
+}
+
+.screenshot-card figcaption p {
+  margin: 0;
+  color: var(--site-ink-soft);
+  font-size: .8125rem;
+  line-height: 1.8;
+}
+
+
+@media (max-width: 560px) {
+  .screenshot-card figcaption {
+    align-items: start;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .screenshot-showcase .screenshot-modes[role="tablist"] {
+    gap: .25rem .75rem;
+  }
+
+  .screenshot-stage {
+    border-radius: var(--site-control-radius);
+  }
+
+}
 
 .variant-grid {
   display: grid;

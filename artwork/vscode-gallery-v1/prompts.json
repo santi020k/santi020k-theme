@@ -1,0 +1,14 @@
+{
+  "generator": "Built-in imagegen",
+  "assets": [
+    {
+      "file": "lavender-studio.png",
+      "prompt": "Use case: stylized-concept. Asset type: decorative background behind real VS Code screenshots on the Santi020k Theme product page. Generate a premium abstract sculptural studio scene, landscape 3:2. Very pale lavender matte ceramic canvas, with large softly curved sculpted ribbons or shallow folds entering only at the far upper-left and lower-right corners. The center 80% is spacious and nearly flat for a separate accurate editor screenshot to be overlaid in HTML. Convincing smooth porcelain material, subtle tactile grain, soft directional daylight, precise restrained shadows, sophisticated editorial product photography. Palette lavender white #f8f6fd, muted lilac #e3dff0 and a small muted violet edge, calm sculpted brand. No text, no logos, no computer, no interface, no screen, no objects in the center, no neon, no glowing effects. Produce one continuous background with no panels or borders."
+    },
+    {
+      "file": "indigo-studio.png",
+      "reference": "lavender-studio.png",
+      "prompt": "Use case: lighting-weather. Create a dark companion to this exact lavender studio background for the Santi020k Theme screenshot gallery. Preserve the wide 3:2 composition, curved matte porcelain folds at the upper-left and lower-right edges, generous empty center, and soft tactile material. Change only the lighting and palette: rich deep indigo-black #110c1d canvas, quiet muted violet #322b40 sculpted edges, restrained soft directional studio light catching the curves. Center must remain calm and dark for a real VS Code screenshot overlaid in HTML. Convincing depth and elegant material, not flat gray. No text, no computer, no interface, no logos, no neon or glow. One continuous background, no border."
+    }
+  ]
+}
