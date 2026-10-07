@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Badge, ButtonLink, Card, Eyebrow, Icon, Link, Particles, RevealGroup, ScrollReveal } from '@santi020k/lumen-astro'
+import '../styles/home.css'
+
+import { ButtonLink, Card, Eyebrow, Icon, Link, Particles, RevealGroup, ScrollReveal } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp'
@@ -10,6 +12,7 @@ import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted-
 import tideDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/tide-dark-desktop.webp?url'
 import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp'
 import veilDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp?url'
+import heroArtwork from '../../public/hub-hero-art.png'
 import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
@@ -91,10 +94,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Themes — One violet system across your tools</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="/hub-hero-art.png" fetchpriority="high" />
     <meta name="description" content="The Santi020k theme family hub: coordinated themes for editors, terminals, browsers, launchers, and collaboration tools." />
     <meta name="author" content="Santiago Molina" />
     <meta name="language" content="en" />
@@ -127,114 +126,91 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <body>
     <SharedHeader />
 
-    <main id="top">
-      <section class="site-shell hero">
-        <Particles class="signature-bubbles" density="low" />
-        <ScrollReveal class="hero-copy" animation="slide-up" duration="standard" threshold={0}>
-          <Eyebrow class="eyebrow">01 / A considered workspace</Eyebrow>
-          <h1>A calmer place<br />to <span>create.</span></h1>
-          <p class="lede">
-            Santi020k Themes. One considered violet palette for the editors, terminals, and tools you make things with.
-          </p>
-          <div class="actions" aria-label="Primary theme links">
-            <ButtonLink class="button button-primary" variant="unstyled" href="#themes">Browse themes <span class="button-arrow"><Icon name="arrow-up-right" /></span></ButtonLink>
-            <ButtonLink class="button button-text" variant="unstyled" href="/gallery/">Explore the gallery <Icon name="arrow-right" /></ButtonLink>
+    <main id="top" class="home-page">
+      <section class="site-shell home-hero" aria-labelledby="home-title">
+        <Particles class="home-bubbles" density="low" />
+        <ScrollReveal class="home-hero-copy" animation="slide-up" duration="standard" threshold={0}>
+          <Eyebrow class="home-eyebrow"><span>01</span> / A considered workspace</Eyebrow>
+          <h1 id="home-title">A calmer place<br />to <span>create.</span></h1>
+          <p class="home-lede">One violet palette for the editors, terminals, and tools you make things with. Thoughtful contrast, wherever you work.</p>
+          <div class="home-actions" aria-label="Primary theme links">
+            <ButtonLink class="home-button home-button-primary" variant="unstyled" href="#themes">Browse themes <span class="home-arrow"><Icon name="arrow-up-right" /></span></ButtonLink>
+            <ButtonLink class="home-button home-text-link" variant="unstyled" href="/gallery/">Explore the gallery <Icon name="arrow-right" /></ButtonLink>
           </div>
         </ScrollReveal>
-
-        <div class="hero-art" aria-label="Theme previews">
-          <Image src="/hub-hero-art.png" width="1536" height="1024" alt="Abstract editor and browser windows using the Santi020k theme palette" fetchpriority="high" inferSize />
-          <div class="hero-art-caption" aria-hidden="true">
-            <span>VS Code</span>
-            <span>Chrome</span>
-            <span>Zed</span>
-            <span>Codex</span>
-          </div>
-        </div>
+        <figure class="home-hero-art">
+          <Image src={heroArtwork} alt="Violet editor and browser windows in an abstract Santi020k workspace" widths={[640, 960, 1440]} sizes="(max-width: 767px) 92vw, 48vw" loading="eager" fetchpriority="high" />
+          <figcaption><span>Santi020k Theme</span><span>A shared visual language</span></figcaption>
+        </figure>
+        <ul class="home-workspace-details" aria-label="Theme family at a glance">
+          <li><span>{String(products.length).padStart(2, '0')}</span> tools, one workspace</li>
+          <li><Icon name="sun-moon" /> Dark &amp; light</li>
+          <li><Icon name="palette" /> One violet foundation</li>
+        </ul>
       </section>
 
-      <section id="themes" class="site-shell section">
-        <div class="section-heading">
+      <section id="themes" class="site-shell home-section" aria-labelledby="themes-title">
+        <div class="home-section-heading">
           <div>
-            <Eyebrow class="eyebrow">02 / The theme family</Eyebrow>
-            <p class="section-intro">Every port ships from the same purple-forward foundation, with install guidance and platform-specific coverage.</p>
+            <Eyebrow class="home-eyebrow"><span>02</span> / The theme family</Eyebrow>
+            <h2 id="themes-title">Different tools.<br />The same feeling.</h2>
           </div>
-          <h2>Different tools.<br />The same feeling.</h2>
+          <p class="home-section-intro">Start with your editor. Bring the same considered palette to the rest of your workspace.</p>
         </div>
-
-        <RevealGroup class="theme-grid" animation="fade" duration="standard" stagger={35}>
-          {products.map(product => (
-            <Card as="article" class="theme-card" data-product={product.slug}>
-              <Link class="theme-card-preview" href={`/${product.slug}/`} aria-label={`View the ${product.name} theme`}>
-                <ThemeCardPreview slug={product.slug} name={product.name} />
+        <RevealGroup class="home-theme-grid" animation="fade" duration="standard" stagger={35} threshold={0}>
+          {products.map((product, index) => (
+            <Card as="article" variant="unstyled" class:list={['home-tool', { 'home-tool-featured': index === 0 }]} data-product={product.slug}>
+              <Link class="home-tool-link" variant="inherit" href={`/${product.slug}/`} aria-label={`View the ${product.name} theme`}>
+                <div class="home-tool-preview"><ThemeCardPreview slug={product.slug} name={product.name} featured={index === 0} /></div>
+                <div class="home-tool-copy">
+                  <div class="home-tool-meta"><span>{String(index + 1).padStart(2, '0')} / {product.category}</span>{index === 0 && <span>The original theme</span>}</div>
+                  <h3>{product.name}</h3>
+                  <p>{product.summary}</p>
+                  <span class="home-tool-action">View {product.name} <Icon name="arrow-up-right" /></span>
+                </div>
               </Link>
-              <div class="theme-card-body">
-                <div class="theme-card-meta"><Badge class="card-kicker" variant="success"><span class="status-dot" aria-hidden="true"></span>Available</Badge><span>{product.category}</span></div>
-                <h3><Link href={`/${product.slug}/`}>{product.name}</Link></h3>
-                <p>{product.summary}</p>
-                <ButtonLink class="button button-secondary theme-card-action" variant="unstyled" href={`/${product.slug}/`}>View {product.name} <Icon name="arrow-up-right" /></ButtonLink>
-              </div>
             </Card>
           ))}
         </RevealGroup>
       </section>
 
-      <section id="packages" class="site-shell section packages-section">
-        <div class="section-heading">
-          <Eyebrow class="eyebrow">03 / Make it your own</Eyebrow>
-          <h2>Use the same tokens in your own surface.</h2>
+      <section id="packages" class="site-shell home-section" aria-labelledby="packages-title">
+        <div class="home-package-layout">
+          <div class="home-package-copy">
+            <Eyebrow class="home-eyebrow"><span>03</span> / Make it your own</Eyebrow>
+            <h2 id="packages-title">The foundation.<br />Your next idea.</h2>
+            <p>Use the same colors, typography, and brand assets in your own interface. One shared package, from the first sketch to the final surface.</p>
+            <ButtonLink class="home-button home-text-link" variant="unstyled" href="https://github.com/santi020k/santi020k-theme" newTab>Explore the source <Icon name="arrow-up-right" /></ButtonLink>
+          </div>
+          <Card as="article" variant="unstyled" class="home-package-code" aria-label="Package install and import examples">
+            <div class="home-code-heading"><span>@santi020k/theme</span><span>CSS / JavaScript</span></div>
+            <div class="home-code-block"><span>01 / Install</span><code>pnpm add @santi020k/theme</code></div>
+            <div class="home-code-block"><span>02 / Set the palette</span><code>@import '@santi020k/theme/tokens.css';</code></div>
+            <div class="home-code-block"><span>03 / Build on it</span><code>import &#123; config, projects &#125;<br />  from '@santi020k/theme'</code></div>
+          </Card>
         </div>
-
-        <Card as="article" class="package-panel">
-          <div class="package-copy">
-            <Badge class="card-kicker" variant="success">
-              <span class="status-dot" aria-hidden="true"></span>
-              Live on npm
-            </Badge>
-            <h3>@santi020k/theme</h3>
-            <p>Design tokens, CSS custom properties, Tailwind mappings, and shared brand assets for Santi020k websites, apps, and theme-family surfaces.</p>
-            <div class="card-actions">
-              <ButtonLink class="button button-primary" variant="primary" href="https://github.com/santi020k/santi020k-theme" newTab>View source</ButtonLink>
-            </div>
-          </div>
-
-          <div class="package-snippet" aria-label="Package install and import examples">
-            <code>pnpm add @santi020k/theme</code>
-            <code>@import '@santi020k/theme/tokens.css';</code>
-            <code>import &#123; config, projects &#125; from '@santi020k/theme'</code>
-          </div>
-        </Card>
       </section>
 
-      <section id="assets" class="site-shell section assets-section">
-        <div class="section-heading assets-heading">
-          <div class="assets-heading-copy">
-            <Eyebrow class="eyebrow">04 / Beyond the window</Eyebrow>
-            <h2>Bring the palette to your desktop.</h2>
-            <p>Violet dunes, flowing satin, and frosted glass. Three new ways to make your screen feel like yours.</p>
+      <section id="assets" class="site-shell home-section home-assets" aria-labelledby="assets-title">
+        <div class="home-section-heading">
+          <div>
+            <Eyebrow class="home-eyebrow"><span>04</span> / Beyond the window</Eyebrow>
+            <h2 id="assets-title">A little violet.<br />A little more yours.</h2>
           </div>
+          <p class="home-section-intro">Flowing satin, violet dunes, and frosted glass. The Sculpted collection brings the palette to your desktop.</p>
         </div>
-        <div class="wallpaper-grid">
+        <div class="home-wallpaper-grid">
           {featuredWallpapers.map((wallpaper, index) => (
-            <Card as="article" class="wallpaper-card">
-              <div class="wallpaper-card-media">
-                <Image src={wallpaper.image} alt={wallpaper.description} loading="lazy" />
-                <span aria-hidden="true">0{index + 1}</span>
-              </div>
-              <div class="wallpaper-card-body">
-                <div>
-                  <p>3840 × 2160 · WEBP</p>
-                  <h3>{wallpaper.name}</h3>
-                </div>
-                <ButtonLink class="button button-primary" variant="primary" href={wallpaper.download} download={`santi020k-sculpted-${wallpaper.slug}-dark.webp`}>Download <Icon name="download" /></ButtonLink>
-              </div>
+            <Card as="article" variant="unstyled" class="home-wallpaper">
+              <Link class="home-wallpaper-image" variant="inherit" href={wallpaper.download} download={`santi020k-sculpted-${wallpaper.slug}-dark.webp`} aria-label={`Download ${wallpaper.name} dark desktop wallpaper`}>
+                <Image src={wallpaper.image} alt={wallpaper.description} widths={[480, 800, 1200]} sizes="(max-width: 767px) 92vw, 30vw" loading="lazy" />
+              </Link>
+              <div class="home-wallpaper-heading"><span>{String(index + 1).padStart(2, '0')}</span><h3>{wallpaper.name}</h3><ButtonLink class="home-wallpaper-download" variant="unstyled" href={wallpaper.download} download={`santi020k-sculpted-${wallpaper.slug}-dark.webp`} aria-label={`Download ${wallpaper.name} dark desktop wallpaper`}><Icon name="download" /></ButtonLink></div>
+              <p>Dark desktop · 3840 × 2160 · WEBP</p>
             </Card>
           ))}
         </div>
-        <div class="section-cta">
-          <p>Choose light or dark, with separate compositions for your desktop and phone. The original Classic collection is here too.</p>
-          <ButtonLink class="button button-secondary" variant="secondary" href="/gallery/">Browse all assets <Icon name="arrow-right" /></ButtonLink>
-        </div>
+        <div class="home-assets-footer"><p>Find light editions, phone compositions, and the original Classic collection in the gallery.</p><ButtonLink class="home-button home-text-link" variant="unstyled" href="/gallery/">Browse all assets <Icon name="arrow-right" /></ButtonLink></div>
       </section>
     </main>
 

@@ -308,6 +308,12 @@ panels. Depth belongs to the sculpted navbar, artwork, and actual product previe
 page-wide glow, persistent grid textures, excessive glass, and continuously moving decoration.
 Below 768px, collapse editorial columns in reading order and retain every install action.
 
+The hub home page features VS Code with a larger real preview, followed by numbered tool
+rows with fine rules and full-row links. Keep the remaining previews distinct and label
+illustrative scenes. Present package examples on one solid code surface, and let wallpaper
+artwork stand on the canvas with open captions. Home compositions live in
+`apps/website/src/styles/home.css`; retain the shared navigation and product-page owners.
+
 ### Mobile navigation
 
 The theme family's mobile navigation is a full-screen workspace switchboard: direct product
