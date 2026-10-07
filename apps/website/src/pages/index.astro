@@ -1,23 +1,24 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Badge, ButtonLink, Card, Eyebrow, Icon, Link } from '@santi020k/lumen-astro'
+import { Badge, ButtonLink, Card, Eyebrow, Icon, Link, Particles, RevealGroup, ScrollReveal } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
-import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp'
-import foldDownload from '../../../../packages/theme/assets/wallpapers/sculpted/fold-dark-desktop.webp?url'
-import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp'
-import monolithDownload from '../../../../packages/theme/assets/wallpapers/sculpted/monolith-dark-desktop.webp?url'
-import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp'
-import orbitDownload from '../../../../packages/theme/assets/wallpapers/sculpted/orbit-dark-desktop.webp?url'
+import wallpaperTwo from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp'
+import duneDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/dune-dark-desktop.webp?url'
+import wallpaperOne from '../../../../packages/theme/assets/wallpapers/sculpted-v2/tide-dark-desktop.webp'
+import tideDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/tide-dark-desktop.webp?url'
+import wallpaperThree from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp'
+import veilDownload from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-dark-desktop.webp?url'
+import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 import { products } from '../data/products.js'
 
 const featuredWallpapers = [
-  { image: wallpaperOne, name: 'Fold', slug: 'fold', download: foldDownload },
-  { image: wallpaperTwo, name: 'Orbit', slug: 'orbit', download: orbitDownload },
-  { image: wallpaperThree, name: 'Monolith', slug: 'monolith', download: monolithDownload }
+  { image: wallpaperOne, name: 'Tide', slug: 'tide', download: tideDownload, description: 'Flowing violet satin with soft silver highlights' },
+  { image: wallpaperTwo, name: 'Dune', slug: 'dune', download: duneDownload, description: 'Violet sand ridges fading into blue-hour light' },
+  { image: wallpaperThree, name: 'Veil', slug: 'veil', download: veilDownload, description: 'Layers of frosted amethyst glass against deep indigo' }
 ]
 
 const structuredData = {
@@ -85,6 +86,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en" data-santi020k-site="hub">
   <head>
+    <PageTransitions page="hub" />
     <meta charset="UTF-8" />
     <script>
   (function () {
@@ -138,7 +140,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
     <main id="top">
       <section class="site-shell hero">
-        <div class="hero-copy">
+        <Particles class="signature-bubbles" density="low" />
+        <ScrollReveal class="hero-copy" animation="slide-up" duration="standard" threshold={0}>
           <Eyebrow class="eyebrow">01 / A considered workspace</Eyebrow>
           <h1>A calmer place<br />to <span>create.</span></h1>
           <p class="lede">
@@ -148,7 +151,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <ButtonLink class="button button-primary" variant="unstyled" href="#themes">Browse themes <span class="button-arrow"><Icon name="arrow-up-right" /></span></ButtonLink>
             <ButtonLink class="button button-text" variant="unstyled" href="/gallery/">Explore the gallery <Icon name="arrow-right" /></ButtonLink>
           </div>
-        </div>
+        </ScrollReveal>
 
         <div class="hero-art" aria-label="Theme previews">
           <Image src="/hub-hero-art.png" width="1536" height="1024" alt="Abstract editor and browser windows using the Santi020k theme palette" fetchpriority="high" inferSize />
@@ -170,7 +173,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <h2>Different tools.<br />The same feeling.</h2>
         </div>
 
-        <div class="theme-grid">
+        <RevealGroup class="theme-grid" animation="fade" duration="standard" stagger={35}>
           {products.map((product, index) => (
             <Card as="article" class="theme-card" data-product={product.slug}>
               <Link class="theme-card-preview" href={`/${product.slug}/`} aria-label={`View the ${product.name} theme`}>
@@ -187,7 +190,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               </div>
             </Card>
           ))}
-        </div>
+        </RevealGroup>
       </section>
 
       <section id="packages" class="site-shell section packages-section">
@@ -205,7 +208,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <h3>@santi020k/theme</h3>
             <p>Design tokens, CSS custom properties, Tailwind mappings, and shared brand assets for Santi020k websites, apps, and theme-family surfaces.</p>
             <div class="card-actions">
-              <ButtonLink class="button button-primary" variant="primary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">View source</ButtonLink>
+              <ButtonLink class="button button-primary" variant="primary" href="https://github.com/santi020k/santi020k-theme" newTab>View source</ButtonLink>
             </div>
           </div>
 
@@ -222,14 +225,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <div class="assets-heading-copy">
             <Eyebrow class="eyebrow">04 / Beyond the window</Eyebrow>
             <h2>Bring the palette to your desktop.</h2>
-            <p>The Sculpted collection. Quiet plum forms, generous space, and a considered home for your desktop.</p>
+            <p>Violet dunes, flowing satin, and frosted glass. Three new ways to make your screen feel like yours.</p>
           </div>
         </div>
         <div class="wallpaper-grid">
           {featuredWallpapers.map((wallpaper, index) => (
             <Card as="article" class="wallpaper-card">
               <div class="wallpaper-card-media">
-                <Image src={wallpaper.image} alt={`${wallpaper.name}: a sculpted plum form on a calm dark background`} loading="lazy" />
+                <Image src={wallpaper.image} alt={wallpaper.description} loading="lazy" />
                 <span aria-hidden="true">0{index + 1}</span>
               </div>
               <div class="wallpaper-card-body">
@@ -243,7 +246,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           ))}
         </div>
         <div class="section-cta">
-          <p>Explore both collections: Sculpted for the new visual line, and Classic for the original violet horizons. Desktop and mobile sizes are available.</p>
+          <p>Choose light or dark, with separate compositions for your desktop and phone. The original Classic collection is here too.</p>
           <ButtonLink class="button button-secondary" variant="secondary" href="/gallery/">Browse all assets <Icon name="arrow-right" /></ButtonLink>
         </div>
       </section>
