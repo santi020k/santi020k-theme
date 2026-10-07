@@ -1,5 +1,5 @@
 ---
-import { ButtonLink, Icon, Particles, ScrollReveal } from '@santi020k/lumen-astro'
+import { ButtonLink, Collapsible, Icon, Particles, ScrollReveal } from '@santi020k/lumen-astro'
 
 import ProductLayout from '../layouts/ProductLayout.astro'
 
@@ -42,7 +42,7 @@ const rhythm = [
       </div>
     </ScrollReveal>
     <ScrollReveal as="section" animation="fade" duration="standard" class="guide-section" aria-labelledby="palette-title">
-      <div class="guide-section-heading"><p class="guide-eyebrow">02 / Palette</p><h2 id="palette-title">One violet language.</h2><p>Live shared tokens, with HEX, RGB, and HSL values. Change the page appearance and every color code follows.</p></div>
+      <div class="guide-section-heading"><p class="guide-eyebrow">02 / Palette</p><h2 id="palette-title">One violet language.</h2><p>These are live shared tokens. Change the page appearance and the entire palette follows.</p></div>
       <div class="guide-palette">
         {palette.map(color => (
           <article class="palette-item" data-palette-token={color.token}>
@@ -50,11 +50,16 @@ const rhythm = [
             <h3>{color.name}</h3>
             <code>{color.token}</code>
             <p>{color.description}</p>
-            <dl class="palette-values" hidden>
-              <div class="palette-hex"><dt>HEX</dt><dd><code data-color-format="hex"></code></dd></div>
-              <div><dt>RGB</dt><dd><code data-color-format="rgb"></code></dd></div>
-              <div><dt>HSL</dt><dd><code data-color-format="hsl"></code></dd></div>
-            </dl>
+            <Collapsible class="palette-details" hidden>
+              <summary aria-label={`${color.name} color codes`}>
+                Color codes <Icon name="chevron-down" aria-hidden="true" />
+              </summary>
+              <dl class="palette-values">
+                <div class="palette-hex"><dt>HEX</dt><dd><code data-color-format="hex"></code></dd></div>
+                <div><dt>RGB</dt><dd><code data-color-format="rgb"></code></dd></div>
+                <div><dt>HSL</dt><dd><code data-color-format="hsl"></code></dd></div>
+              </dl>
+            </Collapsible>
           </article>
         ))}
       </div>
@@ -76,38 +81,47 @@ const rhythm = [
 </ProductLayout>
 <script>
   import { formatPaletteColor } from '../palette-colors'
+  import { bindPageLifecycle } from '../utils/page-lifecycle'
 
-  const root = document.documentElement
-  const swatches = document.querySelectorAll<HTMLElement>('[data-palette-token]')
+  bindPageLifecycle('hub', () => {
+    const root = document.documentElement
+    const swatches = document.querySelectorAll<HTMLElement>('[data-palette-token]')
 
-  const updatePaletteValues = () => {
-    const styles = getComputedStyle(root)
+    if (!swatches.length) return
 
-    for (const swatch of swatches) {
-      const token = swatch.dataset.paletteToken
-      const values = swatch.querySelector<HTMLElement>('.palette-values')
+    const updatePaletteValues = () => {
+      const styles = getComputedStyle(root)
 
-      if (!token || !values) continue
+      for (const swatch of swatches) {
+        const token = swatch.dataset.paletteToken
+        const values = swatch.querySelector<HTMLDetailsElement>('.palette-details')
 
-      const formats = formatPaletteColor(styles.getPropertyValue(token))
+        if (!token || !values) continue
 
-      values.hidden = !formats
+        const formats = formatPaletteColor(styles.getPropertyValue(token))
 
-      if (!formats) continue
+        values.hidden = !formats
 
-      for (const [format, value] of Object.entries(formats)) {
-        const output = values.querySelector(`[data-color-format="${format}"]`)
+        if (!formats) continue
 
-        if (output) output.textContent = value
+        for (const [format, value] of Object.entries(formats)) {
+          const output = values.querySelector(`[data-color-format="${format}"]`)
+
+          if (output) output.textContent = value
+        }
       }
     }
-  }
 
-  updatePaletteValues()
+    updatePaletteValues()
 
-  new MutationObserver(updatePaletteValues).observe(root, {
-    attributes: true,
-    attributeFilter: ['data-theme']
+    const observer = new MutationObserver(updatePaletteValues)
+
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    })
+
+    return () => observer.disconnect()
   })
 </script>
 <style>
@@ -135,13 +149,22 @@ const rhythm = [
   .type-display { font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 600; line-height: 1.02; letter-spacing: -.065em; }
   .type-heading { font-size: var(--site-section-title-size); font-weight: 500; line-height: 1.08; letter-spacing: -.065em; }
   .type-body { max-width: 36rem; font-size: var(--site-body-size); line-height: var(--site-body-line-height); color: var(--site-ink-soft); }
-  .guide-palette { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--site-heading-gap) var(--site-grid-gap); }
-  .palette-item { display: flex; flex-direction: column; min-width: 0; }
+  .guide-palette { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; gap: var(--site-grid-gap); }
+  .palette-item { min-width: 0; }
   .palette-color { height: 8rem; border: 1px solid var(--site-line); border-radius: var(--site-card-radius); }
   .palette-item h3 { margin: 1.25rem 0 .5rem; font-size: 1rem; font-weight: 500; }
   .palette-item code, .rhythm-list code { font-size: .6875rem; overflow-wrap: anywhere; color: var(--site-ink-soft); }
   .palette-item p { color: var(--site-ink-soft); font-size: .8125rem; line-height: 1.8; }
-  .palette-values { margin: auto 0 0; padding-top: 1rem; border-top: 1px solid var(--section-divider); }
+  .palette-item :global(.palette-details) { overflow: visible; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+  .palette-details summary { display: inline-flex; align-items: center; gap: .5rem; min-height: var(--site-control-min-height); margin: 0; padding: 0; background: none; color: var(--site-ink-soft); font-size: .75rem; font-weight: 500; cursor: pointer; list-style: none; }
+  .palette-details summary::-webkit-details-marker { display: none; }
+  .palette-details summary::before, .palette-details summary::after { display: none; }
+  .palette-item :global(.palette-details[open]) summary { margin-bottom: 0; }
+  .palette-details summary:hover { background: none; color: var(--site-brand); }
+  .palette-details summary:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 4px; border-radius: .25rem; }
+  .palette-details summary :global(.ui-icon) { width: .875rem; height: .875rem; }
+  .palette-item :global(.palette-details[open]) summary :global(.ui-icon) { transform: rotate(180deg); }
+  .palette-values { margin: .25rem 0 0; padding-block: .75rem; border-top: 1px solid var(--section-divider); }
   .palette-values > div { display: grid; grid-template-columns: 2rem minmax(0, 1fr); align-items: baseline; gap: .5rem; margin-top: .5rem; }
   .palette-values > div:first-child { margin-top: 0; }
   .palette-values dt { font-size: .5625rem; font-weight: 500; letter-spacing: .08em; color: var(--site-ink-soft); }

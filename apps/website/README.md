@@ -27,7 +27,7 @@ Run commands from the repository root.
 
 - Keep product links aligned with their canonical routes under `https://theme.santi020k.com/`.
 - Preserve visible focus styles, external-link safety, and the dark/light toggle.
-- The `/design/` palette reads active shared CSS tokens for its HEX, RGB, and HSL reference; keep the values synchronized with appearance changes instead of maintaining a second palette.
+- The `/design/` palette reveals HEX, RGB, and HSL values through each swatch's keyboard-accessible Color codes disclosure. Values read active shared CSS tokens and stay synchronized with appearance changes and page navigation instead of maintaining a second palette.
 - Keep preview assets in `public/` aligned with current package screenshots.
 - Read [`../../docs/brand-guidelines.md`](../../docs/brand-guidelines.md) before changing copy, color, imagery, or product naming.
 
