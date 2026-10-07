@@ -8,6 +8,37 @@ import { getAssets } from '../../packages/theme/index.js'
 
 const packageRoot = new URL('../../packages/theme/', import.meta.url)
 
+describe('Signature wallpaper downloads', () => {
+  it('exposes dark and light artwork in desktop and phone dimensions with both formats', async () => {
+    const assets = getAssets('wallpaper').filter(asset => asset.path.includes('/signature-v1/'))
+
+    expect(assets).toHaveLength(8)
+
+    for (const variant of ['dark', 'light']) {
+      for (const device of ['desktop', 'mobile']) {
+        for (const format of ['png', 'webp']) {
+          const path = `assets/wallpapers/signature-v1/signature-${variant}-${device}.${format}`
+
+          expect(assets.some(asset => asset.path === path)).toBe(true)
+
+          const image = await sharp(fileURLToPath(new URL(path, packageRoot))).metadata()
+
+          expect(image).toMatchObject(device === 'desktop'
+            ? { format, width: 3840, height: 2160, hasAlpha: false }
+            : { format, width: 1170, height: 2532, hasAlpha: false })
+        }
+      }
+    }
+
+    const archive = new URL('../../apps/website/public/downloads/santi020k-signature-wallpapers-v1.zip', import.meta.url)
+    const { size } = await stat(archive)
+
+    expect(size).toBeGreaterThan(0)
+
+    expect(size).toBeLessThan(25 * 1024 * 1024)
+  })
+})
+
 describe('Sculpted wallpaper downloads', () => {
   it('exposes twelve complete light/dark desktop/phone pairs of PNG and WEBP downloads', async () => {
     const assets = getAssets('wallpaper').filter(asset => asset.path.includes('/sculpted-v2/'))

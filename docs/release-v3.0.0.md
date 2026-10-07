@@ -19,6 +19,12 @@ raster masters and prompts are retained; display exports are resized to 3840 × 
 1170 × 2532. Individual PNG/WEBP downloads and a compact WEBP archive replace the first edition
 in the homepage and gallery. Earlier Sculpted and Classic files and archives remain available.
 
+The Signature collection adds four branded dark/light desktop and phone compositions, with
+the Santi020k terminal prompt set among violet glass forms. It has its own gallery filter,
+PNG/WEBP exports, and compact WEBP archive; the approved Tide, Dune, and Veil artwork remains.
+Native masters and prompts are in `artwork/signature-v1/`; the shared raster exporter produces
+both current collections without changing earlier download URLs.
+
 Migration: theme variant names and syntax coverage remain available, while editor action and focus styling changes deliberately for v3. Existing wallpaper links and shared package import paths remain supported. Consumers of the shared website CSS should review typography, spacing, and control styling against the new brand guide.
 
 Published npm Lumen 4.0.0 powers all six website sources. Terminal documentation uses command tabs, clipboard feedback, breadcrumbs, and reading progress. The shared theme toggle now preserves native button or switch state semantics. The support page links to family-wide GitHub issue forms, published releases, and private vulnerability reporting. Canonical metadata, the sitemap, the extension homepage, and contribution instructions match the consolidated website.

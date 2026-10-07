@@ -355,6 +355,15 @@ Keep native raster masters and generation prompts in `artwork/sculpted-v2/`. The
 files to keep the complete collection practical to download. Earlier Sculpted and Classic
 asset paths and archives remain intact.
 
+The **Signature collection** adds explicitly branded wallpaper artwork alongside Sculpted.
+Use the canonical white `>_` prompt on its solid purple rounded square as the single focal
+detail, surrounded by restrained violet glass forms. Keep the mark recognizable and the
+canvas calm, without slogans or repeated logos. This is a wallpaper composition, not an
+alternate logo. Pair dark and light scenes and compose phone versions separately, leaving
+room above the artwork for a clock. Keep masters and prompts in `artwork/signature-v1/`,
+display exports in `packages/theme/assets/wallpapers/signature-v1/`, and a separate WEBP
+archive. Like Sculpted, display exports are resized raster masters, not native 4K renders.
+
 ## Voice And Copy
 
 Use clear developer-facing language.

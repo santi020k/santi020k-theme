@@ -78,6 +78,18 @@ import VeilLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/s
 import VeilLightMobilePng from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-light-mobile.png?url'
 import VeilLightMobile from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-light-mobile.webp'
 import VeilLightMobileWebp from '../../../../packages/theme/assets/wallpapers/sculpted-v2/veil-light-mobile.webp?url'
+import SignatureDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-dark-desktop.png?url'
+import SignatureDarkDesktop from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-dark-desktop.webp'
+import SignatureDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-dark-desktop.webp?url'
+import SignatureDarkMobilePng from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-dark-mobile.png?url'
+import SignatureDarkMobile from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-dark-mobile.webp'
+import SignatureDarkMobileWebp from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-dark-mobile.webp?url'
+import SignatureLightDesktopPng from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-desktop.png?url'
+import SignatureLightDesktop from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-desktop.webp'
+import SignatureLightDesktopWebp from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-desktop.webp?url'
+import SignatureLightMobilePng from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-mobile.png?url'
+import SignatureLightMobile from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-mobile.webp'
+import SignatureLightMobileWebp from '../../../../packages/theme/assets/wallpapers/signature-v1/signature-light-mobile.webp?url'
 import wallpaperOneDesktopPng from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.png?url'
 import wallpaperOneDesktop from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp'
 import wallpaperOneDesktopWebp from '../../../../packages/theme/assets/wallpapers/wallpaper-1-desktop.webp?url'
@@ -193,6 +205,10 @@ const logo = (title, variant, dimensions, image, base, png, svg, webp) => ({
 })
 
 export const galleryAssets = [
+  { ...wallpaper('Signature · dark', 'Desktop', '3840 × 2160', SignatureDarkDesktop, 'santi020k-signature-dark-desktop', SignatureDarkDesktopPng, SignatureDarkDesktopWebp, false), collection: 'signature' },
+  { ...wallpaper('Signature · dark', 'Mobile', '1170 × 2532', SignatureDarkMobile, 'santi020k-signature-dark-mobile', SignatureDarkMobilePng, SignatureDarkMobileWebp, true), collection: 'signature' },
+  { ...wallpaper('Signature · light', 'Desktop', '3840 × 2160', SignatureLightDesktop, 'santi020k-signature-light-desktop', SignatureLightDesktopPng, SignatureLightDesktopWebp, false), collection: 'signature' },
+  { ...wallpaper('Signature · light', 'Mobile', '1170 × 2532', SignatureLightMobile, 'santi020k-signature-light-mobile', SignatureLightMobilePng, SignatureLightMobileWebp, true), collection: 'signature' },
   { ...wallpaper('Tide · dark', 'Desktop', '3840 × 2160', TideDarkDesktop, 'santi020k-tide-dark-desktop', TideDarkDesktopPng, TideDarkDesktopWebp, false), collection: 'sculpted' },
   { ...wallpaper('Tide · dark', 'Mobile', '1170 × 2532', TideDarkMobile, 'santi020k-tide-dark-mobile', TideDarkMobilePng, TideDarkMobileWebp, true), collection: 'sculpted' },
   { ...wallpaper('Tide · light', 'Desktop', '3840 × 2160', TideLightDesktop, 'santi020k-tide-light-desktop', TideLightDesktopPng, TideLightDesktopWebp, false), collection: 'sculpted' },

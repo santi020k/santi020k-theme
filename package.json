@@ -53,7 +53,7 @@
     "check:og": "santi-og check --config scripts/generate-og-images.mjs",
     "check:brand-assets": "node scripts/sync-brand-assets.mjs --check",
     "generate:brand-assets": "node scripts/sync-brand-assets.mjs",
-    "generate:wallpapers": "node scripts/generate-wallpaper-assets.mjs && node scripts/export-sculpted-wallpapers.mjs",
+    "generate:wallpapers": "node scripts/generate-wallpaper-assets.mjs && node scripts/export-raster-wallpapers.mjs",
     "generate:vscode-previews": "node scripts/generate-vscode-preview-assets.mjs",
     "report:accessibility": "node scripts/generate-accessibility-report.mjs",
     "changeset": "changeset",

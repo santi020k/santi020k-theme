@@ -20,6 +20,11 @@ See [artwork sources and prompts](../../artwork/sculpted-v2/README.md) for regen
 Earlier Sculpted files under `assets/wallpapers/sculpted/`, their ZIP, and Classic paths remain
 available. The gallery features the current edition alongside the Classic collection.
 
+The branded **Signature collection** adds four dark/light desktop and phone compositions
+under `assets/wallpapers/signature-v1/`. The Santi020k prompt sits among translucent violet
+glass forms. PNG and WEBP exports use the same display dimensions; its separate ZIP contains
+four WEBP files. See [Signature artwork sources and prompts](../../artwork/signature-v1/README.md).
+
 ## Install
 
 ```bash
