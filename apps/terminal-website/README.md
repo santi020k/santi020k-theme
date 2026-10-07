@@ -21,6 +21,9 @@ feedback, and keyboard tab behavior come from the single `UIPrimitives` runtime 
 `SiteLayout.astro`. Keep commands as text passed to those components instead of adding a
 second copy or tab controller.
 
+Breadcrumbs use Lumen's single chevron separator, quiet ancestor links, and a stronger current
+page label. Keep their 44px link targets, visible focus rings, and wrapping on narrow screens.
+
 Verify the consolidated route at desktop and mobile widths in both appearances. Check
 arrow-key tab selection, copying a command, and manual copying when clipboard access is
 unavailable. The Starship palette choice persists under `santi020k-docs-palette`.
