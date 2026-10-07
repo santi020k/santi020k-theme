@@ -1,0 +1,70 @@
+{
+  "tool": "built-in imagegen",
+  "intent": "generate with brand and artwork references",
+  "images": [
+    {
+      "name": "satin-light-desktop",
+      "prompt": "Use case: stylized-concept. Create an art-directed premium Santi020k branded desktop wallpaper, widescreen 16:9 landscape, full bleed. Image 1 is the canonical logo: preserve the white rounded terminal >_ prompt proportions on a saturated solid #5a0fdb purple rounded square. Image 2 is an approved wallpaper reference for polish, restraint, brand tile scale, and photographic 3D material quality; create a distinctly different scene. One small physical brand tile only, about 12% of canvas width, nearly front-facing so the canonical white glyph is precise. Keep the left half and upper third quiet for desktop icons. No wordmark, slogans, UI, devices, borders or repeated logos. New direction: SATIN, light edition. A flowing landscape of luxurious pearl-lavender satin fabric, huge soft folds entering from bottom left and rolling toward the lower right, subtle fine woven texture and cool lilac shadows. Nest the single purple brand tile gently in a broad fabric fold near 65% across and 63% down, like a small softly rounded porcelain object resting on silk. Pale porcelain #f8f6fd background merging with the silk and generous airy negative space. Daylight from the upper left gives long delicate shadows and luminous fabric highlights. Elegant, tactile, believable materials, no glass bubbles, no arches. Rich purple tile anchors an otherwise subdued lavender-white composition. Output one landscape image.",
+      "references": [
+        "packages/theme/assets/logos/logo-square.png",
+        "artwork/signature-v1/signature-dark-mobile.png"
+      ]
+    },
+    {
+      "name": "ceramic-dark-desktop",
+      "prompt": "Use case: stylized-concept. Create an art-directed premium Santi020k branded desktop wallpaper, widescreen 16:9 landscape, full bleed. Image 1 is the canonical logo: preserve the white rounded terminal >_ prompt proportions on a saturated solid #5a0fdb purple rounded square. Image 2 is an approved wallpaper reference for polish, restraint, brand tile scale, and photographic 3D material quality; create a distinctly different scene. One small physical brand tile only, about 12% of canvas width, nearly front-facing so the canonical white glyph is precise. Keep the left half and upper third quiet for desktop icons. No wordmark, slogans, UI, devices, borders or repeated logos. New direction: CERAMIC, dark edition. Deep indigo-black #110c1d background. A beautifully balanced still life of a few oversized matte violet ceramic forms: a broad low rounded plinth crossing the bottom, one large cropped softly rounded arch at the far right and a smooth sphere behind the single small brand tile near 65% across and 62% down. Fine unglazed ceramic grain, sculpted softly rounded edges, deep soft shadows. Tile is saturated solid purple with a white canonical >_ inlay, restrained edge highlights, no metallic or glass sheen. Soft oblique lavender studio light creates sculptural depth and a gently illuminated ellipse on the plinth. Forms are grounded and architectural, not flat vector shapes. No fabric, no glass bubbles, no neon. Calm and richly dimensional. Output one landscape image.",
+      "references": [
+        "packages/theme/assets/logos/logo-square.png",
+        "artwork/signature-v1/signature-dark-mobile.png"
+      ]
+    },
+    {
+      "name": "satin-dark-desktop",
+      "prompt": "Use case: stylized-concept. Premium Santi020k branded wallpaper. Image 1 is the approved artwork for this material family. Image 2 is the canonical logo, with a rounded white terminal >_ prompt on a rich solid purple rounded square. Preserve that precise readable mark on ONE small physical purple tile, facing almost parallel to the camera. Keep its recognizable proportions, #5a0fdb purple face and softly rounded edges. No extra symbols, wordmark, slogans, devices, interface or borders. Beautiful photographic 3D material quality and understated violet art direction. Create the DARK SATIN desktop edition, widescreen 16:9. Preserve the composition: a single small tile near 65% across and 63% down nested in a broad fold of luxurious flowing satin. Change pale fabric to deep ink-violet silk, subtle fine woven texture with restrained #945df4 lavender highlights on the folds. Background is deep indigo-black #110c1d, left half and top third quiet for icons. The tile stays rich purple and its prompt white. Expansive folds fill the lower half and right side, real soft contact shadows, oblique studio light, no neon and no glass or stone. Full-bleed landscape image.",
+      "references": [
+        "artwork/signature-v2/satin-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    {
+      "name": "satin-dark-mobile",
+      "prompt": "Use case: stylized-concept. Premium Santi020k branded wallpaper. Image 1 is the approved artwork for this material family. Image 2 is the canonical logo, with a rounded white terminal >_ prompt on a rich solid purple rounded square. Preserve that precise readable mark on ONE small physical purple tile, facing almost parallel to the camera. Keep its recognizable proportions, #5a0fdb purple face and softly rounded edges. No extra symbols, wordmark, slogans, devices, interface or borders. Beautiful photographic 3D material quality and understated violet art direction. Create a separately composed DARK SATIN phone wallpaper, tall portrait aspect 1170:2532, not a cropped landscape. Deep ink-violet silk drapes gracefully through the lower half, a few large luxurious folds, fine woven texture, lavender edge light, believable gentle contact shadows. Single small purple prompt tile nestled in a low fold centered near 50% across and 68% down, about 25% of frame width, whole white mark visible. Keep top 45% calm deep indigo-black #110c1d for a clock, bottom 12% subdued. Satin and tile only; no glass, no ceramic architecture, no neon. Full-bleed portrait image.",
+      "references": [
+        "artwork/signature-v2/satin-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    {
+      "name": "satin-light-mobile",
+      "prompt": "Use case: stylized-concept. Premium Santi020k branded wallpaper. Image 1 is the approved artwork for this material family. Image 2 is the canonical logo, with a rounded white terminal >_ prompt on a rich solid purple rounded square. Preserve that precise readable mark on ONE small physical purple tile, facing almost parallel to the camera. Keep its recognizable proportions, #5a0fdb purple face and softly rounded edges. No extra symbols, wordmark, slogans, devices, interface or borders. Beautiful photographic 3D material quality and understated violet art direction. Create a separately composed LIGHT SATIN phone wallpaper, tall portrait aspect 1170:2532, not a cropped landscape. Pearl-lavender silk drapes gracefully through the lower half, a few large luxurious folds, fine woven texture, soft daylight, believable delicate contact shadows. Single small saturated purple prompt tile nestled in a low fold centered near 50% across and 68% down, about 25% of frame width, whole white mark visible. Keep top 45% calm porcelain white #f8f6fd for a clock, bottom 12% subdued. Satin and tile only; no glass, no ceramic architecture. Airy purple-tinted white scene with fine lilac shadows. Full-bleed portrait image.",
+      "references": [
+        "artwork/signature-v2/satin-light-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    {
+      "name": "ceramic-light-desktop",
+      "prompt": "Use case: stylized-concept. Premium Santi020k branded wallpaper. Image 1 is the approved artwork for this material family. Image 2 is the canonical logo, with a rounded white terminal >_ prompt on a rich solid purple rounded square. Preserve that precise readable mark on ONE small physical purple tile, facing almost parallel to the camera. Keep its recognizable proportions, #5a0fdb purple face and softly rounded edges. No extra symbols, wordmark, slogans, devices, interface or borders. Beautiful photographic 3D material quality and understated violet art direction. Create the LIGHT CERAMIC desktop edition, widescreen 16:9. Preserve the architectural still-life composition: one small purple tile near 65% across and 62% down, a matte sphere behind it and large cropped rounded arch on the far right, grounded on a low broad plinth. Change the ceramic material to pale lavender unglazed porcelain with delicate grain and soft sculptural shadows, background warm lavender-white #f8f6fd. Single tile stays saturated purple with white canonical mark. Broad soft daylight from upper left, delicate lilac tonal separation. Left half and top third quiet and pale for icons. No glass, no satin, no metallic sheen. Full-bleed landscape image.",
+      "references": [
+        "artwork/signature-v2/ceramic-dark-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    {
+      "name": "ceramic-dark-mobile",
+      "prompt": "Use case: stylized-concept. Premium Santi020k branded wallpaper. Image 1 is the approved artwork for this material family. Image 2 is the canonical logo, with a rounded white terminal >_ prompt on a rich solid purple rounded square. Preserve that precise readable mark on ONE small physical purple tile, facing almost parallel to the camera. Keep its recognizable proportions, #5a0fdb purple face and softly rounded edges. No extra symbols, wordmark, slogans, devices, interface or borders. Beautiful photographic 3D material quality and understated violet art direction. Create a separately composed DARK CERAMIC phone wallpaper, tall portrait aspect 1170:2532, not a cropped landscape. Low broad rounded violet ceramic plinth across lower third, a small matte sphere behind a single purple prompt tile, softly rounded arch entering from the lower-right edge and rising only to the middle of the canvas. Fine unglazed ceramic grain, deep soft shadows, subtle oblique lavender studio light. Tile centered near 50% across and 68% down, about 25% of image width. Top 45% calm deep indigo-black #110c1d for the clock. Bottom 12% subdued violet shadow. Forms beautifully grounded and believable, no glass, fabric, metallic or neon sheen. Full-bleed portrait image.",
+      "references": [
+        "artwork/signature-v2/ceramic-dark-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    {
+      "name": "ceramic-light-mobile",
+      "prompt": "Use case: stylized-concept. Premium Santi020k branded wallpaper. Image 1 is the approved artwork for this material family. Image 2 is the canonical logo, with a rounded white terminal >_ prompt on a rich solid purple rounded square. Preserve that precise readable mark on ONE small physical purple tile, facing almost parallel to the camera. Keep its recognizable proportions, #5a0fdb purple face and softly rounded edges. No extra symbols, wordmark, slogans, devices, interface or borders. Beautiful photographic 3D material quality and understated violet art direction. Create a separately composed LIGHT CERAMIC phone wallpaper, tall portrait aspect 1170:2532, not a cropped landscape. Low broad rounded pale lavender ceramic plinth across lower third, a small matte sphere behind a single saturated purple prompt tile, softly rounded arch entering from lower-right edge and rising only to the middle of the canvas. Fine unglazed porcelain grain, broad soft daylight, delicate lilac contact shadows. Tile centered near 50% across and 68% down, about 25% of image width. Top 45% calm porcelain white #f8f6fd for the clock. Bottom 12% subdued pale lavender. Forms beautifully grounded and believable, no glass, fabric, metallic or neon sheen. Full-bleed portrait image.",
+      "references": [
+        "artwork/signature-v2/ceramic-dark-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    }
+  ]
+}

@@ -15,17 +15,20 @@ const dimensions = {
 }
 
 const collections = [
-  { directory: 'sculpted-v2', families: ['tide', 'dune', 'veil'], archive: 'santi020k-sculpted-wallpapers-v2.zip' },
-  { directory: 'signature-v1', families: ['signature'], archive: 'santi020k-signature-wallpapers-v1.zip' }
+  { directory: 'sculpted-v2', families: ['tide', 'dune', 'veil'], archive: 'santi020k-sculpted-wallpapers-v2.zip', include: [] },
+  { directory: 'signature-v1', families: ['signature'], archive: 'santi020k-signature-wallpapers-v1.zip', include: [] },
+  { directory: 'signature-v2', families: ['satin', 'ceramic'], archive: 'santi020k-signature-wallpapers-v2.zip', include: ['signature-v1'] }
 ]
+
+/** @param {string[]} families */
+const wallpaperNames = families => families.flatMap(family =>
+  ['dark', 'light'].flatMap(variant =>
+    Object.keys(dimensions).map(device => ({ name: `${family}-${variant}-${device}`, device }))))
 
 for (const collection of collections) {
   const sourceDirectory = resolve(root, 'artwork', collection.directory)
   const outputDirectory = resolve(root, 'packages/theme/assets/wallpapers', collection.directory)
-
-  const names = collection.families.flatMap(family =>
-    ['dark', 'light'].flatMap(variant =>
-      Object.keys(dimensions).map(device => ({ name: `${family}-${variant}-${device}`, device }))))
+  const names = wallpaperNames(collection.families)
 
   await mkdir(outputDirectory, { recursive: true })
 
@@ -55,8 +58,14 @@ for (const collection of collections) {
   archive.pipe(output)
 
   // WEBP keeps the complete pack small; lossless PNG downloads are available individually.
-  for (const name of names.map(entry => entry.name).sort()) {
-    archive.file(resolve(outputDirectory, `${name}.webp`), { date, name: `${name}.webp` })
+  const includedCollections = [collection, ...collections.filter(candidate => collection.include.includes(candidate.directory))]
+
+  for (const included of includedCollections) {
+    for (const name of wallpaperNames(included.families).map(entry => entry.name).sort()) {
+      const path = resolve(root, 'packages/theme/assets/wallpapers', included.directory, `${name}.webp`)
+
+      archive.file(path, { date, name: `${name}.webp` })
+    }
   }
 
   await Promise.all([archive.finalize(), completion])
