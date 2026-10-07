@@ -1,10 +1,10 @@
 ---
-
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import MetadataHead from '@santi020k/og/astro/head'
 import { personSchema, serializeJsonLd, softwareApplicationSchema } from '@santi020k/og/schema'
 import { defineSite } from '@santi020k/og/site'
 
+import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 
@@ -56,6 +56,7 @@ softwareApplicationSchema({
 <!doctype html>
 <html lang="en" data-santi020k-site="hub">
   <head>
+    <PageTransitions page="hub" />
     <meta charset="UTF-8" />
     <script is:inline>
       (function () {
