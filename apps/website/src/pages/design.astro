@@ -1,5 +1,5 @@
 ---
-import { ButtonLink, Icon } from '@santi020k/lumen-astro'
+import { ButtonLink, Icon, Particles, ScrollReveal } from '@santi020k/lumen-astro'
 
 import ProductLayout from '../layouts/ProductLayout.astro'
 
@@ -23,6 +23,7 @@ const rhythm = [
 <ProductLayout pageKind="guide" name="Visual guide" slug="design" title="Sculpted visual guide — Santi020k Theme" description="Explore the typography, violet palette, controls, surfaces, and spacing shared by Santi020k themes and documentation.">
   <div class="design-guide site-shell">
     <header class="guide-hero">
+      <Particles class="guide-signature" density="low" />
       <p class="guide-eyebrow">The Sculpted collection / Visual guide</p>
       <h1>Quiet by design.<br /><span>Precise in every detail.</span></h1>
       <p class="guide-intro">A shared visual line for the tools we use every day. Open space, thoughtful typography, and a little violet. The same language as the new santi020k website.</p>
@@ -32,15 +33,15 @@ const rhythm = [
       </div>
       <p class="guide-appearance">Use the appearance switch in the navigation to explore every example in light and dark.</p>
     </header>
-    <section id="typography" class="guide-section" aria-labelledby="typography-title">
+    <ScrollReveal as="section" animation="fade" duration="standard" id="typography" class="guide-section" aria-labelledby="typography-title">
       <div class="guide-section-heading"><p class="guide-eyebrow">01 / Typography</p><h2 id="typography-title">Let the words carry it.</h2><p>Locally served Montserrat. Medium-weight headings, generous leading, and complete titles.</p></div>
       <div class="type-specimens">
         <div><span>Display / 600 / up to 5.5rem</span><p class="type-display">Made for focus.</p></div>
         <div><span>Section / 500 / 2.25–3.75rem</span><p class="type-heading">A calmer workspace.</p></div>
         <div><span>Body / 400 / 0.9375rem / 1.85</span><p class="type-body">Good design makes room for the important things. Keep the reading canvas quiet, make the next action clear, and let real product previews tell the story.</p></div>
       </div>
-    </section>
-    <section class="guide-section" aria-labelledby="palette-title">
+    </ScrollReveal>
+    <ScrollReveal as="section" animation="fade" duration="standard" class="guide-section" aria-labelledby="palette-title">
       <div class="guide-section-heading"><p class="guide-eyebrow">02 / Palette</p><h2 id="palette-title">One violet language.</h2><p>Live shared tokens, with HEX, RGB, and HSL values. Change the page appearance and every color code follows.</p></div>
       <div class="guide-palette">
         {palette.map(color => (
@@ -57,20 +58,20 @@ const rhythm = [
           </article>
         ))}
       </div>
-    </section>
-    <section class="guide-section" aria-labelledby="controls-title">
+    </ScrollReveal>
+    <ScrollReveal as="section" animation="fade" duration="standard" class="guide-section" aria-labelledby="controls-title">
       <div class="guide-section-heading"><p class="guide-eyebrow">03 / Controls</p><h2 id="controls-title">Clear next steps.</h2><p>Solid primary actions, quiet secondary links, and 44px minimum targets. Try navigating these examples with the keyboard.</p></div>
       <div class="control-examples"><ButtonLink variant="unstyled" class="guide-primary" href="/#themes">Browse themes <span aria-hidden="true"><Icon name="arrow-right" /></span></ButtonLink><ButtonLink variant="unstyled" class="guide-secondary" href="/gallery/">Explore wallpapers <Icon name="arrow-right" /></ButtonLink></div>
-    </section>
-    <section class="guide-section" aria-labelledby="surfaces-title">
+    </ScrollReveal>
+    <ScrollReveal as="section" animation="fade" duration="standard" class="guide-section" aria-labelledby="surfaces-title">
       <div class="guide-section-heading"><p class="guide-eyebrow">04 / Surfaces</p><h2 id="surfaces-title">Structure with restraint.</h2><p>One surface per group. Fine rules and open rows do the rest.</p></div>
       <div class="surface-examples"><article class="surface-example"><p class="guide-eyebrow">Solid surface</p><h3>Room to breathe.</h3><p>A 1.5rem radius and generous padding create a calm content group. Depth belongs to artwork and navigation.</p></article><article class="surface-example surface-example-muted"><p class="guide-eyebrow">Quiet grouping</p><h3>Same family. Softer rhythm.</h3><p>Use a semantic surface change for related content. Keep essential text readable in both appearances.</p></article></div>
-    </section>
-    <section class="guide-section" aria-labelledby="spacing-title">
+    </ScrollReveal>
+    <ScrollReveal as="section" animation="fade" duration="standard" class="guide-section" aria-labelledby="spacing-title">
       <div class="guide-section-heading"><p class="guide-eyebrow">05 / Rhythm</p><h2 id="spacing-title">Space is part of the system.</h2><p>One 72rem alignment, with a rhythm that naturally contracts on smaller screens.</p></div>
       <dl class="rhythm-list">{rhythm.map(space => <div><dt>{space.label}</dt><dd><span class="rhythm-bar" style={`width: var(${space.token})`} aria-hidden="true"></span><span>{space.value}</span><code>{space.token}</code></dd></div>)}</dl>
       <p class="guide-appearance">Hover transitions stay subtle. Reduced-motion preferences remove decorative motion and smooth scrolling.</p>
-    </section>
+    </ScrollReveal>
   </div>
 </ProductLayout>
 <script>
@@ -111,7 +112,7 @@ const rhythm = [
 </script>
 <style>
   .design-guide { padding-block: 5rem 1rem; }
-  .guide-hero { max-width: 58rem; padding-block: 2rem var(--site-section-space); }
+  .guide-hero { position: relative; isolation: isolate; max-width: 58rem; padding-block: 2rem var(--site-section-space); }
   .guide-eyebrow { color: var(--site-brand); font-size: .625rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; margin: 0 0 1.5rem; }
   .guide-hero h1 { max-width: none; margin: 0 0 2rem; font-size: var(--site-page-title-size); line-height: 1.02; font-weight: 600; letter-spacing: -.065em; }
   .guide-hero h1 span { color: var(--site-brand); }
@@ -159,4 +160,7 @@ const rhythm = [
   .rhythm-bar { height: .5rem; border-radius: 1rem; background: var(--site-brand); }
   @media (max-width: 767px) { .design-guide { padding-top: 2rem; } .guide-palette { grid-template-columns: repeat(2, minmax(0, 1fr)); } .surface-examples { grid-template-columns: 1fr; } .rhythm-list > div { grid-template-columns: 1fr; gap: 1rem; } }
   @media (prefers-reduced-motion: reduce) { .guide-primary, .guide-secondary { transition: none; } }
+  .guide-hero > :not(:global(.guide-signature)) { position: relative; z-index: 1; }
+  :global(.guide-signature.ui-particles) { position: absolute; inset: 0; min-height: 0; pointer-events: none; opacity: .25; background: none; border: 0; border-radius: 0; z-index: 0; }
+  @media (prefers-reduced-motion: reduce) { :global(.guide-signature) { display: none; } }
 </style>

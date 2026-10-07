@@ -1,0 +1,66 @@
+{
+  "tool": "Built-in imagegen",
+  "created": "2026-10-07",
+  "artworks": [
+    {
+      "file": "tide-dark-desktop.png",
+      "reference": null,
+      "prompt": "Use case: stylized-concept\nAsset type: premium desktop wallpaper, landscape 16:9, 3840 x 2160.\nCreate a breathtaking yet restrained abstract wallpaper titled \"Tide / midnight\". Extreme close-up of a continuous wide sculptural sheet of liquid satin, flowing in two or three immense soft sweeping folds from lower left across the lower middle and curling up at the right edge. It feels like a macro photograph of silk and anodized titanium merging, with physically convincing three-dimensional curvature and very soft brushed microtexture. Deep ink-purple background (#110c1d), violet and dark aubergine body, thin luminous lavender edges with a tiny restrained silver-blue reflection. Broad shadows, beautiful smooth gradients, precise refined art direction, elegant cinematic studio lighting. Sculptural flowing landscape, not an isolated object on a pedestal. The upper third is calm uninterrupted dark negative space for desktop usability. Full-bleed composition with forms continuing beyond the frame. Sophisticated, tactile, quiet, not busy. No text, no logo, no watermark, no border, no UI, no stars, no particles, no neon glow, no ring or torus, no obvious vector shapes. One single finished artwork, not a collage or mockup. Generate at 3840 x 2160 if supported."
+    },
+    {
+      "file": "dune-dark-desktop.png",
+      "reference": null,
+      "prompt": "Use case: stylized-concept. Create a single premium desktop wallpaper, wide 16:9 landscape, ideally 3840x2160. \"Dune / midnight\". A cinematic fine-art photograph of an impossible violet desert in the last blue hour. Three immense immaculate sculpted sand ridges sweep in sinuous diagonal curves across the lower two thirds, the nearest ridge entering from bottom left, the second curling gracefully into the distance at the right. Deep aubergine shadows, muted violet sand, slender lilac dusk highlights along the crests. Tactile impossibly fine wind-combed sand, mostly smooth at desktop scale. Almost-black indigo-violet sky filling the upper third, soft atmospheric depth, horizon fading into darkness. Quiet, sensual, spacious, carefully composed, premium photographic realism. Subtle restrained color, broad smooth surfaces with exquisite curved edge lighting. No objects, no moons, no stars, no people, no plants, no structures, no logos, no text, no watermark, no particles, no neon. A beautiful landscape you would actually use all day as a wallpaper, full bleed, not a mockup or collage."
+    },
+    {
+      "file": "veil-light-desktop.png",
+      "reference": null,
+      "prompt": "Use case: stylized-concept. One exquisite high-end abstract desktop wallpaper, 16:9 landscape at 3840x2160 if possible. \"Veil / daylight\": macro photography of two or three broad curved translucent frosted optical-glass sheets, silky and fluid rather than rigid, overlapping like gentle waves. Forms enter from lower left and sweep across center down to lower right, softly bending out of frame. Milk-white lavender background, luminous pearl, lilac, muted violet refractions through thick edges and a very subtle silver-blue spectral edge. Huge soft sculptural curves, thin razor-precise rims, beautiful soft diffused studio light, physical glass with delicate translucency, sophisticated material depth. Upper third remains quiet pale lavender negative space, luminous but not blown out. Refined calm beauty, something between a fine-art macro photograph and a premium industrial design campaign. No isolated object floating on a floor, no ring, no torus, no sphere, no childish blob, no text, logo, border, watermark, UI, collage, rainbow, neon or particles. Fill the entire frame with the composition."
+    },
+    {
+      "file": "tide-light-desktop.png",
+      "reference": "tide-dark-desktop.png",
+      "prompt": "Create the daylight companion to this exact wallpaper. Preserve the landscape composition and same flowing forms. Change lighting and palette only: pearl and silver-lilac satin, soft lavender shadows, warm off-white/lavender background #f8f6fd, broad diffused daylight. Keep real three-dimensional soft folds and restrained violet edges, a beautiful bright desktop wallpaper. No text or marks. Landscape 16:9."
+    },
+    {
+      "file": "tide-dark-mobile.png",
+      "reference": "tide-dark-desktop.png",
+      "prompt": "Recompose this artwork as a tall portrait phone wallpaper, aspect 9:19.5. Preserve its midnight purple satin material and cinematic silver-lilac highlights. Create a natural flowing diagonal S-shaped fold through the lower two thirds, immense full-bleed sweeping folds extending out of frame. Keep the upper 30 percent calm indigo-black for a lock-screen clock. Make it a composed portrait companion, not a narrow crop of the landscape. No text, logo, UI or marks."
+    },
+    {
+      "file": "tide-light-mobile.png",
+      "reference": "tide-dark-desktop.png",
+      "prompt": "Create the daylight portrait phone companion to this wallpaper, 9:19.5 vertical. Same tactile flowing satin folds but pearl-silver and pale lavender, softly lit from a huge studio window, luminous off-white/lavender background #f8f6fd, lilac shadows and violet edges. One graceful diagonal S curve in the lower two thirds, folds continuing outside the frame. Upper 30 percent is quiet pale lavender for clock space. Sophisticated soft material depth. No text, marks, objects, UI or logo."
+    },
+    {
+      "file": "dune-light-desktop.png",
+      "reference": "dune-dark-desktop.png",
+      "prompt": "Create the daylight companion of this exact desert wallpaper. Preserve these graceful sculpted sand ridges and landscape composition. Soft pale lilac sand, delicate lavender shadows, warm pearl dawn light grazing the crests, misty off-white/lavender sky. Muted violet photographic color grading, restrained highlights, fine sand texture. Bright airy, believable fine-art landscape photograph, no visible sun, no objects, no stars, no text or logos. Wide 16:9."
+    },
+    {
+      "file": "dune-dark-mobile.png",
+      "reference": "dune-dark-desktop.png",
+      "prompt": "Recompose this violet blue-hour desert as a beautiful tall 9:19.5 portrait phone wallpaper. Preserve the photographic mood, dark aubergine sand, fine wind ridges, and muted lilac light. A single magnificent S-shaped dune crest winds from bottom left into the middle distance, with one supporting dark ridge. The upper 35% is spacious deep indigo night sky with a whisper of violet dusk, no sun or stars. Carefully designed vertical composition, not a narrow landscape crop. Full bleed, no UI, text, logo or watermark."
+    },
+    {
+      "file": "dune-light-mobile.png",
+      "reference": "dune-dark-desktop.png",
+      "prompt": "Create the daylight tall 9:19.5 portrait companion of this violet desert wallpaper. Delicate pale lilac sand dunes, subtle lavender shadows, soft pearl dawn light, finely wind-combed texture. One graceful S-shaped ridge winds from bottom left towards middle distance, one supporting ridge, spacious upper 35% pale lavender-white sky for a phone clock. Bright and serene, natural fine-art photographic realism, purple family but restrained. Carefully composed vertical landscape, no sun, stars, people, structures, text, UI, logo or watermark."
+    },
+    {
+      "file": "veil-dark-desktop.png",
+      "reference": "veil-light-desktop.png",
+      "prompt": "Create the midnight companion of this exact glass wallpaper. Preserve the wide 16:9 composition and graceful curved frosted glass waves. Change to deep black-indigo background #110c1d and smoky translucent amethyst glass with muted purple translucency, refined silver-lavender rims and delicate violet light refracting inside. Restrained luminous edges, broad nearly black areas, cinematic physically convincing material, no neon bloom. Upper third quiet. No text, marks, UI or new objects."
+    },
+    {
+      "file": "veil-dark-mobile.png",
+      "reference": "veil-light-desktop.png",
+      "prompt": "Create a midnight portrait phone companion, tall 9:19.5 aspect. Two flowing sheets of translucent frosted amethyst glass sweep gracefully from lower left towards center right, edge curves dissolving into deep indigo-black. Delicate silver-violet rims and restrained violet refraction, beautiful physical translucent material depth. Upper 35% dark empty space for phone clock; sculptural forms through lower two thirds, carefully composed vertically, not a crop. Dark calm and luxurious. No neon, text, logo, UI, watermark, floating object, torus or border."
+    },
+    {
+      "file": "veil-light-mobile.png",
+      "reference": "veil-light-desktop.png",
+      "prompt": "Recompose this artwork as a tall 9:19.5 portrait phone wallpaper. Preserve pearl-lavender frosted optical glass, translucency, luminous silver-lilac thin edges, soft diffused daylight. Two broad sweeping glass sheets bend gracefully in a diagonal S curve from lower left towards center right, full bleed out of the frame, quiet upper 35% pale lavender space for the lock-screen clock. Sophisticated vertical composition, not a narrow landscape crop. No text, UI, logo, watermark, border or added objects."
+    }
+  ]
+}

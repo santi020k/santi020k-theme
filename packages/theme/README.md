@@ -12,7 +12,13 @@ Use this package when a website, app, or theme surface needs the public Santi020
 
 The Sculpted direction follows the personal website v4: locally served Montserrat, a 72rem grid, medium-weight headings, solid surfaces, neutral primary actions, and violet focus. Use the [canonical visual guide](../../docs/brand-guidelines.md) and [live specimens](https://theme.santi020k.com/design/) when composing a new surface.
 
-New wallpapers live under `assets/wallpapers/sculpted/` with Fold, Orbit, and Monolith families in light/dark and desktop/mobile formats. Existing wallpaper paths remain available as the Classic collection. The gallery provides separate collection filters and ZIP downloads.
+Current wallpapers live under `assets/wallpapers/sculpted-v2/`: Tide (flowing satin), Dune
+(violet landscapes), and Veil (frosted glass), each with light/dark desktop and phone artwork.
+PNG and WEBP display exports are available individually; the collection ZIP contains all twelve
+WEBP files. Export dimensions are 3840 × 2160 and 1170 × 2532, resized from native raster masters.
+See [artwork sources and prompts](../../artwork/sculpted-v2/README.md) for regeneration details.
+Earlier Sculpted files under `assets/wallpapers/sculpted/`, their ZIP, and Classic paths remain
+available. The gallery features the current edition alongside the Classic collection.
 
 ## Install
 

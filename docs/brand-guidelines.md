@@ -320,7 +320,16 @@ of contents. Preserve command copy, code tabs, installation instructions, pagina
 navigation when restyling. Sidebars may become a horizontal mobile navigation strip. Theme
 previews must continue to show actual product colors rather than decorative website colors.
 
-Transitions last 180–300ms and affect color, border, or artwork only. Do not lift entire cards.
+Use Lumen 4 `ScrollReveal` for a short, one-time content entrance and `RevealGroup` for a
+35ms stagger between theme previews. Keep reading content visible without JavaScript.
+Astro `ClientRouter` uses a 180ms fade with an immediate swap fallback, preserving appearance
+and native browser history. Rebind page controls on `astro:page-load` and dispose document/media
+listeners before swaps. Do not persist navigation with stale active links.
+
+The personal bubble signature uses Lumen `Particles` at low density, confined to the home and
+visual-guide heroes. Slow ambient drift is the only exception to the still-canvas rule. Keep it
+behind content, out of the accessibility tree, and away from documentation/code. Do not introduce
+pointer trails or page-wide parallax. Transitions last 180–300ms. Do not lift entire cards.
 Reduced motion disables decorative transitions, scaling, blinking, and smooth scrolling.
 Verify mobile and desktop, light and dark, keyboard focus, and horizontal overflow.
 
@@ -332,6 +341,19 @@ replace an existing downloadable asset with different artwork at the same URL. N
 use violet identity, generous negative space, and a restrained focal form; they are artwork,
 not alternate product logos. Pair dark and light options and preserve clear collection labels
 in galleries and download bundles.
+
+The current Sculpted edition features **Tide** (flowing satin), **Dune** (violet sand ridges),
+and **Veil** (frosted glass). Compose immersive, full-bleed scenes with convincing material,
+soft light, and depth. Avoid isolated flat shapes, badges, text, and logos. Leave quiet space
+for desktop icons and phone clocks. Light and dark editions share their subject; phone artwork
+is composed separately rather than cut from the center of a desktop image.
+
+Keep native raster masters and generation prompts in `artwork/sculpted-v2/`. The deterministic
+`pnpm run generate:wallpapers` pipeline exports PNG and WEBP display sizes to
+`packages/theme/assets/wallpapers/sculpted-v2/`. These are resized imagegen masters, not native
+4K renders or vector artwork; do not advertise SVG versions. The current ZIP contains WEBP
+files to keep the complete collection practical to download. Earlier Sculpted and Classic
+asset paths and archives remain intact.
 
 ## Voice And Copy
 

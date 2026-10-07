@@ -4,6 +4,7 @@ import { Image } from 'astro:assets'
 import { BackToTop, Button, ButtonLink, Card, Dialog, Eyebrow, Icon, Link } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
+import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 import { galleryAssets as assets } from '../data/gallery-assets.js'
@@ -34,6 +35,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en" data-santi020k-site="hub">
   <head>
+    <PageTransitions page="hub" />
     <meta charset="UTF-8" />
     <script is:inline>
       (function () {
@@ -91,10 +93,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div class="gallery-hero-copy">
           <Eyebrow class="eyebrow">Gallery & downloads</Eyebrow>
           <h1 id="gallery-hero-title">The Santi020k asset library.</h1>
-          <p class="lede">Quiet forms, soft light, and space to focus. Explore the new Sculpted wallpapers alongside the original Classic collection, banners, previews, and brand marks.</p>
+          <p class="lede">Tide, Dune, and Veil: flowing satin, violet landscapes, and frosted glass. Light and dark artwork for your desktop and phone, alongside the Classic collection and theme assets.</p>
           <div class="collection-downloads" aria-label="Collection downloads">
             <ButtonLink class="button button-primary" variant="primary" href="#asset-library">Browse all assets</ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-sculpted-wallpapers.zip" download>Sculpted wallpapers ZIP</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-sculpted-wallpapers-v2.zip" download>Sculpted WEBP pack</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-wallpapers.zip" download>Classic wallpapers ZIP</ButtonLink>
             <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-banners.zip" download>Banners ZIP</ButtonLink>
           </div>
@@ -112,7 +114,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
       <section id="asset-library" class="site-shell gallery-section" aria-labelledby="gallery-heading">
         <div class="gallery-toolbar">
-          <div class="gallery-toolbar-copy"><Eyebrow class="eyebrow">Asset library</Eyebrow><h2 id="gallery-heading">Choose a collection.</h2><p>Preview each asset at full size, then download only the format you need.</p></div>
+          <div class="gallery-toolbar-copy"><Eyebrow class="eyebrow">Asset library</Eyebrow><h2 id="gallery-heading">Choose a collection.</h2><p>Preview each asset at full size, then download PNG or WEBP. Sculpted display exports are resized from the original artwork.</p></div>
           <div class="gallery-controls">
             <div class="filter-group" role="group" aria-label="Filter assets">
               {['all', ...categories].map((filter, index) => <Button class="filter-button" type="button" data-filter={filter} aria-pressed={index === 0 ? 'true' : 'false'}><span>{filter === 'all' ? 'All assets' : filter.charAt(0).toUpperCase() + filter.slice(1)}</span><span class="filter-count" aria-hidden="true">{filter === 'all' ? assets.length : assets.filter(asset => asset.category === filter || ('collection' in asset && asset.collection === filter)).length}</span></Button>)}
