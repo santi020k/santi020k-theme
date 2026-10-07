@@ -185,7 +185,17 @@ bindPageLifecycle('vscode', () => {
   let currentPreviewTheme = 'dark'
   let currentPreviewVariant = 'normal'
 
-  // eslint-disable-next-line complexity -- Preview state synchronization intentionally handles each optional DOM control.
+  const syncPreviewSelect = (selector, value) => {
+    const select = document.querySelector(`${selector} select`)
+
+    if (!(select instanceof HTMLSelectElement) || select.value === value) return
+
+    select.value = value
+
+    // Notify Lumen without bubbling into the user-selection handlers.
+    select.dispatchEvent(new Event('change'))
+  }
+
   const updatePreview = (lang = currentPreviewLang, theme = currentPreviewTheme, variant = currentPreviewVariant) => {
     currentPreviewLang = lang
 
@@ -201,9 +211,6 @@ bindPageLifecycle('vscode', () => {
     const container = document.querySelector('.editor-preview')
     const codeEl = document.querySelector('.preview-code')
     const filenameEl = document.querySelector('.preview-filename')
-    const langSelect = document.querySelector('.preview-lang-select')
-    const themeSelect = document.querySelector('.preview-theme-select')
-    const variantSelect = document.querySelector('.preview-variant-select')
 
     if (container) {
       container.setAttribute('data-preview-theme', theme)
@@ -215,11 +222,11 @@ bindPageLifecycle('vscode', () => {
 
     if (codeEl) codeEl.innerHTML = renderSnippet(data, previewThemeTypes.get(theme))
 
-    if (langSelect) langSelect.value = lang
+    syncPreviewSelect('.preview-lang-select', lang)
 
-    if (themeSelect) themeSelect.value = theme
+    syncPreviewSelect('.preview-theme-select', theme)
 
-    if (variantSelect) variantSelect.value = variant
+    syncPreviewSelect('.preview-variant-select', variant)
   }
 
   // ── Boot ──────────────────────────────────────────────────────────────────────
@@ -243,12 +250,16 @@ bindPageLifecycle('vscode', () => {
 
   if (langSelect) {
     langSelect.addEventListener('change', e => {
+      if (!(e.target instanceof HTMLSelectElement)) return
+
       updatePreview(e.target.value, currentPreviewTheme, currentPreviewVariant)
     })
   }
 
   if (themeSelect) {
     themeSelect.addEventListener('change', e => {
+      if (!(e.target instanceof HTMLSelectElement)) return
+
       manualPreviewTheme = true
 
       updatePreview(currentPreviewLang, e.target.value, currentPreviewVariant)
@@ -257,6 +268,8 @@ bindPageLifecycle('vscode', () => {
 
   if (variantSelect) {
     variantSelect.addEventListener('change', e => {
+      if (!(e.target instanceof HTMLSelectElement)) return
+
       updatePreview(currentPreviewLang, currentPreviewTheme, e.target.value)
     })
   }
