@@ -147,3 +147,5 @@ Please report vulnerabilities privately using the [security policy](SECURITY.md)
 ## License
 
 MIT. See [LICENSE](LICENSE). Created and maintained by [Santiago Molina](https://santi020k.com).
+
+Open Graph generation uses the published `@santi020k/og` 1.2.0 package. The shared renderer supplies the updated preset composition and safer image handling while preserving the project's brand and existing image paths. Validate the generated images before release.
