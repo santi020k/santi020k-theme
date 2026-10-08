@@ -1,10 +1,18 @@
 <p align="center">
-  <a href="../../README.md"><img src="../../packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+  <a href="../../README.md">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="../../docs/assets/readme/workspace-dark.svg">
+      <img src="../../docs/assets/readme/workspace-light.svg" alt="Santi020k Theme — Calm contrast. A violet thread through your tools." width="1200" height="220">
+    </picture>
+  </a>
 </p>
 
-<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
-
 <h1 align="center">VS Code website</h1>
+
+<p align="center">
+  <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-13967e?style=flat-square" alt="License: MIT"></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/built_with-Astro-6319be?style=flat-square" alt="Built With: Astro"></a>
+</p>
 
 <p align="center">
   <a href="../../README.md">Project overview</a> ·
@@ -33,14 +41,14 @@ The page should make the theme visible immediately, link directly to Marketplace
 
 Run commands from the repository root.
 
-| Command | What it does |
-| --- | --- |
-| `pnpm run site:dev` | Starts the consolidated site dev server on port 4174 |
-| `pnpm run site:build` | Builds the consolidated production site |
-| `pnpm run site:preview` | Previews the consolidated production build on port 4174 |
+| Command                         | What it does                                                          |
+| ------------------------------- | --------------------------------------------------------------------- |
+| `pnpm run site:dev`             | Starts the consolidated site dev server on port 4174                  |
+| `pnpm run site:build`           | Builds the consolidated production site                               |
+| `pnpm run site:preview`         | Previews the consolidated production build on port 4174               |
 | `pnpm run sync:website-version` | Syncs website JSON-LD version data from the VS Code extension package |
-| `pnpm run test` | Runs repo tests, including website version sync tests |
-| `pnpm run validate` | Runs the full monorepo validation suite |
+| `pnpm run test`                 | Runs repo tests, including website version sync tests                 |
+| `pnpm run validate`             | Runs the full monorepo validation suite                               |
 
 The interactive editor preview separates the filename from an open toolbar: the language sits on the left as an editor tab, with theme and style controls on the right. Controls size to their values and wrap when space is limited. Lumen custom select lists provide keyboard navigation, type-to-jump, a checkmark for the selected option, and scrollable options, with compact 36px controls and 44px targets on touch devices. Hidden native controls synchronize preview state and provide a fallback when JavaScript is unavailable. Colors follow the selected editor theme independently of the page theme.
 
@@ -54,7 +62,6 @@ The interactive editor preview separates the filename from an open toolbar: the 
 - Read [`../../docs/brand-guidelines.md`](../../docs/brand-guidelines.md) before changing copy, color, imagery, or product naming.
 
 For page composition and verification notes, see [`WEBSITE.md`](WEBSITE.md).
-
 
 ## Resources
 

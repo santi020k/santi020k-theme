@@ -12,4 +12,4 @@
 "santi020k-zed-theme": patch
 ---
 
-Refresh package READMEs with the shared theme identity, section navigation, and resource links. Preserve installation instructions and marketplace image URLs, and replace an unavailable Chrome screenshot with the product preview link.
+Refresh package READMEs with the shared theme identity, section navigation, and resource links. Preserve installation instructions and marketplace image URLs, and replace an unavailable Chrome screenshot with the product preview link. Add full-width light and dark banners and a centered badge row to the root, app, and package guides.

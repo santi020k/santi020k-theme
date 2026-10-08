@@ -1,10 +1,18 @@
 <p align="center">
-  <a href="../../README.md"><img src="../../packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+  <a href="../../README.md">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="../../docs/assets/readme/workspace-dark.svg">
+      <img src="../../docs/assets/readme/workspace-light.svg" alt="Santi020k Theme — Calm contrast. A violet thread through your tools." width="1200" height="220">
+    </picture>
+  </a>
 </p>
 
-<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
-
 <h1 align="center">Codex website</h1>
+
+<p align="center">
+  <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-13967e?style=flat-square" alt="License: MIT"></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/built_with-Astro-6319be?style=flat-square" alt="Built With: Astro"></a>
+</p>
 
 <p align="center">
   <a href="../../README.md">Project overview</a> ·
@@ -36,13 +44,13 @@ The consolidated development and preview servers use `http://127.0.0.1:4174`.
 
 ## Source map
 
-| Area | Responsibility |
-| --- | --- |
-| [src/pages/index.astro](src/pages/index.astro) | Product page. |
-| [src/main.js](src/main.js) | Page interactions. |
-| [src/styles.css](src/styles.css) | Product-specific styles. |
-| [Theme package](../../packages/santi020k-codex-theme/README.md) | Generated presets and validation. |
-| [Site hub](../website/README.md) | Consolidated build and navigation. |
+| Area                                                            | Responsibility                     |
+| --------------------------------------------------------------- | ---------------------------------- |
+| [src/pages/index.astro](src/pages/index.astro)                  | Product page.                      |
+| [src/main.js](src/main.js)                                      | Page interactions.                 |
+| [src/styles.css](src/styles.css)                                | Product-specific styles.           |
+| [Theme package](../../packages/santi020k-codex-theme/README.md) | Generated presets and validation.  |
+| [Site hub](../website/README.md)                                | Consolidated build and navigation. |
 
 Keep copy-ready theme values aligned with the package generator and follow the
 [brand guide](../../docs/brand-guidelines.md).

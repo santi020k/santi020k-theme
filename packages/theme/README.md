@@ -1,10 +1,18 @@
 <p align="center">
-  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md"><img src="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/docs/assets/readme/workspace-dark.svg">
+      <img src="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/docs/assets/readme/workspace-light.svg" alt="Santi020k Theme — Calm contrast. A violet thread through your tools." width="1200" height="220">
+    </picture>
+  </a>
 </p>
 
-<p align="center"><a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Santi020k Theme</a></p>
-
 <h1 align="center">Tokens and assets</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@santi020k/theme"><img src="https://img.shields.io/npm/v/@santi020k/theme?style=flat-square&amp;color=6319be" alt="Published npm version"></a>
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-13967e?style=flat-square" alt="License: MIT"></a>
+</p>
 
 <p align="center">
   <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Project overview</a> ·
@@ -85,22 +93,22 @@ This package is ESM-only and expects Node `>=22.18.0`.
 
 ## Exports
 
-| Export | Use it for |
-| --- | --- |
-| `@santi020k/theme` | JS tokens, metadata, asset lookup, Chrome theme helpers |
-| `@santi020k/theme/site` | Shared website theme and navigation helpers |
-| `@santi020k/theme/site.css` | Shared website-ready color and typography variables |
-| `@santi020k/theme/typography.css` | Shared Montserrat font-family variables |
-| `@santi020k/theme/tokens.css` | CSS custom properties and Tailwind v4 `@theme` values |
-| `@santi020k/theme/tokens.json` | Raw token data |
-| `@santi020k/theme/shiki` | Typed dark/light and high-contrast Shiki theme exports |
-| `@santi020k/theme/shiki/santi020k-dark.json` | Shiki-ready dark VS Code theme JSON |
-| `@santi020k/theme/shiki/santi020k-hc-dark.json` | Shiki-ready high-contrast dark VS Code theme JSON |
-| `@santi020k/theme/shiki/santi020k-hc-light.json` | Shiki-ready high-contrast light VS Code theme JSON |
-| `@santi020k/theme/shiki/santi020k-light.json` | Shiki-ready light VS Code theme JSON |
-| `@santi020k/theme/tailwind` | Tailwind-compatible theme object |
-| `@santi020k/theme/assets/*` | Package-relative static asset imports |
-| `@santi020k/theme/docs/*` | Packaged documentation such as brand guidance |
+| Export                                           | Use it for                                              |
+| ------------------------------------------------ | ------------------------------------------------------- |
+| `@santi020k/theme`                               | JS tokens, metadata, asset lookup, Chrome theme helpers |
+| `@santi020k/theme/site`                          | Shared website theme and navigation helpers             |
+| `@santi020k/theme/site.css`                      | Shared website-ready color and typography variables     |
+| `@santi020k/theme/typography.css`                | Shared Montserrat font-family variables                 |
+| `@santi020k/theme/tokens.css`                    | CSS custom properties and Tailwind v4 `@theme` values   |
+| `@santi020k/theme/tokens.json`                   | Raw token data                                          |
+| `@santi020k/theme/shiki`                         | Typed dark/light and high-contrast Shiki theme exports  |
+| `@santi020k/theme/shiki/santi020k-dark.json`     | Shiki-ready dark VS Code theme JSON                     |
+| `@santi020k/theme/shiki/santi020k-hc-dark.json`  | Shiki-ready high-contrast dark VS Code theme JSON       |
+| `@santi020k/theme/shiki/santi020k-hc-light.json` | Shiki-ready high-contrast light VS Code theme JSON      |
+| `@santi020k/theme/shiki/santi020k-light.json`    | Shiki-ready light VS Code theme JSON                    |
+| `@santi020k/theme/tailwind`                      | Tailwind-compatible theme object                        |
+| `@santi020k/theme/assets/*`                      | Package-relative static asset imports                   |
+| `@santi020k/theme/docs/*`                        | Packaged documentation such as brand guidance           |
 
 ## CSS Tokens
 
@@ -226,11 +234,11 @@ Use these helpers instead of duplicating Chrome color mappings in app or package
 
 ## Development
 
-| Command | What it does |
-| --- | --- |
-| `pnpm --filter @santi020k/theme run build` | Syntax-checks the package entry points |
-| `pnpm --filter @santi020k/theme run validate` | Runs the package validation shortcut |
-| `pnpm run validate` | Runs the full monorepo validation suite |
+| Command                                       | What it does                            |
+| --------------------------------------------- | --------------------------------------- |
+| `pnpm --filter @santi020k/theme run build`    | Syntax-checks the package entry points  |
+| `pnpm --filter @santi020k/theme run validate` | Runs the package validation shortcut    |
+| `pnpm run validate`                           | Runs the full monorepo validation suite |
 
 ## Brand Source
 
