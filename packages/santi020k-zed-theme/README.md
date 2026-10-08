@@ -1,4 +1,19 @@
-# santi020k-zed-theme
+<p align="center">
+  <a href="../../README.md"><img src="../theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Zed theme</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+**On this page:** [Included themes](#included-themes) · [Development](#development) · [Using locally in Zed](#using-locally-in-zed) · [Publishing](#publishing) · [Resources](#resources)
 
 Santi020k Theme for the Zed editor.
 
@@ -38,3 +53,7 @@ Required GitHub configuration:
 - Secret `ZED_EXTENSIONS_TOKEN`: a classic personal access token owned by the fork owner, with the `public_repo` scope. It must be able to push to your fork and create pull requests in `zed-industries/extensions`. A fine-grained token scoped only to the fork can push the branch but cannot open the upstream pull request.
 - Variable `ZED_EXTENSIONS_FORK`: your fork, for example `santi020k/extensions`.
 - Optional variable `ZED_EXTENSIONS_HEAD`: the fork owner used in the upstream PR head. Defaults to the repository owner.
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

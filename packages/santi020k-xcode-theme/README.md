@@ -1,4 +1,19 @@
-# Santi020k Theme for Xcode
+<p align="center">
+  <a href="../../README.md"><img src="../theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Xcode theme</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+**On this page:** [Install](#install) · [Validate](#validate) · [Resources](#resources)
 
 <!-- cspell:ignore xccolortheme -->
 
@@ -22,3 +37,7 @@ pnpm --filter santi020k-xcode-theme run validate
 ```
 
 Validation regenerates both themes and reads the serialized native colors. Editor and console text must meet 4.5:1 contrast on their canvas and selection backgrounds; syntax also remains readable on the highlighted current line. Comments retain a 3:1 minimum. On macOS, validation also runs Apple's property-list validator.
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

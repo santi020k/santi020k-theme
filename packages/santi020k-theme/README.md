@@ -1,4 +1,33 @@
-# Santi020k Theme
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md"><img src="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Santi020k Theme</a></p>
+
+<h1 align="center">VS Code theme</h1>
+
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Project overview</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/santi020k-theme/package.json">Package manifest</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/santi020k-theme/CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+<details>
+<summary>On this page</summary>
+
+- [Highlights](#highlights)
+- [Install](#install)
+- [Variants](#variants)
+- [Preview Settings](#preview-settings)
+- [Development](#development)
+- [Release](#release)
+- [Related Packages](#related-packages)
+- [Support](#support)
+- [License](#license)
+- [Resources](#resources)
+
+</details>
 
 <!-- Badge URLs: do NOT change these. For VS Marketplace version use badgen.net (shields.io visual-studio-marketplace is retired). shields.io is used for Open VSX and CI. vsmarketplacebadges.dev is dead. See AGENTS.md §README Rules. -->
 [![Visual Studio Marketplace Version](https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?color=945df4&icon=terminal)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
@@ -114,3 +143,7 @@ If this theme makes your editor a nicer place to work, you can support ongoing m
 ## License
 
 MIT. See the repository [LICENSE](../../LICENSE).
+
+## Resources
+
+[Project overview](https://github.com/santi020k/santi020k-theme/blob/main/README.md) · [Contributing](https://github.com/santi020k/santi020k-theme/blob/main/CONTRIBUTING.md) · [License](https://github.com/santi020k/santi020k-theme/blob/main/LICENSE)

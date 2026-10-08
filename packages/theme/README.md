@@ -1,4 +1,36 @@
-# @santi020k/theme
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md"><img src="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Tokens and assets</h1>
+
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Project overview</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/theme/package.json">Package manifest</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/theme/CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+<details>
+<summary>On this page</summary>
+
+- [Visual direction](#visual-direction)
+- [Install](#install)
+- [Exports](#exports)
+- [CSS Tokens](#css-tokens)
+- [Typography](#typography)
+- [JavaScript](#javascript)
+- [Shiki Themes](#shiki-themes)
+- [Assets](#assets)
+- [Chrome Theme Helpers](#chrome-theme-helpers)
+- [Development](#development)
+- [Brand Source](#brand-source)
+- [License](#license)
+- [Resources](#resources)
+
+</details>
 
 Shared Santi020k Theme tokens, assets, metadata, and Chrome color mapping helpers.
 
@@ -207,3 +239,7 @@ The canonical brand guide lives in [`../../docs/brand-guidelines.md`](../../docs
 ## License
 
 MIT.
+
+## Resources
+
+[Project overview](https://github.com/santi020k/santi020k-theme/blob/main/README.md) · [Contributing](https://github.com/santi020k/santi020k-theme/blob/main/CONTRIBUTING.md) · [License](https://github.com/santi020k/santi020k-theme/blob/main/LICENSE)

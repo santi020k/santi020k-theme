@@ -1,4 +1,32 @@
-# Santi020k Theme For Chrome
+<p align="center">
+  <a href="../../README.md"><img src="../theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Chrome theme</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+<details>
+<summary>On this page</summary>
+
+- [Install](#install)
+- [Local Development](#local-development)
+- [Palette Sync](#palette-sync)
+- [Key Color Roles](#key-color-roles)
+- [Store Assets](#store-assets)
+- [Publishing](#publishing)
+- [Privacy](#privacy)
+- [License](#license)
+- [Resources](#resources)
+
+</details>
 
 [![Validate](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml/badge.svg)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
 [![Version](https://img.shields.io/github/package-json/v/santi020k/santi020k-theme?filename=packages%2Fsanti020k-chrome-theme%2Fpackage.json&color=752df0)](https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-chrome-theme)
@@ -9,7 +37,7 @@ Chrome browser themes that match the Santi020k VS Code palette. The dark listing
 
 Website: [chrome.santi020k.com](https://chrome.santi020k.com)
 
-![Santi020k Chrome Theme Preview](store/assets/screenshot-main.png)
+[Explore the Chrome theme](https://theme.santi020k.com/chrome/) for the product preview and store links.
 
 ## Install
 
@@ -67,7 +95,7 @@ Store copy and image specs live with this package:
 - [`store/PUBLISHING.md`](store/PUBLISHING.md) has the submission checklist and Dashboard values.
 - [`store/listing-en.md`](store/listing-en.md) has copy-paste Web Store listing text.
 - [`store/image-specs.md`](store/image-specs.md) documents screenshot and promo tile sizes.
-- `store/assets/` contains current listing screenshots and promotional images.
+- Prepare listing screenshots and promotional images using the [store image specifications](store/image-specs.md).
 
 ## Publishing
 
@@ -91,3 +119,7 @@ This extension changes browser appearance only. It collects no data, requests no
 ## License
 
 MIT. See the repository [LICENSE](../../LICENSE).
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

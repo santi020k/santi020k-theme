@@ -1,4 +1,30 @@
-# @santi020k/theme-core
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md"><img src="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Foundation helpers</h1>
+
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Project overview</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/theme-core/package.json">Package manifest</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/theme-core/CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+<details>
+<summary>On this page</summary>
+
+- [Install](#install)
+- [Exports](#exports)
+- [Token Helpers](#token-helpers)
+- [Site Helpers](#site-helpers)
+- [Development](#development)
+- [License](#license)
+- [Resources](#resources)
+
+</details>
 
 Small shared helpers and types for Santi020k token packages, asset manifests, and static websites.
 
@@ -79,3 +105,7 @@ unavailable browser storage falls back to the operating-system appearance.
 ## License
 
 MIT.
+
+## Resources
+
+[Project overview](https://github.com/santi020k/santi020k-theme/blob/main/README.md) · [Contributing](https://github.com/santi020k/santi020k-theme/blob/main/CONTRIBUTING.md) · [License](https://github.com/santi020k/santi020k-theme/blob/main/LICENSE)

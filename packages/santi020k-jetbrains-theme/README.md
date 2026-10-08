@@ -1,4 +1,19 @@
-# Santi020k Theme for JetBrains IDEs
+<p align="center">
+  <a href="../../README.md"><img src="../theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">JetBrains theme</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+**On this page:** [Build and install](#build-and-install) · [Validate](#validate) · [Resources](#resources)
 
 A complete dark and light IntelliJ Platform theme plugin for Android Studio, IntelliJ IDEA, WebStorm, PyCharm, PhpStorm, RubyMine, CLion, GoLand, Rider, and other compatible JetBrains IDEs.
 
@@ -25,3 +40,7 @@ pnpm --filter santi020k-jetbrains-theme run validate
 ```
 
 Validation checks plugin metadata, UI themes, editor schemes, required semantic coverage, contrast, and the installable JAR contents.
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

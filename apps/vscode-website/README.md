@@ -1,4 +1,19 @@
-# VS Code Theme Website
+<p align="center">
+  <a href="../../README.md"><img src="../../packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">VS Code website</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+**On this page:** [Stack](#stack) · [Commands](#commands) · [Maintenance Notes](#maintenance-notes) · [Resources](#resources)
 
 Astro source module for the [`santi020k-theme` VS Code page](https://theme.santi020k.com/vscode/) in the consolidated theme-family site.
 
@@ -39,3 +54,8 @@ The interactive editor preview separates the filename from an open toolbar: the 
 - Read [`../../docs/brand-guidelines.md`](../../docs/brand-guidelines.md) before changing copy, color, imagery, or product naming.
 
 For page composition and verification notes, see [`WEBSITE.md`](WEBSITE.md).
+
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

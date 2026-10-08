@@ -1,4 +1,19 @@
-# Santi020k Terminal Theme website
+<p align="center">
+  <a href="../../README.md"><img src="../../packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Terminal website</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+**On this page:** [Documentation interface](#documentation-interface) · [Resources](#resources)
 
 Astro source module for the [Terminal product route](https://theme.santi020k.com/terminal/) in the consolidated theme-family site. It presents the complete Terminal product and publishes dedicated guides for iTerm2 and Starship.
 
@@ -27,3 +42,8 @@ page label. Keep their 44px link targets, visible focus rings, and wrapping on n
 Verify the consolidated route at desktop and mobile widths in both appearances. Check
 arrow-key tab selection, copying a command, and manual copying when clipboard access is
 unavailable. The Starship palette choice persists under `santi020k-docs-palette`.
+
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

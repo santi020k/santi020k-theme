@@ -1,4 +1,19 @@
-# Zed Theme Website
+<p align="center">
+  <a href="../../README.md"><img src="../../packages/theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Zed website</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+**On this page:** [Stack](#stack) · [Commands](#commands) · [Maintenance Notes](#maintenance-notes) · [Resources](#resources)
 
 Astro source module for the [Santi020k Zed theme page](https://theme.santi020k.com/zed/) in the consolidated theme-family site.
 
@@ -32,3 +47,8 @@ Run commands from the repository root.
 - Read [`../../docs/brand-guidelines.md`](../../docs/brand-guidelines.md) before changing copy, color, imagery, or product naming.
 
 For deeper implementation notes, see [`WEBSITE.md`](WEBSITE.md).
+
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

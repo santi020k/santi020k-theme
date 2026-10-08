@@ -1,4 +1,19 @@
-# Santi020k Theme for Slack
+<p align="center">
+  <a href="../../README.md"><img src="../theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Slack theme</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+**On this page:** [Install](#install) · [Validate](#validate) · [Resources](#resources)
 
 Dark and light custom Slack themes mapped from the shared Santi020k palette.
 
@@ -17,3 +32,7 @@ pnpm --filter santi020k-slack-theme run validate
 ```
 
 The validator checks both legacy import strings, semantic role maps, mode parity, and important contrast pairs.
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

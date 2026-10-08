@@ -1,4 +1,30 @@
-# Santi020k Terminal Theme
+<p align="center">
+  <a href="../../README.md"><img src="../theme/assets/logos/logo-square.png" alt="Santi020k Theme" width="72"></a>
+</p>
+
+<p align="center"><a href="../../README.md">Santi020k Theme</a></p>
+
+<h1 align="center">Terminal theme</h1>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+<details>
+<summary>On this page</summary>
+
+- [Powerful Zsh setup](#powerful-zsh-setup)
+- [Homebrew releases](#homebrew-releases)
+- [Transparent iTerm2 profiles](#transparent-iterm2-profiles)
+- [Automatic light and dark mode](#automatic-light-and-dark-mode)
+- [Build and validate](#build-and-validate)
+- [Generated color presets](#generated-color-presets)
+- [Resources](#resources)
+
+</details>
 
 The terminal edition of Santi020k Theme combines matching terminal colors and a Powerline-style prompt:
 
@@ -92,3 +118,7 @@ The shared dark and light palette is generated for iTerm2, Ghostty, Kitty, WezTe
 | WezTerm | `wezterm/` |
 | Windows Terminal | `windows-terminal/` |
 | Alacritty | `alacritty/` |
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)
