@@ -1,0 +1,44 @@
+---
+import { ButtonLink, CopyButton, Eyebrow, Field, Icon, Label, Link, Select } from '@santi020k/lumen-astro'
+
+import { type bannerDesigns, bannerDownloadHref, bannerHref, bannerLayouts, bannerPreviewHref } from '../../../../artwork/banner-catalog.mjs'
+import { appearances, exportProfiles } from '../../../../artwork/wallpaper-catalog.mjs'
+
+interface Props { design: (typeof bannerDesigns)[number], modal?: boolean }
+
+const { design, modal = false } = Astro.props
+const defaultDownload = bannerDownloadHref(design.slug, 'dark', 'wide', 'webp-high')
+
+if (!defaultDownload) throw new Error(`Missing default download for ${design.slug}`)
+
+const prefix = `banner-${design.slug}`
+const variants = appearances.flatMap(appearance => bannerLayouts.map(layout => ({ appearance, layout, src: bannerPreviewHref(design.slug, appearance, layout.id) })))
+---
+<div class="wallpaper-workspace" data-banner-design={design.slug}>
+  <div>
+    <div class="wallpaper-stage banner-stage">
+      {variants.map((variant, index) => <img data-banner-preview data-appearance={variant.appearance} data-layout={variant.layout.id} src={variant.src} alt={`${design.alt}, ${variant.appearance} ${variant.layout.name.toLowerCase()}`} width={variant.layout.width / 2} height={variant.layout.height / 2} loading={modal || index !== 0 ? 'lazy' : 'eager'} hidden={index !== 0} />)}
+    </div>
+    <div class="wallpaper-caption">
+      <span data-banner-caption>Dark · Wide banner</span>
+      <div class="wallpaper-preview-actions">
+        {modal && <CopyButton data-banner-share variant="ghost" label={`Copy preview link for ${design.name}`} copiedLabel="Link copied" errorLabel="Could not copy. Copy the page address." value={`https://theme.santi020k.com/gallery/?banner=${design.slug}`}>Copy preview link</CopyButton>}
+        <Link href={modal ? bannerHref(design.slug) : '#all-downloads'} newTab={modal}>{modal ? 'Open in new tab' : 'All versions & downloads'} <Icon name={modal ? 'arrow-up-right' : 'arrow-down'} /></Link>
+      </div>
+    </div>
+  </div>
+  <aside class="wallpaper-download-panel" aria-labelledby={`${prefix}-heading`}>
+    <Eyebrow>Make it yours</Eyebrow><h2 id={`${prefix}-heading`}>A new look.<br /> In your format.</h2>
+    <form data-banner-form>
+      <Field><Label for={`${prefix}-appearance`}>Appearance</Label><Select id={`${prefix}-appearance`} name="appearance" value="dark" options={[{ label: 'Dark', value: 'dark' }, { label: 'Light', value: 'light' }]} /></Field>
+      <Field><Label for={`${prefix}-layout`}>Composition & size</Label><Select id={`${prefix}-layout`} name="layout" value="wide" options={bannerLayouts.map(layout => ({ label: layout.label, value: layout.id }))} /></Field>
+      <Field><Label for={`${prefix}-profile`}>Format & quality</Label><Select id={`${prefix}-profile`} name="profile" value="webp-high" options={exportProfiles.map(profile => ({ label: profile.label, value: profile.id }))} /></Field>
+      <ButtonLink class="wallpaper-download" variant="unstyled" href={defaultDownload} download data-banner-download><span>Download artwork</span><Icon name="download" /></ButtonLink>
+      <p class="wallpaper-selection" data-banner-selection aria-live="polite">Dark · Wide banner · 2160 × 720 · WEBP · High quality</p>
+    </form>
+    <p class="wallpaper-export-note">Wide banners and square covers are composed separately. AI-generated artwork, exported within its original resolution.</p>
+    {!modal && <noscript><p>Use the complete download list below to choose another version without JavaScript.</p></noscript>}
+  </aside>
+</div>
+<script>import '../scripts/banner-downloads'
+</script>

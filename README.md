@@ -166,6 +166,12 @@ The [iPhone setup guide](docs/iphone-setup.md) pairs existing Halo and Contour p
 
 ### Light and dark wallpaper pairs
 
+The [gallery](https://theme.santi020k.com/gallery/) also includes Studio and Orbit banners
+and square covers, each in light and dark. Their separately composed artwork downloads as
+2160 × 720 wide banners or 1200 × 1200 covers in PNG, JPG, or WEBP. Masters and prompts live
+in `artwork/banners-v1/`; `scripts/generate-banner-downloads.mjs` generates website exports.
+All eight current wallpaper designs, including Dune and Veil, remain in the main gallery.
+
 All eight paired gallery designs include a paired macOS HEIC download. Visit the
 [appearance guide](https://theme.santi020k.com/gallery/appearance/) for Mac setup and iPhone
 Shortcuts instructions. iPhone switching uses locally saved wallpaper pairs; it is not installed

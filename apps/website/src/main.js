@@ -41,10 +41,12 @@ bindPageLifecycle('hub', signal => {
       const selectedFilter = button.dataset.filter
       let visibleCount = 0
 
+      document.body.dataset.galleryFilter = selectedFilter
+
       for (const item of filterButtons) item.setAttribute('aria-pressed', String(item === button))
 
       for (const card of assetCards) {
-        const visible = selectedFilter === 'all' || card.dataset.category === selectedFilter || card.dataset.collection === selectedFilter
+        const visible = selectedFilter === 'all' || [card.dataset.category, card.dataset.collection, card.dataset.formats].includes(selectedFilter)
 
         card.hidden = !visible
 
