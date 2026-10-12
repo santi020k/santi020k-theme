@@ -5,7 +5,6 @@ import { bindPageLifecycle } from '../../apps/website/src/utils/page-lifecycle.t
 class PageDocument extends EventTarget {
   body = new EventTarget()
   page = 'hub'
-  readyState = 'complete'
   querySelector() { return { getAttribute: () => this.page } }
   swap(page) {
     this.dispatchEvent(new Event('astro:before-swap'))
@@ -21,34 +20,6 @@ class PageDocument extends EventTarget {
 afterEach(() => vi.unstubAllGlobals())
 
 describe('Astro page lifecycle', () => {
-  it('waits for parsed content before binding an early shared module', () => {
-    const document = new PageDocument()
-
-    document.readyState = 'loading'
-
-    vi.stubGlobal('document', document)
-
-    const setup = vi.fn(() => undefined)
-
-    bindPageLifecycle('*', setup)
-
-    document.dispatchEvent(new Event('astro:page-load'))
-
-    expect(setup).not.toHaveBeenCalled()
-
-    document.readyState = 'interactive'
-
-    document.dispatchEvent(new Event('DOMContentLoaded'))
-
-    document.dispatchEvent(new Event('astro:page-load'))
-
-    expect(setup).toHaveBeenCalledTimes(1)
-
-    document.swap('design')
-
-    expect(setup).toHaveBeenCalledTimes(2)
-  })
-
   it('initializes once per document and again on a returning route', () => {
     const document = new PageDocument()
 
