@@ -4,7 +4,7 @@ export const bindPageLifecycle = (page: string, setup: (signal: AbortSignal) => 
   let dispose: (() => void) | undefined
 
   const initialize = () => {
-    if (boundBody === document.body) return
+    if (document.readyState === 'loading' || boundBody === document.body) return
 
     if (page !== '*' && document.querySelector('meta[name="theme-page"]')?.getAttribute('content') !== page) return
 
@@ -28,6 +28,7 @@ export const bindPageLifecycle = (page: string, setup: (signal: AbortSignal) => 
     boundBody = undefined
   })
 
+  document.addEventListener('DOMContentLoaded', initialize, { once: true })
   document.addEventListener('astro:page-load', initialize)
 
   initialize()
