@@ -1,6 +1,6 @@
 # Theme family audit for v3.0.0
 
-This audit covers all nine native theme packages, the shared theme/core packages, and the six website workspaces. The current architecture remains appropriate: VS Code leads the palette, platform packages own native mappings and artifacts, shared packages own reusable tokens/helpers, and only `apps/website` deploys. Retained product website modules are an intentional migration boundary.
+This audit covers all eleven native theme packages, the shared theme/core packages, and the six website workspaces. The current architecture remains appropriate: VS Code leads the palette, platform packages own native mappings and artifacts, shared packages own reusable tokens/helpers, and only `apps/website` deploys. Retained product website modules are an intentional migration boundary.
 
 ## Improvements integrated locally
 
@@ -16,18 +16,18 @@ This audit covers all nine native theme packages, the shared theme/core packages
 
 ## Dependency and duplication findings
 
-Knip identifies no unused dependencies. Investigated root tools have real build, CLI, deployment, or peer uses, so no dependency was removed and no unrelated upgrade was made.
+Knip identifies no unused dependencies. Investigated root tools have real build, CLI, deployment, or peer uses. The subsequent release maintenance removes unused internal exports and the vulnerable transitive Open VSX dependency chain; it does not remove required platform tooling.
 
-The initial appearance copies were a useful consolidation because they caused observable divergence. Native validators still repeat contrast math; a future cleanup should model opaque and alpha-composited platform colors explicitly before sharing it. The VS Code validator already handles alpha differently. Keep platform mapping and release logic in their owning packages rather than centralizing unrelated host contracts.
+The initial appearance copies were a useful consolidation because they caused observable divergence. Native and VS Code validators now share `scripts/lib/color-contrast.mjs`, preserving opaque and alpha-composited color behavior and rejecting malformed input. Platform mapping and release logic remain in their owning packages.
 
 ## Verification boundaries
 
 Use `pnpm run validate`, `pnpm run validate:links`, frozen-lockfile installation, dependency audits, and Changesets status before publication. Browser smoke checks cover 13 routes with normal and blocked storage, repeated OS changes, explicit appearance selection, Astro navigation, and 390/1440px widths. A separate browser check covers all 12 preview theme/style combinations and settings clipboard success, denied access, and feedback reset. Local screenshots are temporary verification evidence.
 
-Xcode and Zed exports have automated validation. Native Xcode activation and before/after screenshots remain unverified: the installed host requires installing themes and changing the user's global appearance settings, and no isolated preview profile was established. Do not treat numeric contrast checks as native rendering evidence.
+Xcode and Zed exports have automated validation. On October 12, 2026, Santiago confirmed that native Xcode editor, selection, and console colors, Mac HEIC automatic switching, iPhone wallpaper switching, and Obsidian mobile dark/light rendering all worked. This is owner-reported verification; device and application versions were not supplied, and no native screenshots were captured in this release-check session. Local numeric contrast checks are separate evidence.
 
-Production dependencies have no known advisories in the current audit. The full audit still reports the existing high-severity `braces` advisory; no exemption was added. The root Node minimum also remains below the existing development lint stack's requirement, pending the documented owner runtime decision. These publication boundaries are tracked in [release preparation](release-v3.0.0.md).
+The October 12 full dependency audit reports no known vulnerabilities without advisory exemptions. The scoped `ovsx>@vscode/vsce` override removes the former `braces` dependency chain. The refreshed lockfile no longer includes the earlier lint dependency requiring Node 22.22.3; the root minimum remains Node 22.19.0 and local checks use Node 22.23.1. Current commands, evidence, and publication gates are tracked in [release preparation](release-v3.0.0.md#current-release-verification).
 
 ## Recovery
 
-Keep package exports, theme names, installation paths, and existing asset URLs stable. Revert the focused source changes and regenerate derived artifacts to recover a local regression. After publication, use the existing reviewed patch-release workflow rather than replacing tags or distributed artifacts.
+Installed theme names, installation paths, and wallpaper URLs remain stable. The deliberate v3 shared-package removals require the [compatibility migration](release-v3.0.0.md#removing-compatibility-shims-for-v3). Revert focused source changes and regenerate derived artifacts to recover a local regression. After publication, use the existing reviewed patch-release workflow rather than replacing tags or distributed artifacts.

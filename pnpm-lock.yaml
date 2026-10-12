@@ -69,6 +69,9 @@ catalogs:
     husky:
       specifier: ^9.1.7
       version: 9.1.7
+    jsdom:
+      specifier: ^27.4.0
+      version: 27.4.0
     knip:
       specifier: ^6.41.0
       version: 6.41.0
@@ -194,6 +197,9 @@ importers:
       husky:
         specifier: 'catalog:'
         version: 9.1.7
+      jsdom:
+        specifier: 'catalog:'
+        version: 27.4.0
       knip:
         specifier: 'catalog:'
         version: 6.41.0

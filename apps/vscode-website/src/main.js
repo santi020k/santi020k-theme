@@ -9,7 +9,7 @@ import {
 
 import { bindPageLifecycle } from '../../website/src/utils/page-lifecycle'
 
-bindPageLifecycle('vscode', () => {
+bindPageLifecycle('vscode', signal => {
   const PREVIEW_DATA = {
     dark: {
       normal: { filename: 'santi020k-dark-color-theme.json', themeName: 'santi020k dark' },
@@ -298,14 +298,12 @@ bindPageLifecycle('vscode', () => {
     }
   })
 
-  // Theme toggle button
-  if (toggle) {
-    toggle.addEventListener('ui:theme-change', () => {
-      syncSiteThemeToggle(toggle)
+  // Lumen bubbles changes from both the desktop and mobile appearance controls.
+  document.addEventListener('ui:theme-change', () => {
+    syncSiteThemeToggle(toggle)
 
-      syncPreviewWithSite()
-    })
-  }
+    syncPreviewWithSite()
+  }, { signal })
 
   // Clipboard handlers
   const setupClipboard = () => {

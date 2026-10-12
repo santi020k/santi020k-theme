@@ -92,6 +92,7 @@
     "cspell": "catalog:",
     "eslint": "catalog:",
     "husky": "catalog:",
+    "jsdom": "catalog:",
     "knip": "catalog:",
     "lint-staged": "catalog:",
     "ovsx": "catalog:",

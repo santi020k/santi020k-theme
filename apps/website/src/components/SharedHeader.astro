@@ -134,6 +134,7 @@ const isActive = (href: string) => {
 </Dialog>
 
 <script>
+import { bindAppearanceControls } from '../utils/appearance-controls'
 import { bindContextNavigation, bindHeaderScrollOffset } from '../utils/context-navigation'
 import { createMenuMotion } from '../utils/menu-motion'
 import { bindPageLifecycle } from '../utils/page-lifecycle'
@@ -189,6 +190,7 @@ const bindThemeMenu = (signal: AbortSignal) => {
 }
 
 bindPageLifecycle('*', signal => {
+  const disposeAppearanceControls = bindAppearanceControls()
   const disposeScrollOffset = bindHeaderScrollOffset()
   const disposeContextNavigation = bindContextNavigation(signal)
   const disposeThemeMenu = bindThemeMenu(signal)
@@ -294,6 +296,8 @@ bindPageLifecycle('*', signal => {
   desktopBreakpoint.addEventListener('change', () => closeNavigation(false, false), { signal })
 
   return () => {
+    disposeAppearanceControls()
+
     disposeScrollOffset()
 
     disposeContextNavigation()

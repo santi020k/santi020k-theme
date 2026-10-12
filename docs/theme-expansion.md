@@ -20,7 +20,7 @@ The native Neovim test extracts the downloadable archive to a temporary director
 
 Obsidian dark/light reading views and theme selection were checked in native Obsidian 1.14.4 on macOS using a disposable vault and profile. Captured example-note screenshots are tracked in the package's `assets/previews/` directory and used on the website. Native Neovim 0.12.5 passes locally. The Neovim page uses an explicitly labeled code preview, not a native screenshot.
 
-Physical iPhone wallpaper setup and Obsidian mobile rendering remain unverified. Website mobile viewport checks do not replace device testing. Installation guidance follows [Apple's customization guide](https://support.apple.com/guide/iphone/customize-apps-and-widgets-on-the-home-screen-iph385473442/ios) and [Obsidian Sync settings](https://help.obsidian.md/sync/settings).
+On October 12, 2026, Santiago confirmed successful physical iPhone wallpaper switching and Obsidian mobile dark/light rendering. Device and application versions were not supplied; this is owner-reported evidence, separate from automated archive tests and website mobile viewport checks. Installation guidance follows [Apple's customization guide](https://support.apple.com/guide/iphone/customize-apps-and-widgets-on-the-home-screen-iph385473442/ios) and [Obsidian Sync settings](https://help.obsidian.md/sync/settings).
 
 ## Distribution and recovery
 

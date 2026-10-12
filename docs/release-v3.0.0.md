@@ -2,6 +2,48 @@
 
 The integration branch is `release/v3.0.0`, based on `main` at `28b5dfc`. Changesets plans the VS Code package update from 2.1.4 to 3.0.0; version and changelog generation remains in the existing GitHub release workflow. This candidate is not a published release.
 
+## Current release verification
+
+October 12, 2026: the final release candidate passes the frozen-lockfile install,
+full dependency audit, and `pnpm run validate` on Node 22.23.1 with pnpm 10.34.6.
+The validation includes 231 tests across 44 files, strict types, zero-warning lint,
+spelling, native theme validators, builds, and VSIX packaging. SEO covers 35 pages
+with no errors or warnings. `pnpm run validate:links` checks 2061 local references
+and 47 external URLs. `pnpm run validate:appearance` validates all eight HEIC pairs,
+and the isolated native Neovim test passes with `REQUIRE_NATIVE_NEOVIM=1` on 0.12.5.
+
+Changesets plans VS Code 3.0.0 and both linked shared packages, `@santi020k/theme`
+and `@santi020k/theme-core`, at 3.0.0. Other ports and websites follow their own
+changesets. Package manifests retain their current versions until the existing
+Changesets version pull request runs; the locally packaged VSIX is not a published
+3.0.0 artifact. The compatibility migration below is required for shared-package
+consumers.
+
+Browser smoke checks on the production build pass for gallery previews and keyboard
+download selection, mobile navigation, appearance persistence across Astro navigation,
+VS Code high-contrast preview selection, and native palette disclosures. The checked
+phone viewport has no horizontal overflow and the browser reports no console errors.
+The final pass covers 44 route, viewport, and appearance combinations across eleven
+routes at phone and desktop sizes. Repeated OS appearance changes synchronize both
+header controls; the mobile toggle also updates the automatic VS Code preview while
+preserving manually selected high-contrast previews.
+
+Santiago confirmed successful iPhone wallpaper switching, Obsidian mobile dark/light
+rendering, Xcode editor/selection/console colors, and Mac HEIC automatic switching
+on October 12. These are owner-reported checks; device and application versions were
+not supplied. They are distinct from automated validators and browser screenshots.
+
+The independent pre-push review identified two related appearance regressions: the
+mobile toggle did not synchronize the VS Code preview, and OS changes left header
+state stale. Both are fixed with six behavioral regression tests. The bounded final
+independent review found no actionable code findings and independently passed 15
+focused tests; its documentation corrections are incorporated here. Hosted checks
+and pull request review must cover the final release revision before merge.
+Pushing this branch and opening its pull request do not publish
+packages or deploy the website. Merge, publication, and post-release registry/site
+smoke checks remain separate steps. Earlier verification counts below describe
+intermediate candidates; this section is the current evidence summary.
+
 ## Consolidation
 
 - Both remote Dependabot branches are contained in the release history: actions at `4b1fd57` and production dependencies at `25ddb1d`.
@@ -54,6 +96,14 @@ A local registry regression exercises Open VSX source packaging through VSCE 4, 
 
 The previous lint dependency's Node 22.22.3 requirement is absent from the refreshed lockfile. Declared runtime minima remain unchanged; local verification uses Node 22.23.1.
 
+Browser-state regression tests explicitly declare the existing jsdom 27.4.0 line
+as a development dependency. Newer versions are incompatible with the current
+dependency graph: jsdom 28/29 require private Undici 7 modules absent from the
+repository's patched Undici 8 override, while
+[jsdom 30 raises the Node minimum](https://github.com/jsdom/jsdom/releases/tag/v30.0.0).
+This test dependency does not enter production website bundles. Reassess the jsdom
+line when its resource loader supports Undici 8 within the declared Node minimum.
+
 ## Verification and recovery
 
 Run `pnpm install --frozen-lockfile`, `pnpm run validate`, `pnpm run validate:links`, and the full dependency audit before publication. Confirm the generated Changesets plan still targets 3.0.0. Review the complete current release diff independently before the first release-branch push or pull request. Required hosted checks and actionable review findings must pass before merging.
@@ -68,9 +118,9 @@ After an approved release, verify tags resolve to the merged commit, both extens
 
 ## Theme family audit follow-up
 
-The [theme family audit](theme-family-audit.md) records architecture, duplication, dependencies, native contrast, and website appearance improvements for this candidate. It consolidates initial appearance setup, fixes OS synchronization and high-contrast CSS generation, corrects Turbo ordering/cache inputs, strengthens VS Code and native artifact validation, and improves Xcode selected/current-line readability. Public exports and theme names stay stable. The Changesets plan still targets VS Code 3.0.0; this work remains local and unpublished. The maintenance pass below addresses the full-audit blocker and refreshes the runtime compatibility evidence.
+The [theme family audit](theme-family-audit.md) records architecture, duplication, dependencies, native contrast, and website appearance improvements for this candidate. It consolidates initial appearance setup, fixes OS synchronization and high-contrast CSS generation, corrects Turbo ordering/cache inputs, strengthens VS Code and native artifact validation, and improves Xcode selected/current-line readability. Theme names stay stable; the later compatibility cleanup deliberately removes obsolete shared exports. The Changesets plan still targets VS Code 3.0.0. The maintenance pass below addresses the full-audit blocker and refreshes the runtime compatibility evidence.
 
-Audit follow-up verification: the full local validation gate passes with 127 tests across 23 files, zero-warning lint, strict checks, all native validators, SEO, and VSIX packaging. The final preview/clipboard fixes additionally pass the affected website build and 12 browser preview combinations with clipboard success/denied/reset checks. Website links pass with 100 local references and 31 external URLs; appearance/navigation smoke checks pass 36 cases. Independent review's Codex cache-input finding is fixed and verified by changed Turbo hashes. Native Xcode rendering remains unverified without changing user preferences.
+Audit follow-up verification: the full local validation gate passed at that stage with 127 tests across 23 files, zero-warning lint, strict checks, all native validators, SEO, and VSIX packaging. The preview/clipboard fixes additionally passed the affected website build and 12 browser preview combinations with clipboard success/denied/reset checks. Website links passed with 100 local references and 31 external URLs; appearance/navigation smoke checks passed 36 cases. Independent review's Codex cache-input finding was fixed and verified by changed Turbo hashes. Native Xcode rendering was unverified at that stage; the current owner-reported verification appears above.
 
 ## Curated wallpaper pages
 
@@ -88,7 +138,7 @@ without JavaScript. Rollback can restore the previous gallery while keeping exis
 
 ## iPhone, notes, and native editor additions
 
-The candidate adds an iPhone setup pack, a dark/light Obsidian theme, and a dark/light Neovim colorscheme. Dedicated website pages provide downloads, native installation instructions, mobile synchronization guidance, and recovery steps. Product navigation, homepage cards, the footer, sitemap, and SEO checks include all three. Existing routes and wallpaper URLs remain stable. See [implementation and validation boundaries](theme-expansion.md), including physical-device checks still outstanding. Obsidian distribution is a manual download; community directory submission is separate.
+The candidate adds an iPhone setup pack, a dark/light Obsidian theme, and a dark/light Neovim colorscheme. Dedicated website pages provide downloads, native installation instructions, mobile synchronization guidance, and recovery steps. Product navigation, homepage cards, the footer, sitemap, and SEO checks include all three. Existing routes and wallpaper URLs remain stable. See [implementation and validation boundaries](theme-expansion.md), including the owner-reported device checks. Obsidian distribution is a manual download; community directory submission is separate.
 
 ## Website visual consistency follow-up
 
@@ -148,7 +198,8 @@ All eight wallpaper designs have paired Mac HEIC downloads and an appearance set
 The iPhone page and bundled guide explain sunrise/sunset Shortcuts and optional Focus pairing.
 Mac metadata and both frames are validated with ImageIO, pixel sampling, and source fingerprints;
 iPhone wallpaper switching still requires configuring saved pairs on the device. Automatic switching
-has not been exercised through macOS Wallpaper settings or on a physical iPhone.
+was unverified during implementation; the current release verification above records
+Santiago's subsequent successful Mac and iPhone checks.
 
 Local checks passed with 186 tests across 34 files after combining the website and documentation
 work. Rendered checks covered 13 affected routes at desktop and phone widths in light and dark,
