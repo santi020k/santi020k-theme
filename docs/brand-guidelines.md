@@ -366,8 +366,10 @@ use violet identity, generous negative space, and a restrained focal form; they 
 not alternate product logos. Pair dark and light options and preserve clear collection labels
 in galleries and download bundles.
 
-The current Sculpted edition features **Tide** (flowing satin), **Dune** (violet sand ridges),
-and **Veil** (frosted glass). Compose immersive, full-bleed scenes with convincing material,
+The Sculpted edition includes **Tide** (flowing satin), **Dune** (violet sand ridges),
+and **Veil** (frosted glass). Tide remains in the current gallery; Dune and Veil live in the
+Classic archive alongside earlier wallpapers, banners, and logos. VS Code screenshot cards
+are excluded from the gallery; editor previews belong on the VS Code product page. Compose immersive, full-bleed scenes with convincing material,
 soft light, and depth. Avoid isolated flat shapes, badges, text, and logos. Leave quiet space
 for desktop icons and phone clocks. Light and dark editions share their subject; phone artwork
 is composed separately rather than cut from the center of a desktop image.

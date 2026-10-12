@@ -48,12 +48,14 @@ Run commands from the repository root.
 
 ## Maintenance Notes
 
-- `/gallery/` features eight current wallpaper designs alongside brand assets. Paired desktop/phone
+- `/gallery/` features six current wallpaper designs: Halo, Contour, Glass, Satin, Ceramic, and Tide. Paired desktop/phone
   cards open a Lumen modal with appearance, device, resolution, and format controls. Each modal
   offers an explicit new-tab link; modified clicks and JavaScript-free links retain native page
   navigation. The modal and permanent page share `WallpaperWorkspace.astro`. Each design has
   one `/gallery/<design>/` page grouping dark/light and desktop/phone variants. Earlier artwork
-  remains at `/gallery/archive/`, and existing file and ZIP URLs are unchanged.
+  joins Dune, Veil, banners, and logos at `/gallery/archive/`. VS Code screenshot cards are
+  excluded from both galleries; product previews remain on the VS Code page. Existing file and
+  ZIP URLs are unchanged.
 - Wallpaper descriptions, paths, resolutions, and encoding profiles come from
   `../../artwork/wallpaper-catalog.mjs`. Update the image sitemap entries when adding a design.
 - Development and build preparation generate static resolution/quality downloads from saved raster masters

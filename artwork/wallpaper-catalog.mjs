@@ -1,4 +1,4 @@
-/** Current designs. Historical downloads remain in the gallery asset registry. */
+/** Wallpaper designs with permanent pages and downloads, including archived designs. */
 export const wallpaperDesigns = [
   {
     slug: 'halo', name: 'Halo', collection: 'minimal', directory: 'minimal-v2', family: 'halo',
@@ -49,7 +49,7 @@ export const wallpaperDesigns = [
     alt: 'Flowing violet satin folds with soft highlights and open negative space'
   },
   {
-    slug: 'dune', name: 'Dune', collection: 'sculpted', directory: 'sculpted-v2', family: 'dune',
+    slug: 'dune', name: 'Dune', archived: true, collection: 'sculpted', directory: 'sculpted-v2', family: 'dune',
     tagline: 'A landscape for your screen.',
     description: 'Violet dune wallpaper with soft sand ridges and a quiet horizon. Download unbranded light and dark desktop and phone artwork.',
     story: 'Dune turns the violet palette into a landscape of soft ridges. Light traces the sand while the open horizon leaves the composition calm and spacious.',
@@ -57,7 +57,7 @@ export const wallpaperDesigns = [
     alt: 'Soft violet sand ridges beneath a calm open horizon'
   },
   {
-    slug: 'veil', name: 'Veil', collection: 'sculpted', directory: 'sculpted-v2', family: 'veil',
+    slug: 'veil', name: 'Veil', archived: true, collection: 'sculpted', directory: 'sculpted-v2', family: 'veil',
     tagline: 'Depth, softly diffused.',
     description: 'Frosted glass wallpaper with soft violet light and layered translucency. Unbranded desktop and phone downloads in light and dark.',
     story: 'Veil lets light pass through frosted glass, softening the shapes behind it. The composition uses translucency and gentle violet color instead of a central logo.',
@@ -65,6 +65,8 @@ export const wallpaperDesigns = [
     alt: 'Frosted glass forms diffusing soft violet light'
   }
 ]
+
+export const currentWallpaperDesigns = wallpaperDesigns.filter(design => !('archived' in design && design.archived))
 
 export const appearances = ['dark', 'light']
 export const devices = ['desktop', 'mobile']

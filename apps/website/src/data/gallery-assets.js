@@ -1,3 +1,4 @@
+import { currentWallpaperDesigns, wallpaperDesigns } from '../../../../artwork/wallpaper-catalog.mjs'
 import bannerOnePng from '../../../../packages/theme/assets/banners/banner-1.png?url'
 import bannerOne from '../../../../packages/theme/assets/banners/banner-1.webp'
 import bannerOneWebp from '../../../../packages/theme/assets/banners/banner-1.webp?url'
@@ -30,18 +31,6 @@ import logoSquarePng from '../../../../packages/theme/assets/logos/logo-square.p
 import logoSquareSvg from '../../../../packages/theme/assets/logos/logo-square.svg?url'
 import logoSquare from '../../../../packages/theme/assets/logos/logo-square.webp'
 import logoSquareWebp from '../../../../packages/theme/assets/logos/logo-square.webp?url'
-import previewDark from '../../../../packages/theme/assets/vscode/previews/preview-dark.png'
-import previewDarkPng from '../../../../packages/theme/assets/vscode/previews/preview-dark.png?url'
-import previewDarkSvg from '../../../../packages/theme/assets/vscode/previews/preview-dark.svg?url'
-import previewHcDark from '../../../../packages/theme/assets/vscode/previews/preview-hc-dark.png'
-import previewHcDarkPng from '../../../../packages/theme/assets/vscode/previews/preview-hc-dark.png?url'
-import previewHcDarkSvg from '../../../../packages/theme/assets/vscode/previews/preview-hc-dark.svg?url'
-import previewHcLight from '../../../../packages/theme/assets/vscode/previews/preview-hc-light.png'
-import previewHcLightPng from '../../../../packages/theme/assets/vscode/previews/preview-hc-light.png?url'
-import previewHcLightSvg from '../../../../packages/theme/assets/vscode/previews/preview-hc-light.svg?url'
-import previewLight from '../../../../packages/theme/assets/vscode/previews/preview-light.png'
-import previewLightPng from '../../../../packages/theme/assets/vscode/previews/preview-light.png?url'
-import previewLightSvg from '../../../../packages/theme/assets/vscode/previews/preview-light.svg?url'
 import ContourDarkDesktopPng from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-desktop.png?url'
 import ContourDarkDesktop from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-desktop.webp'
 import ContourDarkDesktopWebp from '../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-desktop.webp?url'
@@ -218,23 +207,6 @@ const banner = (preview, index, png, webp) => ({
 /**
  * @param {string} title
  * @param {string} variant
- * @param {ImageMetadata} image
- * @param {string} base
- * @param {string} png
- * @param {string} svg
- */
-const preview = (title, variant, image, base, png, svg) => ({
-  title,
-  category: 'previews',
-  variant,
-  dimensions: `${image.width} × ${image.height}`,
-  preview: image,
-  formats: [download('PNG', png, `${base}.png`), download('SVG', svg, `${base}.svg`)]
-})
-
-/**
- * @param {string} title
- * @param {string} variant
  * @param {string} dimensions
  * @param {ImageMetadata} image
  * @param {string} base
@@ -252,7 +224,7 @@ const logo = (title, variant, dimensions, image, base, png, svg, webp) => ({
   formats: [download('SVG', svg, `${base}.svg`), download('PNG', png, `${base}.png`), download('WEBP', webp, `${base}.webp`)]
 })
 
-export const galleryAssets = [
+const galleryAssets = [
   { ...wallpaper('Halo · dark', 'Desktop', '3840 × 2160', HaloDarkDesktop, 'santi020k-halo-dark-desktop', HaloDarkDesktopPng, HaloDarkDesktopWebp, false), collection: 'minimal' },
   { ...wallpaper('Halo · dark', 'Mobile', '1170 × 2532', HaloDarkMobile, 'santi020k-halo-dark-mobile', HaloDarkMobilePng, HaloDarkMobileWebp, true), collection: 'minimal' },
   { ...wallpaper('Halo · light', 'Desktop', '3840 × 2160', HaloLightDesktop, 'santi020k-halo-light-desktop', HaloLightDesktopPng, HaloLightDesktopWebp, false), collection: 'minimal' },
@@ -314,11 +286,21 @@ export const galleryAssets = [
   banner(bannerThree, 3, bannerThreePng, bannerThreeWebp),
   banner(bannerFour, 4, bannerFourPng, bannerFourWebp),
   banner(bannerFive, 5, bannerFivePng, bannerFiveWebp),
-  preview('VS Code dark', 'Dark', previewDark, 'santi020k-vscode-dark', previewDarkPng, previewDarkSvg),
-  preview('VS Code light', 'Light', previewLight, 'santi020k-vscode-light', previewLightPng, previewLightSvg),
-  preview('VS Code HC dark', 'High contrast', previewHcDark, 'santi020k-vscode-hc-dark', previewHcDarkPng, previewHcDarkSvg),
-  preview('VS Code HC light', 'High contrast', previewHcLight, 'santi020k-vscode-hc-light', previewHcLightPng, previewHcLightSvg),
   logo('Wordmark for dark surfaces', 'Dark surface', '1008 × 160', logoDark, 'santi020k-wordmark-dark', logoDarkPng, logoDarkSvg, logoDarkWebp),
   logo('Wordmark for light surfaces', 'Light surface', '1008 × 160', logoLight, 'santi020k-wordmark-light', logoLightPng, logoLightSvg, logoLightWebp),
   logo('Square logo', 'Square', '512 × 512', logoSquare, 'santi020k-logo-square', logoSquarePng, logoSquareSvg, logoSquareWebp)
 ]
+
+const assetsWithDesigns = galleryAssets.map(asset => ({
+  ...asset,
+  design: wallpaperDesigns.find(design => asset.title.startsWith(`${design.name} ·`))
+}))
+
+/** @param {boolean} [archive] */
+export const getGalleryAssets = (archive = false) => assetsWithDesigns.filter(asset => {
+  if (!asset.design) return archive
+
+  const current = currentWallpaperDesigns.includes(asset.design)
+
+  return current !== archive && asset.variant === 'Desktop' && asset.title.endsWith(' · dark')
+})
