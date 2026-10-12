@@ -4,10 +4,14 @@ import { Image } from 'astro:assets'
 import darkTheme from '@santi020k/theme/shiki/santi020k-dark.json'
 import lightTheme from '@santi020k/theme/shiki/santi020k-light.json'
 
+import obsidianDark from '../../../../packages/santi020k-obsidian-theme/assets/previews/preview-dark.png'
+import obsidianLight from '../../../../packages/santi020k-obsidian-theme/assets/previews/preview-light.png'
 import chromeDark from '../../../../packages/theme/assets/chrome/store/screenshot-main.png'
 import chromeLight from '../../../../packages/theme/assets/chrome/store/screenshot-main-light.png'
 import vscodeDark from '../../../../packages/theme/assets/vscode/previews/preview-dark.png'
 import vscodeLight from '../../../../packages/theme/assets/vscode/previews/preview-light.png'
+import phoneDark from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-mobile.webp'
+import phoneLight from '../../../../packages/theme/assets/wallpapers/minimal-v2/halo-light-mobile.webp'
 
 interface Props {
   slug: string
@@ -23,6 +27,10 @@ if (slug === 'chrome') {
   previewImages = [chromeDark, chromeLight]
 }
 
+if (slug === 'obsidian') previewImages = [obsidianDark, obsidianLight]
+
+if (slug === 'iphone') previewImages = [phoneDark, phoneLight]
+
 const palettes = [['dark', darkTheme], ['light', lightTheme]] as const
 
 const paletteStyle = palettes.flatMap(([variant, theme]) => [
@@ -36,6 +44,7 @@ const paletteStyle = palettes.flatMap(([variant, theme]) => [
 ]).join(';')
 
 const editorSamples: Record<string, { filename: string, declaration: string, body: string }> = {
+  neovim: { filename: 'init.lua', declaration: 'local workspace = {', body: '  theme = "santi020k",\n  mode = "focus"\n}' },
   zed: { filename: 'theme.ts', declaration: 'const workspace = {', body: '  theme: "santi020k",\n  mode: "focus",\n  accent: "violet"\n}' },
   jetbrains: { filename: 'Workspace.kt', declaration: 'data class Workspace(', body: '  val theme: String = "santi020k",\n  val mode: String = "focus"\n)' },
   xcode: { filename: 'Workspace.swift', declaration: 'struct Workspace {', body: '  let theme = "santi020k"\n  let mode = "focus"\n}' }
@@ -43,9 +52,10 @@ const editorSamples: Record<string, { filename: string, declaration: string, bod
 
 const sample = editorSamples[slug] ?? { filename: 'theme.ts', declaration: 'const workspace = {', body: '  theme: "santi020k"\n}' }
 const statusCaption = slug === 'xcode' ? 'Editor color theme' : 'Santi020k Theme'
-const previewCaption = slug === 'vscode' ? 'Theme screenshot' : 'Illustrative preview'
+const captions: Record<string, string> = { iphone: 'Phone wallpaper artwork', vscode: 'Theme screenshot', obsidian: 'Obsidian screenshot' }
+const previewCaption = captions[slug] ?? 'Illustrative preview'
 ---
-<div class="family-preview" style={paletteStyle}>
+<div class:list={['family-preview', `family-preview-${slug}`]} style={paletteStyle}>
   <div class="family-preview-stage" aria-hidden="true">
     {previewImages && (
       <div class="family-capture">
@@ -89,13 +99,13 @@ const previewCaption = slug === 'vscode' ? 'Theme screenshot' : 'Illustrative pr
             <div class="family-messages"><strong># design</strong><div><b class="family-avatar">S</b><p><strong>Sam <small>10:42</small></strong><br />A little more violet.<br />A little more focus.</p></div><div class="family-chat-message">Message #design <span>+</span></div></div>
           </div>
         )}
-        {['zed', 'jetbrains', 'xcode'].includes(slug) && (
+        {['zed', 'jetbrains', 'xcode', 'neovim'].includes(slug) && (
           <div class="family-editor">
             <aside><span>PROJECT</span><b>⌄ workspace</b><span>src</span><span class="family-file">{sample.filename}</span><span>README.md</span></aside>
-            <div class="family-code"><div class="family-tab">{sample.filename}<span>×</span></div><div class="family-source"><code><b>{sample.declaration}</b></code><code>{sample.body}</code><code class="family-muted">// Make room to create.</code></div></div>
+            <div class="family-code"><div class="family-tab">{sample.filename}<span>×</span></div><div class="family-source"><code><b>{sample.declaration}</b></code><code>{sample.body}</code><code class="family-muted">{slug === 'neovim' ? '--' : '//'} Make room to create.</code></div></div>
           </div>
         )}
-        {['zed', 'jetbrains', 'xcode'].includes(slug) && <div class="family-status">{statusCaption}<span>UTF-8</span></div>}
+        {['zed', 'jetbrains', 'xcode', 'neovim'].includes(slug) && <div class="family-status">{statusCaption}<span>UTF-8</span></div>}
       </div>
     )}
   </div>
@@ -103,6 +113,7 @@ const previewCaption = slug === 'vscode' ? 'Theme screenshot' : 'Illustrative pr
 </div>
 
 <style>
+  .family-preview-iphone .family-capture { width: auto; height: 230px; aspect-ratio: 1170 / 2532; justify-self: center; }
   .family-preview { font-weight: 400; --preview-bg: var(--preview-dark-bg); --preview-surface: var(--preview-dark-surface); --preview-ink: var(--preview-dark-ink); --preview-accent: var(--preview-dark-accent); --preview-line: var(--preview-dark-line); --preview-selection: var(--preview-dark-selection); --preview-success: var(--preview-dark-success); }
   :global([data-theme="light"]) .family-preview { --preview-bg: var(--preview-light-bg); --preview-surface: var(--preview-light-surface); --preview-ink: var(--preview-light-ink); --preview-accent: var(--preview-light-accent); --preview-line: var(--preview-light-line); --preview-selection: var(--preview-light-selection); --preview-success: var(--preview-light-success); }
   .family-preview-stage { display: grid; align-items: center; width: 100%; min-width: 0; aspect-ratio: 3 / 2; min-height: 250px; }

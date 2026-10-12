@@ -1,5 +1,5 @@
 /**
- * @typedef {'vscode' | 'chrome' | 'terminal' | 'zed' | 'codex' | 'raycast' | 'slack' | 'jetbrains' | 'xcode'} ProductSlug
+ * @typedef {'vscode' | 'chrome' | 'terminal' | 'zed' | 'codex' | 'raycast' | 'slack' | 'jetbrains' | 'xcode' | 'iphone' | 'obsidian' | 'neovim'} ProductSlug
  */
 
 /** @type {Array<{slug: ProductSlug, name: string, category: string, summary: string}>} */
@@ -12,5 +12,8 @@ export const products = [
   { slug: 'raycast', name: 'Raycast', category: 'Launcher', summary: 'Raycast Pro custom themes with one-click dark and light import URLs.' },
   { slug: 'slack', name: 'Slack', category: 'Collaboration', summary: 'Custom workspace colors supplied as legacy import strings and semantic maps.' },
   { slug: 'jetbrains', name: 'JetBrains', category: 'IDE', summary: 'A complete UI and editor plugin for Android Studio and JetBrains IDEs.' },
-  { slug: 'xcode', name: 'Xcode', category: 'IDE', summary: 'Native dark and light editor and debug-console color themes.' }
+  { slug: 'xcode', name: 'Xcode', category: 'IDE', summary: 'Native dark and light editor and debug-console color themes.' },
+  { slug: 'iphone', name: 'iPhone', category: 'Personalization', summary: 'A paired wallpaper pack with dark and light artwork and native icon-tint guidance.' },
+  { slug: 'obsidian', name: 'Obsidian', category: 'Notes', summary: 'Calm dark and light notes, code, and navigation for desktop and mobile.' },
+  { slug: 'neovim', name: 'Neovim', category: 'Editor', summary: 'Native syntax, Tree-sitter, LSP diagnostics, diffs, and terminal colors.' }
 ]

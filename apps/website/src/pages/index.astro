@@ -70,10 +70,10 @@ const structuredData = {
       applicationCategory: 'DeveloperApplication'
     },
     ...products.slice(5).map(product => ({
-      '@type': 'SoftwareApplication',
+      '@type': product.slug === 'iphone' ? 'WebPage' : 'SoftwareApplication',
       name: `Santi020k Theme for ${product.name}`,
       url: `https://theme.santi020k.com/${product.slug}/`,
-      applicationCategory: 'DeveloperApplication'
+      ...(product.slug === 'iphone' ? {} : { applicationCategory: product.slug === 'obsidian' ? 'ProductivityApplication' : 'DeveloperApplication' })
     })),
     {
       '@type': 'SoftwareSourceCode',
@@ -144,7 +144,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <figcaption><span>Santi020k Theme</span><span>A shared visual language</span></figcaption>
         </figure>
         <ul class="home-workspace-details" aria-label="Theme family at a glance">
-          <li><span>{String(products.length).padStart(2, '0')}</span> tools, one workspace</li>
+          <li><span>{String(products.length).padStart(2, '0')}</span> surfaces, one palette</li>
           <li><Icon name="sun-moon" /> Dark &amp; light</li>
           <li><Icon name="palette" /> One violet foundation</li>
         </ul>

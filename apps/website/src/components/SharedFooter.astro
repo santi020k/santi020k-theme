@@ -3,7 +3,7 @@ import { Icon, Link } from '@santi020k/lumen-astro'
 
 import { products } from '../data/products.js'
 
-const editorSlugs = new Set(['vscode', 'zed', 'jetbrains', 'xcode', 'codex'])
+const editorSlugs = new Set(['vscode', 'zed', 'jetbrains', 'xcode', 'codex', 'neovim'])
 const editorThemes = products.filter(product => editorSlugs.has(product.slug))
 const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug))
 ---
@@ -29,7 +29,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
         <span>Santi020k <b>Themes</b></span>
       </Link>
       <p>
-        A cohesive dark and light theme family for editors, terminals, browsers, launchers, and collaboration tools.
+        A cohesive dark and light theme family for editors, terminals, browsers, notes, phones, launchers, and collaboration tools.
       </p>
       <span class="family-footer-open"><i aria-hidden="true"></i> Free and open source</span>
     </div>

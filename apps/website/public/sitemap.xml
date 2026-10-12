@@ -37,4 +37,7 @@
   <url><loc>https://theme.santi020k.com/gallery/dune/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/dune/dune-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
   <url><loc>https://theme.santi020k.com/gallery/veil/</loc><image:image><image:loc>https://theme.santi020k.com/downloads/wallpapers-v1/veil/veil-dark-desktop-1920x1080-webp-high.webp</image:loc></image:image></url>
   <url><loc>https://theme.santi020k.com/gallery/archive/</loc></url>
+  <url><loc>https://theme.santi020k.com/iphone/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://theme.santi020k.com/obsidian/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://theme.santi020k.com/neovim/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

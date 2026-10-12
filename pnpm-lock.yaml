@@ -331,6 +331,10 @@ importers:
 
   packages/santi020k-jetbrains-theme: {}
 
+  packages/santi020k-neovim-theme: {}
+
+  packages/santi020k-obsidian-theme: {}
+
   packages/santi020k-raycast-theme: {}
 
   packages/santi020k-slack-theme: {}

@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets'
+
+import '../../styles/ports.css'
+
+import { Badge, ButtonLink, Eyebrow, Link } from '@santi020k/lumen-astro'
+
+import contour from '../../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-mobile.webp'
+import halo from '../../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-mobile.webp'
+import ProductLayout from '../../layouts/ProductLayout.astro'
+
+const description = 'A coordinated iPhone setup with Halo and Contour wallpapers, light and dark editions, and a simple guide to native violet icon tinting.'
+---
+<ProductLayout name="iPhone" slug="iphone" title="Santi020k iPhone setup — Wallpapers and violet icons" {description} pageKind="guide">
+  <section class="site-shell port-hero">
+    <div>
+      <Eyebrow>From your workspace to your pocket</Eyebrow>
+      <h1>A little violet. Everywhere you go.</h1>
+      <p class="lede">Halo for your Lock Screen. Contour for your Home Screen. A quiet pair of wallpapers, with room for the things you reach for every day.</p>
+      <div class="port-meta"><Badge variant="outline">Free setup pack</Badge><span>4 PNGs · Dark + light</span></div>
+      <div class="port-actions"><ButtonLink class="port-button port-button-primary" variant="unstyled" href="/downloads/ports/santi020k-iphone.zip" download>Download iPhone pack</ButtonLink><ButtonLink class="port-button port-button-secondary" href="#install" variant="unstyled">Set up your iPhone</ButtonLink></div>
+      <p>No app or configuration profile required.</p>
+    </div>
+    <div class="port-phones" aria-label="Dark wallpaper pair">
+      <figure><Image src={halo} alt="Halo dark wallpaper with a violet circular recess below open space" widths={[240, 480, 720]} sizes="(max-width: 800px) 42vw, 240px" loading="eager" /><figcaption>01 / Halo · Lock Screen artwork</figcaption></figure>
+      <figure><Image src={contour} alt="Contour dark wallpaper with a fine violet curve and quiet upper canvas" widths={[240, 480, 720]} sizes="(max-width: 800px) 42vw, 240px" loading="eager" /><figcaption>02 / Contour · Home Screen artwork</figcaption></figure>
+    </div>
+  </section>
+  <section id="install" class="site-shell port-section">
+    <Eyebrow>Make it yours</Eyebrow><h2>Two screens. One calm pairing.</h2>
+    <div class="port-columns">
+      <ol class="port-steps">
+        <li><h3>Save the images</h3><p>Download the ZIP, tap it in Files to extract it, then open each PNG and choose Share → Save Image. Individual files are also available below.</p></li>
+        <li><h3>Start with Halo</h3><p>Open Settings → Wallpaper → Add New Wallpaper → Photos. Choose Halo, adjust the crop to keep the detail below your clock, and choose a readable clock color.</p></li>
+        <li><h3>Pair it with Contour</h3><p>Tap Add → Customize Home Screen and choose the matching Contour image. Adjust Blur to your preference, then tap Done.</p></li>
+        <li><h3>Add a violet tint</h3><p>On iOS 18 or later, hold the Home Screen, choose Edit → Customize → Tinted, and sample violet from the wallpaper with the eyedropper. Adjust saturation until your icons stay easy to recognize.</p></li>
+      </ol>
+      <div class="port-card">
+        <h3>Choose your appearance</h3>
+        <p>Each image is a 1170 × 2532 PNG, resized from the original raster artwork. Adjust the crop on other iPhone sizes.</p>
+        {['dark', 'light'].map(mode => <div><h3>{mode === 'dark' ? 'Dark pair' : 'Light pair'}</h3><div class="port-downloads"><ButtonLink variant="secondary" href={`/downloads/ports/santi020k-${mode}-lock.png`} download>Halo · {mode}</ButtonLink><ButtonLink variant="secondary" href={`/downloads/ports/santi020k-${mode}-home.png`} download>Contour · {mode}</ButtonLink></div></div>)}
+        <p>Create a second wallpaper pair to keep both appearances. Auto icon appearance does not switch these wallpaper files.</p>
+        <Link href="https://support.apple.com/guide/iphone/customize-apps-and-widgets-on-the-home-screen-iph385473442/ios" newTab>Apple’s customization guide</Link>
+      </div>
+    </div>
+  </section>
+  <section id="coverage" class="site-shell port-section">
+    <Eyebrow>Your phone, your choices</Eyebrow><h2>A setup you can change at any time.</h2>
+    <div class="port-columns"><div><h3>Keep your own widgets</h3><p>Add the widgets you already use. You can optionally link the saved Lock Screen to a Focus. This pack supplies wallpaper artwork and tinting guidance; apps keep their own interfaces, while iOS applies the icon tint.</p></div><div><h3>Return to your previous look</h3><p>Keep your old wallpaper pair until you are happy. Select it again from the Lock Screen gallery and restore your preferred icon appearance whenever you want.</p></div></div>
+    <div class="port-related"><Link href="/gallery/halo/">Explore Halo</Link><Link href="/gallery/contour/">Explore Contour</Link><Link href="/obsidian/">Matching notes in Obsidian</Link></div>
+  </section>
+</ProductLayout>

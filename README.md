@@ -25,6 +25,9 @@ Monorepo for the Santi020k Theme family: a calm violet theme system spanning VS 
 [Theme family](https://theme.santi020k.com) ·
 [VS Code](https://theme.santi020k.com/vscode/) ·
 [Terminal](https://theme.santi020k.com/terminal/) ·
+[iPhone](https://theme.santi020k.com/iphone/) ·
+[Obsidian](https://theme.santi020k.com/obsidian/) ·
+[Neovim](https://theme.santi020k.com/neovim/) ·
 [npm](https://www.npmjs.com/package/@santi020k/theme) ·
 [Documentation](docs/brand-guidelines.md) ·
 [Releases](https://github.com/santi020k/santi020k-theme/releases) ·
@@ -77,6 +80,8 @@ The high-contrast variants strengthen borders and separation while retaining the
 | `packages/santi020k-raycast-theme`   | Shareable Raycast Theme Studio JSON and one-click dark/light import URLs                                                          |
 | `packages/santi020k-slack-theme`     | Paste-ready Slack custom themes with legacy import strings and semantic role maps                                                 |
 | `packages/santi020k-jetbrains-theme` | Installable dark/light UI and editor theme plugin for JetBrains IDEs and Android Studio                                           |
+| `packages/santi020k-obsidian-theme` | Generated dark/light Obsidian theme for desktop and mobile, distributed as a manual-install ZIP |
+| `packages/santi020k-neovim-theme` | Native Neovim colorscheme with syntax, Tree-sitter, LSP and terminal colors |
 | `packages/santi020k-xcode-theme`     | Native dark/light Xcode editor and debug-console color themes                                                                     |
 | `packages/theme`                     | Public `@santi020k/theme` package for tokens, website CSS, assets, metadata, and Chrome mapping helpers                           |
 | `packages/theme-core`                | Public `@santi020k/theme-core` helper package for package-neutral token generation, asset lookup, and site behavior primitives    |
@@ -154,3 +159,7 @@ Please report vulnerabilities privately using the [security policy](SECURITY.md)
 MIT. See [LICENSE](LICENSE). Created and maintained by [Santiago Molina](https://santi020k.com).
 
 Open Graph generation uses the published `@santi020k/og` 1.2.0 package. The shared renderer supplies the updated preset composition and safer image handling while preserving the project's brand and existing image paths. Validate the generated images before release.
+
+## Phone and editor additions
+
+The [iPhone setup guide](docs/iphone-setup.md) pairs existing Halo and Contour phone artwork. Obsidian and Neovim use generated native files and direct website download bundles. Run `pnpm run validate:obsidian` and `pnpm run validate:neovim` for focused checks. See [verification and distribution notes](docs/theme-expansion.md) for native validation and publication boundaries.

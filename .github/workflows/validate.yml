@@ -51,5 +51,14 @@ jobs:
       - name: Install Zsh
         run: sudo apt-get update && sudo apt-get install --yes zsh
 
+      - name: Install native Neovim test runtime
+        run: |
+          curl --fail --location --retry 3 https://github.com/neovim/neovim/releases/download/v0.12.6/nvim-linux-x86_64.tar.gz --output "$RUNNER_TEMP/neovim.tar.gz"
+          printf '%s  %s\n' '474430d53e6264f6d6dd18db42d6dc9df3a1b56ca9e88a325bbf860e1a811d87' "$RUNNER_TEMP/neovim.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/neovim.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/nvim-linux-x86_64/bin" >> "$GITHUB_PATH"
+
       - name: Validate repository
+        env:
+          REQUIRE_NATIVE_NEOVIM: '1'
         run: pnpm run validate

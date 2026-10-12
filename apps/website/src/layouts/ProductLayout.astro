@@ -11,6 +11,7 @@ import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 
 interface Props {
+  applicationCategory?: 'DeveloperApplication' | 'ProductivityApplication'
   pageKind?: 'product' | 'guide'
   description: string
   name: string
@@ -18,7 +19,7 @@ interface Props {
   title: string
 }
 
-const { description, name, slug, title, pageKind = 'product' } = Astro.props
+const { description, name, slug, title, pageKind = 'product', applicationCategory = 'DeveloperApplication' } = Astro.props
 const canonical = `https://theme.santi020k.com/${slug}/`
 const socialImage = 'https://theme.santi020k.com/og-image.png'
 
@@ -49,7 +50,7 @@ softwareApplicationSchema({
   name: `Santi020k Theme for ${name}`,
   url: canonical,
   description,
-  applicationCategory: 'DeveloperApplication',
+  applicationCategory,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   author: personSchema({ name: 'Santiago Molina', url: 'https://santi020k.com/' })
 }))

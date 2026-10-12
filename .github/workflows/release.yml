@@ -10,6 +10,8 @@ on:
       - "packages/theme/**"
       - "packages/theme-core/**"
       - "packages/santi020k-theme/**"
+      - "packages/santi020k-obsidian-theme/**"
+      - "packages/santi020k-neovim-theme/**"
       - 'packages/santi020k-terminal-theme/**'
       - 'packages/santi020k-zed-theme/**'
       - 'apps/zed-website/**'

@@ -1,6 +1,19 @@
 version: "0.2"
 language: en
 words:
+  # Native Neovim/Lua and Obsidian API identifiers.
+  - Condit
+  - Pmenu
+  - Sbar
+  - termguicolors
+  - stdpath
+  - undercurl
+  - nvim
+  - runtimepath
+  - enew
+  - lnum
+  - ipairs
+  - titlebar
   # Image-generation tool and material terminology in the saved artwork prompts.
   - imagegen
   - microtexture

@@ -84,3 +84,7 @@ and image sitemap entries. Downloads include PNG, JPG, and two WEBP quality leve
 three desktop sizes and two phone sizes. Site preparation exports these files from saved
 masters; production remains static. Pages disclose resizing and retain native download links
 without JavaScript. Rollback can restore the previous gallery while keeping existing assets.
+
+## iPhone, notes, and native editor additions
+
+The candidate adds an iPhone setup pack, a dark/light Obsidian theme, and a dark/light Neovim colorscheme. Dedicated website pages provide downloads, native installation instructions, mobile synchronization guidance, and recovery steps. Product navigation, homepage cards, the footer, sitemap, and SEO checks include all three. Existing routes and wallpaper URLs remain stable. See [implementation and validation boundaries](theme-expansion.md), including physical-device checks still outstanding. Obsidian distribution is a manual download; community directory submission is separate.

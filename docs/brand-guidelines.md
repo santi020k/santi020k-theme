@@ -11,6 +11,9 @@ Use this guide for every Santi020k theme-family surface:
 - Raycast theme: `packages/santi020k-raycast-theme`
 - Slack theme: `packages/santi020k-slack-theme`
 - JetBrains theme: `packages/santi020k-jetbrains-theme`
+- iPhone setup: existing Halo/Contour portrait artwork, delivered as paired wallpapers and native icon-tint guidance; no system-wide recoloring claims
+- Obsidian theme: `packages/santi020k-obsidian-theme`, derived from canonical VS Code colors, preserving native mobile layout
+- Neovim theme: `packages/santi020k-neovim-theme`, generated native syntax, Tree-sitter and LSP groups
 - Xcode theme: `packages/santi020k-xcode-theme`
 - Shared token and asset packages: `packages/theme`, `packages/theme-core`
 - Consolidated website: `apps/website`, with product page source modules retained in the existing `apps/*-website` directories during migration
