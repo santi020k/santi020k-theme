@@ -3687,13 +3687,10 @@
         "astro/no-deprecated-getentrybyslug": [
           2
         ],
-        "astro/no-exports-from-components": [
-          2
-        ],
-        "astro/no-prerender-export-outside-pages": [
-          2
-        ],
         "astro/no-unused-define-vars-in-style": [
+          2
+        ],
+        "astro/valid-compile": [
           2
         ],
         "babel/object-curly-spacing": [
@@ -5135,9 +5132,12 @@
         "SpeechGrammar": false,
         "SpeechGrammarList": false,
         "SpeechRecognition": false,
+        "SpeechRecognitionAlternative": false,
         "SpeechRecognitionErrorEvent": false,
         "SpeechRecognitionEvent": false,
         "SpeechRecognitionPhrase": false,
+        "SpeechRecognitionResult": false,
+        "SpeechRecognitionResultList": false,
         "speechSynthesis": false,
         "SpeechSynthesis": false,
         "SpeechSynthesisErrorEvent": false,
@@ -6480,13 +6480,10 @@
         "astro/no-deprecated-getentrybyslug": [
           2
         ],
-        "astro/no-exports-from-components": [
-          2
-        ],
-        "astro/no-prerender-export-outside-pages": [
-          2
-        ],
         "astro/no-unused-define-vars-in-style": [
+          2
+        ],
+        "astro/valid-compile": [
           2
         ],
         "babel/object-curly-spacing": [
@@ -7487,6 +7484,7 @@
         "AbortController": false,
         "AbortSignal": false,
         "Astro": false,
+        "AsyncDisposableStack": false,
         "atob": false,
         "Blob": false,
         "BroadcastChannel": false,
@@ -7505,6 +7503,7 @@
         "CryptoKey": false,
         "CustomEvent": false,
         "DecompressionStream": false,
+        "DisposableStack": false,
         "DOMException": false,
         "ErrorEvent": false,
         "Event": false,
@@ -7533,7 +7532,6 @@
         "PerformanceResourceTiming": false,
         "process": false,
         "queueMicrotask": false,
-        "QuotaExceededError": false,
         "ReadableByteStreamController": false,
         "ReadableStream": false,
         "ReadableStreamBYOBReader": false,
@@ -7550,7 +7548,7 @@
         "Storage": false,
         "structuredClone": false,
         "SubtleCrypto": false,
-        "Temporal": false,
+        "SuppressedError": false,
         "TextDecoder": false,
         "TextDecoderStream": false,
         "TextEncoder": false,
@@ -8714,6 +8712,9 @@
         "@typescript-eslint/no-unsafe-declaration-merging": [
           2
         ],
+        "@typescript-eslint/no-unsafe-enum-assignment": [
+          2
+        ],
         "@typescript-eslint/no-unsafe-enum-comparison": [
           2
         ],
@@ -8922,13 +8923,10 @@
         "astro/no-deprecated-getentrybyslug": [
           2
         ],
-        "astro/no-exports-from-components": [
-          2
-        ],
-        "astro/no-prerender-export-outside-pages": [
-          2
-        ],
         "astro/no-unused-define-vars-in-style": [
+          2
+        ],
+        "astro/valid-compile": [
           2
         ],
         "babel/object-curly-spacing": [
@@ -9355,6 +9353,17 @@
         ],
         "no-reserved-keys": [
           0
+        ],
+        "no-restricted-syntax": [
+          2,
+          {
+            "selector": "ImportDeclaration[source.value=\"@santi020k/lumen-astro\"] > ImportSpecifier[imported.name=\"NativeSelect\"]",
+            "message": "Use Lumen Select for the custom option list. NativeSelect is reserved for an explicitly approved native-control requirement."
+          },
+          {
+            "selector": "JSXOpeningElement[name.name=\"select\"]",
+            "message": "Use Lumen Select instead of a raw select. Its native fallback already covers JavaScript-free usage."
+          }
         ],
         "no-return-await": [
           0
@@ -10913,9 +10922,12 @@
         "SpeechGrammar": false,
         "SpeechGrammarList": false,
         "SpeechRecognition": false,
+        "SpeechRecognitionAlternative": false,
         "SpeechRecognitionErrorEvent": false,
         "SpeechRecognitionEvent": false,
         "SpeechRecognitionPhrase": false,
+        "SpeechRecognitionResult": false,
+        "SpeechRecognitionResultList": false,
         "speechSynthesis": false,
         "SpeechSynthesis": false,
         "SpeechSynthesisErrorEvent": false,
@@ -12258,13 +12270,10 @@
         "astro/no-deprecated-getentrybyslug": [
           2
         ],
-        "astro/no-exports-from-components": [
-          2
-        ],
-        "astro/no-prerender-export-outside-pages": [
-          2
-        ],
         "astro/no-unused-define-vars-in-style": [
+          2
+        ],
+        "astro/valid-compile": [
           2
         ],
         "babel/object-curly-spacing": [
@@ -14208,9 +14217,12 @@
         "SpeechGrammar": false,
         "SpeechGrammarList": false,
         "SpeechRecognition": false,
+        "SpeechRecognitionAlternative": false,
         "SpeechRecognitionErrorEvent": false,
         "SpeechRecognitionEvent": false,
         "SpeechRecognitionPhrase": false,
+        "SpeechRecognitionResult": false,
+        "SpeechRecognitionResultList": false,
         "speechSynthesis": false,
         "SpeechSynthesis": false,
         "SpeechSynthesisErrorEvent": false,
@@ -15559,13 +15571,10 @@
         "astro/no-deprecated-getentrybyslug": [
           2
         ],
-        "astro/no-exports-from-components": [
-          2
-        ],
-        "astro/no-prerender-export-outside-pages": [
-          2
-        ],
         "astro/no-unused-define-vars-in-style": [
+          2
+        ],
+        "astro/valid-compile": [
           2
         ],
         "babel/object-curly-spacing": [
@@ -18864,9 +18873,12 @@
         "SpeechGrammar": false,
         "SpeechGrammarList": false,
         "SpeechRecognition": false,
+        "SpeechRecognitionAlternative": false,
         "SpeechRecognitionErrorEvent": false,
         "SpeechRecognitionEvent": false,
         "SpeechRecognitionPhrase": false,
+        "SpeechRecognitionResult": false,
+        "SpeechRecognitionResultList": false,
         "speechSynthesis": false,
         "SpeechSynthesis": false,
         "SpeechSynthesisErrorEvent": false,
@@ -22131,9 +22143,12 @@
         "SpeechGrammar": false,
         "SpeechGrammarList": false,
         "SpeechRecognition": false,
+        "SpeechRecognitionAlternative": false,
         "SpeechRecognitionErrorEvent": false,
         "SpeechRecognitionEvent": false,
         "SpeechRecognitionPhrase": false,
+        "SpeechRecognitionResult": false,
+        "SpeechRecognitionResultList": false,
         "speechSynthesis": false,
         "SpeechSynthesis": false,
         "SpeechSynthesisErrorEvent": false,
@@ -23603,6 +23618,9 @@
           1
         ],
         "@typescript-eslint/no-unsafe-declaration-merging": [
+          2
+        ],
+        "@typescript-eslint/no-unsafe-enum-assignment": [
           2
         ],
         "@typescript-eslint/no-unsafe-enum-comparison": [
@@ -27149,9 +27167,12 @@
         "SpeechGrammar": false,
         "SpeechGrammarList": false,
         "SpeechRecognition": false,
+        "SpeechRecognitionAlternative": false,
         "SpeechRecognitionErrorEvent": false,
         "SpeechRecognitionEvent": false,
         "SpeechRecognitionPhrase": false,
+        "SpeechRecognitionResult": false,
+        "SpeechRecognitionResultList": false,
         "speechSynthesis": false,
         "SpeechSynthesis": false,
         "SpeechSynthesisErrorEvent": false,
@@ -28621,6 +28642,9 @@
           1
         ],
         "@typescript-eslint/no-unsafe-declaration-merging": [
+          2
+        ],
+        "@typescript-eslint/no-unsafe-enum-assignment": [
           2
         ],
         "@typescript-eslint/no-unsafe-enum-comparison": [

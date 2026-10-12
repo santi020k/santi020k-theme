@@ -44,6 +44,15 @@ packages or deploy the website. Merge, publication, and post-release registry/si
 smoke checks remain separate steps. Earlier verification counts below describe
 intermediate candidates; this section is the current evidence summary.
 
+The first hosted pass exposed a stale generated ESLint configuration snapshot. It
+is regenerated from the installed configuration, and `validate:eslint-config` now
+runs compatibility, declaration portability, and snapshot checks within the local
+completion gate. No lint rules were weakened. CodeQL alert 3 was independently
+reviewed as a false positive: `websiteLinkText` only feeds URL extraction in the
+Node link checker, followed by filesystem checks, HTTP status checks, and console
+diagnostics. Its result never reaches an HTML rendering sink. The alert disposition
+records that evidence; CodeQL scanning and query coverage remain enabled.
+
 ## Consolidation
 
 - Both remote Dependabot branches are contained in the release history: actions at `4b1fd57` and production dependencies at `25ddb1d`.
