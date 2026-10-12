@@ -1,7 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { relative, resolve } from 'node:path'
 
-import { contrastPairs, contrastRatio, themeFiles, validateThemes } from '../packages/santi020k-theme/scripts/validate-themes.mjs'
+import { contrastPairs, themeFiles, validateThemes } from '../packages/santi020k-theme/scripts/validate-themes.mjs'
+
+import { contrastRatio } from './lib/color-contrast.mjs'
 
 const root = resolve(import.meta.dirname, '..')
 const parseJsonc = raw => JSON.parse(raw.replaceAll(/\/\*[\s\S]*?\*\//g, '').replaceAll(/^\s*\/\/.*$/gm, ''))

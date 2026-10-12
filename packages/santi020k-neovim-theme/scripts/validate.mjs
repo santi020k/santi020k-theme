@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 
-import { contrastRatio } from '../../santi020k-theme/scripts/validate-themes.mjs'
+import { contrastRatio } from '../../../scripts/lib/color-contrast.mjs'
 
 const source = readFileSync(new URL('../colors/santi020k.lua', import.meta.url), 'utf8')
 const modes = [...source.matchAll(/ {2}(dark|light) = \{\n([\s\S]+?)\n {2}\},/g)]

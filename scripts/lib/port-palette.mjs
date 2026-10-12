@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 
-import { contrastRatio } from '../../packages/santi020k-theme/scripts/validate-themes.mjs'
+import { contrastRatio } from './color-contrast.mjs'
 
 /** Keep native ports on the canonical palette, with opaque, readable selections. */
 export const readPortPalette = appearance => {

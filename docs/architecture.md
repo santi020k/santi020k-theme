@@ -136,10 +136,15 @@ Use these files as the primary ownership locations:
 
 One root Turbo graph keeps dependency caching, CI filtering, lockfile management, and developer commands simple. Explicit task edges order VS Code generation before Terminal and Zed, and Terminal downloads before the consolidated website. Website cache inputs include the retained product source modules, their assets, and the root synchronization script; retained product builds also include shared website components, data, and lifecycle utilities. Nested Turbo repos would duplicate package manager state, make cross-theme asset sharing harder, and blur whether a command should run from the root or from a subproject.
 
+The root `build` selects all distributable packages and the consolidated website. It does not
+build the five retained product source modules as independent sites; their pages and assets
+are already compiled into the consolidated site. Standalone module commands remain available
+for focused development, and root type checking still checks all six app sources.
+
 Workspace-local scripts still provide the isolation we want:
 
 - each package owns its own `build`, `validate`, `package`, and sync scripts;
-- each app owns its own `dev`, `build`, and `preview` scripts;
+- the consolidated app owns production `dev`, `build`, and `preview` scripts; retained source modules keep standalone commands for development;
 - the root `validate` command orchestrates release readiness across all workspaces.
 
 ## Ownership Rules
@@ -178,6 +183,12 @@ Website deployment output is always `apps/website/dist/`. Product routes must no
 ## Theme Package Architecture
 
 The VS Code extension package is the lead product surface. Its themes live in `packages/santi020k-theme/themes/`, with scripts in `packages/santi020k-theme/scripts/` generating, formatting, validating, packaging, and publishing the extension.
+
+Contrast math used by generators and validators lives in `scripts/lib/color-contrast.mjs`.
+It is internal build tooling, shared by native ports and VS Code without importing a
+product validator. Six- and eight-digit hex colors are validated before calculation;
+translucent backgrounds resolve over white and foregrounds resolve over that background.
+Native artifact parsing, token requirements, and minimum contrast thresholds stay package-owned.
 
 Keep these behaviors package-owned:
 

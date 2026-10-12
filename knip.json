@@ -7,32 +7,34 @@
     "nvim"
   ],
   "ignoreDependencies": [
-    "@astrojs/check",
-    "ovsx"
+    "@astrojs/check"
   ],
   "workspaces": {
     ".": {
       "entry": [
         "package.json",
-        "og.audit.config.mjs"
+        "og.audit.config.mjs",
+        "scripts/generate-og-images.mjs"
       ],
       "project": [
-        "*.mjs"
+        "*.mjs",
+        "scripts/**/*.mjs"
       ]
     },
     "apps/website": {
       "entry": [
-        "src/pages/*.astro"
+        "src/pages/**/*.astro",
+        "src/pages/**/*.ts"
       ],
       "project": [
         "src/**/*.astro",
-        "src/**/*.js"
+        "src/**/*.js",
+        "src/**/*.ts"
       ]
     },
     "apps/vscode-website": {
       "entry": [
         "package.json",
-        "scripts/*.mjs",
         "src/pages/*.astro"
       ],
       "project": [
@@ -70,8 +72,7 @@
     },
     "packages/santi020k-theme": {
       "entry": [
-        "package.json",
-        "scripts/*.mjs"
+        "package.json"
       ],
       "project": [
         "scripts/**/*.mjs",

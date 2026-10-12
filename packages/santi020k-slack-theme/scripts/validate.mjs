@@ -1,17 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-const hexToRgb = color => color.match(/[\dA-F]{2}/gi).map(value => Number.parseInt(value, 16) / 255)
-
-const luminance = color => hexToRgb(color)
-  .map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4)
-  .reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0)
-
-const contrast = (foreground, background) => {
-  const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a)
-
-  return (values[0] + 0.05) / (values[1] + 0.05)
-}
+import { contrastRatio } from '../../../scripts/lib/color-contrast.mjs'
 
 for (const appearance of ['dark', 'light']) {
   const root = resolve(import.meta.dirname, '..', 'themes')
@@ -26,11 +16,11 @@ for (const appearance of ['dark', 'light']) {
     if (!/^#[\dA-F]{6}$/i.test(color)) throw new Error(`Invalid Slack color: ${color}`)
   }
 
-  if (contrast(theme.roles.primaryText, theme.roles.canvas) < 4.5) {
+  if (contrastRatio(theme.roles.primaryText, theme.roles.canvas) < 4.5) {
     throw new Error(`Slack ${appearance} primary text must meet 4.5:1 contrast.`)
   }
 
-  if (contrast(theme.roles.activeItemText, theme.roles.activeItem) < 4.5) {
+  if (contrastRatio(theme.roles.activeItemText, theme.roles.activeItem) < 4.5) {
     throw new Error(`Slack ${appearance} active item must meet 4.5:1 contrast.`)
   }
 }
