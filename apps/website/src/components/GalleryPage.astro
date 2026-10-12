@@ -132,7 +132,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <Card as="article" variant="unstyled" class:list={['asset-card', { 'asset-card-portrait': 'portrait' in asset && asset.portrait }]} data-category={asset.category} data-collection={'collection' in asset ? asset.collection : undefined}>
               {asset.design ?
 (
-                <a class="wallpaper-card-link" href={wallpaperHref(asset.design.slug)} data-wallpaper-dialog={`wallpaper-dialog-${asset.design.slug}`} aria-label={`Explore ${asset.design.name} wallpaper`}>
+                <a class="wallpaper-card-link" href={wallpaperHref(asset.design.slug)} data-wallpaper-dialog={`wallpaper-dialog-${asset.design.slug}`} data-wallpaper-slug={asset.design.slug} aria-label={`Explore ${asset.design.name} wallpaper`}>
                   <div class="wallpaper-card-art">
                     <img class="wallpaper-card-desktop" src={previewHref(asset.design.slug)} alt={asset.design.alt} width="1920" height="1080" loading="lazy" />
                     <img class="wallpaper-card-phone" src={previewHref(asset.design.slug, 'light', 'mobile')} alt="" width="1080" height="2340" loading="lazy" />
