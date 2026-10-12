@@ -334,6 +334,17 @@ scroll preservation, appearance controls, short-screen scrolling, and reduced mo
 
 ### Controls, documentation, and motion
 
+Use Lumen `Select` for custom selection lists and `Combobox` for searchable choices. Reserve
+`NativeSelect` and raw selects for an explicitly requested native platform interaction. Keep the
+custom control's native fallback for JavaScript-free access, and verify the enhanced list with
+keyboard, pointer, mobile, and both appearances. The theme website's ESLint policy enforces this
+choice. Do not remove native fallback support from the shared library.
+
+Wallpaper details place the complete desktop artwork directly on its preview surface, with the
+artwork story below and a separate download column. Phone previews retain their full portrait
+composition. Desktop and phone resolution lists are separate Lumen Select controls, so changing
+screen type never exposes incompatible sizes and retains the last size chosen for each screen.
+
 Use Lumen primitives and public style hooks. Primary actions use neutral `--site-ink` backgrounds with `--theme-bg` text and a distinct
 arrow compartment. Violet remains the identity and focus accent. In native editor ports, map these
 roles to supported action and focus tokens; do not claim website typography or corner controls

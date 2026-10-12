@@ -133,6 +133,12 @@ included. Recovery is a focused revert of this website follow-up; existing downl
 
 ## Product-page polish and appearance wallpapers
 
+Wallpaper details now show complete artwork without an inset decorative frame, with a clearer
+heading, adjacent download controls, and an artwork story beside the chooser. Gallery dialogs and
+the Terminal configurator use Lumen custom selection lists with native fallbacks. Independent
+desktop/phone size lists retain their selected resolutions when switching screen type. Repository
+guidance and ESLint reject accidental NativeSelect imports and raw select elements in app UI.
+
 The Neovim code header no longer inherits the outer figure caption margin. Product pages share
 calmer headline sizes, readable previews, and open installation rows. Chrome now includes its
 existing screenshot in the hero. The iPhone artwork follows the website appearance, and resource

@@ -1,5 +1,5 @@
 ---
-import { ButtonLink, CopyButton, Eyebrow, Field, Icon, Label, Link, NativeSelect } from '@santi020k/lumen-astro'
+import { ButtonLink, CopyButton, Eyebrow, Field, Icon, Label, Link, Select } from '@santi020k/lumen-astro'
 
 import { appearances, devices, downloadHref, exportProfiles, previewHref, resolutions, type wallpaperDesigns, wallpaperHref } from '../../../../artwork/wallpaper-catalog.mjs'
 
@@ -13,7 +13,7 @@ const prefix = `wallpaper-${design.slug}`
 const variants = appearances.flatMap(appearance => devices.map(device => ({ appearance, device, src: previewHref(design.slug, appearance, device), alt: `${design.alt}, ${appearance} ${device === 'mobile' ? 'phone' : 'desktop'} composition` })))
 ---
     <div class="wallpaper-workspace" data-wallpaper-design={design.slug}>
-      <div>
+      <div class="wallpaper-artwork">
         <div class="wallpaper-stage" data-wallpaper-stage>
           {variants.map((variant, index) => <img data-wallpaper-preview data-appearance={variant.appearance} data-device={variant.device} src={variant.src} alt={variant.alt} width={variant.device === 'desktop' ? 1920 : 1080} height={variant.device === 'desktop' ? 1080 : 2340} loading={modal || index !== 0 ? 'lazy' : 'eager'} fetchpriority={modal || index !== 0 ? 'auto' : 'high'} hidden={index !== 0} />)}
         </div>
@@ -26,21 +26,22 @@ const variants = appearances.flatMap(appearance => devices.map(device => ({ appe
         </div>
       </div>
       <aside class="wallpaper-download-panel" aria-labelledby={`${prefix}-download-heading`}>
-        <Eyebrow>Make it yours</Eyebrow><h2 id={`${prefix}-download-heading`}>Your screen.<br /> Your version.</h2>
+        <Eyebrow>Make it yours</Eyebrow><h2 id={`${prefix}-download-heading`}>Choose your version.</h2>
         <form data-wallpaper-form>
           <div class="wallpaper-control-pair">
-            <Field><Label for={`${prefix}-appearance`}>Appearance</Label><NativeSelect id={`${prefix}-appearance`} name="appearance" options={[{ label: 'Dark', value: 'dark' }, { label: 'Light', value: 'light' }]} /></Field>
-            <Field><Label for={`${prefix}-device`}>Screen</Label><NativeSelect id={`${prefix}-device`} name="device" options={[{ label: 'Desktop', value: 'desktop' }, { label: 'Phone', value: 'mobile' }]} /></Field>
+            <Field><Label for={`${prefix}-appearance`}>Appearance</Label><Select id={`${prefix}-appearance`} name="appearance" value="dark" options={[{ label: 'Dark', value: 'dark' }, { label: 'Light', value: 'light' }]} /></Field>
+            <Field><Label for={`${prefix}-device`}>Screen</Label><Select id={`${prefix}-device`} name="device" value="desktop" options={[{ label: 'Desktop', value: 'desktop' }, { label: 'Phone', value: 'mobile' }]} /></Field>
           </div>
-          <Field><Label for={`${prefix}-resolution`}>Resolution</Label><NativeSelect id={`${prefix}-resolution`} name="resolution">{resolutions.map(size => <option value={size.id} data-device={size.device} hidden={size.device !== 'desktop'} disabled={size.device !== 'desktop'} selected={size.id === '2560x1440'}>{size.label}</option>)}</NativeSelect></Field>
-          <Field><Label for={`${prefix}-profile`}>Format & quality</Label><NativeSelect id={`${prefix}-profile`} name="profile">{exportProfiles.map(profile => <option value={profile.id} selected={profile.id === 'webp-high'}>{profile.label}</option>)}</NativeSelect></Field>
+          {devices.map(device => <Field data-wallpaper-resolution={device} hidden={device === 'mobile'}><Label for={`${prefix}-${device}-resolution`}>Resolution</Label><Select id={`${prefix}-${device}-resolution`} name={`${device}-resolution`} value={device === 'mobile' ? '1170x2532' : '2560x1440'} options={resolutions.filter(size => size.device === device).map(size => ({ label: size.label, value: size.id }))} /></Field>)}
+          <Field><Label for={`${prefix}-profile`}>Format & quality</Label><Select id={`${prefix}-profile`} name="profile" value="webp-high" options={exportProfiles.map(profile => ({ label: profile.label, value: profile.id }))} /></Field>
           <ButtonLink class="wallpaper-download" variant="unstyled" href={downloadHref(design.slug, 'dark', '2560x1440', 'webp-high') ?? ''} download data-wallpaper-download><span>Download wallpaper</span><Icon name="download" /></ButtonLink>
           <p class="wallpaper-selection" data-wallpaper-selection aria-live="polite">Dark · Desktop · 2560 × 1440 · WEBP · High quality</p>
         </form>
         <p class="wallpaper-export-note">All sizes are resized from AI-generated raster artwork. A 4K-size export fits a 4K screen; it does not add native detail.</p>
-        <div class="wallpaper-appearance-links"><Link href={`/downloads/appearance/${design.slug}.heic`} download>Mac light + dark HEIC <Icon name="download" /></Link><Link href="/gallery/appearance/">Automatic switching guide <Icon name="arrow-right" /></Link></div>
+        <div class="wallpaper-appearance-links"><h3>Light to dark, automatically.</h3><p>On Mac, get both appearances in one paired file.</p><Link href={`/downloads/appearance/${design.slug}.heic`} download>Mac light + dark HEIC <Icon name="download" /></Link><Link href="/gallery/appearance/">Automatic switching guide <Icon name="arrow-right" /></Link></div>
         {!modal && <noscript><p>Use the complete download list below to choose another version without JavaScript.</p></noscript>}
       </aside>
+        {!modal && <section class="wallpaper-artwork-story" aria-labelledby={`${prefix}-story-heading`}><Eyebrow>Behind the artwork</Eyebrow><h2 id={`${prefix}-story-heading`}>{design.tagline}</h2><p>{design.story}</p><p>{design.detail}</p></section>}
     </div>
 
 <script>import '../scripts/wallpaper-downloads'

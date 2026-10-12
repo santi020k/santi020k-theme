@@ -4,25 +4,14 @@ import { bindPageLifecycle } from '../utils/page-lifecycle'
 const readControls = (form: HTMLFormElement) => {
   const appearance = form.querySelector<HTMLSelectElement>('[name="appearance"]')
   const device = form.querySelector<HTMLSelectElement>('[name="device"]')
-  const resolution = form.querySelector<HTMLSelectElement>('[name="resolution"]')
+  const desktopResolution = form.querySelector<HTMLSelectElement>('[name="desktop-resolution"]')
+  const mobileResolution = form.querySelector<HTMLSelectElement>('[name="mobile-resolution"]')
   const profile = form.querySelector<HTMLSelectElement>('[name="profile"]')
   const download = form.querySelector<HTMLAnchorElement>('[data-wallpaper-download]')
 
-  if (!appearance || !device || !resolution || !profile || !download) return
+  if (!appearance || !device || !desktopResolution || !mobileResolution || !profile || !download) return
 
-  return { appearance, device, resolution, profile, download }
-}
-
-const syncResolution = (select: HTMLSelectElement, device: string) => {
-  for (const option of select.options) {
-    option.disabled = option.dataset.device !== device
-
-    option.hidden = option.disabled
-  }
-
-  if (!resolutions.some(size => size.id === select.value && size.device === device)) {
-    select.value = device === 'mobile' ? '1170x2532' : '2560x1440'
-  }
+  return { appearance, device, desktopResolution, mobileResolution, profile, download }
 }
 
 const updatePreview = (root: HTMLElement, appearance: string, device: string, description: string) => {
@@ -49,16 +38,20 @@ const bindWallpaper = (root: HTMLElement, signal: AbortSignal) => {
 
   if (!controls) return
 
-  const { appearance, device, resolution, profile, download } = controls
+  const { appearance, device, desktopResolution, mobileResolution, profile, download } = controls
 
   const update = () => {
-    syncResolution(resolution, device.value)
+    const resolution = device.value === 'mobile' ? mobileResolution : desktopResolution
+
+    for (const field of form.querySelectorAll<HTMLElement>('[data-wallpaper-resolution]')) {
+      field.hidden = field.dataset.wallpaperResolution !== device.value
+    }
 
     const href = downloadHref(slug, appearance.value, resolution.value, profile.value)
     const size = resolutions.find(item => item.id === resolution.value)
     const format = exportProfiles.find(item => item.id === profile.value)
 
-    if (!href || !size || !format) return
+    if (!href || size?.device !== device.value || !format) return
 
     download.href = href
 

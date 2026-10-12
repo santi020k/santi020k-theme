@@ -66,3 +66,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--site-accent); o
 .docs-mobile-toc nav a{display:flex;align-items:center;min-height:var(--site-control-min-height);color:var(--site-brand)}
 @media(max-width:1080px){.docs-mobile-toc{display:block;margin-block:24px;padding:16px;border-bottom:1px solid var(--section-divider)}}
 @media(max-width:760px){.docs-sidebar{display:none}.docs-mobile-guides{display:block;margin-bottom:24px;padding:16px;border:1px solid var(--site-line);border-radius:var(--site-control-radius);background:var(--site-surface)}.docs-mobile-guides .docs-nav-group{display:grid}.docs-mobile-guides .docs-nav-group>span{display:block}.docs-mobile-guides .docs-nav-group a{border:0}.docs-mobile-guides .docs-nav-group a[aria-current="page"]{background:var(--theme-bg)}}
+
+/* Use the same custom Lumen list as the wallpaper chooser. */
+.configurator-row [data-ui-field] { min-width: 0; display: grid; gap: 8px; }
+.configurator-row [data-ui-select] { width: 100%; min-width: 0; }
+.configurator-row [data-ui-select-trigger] { width: 100%; min-height: 44px; border: 1px solid var(--site-line); border-radius: var(--site-control-radius); padding-inline: 12px 32px; background-color: var(--theme-bg); color: var(--site-ink); font-size: .8125rem; }
+.configurator-row [data-ui-select-list] { background: var(--site-surface); border-color: var(--site-line); border-radius: var(--site-control-radius); }
+.configurator-row [data-ui-select-option] { min-height: 44px; color: var(--site-ink-soft); font-size: .8125rem; }
+.configurator-row [data-ui-select-option]:is(:hover, :focus-visible, [aria-selected="true"]) { background: var(--site-surface-strong); color: var(--site-ink); }
+.configurator-row :is([data-ui-select-trigger], [data-ui-select-option]):focus-visible { outline: 2px solid var(--site-brand); outline-offset: -2px; }

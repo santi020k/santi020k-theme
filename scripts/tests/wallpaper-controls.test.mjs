@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { downloadHref, resolutions } from '../../artwork/wallpaper-catalog.mjs'
+import { downloadHref } from '../../artwork/wallpaper-catalog.mjs'
 
 const { lifecycle } = vi.hoisted(() => ({ lifecycle: vi.fn() }))
 
@@ -13,7 +13,8 @@ const initialize = lifecycle.mock.calls[0][1]
 const workspace = slug => {
   const controls = {
     appearance: { value: 'dark' }, device: { value: 'desktop' },
-    resolution: { value: '2560x1440', options: resolutions.map(size => ({ value: size.id, dataset: { device: size.device } })) },
+    'desktop-resolution': { value: '2560x1440' },
+    'mobile-resolution': { value: '1170x2532' },
     profile: { value: 'webp-high' }
   }
 
@@ -21,9 +22,11 @@ const workspace = slug => {
   const caption = { textContent: '' }
   const selection = { textContent: '' }
   const previews = ['dark', 'light'].flatMap(appearance => ['desktop', 'mobile'].map(device => ({ dataset: { appearance, device }, hidden: false })))
+  const fields = ['desktop', 'mobile'].map(device => ({ dataset: { wallpaperResolution: device }, hidden: device === 'mobile' }))
 
   const form = Object.assign(new EventTarget(), {
-    querySelector: selector => selector === '[data-wallpaper-download]' ? download : controls[selector.match(/name="(\w+)"/u)?.[1]]
+    querySelector: selector => selector === '[data-wallpaper-download]' ? download : controls[selector.match(/name="([\w-]+)"/u)?.[1]],
+    querySelectorAll: () => fields
   })
 
   const root = {
@@ -32,7 +35,7 @@ const workspace = slug => {
     querySelectorAll: () => previews
   }
 
-  return { root, form, controls, download, caption, selection, previews }
+  return { root, form, controls, download, caption, selection, previews, fields }
 }
 
 afterEach(() => vi.unstubAllGlobals())
@@ -55,7 +58,7 @@ describe('wallpaper download workspaces', () => {
 
     halo.form.dispatchEvent(new Event('change'))
 
-    expect(halo.controls.resolution.value).toBe('1170x2532')
+    expect(halo.controls['mobile-resolution'].value).toBe('1170x2532')
 
     expect(halo.download.href).toBe(downloadHref('halo', 'light', '1170x2532', 'png-lossless'))
 
@@ -63,7 +66,13 @@ describe('wallpaper download workspaces', () => {
 
     expect(halo.previews.filter(preview => !preview.hidden).map(preview => preview.dataset)).toEqual([{ appearance: 'light', device: 'mobile' }])
 
-    expect(halo.controls.resolution.options.filter(option => !option.disabled).every(option => option.dataset.device === 'mobile')).toBe(true)
+    expect(halo.fields.filter(field => !field.hidden).map(field => field.dataset.wallpaperResolution)).toEqual(['mobile'])
+
+    halo.controls['mobile-resolution'].value = '1080x2340'
+
+    halo.form.dispatchEvent(new Event('change'))
+
+    expect(halo.download.href).toBe(downloadHref('halo', 'light', '1080x2340', 'png-lossless'))
 
     expect(dune.download.href).toBe(downloadHref('dune', 'dark', '2560x1440', 'webp-high'))
 
@@ -71,7 +80,17 @@ describe('wallpaper download workspaces', () => {
 
     halo.form.dispatchEvent(new Event('change'))
 
-    expect(halo.controls.resolution.value).toBe('2560x1440')
+    expect(halo.controls['desktop-resolution'].value).toBe('2560x1440')
+
+    expect(halo.fields.filter(field => !field.hidden).map(field => field.dataset.wallpaperResolution)).toEqual(['desktop'])
+
+    halo.controls.device.value = 'mobile'
+
+    halo.form.dispatchEvent(new Event('change'))
+
+    expect(halo.controls['mobile-resolution'].value).toBe('1080x2340')
+
+    expect(halo.download.href).toBe(downloadHref('halo', 'light', '1080x2340', 'png-lossless'))
 
     const event = new Event('submit', { cancelable: true })
 

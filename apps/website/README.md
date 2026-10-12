@@ -95,6 +95,12 @@ Run commands from the repository root.
 - Load hub styles from Astro layouts/pages so client navigation preserves styles and direct loads
   render correctly without depending on the client script to insert CSS.
 - Preserve visible focus styles, external-link safety, and the dark/light toggle.
+- Use Lumen `Select` for custom lists and `Combobox` for searchable choices. ESLint rejects
+  `NativeSelect` imports and raw selects in app interfaces. Keep the built-in native fallback;
+  native popup usage needs an explicit platform requirement rather than a styling shortcut.
+- Wallpaper details and gallery dialogs share custom download controls in `WallpaperWorkspace.astro`.
+  Desktop and phone have independent resolution lists and remember their choices when switching
+  screen type. Verify both enhanced lists and download URLs after changes.
 - The `/design/` palette reveals HEX, RGB, and HSL values through each swatch's keyboard-accessible Color codes disclosure. Values read active shared CSS tokens and stay synchronized with appearance changes and page navigation instead of maintaining a second palette.
 - Keep preview assets in `public/` aligned with current package screenshots.
 - The home hero uses paired light/dark violet glass and ceramic artwork from `artwork/hub-hero-v3/`,

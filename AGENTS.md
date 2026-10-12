@@ -72,6 +72,13 @@ Prefer `pnpm run validate` before finishing any user-visible change. It parses t
 
 ## Website Rules
 
+- Use Lumen `Select` for selection controls and `Combobox` when search is useful. `NativeSelect`
+  and raw `<select>` elements require an explicit native-control requirement; visual styling alone
+  cannot replace the browser popup. The repository lint gate rejects accidental native usage.
+- Keep Lumen's built-in native fallback, form semantics, labels, keyboard controls, and runtime.
+  Render dependent option groups separately when the installed Select does not support dynamic
+  option changes; do not manipulate its private runtime or build another dropdown controller.
+
 - Website source is under `apps/website/`.
 - VS Code website source is under `apps/vscode-website/`.
 - Chrome website source is under `apps/chrome-website/`.
