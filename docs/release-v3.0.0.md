@@ -6,7 +6,7 @@ The integration branch is `release/v3.0.0`, based on `main` at `28b5dfc`. Change
 
 October 12, 2026: the final release candidate passes the frozen-lockfile install,
 full dependency audit, and `pnpm run validate` on Node 22.23.1 with pnpm 10.34.6.
-The validation includes 231 tests across 44 files, strict types, zero-warning lint,
+The validation includes 240 tests across 46 files, strict types, zero-warning lint,
 spelling, native theme validators, builds, and VSIX packaging. SEO covers 35 pages
 with no errors or warnings. `pnpm run validate:links` checks 2061 local references
 and 47 external URLs. `pnpm run validate:appearance` validates all eight HEIC pairs,
@@ -52,6 +52,20 @@ reviewed as a false positive: `websiteLinkText` only feeds URL extraction in the
 Node link checker, followed by filesystem checks, HTTP status checks, and console
 diagnostics. Its result never reaches an HTML rendering sink. The alert disposition
 records that evidence; CodeQL scanning and query coverage remain enabled.
+
+GitHub Codex review identified three additional release regressions. Deployment
+filters now cover every external consolidated-site build input, including artwork,
+download generators, native Chrome assets, shared contrast logic, and the license
+included in downloads. A regression check compares the filters with Turbo inputs.
+Obsidian generation preserves historical compatibility mappings, validates corrupt
+history before writing artifacts, and is covered by isolated release-build tests.
+Download packaging explicitly invokes the generator before archiving its outputs;
+the independent reviewer confirmed the updated caller resolves the integration risk.
+Wallpaper and banner detail pages now use Lumen's ordered-list breadcrumbs with
+the current page marked on its list item. Rendered checks passed for all ten detail
+routes in both appearances at desktop and mobile widths (40 combinations), without
+horizontal overflow or console errors. These fixes preserve release approval
+boundaries and existing download URLs.
 
 ## Consolidation
 

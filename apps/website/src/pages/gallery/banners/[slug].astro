@@ -39,7 +39,12 @@ height: variant.layout.height / 2,
 ---
 <ArtworkLayout {title} description={design.description} {pathname} image={bannerSocialHref(design.slug)} imageAlt={design.alt} {structuredData}>
   <div class="site-shell wallpaper-detail">
-    <Breadcrumb class="wallpaper-breadcrumb"><a href="/gallery/">Gallery</a><span aria-hidden="true">/</span><span aria-current="page">{design.name}</span></Breadcrumb>
+    <Breadcrumb class="wallpaper-breadcrumb">
+      <ol>
+        <li><a href="/gallery/">Gallery</a></li>
+        <li aria-current="page"><span>{design.name}</span></li>
+      </ol>
+    </Breadcrumb>
     <header class="wallpaper-heading"><div><Eyebrow>Banners &amp; covers</Eyebrow><h1>{design.name}<span>.</span></h1></div><div class="wallpaper-heading-copy"><p>{design.tagline}</p><p class="wallpaper-heading-meta">Light + dark · Wide + square · Free download</p></div></header>
     <BannerWorkspace {design} />
     <section class="wallpaper-files" id="all-downloads" aria-labelledby="files-heading">

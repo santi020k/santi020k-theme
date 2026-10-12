@@ -12,6 +12,8 @@ on:
       - "apps/codex-website/**"
       - "apps/terminal-website/**"
       - "apps/zed-website/**"
+      - "artwork/**"
+      - "packages/santi020k-chrome-theme/**"
       - "packages/santi020k-codex-theme/**"
       - "packages/santi020k-terminal-theme/**"
       - "packages/santi020k-zed-theme/**"
@@ -24,7 +26,10 @@ on:
       - "packages/santi020k-theme/src/tokens/vscode/base-themes/**"
       - "packages/santi020k-theme/scripts/validate-themes.mjs"
       - "scripts/build-theme-downloads.mjs"
+      - "scripts/generate-wallpaper-downloads.mjs"
+      - "scripts/generate-banner-downloads.mjs"
       - "scripts/lib/port-palette.mjs"
+      - "scripts/lib/color-contrast.mjs"
       - "docs/iphone-setup.md"
       - "packages/theme/**"
       - "packages/theme-core/**"
@@ -34,6 +39,7 @@ on:
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
       - "turbo.json"
+      - "LICENSE"
   workflow_dispatch: {}
 
 permissions:

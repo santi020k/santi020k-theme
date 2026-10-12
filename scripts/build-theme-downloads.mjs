@@ -1,4 +1,3 @@
-import '../packages/santi020k-obsidian-theme/scripts/build.mjs'
 import '../packages/santi020k-neovim-theme/scripts/build.mjs'
 
 import { createWriteStream } from 'node:fs'
@@ -6,6 +5,10 @@ import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { finished } from 'node:stream/promises'
 
 import { ZipArchive } from 'archiver'
+
+import { buildObsidianTheme } from '../packages/santi020k-obsidian-theme/scripts/build.mjs'
+
+buildObsidianTheme()
 
 const root = new URL('../', import.meta.url)
 const output = new URL('apps/website/public/downloads/ports/', root)

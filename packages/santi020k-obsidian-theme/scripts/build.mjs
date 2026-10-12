@@ -1,9 +1,8 @@
+import assert from 'node:assert/strict'
 import { readFileSync, writeFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
 import { readPortPalette } from '../../../scripts/lib/port-palette.mjs'
-
-const root = new URL('../', import.meta.url)
-const pkg = JSON.parse(readFileSync(new URL('package.json', root), 'utf8'))
 
 const variables = appearance => {
   const p = readPortPalette(appearance)
@@ -108,18 +107,38 @@ body.is-mobile {
 `
 ].join('\n\n')
 
-const manifest = {
-  name: 'Santi020k',
-  version: pkg.version,
-  minAppVersion: '1.10.6',
-  author: 'Santiago Molina',
-  authorUrl: 'https://santi020k.com'
+/** @param {URL} [root] */
+export const buildObsidianTheme = (root = new URL('../', import.meta.url)) => {
+  const pkg = JSON.parse(readFileSync(new URL('package.json', root), 'utf8'))
+  const versions = JSON.parse(readFileSync(new URL('versions.json', root), 'utf8'))
+
+  assert.ok(versions && typeof versions === 'object' && !Array.isArray(versions), 'Expected an Obsidian version mapping')
+
+  for (const [version, minimum] of Object.entries(versions)) {
+    assert.match(version, /^\d+\.\d+\.\d+$/, 'Invalid historical Obsidian version')
+
+    assert.equal(typeof minimum, 'string', 'Invalid historical Obsidian app minimum')
+
+    assert.match(minimum, /^\d+\.\d+\.\d+$/, 'Invalid historical Obsidian app minimum')
+  }
+
+  const manifest = {
+    name: 'Santi020k',
+    version: pkg.version,
+    minAppVersion: '1.10.6',
+    author: 'Santiago Molina',
+    authorUrl: 'https://santi020k.com'
+  }
+
+  writeFileSync(new URL('theme.css', root), css)
+
+  writeFileSync(new URL('manifest.json', root), JSON.stringify(manifest, null, 2) + '\n')
+
+  writeFileSync(new URL('versions.json', root), JSON.stringify({ ...versions, [pkg.version]: manifest.minAppVersion }, null, 2) + '\n')
 }
 
-writeFileSync(new URL('theme.css', root), css)
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  buildObsidianTheme()
 
-writeFileSync(new URL('manifest.json', root), JSON.stringify(manifest, null, 2) + '\n')
-
-writeFileSync(new URL('versions.json', root), JSON.stringify({ [pkg.version]: manifest.minAppVersion }, null, 2) + '\n')
-
-console.log('Generated Obsidian dark and light theme.')
+  console.log('Generated Obsidian dark and light theme.')
+}
