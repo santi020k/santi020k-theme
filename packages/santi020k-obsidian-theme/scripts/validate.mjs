@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
-import { contrastRatio } from '../../santi020k-theme/scripts/validate-themes.mjs'
+import { contrastRatio } from '../../../scripts/lib/color-contrast.mjs'
 
 export const validateObsidianTheme = (css, manifest) => {
   assert.equal(manifest.name, 'Santi020k')

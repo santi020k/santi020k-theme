@@ -13,11 +13,7 @@
       "dependsOn": ["^build"],
       "outputs": [
         "dist/**",
-        "themes/**",
-        "themes/*-bold-color-theme.json",
-        "themes/*-italic-color-theme.json",
-        "themes/santi020k-hc-light-color-theme.json",
-        "themes/santi020k.json"
+        "themes/**"
       ],
       "outputLogs": "errors-only"
     },
@@ -102,6 +98,7 @@
         "$TURBO_ROOT$/packages/santi020k-terminal-theme/zsh/**",
         "$TURBO_ROOT$/scripts/build-theme-downloads.mjs",
         "$TURBO_ROOT$/scripts/lib/port-palette.mjs",
+        "$TURBO_ROOT$/scripts/lib/color-contrast.mjs",
         "$TURBO_ROOT$/packages/santi020k-obsidian-theme/**",
         "$TURBO_ROOT$/packages/santi020k-neovim-theme/**",
         "$TURBO_ROOT$/docs/iphone-setup.md",
@@ -170,7 +167,7 @@
       "inputs": [
         "$TURBO_DEFAULT$",
         "$TURBO_ROOT$/scripts/lib/port-palette.mjs",
-        "$TURBO_ROOT$/packages/santi020k-theme/scripts/validate-themes.mjs",
+        "$TURBO_ROOT$/scripts/lib/color-contrast.mjs",
         "$TURBO_ROOT$/packages/santi020k-theme/src/tokens/vscode/base-themes/**"
       ],
       "outputs": [
@@ -184,7 +181,7 @@
       "inputs": [
         "$TURBO_DEFAULT$",
         "$TURBO_ROOT$/scripts/lib/port-palette.mjs",
-        "$TURBO_ROOT$/packages/santi020k-theme/scripts/validate-themes.mjs",
+        "$TURBO_ROOT$/scripts/lib/color-contrast.mjs",
         "$TURBO_ROOT$/packages/santi020k-theme/src/tokens/vscode/base-themes/**"
       ],
       "outputs": [

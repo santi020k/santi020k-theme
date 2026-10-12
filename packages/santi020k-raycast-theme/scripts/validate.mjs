@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
+import { contrastRatio } from '../../../scripts/lib/color-contrast.mjs'
+
 const requiredColors = [
   'background',
   'backgroundSecondary',
@@ -15,18 +17,6 @@ const requiredColors = [
   'purple',
   'magenta'
 ]
-
-const hexToRgb = color => color.match(/[\dA-F]{2}/gi).map(value => Number.parseInt(value, 16) / 255)
-
-const luminance = color => hexToRgb(color)
-  .map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4)
-  .reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0)
-
-const contrast = (foreground, background) => {
-  const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a)
-
-  return (values[0] + 0.05) / (values[1] + 0.05)
-}
 
 for (const appearance of ['dark', 'light']) {
   const root = resolve(import.meta.dirname, '..', 'themes')
@@ -43,7 +33,7 @@ for (const appearance of ['dark', 'light']) {
     }
   }
 
-  if (contrast(theme.colors.text, theme.colors.background) < 4.5) {
+  if (contrastRatio(theme.colors.text, theme.colors.background) < 4.5) {
     throw new Error(`Raycast ${appearance} primary text must meet 4.5:1 contrast.`)
   }
 

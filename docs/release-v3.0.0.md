@@ -172,3 +172,16 @@ and complete download lists work without JavaScript. Masters and exact generatio
 live in `artwork/banners-v1/`; the normal build generates optimized exports and social images.
 Earlier banner, logo, and wallpaper URLs remain unchanged. Recovery is a focused revert
 of the gallery changes while retaining any published download paths.
+
+## Major-release maintenance
+
+The v3 cleanup consolidates repeated native contrast calculations in one internal tooling
+helper and removes native ports' dependency on the full VS Code validator. Invalid color
+input now fails explicitly instead of producing an invalid ratio; existing opaque and alpha
+compositing results stay unchanged. Native artifact schemas and public exports remain intact.
+
+Root builds select the distributable packages and the single deployed website, avoiding five
+redundant standalone site builds. Retained product modules remain available for focused
+local development and are still covered by type checking and the consolidated build. Turbo
+cache inputs track the shared contrast helper where palette generation depends on it.
+No theme, download, or gallery collection is removed by this cleanup.

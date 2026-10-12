@@ -12,7 +12,7 @@
     "dev:chrome": "pnpm --filter santi020k-chrome-theme run dev",
     "dev:chrome:dark": "pnpm --filter santi020k-chrome-theme run dev:dark",
     "dev:chrome:light": "pnpm --filter santi020k-chrome-theme run dev:light",
-    "build": "turbo run build",
+    "build": "turbo run build --filter='./packages/*' --filter=@santi020k/santi020k-theme-website",
     "build:chrome-theme": "pnpm --filter santi020k-chrome-theme run build",
     "build:themes": "pnpm --filter santi020k-theme run build",
     "build:zed": "pnpm --filter santi020k-zed-theme run build",
