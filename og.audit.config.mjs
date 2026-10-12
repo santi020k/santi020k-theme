@@ -1,6 +1,7 @@
 import { defineAuditConfig } from '@santi020k/og/audit/config'
 import { standardAuditRules } from '@santi020k/og/audit/rules'
 
+import { bannerDesigns, bannerHref, bannerSocialHref } from './artwork/banner-catalog.mjs'
 import { socialPreviewHref, wallpaperDesigns } from './artwork/wallpaper-catalog.mjs'
 
 const siteUrl = 'https://theme.santi020k.com'
@@ -12,6 +13,7 @@ const expectations = new Map([
   ['/gallery/appearance/', { image: '/og-appearance.png', keyword: 'wallpapers', schema: 'WebPage' }],
   ['/gallery/archive/', { image: '/og-archive.png', keyword: 'Archive', schema: 'CollectionPage' }],
   ...wallpaperDesigns.map(design => [`/gallery/${design.slug}/`, { image: socialPreviewHref(design.slug), keyword: design.name, schema: 'ImageObject' }]),
+  ...bannerDesigns.map(design => [bannerHref(design.slug), { image: bannerSocialHref(design.slug), keyword: design.name, schema: 'ImageObject' }]),
   ['/gallery/', { image: '/og-gallery.png', keyword: 'Gallery', schema: 'CollectionPage' }],
   ['/vscode/', { image: '/vscode/og-image.png', keyword: 'VS Code', schema: 'SoftwareApplication' }],
   ['/chrome/', { image: '/chrome/og-image.png', keyword: 'Chrome', schema: 'SoftwareApplication' }],

@@ -22,10 +22,10 @@ class Dialog extends EventTarget {
 }
 
 const setup = ({ missing = false, url = 'https://theme.example/gallery/' } = {}) => {
-  const entries = ['halo', 'tide'].map(slug => ({
+  const entries = ['halo', 'tide', 'studio', 'orbit'].map(slug => ({
     slug,
     link: Object.assign(new EventTarget(), {
-      dataset: { wallpaperDialog: `wallpaper-dialog-${slug}`, wallpaperSlug: slug },
+      dataset: ['studio', 'orbit'].includes(slug) ? { bannerDialog: `banner-dialog-${slug}`, bannerSlug: slug } : { wallpaperDialog: `wallpaper-dialog-${slug}`, wallpaperSlug: slug },
       setAttribute: vi.fn(), focus: vi.fn(), isConnected: true, getClientRects: () => [{}]
     }),
     dialog: new Dialog()
@@ -47,7 +47,7 @@ const setup = ({ missing = false, url = 'https://theme.example/gallery/' } = {})
 
   vi.stubGlobal('document', {
     querySelectorAll: () => entries.map(entry => entry.link),
-    getElementById: id => missing ? null : entries.find(entry => entry.link.dataset.wallpaperDialog === id)?.dialog
+    getElementById: id => missing ? null : entries.find(entry => (entry.link.dataset.wallpaperDialog ?? entry.link.dataset.bannerDialog) === id)?.dialog
   })
 
   const cleanup = initialize(controller.signal)
@@ -222,5 +222,45 @@ describe('wallpaper preview navigation', () => {
     expect(dialog.showModal).toHaveBeenCalledTimes(1)
 
     expect(browser.history.replaceState).toHaveBeenCalledTimes(1)
+  })
+})
+
+
+describe('banner preview navigation', () => {
+  it('restores a banner and shares its own URL without altering wallpaper links', async () => {
+    const { entries, browser } = setup({ url: 'https://theme.example/gallery/?banner=studio' })
+    const { dialog, link } = entries[2]
+
+    expect(dialog.open).toBe(true)
+
+    expect(dialog.share.dataset.copyValue).toBe(browser.location.href)
+
+    expect(entries[0].dialog.open).toBe(false)
+
+    dialog.close()
+
+    await Promise.resolve()
+
+    expect(browser.location.search).toBe('')
+
+    expect(link.focus).toHaveBeenCalledWith({ preventScroll: true })
+  })
+
+  it('restores history across artwork kinds without leaving a second modal open', async () => {
+    const { entries, restore } = setup({ url: 'https://theme.example/gallery/?wallpaper=halo' })
+
+    restore('?banner=orbit')
+
+    await Promise.resolve()
+
+    expect(entries.map(entry => entry.dialog.open)).toEqual([false, false, false, true])
+
+    expect(entries[0].link.focus).not.toHaveBeenCalled()
+
+    restore('?wallpaper=tide')
+
+    await Promise.resolve()
+
+    expect(entries.map(entry => entry.dialog.open)).toEqual([false, true, false, false])
   })
 })

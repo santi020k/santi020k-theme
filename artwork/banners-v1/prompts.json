@@ -1,0 +1,54 @@
+{
+  "generator": "Codex built-in image generation",
+  "date": "2026-10-12",
+  "assets": [
+    {
+      "file": "studio-light-wide.png",
+      "generatedFile": "exec-1722f758-ffa0-470a-8744-540666eeb74a.png",
+      "reference": null,
+      "prompt": "Use case: stylized-concept. Create one production-quality raster banner for Santi020k Theme, named Studio, LIGHT edition. Ultra-wide 3:1 landscape, 3072 by 1024 preferred. Refined editorial 3D still life: a substantial pale ceramic arch, a low matte lilac slab, and a vertical smoky violet glass slab arranged across the center-right. One small saturated violet rounded-square tile bearing a crisp white >_ terminal prompt sits near the base. Pale lavender seamless studio backdrop around #f8f6fd, rich violet #6319be accents, natural fine ceramic texture, physically convincing contact shadows, broad diffused daylight. Keep the left third quiet and open and all main objects comfortably within frame for a wide cover composition. Artistic tactile material realism, calm architectural forms, restrained purple identity. No names, slogans, headings, software UI, devices, watermarks, gradients filling the canvas, or extra logos. Full-bleed finished artwork, no border, no mockup. Exactly one banner image."
+    },
+    {
+      "file": "studio-dark-wide.png",
+      "generatedFile": "exec-a2feab4c-0d39-429d-819d-94327deba44f.png",
+      "reference": "exec-1722f758-ffa0-470a-8744-540666eeb74a.png",
+      "prompt": "Use case: lighting-weather. Edit target: this Studio light banner. Produce its DARK companion with exactly the same 3:1 wide aspect ratio, camera, object geometry, sizes, positions, and framing. Change only materials and lighting to a nocturnal violet studio: deep indigo-black #110c1d background and floor, charcoal lavender ceramic arch and slab, smoky violet glass with restrained edge highlights, saturated violet tile with the same crisp white >_ prompt. Preserve all objects, shape detail, background negative space, and photoreal material texture. No bright white backdrop, neon glow, extra objects, new text, border, or watermark."
+    },
+    {
+      "file": "orbit-light-wide.png",
+      "generatedFile": "exec-3b630a97-0a83-4bed-98b4-ad19281b90c6.png",
+      "reference": null,
+      "prompt": "Use case: stylized-concept. Create one production-quality raster banner for Santi020k Theme, named Orbit, LIGHT edition. Ultra-wide 3:1 landscape, 3072 by 1024 preferred. A single floating translucent violet glass sphere encircled by two extremely thin elliptical brushed-metal rings, one soft lavender, one deep violet. Rings cross at different angles with convincing occlusion and cast a delicate soft elliptical shadow on a pale lavender matte floor. Position the orbital sculptural form toward the right of a spacious, quiet composition, leaving much of the left half open. Background #f8f6fd, restrained violet #6319be refractions, subtle photoreal glass imperfections, museum product photography and sophisticated minimal 3D material quality. No starfield, space scene, neon glow, gradients filling the backdrop, text, prompt mark, logo, UI, watermark, or border. Full-bleed art, not a mockup. Exactly one banner image."
+    },
+    {
+      "file": "orbit-dark-wide.png",
+      "generatedFile": "exec-667f2583-2458-4fae-9fbc-e75cd314deb4.png",
+      "reference": "exec-3b630a97-0a83-4bed-98b4-ad19281b90c6.png",
+      "prompt": "Use case: lighting-weather. Edit target: this Orbit light banner. Produce its DARK companion with exactly the same 3:1 wide aspect ratio, camera, sphere geometry, ring angles, positions, and framing. Change only materials and lighting to a nocturnal violet studio: deep indigo-black #110c1d background and floor, transparent smoky violet glass sphere with restrained lavender highlights, thin brushed violet rings, delicate shadow below. Preserve the full left negative space and all geometry. No extra objects, neon glow, starfield, text, logo, border, or watermark."
+    },
+    {
+      "file": "studio-light-square.png",
+      "generatedFile": "exec-afb3818c-e4bf-4f41-a997-9803aaaebaa7.png",
+      "reference": "exec-1722f758-ffa0-470a-8744-540666eeb74a.png",
+      "prompt": "Use case: style-transfer. Reference image: Studio light banner. Create a separately composed SQUARE 1:1 cover artwork in the identical style, palette, and material language. Rearrange the same pale ceramic arch, low lilac slab, vertical violet glass panel, small canonical purple tile with crisp white >_ prompt, stone and subtle dried flowers into a balanced centered studio still life with generous breathing room around all edges. It must be an intentionally composed square cover, not a cropped wide banner. Keep pale lavender background, diffused daylight, realistic texture, soft shadows, calm refined composition. Exactly one square image; no other text, border, collage, watermark, or UI."
+    },
+    {
+      "file": "orbit-light-square.png",
+      "generatedFile": "exec-a0863a50-3977-4336-9553-3a53de70fa83.png",
+      "reference": "exec-3b630a97-0a83-4bed-98b4-ad19281b90c6.png",
+      "prompt": "Use case: style-transfer. Reference image: Orbit light banner. Create a separately composed SQUARE 1:1 cover artwork in the identical style, palette, and material language. Center the same translucent violet glass sphere and its two slender intersecting elliptical rings above a pale lavender matte studio floor. Give the whole orbital sculpture comfortable breathing room and a delicate shadow, with convincing occlusion and the same glass texture. Intentionally balanced square cover, not cropped wide banner. Keep diffused light, pale lavender #f8f6fd backdrop, restrained violet metal. Exactly one square image; no extra objects, stars, neon, text, logo, border, collage, watermark, or UI."
+    },
+    {
+      "file": "studio-dark-square.png",
+      "generatedFile": "exec-b584e9a4-1e29-4f9a-9a6e-9d9be299d693.png",
+      "reference": "exec-afb3818c-e4bf-4f41-a997-9803aaaebaa7.png",
+      "prompt": "Use case: lighting-weather. Edit target: this studio light square cover. Produce its DARK companion with exactly the same square 1:1 aspect ratio, camera, object geometry, proportions, positions and framing. Change only materials and lighting to a nocturnal violet studio with deep indigo-black #110c1d background and floor, charcoal lavender ceramics where present, transparent smoky violet glass, thin brushed violet metal where present, restrained soft lavender highlights and realistic contact shadows. Preserve every object, all geometry, and the existing crisp white >_ tile mark if present. No extra objects, new text, neon glow, stars, border, watermark or crop. Exactly one square image."
+    },
+    {
+      "file": "orbit-dark-square.png",
+      "generatedFile": "exec-190e5956-2c87-455a-a858-9bcfa7b9b781.png",
+      "reference": "exec-a0863a50-3977-4336-9553-3a53de70fa83.png",
+      "prompt": "Use case: lighting-weather. Edit target: this orbit light square cover. Produce its DARK companion with exactly the same square 1:1 aspect ratio, camera, object geometry, proportions, positions and framing. Change only materials and lighting to a nocturnal violet studio with deep indigo-black #110c1d background and floor, charcoal lavender ceramics where present, transparent smoky violet glass, thin brushed violet metal where present, restrained soft lavender highlights and realistic contact shadows. Preserve every object, all geometry, and the existing crisp white >_ tile mark if present. No extra objects, new text, neon glow, stars, border, watermark or crop. Exactly one square image."
+    }
+  ]
+}

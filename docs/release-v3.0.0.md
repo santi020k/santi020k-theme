@@ -160,3 +160,15 @@ must remain green before publication; these results do not imply hosted CI or de
 Recovery is a focused revert of the product-page and wallpaper changes. Existing PNG/JPG/WEBP
 URLs are retained, no system preferences are changed, and there is no data migration. Regenerate
 HEICs with `pnpm run generate:appearance` on macOS and commit the files plus manifest together.
+
+## Studio and Orbit banners
+
+The current gallery adds Studio and Orbit as two new designs with paired light/dark wide
+banners and separately composed square covers. Wallpapers, Banners, and Covers filters
+keep the ten designs easy to browse; all eight wallpapers, including Dune and Veil, remain
+visible. Each new design has an in-gallery preview, a shareable `?banner=` URL, a permanent
+page, and PNG/JPG/WEBP downloads at 2160 × 720 or 1200 × 1200 without upscaling. Native links
+and complete download lists work without JavaScript. Masters and exact generation prompts
+live in `artwork/banners-v1/`; the normal build generates optimized exports and social images.
+Earlier banner, logo, and wallpaper URLs remain unchanged. Recovery is a focused revert
+of the gallery changes while retaining any published download paths.

@@ -17,7 +17,7 @@
     "build:themes": "pnpm --filter santi020k-theme run build",
     "build:zed": "pnpm --filter santi020k-zed-theme run build",
     "validate": "pnpm run check:brand-assets && pnpm run typecheck && pnpm run build && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run validate:chrome && pnpm run validate:terminal && pnpm run validate:zed && pnpm run validate:codex && pnpm run validate:raycast && pnpm run validate:slack && pnpm run validate:jetbrains && pnpm run validate:xcode && pnpm run validate:obsidian && pnpm run validate:neovim && pnpm run report:accessibility && pnpm run validate:seo && pnpm run test && pnpm run lint && pnpm run lint:knip && pnpm run package:extension",
-    "pretest": "pnpm run build:themes && node scripts/generate-wallpaper-downloads.mjs && node scripts/build-theme-downloads.mjs",
+    "pretest": "pnpm run build:themes && node scripts/generate-wallpaper-downloads.mjs && node scripts/generate-banner-downloads.mjs && node scripts/build-theme-downloads.mjs",
     "test": "vitest run scripts/tests packages/*/tests apps/*/tests",
     "sync:website-version": "node apps/vscode-website/scripts/sync-website-version.mjs",
     "validate:links": "node scripts/check-website-links.mjs",

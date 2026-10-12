@@ -1,0 +1,13 @@
+.banner-card-art { position: relative; display: grid; align-content: center; gap: 1px; aspect-ratio: 3 / 2; overflow: hidden; background: var(--site-surface); }
+.banner-card-wide { display: block; width: 100%; height: auto; }
+.banner-card-square { display: none; width: 100%; height: 100%; object-fit: contain; }
+[data-gallery-filter="covers"] .banner-card-art { aspect-ratio: 1; }
+[data-gallery-filter="covers"] .banner-card-wide { display: none; }
+[data-gallery-filter="covers"] .banner-card-square { display: block; }
+.banner-card-art .wallpaper-card-editions { bottom: 1rem; }
+.banner-stage:has(img[data-layout="square"]:not([hidden])) { aspect-ratio: 1; }
+
+[data-banner-design] [data-ui-select-trigger] { width: 100%; min-height: 48px; border: 1px solid var(--site-line); border-radius: .8rem; padding: .65rem .9rem; background-color: var(--theme-bg); color: var(--site-ink); font: inherit; font-size: .8125rem; box-shadow: none; }
+[data-banner-design] [data-ui-select-list] { background: var(--theme-bg); color: var(--site-ink); border-color: var(--site-line); font-size: .8125rem; }
+[data-banner-design] [data-ui-select-option]:is(:hover, :focus-visible, [aria-selected="true"]) { background: var(--site-surface-strong); color: var(--site-ink); }
+[data-banner-design] :is([data-ui-select-option], [data-ui-select-trigger]):focus-visible { outline: 2px solid var(--site-brand); outline-offset: -3px; }

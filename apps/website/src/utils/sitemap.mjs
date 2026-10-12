@@ -1,3 +1,4 @@
+import { bannerDesigns, bannerHref, bannerLayouts, bannerPreviewHref } from '../../../../artwork/banner-catalog.mjs'
 import { appearances, devices, previewHref, wallpaperDesigns } from '../../../../artwork/wallpaper-catalog.mjs'
 
 const origin = 'https://theme.santi020k.com'
@@ -25,6 +26,20 @@ export const createSitemap = pageFiles => {
 
     return [route, files]
   }))
+
+  for (const design of bannerDesigns) {
+    const route = bannerHref(design.slug)
+
+    routes.add(route)
+
+    const files = []
+
+    for (const appearance of appearances) {
+      for (const layout of bannerLayouts) files.push(bannerPreviewHref(design.slug, appearance, layout.id))
+    }
+
+    images.set(route, files)
+  }
 
   const urls = [...routes].sort().map(route => {
     const imageEntries = (images.get(route) ?? []).map(image => `<image:image><image:loc>${escapeXml(new URL(image, origin).href)}</image:loc></image:image>`).join('')
