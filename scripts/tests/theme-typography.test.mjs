@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
 import { fontFamily, typography } from '../../packages/theme/index.js'
-import { tailwindTheme,theme } from '../../packages/theme/tailwind.js'
+import { theme } from '../../packages/theme/tailwind.js'
 
 const readThemeFile = path => readFileSync(new URL(`../../packages/theme/${path}`, import.meta.url), 'utf8')
 
@@ -14,8 +14,6 @@ describe('public theme typography', () => {
     expect(fontFamily.mono).toBe(typography.mono)
 
     expect(theme.fonts).toEqual(fontFamily)
-
-    expect(tailwindTheme.fonts).toEqual(fontFamily)
   })
 
   it('keeps raw JSON tokens aligned with the JavaScript contract', () => {

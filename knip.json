@@ -83,12 +83,7 @@
     "packages/theme": {
       "entry": [
         "package.json"
-      ],
-      "ignoreIssues": {
-        "tailwind.js": [
-          "duplicates"
-        ]
-      }
+      ]
     },
     "packages/theme-core": {
       "entry": [

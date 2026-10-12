@@ -20,5 +20,3 @@ export declare const theme: {
     readonly glow: string
   }
 }
-
-export declare const tailwindTheme: typeof theme

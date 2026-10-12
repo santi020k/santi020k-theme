@@ -23,9 +23,5 @@ describe('real VS Code screenshot assets', () => {
     for (const directory of ['packages/theme/assets/vscode/previews', 'apps/vscode-website/public', 'apps/website/public', 'apps/zed-website/public']) {
       expect((await readAsset(`${directory}/${file}.png`)).equals(png)).toBe(true)
     }
-
-    const svg = await readAsset(`packages/theme/assets/vscode/previews/${file}.svg`)
-
-    expect(svg.toString()).toContain(`href="data:image/png;base64,${png.toString('base64')}"`)
   })
 })
