@@ -75,8 +75,8 @@ Audit follow-up verification: the full local validation gate passes with 127 tes
 ## Curated wallpaper pages
 
 Halo adds four minimal circular compositions, and the Minimal v2 pack includes both Halo and
-Contour. The gallery features Halo, Contour, Glass, Satin, Ceramic, and Tide. Dune, Veil,
-earlier wallpapers, banners, and logos live in the Classic archive. VS Code screenshot cards
+Contour. The gallery features Halo, Contour, Glass, Satin, Ceramic, Tide, Dune, and Veil.
+Earlier wallpapers, banners, and logos live in the Classic archive. VS Code screenshot cards
 are removed from both gallery lists. Existing wallpaper pages, files, and pack URLs are preserved.
 
 Eight design pages group dark/light and desktop/phone artwork with unique descriptions,
@@ -130,3 +130,27 @@ production CSS or hero images. They do not confirm browser rendering or client n
 browser access remains rejected by its URL policy, so desktop/mobile screenshots, responsive
 interactions, and clipboard success/denial still require a rendered pass. No deployment is
 included. Recovery is a focused revert of this website follow-up; existing downloads remain.
+
+## Product-page polish and appearance wallpapers
+
+The Neovim code header no longer inherits the outer figure caption margin. Product pages share
+calmer headline sizes, readable previews, and open installation rows. Chrome now includes its
+existing screenshot in the hero. The iPhone artwork follows the website appearance, and resource
+links have separate touch targets. Existing native preview colors and installation behavior remain.
+
+All eight wallpaper designs have paired Mac HEIC downloads and an appearance setup guide.
+The iPhone page and bundled guide explain sunrise/sunset Shortcuts and optional Focus pairing.
+Mac metadata and both frames are validated with ImageIO, pixel sampling, and source fingerprints;
+iPhone wallpaper switching still requires configuring saved pairs on the device. Automatic switching
+has not been exercised through macOS Wallpaper settings or on a physical iPhone.
+
+Local checks passed with 186 tests across 34 files after combining the website and documentation
+work. Rendered checks covered 13 affected routes at desktop and phone widths in light and dark,
+with no horizontal overflow or broken images. Keyboard code tabs, copy feedback, visible focus,
+HEIC download bytes, and navigation from the shared gallery dialog were checked. Temporary
+screenshots are verification evidence rather than repository assets. The final release-branch gate
+must remain green before publication; these results do not imply hosted CI or deployment.
+
+Recovery is a focused revert of the product-page and wallpaper changes. Existing PNG/JPG/WEBP
+URLs are retained, no system preferences are changed, and there is no data migration. Regenerate
+HEICs with `pnpm run generate:appearance` on macOS and commit the files plus manifest together.

@@ -20,7 +20,7 @@ interface Props { archive?: boolean }
 const { archive = false } = Astro.props
 const canonical = `https://theme.santi020k.com/gallery/${archive ? 'archive/' : ''}`
 const title = archive ? 'Classic Archive — Santi020k Theme' : 'Wallpaper Gallery & Downloads — Santi020k Theme'
-const description = archive ? 'Browse earlier Santi020k wallpapers, banners, and logos. Previous artwork and download links remain available in the Classic archive.' : 'Explore six violet wallpaper designs for desktop and phone. Choose light or dark artwork, PNG, JPG, WEBP, quality, and screen resolution.'
+const description = archive ? 'Browse earlier Santi020k wallpapers, banners, and logos. Previous artwork and download links remain available in the Classic archive.' : 'Explore eight violet wallpaper designs for desktop and phone. Choose light or dark artwork, PNG, JPG, WEBP, quality, and screen resolution.'
 const assets = getGalleryAssets(archive)
 const designs = assets.flatMap(asset => asset.design ? [asset.design] : [])
 const socialImage = 'https://theme.santi020k.com/og-image.png'
@@ -92,7 +92,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div class="gallery-hero-copy">
           <Eyebrow class="eyebrow">{archive ? 'The earlier collection' : 'Gallery & downloads'}</Eyebrow>
           <h1 id="gallery-hero-title">{archive ? 'The Classic archive.' : 'A quieter kind of screen.'}</h1>
-          <p class="lede">{archive ? 'Earlier wallpapers, banners, and logos, kept here for anyone who still enjoys them. Previous downloads remain available.' : 'Six considered designs. Light and dark. Desktop and phone. Find a wallpaper you want to live with, then choose the file that fits your screen.'}</p>
+          <p class="lede">{archive ? 'Earlier wallpapers, banners, and logos, kept here for anyone who still enjoys them. Previous downloads remain available.' : 'Eight considered designs. Light and dark. Desktop and phone. Find a wallpaper you want to live with, then choose the file that fits your screen.'}</p>
           <div class="collection-downloads" aria-label="Collection downloads">
             <ButtonLink class="button button-primary" variant="primary" href={archive ? '/gallery/' : '#asset-library'}>{archive ? 'Explore current designs' : 'Find your wallpaper'}</ButtonLink>
             {!archive && (
@@ -111,9 +111,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <dl>
             <div><dt>{archive ? assets.length : designs.length}</dt><dd>{archive ? 'archived assets' : 'wallpaper designs'}</dd></div>
             {!archive && <div><dt>{designs.length * 4}</dt><dd>wallpaper versions</dd></div>}
-            <div><dt>{archive ? 5 : 3}</dt><dd>{archive ? 'file formats' : 'current collections'}</dd></div>
+            <div><dt>{archive ? 4 : 3}</dt><dd>{archive ? 'file formats' : 'current collections'}</dd></div>
           </dl>
-          <p>{archive ? 'PNG · WEBP · JPG · SVG · HEIC' : 'PNG · WEBP · JPG'}</p>
+          <p>{archive ? 'PNG · WEBP · SVG · HEIC' : 'PNG · WEBP · JPG'}</p>
         </aside>
       </section>
 
