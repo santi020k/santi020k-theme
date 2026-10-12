@@ -25,7 +25,7 @@
 
 Static Astro site for [theme.santi020k.com](https://theme.santi020k.com), the entry point for the Santi020k Theme family.
 
-The hub links visitors to the dedicated VS Code, Chrome, Terminal, and Zed theme sites, gives a compact cross-surface preview, and keeps future theme surfaces visible without turning the root site into a portfolio page.
+The consolidated site serves every theme product route, Terminal documentation, and wallpaper gallery from one canonical origin. Product source modules in `apps/*-website` are composed into this app; they are not separate deployment targets.
 
 ## Stack
 
@@ -46,6 +46,24 @@ Run commands from the repository root.
 | `pnpm run site:preview` | Previews the production build on port 4174   |
 | `pnpm run validate`     | Runs the full monorepo validation suite      |
 
+## SEO and social previews
+
+- `@santi020k/og` generates the branded 1200 × 630 PNG/SVG cards in
+  `../../scripts/generate-og-images.mjs`. Run `pnpm run generate:og` after changing the catalog
+  and `pnpm run check:og` to verify committed outputs. Product and guide pages have specific
+  cards; wallpaper detail pages retain artwork-specific previews from the wallpaper generator.
+- `src/pages/sitemap.xml.ts` builds `/sitemap.xml` from Astro page sources and the wallpaper
+  catalog. It includes canonical trailing-slash routes and all four wallpaper preview images.
+  Do not restore a static `public/sitemap.xml`, add query variants, or invent modification dates.
+- `pnpm run validate:seo` audits all built routes, canonical URLs, image files, schema types,
+  robots directives, and sitemap coverage. Add a route contract to `../../og.audit.config.mjs`
+  when adding a page. Terminal documentation also requires structured breadcrumbs matching
+  the visible navigation. Run `pnpm run site:build` before the audit.
+- Gallery preview query parameters canonicalize to `/gallery/`; permanent design pages each
+  have one canonical URL for all download formats and sizes.
+- Static checks establish technical readiness. Search Console indexing, search queries,
+  click-through rates, and third-party social preview caches require separate live verification.
+
 ## Maintenance Notes
 
 - `/gallery/` features eight current wallpaper designs: Halo, Contour, Glass, Satin, Ceramic, Tide, Dune, and Veil. Paired desktop/phone
@@ -57,7 +75,8 @@ Run commands from the repository root.
   excluded from both galleries; product previews remain on the VS Code page. Existing file and
   ZIP URLs are unchanged.
 - Wallpaper descriptions, paths, resolutions, and encoding profiles come from
-  `../../artwork/wallpaper-catalog.mjs`. Update the image sitemap entries when adding a design.
+  `../../artwork/wallpaper-catalog.mjs`. The generated sitemap includes every current design
+  with its four desktop/phone and light/dark preview images.
 - Development and build preparation generate static resolution/quality downloads from saved raster masters
   with `../../scripts/generate-wallpaper-downloads.mjs`. Run that script before using `astro dev`
   directly. Generated files under `public/downloads/wallpapers-v1/` are ignored by Git, cached by
