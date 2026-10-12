@@ -75,8 +75,8 @@ Audit follow-up verification: the full local validation gate passes with 127 tes
 ## Curated wallpaper pages
 
 Halo adds four minimal circular compositions, and the Minimal v2 pack includes both Halo and
-Contour. The gallery features Halo, Contour, Glass, Satin, Ceramic, and Tide. Dune, Veil,
-earlier wallpapers, banners, and logos live in the Classic archive. VS Code screenshot cards
+Contour. The gallery features Halo, Contour, Glass, Satin, Ceramic, Tide, Dune, and Veil.
+Earlier wallpapers, banners, and logos live in the Classic archive. VS Code screenshot cards
 are removed from both gallery lists. Existing wallpaper pages, files, and pack URLs are preserved.
 
 Eight design pages group dark/light and desktop/phone artwork with unique descriptions,

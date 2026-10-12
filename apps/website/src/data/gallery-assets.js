@@ -1,4 +1,4 @@
-import { currentWallpaperDesigns, wallpaperDesigns } from '../../../../artwork/wallpaper-catalog.mjs'
+import { wallpaperDesigns } from '../../../../artwork/wallpaper-catalog.mjs'
 import bannerOnePng from '../../../../packages/theme/assets/banners/banner-1.png?url'
 import bannerOne from '../../../../packages/theme/assets/banners/banner-1.webp'
 import bannerOneWebp from '../../../../packages/theme/assets/banners/banner-1.webp?url'
@@ -300,7 +300,5 @@ const assetsWithDesigns = galleryAssets.map(asset => ({
 export const getGalleryAssets = (archive = false) => assetsWithDesigns.filter(asset => {
   if (!asset.design) return archive
 
-  const current = currentWallpaperDesigns.includes(asset.design)
-
-  return current !== archive && asset.variant === 'Desktop' && asset.title.endsWith(' · dark')
+  return !archive && asset.variant === 'Desktop' && asset.title.endsWith(' · dark')
 })

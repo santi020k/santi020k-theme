@@ -1,23 +1,23 @@
 import { describe, expect, it } from 'vitest'
 
 import { getGalleryAssets } from '../../apps/website/src/data/gallery-assets.js'
-import { currentWallpaperDesigns, downloadHref, wallpaperHref } from '../../artwork/wallpaper-catalog.mjs'
+import { downloadHref, wallpaperDesigns, wallpaperHref } from '../../artwork/wallpaper-catalog.mjs'
 
 describe('Gallery curation', () => {
-  it('shows only the six current wallpaper designs once each', () => {
+  it('shows only the eight current wallpaper designs once each', () => {
     const assets = getGalleryAssets()
 
-    expect(assets.map(asset => asset.design?.name)).toEqual(['Halo', 'Contour', 'Glass', 'Satin', 'Ceramic', 'Tide'])
+    expect(assets.map(asset => asset.design?.name)).toEqual(['Halo', 'Contour', 'Glass', 'Satin', 'Ceramic', 'Tide', 'Dune', 'Veil'])
 
     expect(assets.every(asset => asset.category === 'wallpapers')).toBe(true)
 
-    expect(assets).toHaveLength(currentWallpaperDesigns.length)
+    expect(assets).toHaveLength(wallpaperDesigns.length)
   })
 
-  it('archives Dune and Veil once each with all earlier wallpapers and brand assets', () => {
+  it('archives earlier wallpapers and brand assets without current designs', () => {
     const assets = getGalleryAssets(true)
 
-    expect(assets.filter(asset => asset.design).map(asset => asset.design?.name)).toEqual(['Dune', 'Veil'])
+    expect(assets.filter(asset => asset.design).map(asset => asset.design?.name)).toEqual([])
 
     expect(assets.filter(asset => asset.category === 'wallpapers' && !asset.design)).toHaveLength(11)
 
