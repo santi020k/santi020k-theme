@@ -11,14 +11,22 @@ const installOptions = [
   { value: 'script', label: 'Hosted installer', code: scriptInstall, language: 'sh' }
 ]
 
-const headings = [{ id: 'requirements', label: 'Requirements' }, { id: 'install', label: 'Install' }, { id: 'script', label: 'Inspect the installer' }, { id: 'next-steps', label: 'Next steps' }]
+const headings = [{ id: 'choose-setup', label: 'Choose your setup' }, { id: 'requirements', label: 'Requirements' }, { id: 'install', label: 'Install' }, { id: 'verify', label: 'Verify setup' }, { id: 'script', label: 'Inspect the installer' }, { id: 'next-steps', label: 'Next steps' }]
 ---
-<DocsLayout title="Getting started" description="Install the complete Santi020k terminal setup on macOS, then choose the prompt and terminal colors that fit your workflow." path="/terminal/docs/" {headings}>
-  <Callout className="docs-callout"><b>Homebrew is recommended</b><p>It owns the CLI, theme assets, shell completions, and dependencies, making updates and removal predictable.</p></Callout>
+<DocsLayout title="Getting started" description="Set up your shell and prompt on macOS, or download just the colors for your terminal." path="/terminal/docs/" {headings}>
+  <section id="choose-setup">
+    <h2>Choose your setup</h2>
+    <p>Keep your existing shell configuration if all you need is the palette.</p>
+    <div class="docs-link-list">
+      <Link href="#requirements"><b>Complete setup on macOS →</b><span>Install the CLI, managed shell integration, and a Starship prompt with Homebrew.</span></Link>
+      <Link href="/terminal/docs/terminal-colors/"><b>Terminal colors only →</b><span>Download dark or light presets for six terminal apps without installing the CLI.</span></Link>
+      <Link href="/terminal/configure/"><b>Preview your choices →</b><span>Choose your shell, prompt, terminal, and palette in the guided configurator.</span></Link>
+    </div>
+  </section>
   <section id="requirements">
     <h2>Before you install</h2>
     <ul>
-      <li>Use macOS with Zsh as your interactive shell.</li>
+      <li>Use macOS for the Homebrew setup. Zsh is the default; see the <Link href="/terminal/docs/shells/">Bash and Fish guide</Link> for other shells.</li>
       <li>Install Homebrew and make sure <code>brew</code> is available in your shell.</li>
       <li>Use a Nerd Font if you want the Powerline prompt symbols.</li>
     </ul>
@@ -26,9 +34,16 @@ const headings = [{ id: 'requirements', label: 'Requirements' }, { id: 'install'
   <section id="install">
     <h2>Install the complete setup</h2>
     <p>Choose one installation path. Homebrew installs the formula, then opens the guided configuration. The hosted installer downloads the current configuration and installs the same Homebrew dependencies.</p>
+    <Callout className="docs-callout"><b>Homebrew is recommended</b><p>It owns the CLI, theme assets, shell completions, and dependencies, making updates and removal predictable.</p></Callout>
     <CodeTabs items={installOptions} ariaLabel="Terminal installation methods" codeLabel="Terminal installation command" copyLabel="Copy selected installation command" theme="santi020k" wrap={false} />
     <p>The installer backs up files it manages, writes configuration to <code>~/.config/santi020k-terminal</code>, and adds one source line to your existing <code>~/.zshrc</code>. Start a fresh session when it finishes:</p>
     <Code variant="block" code="exec zsh" language="sh" label="Restart your shell" copy copyLabel="Copy Zsh restart command" theme="santi020k" />
+  </section>
+  <section id="verify">
+    <h2>Check your setup</h2>
+    <p>After restarting your shell, inspect the managed state and check dependencies, configuration, shell integration, and Nerd Font availability.</p>
+    <Code variant="block" code={'santi020k-terminal status\nsanti020k-terminal doctor'} language="sh" label="Verify terminal setup" copy copyLabel="Copy setup verification commands" theme="santi020k" />
+    <p>If a check reports a problem, follow the <Link href="/terminal/docs/cli/#maintenance">health and recovery reference</Link> before reinstalling.</p>
   </section>
   <section id="script">
     <h2>Inspect the hosted installer</h2>

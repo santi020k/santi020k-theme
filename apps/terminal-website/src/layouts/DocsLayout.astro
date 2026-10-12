@@ -1,7 +1,8 @@
 ---
-import { Breadcrumb, Link, Pagination, ScrollProgress } from '@santi020k/lumen-astro'
+import { Breadcrumb, Collapsible, Link, Pagination, ScrollProgress } from '@santi020k/lumen-astro'
 
-import { docsItems, docsSections } from '../data/docs.js'
+import DocsNavigation from '../components/DocsNavigation.astro'
+import { docsItems } from '../data/docs.js'
 
 import SiteLayout from './SiteLayout.astro'
 
@@ -28,15 +29,14 @@ const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
 <SiteLayout title={`${title} — Santi020k Terminal docs`} {description} {canonical} {schema}>
   <ScrollProgress aria-label="Documentation reading progress" />
   <div class="docs-shell shell">
-    <nav class="docs-sidebar" aria-label="Documentation navigation">
+    <aside class="docs-sidebar" aria-label="Terminal documentation">
       <Link className="docs-home" href="/terminal/docs/">Terminal documentation</Link>
-      {docsSections.map(section => (
-        <div class="docs-nav-group">
-          <span>{section.label}</span>
-          {section.items.map(item => <Link href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</Link>)}
-        </div>
-      ))}
-    </nav>
+      <DocsNavigation {path} />
+    </aside>
+    <Collapsible className="docs-mobile-guides">
+      <summary>Browse guides <span>{title}</span></summary>
+      <DocsNavigation {path} />
+    </Collapsible>
     <article class="docs-article" aria-labelledby="docs-page-title">
       <Breadcrumb className="docs-breadcrumb">
         <ol>
@@ -47,6 +47,12 @@ const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
         </ol>
       </Breadcrumb>
       <header class="docs-heading"><p class="eyebrow">{eyebrow}</p><h1 id="docs-page-title">{title}</h1><p>{description}</p></header>
+      {headings.length > 0 && (
+        <Collapsible className="docs-mobile-toc">
+          <summary>On this page</summary>
+          <nav aria-label="Page sections">{headings.map(heading => <Link href={`#${heading.id}`}>{heading.label}</Link>)}</nav>
+        </Collapsible>
+      )}
       <div class="docs-content"><slot /></div>
       <Pagination className="docs-pagination" aria-label="Documentation pagination">
         {previous ? <Link href={previous.href}><span>Previous</span><b>← {previous.label}</b></Link> : <span></span>}
