@@ -69,6 +69,16 @@ boundaries and existing download URLs.
 
 ## Consolidation
 
+### Publication preflight correction
+
+The first integration workflow exposed a Changesets checkout hazard: version-PR
+generation leaves the runner on `changeset-release/main`, so a subsequent tag step
+could read an unmerged package version. The run was cancelled before any v3 tag
+was pushed. The VS Code tag step now restores `GITHUB_SHA`, matching the Terminal
+step. Regression tests execute the actual workflow shell in an isolated repository
+after switching to a candidate branch, covering changed and unchanged packages.
+Release workflow changes also trigger the release pipeline directly.
+
 - Both remote Dependabot branches are contained in the release history: actions at `4b1fd57` and production dependencies at `25ddb1d`.
 - The uncommitted root README improvements are preserved and extended with real dark/light and high-contrast previews.
 - Three old stashes were inspected. The Zed selection token already exists in the current generator and generated themes; its lockfile additions are already represented. The two older dependency override stashes are duplicated and superseded by newer compatible security resolutions. They remain preserved rather than being reapplied over current versions.
