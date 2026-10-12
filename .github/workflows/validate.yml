@@ -33,7 +33,7 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Audit workspace dependencies
-        run: pnpm audit --audit-level=low
+        run: pnpm run audit:dependencies
 
       - name: Validate pull request title
         if: github.event_name == 'pull_request'

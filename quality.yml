@@ -7,6 +7,10 @@ version: 1
 output: pretty
 baseline: .quality-baseline.json
 tools:
+  santi-og:
+    enabled: true
+    check: false
+    required: true
   cspell:
     enabled: true
     check: false
@@ -20,6 +24,12 @@ tools:
     check: false
     required: true
 tasks:
+  dependency-audit:
+    name: Dependency audit
+    command: pnpm
+    args: [run, audit:dependencies]
+    required: true
+    parser: generic
   repository-check:
     name: Repository check (validate)
     command: pnpm

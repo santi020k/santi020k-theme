@@ -6,6 +6,29 @@
 pnpm install --frozen-lockfile
 ```
 
+## Quality and Git hooks
+
+`pnpm install` runs Husky to activate `.husky/_` as Git's hook directory. The tracked
+launchers enforce these checks:
+
+- `pre-commit`: zero-warning ESLint on staged JavaScript, TypeScript, JSX, and Astro files.
+- `commit-msg`: Commitprompt validation of the exact message supplied by Git.
+- `pre-push`: the full dependency audit followed by `pnpm run validate`.
+
+Verify the active hook directory with `git config --get core.hooksPath`; it should print
+`.husky/_`. Keep the hooks enabled and correct failures before committing or pushing.
+
+Quality is a separately installed CLI, not a pnpm dependency. With `quality --version`
+available, run `pnpm run quality:check` to execute the dependency audit and canonical
+repository validation declared in `quality.yml`. CI uses the same audit and validation
+scripts through the existing Quality pnpm setup action.
+
+The hook steps in `quality.yml` support direct execution with `quality hooks run`, but
+Husky currently owns activation. `quality hooks status` therefore reports that Quality's
+managed launchers are inactive; this does not mean the Husky hooks are missing. Do not
+install a second hook manager over the active setup. The standard `pnpm run validate`
+command and Husky hooks work without the separately installed Quality CLI.
+
 ## Validate Changes
 
 Run the full validation before opening a PR or publishing:
