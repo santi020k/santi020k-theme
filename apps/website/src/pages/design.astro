@@ -1,6 +1,7 @@
 ---
-import { ButtonLink, Collapsible, Icon, Particles, ScrollReveal } from '@santi020k/lumen-astro'
+import { ButtonLink, Icon, Particles, ScrollReveal } from '@santi020k/lumen-astro'
 
+import PaletteGrid from '../components/PaletteGrid.astro'
 import ProductLayout from '../layouts/ProductLayout.astro'
 
 const palette = [
@@ -43,26 +44,7 @@ const rhythm = [
     </ScrollReveal>
     <ScrollReveal as="section" animation="fade" duration="standard" class="guide-section" aria-labelledby="palette-title">
       <div class="guide-section-heading"><p class="guide-eyebrow">02 / Palette</p><h2 id="palette-title">One violet language.</h2><p>These are live shared tokens. Change the page appearance and the entire palette follows.</p></div>
-      <div class="guide-palette">
-        {palette.map(color => (
-          <article class="palette-item" data-palette-token={color.token}>
-            <div class="palette-color" style={`background: var(${color.token})`} aria-hidden="true"></div>
-            <h3>{color.name}</h3>
-            <code>{color.token}</code>
-            <p>{color.description}</p>
-            <Collapsible class="palette-details" hidden>
-              <summary aria-label={`${color.name} color codes`}>
-                Color codes <Icon name="chevron-down" aria-hidden="true" />
-              </summary>
-              <dl class="palette-values">
-                <div class="palette-hex"><dt>HEX</dt><dd><code data-color-format="hex"></code></dd></div>
-                <div><dt>RGB</dt><dd><code data-color-format="rgb"></code></dd></div>
-                <div><dt>HSL</dt><dd><code data-color-format="hsl"></code></dd></div>
-              </dl>
-            </Collapsible>
-          </article>
-        ))}
-      </div>
+      <PaletteGrid colors={palette} label="Shared website palette" />
     </ScrollReveal>
     <ScrollReveal as="section" animation="fade" duration="standard" class="guide-section" aria-labelledby="controls-title">
       <div class="guide-section-heading"><p class="guide-eyebrow">03 / Controls</p><h2 id="controls-title">Clear next steps.</h2><p>Solid primary actions, quiet secondary links, and 44px minimum targets. Try navigating these examples with the keyboard.</p></div>
@@ -79,51 +61,7 @@ const rhythm = [
     </ScrollReveal>
   </div>
 </ProductLayout>
-<script>
-  import { formatPaletteColor } from '../palette-colors'
-  import { bindPageLifecycle } from '../utils/page-lifecycle'
 
-  bindPageLifecycle('hub', () => {
-    const root = document.documentElement
-    const swatches = document.querySelectorAll<HTMLElement>('[data-palette-token]')
-
-    if (!swatches.length) return
-
-    const updatePaletteValues = () => {
-      const styles = getComputedStyle(root)
-
-      for (const swatch of swatches) {
-        const token = swatch.dataset.paletteToken
-        const values = swatch.querySelector<HTMLDetailsElement>('.palette-details')
-
-        if (!token || !values) continue
-
-        const formats = formatPaletteColor(styles.getPropertyValue(token))
-
-        values.hidden = !formats
-
-        if (!formats) continue
-
-        for (const [format, value] of Object.entries(formats)) {
-          const output = values.querySelector(`[data-color-format="${format}"]`)
-
-          if (output) output.textContent = value
-        }
-      }
-    }
-
-    updatePaletteValues()
-
-    const observer = new MutationObserver(updatePaletteValues)
-
-    observer.observe(root, {
-      attributes: true,
-      attributeFilter: ['data-theme']
-    })
-
-    return () => observer.disconnect()
-  })
-</script>
 <style>
   .design-guide { padding-block: 5rem 1rem; }
   .guide-hero { position: relative; isolation: isolate; max-width: 58rem; padding-block: 2rem var(--site-section-space); }
@@ -149,29 +87,7 @@ const rhythm = [
   .type-display { font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 600; line-height: 1.02; letter-spacing: -.065em; }
   .type-heading { font-size: var(--site-section-title-size); font-weight: 500; line-height: 1.08; letter-spacing: -.065em; }
   .type-body { max-width: 36rem; font-size: var(--site-body-size); line-height: var(--site-body-line-height); color: var(--site-ink-soft); }
-  .guide-palette { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; gap: var(--site-grid-gap); }
-  .palette-item { min-width: 0; }
-  .palette-color { height: 8rem; border: 1px solid var(--site-line); border-radius: var(--site-card-radius); }
-  .palette-item h3 { margin: 1.25rem 0 .5rem; font-size: 1rem; font-weight: 500; }
-  .palette-item code, .rhythm-list code { font-size: .6875rem; overflow-wrap: anywhere; color: var(--site-ink-soft); }
-  .palette-item p { color: var(--site-ink-soft); font-size: .8125rem; line-height: 1.8; }
-  .palette-item :global(.palette-details) { overflow: visible; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
-  .palette-details summary { display: inline-flex; align-items: center; gap: .5rem; min-height: var(--site-control-min-height); margin: 0; padding: 0; background: none; color: var(--site-ink-soft); font-size: .75rem; font-weight: 500; cursor: pointer; list-style: none; }
-  .palette-details summary::-webkit-details-marker { display: none; }
-  .palette-details summary::before, .palette-details summary::after { display: none; }
-  .palette-item :global(.palette-details[open]) summary { margin-bottom: 0; }
-  .palette-details summary:hover { background: none; color: var(--site-brand); }
-  .palette-details summary:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 4px; border-radius: .25rem; }
-  .palette-details summary :global(.ui-icon) { width: .875rem; height: .875rem; }
-  .palette-item :global(.palette-details[open]) summary :global(.ui-icon) { transform: rotate(180deg); }
-  .palette-values { margin: .25rem 0 0; padding-block: .75rem; border-top: 1px solid var(--section-divider); }
-  .palette-values > div { display: grid; grid-template-columns: 2rem minmax(0, 1fr); align-items: baseline; gap: .5rem; margin-top: .5rem; }
-  .palette-values > div:first-child { margin-top: 0; }
-  .palette-values dt { font-size: .5625rem; font-weight: 500; letter-spacing: .08em; color: var(--site-ink-soft); }
-  .palette-values dd { min-width: 0; margin: 0; }
-  .palette-values code { line-height: 1.65; user-select: all; }
-  .palette-hex code { font-size: .875rem; font-weight: 500; letter-spacing: .025em; color: var(--site-ink); }
-  @media (max-width: 1100px) { .palette-values > div { grid-template-columns: 1fr; gap: .125rem; } }
+  .rhythm-list code { font-size: .6875rem; overflow-wrap: anywhere; color: var(--site-ink-soft); }
   .surface-examples { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--site-grid-gap); }
   .surface-example { padding: clamp(1.5rem, 4vw, 3rem); border-radius: var(--site-card-radius); background: var(--site-surface); }
   .surface-example-muted { background: var(--site-surface-muted); }
@@ -181,7 +97,7 @@ const rhythm = [
   .rhythm-list dt { font-size: .875rem; font-weight: 500; }
   .rhythm-list dd { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; margin: 0; font-size: .8125rem; }
   .rhythm-bar { height: .5rem; border-radius: 1rem; background: var(--site-brand); }
-  @media (max-width: 767px) { .design-guide { padding-top: 2rem; } .guide-palette { grid-template-columns: repeat(2, minmax(0, 1fr)); } .surface-examples { grid-template-columns: 1fr; } .rhythm-list > div { grid-template-columns: 1fr; gap: 1rem; } }
+  @media (max-width: 767px) { .design-guide { padding-top: 2rem; } .surface-examples { grid-template-columns: 1fr; } .rhythm-list > div { grid-template-columns: 1fr; gap: 1rem; } }
   @media (prefers-reduced-motion: reduce) { .guide-primary, .guide-secondary { transition: none; } }
   .guide-hero > :not(:global(.guide-signature)) { position: relative; z-index: 1; }
   :global(.guide-signature.ui-particles) { position: absolute; inset: 0; min-height: 0; pointer-events: none; opacity: .25; background: none; border: 0; border-radius: 0; z-index: 0; }

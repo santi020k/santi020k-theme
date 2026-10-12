@@ -364,6 +364,13 @@ owns the common product typography, underline preview/command tabs, and open doc
 rows. Load it through the shared Astro page boundary; scope it to `.documentation-page` so
 home and gallery compositions remain independent. Preserve Lumen's tab, focus, and copy behavior.
 
+Color sections use the shared `PaletteGrid.astro` from the visual guide: large swatches,
+short role descriptions, and a native Lumen disclosure for HEX, RGB, and HSL values. Native
+product colors come from generated theme files in `product-palettes.ts`; never copy stale
+hex labels into page markup. Chrome and VS Code follow the page appearance, while explicit
+dark/light comparisons retain their preset colors. Keep preview chrome and decorative color
+strips distinct from these explanatory sections.
+
 Use Lumen 4 `ScrollReveal` for a short, one-time content entrance and `RevealGroup` for a
 35ms stagger between theme previews. Keep reading content visible without JavaScript.
 Astro `ClientRouter` uses a 180ms fade with an immediate swap fallback, preserving appearance

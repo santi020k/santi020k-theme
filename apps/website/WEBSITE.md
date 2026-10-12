@@ -61,6 +61,11 @@ native downloads and protected external links. Keep native preview colors in the
 components. Check every product route, all six Terminal guides, the configurator, visual guide,
 support page, and wallpaper appearance guide at desktop/mobile widths in light and dark.
 
+`PaletteGrid.astro` owns all explanatory color grids, including the visual guide. Its native
+color values are server-rendered from `product-palettes.ts`, so disclosures work without
+JavaScript. CSS-token details update after appearance changes and Astro navigation. Build
+dependencies include the generated Chrome, Codex, and Zed sources that feed these palettes.
+
 ## Maintenance
 
 - Add new products to `src/data/products.js`, then create their route beneath `src/pages/`.

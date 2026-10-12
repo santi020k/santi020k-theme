@@ -127,3 +127,11 @@
   outline: 2px solid var(--site-brand);
   outline-offset: 2px;
 }
+
+/* Palette sections share the full-width swatch layout from the visual guide. */
+.documentation-page .palette-section { display: block; }
+.documentation-page .palette-section > div:first-child { max-width: 46rem; margin-bottom: var(--site-heading-gap); }
+.documentation-page .palette-section h2 { max-width: none; }
+.documentation-page .palette-variants { display: grid; gap: var(--site-heading-gap); }
+.documentation-page .palette-variant > h3 { margin: 0 0 1.5rem; font-size: 1.5rem; font-weight: 500; color: var(--site-ink); }
+.documentation-page .palette-variant-meta { margin: 0 0 2rem; color: var(--site-ink-soft); font-size: .8125rem; }

@@ -110,8 +110,7 @@ a:focus-visible,
 .nav-links,
 .brand,
 .header-actions,
-.actions,
-.swatches {
+.actions {
   display: flex;
   align-items: center;
 }
@@ -950,31 +949,6 @@ pre {
   font-weight: 400;
 }
 
-.swatches {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--site-grid-gap);
-}
-
-.swatches span {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: .75rem;
-  color: var(--site-ink-soft);
-  font-size: .75rem;
-  font-weight: 500;
-}
-
-.swatches span::before {
-  width: 100%;
-  height: 80px;
-  border: 1px solid var(--swatch-circle-border);
-  border-radius: var(--site-arrow-radius);
-  background: var(--swatch);
-  content: "";
-}
-
 
 /* ─── Footer ──────────────────────────────────────────────────────────────── */
 .site-footer {
@@ -1239,7 +1213,6 @@ pre {
 }
 
   .screenshot-grid { grid-template-columns: 1fr; }
-  .swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .settings-controls, .settings-output { padding: 1.25rem; }
 }
 

@@ -673,14 +673,6 @@ h3 {
 
 .bm-shortcut:hover .bm-shortcut-icon { border-color: var(--chrome-link); }
 
-/* Palette metadata follows the same open rows as the reading sections. */
-.token-legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--site-grid-gap); }
-.token-item { display: flex; align-items: center; gap: 16px; min-width: 0; padding-block: 20px; border-top: 1px solid var(--section-divider); }
-.token-swatch { width: 36px; height: 36px; border-radius: var(--site-arrow-radius); flex-shrink: 0; border: 1px solid var(--swatch-circle-border); }
-.token-item strong { display: block; font-size: .8125rem; font-weight: 500; margin-bottom: 6px; }
-.token-item span { display: block; overflow-wrap: anywhere; font: 400 .6875rem/1.8 var(--santi020k-font-mono); color: var(--site-ink-soft); }
-@media (max-width: 767px) { .token-legend { grid-template-columns: 1fr; } }
-
 /* ─── Why section ────────────────────────────────────────────────────────────── */
 .why-section {
   display: grid;
@@ -731,10 +723,6 @@ h3 {
   padding-block: var(--site-section-space);
   border-top: 1px solid var(--section-divider);
 }
-
-.swatches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--site-grid-gap); }
-.swatches span { display: flex; align-items: center; gap: 12px; padding-block: 16px; border-top: 1px solid var(--section-divider); color: var(--site-ink-soft); font: 400 .75rem/1.6 var(--santi020k-font-mono); }
-.swatches span::before { width: 28px; height: 28px; flex-shrink: 0; border: 1px solid var(--swatch-circle-border); border-radius: 50%; background: var(--swatch); content: ""; }
 
 /* ─── Install section ────────────────────────────────────────────────────────── */
 .install-section {
@@ -872,7 +860,6 @@ h3 {
   .bm-tab-label { display: none; }
   .install-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
-  .token-legend { flex-direction: column; }
   .token-item { min-width: 0; }
 }
 

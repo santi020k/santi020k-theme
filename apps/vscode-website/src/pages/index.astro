@@ -13,9 +13,11 @@ import previewHcDark from '../../../../packages/theme/assets/vscode/previews/pre
 import previewHcLight from '../../../../packages/theme/assets/vscode/previews/preview-hc-light.png'
 import previewLight from '../../../../packages/theme/assets/vscode/previews/preview-light.png'
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import PaletteGrid from '../../../website/src/components/PaletteGrid.astro'
 import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
+import { vscodePalette } from '../../../website/src/product-palettes'
 
 const screenshots = [
   { image: previewDark, mode: 'dark', name: 'Dark', detail: 'Indigo depth. Muted violet syntax.', alt: 'santi020k dark theme in VS Code with the Explorer, editor tabs, and minimap' },
@@ -391,15 +393,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div>
           <p class="eyebrow">Palette</p>
           <h2>Violets for focus, soft contrast for long sessions.</h2>
+          <p class="section-lede">Colors from the editor theme. Switch the page appearance to explore light and dark, and open any swatch for its color codes.</p>
         </div>
-        <div class="swatches" aria-label="Core theme colors">
-          <span style="--swatch: #110c1d">Indigo black</span>
-          <span style="--swatch: #1c1528">Sidebar</span>
-          <span style="--swatch: #5a0fdb">Control</span>
-          <span style="--swatch: #945df4">Focus</span>
-          <span style="--swatch: #b48df7">String</span>
-          <span style="--swatch: #f8f6fd">Light canvas</span>
-        </div>
+        <PaletteGrid colors={vscodePalette} label="VS Code theme palette" />
       </section>
     </main>
 
