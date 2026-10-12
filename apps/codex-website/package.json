@@ -1,6 +1,6 @@
 {
   "name": "@santi020k/santi020k-codex-theme-website",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "packageManager": "pnpm@10.34.6",
   "private": true,
   "type": "module",

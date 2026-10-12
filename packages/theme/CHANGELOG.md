@@ -1,5 +1,61 @@
 # @santi020k/theme
 
+## 3.0.0
+
+### Major Changes
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Remove unused compatibility aliases and redundant screenshot wrappers for v3. The Tailwind entry point exports only `theme`; replace imports of `tailwindTheme` with `theme`. VS Code previews are lossless PNGs; replace `.svg` screenshot imports with the corresponding `.png` paths. Remove the stale Chrome incognito JPG manifest entry in favor of the existing PNG.
+  
+  Repository scripts use `site:dev` instead of the removed `sites:dev` alias. Internal contrast tooling uses `scripts/lib/color-contrast.mjs` directly. Add asset manifest integrity checks and remove the duplicate-export lint exemption.
+
+### Minor Changes
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Adopt the Sculpted visual direction from the personal website v4: medium-weight Montserrat typography, a shared 72rem grid, solid surfaces, neutral primary controls, and visible violet focus. Add a live visual guide and align product pages and terminal documentation while preserving their interactions.
+  
+  Add Fold, Orbit, and Monolith wallpapers in paired light/dark desktop/mobile formats, with a separate Sculpted download archive and gallery filters. Keep Classic wallpaper paths and downloads available. Refresh paired VS Code button and focus colors and regenerate derived themes.
+  
+  Migration: v3 changes the visual treatment of editor primary actions and focus indicators; syntax and installed theme variant names remain available. Websites adopt the Sculpted layout and typography. Classic wallpaper URLs and downloads remain available alongside the new collection. Shared-package consumers must replace the removed `tailwindTheme` export with `theme` and VS Code `.svg` screenshot imports with the corresponding `.png` paths, as documented in the compatibility cleanup changeset.
+  
+  Keep the Fira Code monospace stack consistent across CSS, JSON, JavaScript, and Tailwind exports.
+
+### Patch Changes
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Replace cluttered VS Code screenshots with matching real captures of all four theme modes. Use a readable TypeScript sample, a compact Explorer, and lossless PNG masters without repeated occurrence highlights or clipped code. Preserve native image proportions and synchronize website, shared-package, and marketplace previews.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Refresh package READMEs with the shared theme identity, section navigation, and resource links. Preserve installation instructions and marketplace image URLs, and replace an unavailable Chrome screenshot with the product preview link. Add full-width light and dark banners and a centered badge row to the root, app, and package guides.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Add the Minimal wallpaper collection with Contour artwork inspired by the personal website's
+  quiet canvas and sculpted corners. Include dark and light desktop and phone compositions,
+  PNG and WEBP downloads, a dedicated gallery filter, and a compact WEBP pack.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Replace synthetic VS Code previews with real editor screenshots in dark, light, and both high-contrast modes. Synchronize previews from canonical captures and preserve existing PNG and SVG asset URLs.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Expand the Signature wallpaper collection with Satin and Ceramic: eight additional branded
+  dark/light desktop and phone compositions. Add PNG/WEBP downloads and a complete twelve-image
+  Signature WEBP pack while preserving the original glass artwork and every earlier download.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Replace the featured Sculpted wallpapers with Tide, Dune, and Veil: tactile satin, violet
+  landscapes, and frosted glass in light and dark desktop and phone editions. Include PNG and
+  WEBP downloads, a compact WEBP collection archive, and reproducible exports from saved
+  raster masters. Keep all previous wallpaper files and download archives available.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Polish native theme validation and shared appearance behavior for the next release. Improve Xcode syntax readability on selected and current lines, remove an unsupported Zed property, and extend contrast regression checks. Fix system appearance synchronization, storage-denied initialization, and high-contrast CSS generation; consolidate website appearance startup and correct build ordering and cache inputs across product modules. Correct preview JSON types and handle settings clipboard success and denied access safely.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Add the Signature wallpaper collection with the Santi020k terminal mark and violet glass
+  artwork. Include dark and light desktop and phone compositions, individual PNG and WEBP
+  downloads, and a separate compact WEBP pack. Preserve existing wallpaper collections and URLs.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Add Halo to the Minimal wallpaper collection and curate the gallery around eight current
+  designs. Preserve earlier wallpapers in a Classic archive with existing downloads intact.
+  
+  Give each current design a descriptive page with four artwork variants, related designs,
+  canonical metadata, image structured data, and sitemap entries. Offer PNG, JPG, and WEBP
+  downloads at desktop and phone sizes, including smaller-file and high-quality WEBP options.
+  Generate additional static downloads from saved masters during site preparation without
+  requiring an image API or runtime service.
+- Updated dependencies [[`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af), [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af), [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af)]:
+  - @santi020k/theme-core@3.0.0
+
 ## 2.0.1
 
 ### Patch Changes
