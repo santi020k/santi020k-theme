@@ -14,6 +14,7 @@ import ceramicDownload from '../../../../packages/theme/assets/wallpapers/signat
 import satinWallpaper from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.webp'
 import satinDownload from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.webp?url'
 import heroArtwork from '../assets/hub-hero-sculpted.webp'
+import heroArtworkDark from '../assets/hub-hero-sculpted-dark.webp'
 import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
@@ -140,7 +141,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           </div>
         </ScrollReveal>
         <figure class="home-hero-art">
-          <Image src={heroArtwork} alt="Violet glass and pale ceramic forms around the Santi020k terminal prompt" widths={[640, 960, 1440]} sizes="(max-width: 767px) 92vw, 48vw" loading="eager" fetchpriority="high" />
+          <Image class="home-hero-light" src={heroArtwork} alt="Violet glass and pale ceramic forms around the Santi020k terminal prompt" widths={[640, 960, 1440]} sizes="(max-width: 767px) 92vw, 48vw" loading="eager" fetchpriority="high" />
+          <Image class="home-hero-dark" src={heroArtworkDark} alt="Violet glass and charcoal ceramic forms around the Santi020k terminal prompt in a softly lit dark studio" widths={[640, 960, 1440]} sizes="(max-width: 767px) 92vw, 48vw" loading="eager" fetchpriority="high" />
           <figcaption><span>Santi020k Theme</span><span>One palette. Many surfaces.</span></figcaption>
         </figure>
         <ul class="home-workspace-details" aria-label="Theme family at a glance">

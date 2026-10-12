@@ -317,10 +317,12 @@ illustrative scenes. Present package examples on one solid code surface, and let
 artwork stand on the canvas with open captions. Home compositions live in
 `apps/website/src/styles/home.css`; retain the shared navigation and product-page owners.
 
-The home hero uses an original still life of violet glass, ceramic, and the prompt tile. It is
-artwork, not a software screenshot. Gallery cards pair desktop and phone compositions; opening
-a current design shows its preview and download controls in a modal, with an explicit new-tab
-link to the permanent design page.
+The home hero uses light and dark versions of the same violet glass and ceramic still life,
+including the prompt tile, following site appearance without changing composition. This is artwork,
+not a software screenshot. Gallery cards pair desktop and phone compositions; opening a current
+design shows its preview and download controls in a modal, with an explicit new-tab link to the
+permanent design page. A `wallpaper` query parameter identifies the open preview for sharing and
+restores it on arrival. Dismissing it removes that parameter without adding history entries.
 
 ### Mobile navigation
 

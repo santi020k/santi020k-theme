@@ -39,6 +39,13 @@ Escape, scroll restoration, breakpoint cleanup, and Astro route disposal are req
 
 ## Styles and navigation
 
+Gallery previews are shareable through `/gallery/?wallpaper=<design-slug>`. Valid links open
+the matching modal on arrival or refresh; unknown values leave the gallery usable. Opening
+and dismissing a modal replace the current URL while preserving other parameters, the fragment,
+and Astro's history state. Browser Back still returns to the previous page. Copy preview link
+uses the current origin so local previews remain testable. Native modified card clicks and
+the explicit new-tab link continue to use the permanent design page.
+
 Import each product stylesheet from its Astro page or root layout. Do not load page CSS from
 `main.js`: Vite injects those styles once in development, while Astro replaces the head during
 client navigation. Returning to a previously visited page can otherwise leave it unstyled.
