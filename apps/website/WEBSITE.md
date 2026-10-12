@@ -29,7 +29,7 @@ This is the only public Santi020k theme website and Cloudflare Pages deployment.
 
 Below 1101px, the shared header opens a full-screen Lumen Dialog as a workspace switchboard.
 All nine product routes are available directly, with categories and a current-product marker.
-Home, Gallery, Design, Docs, and Support form a separate exploration strip; appearance lives
+Home, Gallery, Design, Terminal docs, and Support form a separate exploration strip; appearance lives
 inside the panel. The close control stays visible while the content scrolls on short screens.
 Desktop retains its theme selector and primary navigation.
 
