@@ -36,7 +36,8 @@
 .wallpaper-download-panel [data-ui-select-option]:is(:hover, :focus-visible, [aria-selected="true"]) { background: var(--site-surface-strong); color: var(--site-ink); }
 .wallpaper-download-panel [data-ui-select-option]:focus-visible { outline: 2px solid var(--site-brand); outline-offset: -2px; }
 .wallpaper-download { display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: .65rem .75rem .65rem 1.15rem; border-radius: 1rem; background: var(--site-ink); color: var(--theme-bg); font-size: .875rem; font-weight: 600; }
-.wallpaper-download svg { box-sizing: content-box; width: 1.2rem; height: 1.2rem; padding: .5rem; background: var(--theme-bg); color: var(--site-ink); border-radius: .65rem; }
+.wallpaper-download > .ui-icon { display: grid; place-items: center; flex: 0 0 auto; width: 2.2rem; height: 2.2rem; background: var(--theme-bg); color: var(--site-ink); border-radius: .65rem; }
+.wallpaper-download svg { width: 1.2rem; height: 1.2rem; }
 .wallpaper-selection, .wallpaper-export-note { margin: 0; font-size: .75rem; line-height: 1.7; color: var(--site-ink-soft); }
 .wallpaper-export-note { border-top: 1px solid var(--site-line); padding-top: 1rem; margin-top: 1.25rem; }
 .wallpaper-artwork-story { margin-top: 0; padding-top: 28px; border-top: 1px solid var(--section-divider); }
