@@ -28,7 +28,7 @@
   quiet canvas and sculpted corners. Include dark and light desktop and phone compositions,
   PNG and WEBP downloads, a dedicated gallery filter, and a compact WEBP pack.
 
-- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Replace synthetic VS Code previews with real editor screenshots in dark, light, and both high-contrast modes. Synchronize previews from canonical captures and preserve existing PNG and SVG asset URLs.
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Replace synthetic VS Code previews with real editor screenshots in dark, light, and both high-contrast modes. Synchronize previews from canonical captures and preserve existing PNG preview URLs. SVG wrappers are removed in v3; replace their imports with the corresponding PNG paths as described in the migration notes.
 
 - [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Expand the Signature wallpaper collection with Satin and Ceramic: eight additional branded
   dark/light desktop and phone compositions. Add PNG/WEBP downloads and a complete twelve-image
