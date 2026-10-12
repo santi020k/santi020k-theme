@@ -92,7 +92,7 @@ Review `zsh/install.zsh` before running it. Homebrew is required and is intentio
 
 ## Homebrew releases
 
-`pnpm --filter santi020k-terminal-theme run package` creates a versioned release archive, SHA-256 metadata, and `santi020k-terminal.rb` formula under `dist/`. Tags named `santi020k-terminal-v<version>` publish the archive and update `santi020k/homebrew-tap` when the `HOMEBREW_TAP_TOKEN` repository secret is configured.
+`pnpm --filter santi020k-terminal-theme run package` creates a versioned release archive, SHA-256 metadata, and `santi020k-terminal.rb` formula under `dist/`. After a version merge, the release workflow creates `santi020k-terminal-v<version>` and dispatches Terminal publication from protected `main` with the exact merged commit. The Terminal workflow verifies that commit and tag, publishes the archive, and updates `santi020k/homebrew-tap` using the `HOMEBREW_TAP_TOKEN` repository secret. For recovery, dispatch `terminal-release.yml` on `main` with `release_commit` set to the original merged release SHA; matching published archives are reused.
 
 ## Transparent iTerm2 profiles
 
