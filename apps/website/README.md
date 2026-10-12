@@ -77,6 +77,9 @@ Run commands from the repository root.
 - Wallpaper descriptions, paths, resolutions, and encoding profiles come from
   `../../artwork/wallpaper-catalog.mjs`. The generated sitemap includes every current design
   with its four desktop/phone and light/dark preview images.
+- `/gallery/appearance/#downloads` compares both desktop appearances side by side, with collection
+  labels, direct paired HEIC downloads, and links to each design. Keep both previews visible in
+  either site theme and preserve their full compositions on mobile.
 - Development and build preparation generate static resolution/quality downloads from saved raster masters
   with `../../scripts/generate-wallpaper-downloads.mjs`. Run that script before using `astro dev`
   directly. Generated files under `public/downloads/wallpapers-v1/` are ignored by Git, cached by
