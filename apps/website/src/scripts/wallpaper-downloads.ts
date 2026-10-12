@@ -39,12 +39,11 @@ const updatePreview = (root: HTMLElement, appearance: string, device: string, de
   }
 }
 
-bindPageLifecycle('hub', signal => {
-  const root = document.querySelector<HTMLElement>('[data-wallpaper-design]')
-  const form = root?.querySelector<HTMLFormElement>('[data-wallpaper-form]')
-  const slug = root?.dataset.wallpaperDesign
+const bindWallpaper = (root: HTMLElement, signal: AbortSignal) => {
+  const form = root.querySelector<HTMLFormElement>('[data-wallpaper-form]')
+  const slug = root.dataset.wallpaperDesign
 
-  if (!root || !form || !slug) return
+  if (!form || !slug) return
 
   const controls = readControls(form)
 
@@ -75,6 +74,12 @@ bindPageLifecycle('hub', signal => {
   }, { signal })
 
   update()
+
+  return undefined
+}
+
+bindPageLifecycle('hub', signal => {
+  for (const root of document.querySelectorAll<HTMLElement>('[data-wallpaper-design]')) bindWallpaper(root, signal)
 
   return undefined
 })

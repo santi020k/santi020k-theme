@@ -1,0 +1,40 @@
+---
+import { ButtonLink, Eyebrow, Field, Icon, Label, Link, NativeSelect } from '@santi020k/lumen-astro'
+
+import { appearances, devices, downloadHref, exportProfiles, previewHref, resolutions, type wallpaperDesigns, wallpaperHref } from '../../../../artwork/wallpaper-catalog.mjs'
+
+interface Props {
+  design: (typeof wallpaperDesigns)[number]
+  modal?: boolean
+}
+
+const { design, modal = false } = Astro.props
+const prefix = `wallpaper-${design.slug}`
+const variants = appearances.flatMap(appearance => devices.map(device => ({ appearance, device, src: previewHref(design.slug, appearance, device), alt: `${design.alt}, ${appearance} ${device === 'mobile' ? 'phone' : 'desktop'} composition` })))
+---
+    <div class="wallpaper-workspace" data-wallpaper-design={design.slug}>
+      <div>
+        <div class="wallpaper-stage" data-wallpaper-stage>
+          {variants.map((variant, index) => <img data-wallpaper-preview data-appearance={variant.appearance} data-device={variant.device} src={variant.src} alt={variant.alt} width={variant.device === 'desktop' ? 1920 : 1080} height={variant.device === 'desktop' ? 1080 : 2340} loading={modal || index !== 0 ? 'lazy' : 'eager'} fetchpriority={modal || index !== 0 ? 'auto' : 'high'} hidden={index !== 0} />)}
+        </div>
+        <p class="wallpaper-caption"><span data-wallpaper-caption>Dark · Desktop</span><Link href={modal ? wallpaperHref(design.slug) : '#all-downloads'} newTab={modal}>{modal ? 'Open in new tab' : 'All versions & downloads'} <Icon name={modal ? 'arrow-up-right' : 'arrow-down'} /></Link></p>
+      </div>
+      <aside class="wallpaper-download-panel" aria-labelledby={`${prefix}-download-heading`}>
+        <Eyebrow>Make it yours</Eyebrow><h2 id={`${prefix}-download-heading`}>Your screen.<br /> Your version.</h2>
+        <form data-wallpaper-form>
+          <div class="wallpaper-control-pair">
+            <Field><Label for={`${prefix}-appearance`}>Appearance</Label><NativeSelect id={`${prefix}-appearance`} name="appearance" options={[{ label: 'Dark', value: 'dark' }, { label: 'Light', value: 'light' }]} /></Field>
+            <Field><Label for={`${prefix}-device`}>Screen</Label><NativeSelect id={`${prefix}-device`} name="device" options={[{ label: 'Desktop', value: 'desktop' }, { label: 'Phone', value: 'mobile' }]} /></Field>
+          </div>
+          <Field><Label for={`${prefix}-resolution`}>Resolution</Label><NativeSelect id={`${prefix}-resolution`} name="resolution">{resolutions.map(size => <option value={size.id} data-device={size.device} hidden={size.device !== 'desktop'} disabled={size.device !== 'desktop'} selected={size.id === '2560x1440'}>{size.label}</option>)}</NativeSelect></Field>
+          <Field><Label for={`${prefix}-profile`}>Format & quality</Label><NativeSelect id={`${prefix}-profile`} name="profile">{exportProfiles.map(profile => <option value={profile.id} selected={profile.id === 'webp-high'}>{profile.label}</option>)}</NativeSelect></Field>
+          <ButtonLink class="wallpaper-download" variant="unstyled" href={downloadHref(design.slug, 'dark', '2560x1440', 'webp-high') ?? ''} download data-wallpaper-download><span>Download wallpaper</span><Icon name="download" /></ButtonLink>
+          <p class="wallpaper-selection" data-wallpaper-selection aria-live="polite">Dark · Desktop · 2560 × 1440 · WEBP · High quality</p>
+        </form>
+        <p class="wallpaper-export-note">All sizes are resized from AI-generated raster artwork. A 4K-size export fits a 4K screen; it does not add native detail.</p>
+        {!modal && <noscript><p>Use the complete download list below to choose another version without JavaScript.</p></noscript>}
+      </aside>
+    </div>
+
+<script>import '../scripts/wallpaper-downloads'
+</script>

@@ -317,6 +317,11 @@ illustrative scenes. Present package examples on one solid code surface, and let
 artwork stand on the canvas with open captions. Home compositions live in
 `apps/website/src/styles/home.css`; retain the shared navigation and product-page owners.
 
+The home hero uses an original still life of violet glass, ceramic, and the prompt tile. It is
+artwork, not a software screenshot. Gallery cards pair desktop and phone compositions; opening
+a current design shows its preview and download controls in a modal, with an explicit new-tab
+link to the permanent design page.
+
 ### Mobile navigation
 
 The theme family's mobile navigation is a full-screen workspace switchboard: direct product

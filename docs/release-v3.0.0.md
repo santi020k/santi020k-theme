@@ -88,3 +88,23 @@ without JavaScript. Rollback can restore the previous gallery while keeping exis
 ## iPhone, notes, and native editor additions
 
 The candidate adds an iPhone setup pack, a dark/light Obsidian theme, and a dark/light Neovim colorscheme. Dedicated website pages provide downloads, native installation instructions, mobile synchronization guidance, and recovery steps. Product navigation, homepage cards, the footer, sitemap, and SEO checks include all three. Existing routes and wallpaper URLs remain stable. See [implementation and validation boundaries](theme-expansion.md), including physical-device checks still outstanding. Obsidian distribution is a manual download; community directory submission is separate.
+
+## Website visual consistency follow-up
+
+The home hero now uses original Sculpted artwork. Current wallpaper cards pair desktop and phone
+compositions and open a preview/download dialog with an explicit new-tab link to the permanent
+page. Both surfaces share the same download controls, and modified clicks retain native navigation.
+The footer has a compact brand column and a clearer callout; the mobile menu uses the same canonical
+logo as the header. Product headers have calmer typography and separated actions.
+
+Product CSS is imported by Astro pages/layouts instead of client-only JavaScript. The previous
+production HTML already linked the Terminal stylesheet, supporting a development navigation
+cause for the reported unstyled page; interactive confirmation remains pending. Legacy Terminal
+footer selectors no longer affect the shared footer.
+
+Local checks pass with 164 tests, strict types, zero-warning lint, builds, SEO, and packaging.
+A static audit covers all 29 generated pages for initial CSS, asset existence, labels, unique IDs,
+and safe new-tab links. Rendered desktop/mobile and light/dark verification remains pending because
+browser access was blocked during this session. These source/build checks do not replace that pass.
+No deployment or publication is implied. Revert the focused website change to recover; no data
+migration is involved and existing wallpaper URLs are retained.

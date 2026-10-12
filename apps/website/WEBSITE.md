@@ -37,6 +37,15 @@ The interaction contract shared with the personal-site direction is documented i
 [`../../docs/mobile-navigation.md`](../../docs/mobile-navigation.md). Native modal focus,
 Escape, scroll restoration, breakpoint cleanup, and Astro route disposal are required.
 
+## Styles and navigation
+
+Import each product stylesheet from its Astro page or root layout. Do not load page CSS from
+`main.js`: Vite injects those styles once in development, while Astro replaces the head during
+client navigation. Returning to a previously visited page can otherwise leave it unstyled.
+Production builds extract those imports, but page-owned styles provide the same ownership in
+both modes. Keep legacy product selectors scoped so they cannot rearrange the shared header,
+footer, or dialogs. The canonical brand lockup is shared by all three navigation surfaces.
+
 ## Maintenance
 
 - Add new products to `src/data/products.js`, then create their route beneath `src/pages/`.

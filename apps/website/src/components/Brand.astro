@@ -1,0 +1,28 @@
+---
+import { Link } from '@santi020k/lumen-astro'
+---
+
+<Link class="family-brand-lockup" variant="inherit" href="/" aria-label="Santi020k Themes home">
+  <img src="/favicon.svg" width="34" height="34" alt="" />
+  <span>Santi020k <b>Themes</b></span>
+</Link>
+
+<style>
+  .family-brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    min-height: 44px;
+    color: var(--site-ink);
+    font: 500 1rem/1.35 var(--santi020k-font-sans);
+    letter-spacing: -.025em;
+    text-decoration: none;
+  }
+  .family-brand-lockup img { display: block; width: 34px; height: 34px; flex: 0 0 34px; }
+  .family-brand-lockup b { color: var(--site-brand); font-weight: 600; }
+  @media (max-width: 600px) {
+    .family-brand-lockup { font-size: .8rem; gap: 8px; }
+    .family-brand-lockup b { display: block; }
+  }
+</style>

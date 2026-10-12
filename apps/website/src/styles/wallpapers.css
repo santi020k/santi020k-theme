@@ -64,3 +64,56 @@
   .wallpaper-related > div { grid-template-columns: 1fr; gap: 2rem; }
   .wallpaper-story, .wallpaper-files { margin-top: 3.5rem; padding-top: 2rem; }
 }
+
+/* A paired composition makes every design's desktop and phone editions visible. */
+.wallpaper-card-link { display: flex; flex-direction: column; height: 100%; color: var(--site-ink); text-decoration: none; }
+.wallpaper-card-art { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: var(--site-surface-muted); }
+.wallpaper-card-desktop { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 250ms ease; }
+.wallpaper-card-phone { position: absolute; right: 6%; bottom: 8%; width: 21%; height: 73%; object-fit: cover; border: 4px solid var(--site-surface-strong); border-radius: 1rem; box-shadow: 0 12px 32px rgb(0 0 0 / .24); }
+.wallpaper-card-editions { position: absolute; bottom: 8%; left: 6%; padding: .5rem .75rem; border: 1px solid var(--site-line); border-radius: .65rem; background: var(--theme-bg); color: var(--site-ink); font-size: .6875rem; }
+.wallpaper-card-copy { padding: 1.5rem; }
+.wallpaper-card-collection { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; color: var(--site-brand); text-transform: capitalize; font-size: .6875rem; font-weight: 500; }
+.wallpaper-card-collection span { color: var(--site-ink-soft); }
+.wallpaper-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.wallpaper-card-heading h3 { margin: 0; font-size: clamp(1.75rem, 3vw, 2.4rem); line-height: 1.15; letter-spacing: -.05em; font-weight: 500; }
+.wallpaper-card-arrow { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--site-line); border-radius: var(--site-arrow-radius); transition: color 180ms, background 180ms; }
+.wallpaper-card-arrow svg { width: 20px; height: 20px; }
+.wallpaper-card-copy > p:not(.wallpaper-card-collection) { margin: .5rem 0 1.5rem; color: var(--site-ink-soft); font-size: .875rem; line-height: 1.65; }
+.wallpaper-card-action { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; padding-top: 1rem; border-top: 1px solid var(--site-line); font-size: .75rem; font-weight: 500; }
+.wallpaper-card-action > span { color: var(--site-ink-soft); font-weight: 400; }
+.wallpaper-card-link:hover .wallpaper-card-arrow { background: var(--site-ink); color: var(--theme-bg); }
+.wallpaper-card-link:hover .wallpaper-card-desktop { transform: scale(1.025); }
+html:has(.wallpaper-dialog[open]) { overflow: hidden; }
+.wallpaper-dialog { width: min(1120px, calc(100% - 48px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; overflow: hidden; border: 1px solid var(--site-line); border-radius: var(--site-panel-radius); background: var(--theme-bg); color: var(--site-ink); }
+.wallpaper-dialog[open] { display: flex; flex-direction: column; }
+.wallpaper-dialog::backdrop { background: rgb(13 7 24 / .72); }
+.wallpaper-dialog-header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 2rem; border-bottom: 1px solid var(--site-line); }
+.wallpaper-dialog-header .ui-eyebrow { margin: 0 0 .5rem; }
+.wallpaper-dialog-header h2 { margin: 0; font-size: 2rem; font-weight: 500; line-height: 1.1; letter-spacing: -.05em; }
+.wallpaper-dialog-close { flex-shrink: 0; min-width: 44px; min-height: 44px; border: 1px solid var(--site-line); border-radius: var(--site-arrow-radius); background: var(--site-surface); color: var(--site-ink); }
+.wallpaper-dialog-content { min-height: 0; padding: 1.5rem 2rem 2rem; overflow-y: auto; overscroll-behavior: contain; }
+.wallpaper-dialog-description { margin: 0 0 1.5rem; color: var(--site-ink-soft); font-size: .9rem; }
+.wallpaper-dialog .wallpaper-workspace { grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr); gap: 2rem; }
+.wallpaper-dialog .wallpaper-download-panel h2 { font-size: 1.75rem; }
+.wallpaper-dialog .wallpaper-stage { max-height: 50dvh; }
+@media (max-width: 850px) {
+  .wallpaper-dialog .wallpaper-workspace { grid-template-columns: 1fr; gap: 1rem; }
+  .wallpaper-dialog .wallpaper-stage { aspect-ratio: 16 / 10; max-height: 42dvh; }
+}
+@media (max-width: 600px) {
+  .wallpaper-dialog { width: calc(100% - 16px); max-height: calc(100dvh - 16px); border-radius: 1.25rem; }
+  .wallpaper-dialog-header { padding: 1rem 1.25rem; }
+  .wallpaper-dialog-content { padding: 1.25rem; }
+  .wallpaper-card-copy { padding: 1.25rem; }
+  .wallpaper-card-phone { border-width: 3px; border-radius: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wallpaper-card-desktop, .wallpaper-card-arrow { transition: none; }
+  .wallpaper-card-link:hover .wallpaper-card-desktop { transform: none; }
+}
+
+.asset-dialog-actions { padding: .75rem 1.25rem; border-top: 1px solid var(--site-line); }
+.asset-dialog-actions a { display: inline-flex; align-items: center; gap: .75rem; min-height: 44px; font-size: .8125rem; }
+.asset-dialog-actions svg { width: 1rem; height: 1rem; }
+.asset-dialog .dialog-media { max-height: calc(100dvh - 220px); }
+.asset-dialog .dialog-media img { max-height: calc(100dvh - 250px); }

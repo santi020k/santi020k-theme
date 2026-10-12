@@ -1,5 +1,3 @@
-import './styles.css'
-
 /* eslint-disable @stylistic/max-len -- Embedded code samples preserve the lines displayed in the editor preview. */
 import {
   bindPreferredSiteThemeSync,
