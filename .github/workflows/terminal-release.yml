@@ -1,10 +1,12 @@
 name: Terminal release
 
 on:
-  push:
-    tags:
-      - 'santi020k-terminal-v*'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      release_commit:
+        description: Exact merged main commit to package; defaults to the dispatch commit.
+        type: string
+        required: false
 
 permissions:
   contents: write
@@ -15,6 +17,7 @@ concurrency:
 
 jobs:
   release:
+    if: github.ref == 'refs/heads/main'
     runs-on: macos-latest
     timeout-minutes: 30
     environment:
@@ -24,6 +27,16 @@ jobs:
       HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
+        with:
+          ref: ${{ inputs.release_commit || github.sha }}
+          fetch-depth: 0
+
+      - name: Verify release source is merged into main
+        env:
+          RELEASE_COMMIT: ${{ inputs.release_commit || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$RELEASE_COMMIT"
+          git merge-base --is-ancestor "$RELEASE_COMMIT" origin/main
 
       - name: Set up pnpm workspace
         uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
@@ -41,11 +54,10 @@ jobs:
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "tag=santi020k-terminal-v$version" >> "$GITHUB_OUTPUT"
 
-      - name: Verify tag matches package version
-        if: github.ref_type == 'tag'
+      - name: Verify release tag matches source commit
         env:
           RELEASE_TAG: ${{ steps.release.outputs.tag }}
-        run: test "$GITHUB_REF_NAME" = "$RELEASE_TAG"
+        run: test "$(git rev-parse "$RELEASE_TAG^{commit}")" = "$(git rev-parse HEAD)"
 
       - name: Verify Homebrew tap credentials
         run: test -n "$HOMEBREW_TAP_TOKEN" || { echo 'HOMEBREW_TAP_TOKEN is required for terminal releases.' >&2; exit 1; }
