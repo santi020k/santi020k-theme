@@ -72,7 +72,7 @@ softwareApplicationSchema({
   </head>
   <body>
     <SharedHeader currentProduct={slug} productLinks={[{ href: `/${slug}/`, label: 'Overview' }, { href: `/${slug}/#install`, label: 'Install' }, { href: `/${slug}/#coverage`, label: 'Coverage' }]} />
-    <main><slot /></main>
+    <main class="documentation-page"><slot /></main>
     <SharedFooter />
     <script>
       import '../main.js'

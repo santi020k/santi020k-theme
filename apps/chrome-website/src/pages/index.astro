@@ -1,11 +1,12 @@
 ---
 import '../styles.css'
 
-import { Button, ButtonLink, Card, Link } from '@santi020k/lumen-astro'
+import { Button, Card, Link } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import chromePackage from '../../../../packages/santi020k-chrome-theme/package.json'
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 import ThemeCardPreview from '../../../website/src/components/ThemeCardPreview.astro'
@@ -77,7 +78,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <body>
     <SharedHeader currentProduct="chrome" productLinks={[{ href: '/chrome/', label: 'Overview' }, { href: '/chrome/#preview', label: 'Preview' }, { href: '/chrome/#palette', label: 'Palette' }, { href: '/chrome/#why', label: 'Why Chrome' }, { href: '/chrome/#install', label: 'Install' }]} />
 
-    <main id="top">
+    <main id="top" class="documentation-page">
       <!-- ── Hero ──────────────────────────────────────────────────────────── -->
       <section class="hero">
         <div class="hero-wallpaper" aria-hidden="true"></div>
@@ -89,15 +90,15 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               Familiar violet from the first tab to the next idea. Light and dark themes bring the same quiet palette to your toolbar, tabs, and New Tab page.
             </p>
             <div class="actions" aria-label="Theme actions">
-              <ButtonLink class="button button-primary" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab>
+              <ProductAction href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab>
                 Install dark theme
-              </ButtonLink>
-              <ButtonLink class="button button-secondary" variant="secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci" newTab>
+              </ProductAction>
+              <ProductAction href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci" newTab variant="secondary">
                 Install light theme
-              </ButtonLink>
-              <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme" newTab>
+              </ProductAction>
+              <ProductAction href="https://github.com/santi020k/santi020k-theme" newTab variant="secondary">
                 GitHub
-              </ButtonLink>
+              </ProductAction>
             </div>
             <p class="install-note">Available on the Chrome Web Store. Choose dark or light to install in desktop Chrome.</p>
           </div>
@@ -274,17 +275,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <div class="install-step-badge">01 / DARK</div>
             <h3>Deep violet, quiet contrast.</h3>
             <p class="install-card-body">Dark surfaces and lavender text across your tabs, toolbar, and New Tab page.</p>
-            <ButtonLink class="button button-primary install-store-btn" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab>
+            <ProductAction href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab class="install-store-btn">
               Install dark theme
-            </ButtonLink>
+            </ProductAction>
           </Card>
           <Card as="article" class="install-card">
             <div class="install-step-badge">02 / LIGHT</div>
             <h3>Soft lavender, clear focus.</h3>
             <p class="install-card-body">Light surfaces and deep violet accents with the same coordinated palette.</p>
-            <ButtonLink class="button button-secondary install-store-btn" variant="secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci" newTab>
+            <ProductAction href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci" newTab variant="secondary" class="install-store-btn">
               Install light theme
-            </ButtonLink>
+            </ProductAction>
           </Card>
         </div>
         <div class="install-guidance">

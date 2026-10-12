@@ -17,7 +17,7 @@
 .port-card p { margin-block: 12px; }
 .port-code { min-width: 0; }
 .port-steps { padding: 0; margin: 0; list-style: none; counter-reset: port-step; }
-.port-steps > li { position: relative; counter-increment: port-step; padding: 24px 0 24px 40px; border-top: 1px solid var(--section-divider); }
+.port-steps > li { min-width: 0; overflow-wrap: anywhere; position: relative; counter-increment: port-step; padding: 24px 0 24px 40px; border-top: 1px solid var(--section-divider); }
 .port-steps > li::before { content: counter(port-step, decimal-leading-zero); position: absolute; left: 0; top: 28px; color: var(--site-brand); font: 500 .75rem/1.4 var(--santi020k-font-mono); }
 .port-steps h3 { margin-bottom: 8px; }
 .port-steps p { margin-bottom: 0; }

@@ -1,7 +1,7 @@
 ---
 import '../styles.css'
 
-import { Badge, ButtonLink, Card, CodeTabs, Eyebrow, Icon } from '@santi020k/lumen-astro'
+import { Badge, Card, CodeTabs, Eyebrow, Icon } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import { getSiteUrls } from '@santi020k/theme/site'
 
@@ -9,6 +9,7 @@ import darkPreset from '../../../../packages/santi020k-codex-theme/themes/santi0
 import lightPreset from '../../../../packages/santi020k-codex-theme/themes/santi020k-light.codex-theme.json'
 import favicon from '../../../../packages/theme/assets/favicons/favicon.svg'
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
@@ -77,7 +78,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <body>
     <SharedHeader currentProduct="codex" productLinks={[{ href: '/codex/', label: 'Overview' }, { href: '/codex/#presets', label: 'Presets' }, { href: '/codex/#details', label: 'Details' }]} />
 
-    <main id="top">
+    <main id="top" class="documentation-page">
       <section class="site-shell hero">
         <div class="hero-copy">
           <Eyebrow class="eyebrow">Codex custom themes</Eyebrow>
@@ -89,8 +90,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <span>No extension required</span>
           </div>
           <div class="actions">
-            <ButtonLink class="button button-primary" variant="primary" href="#presets" showArrow>Copy a preset</ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-codex-theme" newTab>View source</ButtonLink>
+            <ProductAction href="#presets">Copy a preset</ProductAction>
+            <ProductAction href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-codex-theme" newTab variant="secondary">View source</ProductAction>
           </div>
         </div>
 
@@ -171,8 +172,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <h2>Make Codex feel like part of the family.</h2>
         </div>
         <div class="actions">
-          <ButtonLink class="button button-primary" variant="primary" href="#presets">Copy a preset</ButtonLink>
-          <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.hub}>Explore every theme</ButtonLink>
+          <ProductAction href="#presets">Copy a preset</ProductAction>
+          <ProductAction href={siteUrls.hub} variant="secondary">Explore every theme</ProductAction>
         </div>
       </section>
     </main>

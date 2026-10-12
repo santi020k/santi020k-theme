@@ -1,0 +1,129 @@
+/* Product and documentation chrome share the VS Code page's Sculpted treatment.
+   Native preview palettes and code syntax remain owned by their components. */
+.documentation-page :is(.hero-copy, .port-hero > div) > h1 {
+  max-width: var(--site-page-title-measure);
+  color: var(--site-ink);
+  font-size: var(--site-page-title-size);
+  font-weight: 600;
+  line-height: var(--site-page-title-line-height);
+  letter-spacing: var(--site-title-tracking);
+}
+
+.documentation-page :is(.hero-copy, .port-hero > div) > .lede,
+.documentation-page .section-lede {
+  color: var(--site-ink-soft);
+  font-size: var(--site-body-size);
+  font-weight: 400;
+  line-height: var(--site-body-line-height);
+}
+
+/* A single underline treatment for preview choices and Lumen command tabs. */
+.documentation-page :is([data-slot="code-tabs"], .screenshot-showcase) [role="tablist"],
+.documentation-page .preview-controls:has(button[data-preview-theme]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.25rem;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--section-divider);
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.documentation-page :is([data-slot="code-tabs"], .screenshot-showcase) [role="tab"],
+.documentation-page button[data-preview-theme] {
+  min-height: var(--site-control-min-height);
+  max-width: 100%;
+  padding: .75rem .25rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--site-ink-soft);
+  font: 500 .8125rem/1.4 var(--santi020k-font-sans);
+  white-space: normal;
+  text-align: start;
+  cursor: pointer;
+}
+
+.documentation-page :is([data-slot="code-tabs"], .screenshot-showcase) [role="tab"][aria-selected="true"],
+.documentation-page button[data-preview-theme][aria-pressed="true"] {
+  border-bottom-color: var(--site-brand);
+  background: transparent;
+  color: var(--site-ink);
+  box-shadow: none;
+}
+
+.documentation-page :is([role="tab"], button[data-preview-theme]):hover { color: var(--site-ink); }
+.documentation-page :is([role="tab"], [role="tabpanel"], button[data-preview-theme]):focus-visible {
+  outline: 2px solid var(--site-brand);
+  outline-offset: 3px;
+}
+
+.documentation-page [data-slot="code-tabs"] {
+  min-width: 0;
+  max-width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.documentation-page [data-slot="code-tabs"] [role="tabpanel"] { padding: 1rem 0 0; }
+.documentation-page [data-slot="code-tabs"] [data-slot="code"] { margin: 0; }
+.documentation-page figure[data-slot="code"] {
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--site-line);
+  border-radius: var(--site-control-radius);
+  box-shadow: none;
+}
+
+/* Documentation groups use open rows; code and callouts keep one useful surface. */
+.documentation-page .docs-card-grid { grid-template-columns: 1fr; gap: 0; }
+.documentation-page .docs-card-grid > :is(a, article),
+.documentation-page .docs-link-list > a {
+  padding: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--section-divider);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.documentation-page .docs-card-grid span { margin-bottom: .75rem; }
+.documentation-page .docs-content h3 { font-weight: 500; line-height: 1.5; }
+.documentation-page :is(.docs-definition-list, .docs-command-list) dt { font-weight: 500; }
+.documentation-page .docs-command-list > div { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+.documentation-page .docs-content :not(pre) > code { overflow-wrap: anywhere; }
+.documentation-page .docs-pagination a {
+  min-height: var(--site-control-min-height);
+  padding: 1.25rem 0;
+  border: 0;
+  border-top: 1px solid var(--section-divider);
+  border-radius: 0;
+}
+.documentation-page .docs-pagination b { color: var(--site-ink); font-weight: 500; }
+.documentation-page :is(.docs-toc b, .docs-callout b) { font-weight: 500; }
+.documentation-page .docs-download-table { border: 0; border-radius: 0; }
+.documentation-page .docs-download-table > div { background: transparent; padding: .75rem 0; align-items: center; }
+.documentation-page .docs-download-table a { display: inline-flex; align-items: center; min-height: var(--site-control-min-height); }
+
+@media (max-width: 767px) {
+  .documentation-page :is(.hero-copy, .port-hero > div) > h1 { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+}
+
+.documentation-page [data-slot="code"] [data-ui-code-copy] {
+  min-width: var(--site-control-min-height);
+  min-height: var(--site-control-min-height);
+  border-radius: var(--site-arrow-radius);
+  background: var(--site-surface);
+  color: var(--site-ink);
+}
+.documentation-page [data-slot="code"] [data-ui-code-copy]:focus-visible {
+  outline: 2px solid var(--site-brand);
+  outline-offset: 2px;
+}

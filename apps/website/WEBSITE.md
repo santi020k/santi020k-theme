@@ -53,6 +53,14 @@ Production builds extract those imports, but page-owned styles provide the same 
 both modes. Keep legacy product selectors scoped so they cannot rearrange the shared header,
 footer, or dialogs. The canonical brand lockup is shared by all three navigation surfaces.
 
+Product pages and guides opt into `.documentation-page` on their main landmark. Shared
+`styles/documentation.css` is imported by `PageTransitions.astro`, so direct loads and client
+navigation use the same typography, underline tabs, code surfaces, and reading rows.
+`ProductAction.astro` composes Lumen ButtonLink and Icon for primary/secondary links, preserving
+native downloads and protected external links. Keep native preview colors in their owning
+components. Check every product route, all six Terminal guides, the configurator, visual guide,
+support page, and wallpaper appearance guide at desktop/mobile widths in light and dark.
+
 ## Maintenance
 
 - Add new products to `src/data/products.js`, then create their route beneath `src/pages/`.

@@ -357,6 +357,13 @@ of contents. Preserve command copy, code tabs, installation instructions, pagina
 navigation when restyling. Sidebars may become a horizontal mobile navigation strip. Theme
 previews must continue to show actual product colors rather than decorative website colors.
 
+Product and guide actions share `ProductAction.astro`, a Lumen link with the neutral primary
+surface and arrow compartment used on the VS Code page. Use quiet secondary links, and keep
+external-link and download semantics explicit. `apps/website/src/styles/documentation.css`
+owns the common product typography, underline preview/command tabs, and open documentation
+rows. Load it through the shared Astro page boundary; scope it to `.documentation-page` so
+home and gallery compositions remain independent. Preserve Lumen's tab, focus, and copy behavior.
+
 Use Lumen 4 `ScrollReveal` for a short, one-time content entrance and `RevealGroup` for a
 35ms stagger between theme previews. Keep reading content visible without JavaScript.
 Astro `ClientRouter` uses a 180ms fade with an immediate swap fallback, preserving appearance

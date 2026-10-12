@@ -83,7 +83,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   </head>
   <body>
     <SharedHeader currentProduct="terminal" productLinks={[{ href: '/terminal/', label: 'Overview' }, { href: '/terminal/configure/', label: 'Configure' }, { href: '/terminal/docs/', label: 'Documentation' }, { href: '/terminal/docs/#install', label: 'Install' }, { href: '/terminal/docs/cli/', label: 'CLI reference' }]} />
-    <main><slot /></main>
+    <main class="documentation-page"><slot /></main>
     <SharedFooter />
     <UIPrimitives />
     <script>

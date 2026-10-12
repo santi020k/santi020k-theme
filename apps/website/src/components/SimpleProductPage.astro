@@ -1,10 +1,11 @@
 ---
 import '../styles/ports.css'
 
-import { ButtonLink, Eyebrow, Icon } from '@santi020k/lumen-astro'
+import { Eyebrow, Icon } from '@santi020k/lumen-astro'
 
 import ProductLayout from '../layouts/ProductLayout.astro'
 
+import ProductAction from './ProductAction.astro'
 import ThemeCardPreview from './ThemeCardPreview.astro'
 
 interface Step {
@@ -41,7 +42,7 @@ const mainAction = primaryAction ?? { href: '#install', label: `Install for ${na
       <h1>{title}</h1>
       <p class="lede">{description}</p>
       <div class="port-meta" aria-label="Theme status"><span>{availability}</span><span>Dark + light</span><span>Open source</span></div>
-      <div class="port-actions"><ButtonLink class="port-button port-button-primary" variant="unstyled" href={mainAction.href}>{mainAction.label}</ButtonLink><ButtonLink class="port-button port-button-secondary" variant="unstyled" href={sourceUrl} newTab>View package source</ButtonLink></div>
+      <div class="port-actions"><ProductAction href={mainAction.href}>{mainAction.label}</ProductAction><ProductAction href={sourceUrl} newTab variant="secondary">View package source</ProductAction></div>
     </div>
     <figure class="port-figure" aria-label={`${name} illustrative preview`}>
       <ThemeCardPreview {slug} {name} hero />

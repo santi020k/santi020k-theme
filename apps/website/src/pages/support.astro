@@ -1,13 +1,14 @@
 ---
 import '../styles.css'
 
-import { Badge, ButtonLink, Card, Icon, Link } from '@santi020k/lumen-astro'
+import { Badge, Card, Icon, Link } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import MetadataHead from '@santi020k/og/astro/head'
 import { personSchema, serializeJsonLd } from '@santi020k/og/schema'
 import { defineSite } from '@santi020k/og/site'
 
 import PageTransitions from '../components/PageTransitions.astro'
+import ProductAction from '../components/ProductAction.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 
@@ -60,7 +61,7 @@ const options = [
   </head>
   <body>
     <SharedHeader />
-    <main class="site-shell support-page">
+    <main class="site-shell support-page documentation-page">
       <section class="support-intro" aria-labelledby="support-title">
         <Badge variant="outline">Build the theme family together</Badge>
         <h1 id="support-title">Feedback &amp; support</h1>
@@ -74,7 +75,7 @@ const options = [
             <Icon name={option.icon} size="lg" />
             <h2>{option.title}</h2>
             <p>{option.description}</p>
-            <ButtonLink href={`${repository}/issues/new?template=${option.template}`} variant="secondary" showArrow newTab>{option.title}</ButtonLink>
+            <ProductAction href={`${repository}/issues/new?template=${option.template}`} variant="secondary" newTab>{option.title}</ProductAction>
           </Card>
         ))}
       </div>

@@ -76,7 +76,7 @@ button:focus-visible,
   gap: 24px;
   color: var(--site-ink-soft);
   font-size: 0.9rem;
-  font-weight: 750;
+  font-weight: 500;
 }
 
 .nav-links a,
@@ -162,7 +162,7 @@ h2 {
   gap: 9px 16px;
   color: var(--site-ink-soft);
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 500;
 }
 
 .hero-meta > span:not(.ui-badge) {
@@ -614,7 +614,7 @@ h2 {
   margin-bottom: 5px;
   color: color-mix(in srgb, var(--preview-ink) 62%, transparent);
   font-size: 0.68rem;
-  font-weight: 750;
+  font-weight: 500;
 }
 
 .variant-card dd {

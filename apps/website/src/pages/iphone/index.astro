@@ -3,12 +3,13 @@ import { Image } from 'astro:assets'
 
 import '../../styles/ports.css'
 
-import { Badge, ButtonLink, Eyebrow, Link } from '@santi020k/lumen-astro'
+import { Badge, Eyebrow, Link } from '@santi020k/lumen-astro'
 
 import contour from '../../../../../packages/theme/assets/wallpapers/minimal-v1/contour-dark-mobile.webp'
 import contourLight from '../../../../../packages/theme/assets/wallpapers/minimal-v1/contour-light-mobile.webp'
 import halo from '../../../../../packages/theme/assets/wallpapers/minimal-v2/halo-dark-mobile.webp'
 import haloLight from '../../../../../packages/theme/assets/wallpapers/minimal-v2/halo-light-mobile.webp'
+import ProductAction from '../../components/ProductAction.astro'
 import ProductLayout from '../../layouts/ProductLayout.astro'
 
 const description = 'A coordinated iPhone setup with Halo and Contour wallpapers, light and dark editions, and a simple guide to native violet icon tinting.'
@@ -20,7 +21,7 @@ const description = 'A coordinated iPhone setup with Halo and Contour wallpapers
       <h1>A little violet. Everywhere you go.</h1>
       <p class="lede">Halo for your Lock Screen. Contour for your Home Screen. A quiet pair of wallpapers, with room for the things you reach for every day.</p>
       <div class="port-meta"><Badge variant="outline">Free setup pack</Badge><span>4 PNGs · Dark + light</span></div>
-      <div class="port-actions"><ButtonLink class="port-button port-button-primary" variant="unstyled" href="/downloads/ports/santi020k-iphone.zip" download>Download iPhone pack</ButtonLink><ButtonLink class="port-button port-button-secondary" href="#install" variant="unstyled">Set up your iPhone</ButtonLink></div>
+      <div class="port-actions"><ProductAction href="/downloads/ports/santi020k-iphone.zip" download>Download iPhone pack</ProductAction><ProductAction href="#install" variant="secondary">Set up your iPhone</ProductAction></div>
       <p>No app or configuration profile required.</p>
     </div>
     <div class="port-phones" aria-label="Paired wallpaper artwork">
@@ -40,7 +41,7 @@ const description = 'A coordinated iPhone setup with Halo and Contour wallpapers
       <div class="port-card">
         <h3>Choose your appearance</h3>
         <p>Each image is a 1170 × 2532 PNG, resized from the original raster artwork. Adjust the crop on other iPhone sizes.</p>
-        {['dark', 'light'].map(mode => <div><h3>{mode === 'dark' ? 'Dark pair' : 'Light pair'}</h3><div class="port-downloads"><ButtonLink class="port-button port-button-secondary" variant="unstyled" href={`/downloads/ports/santi020k-${mode}-lock.png`} download>Halo · {mode}</ButtonLink><ButtonLink class="port-button port-button-secondary" variant="unstyled" href={`/downloads/ports/santi020k-${mode}-home.png`} download>Contour · {mode}</ButtonLink></div></div>)}
+        {['dark', 'light'].map(mode => <div><h3>{mode === 'dark' ? 'Dark pair' : 'Light pair'}</h3><div class="port-downloads"><ProductAction href={`/downloads/ports/santi020k-${mode}-lock.png`} download variant="secondary">Halo · {mode}</ProductAction><ProductAction href={`/downloads/ports/santi020k-${mode}-home.png`} download variant="secondary">Contour · {mode}</ProductAction></div></div>)}
         <p>Save both wallpaper pairs, then use Shortcuts to switch at sunrise and sunset. Auto icon appearance does not switch these wallpaper files.</p>
         <div class="port-resources"><Link href="/gallery/appearance/#iphone">Set up automatic wallpaper switching</Link>
         <Link href="https://support.apple.com/guide/iphone/customize-apps-and-widgets-on-the-home-screen-iph385473442/ios" newTab>Apple’s customization guide</Link></div>

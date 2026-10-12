@@ -295,14 +295,14 @@ h3 {
   background: rgb(15 11 25 / 0.72);
   color: #f1edf8;
   font-size: 0.76rem;
-  font-weight: 850;
+  font-weight: 500;
   backdrop-filter: blur(16px);
 }
 
 .section,
 .section-grid,
 .why-section {
-  padding: clamp(66px, 8vw, 106px) 0;
+  padding-block: var(--site-section-space);
   border-top: 1px solid var(--section-divider);
 }
 
@@ -373,7 +373,7 @@ h3 {
   gap: 8px;
   color: var(--site-ink-soft);
   font-size: 0.78rem;
-  font-weight: 850;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -472,7 +472,7 @@ h3 {
   background: color-mix(in srgb, var(--site-brand) 14%, var(--site-surface));
   color: var(--site-brand);
   font-size: 0.8rem;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .install-note {

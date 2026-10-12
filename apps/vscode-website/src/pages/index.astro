@@ -3,7 +3,7 @@ import { Image } from 'astro:assets'
 
 import '../styles.css'
 
-import { Button, ButtonLink, Card, Checkbox, Icon, Link, Select, Tabs, TabsList, TabsPanel, TabsTrigger } from '@santi020k/lumen-astro'
+import { Button, Card, Checkbox, Icon, Link, Select, Tabs, TabsList, TabsPanel, TabsTrigger } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import previewBackdropDark from '../../../../artwork/vscode-gallery-v1/indigo-studio.png'
@@ -13,6 +13,7 @@ import previewHcDark from '../../../../packages/theme/assets/vscode/previews/pre
 import previewHcLight from '../../../../packages/theme/assets/vscode/previews/preview-hc-light.png'
 import previewLight from '../../../../packages/theme/assets/vscode/previews/preview-light.png'
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
@@ -97,7 +98,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <body>
     <SharedHeader currentProduct="vscode" productLinks={[{ href: '/vscode/', label: 'Overview' }, { href: '/vscode/#variants', label: 'Variants' }, { href: '/vscode/#screenshots', label: 'Preview' }, { href: '/vscode/#editors', label: 'Editors' }, { href: '/vscode/#settings', label: 'Settings' }, { href: '/vscode/#palette', label: 'Palette' }]} />
 
-    <main id="top">
+    <main id="top" class="documentation-page">
       <section class="site-shell hero">
         <div class="hero-copy">
           <p class="eyebrow">VS Code color theme</p>
@@ -106,18 +107,18 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             Four color modes. Three syntax styles. A considered violet palette for your editor, terminal, and the work between them.
           </p>
           <div class="actions" aria-label="Theme actions">
-            <ButtonLink class="button button-primary" variant="unstyled" href="https://marketplace.visualstudio.com/items?itemName=Santi020k.santi020k-theme" newTab>
-              <span>VS Marketplace</span><span class="button-arrow"><Icon name="arrow-up-right" size="sm" decorative /></span>
-            </ButtonLink>
-            <ButtonLink class="button button-secondary" variant="unstyled" href="https://open-vsx.org/extension/santi020k/santi020k-theme" newTab>
+            <ProductAction href="https://marketplace.visualstudio.com/items?itemName=Santi020k.santi020k-theme" newTab>
+              <span>VS Marketplace</span>
+            </ProductAction>
+            <ProductAction href="https://open-vsx.org/extension/santi020k/santi020k-theme" newTab variant="secondary">
               Open VSX
-            </ButtonLink>
-            <ButtonLink class="button button-secondary" variant="unstyled" href="https://vscode.dev/editor/theme/santi020k.santi020k-theme" newTab>
+            </ProductAction>
+            <ProductAction href="https://vscode.dev/editor/theme/santi020k.santi020k-theme" newTab variant="secondary">
               Try in vscode.dev
-            </ButtonLink>
-            <ButtonLink class="button button-secondary" variant="unstyled" href="https://github.com/santi020k/santi020k-theme" newTab>
+            </ProductAction>
+            <ProductAction href="https://github.com/santi020k/santi020k-theme" newTab variant="secondary">
               GitHub
-            </ButtonLink>
+            </ProductAction>
           </div>
           <div class="install-action">
             <Button class="button-copy-install" type="button" aria-label="Copy installation command">
