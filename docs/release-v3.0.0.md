@@ -294,3 +294,17 @@ without the former re-export from the VS Code validator. Knip no longer needs a
 Tailwind duplicate-export exemption. Native accessibility and storage-error handling
 remain required behavior. Recovery is a focused source revert and regeneration of
 preview assets; no production data or installed theme names change.
+
+## Terminal deployment environment handoff
+
+The Terminal environment permits deployments from `main`. The automatic release
+handoff dispatches its workflow on that branch and passes the exact merged release
+commit as `release_commit`. Checkout, main ancestry, and immutable tag checks keep
+the archive and Homebrew formula tied to that commit even if main advances. Tag
+pushes do not start a second deployment. Manual recovery uses the same workflow on
+main with the original merged commit; published tags and archives remain immutable.
+
+The initial v1.0.4 tag dispatch was rejected before any runner steps by the environment
+policy. Recovery dispatched the existing workflow from main at `65f32ae`, without
+changing environment protections. This workflow correction prevents that rejection
+for future releases and does not change package versions or v3.0.0 artifacts.

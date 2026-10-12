@@ -106,5 +106,4 @@ jobs:
             exit 0
           fi
           pnpm run release:terminal:tag
-          terminal_tag="santi020k-terminal-v$(node -p "require('./packages/santi020k-terminal-theme/package.json').version")"
-          gh workflow run terminal-release.yml --ref "$terminal_tag"
+          gh workflow run terminal-release.yml --ref main -f release_commit="$GITHUB_SHA"

@@ -74,3 +74,34 @@ it.each([true, false])('tags only the workflow commit after Changesets switches 
 
   if (changed) expect(readFileSync(target, 'utf8').trim()).toBe(released)
 })
+
+it.each([true, false])('accepts only a merged Terminal source commit (merged: %s)', merged => {
+  const terminalWorkflow = readFileSync(new URL('../../.github/workflows/terminal-release.yml', import.meta.url), 'utf8')
+  const sourceStep = terminalWorkflow.split('      - name: Verify release source is merged into main\n')[1].split('\n      - name:')[0]
+  const sourceScript = sourceStep.split('        run: |\n')[1].split('\n').map(line => line.slice(10)).join('\n')
+  const directory = mkdtempSync(join(tmpdir(), 'terminal-source-'))
+  const git = args => execFileSync('git', args, { cwd: directory, env: environment, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim()
+
+  directories.push(directory)
+
+  git(['init', '--quiet'])
+
+  git(['config', 'user.name', 'Release test'])
+
+  git(['config', 'user.email', 'test@santi020k.com'])
+
+  git(['commit', '--quiet', '--allow-empty', '-m', 'test: merged release'])
+
+  git(['update-ref', 'refs/remotes/origin/main', 'HEAD'])
+
+  if (!merged) git(['commit', '--quiet', '--allow-empty', '-m', 'test: unmerged source'])
+
+  const run = () => execFileSync('bash', ['-e', '-c', sourceScript], {
+    cwd: directory,
+    env: { ...environment, RELEASE_COMMIT: git(['rev-parse', 'HEAD']) },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  })
+
+  if (merged) expect(run).not.toThrow()
+  else expect(run).toThrow()
+})
