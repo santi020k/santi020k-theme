@@ -48,12 +48,14 @@ Run commands from the repository root.
 
 ## Maintenance Notes
 
-- `/gallery/` features eight current wallpaper designs alongside brand assets. Paired desktop/phone
+- `/gallery/` features six current wallpaper designs: Halo, Contour, Glass, Satin, Ceramic, and Tide. Paired desktop/phone
   cards open a Lumen modal with appearance, device, resolution, and format controls. Each modal
   offers an explicit new-tab link; modified clicks and JavaScript-free links retain native page
   navigation. The modal and permanent page share `WallpaperWorkspace.astro`. Each design has
   one `/gallery/<design>/` page grouping dark/light and desktop/phone variants. Earlier artwork
-  remains at `/gallery/archive/`, and existing file and ZIP URLs are unchanged.
+  joins Dune, Veil, banners, and logos at `/gallery/archive/`. VS Code screenshot cards are
+  excluded from both galleries; product previews remain on the VS Code page. Existing file and
+  ZIP URLs are unchanged.
 - Wallpaper descriptions, paths, resolutions, and encoding profiles come from
   `../../artwork/wallpaper-catalog.mjs`. Update the image sitemap entries when adding a design.
 - Development and build preparation generate static resolution/quality downloads from saved raster masters
@@ -73,8 +75,8 @@ Run commands from the repository root.
 - Preserve visible focus styles, external-link safety, and the dark/light toggle.
 - The `/design/` palette reveals HEX, RGB, and HSL values through each swatch's keyboard-accessible Color codes disclosure. Values read active shared CSS tokens and stay synchronized with appearance changes and page navigation instead of maintaining a second palette.
 - Keep preview assets in `public/` aligned with current package screenshots.
-- The home hero uses original violet glass and ceramic artwork from `artwork/hub-hero-v3/`, with
-  optimized responsive WEBP output. Header, mobile menu, and footer share `Brand.astro` and the
+- The home hero uses paired light/dark violet glass and ceramic artwork from `artwork/hub-hero-v3/`,
+  with optimized responsive WEBP output following site appearance. Header, mobile menu, and footer share `Brand.astro` and the
   canonical favicon mark.
 - The Sculpted home page pairs an open hero with a workspace detail strip, a featured VS Code preview, numbered tool rows, one package code surface, and image-led wallpaper downloads. Featured wallpapers pair Ceramic light, Satin dark, and Dune light in their full desktop proportions, with edition-specific downloads. Home styles stay scoped to `.home-page`; shared navigation and product pages keep their own composition.
 - The home theme cards use `src/components/ThemeCardPreview.astro`: canonical VS Code screenshots, generated Chrome store artwork, and labeled illustrative previews for other tools. Preview colors derive from the paired VS Code theme sources and follow site appearance. Keep illustrative scenes free of private data and do not present them as native captures.

@@ -1,0 +1,19 @@
+---
+import { Link } from '@santi020k/lumen-astro'
+
+import { docsSections } from '../data/docs.js'
+
+interface Props {
+  path: string
+}
+
+const { path } = Astro.props
+---
+<nav aria-label="Terminal documentation guides">
+  {docsSections.map(section => (
+    <div class="docs-nav-group">
+      <span>{section.label}</span>
+      {section.items.map(item => <Link href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}{item.href === path && <small aria-hidden="true">Current</small>}</Link>)}
+    </div>
+  ))}
+</nav>

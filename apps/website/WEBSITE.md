@@ -29,7 +29,7 @@ This is the only public Santi020k theme website and Cloudflare Pages deployment.
 
 Below 1101px, the shared header opens a full-screen Lumen Dialog as a workspace switchboard.
 All nine product routes are available directly, with categories and a current-product marker.
-Home, Gallery, Design, Docs, and Support form a separate exploration strip; appearance lives
+Home, Gallery, Design, Terminal docs, and Support form a separate exploration strip; appearance lives
 inside the panel. The close control stays visible while the content scrolls on short screens.
 Desktop retains its theme selector and primary navigation.
 
@@ -38,6 +38,13 @@ The interaction contract shared with the personal-site direction is documented i
 Escape, scroll restoration, breakpoint cleanup, and Astro route disposal are required.
 
 ## Styles and navigation
+
+Gallery previews are shareable through `/gallery/?wallpaper=<design-slug>`. Valid links open
+the matching modal on arrival or refresh; unknown values leave the gallery usable. Opening
+and dismissing a modal replace the current URL while preserving other parameters, the fragment,
+and Astro's history state. Browser Back still returns to the previous page. Copy preview link
+uses the current origin so local previews remain testable. Native modified card clicks and
+the explicit new-tab link continue to use the permanent design page.
 
 Import each product stylesheet from its Astro page or root layout. Do not load page CSS from
 `main.js`: Vite injects those styles once in development, while Astro replaces the head during

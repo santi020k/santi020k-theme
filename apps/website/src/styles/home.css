@@ -14,6 +14,13 @@
 .home-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem 1rem; }
 .home-hero-art { min-width: 0; margin: 0; }
 .home-hero-art img { display: block; width: 100%; height: auto; border-radius: var(--site-panel-radius); }
+.home-hero-art .home-hero-light { display: none; }
+:root[data-theme="light"] .home-hero-art .home-hero-light { display: block; }
+:root[data-theme="light"] .home-hero-art .home-hero-dark { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .home-hero-art .home-hero-light { display: block; }
+  :root:not([data-theme]) .home-hero-art .home-hero-dark { display: none; }
+}
 .home-hero-art figcaption { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; color: var(--site-ink-soft); font-size: .6875rem; line-height: 1.6; }
 .home-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 1rem; border: 0; border-radius: var(--site-control-radius); padding: .375rem 1rem; font-size: .8125rem; font-weight: 500; line-height: 1.5; transition: background 180ms ease, color 180ms ease; }
 .home-button-primary { background: var(--site-ink); color: var(--theme-bg); padding-right: .4375rem; }

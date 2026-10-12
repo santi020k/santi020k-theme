@@ -75,8 +75,9 @@ Audit follow-up verification: the full local validation gate passes with 127 tes
 ## Curated wallpaper pages
 
 Halo adds four minimal circular compositions, and the Minimal v2 pack includes both Halo and
-Contour. The gallery now features one entry per current design, while Classic wallpapers live
-in an archive with their existing file and pack URLs preserved.
+Contour. The gallery features Halo, Contour, Glass, Satin, Ceramic, and Tide. Dune, Veil,
+earlier wallpapers, banners, and logos live in the Classic archive. VS Code screenshot cards
+are removed from both gallery lists. Existing wallpaper pages, files, and pack URLs are preserved.
 
 Eight design pages group dark/light and desktop/phone artwork with unique descriptions,
 canonical URLs, artwork-specific social previews, ImageObject metadata, related designs,
@@ -108,3 +109,24 @@ and safe new-tab links. Rendered desktop/mobile and light/dark verification rema
 browser access was blocked during this session. These source/build checks do not replace that pass.
 No deployment or publication is implied. Revert the focused website change to recover; no data
 migration is involved and existing wallpaper URLs are retained.
+
+## Dark hero and shared previews
+
+The home artwork has a matching dark studio edition that follows site appearance, with equal
+image dimensions to preserve layout. Both original masters and the exact generation prompts
+are retained in `artwork/hub-hero-v3/`.
+
+Gallery previews use `?wallpaper=<design-slug>` to restore the selected modal on arrival or
+refresh. Copy preview link uses the current origin; the explicit new-tab action still opens
+the permanent wallpaper page. Opening and closing replace the current history entry while
+preserving Astro state, other query parameters, and fragments. Unknown designs are ignored.
+
+Local validation passes with 179 tests across 32 files, strict types, zero-warning lint,
+spelling, builds, SEO, and packaging. Link validation passes with 1847 local references and
+43 external references. A production HTTP/static audit covers all 32 pages, 12 linked
+stylesheets, image/source references, accessible labels, the canonical brand lockups, both
+hero assets, and all eight shared preview controls. These checks find no missing initial
+production CSS or hero images. They do not confirm browser rendering or client navigation:
+browser access remains rejected by its URL policy, so desktop/mobile screenshots, responsive
+interactions, and clipboard success/denial still require a rendered pass. No deployment is
+included. Recovery is a focused revert of this website follow-up; existing downloads remain.

@@ -1,5 +1,5 @@
 ---
-import { ButtonLink, Eyebrow, Field, Icon, Label, Link, NativeSelect } from '@santi020k/lumen-astro'
+import { ButtonLink, CopyButton, Eyebrow, Field, Icon, Label, Link, NativeSelect } from '@santi020k/lumen-astro'
 
 import { appearances, devices, downloadHref, exportProfiles, previewHref, resolutions, type wallpaperDesigns, wallpaperHref } from '../../../../artwork/wallpaper-catalog.mjs'
 
@@ -17,7 +17,13 @@ const variants = appearances.flatMap(appearance => devices.map(device => ({ appe
         <div class="wallpaper-stage" data-wallpaper-stage>
           {variants.map((variant, index) => <img data-wallpaper-preview data-appearance={variant.appearance} data-device={variant.device} src={variant.src} alt={variant.alt} width={variant.device === 'desktop' ? 1920 : 1080} height={variant.device === 'desktop' ? 1080 : 2340} loading={modal || index !== 0 ? 'lazy' : 'eager'} fetchpriority={modal || index !== 0 ? 'auto' : 'high'} hidden={index !== 0} />)}
         </div>
-        <p class="wallpaper-caption"><span data-wallpaper-caption>Dark · Desktop</span><Link href={modal ? wallpaperHref(design.slug) : '#all-downloads'} newTab={modal}>{modal ? 'Open in new tab' : 'All versions & downloads'} <Icon name={modal ? 'arrow-up-right' : 'arrow-down'} /></Link></p>
+        <div class="wallpaper-caption">
+          <span data-wallpaper-caption>Dark · Desktop</span>
+          <div class="wallpaper-preview-actions">
+            {modal && <CopyButton data-wallpaper-share variant="ghost" label={`Copy preview link for ${design.name}`} copiedLabel="Link copied" errorLabel="Could not copy. Copy the page address." value={`https://theme.santi020k.com/gallery/?wallpaper=${design.slug}`}>Copy preview link</CopyButton>}
+            <Link href={modal ? wallpaperHref(design.slug) : '#all-downloads'} newTab={modal}>{modal ? 'Open in new tab' : 'All versions & downloads'} <Icon name={modal ? 'arrow-up-right' : 'arrow-down'} /></Link>
+          </div>
+        </div>
       </div>
       <aside class="wallpaper-download-panel" aria-labelledby={`${prefix}-download-heading`}>
         <Eyebrow>Make it yours</Eyebrow><h2 id={`${prefix}-download-heading`}>Your screen.<br /> Your version.</h2>

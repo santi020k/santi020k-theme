@@ -47,6 +47,11 @@ second copy or tab controller.
 Breadcrumbs use Lumen's single chevron separator, quiet ancestor links, and a stronger current
 page label. Keep their 44px link targets, visible focus rings, and wrapping on narrow screens.
 
+On narrow screens, native Lumen `Collapsible` disclosures expose all guides and page sections.
+The desktop sidebar and table of contents follow the measured shared-header height; section
+anchors use that same offset. The getting-started guide separates complete macOS setup from
+colors-only downloads and includes status and doctor verification commands.
+
 Verify the consolidated route at desktop and mobile widths in both appearances. Check
 arrow-key tab selection, copying a command, and manual copying when clipboard access is
 unavailable. The Starship palette choice persists under `santi020k-docs-palette`.
