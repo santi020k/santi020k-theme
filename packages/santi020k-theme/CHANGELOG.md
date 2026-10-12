@@ -1,5 +1,49 @@
 # Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Adopt the Sculpted visual direction from the personal website v4: medium-weight Montserrat typography, a shared 72rem grid, solid surfaces, neutral primary controls, and visible violet focus. Add a live visual guide and align product pages and terminal documentation while preserving their interactions.
+  
+  Add Fold, Orbit, and Monolith wallpapers in paired light/dark desktop/mobile formats, with a separate Sculpted download archive and gallery filters. Keep Classic wallpaper paths and downloads available. Refresh paired VS Code button and focus colors and regenerate derived themes.
+  
+  Migration: v3 changes the visual treatment of editor primary actions and focus indicators; syntax and installed theme variant names remain available. Websites adopt the Sculpted layout and typography. Classic wallpaper URLs and downloads remain available alongside the new collection. Shared-package consumers must replace the removed `tailwindTheme` export with `theme` and VS Code `.svg` screenshot imports with the corresponding `.png` paths, as documented in the compatibility cleanup changeset.
+  
+  Keep the Fira Code monospace stack consistent across CSS, JSON, JavaScript, and Tailwind exports.
+
+### Minor Changes
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Upgrade the theme websites to the published Lumen 4 packages and improve terminal documentation with accessible command tabs, clipboard feedback, breadcrumbs, and reading progress. Add family-wide GitHub feedback links and a support page, refresh the visual repository README, and correct fresh Starship setup instructions.
+  
+  Refresh compatible dependencies, remove stale advisory exemptions, review canonical metadata and sitemap routes, validate release branches, and restrict production publishing and deployment dispatches to main. Refuse to reuse a release tag pointing to a different commit. The subsequent release maintenance pass removes the vulnerable Open VSX dependency chain; see the release preparation notes for compatibility checks and runtime evidence.
+
+### Patch Changes
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Replace cluttered VS Code screenshots with matching real captures of all four theme modes. Use a readable TypeScript sample, a compact Explorer, and lossless PNG masters without repeated occurrence highlights or clipped code. Preserve native image proportions and synchronize website, shared-package, and marketplace previews.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Refresh package READMEs with the shared theme identity, section navigation, and resource links. Preserve installation instructions and marketplace image URLs, and replace an unavailable Chrome screenshot with the product preview link. Add full-width light and dark banners and a centered badge row to the root, app, and package guides.
+
+- [#68](https://github.com/santi020k/santi020k-theme/pull/68) [`5ec2ee0`](https://github.com/santi020k/santi020k-theme/commit/5ec2ee060fc23658a3a11c1d2749a11c69f7d226) Thanks [@santi020k](https://github.com/santi020k)! - Restore the merged workflow commit before creating the VS Code release tag after Changesets prepares a version branch.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Extend staged linting to TypeScript, JSX, and Astro sources. Run the full dependency audit before pushing and share the audit command between CI and Quality. Document the active Husky hooks and the separately installed Quality CLI, with regression coverage for hook arguments and failure propagation.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Replace synthetic VS Code previews with real editor screenshots in dark, light, and both high-contrast modes. Synchronize previews from canonical captures and preserve existing PNG preview URLs. SVG wrappers are removed in v3; replace their imports with the corresponding PNG paths as described in the migration notes.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Refresh compatible build, test, lint, and deployment dependencies. Remove unused internal path helpers and redundant security override selectors, and extend unused-code analysis to root scripts, nested routes, and website TypeScript.
+  
+  Share the existing VSCE 4 dependency with Open VSX to remove the unpatched braces dependency chain. Verify source packaging, prebuilt artifact upload, duplicate handling, and registry failures against a temporary local registry. The full dependency audit reports no known vulnerabilities; production publishing remains in the existing GitHub workflow.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Remove unused compatibility aliases and redundant screenshot wrappers for v3. The Tailwind entry point exports only `theme`; replace imports of `tailwindTheme` with `theme`. VS Code previews are lossless PNGs; replace `.svg` screenshot imports with the corresponding `.png` paths. Remove the stale Chrome incognito JPG manifest entry in favor of the existing PNG.
+  
+  Repository scripts use `site:dev` instead of the removed `sites:dev` alias. Internal contrast tooling uses `scripts/lib/color-contrast.mjs` directly. Add asset manifest integrity checks and remove the duplicate-export lint exemption.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Consolidate native port and VS Code contrast calculations in shared internal tooling, reject malformed colors explicitly, and preserve transparency compositing. Build the distributed packages and consolidated website without redundant standalone product site builds; keep product development commands and full source type checking.
+  
+  This maintenance joins the existing VS Code 3.0.0 major release changeset. Installed theme names, package exports, and download URLs remain unchanged.
+
+- [#63](https://github.com/santi020k/santi020k-theme/pull/63) [`29d41b8`](https://github.com/santi020k/santi020k-theme/commit/29d41b89125ba11b3298dc7d0ad39b68dc9f46af) Thanks [@santi020k](https://github.com/santi020k)! - Polish native theme validation and shared appearance behavior for the next release. Improve Xcode syntax readability on selected and current lines, remove an unsupported Zed property, and extend contrast regression checks. Fix system appearance synchronization, storage-denied initialization, and high-contrast CSS generation; consolidate website appearance startup and correct build ordering and cache inputs across product modules. Correct preview JSON types and handle settings clipboard success and denied access safely.
+
 ## 2.1.4
 
 ### Patch Changes
