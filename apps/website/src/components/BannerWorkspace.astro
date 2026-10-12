@@ -28,7 +28,7 @@ const variants = appearances.flatMap(appearance => bannerLayouts.map(layout => (
     </div>
   </div>
   <aside class="wallpaper-download-panel" aria-labelledby={`${prefix}-heading`}>
-    <Eyebrow>Make it yours</Eyebrow><h2 id={`${prefix}-heading`}>A new look.<br /> In your format.</h2>
+    <Eyebrow>Make it yours</Eyebrow><h2 id={`${prefix}-heading`}>Choose your version.</h2>
     <form data-banner-form>
       <Field><Label for={`${prefix}-appearance`}>Appearance</Label><Select id={`${prefix}-appearance`} name="appearance" value="dark" options={[{ label: 'Dark', value: 'dark' }, { label: 'Light', value: 'light' }]} /></Field>
       <Field><Label for={`${prefix}-layout`}>Composition & size</Label><Select id={`${prefix}-layout`} name="layout" value="wide" options={bannerLayouts.map(layout => ({ label: layout.label, value: layout.id }))} /></Field>
@@ -39,6 +39,7 @@ const variants = appearances.flatMap(appearance => bannerLayouts.map(layout => (
     <p class="wallpaper-export-note">Wide banners and square covers are composed separately. AI-generated artwork, exported within its original resolution.</p>
     {!modal && <noscript><p>Use the complete download list below to choose another version without JavaScript.</p></noscript>}
   </aside>
+  {!modal && <section class="wallpaper-artwork-story" aria-labelledby={`${prefix}-story-heading`}><Eyebrow>Behind the artwork</Eyebrow><h2 id={`${prefix}-story-heading`}>{design.tagline}</h2><p>{design.story}</p></section>}
 </div>
 <script>import '../scripts/banner-downloads'
 </script>
