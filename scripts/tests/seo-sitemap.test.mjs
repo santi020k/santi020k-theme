@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { createSitemap } from '../../apps/website/src/utils/sitemap.mjs'
+import { bannerDesigns } from '../../artwork/banner-catalog.mjs'
 import { wallpaperDesigns } from '../../artwork/wallpaper-catalog.mjs'
 
 const origin = 'https://theme.santi020k.com'
@@ -29,7 +30,7 @@ describe('consolidated SEO sitemap', () => {
       expect(xml.split(`<loc>${origin}/gallery/${design.slug}/</loc>`)).toHaveLength(2)
     }
 
-    expect(xml.match(/<image:loc>/g)).toHaveLength(wallpaperDesigns.length * 4)
+    expect(xml.match(/<image:loc>/g)).toHaveLength((wallpaperDesigns.length + bannerDesigns.length) * 4)
 
     expect(xml).toContain('-light-mobile-1080x2340-webp-high.webp')
 

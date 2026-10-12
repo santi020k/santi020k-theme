@@ -321,7 +321,7 @@ The home hero uses light and dark versions of the same violet glass and ceramic 
 including the prompt tile, following site appearance without changing composition. This is artwork,
 not a software screenshot. Gallery cards pair desktop and phone compositions; opening a current
 design shows its preview and download controls in a modal, with an explicit new-tab link to the
-permanent design page. A `wallpaper` query parameter identifies the open preview for sharing and
+permanent design page. A `wallpaper` query parameter (or `banner` for banners and covers) identifies the open preview for sharing and
 restores it on arrival. Dismissing it removes that parameter without adding history entries.
 
 ### Mobile navigation
@@ -421,6 +421,15 @@ social previews, canonical URLs, and truthful ImageObject metadata. Download opt
 PNG, JPG, and WEBP at practical desktop and phone sizes; distinguish lossless PNG from smaller
 and higher-quality WEBP compression. Explain that display exports resize generated raster
 masters, so a 3840 × 2160 file does not imply native 4K detail.
+
+**Studio** and **Orbit** extend the current gallery with wide banners and square covers.
+Studio uses ceramic arches, violet glass, and a small terminal tile; Orbit uses a glass
+sphere and thin rings. Keep one card per design and compose each square separately from
+its wide banner. Pair light and dark appearances without changing the arrangement. The
+gallery filters are Wallpapers, Banners, and Covers; all eight current wallpapers remain.
+Masters and exact prompts live in `artwork/banners-v1/`. Export 2160 × 720 banners and
+1200 × 1200 covers within the masters' native resolution. Preserve older banners and the
+earlier Sculpted Orbit wallpaper in the Classic archive at their existing URLs.
 
 ## Voice And Copy
 
