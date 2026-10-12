@@ -110,6 +110,16 @@ This package is ESM-only and expects Node `>=22.18.0`.
 | `@santi020k/theme/assets/*`                      | Package-relative static asset imports                   |
 | `@santi020k/theme/docs/*`                        | Packaged documentation such as brand guidance           |
 
+## Migrating to v3
+
+- Import `{ theme }` from `@santi020k/theme/tailwind`; the duplicate `tailwindTheme`
+  named export is removed. Update any imports using the former name.
+- Import VS Code screenshots from `@santi020k/theme/assets/vscode/previews/preview-<variant>.png`.
+  The `.svg` wrappers are removed for `dark`, `light`, `hc-dark`, and `hc-light`.
+  Screenshot content and dimensions are unchanged.
+- Use `assets/chrome/store/screenshot-incognito.png` instead of the stale `.jpg`
+  manifest entry, which did not correspond to a packaged file.
+
 ## CSS Tokens
 
 ```css

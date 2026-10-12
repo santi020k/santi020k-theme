@@ -36,7 +36,7 @@ detail and shallow matte surface leave generous negative space. Native masters a
 live under `artwork/minimal-v1/`; PNG/WEBP display exports, a separate gallery filter, and a
 four-file WEBP pack accompany the existing collections without replacing their URLs.
 
-Migration: theme variant names and syntax coverage remain available, while editor action and focus styling changes deliberately for v3. Existing wallpaper links and shared package import paths remain supported. Consumers of the shared website CSS should review typography, spacing, and control styling against the new brand guide.
+Migration: theme variant names and syntax coverage remain available, while editor action and focus styling changes deliberately for v3. Existing wallpaper links remain supported. Shared package consumers must apply the v3 compatibility cleanup migration below. Consumers of the shared website CSS should review typography, spacing, and control styling against the new brand guide.
 
 Published npm Lumen 4.0.0 powers all six website sources. Terminal documentation uses command tabs, clipboard feedback, breadcrumbs, and reading progress. The shared theme toggle now preserves native button or switch state semantics. The support page links to family-wide GitHub issue forms, published releases, and private vulnerability reporting. Canonical metadata, the sitemap, the extension homepage, and contribution instructions match the consolidated website.
 
@@ -178,7 +178,7 @@ of the gallery changes while retaining any published download paths.
 The v3 cleanup consolidates repeated native contrast calculations in one internal tooling
 helper and removes native ports' dependency on the full VS Code validator. Invalid color
 input now fails explicitly instead of producing an invalid ratio; existing opaque and alpha
-compositing results stay unchanged. Native artifact schemas and public exports remain intact.
+compositing results stay unchanged. Native artifact schemas remain intact; the compatibility cleanup below intentionally removes obsolete shared exports.
 
 Root builds select the distributable packages and the single deployed website, avoiding five
 redundant standalone site builds. Retained product modules remain available for focused
@@ -193,3 +193,20 @@ Unused-code analysis now includes root scripts, nested website routes, and websi
 Recovery is a focused revert of the maintenance commit followed by a frozen install; doing so restores the prior vulnerable development dependency and its publication blocker. No data migration, deployed website change, or package publication is included.
 
 Maintenance verification passes locally: frozen install, the complete `pnpm run validate` gate with 205 tests across 39 files, zero-warning lint, strict types, builds, spelling, SEO, native validators, and VSIX packaging. Full and production dependency audits report no known vulnerabilities. Changesets still plans VS Code 3.0.0. These results do not establish production registry acceptance or hosted CI.
+
+## Removing compatibility shims for v3
+
+The shared `@santi020k/theme` package now has a major changeset. The duplicate
+`tailwindTheme` named export is removed; import `theme` from the same Tailwind
+entry point. Eight redundant VS Code SVG screenshot wrappers are removed from
+source and shared assets; use the corresponding PNG imports instead. The preview
+generator now copies the lossless PNG captures without encoding another base64
+copy. A stale Chrome incognito JPG manifest entry is removed; the PNG is available.
+The asset manifest is checked for duplicate entries and missing files.
+
+Repository commands use `site:dev`; the historical `sites:dev` alias is removed.
+Internal tooling imports `contrastRatio` from `scripts/lib/color-contrast.mjs`,
+without the former re-export from the VS Code validator. Knip no longer needs a
+Tailwind duplicate-export exemption. Native accessibility and storage-error handling
+remain required behavior. Recovery is a focused source revert and regeneration of
+preview assets; no production data or installed theme names change.

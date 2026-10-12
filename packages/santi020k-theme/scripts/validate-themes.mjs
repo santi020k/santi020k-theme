@@ -5,9 +5,6 @@ import { contrastRatio } from '../../../scripts/lib/color-contrast.mjs'
 
 import { fromExtensionPackage } from './paths.mjs'
 
-// Preserve the existing validator import contract for external tooling.
-export { contrastRatio } from '../../../scripts/lib/color-contrast.mjs'
-
 export const themeFiles = [
   fromExtensionPackage('themes/santi020k-dark-color-theme.json'),
   fromExtensionPackage('themes/santi020k-light-color-theme.json'),

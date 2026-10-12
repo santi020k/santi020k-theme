@@ -18,5 +18,3 @@ export const theme = {
     glow: 'hsl(var(--glow))'
   }
 }
-
-export const tailwindTheme = theme

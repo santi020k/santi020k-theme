@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 import sharp from 'sharp'
@@ -32,18 +32,10 @@ for (const variant of variants) {
 
     await writeFile(resolve(repoRoot, directory, `${file}.png`), png)
   }
-
-  // Preserve existing public SVG exports as wrappers around the real capture.
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><image width="${width}" height="${height}" href="data:image/png;base64,${png.toString('base64')}"/></svg>\n`
-  const sourceSvg = resolve(sourceDirectory, `${file}.svg`)
-
-  await writeFile(sourceSvg, svg)
-
-  await copyFile(sourceSvg, resolve(repoRoot, 'packages/theme/assets/vscode/previews', `${file}.svg`))
 }
 
 const lightPreview = resolve(repoRoot, 'packages/santi020k-theme/assets/previews/preview-light.png')
 
 await sharp(lightPreview).webp({ quality: 90 }).toFile(resolve(repoRoot, 'packages/theme/assets/projects/santi020k-theme/preview-light.webp'))
 
-console.log('Synchronized real VS Code screenshots and compatible SVG exports')
+console.log('Synchronized real VS Code PNG screenshots and project thumbnail')
