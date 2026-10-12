@@ -1,23 +1,27 @@
 ---
+import '../styles.css'
 
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import MetadataHead from '@santi020k/og/astro/head'
 import { personSchema, serializeJsonLd, softwareApplicationSchema } from '@santi020k/og/schema'
 import { defineSite } from '@santi020k/og/site'
 
+import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
 
 interface Props {
+  applicationCategory?: 'DeveloperApplication' | 'ProductivityApplication'
+  pageKind?: 'product' | 'guide'
   description: string
   name: string
   slug: string
   title: string
 }
 
-const { description, name, slug, title } = Astro.props
+const { description, name, slug, title, pageKind = 'product', applicationCategory = 'DeveloperApplication' } = Astro.props
 const canonical = `https://theme.santi020k.com/${slug}/`
-const socialImage = 'https://theme.santi020k.com/og-image.png'
+const socialImage = `https://theme.santi020k.com/og-${slug === 'gallery/appearance' ? 'appearance' : slug}.png`
 
 const site = defineSite({
   locale: 'en_US',
@@ -34,11 +38,19 @@ const page = site.page({
   title
 })
 
-const structuredData = serializeJsonLd(softwareApplicationSchema({
+const structuredData = serializeJsonLd(pageKind === 'guide' ?
+{
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: canonical
+} :
+softwareApplicationSchema({
   name: `Santi020k Theme for ${name}`,
   url: canonical,
   description,
-  applicationCategory: 'DeveloperApplication',
+  applicationCategory,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   author: personSchema({ name: 'Santiago Molina', url: 'https://santi020k.com/' })
 }))
@@ -47,18 +59,8 @@ const structuredData = serializeJsonLd(softwareApplicationSchema({
 <!doctype html>
 <html lang="en" data-santi020k-site="hub">
   <head>
+    <PageTransitions page="hub" />
     <meta charset="UTF-8" />
-    <script is:inline>
-      (function () {
-        var preference = localStorage.getItem('theme')
-
-        if (preference !== 'light' && preference !== 'dark') {
-          preference = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        }
-
-        document.documentElement.dataset.theme = preference
-      })()
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <MetadataHead {page} site={site.options} />
     <meta name="author" content="Santiago Molina" />
@@ -70,7 +72,7 @@ const structuredData = serializeJsonLd(softwareApplicationSchema({
   </head>
   <body>
     <SharedHeader currentProduct={slug} productLinks={[{ href: `/${slug}/`, label: 'Overview' }, { href: `/${slug}/#install`, label: 'Install' }, { href: `/${slug}/#coverage`, label: 'Coverage' }]} />
-    <main><slot /></main>
+    <main class="documentation-page"><slot /></main>
     <SharedFooter />
     <script>
       import '../main.js'

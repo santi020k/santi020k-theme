@@ -1,4 +1,44 @@
-# @santi020k/theme
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/docs/assets/readme/workspace-dark.svg">
+      <img src="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/docs/assets/readme/workspace-light.svg" alt="Santi020k Theme — Calm contrast. A violet thread through your tools." width="1200" height="220">
+    </picture>
+  </a>
+</p>
+
+<h1 align="center">Tokens and assets</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@santi020k/theme"><img src="https://img.shields.io/npm/v/@santi020k/theme?style=flat-square&amp;color=6319be" alt="Published npm version"></a>
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-13967e?style=flat-square" alt="License: MIT"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Project overview</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/theme/package.json">Package manifest</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/theme/CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+<details>
+<summary>On this page</summary>
+
+- [Visual direction](#visual-direction)
+- [Install](#install)
+- [Exports](#exports)
+- [CSS Tokens](#css-tokens)
+- [Typography](#typography)
+- [JavaScript](#javascript)
+- [Shiki Themes](#shiki-themes)
+- [Assets](#assets)
+- [Chrome Theme Helpers](#chrome-theme-helpers)
+- [Development](#development)
+- [Brand Source](#brand-source)
+- [License](#license)
+- [Resources](#resources)
+
+</details>
 
 Shared Santi020k Theme tokens, assets, metadata, and Chrome color mapping helpers.
 
@@ -7,6 +47,41 @@ Use this package when a website, app, or theme surface needs the public Santi020
 **Website:** [theme.santi020k.com](https://theme.santi020k.com)
 
 **npm:** [npmjs.com/package/@santi020k/theme](https://www.npmjs.com/package/@santi020k/theme)
+
+## Visual direction
+
+The Sculpted direction follows the personal website v4: locally served Montserrat, a 72rem grid, medium-weight headings, solid surfaces, neutral primary actions, and violet focus. Use the [canonical visual guide](../../docs/brand-guidelines.md) and [live specimens](https://theme.santi020k.com/design/) when composing a new surface.
+
+Current wallpapers live under `assets/wallpapers/sculpted-v2/`: Tide (flowing satin), Dune
+(violet landscapes), and Veil (frosted glass), each with light/dark desktop and phone artwork.
+PNG and WEBP display exports are available individually; the collection ZIP contains all twelve
+WEBP files. Export dimensions are 3840 × 2160 and 1170 × 2532, resized from native raster masters.
+See [artwork sources and prompts](../../artwork/sculpted-v2/README.md) for regeneration details.
+Earlier Sculpted files under `assets/wallpapers/sculpted/`, their ZIP, and Classic paths remain
+available. The gallery features the current edition alongside the Classic collection.
+
+The branded **Signature collection** adds four dark/light desktop and phone compositions
+under `assets/wallpapers/signature-v1/`. The Santi020k prompt sits among translucent violet
+glass forms. PNG and WEBP exports use the same display dimensions; its separate ZIP contains
+four WEBP files. See [Signature artwork sources and prompts](../../artwork/signature-v1/README.md).
+
+**Satin** and **Ceramic** expand Signature with eight more wallpapers under
+`assets/wallpapers/signature-v2/`. The current Signature pack includes all twelve WEBP files,
+including the original glass set. Both material directions have dark/light desktop and phone
+artwork. See [additional artwork sources and prompts](../../artwork/signature-v2/README.md).
+
+The **Minimal collection** adds **Contour**, inspired by the personal website's open canvas
+and sculpted corners. Four dark/light desktop and phone scenes keep a small prompt detail on
+a quiet matte surface. PNG and WEBP exports live under `assets/wallpapers/minimal-v1/`, with
+a separate four-file WEBP pack. These use the same display sizes, resized from native masters.
+See [Minimal artwork sources and prompts](../../artwork/minimal-v1/README.md).
+
+**Halo** adds four circular compositions under `assets/wallpapers/minimal-v2/`. The second
+Minimal pack includes Halo and Contour. See [Halo sources and prompts](../../artwork/minimal-v2/README.md).
+The website gives each current design a page with PNG/JPG/WEBP format and quality choices,
+three desktop sizes, and two phone sizes. Classic wallpapers remain in the archive at their
+existing file URLs. The shared package retains its original PNG/WEBP asset exports; the
+additional resolution downloads are generated specifically for the static website.
 
 ## Install
 
@@ -18,22 +93,32 @@ This package is ESM-only and expects Node `>=22.18.0`.
 
 ## Exports
 
-| Export | Use it for |
-| --- | --- |
-| `@santi020k/theme` | JS tokens, metadata, asset lookup, Chrome theme helpers |
-| `@santi020k/theme/site` | Shared website theme and navigation helpers |
-| `@santi020k/theme/site.css` | Shared website-ready color and typography variables |
-| `@santi020k/theme/typography.css` | Shared Montserrat font-family variables |
-| `@santi020k/theme/tokens.css` | CSS custom properties and Tailwind v4 `@theme` values |
-| `@santi020k/theme/tokens.json` | Raw token data |
-| `@santi020k/theme/shiki` | Typed dark/light and high-contrast Shiki theme exports |
-| `@santi020k/theme/shiki/santi020k-dark.json` | Shiki-ready dark VS Code theme JSON |
-| `@santi020k/theme/shiki/santi020k-hc-dark.json` | Shiki-ready high-contrast dark VS Code theme JSON |
-| `@santi020k/theme/shiki/santi020k-hc-light.json` | Shiki-ready high-contrast light VS Code theme JSON |
-| `@santi020k/theme/shiki/santi020k-light.json` | Shiki-ready light VS Code theme JSON |
-| `@santi020k/theme/tailwind` | Tailwind-compatible theme object |
-| `@santi020k/theme/assets/*` | Package-relative static asset imports |
-| `@santi020k/theme/docs/*` | Packaged documentation such as brand guidance |
+| Export                                           | Use it for                                              |
+| ------------------------------------------------ | ------------------------------------------------------- |
+| `@santi020k/theme`                               | JS tokens, metadata, asset lookup, Chrome theme helpers |
+| `@santi020k/theme/site`                          | Shared website theme and navigation helpers             |
+| `@santi020k/theme/site.css`                      | Shared website-ready color and typography variables     |
+| `@santi020k/theme/typography.css`                | Shared Montserrat font-family variables                 |
+| `@santi020k/theme/tokens.css`                    | CSS custom properties and Tailwind v4 `@theme` values   |
+| `@santi020k/theme/tokens.json`                   | Raw token data                                          |
+| `@santi020k/theme/shiki`                         | Typed dark/light and high-contrast Shiki theme exports  |
+| `@santi020k/theme/shiki/santi020k-dark.json`     | Shiki-ready dark VS Code theme JSON                     |
+| `@santi020k/theme/shiki/santi020k-hc-dark.json`  | Shiki-ready high-contrast dark VS Code theme JSON       |
+| `@santi020k/theme/shiki/santi020k-hc-light.json` | Shiki-ready high-contrast light VS Code theme JSON      |
+| `@santi020k/theme/shiki/santi020k-light.json`    | Shiki-ready light VS Code theme JSON                    |
+| `@santi020k/theme/tailwind`                      | Tailwind-compatible theme object                        |
+| `@santi020k/theme/assets/*`                      | Package-relative static asset imports                   |
+| `@santi020k/theme/docs/*`                        | Packaged documentation such as brand guidance           |
+
+## Migrating to v3
+
+- Import `{ theme }` from `@santi020k/theme/tailwind`; the duplicate `tailwindTheme`
+  named export is removed. Update any imports using the former name.
+- Import VS Code screenshots from `@santi020k/theme/assets/vscode/previews/preview-<variant>.png`.
+  The `.svg` wrappers are removed for `dark`, `light`, `hc-dark`, and `hc-light`.
+  Screenshot content and dimensions are unchanged.
+- Use `assets/chrome/store/screenshot-incognito.png` instead of the stale `.jpg`
+  manifest entry, which did not correspond to a packaged file.
 
 ## CSS Tokens
 
@@ -159,11 +244,11 @@ Use these helpers instead of duplicating Chrome color mappings in app or package
 
 ## Development
 
-| Command | What it does |
-| --- | --- |
-| `pnpm --filter @santi020k/theme run build` | Syntax-checks the package entry points |
-| `pnpm --filter @santi020k/theme run validate` | Runs the package validation shortcut |
-| `pnpm run validate` | Runs the full monorepo validation suite |
+| Command                                       | What it does                            |
+| --------------------------------------------- | --------------------------------------- |
+| `pnpm --filter @santi020k/theme run build`    | Syntax-checks the package entry points  |
+| `pnpm --filter @santi020k/theme run validate` | Runs the package validation shortcut    |
+| `pnpm run validate`                           | Runs the full monorepo validation suite |
 
 ## Brand Source
 
@@ -172,3 +257,7 @@ The canonical brand guide lives in [`../../docs/brand-guidelines.md`](../../docs
 ## License
 
 MIT.
+
+## Resources
+
+[Project overview](https://github.com/santi020k/santi020k-theme/blob/main/README.md) · [Contributing](https://github.com/santi020k/santi020k-theme/blob/main/CONTRIBUTING.md) · [License](https://github.com/santi020k/santi020k-theme/blob/main/LICENSE)

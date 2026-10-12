@@ -16,6 +16,10 @@ apps/website/public/chrome/
 apps/website/public/terminal/
 apps/website/public/zed/
 apps/website/public/codex/
+apps/website/public/downloads/wallpapers-v1/
+apps/website/public/downloads/banners-v1/
+apps/website/public/downloads/ports/
+apps/website/public/downloads/appearance/
 
 # Package build output from packages/santi020k-theme and packages/santi020k-chrome-theme
 packages/*/dist/

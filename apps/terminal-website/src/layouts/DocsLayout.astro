@@ -1,7 +1,9 @@
 ---
-import { Link, Pagination } from '@santi020k/lumen-astro'
+import { Breadcrumb, Collapsible, Link, Pagination, ScrollProgress } from '@santi020k/lumen-astro'
+import { breadcrumbSchema } from '@santi020k/og/schema'
 
-import { docsItems, docsSections } from '../data/docs.js'
+import DocsNavigation from '../components/DocsNavigation.astro'
+import { docsItems } from '../data/docs.js'
 
 import SiteLayout from './SiteLayout.astro'
 
@@ -20,24 +22,61 @@ interface Props {
 
 const { title, description, path, eyebrow = 'Documentation', headings = [] }: Props = Astro.props
 const canonical = new URL(path, 'https://theme.santi020k.com').href
-const schema = { '@context': 'https://schema.org', '@type': 'TechArticle', headline: title, description, url: canonical }
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  url: canonical,
+  author: { '@type': 'Person', name: 'Santiago Molina', url: 'https://santi020k.com' }
+}
+
+const breadcrumb = breadcrumbSchema([
+  { name: 'Theme family', url: 'https://theme.santi020k.com/' },
+  { name: 'Terminal', url: 'https://theme.santi020k.com/terminal/' },
+  ...(path === '/terminal/docs/' ? [] : [{ name: 'Documentation', url: 'https://theme.santi020k.com/terminal/docs/' }]),
+  { name: title, url: canonical }
+])
+
+const socialImages: Record<string, { image: string, imageAlt: string }> = {
+  '/terminal/docs/zsh/': { image: 'og-zsh.png', imageAlt: 'Zsh Setup — Santi020k Theme' },
+  '/terminal/docs/starship/': { image: 'og-starship.png', imageAlt: 'Starship Prompt — Santi020k Theme' },
+  '/terminal/docs/terminal-colors/': { image: 'og-ports.png', imageAlt: 'Terminal Ports — Santi020k Theme' }
+}
+
+const socialImage = socialImages[path] ?? { image: 'og-image.png', imageAlt: 'Terminal Theme — Santi020k Theme' }
 const currentIndex = docsItems.findIndex(item => item.href === path)
 const previous = currentIndex > 0 ? docsItems[currentIndex - 1] : undefined
 const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
 ---
-<SiteLayout title={`${title} — Santi020k Terminal docs`} {description} {canonical} {schema}>
+<SiteLayout title={`${title} — Santi020k Terminal docs`} {description} {canonical} {schema} {breadcrumb} {...socialImage}>
+  <ScrollProgress aria-label="Documentation reading progress" />
   <div class="docs-shell shell">
-    <aside class="docs-sidebar" aria-label="Documentation navigation">
+    <aside class="docs-sidebar" aria-label="Terminal documentation">
       <Link className="docs-home" href="/terminal/docs/">Terminal documentation</Link>
-      {docsSections.map(section => (
-        <div class="docs-nav-group">
-          <span>{section.label}</span>
-          {section.items.map(item => <Link href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</Link>)}
-        </div>
-      ))}
+      <DocsNavigation {path} />
     </aside>
-    <article class="docs-article">
-      <header class="docs-heading"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{description}</p></header>
+    <Collapsible className="docs-mobile-guides">
+      <summary>Browse guides <span>{title}</span></summary>
+      <DocsNavigation {path} />
+    </Collapsible>
+    <article class="docs-article" aria-labelledby="docs-page-title">
+      <Breadcrumb className="docs-breadcrumb">
+        <ol>
+          <li><Link href="/">Theme family</Link></li>
+          <li><Link href="/terminal/">Terminal</Link></li>
+          {path !== '/terminal/docs/' && <li><Link href="/terminal/docs/">Documentation</Link></li>}
+          <li aria-current="page"><span>{title}</span></li>
+        </ol>
+      </Breadcrumb>
+      <header class="docs-heading"><p class="eyebrow">{eyebrow}</p><h1 id="docs-page-title">{title}</h1><p>{description}</p></header>
+      {headings.length > 0 && (
+        <Collapsible className="docs-mobile-toc">
+          <summary>On this page</summary>
+          <nav aria-label="Page sections">{headings.map(heading => <Link href={`#${heading.id}`}>{heading.label}</Link>)}</nav>
+        </Collapsible>
+      )}
       <div class="docs-content"><slot /></div>
       <Pagination className="docs-pagination" aria-label="Documentation pagination">
         {previous ? <Link href={previous.href}><span>Previous</span><b>← {previous.label}</b></Link> : <span></span>}
@@ -47,3 +86,18 @@ const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
     {headings.length > 0 && <aside class="docs-toc" aria-label="On this page"><b>On this page</b>{headings.map(heading => <Link href={`#${heading.id}`}>{heading.label}</Link>)}</aside>}
   </div>
 </SiteLayout>
+
+<style>
+  .docs-breadcrumb { margin-bottom: 20px; font-size: .8125rem; line-height: 1.5; }
+  .docs-breadcrumb ol { column-gap: 0; row-gap: 0; }
+  .docs-breadcrumb li { max-width: 100%; min-height: var(--site-control-min-height); }
+  .docs-breadcrumb li + li::before { flex-shrink: 0; margin-inline: 12px; color: var(--site-ink-soft); }
+  .docs-breadcrumb :global(a) { display: inline-flex; align-items: center; min-height: var(--site-control-min-height); color: var(--site-ink-soft); font-weight: 500; white-space: nowrap; }
+  .docs-breadcrumb :global(a:hover) { color: var(--site-brand); }
+  .docs-breadcrumb :global(a:focus-visible) { outline: 2px solid var(--site-brand); outline-offset: 3px; }
+  .docs-breadcrumb [aria-current="page"] { color: var(--site-ink); font-weight: 600; }
+  .docs-breadcrumb [aria-current="page"] span { min-width: 0; overflow-wrap: anywhere; }
+  .docs-article { min-width: 0; }
+  .docs-content :global(.ui-code-tabs), .docs-content :global(.ui-code--block) { max-width: 100%; min-width: 0; margin-block: 22px; }
+  .docs-content :global(.ui-code-tabs__list) { overflow-x: auto; }
+</style>

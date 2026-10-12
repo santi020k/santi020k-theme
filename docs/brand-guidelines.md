@@ -1,6 +1,6 @@
 # Santi020k Theme Brand Guidelines
 
-**Canonical source of truth.** Last updated: August 2026. Owner: Santiago Molina, `@santi020k`.
+**Canonical source of truth.** Last updated: October 2026. Owner: Santiago Molina, `@santi020k`.
 
 Use this guide for every Santi020k theme-family surface:
 
@@ -11,6 +11,9 @@ Use this guide for every Santi020k theme-family surface:
 - Raycast theme: `packages/santi020k-raycast-theme`
 - Slack theme: `packages/santi020k-slack-theme`
 - JetBrains theme: `packages/santi020k-jetbrains-theme`
+- iPhone setup: existing Halo/Contour portrait artwork, delivered as paired wallpapers and native icon-tint guidance; no system-wide recoloring claims
+- Obsidian theme: `packages/santi020k-obsidian-theme`, derived from canonical VS Code colors, preserving native mobile layout
+- Neovim theme: `packages/santi020k-neovim-theme`, generated native syntax, Tree-sitter and LSP groups
 - Xcode theme: `packages/santi020k-xcode-theme`
 - Shared token and asset packages: `packages/theme`, `packages/theme-core`
 - Consolidated website: `apps/website`, with product page source modules retained in the existing `apps/*-website` directories during migration
@@ -204,6 +207,8 @@ Maintain:
 - syntax distinction without rainbow noise
 - marketplace screenshots that show real editor usage and the actual palette
 
+Product-page screenshot galleries may place these captures on sculpted, AI-generated studio backdrops. Keep artwork decorative and separate from the original image, preserve the complete editor window and its palette, and provide full-size capture links. Use restrained depth and a consistent large capture with accessible mode tabs; do not generate replacement editor UI or add a second window border.
+
 ### Chrome
 
 Chrome should feel like the same theme moved into browser chrome.
@@ -255,6 +260,201 @@ Typography rules:
 - Keep marketing copy compact and concrete.
 - Avoid oversized hero text inside compact tools, cards, or previews.
 - Do not use decorative typography to compensate for weak hierarchy.
+
+## Sculpted visual line
+
+The website v4 redesign establishes the current visual line for the theme family. The visual
+reference is the personal website's `docs/sculpted-style-guide.md` on `release/v4.0.0`. This guide
+adapts that direction to developer tools: quiet, precise, personal, and immediately useful.
+The interactive examples at [the visual guide](https://theme.santi020k.com/design/) use the real
+shared tokens and the same navigation, controls, and appearance switch as product pages.
+
+### Hierarchy and typography
+
+Serve the shared Montserrat variable font locally. Keep technical commands in the existing
+monospace face; do not substitute display typography inside terminal or editor previews.
+Sentence case, complete titles, and medium-weight headings create hierarchy without shouting.
+
+| Role | Size | Weight | Leading and tracking |
+| --- | --- | --- | --- |
+| Product hero | Responsive, up to 5.5rem | 600 | 1.02; tight tracking |
+| Section heading | 2.25–3.75rem | 500 | 1.08; −0.065em |
+| Card or project title | 1.5–2rem | 500 | 1.2; −0.055em |
+| Reading body | 0.9375rem | 400 | 1.85 |
+| Supporting copy | 0.8125–0.875rem | 400 | 1.65–1.8 |
+| Metadata | 0.6875–0.75rem | 400–500 | Readable `--site-ink-soft` |
+| Eyebrow | 0.625rem | 600 | Uppercase; 0.13em tracking |
+
+Long-form documentation may use 1rem body text for comfort. Keep headings in `--site-ink`,
+paragraphs and metadata in `--site-ink-soft`, and violet as an identity and interaction accent.
+Never use muted display-only colors for essential text. The semantic palette tables above remain
+the reusable core authority; the hub's existing contextual tokens may retain their mapped values.
+
+### Grid, rhythm, and surfaces
+
+| Shared token | Value | Purpose |
+| --- | --- | --- |
+| `--site-shell-max-width` | 72rem | One alignment for navigation, hero, sections, and footer |
+| `--site-section-space` | 7rem desktop; 4.5rem mobile | Section rhythm |
+| `--site-heading-gap` | 2.5rem | Heading to content |
+| `--site-grid-gap` | 1.5rem | Repeated content |
+| `--site-editorial-gap` | 2.5–4rem | Reading and feature columns |
+| `--site-card-radius` | 1.5rem | Independent grouped surfaces |
+| `--site-panel-radius` | 1.75rem | Large community or collection panels |
+| `--site-control-radius` | 1rem | Buttons and inputs |
+| `--site-arrow-radius` | 0.75rem | Primary action arrow compartment |
+| `--site-control-min-height` | 44px | Minimum interactive target |
+
+Use a solid reading canvas and fine dividers, usually around 65% opacity. Prefer open numbered
+rows to repeated decorative cards. Group related content on one surface; do not nest ornamental
+panels. Depth belongs to the sculpted navbar, artwork, and actual product previews. Avoid
+page-wide glow, persistent grid textures, excessive glass, and continuously moving decoration.
+Below 768px, collapse editorial columns in reading order and retain every install action.
+
+The hub home page features VS Code with a larger real preview, followed by numbered tool
+rows with fine rules and full-row links. Keep the remaining previews distinct and label
+illustrative scenes. Present package examples on one solid code surface, and let wallpaper
+artwork stand on the canvas with open captions. Home compositions live in
+`apps/website/src/styles/home.css`; retain the shared navigation and product-page owners.
+
+The home hero uses light and dark versions of the same violet glass and ceramic still life,
+including the prompt tile, following site appearance without changing composition. This is artwork,
+not a software screenshot. Gallery cards pair desktop and phone compositions; opening a current
+design shows its preview and download controls in a modal, with an explicit new-tab link to the
+permanent design page. A `wallpaper` query parameter (or `banner` for banners and covers) identifies the open preview for sharing and
+restores it on arrival. Dismissing it removes that parameter without adding history entries.
+
+### Mobile navigation
+
+The theme family's mobile navigation is a full-screen workspace switchboard: direct product
+routes, an editorial heading, category labels, and a separate strip for site navigation.
+Keep it distinct from the personal website's section menu. Share the interaction standard in
+[`mobile-navigation.md`](mobile-navigation.md), including modal focus, visible Close controls,
+scroll preservation, appearance controls, short-screen scrolling, and reduced motion.
+
+### Controls, documentation, and motion
+
+Use Lumen `Select` for custom selection lists and `Combobox` for searchable choices. Reserve
+`NativeSelect` and raw selects for an explicitly requested native platform interaction. Keep the
+custom control's native fallback for JavaScript-free access, and verify the enhanced list with
+keyboard, pointer, mobile, and both appearances. The theme website's ESLint policy enforces this
+choice. Do not remove native fallback support from the shared library.
+
+Wallpaper details place the complete desktop artwork directly on its preview surface, with the
+artwork story below and a separate download column. Phone previews retain their full portrait
+composition. Desktop and phone resolution lists are separate Lumen Select controls, so changing
+screen type never exposes incompatible sizes and retains the last size chosen for each screen.
+
+Use Lumen primitives and public style hooks. Primary actions use neutral `--site-ink` backgrounds with `--theme-bg` text and a distinct
+arrow compartment. Violet remains the identity and focus accent. In native editor ports, map these
+roles to supported action and focus tokens; do not claim website typography or corner controls
+are available where the host does not support them. Secondary actions are quiet links or outlined controls with
+clear hit areas. Show visible 2px focus rings with an offset. Keep full linked rows and cards
+keyboard accessible; decorative arrows do not add a second accessible name.
+
+Documentation uses a calm sidebar, open heading, divided reading sections, and a light table
+of contents. Preserve command copy, code tabs, installation instructions, pagination, and anchor
+navigation when restyling. Sidebars may become a horizontal mobile navigation strip. Theme
+previews must continue to show actual product colors rather than decorative website colors.
+
+Product and guide actions share `ProductAction.astro`, a Lumen link with the neutral primary
+surface and arrow compartment used on the VS Code page. Use quiet secondary links, and keep
+external-link and download semantics explicit. `apps/website/src/styles/documentation.css`
+owns the common product typography, underline preview/command tabs, and open documentation
+rows. Load it through the shared Astro page boundary; scope it to `.documentation-page` so
+home and gallery compositions remain independent. Preserve Lumen's tab, focus, and copy behavior.
+
+Color sections use the shared `PaletteGrid.astro` from the visual guide: large swatches,
+short role descriptions, and a native Lumen disclosure for HEX, RGB, and HSL values. Native
+product colors come from generated theme files in `product-palettes.ts`; never copy stale
+hex labels into page markup. Chrome and VS Code follow the page appearance, while explicit
+dark/light comparisons retain their preset colors. Keep preview chrome and decorative color
+strips distinct from these explanatory sections.
+
+Use Lumen 4 `ScrollReveal` for a short, one-time content entrance and `RevealGroup` for a
+35ms stagger between theme previews. Keep reading content visible without JavaScript.
+Astro `ClientRouter` uses a 180ms fade with an immediate swap fallback, preserving appearance
+and native browser history. Rebind page controls on `astro:page-load` and dispose document/media
+listeners before swaps. Do not persist navigation with stale active links.
+
+The personal bubble signature uses Lumen `Particles` at low density, confined to the home and
+visual-guide heroes. Slow ambient drift is the only exception to the still-canvas rule. Keep it
+behind content, out of the accessibility tree, and away from documentation/code. Do not introduce
+pointer trails or page-wide parallax. Transitions last 180–300ms. Do not lift entire cards.
+Reduced motion disables decorative transitions, scaling, blinking, and smooth scrolling.
+Verify mobile and desktop, light and dark, keyboard focus, and horizontal overflow.
+
+### Wallpaper generations
+
+Keep historical assets available as the **Classic collection**. Current artwork belongs to the
+**Sculpted**, **Signature**, or **Minimal collection**, with descriptive file names and collection metadata. Never
+replace an existing downloadable asset with different artwork at the same URL. New wallpapers
+use violet identity, generous negative space, and a restrained focal form; they are artwork,
+not alternate product logos. Pair dark and light options and preserve clear collection labels
+in galleries and download bundles.
+
+The Sculpted edition includes **Tide** (flowing satin), **Dune** (violet sand ridges),
+and **Veil** (frosted glass). All three remain in the current gallery.
+Earlier wallpapers, banners, and logos live in the Classic archive. VS Code screenshot cards
+are excluded from the gallery; editor previews belong on the VS Code product page. Compose immersive, full-bleed scenes with convincing material,
+soft light, and depth. Avoid isolated flat shapes, badges, text, and logos. Leave quiet space
+for desktop icons and phone clocks. Light and dark editions share their subject; phone artwork
+is composed separately rather than cut from the center of a desktop image.
+
+Keep native raster masters and generation prompts in `artwork/sculpted-v2/`. The deterministic
+`pnpm run generate:wallpapers` pipeline exports PNG and WEBP display sizes to
+`packages/theme/assets/wallpapers/sculpted-v2/`. These are resized imagegen masters, not native
+4K renders or vector artwork; do not advertise SVG versions. The current ZIP contains WEBP
+files to keep the complete collection practical to download. Earlier Sculpted and Classic
+asset paths and archives remain intact.
+
+The **Signature collection** adds explicitly branded wallpaper artwork alongside Sculpted.
+Use the canonical white `>_` prompt on its solid purple rounded square as the single focal
+detail. The original edition surrounds it with restrained violet glass forms. Keep the mark
+recognizable and the canvas calm, without slogans or repeated logos. This is a wallpaper composition, not an
+alternate logo. Pair dark and light scenes and compose phone versions separately, leaving
+room above the artwork for a clock. Keep masters and prompts in `artwork/signature-v1/`,
+display exports in `packages/theme/assets/wallpapers/signature-v1/`, and a separate WEBP
+archive. Like Sculpted, display exports are resized raster masters, not native 4K renders.
+
+Signature also includes **Satin** (flowing violet fabric) and **Ceramic** (matte sculptural
+forms). Keep the same recognizable prompt tile and restrained composition while making each
+material feel distinct. These additional masters and prompts live in `artwork/signature-v2/`,
+with exports under `packages/theme/assets/wallpapers/signature-v2/`. The second Signature
+archive contains all twelve wallpapers, including the original four glass compositions;
+the first archive and every existing asset URL remain available unchanged.
+
+The **Minimal collection** translates the personal website's open canvas, fine outlines, and
+sculpted navbar corners into quiet wallpaper artwork. **Contour** uses a single shallow matte
+surface at the edge of the canvas, with the canonical purple prompt reduced to a small inset
+detail. Preserve generous empty space, neutral pale-lilac or deep-ink surfaces, and restrained
+violet accents. Do not reproduce page UI, portraits, navigation, or marketing copy. Pair dark
+and light desktop and independently composed phone scenes. Keep native masters and prompts
+in `artwork/minimal-v1/`, PNG and WEBP display exports in
+`packages/theme/assets/wallpapers/minimal-v1/`, and four WEBP files in a separate Minimal
+archive. These are resized raster masters, not native 4K renders or vector artwork.
+
+**Halo** extends Minimal with a single circular recess, a fine violet rim, and a small prompt
+detail. Its four masters live in `artwork/minimal-v2/`; the second Minimal pack includes both
+Halo and Contour while preserving the first pack.
+
+Keep the main gallery curated around current designs. Place Classic wallpapers in a clearly
+labeled archive and preserve their individual files and packs. Give each current design one
+descriptive page grouping its four appearance/orientation variants, rather than indexing every
+compression option as a separate page. Use meaningful image descriptions, artwork-specific
+social previews, canonical URLs, and truthful ImageObject metadata. Download options include
+PNG, JPG, and WEBP at practical desktop and phone sizes; distinguish lossless PNG from smaller
+and higher-quality WEBP compression. Explain that display exports resize generated raster
+masters, so a 3840 × 2160 file does not imply native 4K detail.
+
+**Studio** and **Orbit** extend the current gallery with wide banners and square covers.
+Studio uses ceramic arches, violet glass, and a small terminal tile; Orbit uses a glass
+sphere and thin rings. Keep one card per design and compose each square separately from
+its wide banner. Pair light and dark appearances without changing the arrangement. The
+gallery filters are Wallpapers, Banners, and Covers; all eight current wallpapers remain.
+Masters and exact prompts live in `artwork/banners-v1/`. Export 2160 × 720 banners and
+1200 × 1200 covers within the masters' native resolution. Preserve older banners and the
+earlier Sculpted Orbit wallpaper in the Classic archive at their existing URLs.
 
 ## Voice And Copy
 
@@ -338,3 +538,21 @@ Agent rules:
 - `packages/theme-core/README.md`
 - `apps/website/WEBSITE.md`
 - `packages/santi020k-chrome-theme/store/image-specs.md`
+
+### Appearance-aware wallpaper downloads
+
+`artwork/appearance/` contains generated two-frame macOS HEIC files for the eight paired designs.
+Light is frame 0 and dark is frame 1, identified by the Apple desktop appearance metadata. These
+are paired still images, not solar sequences or video screen savers. Preserve the original raster
+compositions and dimensions; do not paint or bake system UI into them.
+
+Generate with `pnpm run generate:appearance` on macOS. Commit the HEICs and manifest together.
+`pnpm run validate:appearance` decodes both frames using ImageIO, verifies their appearance mapping,
+compares sampled pixels against the sources, and checks file/source/generator fingerprints. The
+public repository runs this native check on a standard GitHub-hosted macOS runner. Linux website
+builds copy the checked-in files; they do not require an Apple encoder.
+
+The website's [appearance guide](https://theme.santi020k.com/gallery/appearance/) distinguishes
+Mac pairing from iPhone Shortcuts or Focus setup. Do not imply that downloading a static PNG, or
+choosing Auto icon appearance on iPhone, automatically switches the wallpaper. The iPhone guide
+in `docs/iphone-setup.md` is included in the downloadable setup pack.

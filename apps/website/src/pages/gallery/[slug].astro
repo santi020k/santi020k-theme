@@ -1,0 +1,66 @@
+---
+import '../../styles/wallpapers.css'
+
+import { Breadcrumb, Eyebrow, Icon } from '@santi020k/lumen-astro'
+
+import { appearances, devices, downloadHref, exportProfiles, previewHref, resolutions, socialPreviewHref, wallpaperDesigns, wallpaperHref } from '../../../../../artwork/wallpaper-catalog.mjs'
+import WallpaperWorkspace from '../../components/WallpaperWorkspace.astro'
+import ArtworkLayout from '../../layouts/ArtworkLayout.astro'
+
+interface Props { design: (typeof wallpaperDesigns)[number] }
+
+export const getStaticPaths = () => wallpaperDesigns.map(design => ({ params: { slug: design.slug }, props: { design } }))
+
+const { design } = Astro.props
+const pathname = wallpaperHref(design.slug)
+const canonical = `https://theme.santi020k.com${pathname}`
+const title = `${design.name} Wallpaper — Light & Dark Downloads | Santi020k`
+const variants = appearances.flatMap(appearance => devices.map(device => ({ appearance, device, src: previewHref(design.slug, appearance, device), alt: `${design.alt}, ${appearance} ${device === 'mobile' ? 'phone' : 'desktop'} composition` })))
+const related = [...wallpaperDesigns.filter(item => item.collection === design.collection), ...wallpaperDesigns.filter(item => item.collection !== design.collection)].filter(item => item.slug !== design.slug).slice(0, 3)
+
+const imageObjects = variants.map(variant => ({
+  '@type': 'ImageObject',
+  name: `${design.name} — ${variant.appearance} ${variant.device}`,
+  description: variant.alt,
+  contentUrl: `https://theme.santi020k.com${variant.src}`,
+  encodingFormat: 'image/webp',
+  width: variant.device === 'desktop' ? 1920 : 1080,
+  height: variant.device === 'desktop' ? 1080 : 2340,
+  creator: { '@type': 'Person', name: 'Santiago Molina', url: 'https://santi020k.com' },
+  creditText: 'Santi020k · AI-generated artwork directed by Santiago Molina'
+}))
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description: design.description,
+  url: canonical,
+  primaryImageOfPage: imageObjects[0],
+  mainEntity: imageObjects,
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Gallery', item: 'https://theme.santi020k.com/gallery/' },
+      { '@type': 'ListItem', position: 2, name: design.name, item: canonical }
+    ]
+  }
+}
+---
+<ArtworkLayout {title} description={design.description} {pathname} image={socialPreviewHref(design.slug)} imageAlt={design.alt} {structuredData}>
+  <div class="site-shell wallpaper-detail">
+    <Breadcrumb class="wallpaper-breadcrumb">
+      <ol>
+        <li><a href="/gallery/">Gallery</a></li>
+        <li aria-current="page"><span>{design.name}</span></li>
+      </ol>
+    </Breadcrumb>
+    <header class="wallpaper-heading"><div><Eyebrow>{design.collection} collection · Wallpaper</Eyebrow><h1>{design.name}<span>.</span></h1></div><div class="wallpaper-heading-copy"><p>{design.tagline}</p><p class="wallpaper-heading-meta">Light + dark · Desktop + phone · Free download</p></div></header>
+    <WallpaperWorkspace {design} />
+    <section class="wallpaper-files" id="all-downloads" aria-labelledby="files-heading">
+      <div><Eyebrow>Every option</Eyebrow><h2 id="files-heading">Find your fit.</h2><p>WEBP keeps files compact. JPG offers broad compatibility. PNG preserves the export without lossy compression. Use your screen’s closest size; its wallpaper settings can adjust the crop.</p></div>
+      <div class="wallpaper-file-groups">{variants.map(variant => <details><summary>{variant.appearance === 'dark' ? 'Dark' : 'Light'} · {variant.device === 'mobile' ? 'Phone' : 'Desktop'}<Icon name="plus" /></summary><img class="wallpaper-file-preview" src={variant.src} alt={variant.alt} width={variant.device === 'desktop' ? 1920 : 1080} height={variant.device === 'desktop' ? 1080 : 2340} loading="lazy" />{resolutions.filter(size => size.device === variant.device).map(size => <div class="wallpaper-file-row"><h3>{size.label}</h3><div>{exportProfiles.map(profile => <a href={downloadHref(design.slug, variant.appearance, size.id, profile.id)} download>{profile.label}<span class="sr-only"> — {design.name}, {variant.appearance}, {size.label}</span></a>)}</div></div>)}</details>)}</div>
+    </section>
+    <section class="wallpaper-related" aria-labelledby="related-heading"><Eyebrow>Keep exploring</Eyebrow><h2 id="related-heading">More for your screen.</h2><div>{related.map(item => <a href={wallpaperHref(item.slug)}><img src={previewHref(item.slug)} width="1920" height="1080" loading="lazy" alt={item.alt} /><h3>{item.name}<Icon name="arrow-up-right" /></h3><p>{item.tagline}</p></a>)}</div></section>
+  </div>
+</ArtworkLayout>

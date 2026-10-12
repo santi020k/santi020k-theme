@@ -22,6 +22,22 @@ const completeColors = {
   'editorSuggestWidget.background': '#111827',
   'input.background': '#0f172a',
   'input.foreground': '#f8fafc',
+  'input.placeholderForeground': '#94a3b8',
+  'dropdown.foreground': '#f8fafc',
+  'editorSuggestWidget.foreground': '#f8fafc',
+  'list.activeSelectionForeground': '#f8fafc',
+  'list.activeSelectionBackground': '#312e81',
+  'list.inactiveSelectionForeground': '#f8fafc',
+  'list.inactiveSelectionBackground': '#1e293b',
+  'list.hoverForeground': '#f8fafc',
+  'list.hoverBackground': '#1e293b',
+  'sideBar.foreground': '#f8fafc',
+  'sideBar.background': '#0f172a',
+  'menu.foreground': '#f8fafc',
+  'menu.background': '#0f172a',
+  'menu.selectionForeground': '#f8fafc',
+  'menu.selectionBackground': '#312e81',
+  'editorLineNumber.foreground': '#94a3b8',
   'button.background': '#312e81',
   'button.foreground': '#ffffff',
   'quickInput.background': '#111827',
@@ -161,6 +177,19 @@ describe('theme validation', () => {
     )
 
     expect(() => validateThemes([file])).toThrow(/editor\.foreground on editor\.background contrast/)
+  })
+
+  test.each([
+    ['input.placeholderForeground', 'input.background'],
+    ['menu.selectionForeground', 'menu.selectionBackground'],
+    ['list.inactiveSelectionForeground', 'list.inactiveSelectionBackground'],
+    ['editorSuggestWidget.foreground', 'editorSuggestWidget.background']
+  ])('rejects unreadable %s on %s', (foreground, background) => {
+    const theme = makeTheme({ [foreground]: completeColors[background] })
+
+    expect(() => validateThemes([writeTheme('unreadable-control', theme)])).toThrow(
+      `${foreground} on ${background} contrast is 1.00`
+    )
   })
 
   test('rejects low contrast after alpha foreground compositing', () => {

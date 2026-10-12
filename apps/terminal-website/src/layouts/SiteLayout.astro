@@ -1,11 +1,15 @@
 ---
+import '../styles.css'
 
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
+import type { JsonLdNode } from '@santi020k/og/schema'
 
+import PageTransitions from '../../../website/src/components/PageTransitions.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
 interface Props {
+  breadcrumb?: JsonLdNode
   canonical: string
   description: string
   image?: string
@@ -20,7 +24,8 @@ const {
   canonical,
   image = 'og-image.png',
   imageAlt = 'Santi020k Terminal Theme preview',
-  schema
+  schema,
+  breadcrumb
 } = Astro.props
 
 const siteUrl = 'https://theme.santi020k.com/terminal/'
@@ -46,6 +51,7 @@ const structuredData = {
       url: 'https://santi020k.com/',
       sameAs: ['https://github.com/santi020k']
     },
+    ...(breadcrumb ? [breadcrumb] : []),
     {
       ...pageSchema,
       '@id': `${canonical}#page`,
@@ -60,22 +66,12 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en">
   <head>
+    <PageTransitions page="terminal" />
     <meta charset="UTF-8" />
-    <script is:inline>
-      (function () {
-        var p = localStorage.getItem('theme')
-
-        if (p !== 'light' && p !== 'dark') {
-          p = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        }
-
-        document.documentElement.dataset.theme = p
-      })()
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <meta name="description" content={description} /><meta name="author" content="Santiago Molina" /><meta name="language" content="en" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" /><meta name="color-scheme" content="dark light" />
     <link rel="canonical" href={canonical} /><link rel="alternate" hreflang="en" href={canonical} /><link rel="alternate" hreflang="x-default" href={canonical} /><link rel="icon" href="/terminal/favicon.svg" type="image/svg+xml" /><link rel="icon" href="/terminal/favicon-32x32.png" sizes="32x32" type="image/png" /><link rel="apple-touch-icon" href="/terminal/apple-touch-icon.png" sizes="180x180" />
@@ -87,7 +83,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   </head>
   <body>
     <SharedHeader currentProduct="terminal" productLinks={[{ href: '/terminal/', label: 'Overview' }, { href: '/terminal/configure/', label: 'Configure' }, { href: '/terminal/docs/', label: 'Documentation' }, { href: '/terminal/docs/#install', label: 'Install' }, { href: '/terminal/docs/cli/', label: 'CLI reference' }]} />
-    <main><slot /></main>
+    <main class="documentation-page"><slot /></main>
     <SharedFooter />
     <UIPrimitives />
     <script>

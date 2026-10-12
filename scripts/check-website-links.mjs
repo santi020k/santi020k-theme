@@ -2,6 +2,8 @@ import { access, readdir,readFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { websiteLinkText } from './lib/website-link-text.mjs'
+
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 const sites = [
@@ -63,13 +65,16 @@ const readSiteFiles = async site => {
     sourceRoots.map(root => listPublicFiles(join(root, 'src')))
   )).flat()
 
+  const builtPages = (await listPublicFiles(join(site.root, 'dist'))).filter(file => file.endsWith('.html'))
+
   const checkablePublicFiles = publicFiles.filter(file =>
     /\.(?:html|txt|xml|webmanifest)$/u.test(file)
   )
 
   return [
     ...sourceFiles.filter(file => file.endsWith('.astro')),
-    ...checkablePublicFiles
+    ...checkablePublicFiles,
+    ...builtPages
   ]
 }
 
@@ -171,8 +176,6 @@ const extractInlineUrls = text => {
   return references
 }
 
-const stripTags = text => text.replaceAll(/<[^>]*>/gu, ' ')
-
 const extractIds = html => {
   const ids = new Set()
   const idPattern = /\sid=(?:"([^"]+)"|'([^']+)'|([^\s"'<>`]+))/gu
@@ -210,6 +213,7 @@ const resolveLocalCandidates = (site, value) => {
   return [
     resolve(site.root, pathname),
     resolve(site.root, 'public', pathname),
+    resolve(site.root, 'dist', pathname),
     ...composedPublicCandidates,
     ...(pathname === 'index.html'
       ? [resolve(site.root, 'src/pages/index.astro')]
@@ -304,7 +308,7 @@ const checkSite = async site => {
 
     const references = uniqueReferences([
       ...extractTagReferences(text),
-      ...extractInlineUrls(stripTags(text))
+      ...extractInlineUrls(websiteLinkText(text))
     ])
 
     for (const ref of references) {

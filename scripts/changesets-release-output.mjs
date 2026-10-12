@@ -30,6 +30,25 @@ export const writeChangesetsRelease = ({
   return tag
 }
 
+const assertReleaseTagCommit = ({ root, tag }) => {
+  const revisions = spawnSync('git', ['rev-parse', `${tag}^{commit}`, 'HEAD'], {
+    cwd: root,
+    encoding: 'utf8',
+    env: gitEnvironment,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  })
+
+  if (revisions.error) {
+    throw revisions.error
+  }
+
+  const [tagCommit, headCommit] = revisions.stdout.trim().split('\n')
+
+  if (revisions.status !== 0 || !tagCommit || tagCommit !== headCommit) {
+    throw new Error(`Release tag ${tag} does not point to the current release commit; refusing to reuse it.`)
+  }
+}
+
 export const ensureLocalReleaseTag = ({ root, tag }) => {
   const existingTag = spawnSync('git', ['show-ref', '--verify', '--quiet', `refs/tags/${tag}`], {
     cwd: root,
@@ -42,6 +61,8 @@ export const ensureLocalReleaseTag = ({ root, tag }) => {
   }
 
   if (existingTag.status === 0) {
+    assertReleaseTagCommit({ root, tag })
+
     return false
   }
 

@@ -2,7 +2,7 @@
 
 **Live listing (dark theme):** <https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj>
 
-**Live listing (light theme):** <https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb>
+**Live listing (light theme):** <https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci>
 
 ## Summary (≤132 chars — paste into "Short description" field)
 

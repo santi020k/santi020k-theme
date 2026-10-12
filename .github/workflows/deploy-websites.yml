@@ -12,6 +12,8 @@ on:
       - "apps/codex-website/**"
       - "apps/terminal-website/**"
       - "apps/zed-website/**"
+      - "artwork/**"
+      - "packages/santi020k-chrome-theme/**"
       - "packages/santi020k-codex-theme/**"
       - "packages/santi020k-terminal-theme/**"
       - "packages/santi020k-zed-theme/**"
@@ -19,6 +21,16 @@ on:
       - "packages/santi020k-slack-theme/**"
       - "packages/santi020k-jetbrains-theme/**"
       - "packages/santi020k-xcode-theme/**"
+      - "packages/santi020k-obsidian-theme/**"
+      - "packages/santi020k-neovim-theme/**"
+      - "packages/santi020k-theme/src/tokens/vscode/base-themes/**"
+      - "packages/santi020k-theme/scripts/validate-themes.mjs"
+      - "scripts/build-theme-downloads.mjs"
+      - "scripts/generate-wallpaper-downloads.mjs"
+      - "scripts/generate-banner-downloads.mjs"
+      - "scripts/lib/port-palette.mjs"
+      - "scripts/lib/color-contrast.mjs"
+      - "docs/iphone-setup.md"
       - "packages/theme/**"
       - "packages/theme-core/**"
       - "scripts/sync-consolidated-site-assets.mjs"
@@ -27,6 +39,7 @@ on:
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
       - "turbo.json"
+      - "LICENSE"
   workflow_dispatch: {}
 
 permissions:
@@ -38,6 +51,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.ref == 'refs/heads/main'
     name: Deploy theme.santi020k.com
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -49,7 +63,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
 
       - name: Set up pnpm workspace
-        uses: santi020k/quality/actions/setup-pnpm@eec1701b98bcc0b76d36af288ee78a0369cd84cc # v1
+        uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
         with:
           node-version: 22
           cache-dependency-path: pnpm-lock.yaml
@@ -69,6 +83,9 @@ jobs:
 
       - name: Build consolidated website
         run: pnpm run site:build
+
+      - name: Validate website SEO and links
+        run: pnpm run validate:seo && pnpm run validate:links
 
       - name: Deploy consolidated website to Cloudflare Pages
         env:

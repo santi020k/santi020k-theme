@@ -1,0 +1,38 @@
+{
+  "tool": "built-in imagegen",
+  "intent": "generate with brand and artwork references",
+  "images": [
+    {
+      "name": "signature-dark-desktop",
+      "prompt": "Use case: stylized-concept. Create a beautiful premium Santi020k Signature desktop wallpaper, widescreen 16:9, full-bleed finished artwork. Image 1 is the exact canonical brand mark reference: preserve its white rounded terminal prompt >_ geometry on the solid rich purple rounded square. Image 2 is only a reference for restraint, tactile depth and wallpaper quality; create a NEW scene rather than repeating its satin folds. Scene: deep indigo-black #110c1d canvas with an elegant, sparse arrangement of large translucent smoked-violet glass bubbles and curved glass lenses sweeping in from the lower right, some cropped by the frame. Subtle refraction and soft contact shadows; convincing photographic 3D material, very fine satin surface texture, no neon. Nest one small physical purple rounded-square brand tile among the forms near 62% across and 62% down. Its front is nearly parallel to the image plane, canonical white >_ readable and precisely proportioned, solid purple #5a0fdb face, gently rounded edges, no alternate symbol. The tile is only about 12% of canvas width and is part of the sculptural scene, not a giant logo pasted over a background. Leave the left half and upper third beautifully quiet and dark for desktop icons. Tonal violet, lavender highlights #945df4, deep ink shadows. Art-directed soft studio lighting, subtle richness and depth. No text, no wordmark, no slogan, no interface, no border, no devices, no excessive glow. Output one landscape image.",
+      "references": [
+        "packages/theme/assets/logos/logo-square.png",
+        "artwork/sculpted-v2/tide-dark-desktop.png"
+      ]
+    },
+    {
+      "name": "signature-light-desktop",
+      "prompt": "Use case: stylized-concept. Premium Santi020k Signature wallpaper. Image 1 is the approved dark desktop artwork, used as the composition and material reference. Image 2 is the canonical brand mark; preserve the white rounded >_ prompt proportions on a rich solid purple rounded square. Keep only ONE physical brand tile, with the front nearly parallel to the camera, carefully readable, white glyph on #5a0fdb, softly rounded solid edges. Keep the glass bubbles, curved lenses and violet palette luxurious, restrained and tactile. No text, wordmark, slogans, devices, interface, extra symbols or borders. Create its LIGHT edition at widescreen 16:9. Keep the same arrangement and restrained scale of the tile near 65% across and 62% down. Change the surrounding scene to porcelain white #f8f6fd, translucent pale lavender glass bubbles, delicate violet refraction and broad soft daylight shadows. The purple tile is saturated and the white prompt clear. Preserve large quiet pale space over the entire left half and top third. Gentle studio highlights, no dark background, no overexposure. Full-bleed landscape artwork.",
+      "references": [
+        "artwork/signature-v1/signature-dark-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    {
+      "name": "signature-dark-mobile",
+      "prompt": "Use case: stylized-concept. Premium Santi020k Signature wallpaper. Image 1 is the approved dark desktop artwork, used as the composition and material reference. Image 2 is the canonical brand mark; preserve the white rounded >_ prompt proportions on a rich solid purple rounded square. Keep only ONE physical brand tile, with the front nearly parallel to the camera, carefully readable, white glyph on #5a0fdb, softly rounded solid edges. Keep the glass bubbles, curved lenses and violet palette luxurious, restrained and tactile. No text, wordmark, slogans, devices, interface, extra symbols or borders. Create an independently composed DARK phone wallpaper, tall portrait aspect ratio 1170:2532, not a landscape crop. Deep indigo-black #110c1d atmosphere. A restrained sculptural cluster of smoked-violet translucent glass bubbles and curved lenses rises from the lower and right edges, with a single small purple >_ brand tile near 50% across and 67% down, approximately 26% of image width. Leave the TOP 45% very quiet deep ink for a phone clock and bottom 12% uncluttered for controls. Rich subtle lavender edge light, soft contact shadows, polished photographic 3D materials, no neon. Full-bleed portrait artwork.",
+      "references": [
+        "artwork/signature-v1/signature-dark-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    },
+    {
+      "name": "signature-light-mobile",
+      "prompt": "Use case: stylized-concept. Premium Santi020k Signature wallpaper. Image 1 is the approved dark desktop artwork, used as the composition and material reference. Image 2 is the canonical brand mark; preserve the white rounded >_ prompt proportions on a rich solid purple rounded square. Keep only ONE physical brand tile, with the front nearly parallel to the camera, carefully readable, white glyph on #5a0fdb, softly rounded solid edges. Keep the glass bubbles, curved lenses and violet palette luxurious, restrained and tactile. No text, wordmark, slogans, devices, interface, extra symbols or borders. Create an independently composed LIGHT phone wallpaper, tall portrait aspect ratio 1170:2532, not a landscape crop. Porcelain white #f8f6fd atmosphere. A restrained sculptural cluster of translucent pale lavender glass bubbles and curved lenses rises from the lower and right edges, with a single small saturated purple >_ brand tile near 50% across and 67% down, approximately 26% of image width. Leave the TOP 45% quiet pale lavender-white for a phone clock and bottom 12% uncluttered for controls. Delicate violet refraction and broad soft daylight shadows, polished photographic 3D materials, no neon, no dark backdrop. Full-bleed portrait artwork.",
+      "references": [
+        "artwork/signature-v1/signature-dark-desktop.png",
+        "packages/theme/assets/logos/logo-square.png"
+      ]
+    }
+  ]
+}

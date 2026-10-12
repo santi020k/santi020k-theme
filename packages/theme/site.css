@@ -2,18 +2,31 @@
 
 :root,
 :root[data-theme="dark"] {
-  --site-shell-max-width: 1180px;
+  --site-shell-max-width: 72rem;
   --site-shell-gutter: clamp(15px, 4vw, 24px);
   --site-shell-width: min(
     var(--site-shell-max-width),
     calc(100% - var(--site-shell-gutter) - var(--site-shell-gutter))
   );
-  --site-page-title-size: clamp(2.75rem, 5vw, 4.75rem);
-  --site-page-title-line-height: 0.98;
+  --site-page-title-size: clamp(2.75rem, 6vw, 5.5rem);
+  --site-page-title-line-height: 1.02;
   --site-page-title-measure: 15ch;
-  --site-section-title-size: clamp(2rem, 3.6vw, 3.5rem);
-  --site-section-title-line-height: 1.06;
+  --site-section-title-size: clamp(2.25rem, 4vw, 3.75rem);
+  --site-section-title-line-height: 1.08;
   --site-section-title-measure: 18ch;
+  --site-title-weight: 500;
+  --site-title-tracking: -0.065em;
+  --site-body-size: 0.9375rem;
+  --site-body-line-height: 1.85;
+  --site-section-space: 7rem;
+  --site-heading-gap: 2.5rem;
+  --site-grid-gap: 1.5rem;
+  --site-editorial-gap: clamp(2.5rem, 5vw, 4rem);
+  --site-card-radius: 1.5rem;
+  --site-panel-radius: 1.75rem;
+  --site-control-radius: 1rem;
+  --site-arrow-radius: 0.75rem;
+  --site-control-min-height: 44px;
   color-scheme: dark;
   --canvas: 258 41% 8%;
   --surface: 262 31% 12%;
@@ -140,4 +153,21 @@
   --shadow: rgb(58 37 86 / 0.16);
   --btn-secondary-bg: rgb(248 246 253 / 0.88);
   --section-divider: rgb(211 205 230 / 0.8);
+}
+
+@media (max-width: 767px) {
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    --site-section-space: 4.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

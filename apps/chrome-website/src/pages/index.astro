@@ -1,9 +1,17 @@
 ---
-import { Button, ButtonLink, Card, Link } from '@santi020k/lumen-astro'
+import '../styles.css'
+
+import { Button, Card, Link } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
+import chromePackage from '../../../../packages/santi020k-chrome-theme/package.json'
+import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import PaletteGrid from '../../../website/src/components/PaletteGrid.astro'
+import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
+import ThemeCardPreview from '../../../website/src/components/ThemeCardPreview.astro'
+import { chromePalette } from '../../../website/src/product-palettes'
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -12,7 +20,7 @@ const structuredData = {
   applicationCategory: 'BrowserApplication',
   applicationSubCategory: 'Browser Theme',
   operatingSystem: 'Windows, macOS, Linux',
-  softwareVersion: '1.3.3',
+  softwareVersion: chromePackage.version,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   url: 'https://theme.santi020k.com/chrome/',
   description: 'A Chrome browser theme matching the Santi020k VS Code palette — deep violet surfaces, muted lavender text, and violet accents.',
@@ -31,25 +39,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en">
   <head>
+    <PageTransitions page="chrome" />
     <meta charset="UTF-8" />
-    <!-- Anti-FOUC: sets data-theme before CSS renders -->
-    <script>
-  (function () {
-    var s = localStorage.getItem('theme')
-    var pref = s
-
-    if (pref !== 'light' && pref !== 'dark') {
-      pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-    }
-
-    document.documentElement.setAttribute('data-theme', pref)
-  })()
-  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Theme — Chrome Browser Theme</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <meta name="description" content="A professional Chrome browser theme with a deep violet palette, muted lavender text, and elegant violet accents. Mapped directly from the Santi020k VS Code theme for a consistent developer experience." />
     <meta name="author" content="Santiago Molina" />
     <meta name="language" content="en" />
@@ -84,37 +80,31 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <body>
     <SharedHeader currentProduct="chrome" productLinks={[{ href: '/chrome/', label: 'Overview' }, { href: '/chrome/#preview', label: 'Preview' }, { href: '/chrome/#palette', label: 'Palette' }, { href: '/chrome/#why', label: 'Why Chrome' }, { href: '/chrome/#install', label: 'Install' }]} />
 
-    <main id="top">
+    <main id="top" class="documentation-page">
       <!-- ── Hero ──────────────────────────────────────────────────────────── -->
       <section class="hero">
         <div class="hero-wallpaper" aria-hidden="true"></div>
         <div class="site-shell hero-inner">
           <div class="hero-copy">
             <p class="eyebrow">Chrome browser theme</p>
-            <h1>Browser chrome as calm as your editor.</h1>
+            <h1>A calmer view of the web.</h1>
             <p class="lede">
-              Every surface — tab strip, omnibox, New Tab page, incognito — maps directly to a VS Code token from the Santi020k dark palette. Deep violet, muted lavender, no neon.
+              Familiar violet from the first tab to the next idea. Light and dark themes bring the same quiet palette to your toolbar, tabs, and New Tab page.
             </p>
             <div class="actions" aria-label="Theme actions">
-              <ButtonLink class="button button-primary" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" target="_blank" rel="noopener noreferrer">
-                Dark theme
-              </ButtonLink>
-              <ButtonLink class="button button-secondary" variant="secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
-                Light theme
-              </ButtonLink>
-              <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">
+              <ProductAction href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab>
+                Install dark theme
+              </ProductAction>
+              <ProductAction href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci" newTab variant="secondary">
+                Install light theme
+              </ProductAction>
+              <ProductAction href="https://github.com/santi020k/santi020k-theme" newTab variant="secondary">
                 GitHub
-              </ButtonLink>
+              </ProductAction>
             </div>
-            <div class="install-action">
-              <Button class="button-copy-install" type="button" aria-label="Copy load unpacked path hint">
-                <span class="command">chrome://extensions</span>
-                <span class="copy-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                </span>
-              </Button>
-            </div>
+            <p class="install-note">Available on the Chrome Web Store. Choose dark or light to install in desktop Chrome.</p>
           </div>
+          <figure class="hero-preview" aria-label="Chrome theme screenshots"><ThemeCardPreview slug="chrome" name="Chrome" hero featured /></figure>
         </div>
       </section>
 
@@ -193,29 +183,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             </div>
           </div>
         </div>
-
-        <div class="token-legend" aria-label="Color token legend">
-          <div class="token-item">
-            <span class="token-swatch" style="background:#0b0712"></span>
-            <div><strong>Frame</strong><span>#0b0712 — titleBar.activeBackground</span></div>
-          </div>
-          <div class="token-item">
-            <span class="token-swatch" style="background:#1c1528"></span>
-            <div><strong>Toolbar / tab strip</strong><span>#1c1528 — sideBar.background</span></div>
-          </div>
-          <div class="token-item">
-            <span class="token-swatch" style="background:#752df0"></span>
-            <div><strong>Active tab accent</strong><span>#752df0 — tab.activeBorder</span></div>
-          </div>
-          <div class="token-item">
-            <span class="token-swatch" style="background:#110c1d"></span>
-            <div><strong>NTP / omnibox</strong><span>#110c1d — editor.background</span></div>
-          </div>
-          <div class="token-item">
-            <span class="token-swatch" style="background:#945df4"></span>
-            <div><strong>Links / accents</strong><span>#945df4 — textLink.foreground</span></div>
-          </div>
-        </div>
       </section>
 
       <!-- ── Why section ────────────────────────────────────────────────────── -->
@@ -262,49 +229,39 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div>
           <p class="eyebrow">Palette</p>
           <h2>Violets for focus, depth for calm.</h2>
+          <p class="section-lede">Colors from the Chrome theme. Switch the page appearance to explore light and dark, and open any swatch for its color codes.</p>
         </div>
-        <div class="swatches" aria-label="Core theme colors">
-          <span style="--swatch: #0b0712">Frame</span>
-          <span style="--swatch: #1c1528">Toolbar</span>
-          <span style="--swatch: #110c1d">NTP / omnibox</span>
-          <span style="--swatch: #752df0">Tab accent</span>
-          <span style="--swatch: #945df4">Links</span>
-          <span style="--swatch: #b48df7">Section links</span>
-          <span style="--swatch: #dfdde3">Primary text</span>
-          <span style="--swatch: #8d8896; --swatch-text: var(--site-ink)">Muted text</span>
-        </div>
+        <PaletteGrid colors={chromePalette} label="Chrome theme palette" />
       </section>
 
       <!-- ── Install ────────────────────────────────────────────────────────── -->
       <section id="install" class="site-shell install-section">
         <div>
           <p class="eyebrow">Install</p>
-          <h2>Two ways to load it.</h2>
+          <h2>Choose your Chrome theme.</h2>
+          <p class="section-lede">Two published themes. Install your preferred appearance from the Chrome Web Store.</p>
         </div>
         <div class="install-grid">
           <Card as="article" class="install-card">
-            <div class="install-step-badge">01</div>
-            <h3>Load unpacked (instant)</h3>
-            <ol class="install-steps">
-              <li>Clone or download the <Link href="https://github.com/santi020k/santi020k-theme" rel="noopener noreferrer">GitHub repo</Link></li>
-              <li>Open <code>chrome://extensions</code> in Chrome</li>
-              <li>Enable <strong>Developer mode</strong></li>
-              <li>Click <strong>Load unpacked</strong> → select <code>packages/santi020k-chrome-theme</code></li>
-            </ol>
+            <div class="install-step-badge">01 / DARK</div>
+            <h3>Deep violet, quiet contrast.</h3>
+            <p class="install-card-body">Dark surfaces and lavender text across your tabs, toolbar, and New Tab page.</p>
+            <ProductAction href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab class="install-store-btn">
+              Install dark theme
+            </ProductAction>
           </Card>
           <Card as="article" class="install-card">
-            <div class="install-step-badge">02</div>
-            <h3>Chrome Web Store</h3>
-            <p class="install-card-body">One-click install, stays updated automatically. Choose the variant that matches your browser chrome.</p>
-            <div class="install-store-actions">
-              <ButtonLink class="button button-primary install-store-btn" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" target="_blank" rel="noopener noreferrer">
-                Dark theme
-              </ButtonLink>
-              <ButtonLink class="button button-secondary install-store-btn" variant="secondary" href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
-                Light theme
-              </ButtonLink>
-            </div>
+            <div class="install-step-badge">02 / LIGHT</div>
+            <h3>Soft lavender, clear focus.</h3>
+            <p class="install-card-body">Light surfaces and deep violet accents with the same coordinated palette.</p>
+            <ProductAction href="https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci" newTab variant="secondary" class="install-store-btn">
+              Install light theme
+            </ProductAction>
           </Card>
+        </div>
+        <div class="install-guidance">
+          <p class="install-note">Open either listing in desktop Chrome and select <strong>Add to Chrome</strong>. To switch appearances, install the other theme.</p>
+          <p class="install-note">Developing the theme? Follow the <Link href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-chrome-theme#local-development" newTab>local development guide</Link> to prepare either variant for unpacked testing.</p>
         </div>
       </section>
     </main>

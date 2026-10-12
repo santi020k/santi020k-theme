@@ -43,9 +43,17 @@ export const getSiteUrls = (development = false) => development ? SITE_URLS.deve
 
 export const isSiteTheme = theme => theme === SITE_THEME_LIGHT || theme === SITE_THEME_DARK
 
+const getSiteStorage = () => {
+  try {
+    return globalThis.localStorage
+  } catch {
+    // Accessing the storage property itself can throw in sandboxed contexts.
+  }
+}
+
 export const readStoredSiteTheme = storage => {
   try {
-    return storage?.getItem?.(SITE_THEME_STORAGE_KEY)
+    return storage?.getItem?.(SITE_THEME_STORAGE_KEY) ?? undefined
   } catch {
     // Storage can be unavailable in hardened browser contexts.
   }
@@ -61,7 +69,7 @@ const writeStoredSiteTheme = (storage, theme) => {
 
 export const getPreferredSiteTheme = ({
   mediaQueryList = globalThis.matchMedia?.(SITE_THEME_PREFERENCE_QUERY),
-  storage = globalThis.localStorage
+  storage = getSiteStorage()
 } = {}) => {
   const storedTheme = readStoredSiteTheme(storage)
 
@@ -78,7 +86,7 @@ export const setSiteTheme = (
   theme,
   {
     root = globalThis.document?.documentElement,
-    storage = globalThis.localStorage
+    storage = getSiteStorage()
   } = {}
 ) => {
   if (!isSiteTheme(theme) || !root) return false
@@ -94,7 +102,15 @@ export const syncSiteThemeToggle = (
   toggle,
   root = globalThis.document?.documentElement
 ) => {
-  if (toggle) toggle.setAttribute('aria-checked', String(rootInDarkMode(root)))
+  if (!toggle) return
+
+  const isSwitch = toggle.getAttribute('role') === 'switch'
+  const stateAttribute = isSwitch ? 'aria-checked' : 'aria-pressed'
+  const incompatibleAttribute = isSwitch ? 'aria-pressed' : 'aria-checked'
+
+  toggle.removeAttribute(incompatibleAttribute)
+
+  toggle.setAttribute(stateAttribute, String(rootInDarkMode(root)))
 }
 
 /**
@@ -180,15 +196,13 @@ export const bindPreferredSiteThemeSync = ({
   mediaQueryList = globalThis.matchMedia?.(SITE_THEME_PREFERENCE_QUERY),
   onThemeChange,
   root = globalThis.document?.documentElement,
-  storage = globalThis.localStorage
+  storage = getSiteStorage()
 } = {}) => {
   const syncPreferredTheme = event => {
-    if (readStoredSiteTheme(storage)) return
+    if (isSiteTheme(readStoredSiteTheme(storage)) || !root) return
 
-    setSiteTheme(event.matches ? SITE_THEME_LIGHT : SITE_THEME_DARK, {
-      root,
-      storage
-    })
+    // An OS preference is not an explicit user choice; keep following changes.
+    root.setAttribute(SITE_THEME_ATTRIBUTE, event.matches ? SITE_THEME_LIGHT : SITE_THEME_DARK)
 
     onThemeChange?.()
   }

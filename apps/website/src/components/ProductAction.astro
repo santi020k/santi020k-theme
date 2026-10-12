@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+import { ButtonLink, Icon } from '@santi020k/lumen-astro'
+
+interface Props extends HTMLAttributes<'a'> {
+  href: string
+  newTab?: boolean
+  variant?: 'primary' | 'secondary'
+}
+
+const { href, newTab = false, variant = 'primary', class: className, download, ...rest } = Astro.props
+let icon = newTab ? 'arrow-up-right' : 'arrow-right'
+
+if (download !== undefined && download !== false) icon = 'download'
+---
+
+<ButtonLink {href} {newTab} {download} {...rest} variant="unstyled" class:list={['product-action', `product-action-${variant}`, className]}>
+  <span><slot /></span>
+  <span class="product-action-arrow" aria-hidden="true"><Icon name={icon} size="sm" decorative /></span>
+</ButtonLink>
+
+<style>
+  .product-action { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 48px; max-width: 100%; border: 1px solid transparent; border-radius: var(--site-control-radius); padding: 6px 6px 6px 18px; font: 500 .8125rem/1.5 var(--santi020k-font-sans); text-decoration: none; transition: background-color 180ms, color 180ms; }
+  .product-action-primary { background: var(--site-ink); color: var(--theme-bg); }
+  .product-action-primary:hover { background: var(--site-ink-soft); }
+  .product-action-arrow { display: inline-grid; place-items: center; flex-shrink: 0; width: 34px; height: 34px; border-radius: var(--site-arrow-radius); background: color-mix(in srgb, var(--theme-bg) 14%, transparent); }
+  .product-action-secondary { justify-content: flex-start; gap: .5rem; padding-inline: 8px; background: transparent; color: var(--site-ink-soft); }
+  .product-action-secondary:hover { color: var(--site-ink); }
+  .product-action-secondary .product-action-arrow { width: 20px; background: transparent; }
+  .product-action:focus-visible { outline: 2px solid var(--site-brand); outline-offset: 4px; }
+</style>

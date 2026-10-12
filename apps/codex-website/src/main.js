@@ -1,5 +1,3 @@
-import './styles.css'
-
 import {
   bindPreferredSiteThemeSync,
   bindSiteNavigation,
@@ -7,20 +5,30 @@ import {
   syncSiteThemeToggle
 } from '@santi020k/theme/site'
 
-const toggle = document.querySelector('.theme-toggle')
-const header = document.querySelector('.site-header')
-const navToggle = document.querySelector('.nav-toggle')
-const navLinks = document.querySelectorAll('.nav-links a')
+import { bindPageLifecycle } from '../../website/src/utils/page-lifecycle'
 
-syncSiteThemeToggle(toggle)
+bindPageLifecycle('codex', () => {
+  const toggle = document.querySelector('.theme-toggle')
+  const header = document.querySelector('.site-header')
+  const navToggle = document.querySelector('.nav-toggle')
+  const navLinks = document.querySelectorAll('.nav-links a')
 
-toggle?.addEventListener('ui:theme-change', () => syncSiteThemeToggle(toggle))
+  syncSiteThemeToggle(toggle)
 
-bindSiteNavigation({
-  desktopNavQuery: window.matchMedia(SITE_HUB_DESKTOP_NAV_QUERY),
-  header,
-  navLinks,
-  navToggle
+  toggle?.addEventListener('ui:theme-change', () => syncSiteThemeToggle(toggle))
+
+  const disposeNavigation = bindSiteNavigation({
+    desktopNavQuery: window.matchMedia(SITE_HUB_DESKTOP_NAV_QUERY),
+    header,
+    navLinks,
+    navToggle
+  })
+
+  const disposePreference = bindPreferredSiteThemeSync({ onThemeChange: () => syncSiteThemeToggle(toggle) })
+
+  return () => {
+    disposeNavigation()
+
+    disposePreference()
+  }
 })
-
-bindPreferredSiteThemeSync({ onThemeChange: () => syncSiteThemeToggle(toggle) })

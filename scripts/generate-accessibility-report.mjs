@@ -1,7 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { relative, resolve } from 'node:path'
 
-import { contrastPairs, contrastRatio, themeFiles, validateThemes } from '../packages/santi020k-theme/scripts/validate-themes.mjs'
+import { contrastPairs, themeFiles, validateThemes } from '../packages/santi020k-theme/scripts/validate-themes.mjs'
+
+import { contrastRatio } from './lib/color-contrast.mjs'
 
 const root = resolve(import.meta.dirname, '..')
 const parseJsonc = raw => JSON.parse(raw.replaceAll(/\/\*[\s\S]*?\*\//g, '').replaceAll(/^\s*\/\/.*$/gm, ''))
@@ -33,7 +35,7 @@ ${rows.join('\n')}
 
 ## Website requirements
 
-- Visible keyboard focus uses a three-pixel violet outline with offset.
+- Visible keyboard focus uses a two-pixel violet outline with offset.
 - Light and dark modes are exposed through \`color-scheme\` and preserve readable foreground/background roles.
 - Motion is disabled or reduced under \`prefers-reduced-motion: reduce\`.
 - Theme controls use native buttons, selects, checkboxes, and accessible labels.

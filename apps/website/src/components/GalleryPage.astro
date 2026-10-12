@@ -1,0 +1,339 @@
+---
+import { Image } from 'astro:assets'
+
+import '../styles.css'
+import '../styles/wallpapers.css'
+import '../styles/banners.css'
+
+import { BackToTop, Button, ButtonLink, Card, Dialog, Eyebrow, Icon, Link } from '@santi020k/lumen-astro'
+import UIPrimitives from '@santi020k/lumen-astro/runtime'
+
+import { bannerDesigns, bannerHref, bannerPreviewHref } from '../../../../artwork/banner-catalog.mjs'
+import { previewHref, wallpaperHref } from '../../../../artwork/wallpaper-catalog.mjs'
+import PageTransitions from '../components/PageTransitions.astro'
+import SharedFooter from '../components/SharedFooter.astro'
+import SharedHeader from '../components/SharedHeader.astro'
+import { getGalleryAssets } from '../data/gallery-assets.js'
+
+import BannerWorkspace from './BannerWorkspace.astro'
+import WallpaperWorkspace from './WallpaperWorkspace.astro'
+
+interface Props { archive?: boolean }
+
+const { archive = false } = Astro.props
+const canonical = `https://theme.santi020k.com/gallery/${archive ? 'archive/' : ''}`
+const title = archive ? 'Classic Archive — Santi020k Theme' : 'Wallpaper, Banner & Cover Gallery — Santi020k Theme'
+const description = archive ? 'Browse earlier Santi020k wallpapers, banners, and logos. Previous artwork and download links remain available in the Classic archive.' : 'Explore violet wallpapers, wide banners, and square covers. Choose light or dark artwork and download PNG, JPG, or WEBP files for your screen or profile.'
+const assets = getGalleryAssets(archive)
+const designs = assets.flatMap(asset => asset.design ? [asset.design] : [])
+const socialImage = `https://theme.santi020k.com/og-${archive ? 'archive' : 'gallery'}.png`
+const imageAlt = 'Santi020k Theme wallpaper gallery and Classic archive'
+const banners = archive ? [] : bannerDesigns
+const assetCount = assets.length + banners.length
+const categories = archive ? ['wallpapers', 'banners', 'logos'] : ['wallpapers', 'banners', 'covers']
+const filterCount = (filter: string) => filter === 'all' ? assetCount : assets.filter(asset => asset.category === filter).length + (['banners', 'covers'].includes(filter) ? banners.length : 0)
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: canonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Santi020k Themes',
+    url: 'https://theme.santi020k.com/'
+  }
+}
+
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c')
+---
+
+<!doctype html>
+<html lang="en" data-santi020k-site="hub">
+  <head>
+    <PageTransitions page="hub" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Santiago Molina" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#110c1d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f6fd" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Santi020k Themes" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@santi020k" />
+    <meta name="twitter:creator" content="@santi020k" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
+  </head>
+  <body data-gallery-page>
+    <SharedHeader />
+
+    <main id="top">
+      <section class="site-shell gallery-hero" aria-labelledby="gallery-hero-title">
+        <div class="gallery-hero-copy">
+          <Eyebrow class="eyebrow">{archive ? 'The earlier collection' : 'Gallery & downloads'}</Eyebrow>
+          <h1 id="gallery-hero-title">{archive ? 'The Classic archive.' : 'A quieter kind of screen.'}</h1>
+          <p class="lede">{archive ? 'Earlier wallpapers, banners, and logos, kept here for anyone who still enjoys them. Previous downloads remain available.' : 'Wallpapers for your screens. Banners and covers for the spaces you share. Ten considered designs, each in light and dark.'}</p>
+          <div class="collection-downloads" aria-label="Collection downloads">
+            <ButtonLink class="button button-primary" variant="primary" href={archive ? '/gallery/' : '#asset-library'}>{archive ? 'Explore current designs' : 'Explore the artwork'}</ButtonLink>
+            {!archive && (
+<>
+            <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-minimal-wallpapers-v2.zip" download>Minimal WEBP pack</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-signature-wallpapers-v2.zip" download>Signature WEBP pack</ButtonLink>
+            <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-sculpted-wallpapers-v2.zip" download>Sculpted WEBP pack</ButtonLink>
+            </>
+)}
+            {archive && <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-banners.zip" download>Banners ZIP</ButtonLink>}
+            {archive && <ButtonLink class="button button-secondary" variant="secondary" href="/downloads/santi020k-wallpapers.zip" download>Classic wallpapers ZIP</ButtonLink>}
+          </div>
+        </div>
+        <aside class="gallery-hero-index" aria-label="Gallery summary">
+          <Eyebrow class="gallery-index-label">Available now</Eyebrow>
+          <dl>
+            <div><dt>{assetCount}</dt><dd>{archive ? 'archived assets' : 'current designs'}</dd></div>
+            {!archive && <div><dt>{(designs.length + banners.length) * 4}</dt><dd>artwork versions</dd></div>}
+            <div><dt>{archive ? 4 : 3}</dt><dd>{archive ? 'file formats' : 'ways to make it yours'}</dd></div>
+          </dl>
+          <p>{archive ? 'PNG · WEBP · SVG · HEIC' : 'PNG · WEBP · JPG'}</p>
+        </aside>
+      </section>
+
+      <section id="asset-library" class="site-shell gallery-section" aria-labelledby="gallery-heading">
+        <div class="gallery-toolbar">
+          <div class="gallery-toolbar-copy"><Eyebrow class="eyebrow">{archive ? 'Archive' : 'The collection'}</Eyebrow><h2 id="gallery-heading">{archive ? 'Where it started.' : 'Find your quiet.'}</h2><p>{archive ? 'Original files and formats, preserved at their existing URLs.' : 'Choose a design to preview it here. Find your favorite appearance, composition, and file format. Every design comes in light and dark.'}</p></div>
+          <div class="gallery-controls">
+            <div class="filter-group" role="group" aria-label="Filter assets">
+              {['all', ...categories].map((filter, index) => <Button class="filter-button" type="button" data-filter={filter} aria-pressed={index === 0 ? 'true' : 'false'}><span>{filter === 'all' ? 'All assets' : filter.charAt(0).toUpperCase() + filter.slice(1)}</span><span class="filter-count" aria-hidden="true">{filterCount(filter)}</span></Button>)}
+            </div>
+            <p class="gallery-count" aria-live="polite"><strong data-gallery-count>{assetCount}</strong> <span data-gallery-count-label>assets shown</span></p>
+          </div>
+        </div>
+        <div class="asset-grid">
+          {banners.map(design => (
+            <Card as="article" variant="unstyled" class="asset-card" data-category="banners" data-formats="covers">
+              <a class="wallpaper-card-link" href={bannerHref(design.slug)} data-banner-dialog={`banner-dialog-${design.slug}`} data-banner-slug={design.slug} aria-label={`Explore ${design.name} banners and covers`}>
+                <div class="banner-card-art">
+                  <img class="banner-card-wide" src={bannerPreviewHref(design.slug)} alt={`${design.alt}, dark wide banner`} width="1080" height="360" loading="lazy" />
+                  <img class="banner-card-wide" src={bannerPreviewHref(design.slug, 'light')} alt="Light wide banner companion" width="1080" height="360" loading="lazy" />
+                  <img class="banner-card-square" src={bannerPreviewHref(design.slug, 'light', 'square')} alt={`${design.alt}, light square cover`} width="600" height="600" loading="lazy" />
+                  <span class="wallpaper-card-editions">Dark + light</span>
+                </div>
+                <div class="wallpaper-card-copy">
+                  <p class="wallpaper-card-collection">New artwork <span>Wide &amp; square</span></p>
+                  <div class="wallpaper-card-heading"><h3>{design.name}</h3><span class="wallpaper-card-arrow"><Icon name="arrow-up-right" /></span></div>
+                  <p>{design.tagline}</p><span class="wallpaper-card-action">Preview &amp; download <span>4 versions</span></span>
+                </div>
+              </a>
+            </Card>
+          ))}
+          {assets.map(asset => (
+            <Card as="article" variant="unstyled" class:list={['asset-card', { 'asset-card-portrait': 'portrait' in asset && asset.portrait }]} data-category={asset.category} data-collection={'collection' in asset ? asset.collection : undefined}>
+              {asset.design ?
+(
+                <a class="wallpaper-card-link" href={wallpaperHref(asset.design.slug)} data-wallpaper-dialog={`wallpaper-dialog-${asset.design.slug}`} data-wallpaper-slug={asset.design.slug} aria-label={`Explore ${asset.design.name} wallpaper`}>
+                  <div class="wallpaper-card-art">
+                    <img class="wallpaper-card-desktop" src={previewHref(asset.design.slug)} alt={asset.design.alt} width="1920" height="1080" loading="lazy" />
+                    <img class="wallpaper-card-phone" src={previewHref(asset.design.slug, 'light', 'mobile')} alt="" width="1080" height="2340" loading="lazy" />
+                    <span class="wallpaper-card-editions">Dark + light</span>
+                  </div>
+                  <div class="wallpaper-card-copy">
+                    <p class="wallpaper-card-collection">{asset.design.collection} collection <span>Desktop &amp; phone</span></p>
+                    <div class="wallpaper-card-heading"><h3>{asset.design.name}</h3><span class="wallpaper-card-arrow"><Icon name="arrow-up-right" /></span></div>
+                    <p>{asset.design.tagline}</p>
+                    <span class="wallpaper-card-action">Preview &amp; download <span>4 versions</span></span>
+                  </div>
+                </a>
+              ) :
+(
+              <Button class:list={['asset-preview', { 'asset-preview-contain': ('contain' in asset && asset.contain) || ('portrait' in asset && asset.portrait) }]} type="button" data-preview-src={asset.preview.src} data-preview-alt={`${asset.title}, ${asset.variant}`} data-preview-title={`${asset.title} — ${asset.variant}`} aria-label={`Preview ${asset.title}, ${asset.variant}`}>
+                <Image src={asset.preview} alt="" loading="lazy" />
+                <span class="preview-label">Open preview</span>
+              </Button>
+              <div class="asset-card-body">
+                <div><p class="asset-category"><span>{'collection' in asset ? `${asset.collection.charAt(0).toUpperCase() + asset.collection.slice(1)} wallpaper` : asset.category}</span><span>{asset.variant}</span></p><h3>{asset.title}</h3><p class="asset-meta">{asset.dimensions}</p></div>
+                <div class="asset-formats" aria-label={`Download ${asset.title} formats`}>
+                  {asset.formats.map(format => <Link href={format.href} download={format.file} title={`Download ${asset.title} as ${format.label}`}>{format.label}<Icon name="download" class="asset-format-icon" /></Link>)}
+                </div>
+              </div>
+              )}
+            </Card>
+          ))}
+        </div>
+        <p class="gallery-empty" hidden>No assets match this filter.</p>
+        {!archive && <div class="gallery-archive-link"><p>Looking for earlier artwork or brand assets?</p><a href="/gallery/archive/">Browse the Classic archive</a></div>}
+      </section>
+    </main>
+
+    {banners.map(design => (
+      <Dialog id={`banner-dialog-${design.slug}`} class="wallpaper-dialog" aria-labelledby={`banner-title-${design.slug}`}>
+        <header class="wallpaper-dialog-header">
+          <div><Eyebrow>Banners &amp; covers</Eyebrow><h2 id={`banner-title-${design.slug}`}>{design.name}</h2></div>
+          <Button class="wallpaper-dialog-close" variant="ghost" size="icon" type="button" aria-label={`Close ${design.name} preview`} data-ui-dialog-close autofocus><Icon name="x" /></Button>
+        </header>
+        <div class="wallpaper-dialog-content"><p class="wallpaper-dialog-description">{design.tagline}</p><BannerWorkspace {design} modal /></div>
+      </Dialog>
+    ))}
+
+    {designs.map(design => (
+      <Dialog id={`wallpaper-dialog-${design.slug}`} class="wallpaper-dialog" aria-labelledby={`wallpaper-title-${design.slug}`}>
+        <header class="wallpaper-dialog-header">
+          <div><Eyebrow>{design.collection} collection</Eyebrow><h2 id={`wallpaper-title-${design.slug}`}>{design.name}</h2></div>
+          <Button class="wallpaper-dialog-close" variant="ghost" size="icon" type="button" aria-label={`Close ${design.name} preview`} data-ui-dialog-close autofocus><Icon name="x" /></Button>
+        </header>
+        <div class="wallpaper-dialog-content"><p class="wallpaper-dialog-description">{design.tagline}</p><WallpaperWorkspace {design} modal /></div>
+      </Dialog>
+    ))}
+
+    <Dialog class="asset-dialog" aria-labelledby="asset-dialog-title">
+      <div class="dialog-header"><div><Eyebrow class="eyebrow">Full preview</Eyebrow><h2 id="asset-dialog-title"></h2></div><Button class="dialog-close" type="button" aria-label="Close preview"><Icon name="x" /></Button></div>
+      <div class="dialog-media"><img alt="" /></div>
+      <div class="asset-dialog-actions"><Link href="/gallery/" newTab data-asset-page>Open image in new tab <Icon name="arrow-up-right" /></Link></div>
+    </Dialog>
+
+    <BackToTop class="back-to-top" aria-label="Back to top"><Icon name="chevron-up" /></BackToTop>
+
+    <SharedFooter />
+    <script>import '../main.js'
+      import '../scripts/wallpaper-dialogs'
+</script>
+    <UIPrimitives />
+  </body>
+</html>
+
+<style>
+  :global([data-gallery-page] .gallery-hero h1) {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 500;
+    letter-spacing: -.065em;
+    line-height: 1.04;
+  }
+
+  :global([data-gallery-page] .gallery-toolbar h2) {
+    font-weight: 500;
+    letter-spacing: -.055em;
+  }
+
+  :global([data-gallery-page] .gallery-hero-index) {
+    border-color: var(--site-line);
+  }
+
+  :global([data-gallery-page] .gallery-hero-index dt),
+  :global([data-gallery-page] .gallery-hero-index dd),
+  :global([data-gallery-page] .gallery-index-label),
+  :global([data-gallery-page] .gallery-hero-index > p:last-child) {
+    font-weight: 500;
+  }
+
+  :global([data-gallery-page] .button-primary) {
+    background: var(--site-ink);
+    border-color: var(--site-ink);
+    color: var(--theme-bg);
+    box-shadow: none;
+  }
+
+  :global([data-gallery-page] .button-secondary),
+  :global([data-gallery-page] .filter-button),
+  :global([data-gallery-page] .asset-formats a) {
+    min-height: 44px;
+    border-radius: 1rem;
+    background: var(--site-surface);
+    box-shadow: none;
+    font-weight: 500;
+  }
+
+  :global([data-gallery-page] .filter-button[aria-pressed="true"]) {
+    background: var(--site-ink);
+    border-color: var(--site-ink);
+    color: var(--theme-bg);
+  }
+
+  :global([data-gallery-page] .filter-button[aria-pressed="true"] .filter-count) {
+    background: var(--theme-bg);
+    color: var(--site-ink);
+  }
+
+  :global([data-gallery-page] .asset-grid) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  :global([data-gallery-page] .asset-card),
+  :global([data-gallery-page] .asset-card:hover),
+  :global([data-gallery-page] .asset-card:focus-within) {
+    padding: 0;
+    gap: 0;
+    border-radius: 1.5rem;
+    background: var(--site-surface);
+    box-shadow: none;
+    transform: none;
+    transition: border-color 200ms ease;
+  }
+
+  :global([data-gallery-page] .asset-preview) {
+    background: var(--site-surface-muted);
+    background-image: none;
+  }
+
+  :global([data-gallery-page] .asset-card-body) {
+    padding: 1.5rem;
+  }
+
+  :global([data-gallery-page] .asset-card-body h3),
+  :global([data-gallery-page] .preview-label) {
+    font-weight: 500;
+  }
+
+  :global([data-gallery-page] .asset-dialog) {
+    border-color: var(--site-line);
+    border-radius: 1.5rem;
+  }
+
+  :global([data-gallery-page] .asset-dialog::backdrop) {
+    backdrop-filter: none;
+  }
+
+  :global([data-gallery-page] button:focus-visible),
+  :global([data-gallery-page] a:focus-visible) {
+    outline: 2px solid var(--site-accent);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 700px) {
+    :global([data-gallery-page] .asset-grid) { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global([data-gallery-page] .asset-card),
+    :global([data-gallery-page] .asset-preview img),
+    :global([data-gallery-page] .asset-preview:hover img),
+    :global([data-gallery-page] .preview-label) {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

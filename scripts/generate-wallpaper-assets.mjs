@@ -1,7 +1,10 @@
-import { mkdir } from 'node:fs/promises'
+import { createWriteStream } from 'node:fs'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
+import { finished } from 'node:stream/promises'
 import { fileURLToPath } from 'node:url'
 
+import { ZipArchive } from 'archiver'
 import sharp from 'sharp'
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -106,3 +109,86 @@ await Promise.all([
   render('wallpaper-5-desktop', DESKTOP, desktopArtwork, DARK),
   render('wallpaper-5-mobile', MOBILE, mobileArtwork, DARK)
 ])
+
+
+// Sculpted is additive: the original Signal flow masters above stay available.
+const sculptedDirectory = resolve(outputDirectory, 'sculpted')
+const archiveDirectory = resolve(repositoryRoot, 'apps/website/public/downloads')
+const archiveFiles = []
+
+const sculptedPalette = {
+  light: { background: '#f8f6fd', shadow: '#403850', low: '#4b1b6e', mid: '#9564b8', high: '#ddd0ec' },
+  dark: { background: '#110c1d', shadow: '#000000', low: '#29103b', mid: '#6d398c', high: '#ba91d3' }
+}
+
+const sculptures = {
+  fold: `<path d="M -350 220 C -190 -290 450 -330 610 -20 C 770 290 210 265 145 465 C 95 625 510 730 660 595 L 840 910 C 420 1100 -380 820 -230 400 C -80 -25 360 -10 305 -110 C 260 -195 -10 -140 -60 300 Z" fill="url(#material)" />
+    <path d="M 610 -20 C 770 290 210 265 145 465 C 95 625 510 730 660 595" fill="none" stroke="url(#edge)" stroke-width="4" opacity=".55" />`,
+  orbit: `<g transform="rotate(-24)"><path d="M -560 0 A 560 375 0 1 0 560 0 A 560 375 0 1 0 -560 0 M -320 0 A 320 185 0 1 1 320 0 A 320 185 0 1 1 -320 0" fill="url(#material)" fill-rule="evenodd" />
+    <ellipse rx="559" ry="374" fill="none" stroke="url(#edge)" stroke-width="3" opacity=".65" />
+    <ellipse rx="320" ry="185" fill="none" stroke="url(#edge)" stroke-width="4" opacity=".5" /></g>`,
+  monolith: `<path d="M -240 -430 Q -240 -490 -170 -500 L 260 -565 Q 330 -575 355 -515 L 455 325 Q 460 375 405 395 L -70 525 Q -150 545 -165 475 Z" fill="url(#material)" />
+    <path d="M -170 -500 L 260 -565 Q 330 -575 355 -515 L 455 325 L 225 295 L 145 -425 Z" fill="url(#face)" />
+    <path d="M 145 -425 L 225 295 L 455 325" fill="none" stroke="url(#edge)" stroke-width="3" opacity=".55" />`
+}
+
+const sculptedSvg = (family, variant, dimensions) => {
+  const { width, height } = dimensions
+  const palette = sculptedPalette[variant]
+  const portrait = height > width
+  const centerX = width * (portrait ? .53 : .72)
+  const centerY = height * (portrait ? .65 : .52)
+  const scale = portrait ? .9 : 1.65
+  const offsetY = family === 'fold' ? -250 : 0
+
+  return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+    <defs>
+      <linearGradient id="material" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="${palette.high}"/><stop offset=".25" stop-color="${palette.mid}"/><stop offset=".61" stop-color="${palette.low}"/><stop offset="1" stop-color="${palette.mid}"/></linearGradient>
+      <linearGradient id="face" x1="0" y1="0" x2="1" y2=".6"><stop stop-color="${palette.high}"/><stop offset="1" stop-color="${palette.mid}"/></linearGradient>
+      <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${palette.high}"/><stop offset="1" stop-color="${palette.low}"/></linearGradient>
+      <filter id="shadow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="48"/></filter>
+    </defs>
+    <rect width="${width}" height="${height}" fill="${palette.background}"/>
+    <ellipse cx="${centerX}" cy="${centerY + (portrait ? 620 : 740)}" rx="${portrait ? 370 : 780}" ry="${portrait ? 70 : 100}" fill="${palette.shadow}" opacity="${variant === 'light' ? '.15' : '.5'}" filter="url(#shadow)"/>
+    <g transform="translate(${centerX} ${centerY}) scale(${scale}) translate(0 ${offsetY})">${sculptures[family]}</g>
+  </svg>`)
+}
+
+await mkdir(sculptedDirectory, { recursive: true })
+
+for (const family of Object.keys(sculptures)) {
+  for (const variant of ['light', 'dark']) {
+    for (const [device, dimensions] of [['desktop', DESKTOP], ['mobile', MOBILE]]) {
+      const name = `${family}-${variant}-${device}`
+      const source = sculptedSvg(family, variant, dimensions)
+      const basePath = resolve(sculptedDirectory, name)
+
+      await Promise.all([
+        writeFile(`${basePath}.svg`, source),
+        sharp(source).png({ compressionLevel: 9 }).toFile(`${basePath}.png`),
+        sharp(source).webp({ effort: 6, quality: 94 }).toFile(`${basePath}.webp`)
+      ])
+
+      archiveFiles.push(...['png', 'svg', 'webp'].map(extension => `${name}.${extension}`))
+    }
+  }
+}
+
+// Fixed dates and sorted names keep the collection archive reproducible.
+await mkdir(archiveDirectory, { recursive: true })
+
+const archiveOutput = createWriteStream(resolve(archiveDirectory, 'santi020k-sculpted-wallpapers.zip'))
+const archive = new ZipArchive({ statConcurrency: 1, zlib: { level: 9 } })
+const archiveCompletion = finished(archiveOutput)
+
+archive.on('error', error => archiveOutput.destroy(error))
+
+archive.on('warning', error => archiveOutput.destroy(error))
+
+archive.pipe(archiveOutput)
+
+for (const file of archiveFiles.sort()) {
+  archive.file(resolve(sculptedDirectory, file), { date: new Date('2026-01-01T00:00:00Z'), name: file })
+}
+
+await Promise.all([archive.finalize(), archiveCompletion])

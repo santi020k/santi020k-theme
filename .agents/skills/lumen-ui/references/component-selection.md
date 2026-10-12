@@ -8,7 +8,7 @@ component docs before implementation.
 | Intent | Start with |
 | --- | --- |
 | Primary or secondary action | `Button`, `ButtonLink`, `ButtonGroup` |
-| Labeled form control | `Field`, `Label`, `Input`, `Textarea`, `NativeSelect` |
+| Labeled form control | `Field`, `Label`, `Input`, `Textarea`, `Select` |
 | Search or suggestion input | `SearchField`, `Autocomplete`, `Combobox`, `Command` |
 | Boolean or mode choice | `Checkbox`, `Switch`, `Toggle`, `ToggleGroup`, `RadioGroup` |
 | Compact metadata or status | `Badge`, `Marker`, `Pill`, `TagGroup` |

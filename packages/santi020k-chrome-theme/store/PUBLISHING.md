@@ -115,7 +115,7 @@ Use the workflow dispatch `dry_run` input when checking credentials-free package
 
 **Dark theme listing:** <https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj>
 
-**Light theme listing:** <https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb>
+**Light theme listing:** <https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci>
 
 - [x] Install from Web Store and smoke-test all tab states (active, inactive, incognito)
 - [x] Update `README.md` badge/link once the store listing URL is known

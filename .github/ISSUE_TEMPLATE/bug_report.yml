@@ -16,6 +16,16 @@ body:
     attributes:
       label: Affected surface
       options:
+        - VS Code extension / themes
+        - Zed theme
+        - Chrome theme
+        - Codex theme
+        - Terminal themes / CLI
+        - Raycast theme
+        - Slack theme
+        - JetBrains / Android Studio theme
+        - Xcode theme
+        - Shared npm tokens / helpers
         - Theme colors
         - Syntax highlighting
         - Semantic highlighting
@@ -26,6 +36,20 @@ body:
     validations:
       required: true
   - type: input
+    id: version
+    attributes:
+      label: Package or extension version
+      description: Include the installed version and installation source.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include exact steps, expected behavior, and actual behavior. For website problems, add the page URL and browser version.
+    validations:
+      required: true
+  - type: input
     id: variant
     attributes:
       label: Theme variant
@@ -33,11 +57,18 @@ body:
   - type: input
     id: editor
     attributes:
-      label: Editor and version
+      label: Tool, operating system, and version
       placeholder: "VS Code 1.xx, Cursor, Windsurf, VSCodium..."
   - type: textarea
     id: screenshots
     attributes:
       label: Screenshots or sample code
-      description: Add screenshots, language snippets, or file types that show the issue.
+      description: Add screenshots, language snippets, or file types that show the issue. Remove credentials, private code, and personal information.
 
+  - type: checkboxes
+    id: existing_reports
+    attributes:
+      label: Existing reports
+      options:
+        - label: I searched existing issues for this problem.
+          required: true

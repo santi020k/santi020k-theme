@@ -1,0 +1,56 @@
+---
+import '../../../styles/wallpapers.css'
+import '../../../styles/banners.css'
+
+import { Breadcrumb, Eyebrow, Icon } from '@santi020k/lumen-astro'
+
+import { bannerDesigns, bannerDownloadHref, bannerHref, bannerLayouts, bannerPreviewHref, bannerSocialHref } from '../../../../../../artwork/banner-catalog.mjs'
+import { appearances, exportProfiles } from '../../../../../../artwork/wallpaper-catalog.mjs'
+import BannerWorkspace from '../../../components/BannerWorkspace.astro'
+import ArtworkLayout from '../../../layouts/ArtworkLayout.astro'
+
+interface Props { design: (typeof bannerDesigns)[number] }
+
+export const getStaticPaths = () => bannerDesigns.map(design => ({ params: { slug: design.slug }, props: { design } }))
+
+const { design } = Astro.props
+const pathname = bannerHref(design.slug)
+const title = `${design.name} Banners & Covers — Light & Dark Downloads | Santi020k`
+const variants = appearances.flatMap(appearance => bannerLayouts.map(layout => ({ appearance, layout, src: bannerPreviewHref(design.slug, appearance, layout.id) })))
+
+const structuredData = {
+  '@context': 'https://schema.org',
+'@type': 'WebPage',
+name: title,
+description: design.description,
+  url: `https://theme.santi020k.com${pathname}`,
+  mainEntity: variants.map(variant => ({
+    '@type': 'ImageObject',
+name: `${design.name} — ${variant.appearance} ${variant.layout.name}`,
+    description: design.alt,
+contentUrl: `https://theme.santi020k.com${variant.src}`,
+encodingFormat: 'image/webp',
+    width: variant.layout.width / 2,
+height: variant.layout.height / 2,
+    creator: { '@type': 'Person', name: 'Santiago Molina', url: 'https://santi020k.com' },
+    creditText: 'Santi020k · AI-generated artwork directed by Santiago Molina'
+  }))
+}
+---
+<ArtworkLayout {title} description={design.description} {pathname} image={bannerSocialHref(design.slug)} imageAlt={design.alt} {structuredData}>
+  <div class="site-shell wallpaper-detail">
+    <Breadcrumb class="wallpaper-breadcrumb">
+      <ol>
+        <li><a href="/gallery/">Gallery</a></li>
+        <li aria-current="page"><span>{design.name}</span></li>
+      </ol>
+    </Breadcrumb>
+    <header class="wallpaper-heading"><div><Eyebrow>Banners &amp; covers</Eyebrow><h1>{design.name}<span>.</span></h1></div><div class="wallpaper-heading-copy"><p>{design.tagline}</p><p class="wallpaper-heading-meta">Light + dark · Wide + square · Free download</p></div></header>
+    <BannerWorkspace {design} />
+    <section class="wallpaper-files" id="all-downloads" aria-labelledby="files-heading">
+      <div><Eyebrow>Every option</Eyebrow><h2 id="files-heading">Find your fit.</h2><p>Use a wide banner for a profile or project header, or a square cover for a post or collection. WEBP keeps files compact, JPG is widely supported, and PNG preserves the export without lossy compression.</p></div>
+      <div class="wallpaper-file-groups">{variants.map(variant => <details><summary>{variant.appearance === 'dark' ? 'Dark' : 'Light'} · {variant.layout.name}<Icon name="plus" /></summary><img class="wallpaper-file-preview" src={variant.src} alt={`${design.alt}, ${variant.appearance} ${variant.layout.name.toLowerCase()}`} width={variant.layout.width / 2} height={variant.layout.height / 2} loading="lazy" /><div class="wallpaper-file-row"><h3>{variant.layout.width} × {variant.layout.height}</h3><div>{exportProfiles.map(profile => <a href={bannerDownloadHref(design.slug, variant.appearance, variant.layout.id, profile.id)} download>{profile.label}<span class="sr-only"> — {design.name}, {variant.appearance}, {variant.layout.name}</span></a>)}</div></div></details>)}</div>
+    </section>
+    <section class="wallpaper-related" aria-labelledby="related-heading"><Eyebrow>Keep exploring</Eyebrow><h2 id="related-heading">Another point of view.</h2><div>{bannerDesigns.filter(item => item.slug !== design.slug).map(item => <a href={bannerHref(item.slug)}><img src={bannerPreviewHref(item.slug)} width="1080" height="360" loading="lazy" alt={item.alt} /><h3>{item.name}<Icon name="arrow-up-right" /></h3><p>{item.tagline}</p></a>)}</div></section>
+  </div>
+</ArtworkLayout>

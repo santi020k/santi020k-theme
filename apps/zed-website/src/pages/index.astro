@@ -1,12 +1,18 @@
 ---
 import { Image } from 'astro:assets'
 
-import { ButtonLink, Card } from '@santi020k/lumen-astro'
+import '../styles.css'
+
+import { Card } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import { getSiteUrls } from '@santi020k/theme/site'
 
+import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import PaletteGrid from '../../../website/src/components/PaletteGrid.astro'
+import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
+import { zedPalettes } from '../../../website/src/product-palettes'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
 const installCommand = 'cp packages/santi020k-zed-theme/themes/santi020k.json ~/.config/zed/themes/santi020k.json'
@@ -36,24 +42,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en">
   <head>
+    <PageTransitions page="zed" />
     <meta charset="UTF-8" />
-    <script>
-  (function () {
-    var s = localStorage.getItem('theme')
-    var pref = s
-
-    if (pref !== 'light' && pref !== 'dark') {
-      pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-    }
-
-    document.documentElement.setAttribute('data-theme', pref)
-  })()
-  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Theme — Zed Theme</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="/preview-dark.png" fetchpriority="high" />
     <meta name="description" content="A calm violet Zed theme with dark and light variants generated from the Santi020k VS Code palette. Deep indigo canvas, soft lavender surfaces, and a direct local install path." />
     <meta name="author" content="Santiago Molina" />
@@ -89,7 +84,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <body>
     <SharedHeader currentProduct="zed" productLinks={[{ href: '/zed/', label: 'Overview' }, { href: '/zed/#preview', label: 'Preview' }, { href: '/zed/#variants', label: 'Variants' }, { href: '/zed/#install', label: 'Install' }, { href: '/zed/#why', label: 'Why Zed' }]} />
 
-    <main id="top">
+    <main id="top" class="documentation-page">
       <section class="site-shell hero">
         <div class="hero-copy">
           <p class="eyebrow">Zed theme</p>
@@ -98,9 +93,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             Dark and light Zed variants generated from the same Santi020k color system used across VS Code, Chrome, and Terminal. Calm contrast, minimal noise, direct install.
           </p>
           <div class="actions" aria-label="Primary theme links">
-            <ButtonLink class="button button-primary" variant="primary" href="#install">Install for Zed</ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">View package</ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.hub}>Open theme hub</ButtonLink>
+            <ProductAction href="#install">Install for Zed</ProductAction>
+            <ProductAction href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" newTab variant="secondary">View package</ProductAction>
+            <ProductAction href={siteUrls.hub} variant="secondary">Open theme hub</ProductAction>
           </div>
         </div>
 
@@ -151,28 +146,18 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         </div>
       </section>
 
-      <section id="variants" class="site-shell section-grid">
+      <section id="variants" class="site-shell section palette-section">
         <div>
           <p class="eyebrow">Variants</p>
           <h2>Pick the mode that matches your day.</h2>
         </div>
-        <div class="variant-stack">
-          <Card as="article" class="variant-card variant-dark">
-            <p>Dark</p>
-            <h3>Santi020k Dark</h3>
-            <div class="variant-meta">
-              <span class="variant-swatch">Canvas · #110c1d</span>
-              <span class="variant-swatch">Accent · violet focus</span>
-            </div>
-          </Card>
-          <Card as="article" class="variant-card variant-light">
-            <p>Light</p>
-            <h3>Santi020k Light</h3>
-            <div class="variant-meta">
-              <span class="variant-swatch">Canvas · #f8f6fd</span>
-              <span class="variant-swatch">Accent · rich purple</span>
-            </div>
-          </Card>
+        <div class="palette-variants">
+          {zedPalettes.map(palette => (
+            <section class="palette-variant" aria-label={palette.name}>
+              <h3>{palette.name}</h3>
+              <PaletteGrid headingLevel={4} colors={palette.colors} label={`${palette.name} colors`} />
+            </section>
+          ))}
         </div>
       </section>
 
@@ -197,7 +182,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             </ol>
             <p class="install-note">The theme is generated from the same palette source as the VS Code release, so future updates stay aligned across editor surfaces.</p>
             <div class="card-actions">
-              <ButtonLink class="button button-primary" variant="primary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" rel="noopener noreferrer">Open package source</ButtonLink>
+              <ProductAction href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-zed-theme" newTab>Open package source</ProductAction>
             </div>
           </div>
 

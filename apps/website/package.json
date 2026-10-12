@@ -1,13 +1,13 @@
 {
   "name": "@santi020k/santi020k-theme-website",
   "version": "1.2.0",
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@10.34.6",
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "node ../../scripts/sync-consolidated-site-assets.mjs",
+    "predev": "node ../../scripts/sync-consolidated-site-assets.mjs && node ../../scripts/generate-wallpaper-downloads.mjs && node ../../scripts/generate-banner-downloads.mjs && node ../../scripts/build-theme-downloads.mjs",
     "dev": "astro dev --host 127.0.0.1 --port 4174",
-    "prebuild": "node ../../scripts/sync-consolidated-site-assets.mjs",
+    "prebuild": "node ../../scripts/sync-consolidated-site-assets.mjs && node ../../scripts/generate-wallpaper-downloads.mjs && node ../../scripts/generate-banner-downloads.mjs && node ../../scripts/build-theme-downloads.mjs",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1 --port 4174"
   },

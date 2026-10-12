@@ -27,9 +27,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 72% 12%, rgb(var(--glow-rgb) / 0.12), transparent 28rem),
-    var(--theme-bg);
+  background: var(--theme-bg);
 }
 
 a { color: inherit; text-decoration: none; }
@@ -164,21 +162,13 @@ code {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 86vh;
+  min-height: 620px;
   display: flex;
   align-items: center;
 }
 
 .hero-wallpaper {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to bottom, var(--hero-gradient-1) 0%, var(--hero-gradient-2) 100%),
-    url('../public/wallpaper-dark.svg');
-  background-size: cover;
-  background-position: center 30%;
-  z-index: 0;
-  animation: hero-ken-burns 20s infinite alternate ease-in-out;
+  display: none;
 }
 
 :root[data-theme="light"] .hero-wallpaper {
@@ -209,7 +199,7 @@ code {
 .hero-inner {
   position: relative;
   z-index: 1;
-  padding-block: 120px 100px;
+  padding-block: clamp(72px, 8vw, 112px);
 }
 
 .hero-copy {
@@ -219,9 +209,9 @@ code {
 .eyebrow {
   margin: 0 0 18px;
   color: var(--site-brand);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -233,7 +223,8 @@ h1 {
   margin-bottom: 32px;
   font-size: var(--site-page-title-size);
   line-height: var(--site-page-title-line-height);
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.065em;
 }
 
 h2 {
@@ -241,11 +232,15 @@ h2 {
   max-width: var(--site-section-title-measure);
   font-size: var(--site-section-title-size);
   line-height: var(--site-section-title-line-height);
+  font-weight: 500;
+  letter-spacing: -0.065em;
 }
 
 h3 {
   margin-bottom: 10px;
   font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.055em;
 }
 
 .lede {
@@ -256,90 +251,31 @@ h3 {
   line-height: 1.72;
 }
 
-/* Override hero text in light mode for better punch */
-.hero-inner .lede { color: rgba(223, 221, 227, 0.9); }
-:root[data-theme="light"] .hero-inner h1 { color: #1a0b33; }
-:root[data-theme="light"] .hero-inner .lede { color: #403850; font-weight: 500; }
-
-.install-action { margin-top: 28px; }
-
-.button-copy-install {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 440px;
-  min-height: 52px;
-  border: 1px solid var(--site-line);
-  border-radius: 12px;
-  padding: 0 16px;
-  background: var(--site-surface-muted);
-  color: var(--site-ink-soft);
-  font-family: "Fira Code", monospace;
-  font-size: 0.86rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.button-copy-install:hover {
-  border-color: var(--site-brand);
-  background: var(--site-surface-strong);
-  color: var(--site-ink);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgb(var(--glow-rgb) / 0.12);
-}
-
-.button-copy-install .command {
-  flex: 1;
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.button-copy-install .copy-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin-left: 12px;
-  border-radius: 8px;
-  background: var(--site-surface-strong);
-  color: var(--site-brand);
-  transition: all 0.2s;
-}
-
-.button-copy-install:hover .copy-icon {
-  background: var(--site-brand);
-  color: #ffffff;
-}
+.install-note { margin: 24px 0 0; color: var(--site-ink-soft); font-size: 0.9rem; line-height: 1.6; }
 
 /* ─── Buttons ────────────────────────────────────────────────────────────────── */
 .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
 
 .button {
   display: inline-flex;
-  min-height: 46px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 1rem;
   padding: 0 18px;
   font-size: 0.92rem;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .button-primary {
-  background: var(--site-brand-solid);
-  color: #ffffff;
+  background: var(--site-ink);
+  color: var(--theme-bg);
   box-shadow: 0 4px 14px rgb(var(--glow-rgb) / 0.3);
   transition: all 0.2s ease;
 }
 .button-primary:hover {
-  background: var(--site-brand-hover);
-  transform: translateY(-2px);
+  background: var(--site-ink-soft);
   box-shadow: 0 6px 20px rgb(var(--glow-rgb) / 0.4);
 }
 .button-secondary {
@@ -352,7 +288,6 @@ h3 {
   border-color: var(--site-brand-hover);
   color: var(--site-ink);
   background: var(--site-surface-strong);
-  transform: translateY(-2px);
 }
 
 /* ─── Section common ─────────────────────────────────────────────────────────── */
@@ -370,7 +305,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 40px;
-  padding-block: 80px;
+  padding-block: var(--site-section-space);
   border-top: 1px solid var(--section-divider);
 }
 
@@ -388,7 +323,7 @@ h3 {
 }
 
 .preview-control {
-  min-height: 34px;
+  min-height: var(--site-control-min-height);
   border: 0;
   border-radius: 7px;
   padding: 0 12px;
@@ -738,53 +673,13 @@ h3 {
 
 .bm-shortcut:hover .bm-shortcut-icon { border-color: var(--chrome-link); }
 
-/* ── Token legend ── */
-.token-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.token-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border: 1px solid var(--site-line);
-  border-radius: 12px;
-  padding: 12px 16px;
-  background: var(--site-surface);
-  min-width: 280px;
-  flex: 1;
-}
-
-.token-swatch {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  flex-shrink: 0;
-  border: 1px solid rgb(255 255 255 / 0.1);
-}
-
-.token-item strong {
-  display: block;
-  font-size: 0.88rem;
-  margin-bottom: 3px;
-}
-
-.token-item span {
-  display: block;
-  font-family: "Fira Code", monospace;
-  font-size: 0.76rem;
-  color: var(--site-ink-soft);
-}
-
 /* ─── Why section ────────────────────────────────────────────────────────────── */
 .why-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
-  gap: 32px;
+  grid-template-columns: minmax(0, .65fr) minmax(0, 1fr);
+  gap: var(--site-editorial-gap);
   align-items: start;
-  padding-block: 80px;
+  padding-block: var(--site-section-space);
   border-top: 1px solid var(--section-divider);
 }
 
@@ -796,7 +691,7 @@ h3 {
 
 .why-card {
   border: 1px solid var(--site-line);
-  border-radius: 18px;
+  border-radius: 1.5rem;
   padding: 24px;
   background: var(--site-surface);
   transition: border-color 0.2s;
@@ -822,46 +717,24 @@ h3 {
 /* ─── Palette section ────────────────────────────────────────────────────────── */
 .palette-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
-  gap: 32px;
+  grid-template-columns: minmax(0, .65fr) minmax(0, 1fr);
+  gap: var(--site-editorial-gap);
   align-items: start;
-  padding-block: 80px;
+  padding-block: var(--site-section-space);
   border-top: 1px solid var(--section-divider);
-}
-
-.swatches { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-
-.swatches span {
-  display: inline-flex;
-  min-height: 42px;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid var(--site-line);
-  border-radius: 999px;
-  padding: 0 14px 0 8px;
-  color: var(--site-ink-soft);
-  font-size: 0.86rem;
-  font-weight: 700;
-}
-
-.swatches span::before {
-  width: 26px;
-  height: 26px;
-  border: 1px solid var(--swatch-circle-border);
-  border-radius: 999px;
-  background: var(--swatch);
-  content: "";
 }
 
 /* ─── Install section ────────────────────────────────────────────────────────── */
 .install-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
-  gap: 32px;
+  grid-template-columns: minmax(0, .65fr) minmax(0, 1fr);
+  gap: var(--site-editorial-gap);
   align-items: start;
-  padding-block: 80px;
+  padding-block: var(--site-section-space);
   border-top: 1px solid var(--section-divider);
 }
+
+.install-guidance { grid-column: 1 / -1; }
 
 .install-grid {
   display: grid;
@@ -871,7 +744,7 @@ h3 {
 
 .install-card {
   border: 1px solid var(--site-line);
-  border-radius: 18px;
+  border-radius: 1.5rem;
   padding: 28px;
   background: var(--site-surface);
   display: flex;
@@ -894,28 +767,6 @@ h3 {
 
 .install-card h3 { margin: 0; font-size: 1.1rem; }
 .install-card-body { margin: 0; color: var(--site-ink-soft); font-size: 0.9rem; line-height: 1.6; }
-
-.install-steps {
-  margin: 0;
-  padding-left: 18px;
-  color: var(--site-ink-soft);
-  font-size: 0.9rem;
-  line-height: 1.7;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.install-steps a { color: var(--site-brand); }
-.install-steps a:hover { text-decoration: underline; }
-.install-steps strong { color: var(--site-ink); }
-
-.install-store-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: auto;
-}
 
 .install-store-btn { align-self: flex-start; }
 
@@ -1009,7 +860,6 @@ h3 {
   .bm-tab-label { display: none; }
   .install-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
-  .token-legend { flex-direction: column; }
   .token-item { min-width: 0; }
 }
 
@@ -1018,6 +868,19 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .why-card,
-  .button-copy-install { transition: none; }
+  .why-card { transition: none; }
 }
+
+/* Sculpted controls use solid surfaces rather than decorative depth. */
+.button, .button:hover { box-shadow: none; }
+
+/* Product headlines keep a complete thought beside a useful preview. */
+.hero h1 { max-width: 15ch; font-size: clamp(2.75rem, 4.4vw, 4.5rem); font-weight: 500; line-height: 1.08; letter-spacing: var(--site-title-tracking); text-wrap: balance; }
+.hero .lede { font-weight: 400; font-size: var(--site-body-size); line-height: var(--site-body-line-height); }
+
+.hero-inner { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: clamp(32px, 5vw, 72px); }
+.hero-copy, .hero-preview { min-width: 0; }
+.hero-preview { margin: 0; }
+.why-card, .install-card { padding: 24px 0; border: 0; border-top: 1px solid var(--section-divider); border-radius: 0; background: none; box-shadow: none; }
+.install-step-badge { padding: 0; width: auto; height: auto; margin-bottom: 20px; background: none; border: 0; color: var(--site-brand); font: 500 .75rem/1.4 var(--santi020k-font-mono); }
+@media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } }

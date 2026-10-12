@@ -1,15 +1,52 @@
-# Santi020k Theme
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/docs/assets/readme/workspace-dark.png">
+      <img src="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/docs/assets/readme/workspace-light.png" alt="Santi020k Theme — Calm contrast. A violet thread through your tools." width="1200" height="220">
+    </picture>
+  </a>
+</p>
+
+<h1 align="center">VS Code theme</h1>
+
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-13967e?style=flat-square" alt="License: MIT"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme"><img src="https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?color=945df4&amp;icon=terminal" alt="Visual Studio Marketplace Version"></a>
+  <a href="https://open-vsx.org/extension/santi020k/santi020k-theme"><img src="https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX&amp;logo=visual-studio-code&amp;color=945df4" alt="Open VSX Version"></a>
+  <a href="https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml?label=Validate&amp;logo=github&amp;color=945df4" alt="Validate"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">Project overview</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/santi020k-theme/package.json">Package manifest</a> ·
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/santi020k-theme/CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+<details>
+<summary>On this page</summary>
+
+- [Highlights](#highlights)
+- [Install](#install)
+- [Variants](#variants)
+- [Preview Settings](#preview-settings)
+- [Development](#development)
+- [Release](#release)
+- [Related Packages](#related-packages)
+- [Support](#support)
+- [License](#license)
+- [Resources](#resources)
+
+</details>
 
 <!-- Badge URLs: do NOT change these. For VS Marketplace version use badgen.net (shields.io visual-studio-marketplace is retired). shields.io is used for Open VSX and CI. vsmarketplacebadges.dev is dead. See AGENTS.md §README Rules. -->
-[![Visual Studio Marketplace Version](https://badgen.net/vs-marketplace/v/santi020k.santi020k-theme?color=945df4&icon=terminal)](https://marketplace.visualstudio.com/items?itemName=santi020k.santi020k-theme)
-[![Open VSX Version](https://img.shields.io/open-vsx/v/santi020k/santi020k-theme?label=Open%20VSX&logo=visual-studio-code&color=945df4)](https://open-vsx.org/extension/santi020k/santi020k-theme)
-[![Validate](https://img.shields.io/github/actions/workflow/status/santi020k/santi020k-theme/validate.yml?label=Validate&logo=github&color=945df4)](https://github.com/santi020k/santi020k-theme/actions/workflows/validate.yml)
 
 A coordinated VS Code theme family with deep indigo-black dark variants, purple-tinted light variants, high-contrast siblings, and optional bold or italic syntax styles. It is built for long technical sessions: calm contrast, semantic highlighting, and one consistent violet color language.
 
 **Website:** [vscode.santi020k.com](https://vscode.santi020k.com)
 
 <!-- Image URLs: use raw.githubusercontent.com so they render in the VS Code Marketplace. Relative paths do not work there. See AGENTS.md §README Rules. -->
+
 ![santi020k dark theme preview](https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/santi020k-theme/assets/previews/preview-dark.png)
 
 ![santi020k light theme preview](https://raw.githubusercontent.com/santi020k/santi020k-theme/main/packages/santi020k-theme/assets/previews/preview-light.png)
@@ -46,19 +83,19 @@ Open VSX listing: [open-vsx.org/extension/santi020k/santi020k-theme](https://ope
 
 ## Variants
 
-| Variant | UI theme | Notes |
-| --- | --- | --- |
-| `santi020k dark` | Dark | Deep indigo-black canvas with muted violet accents |
-| `santi020k light` | Light | Purple-tinted whites with a stronger violet interaction color |
-| `santi020k hc dark` | High contrast dark | Stronger borders and clearer separation on near-black surfaces |
-| `santi020k hc light` | High contrast light | White canvas, black structure, saturated syntax accents |
-| `santi020k dark bold` | Dark | Dark palette with bold syntax tokens |
-| `santi020k light bold` | Light | Light palette with bold syntax tokens |
-| `santi020k hc dark bold` | High contrast dark | High-contrast dark palette with bold syntax tokens |
-| `santi020k hc light bold` | High contrast light | High-contrast light palette with bold syntax tokens |
-| `santi020k dark italic` | Dark | Dark palette with broader italic syntax styling |
-| `santi020k light italic` | Light | Light palette with broader italic syntax styling |
-| `santi020k hc dark italic` | High contrast dark | High-contrast dark palette with broader italic syntax styling |
+| Variant                     | UI theme            | Notes                                                          |
+| --------------------------- | ------------------- | -------------------------------------------------------------- |
+| `santi020k dark`            | Dark                | Deep indigo-black canvas with muted violet accents             |
+| `santi020k light`           | Light               | Purple-tinted whites with a stronger violet interaction color  |
+| `santi020k hc dark`         | High contrast dark  | Stronger borders and clearer separation on near-black surfaces |
+| `santi020k hc light`        | High contrast light | White canvas, black structure, saturated syntax accents        |
+| `santi020k dark bold`       | Dark                | Dark palette with bold syntax tokens                           |
+| `santi020k light bold`      | Light               | Light palette with bold syntax tokens                          |
+| `santi020k hc dark bold`    | High contrast dark  | High-contrast dark palette with bold syntax tokens             |
+| `santi020k hc light bold`   | High contrast light | High-contrast light palette with bold syntax tokens            |
+| `santi020k dark italic`     | Dark                | Dark palette with broader italic syntax styling                |
+| `santi020k light italic`    | Light               | Light palette with broader italic syntax styling               |
+| `santi020k hc dark italic`  | High contrast dark  | High-contrast dark palette with broader italic syntax styling  |
 | `santi020k hc light italic` | High contrast light | High-contrast light palette with broader italic syntax styling |
 
 ## Preview Settings
@@ -81,14 +118,14 @@ The theme works with any font. These settings only tune the preview style.
 
 Run commands from the repository root unless you are intentionally working inside this package.
 
-| Command | What it does |
-| --- | --- |
-| `pnpm --filter santi020k-theme run build` | Generates base, high-contrast, bold, and italic theme files |
-| `pnpm --filter santi020k-theme run validate:themes` | Parses and validates the theme files |
-| `pnpm --filter santi020k-theme run validate:marketplace` | Checks extension metadata and packaging readiness |
-| `pnpm --filter santi020k-theme run package` | Builds a local VSIX with `vsce package --no-dependencies` |
-| `pnpm run validate:themes` | Runs the root theme validation shortcut |
-| `pnpm run validate` | Runs the full monorepo validation suite |
+| Command                                                  | What it does                                                |
+| -------------------------------------------------------- | ----------------------------------------------------------- |
+| `pnpm --filter santi020k-theme run build`                | Generates base, high-contrast, bold, and italic theme files |
+| `pnpm --filter santi020k-theme run validate:themes`      | Parses and validates the theme files                        |
+| `pnpm --filter santi020k-theme run validate:marketplace` | Checks extension metadata and packaging readiness           |
+| `pnpm --filter santi020k-theme run package`              | Builds a local VSIX with `vsce package --no-dependencies`   |
+| `pnpm run validate:themes`                               | Runs the root theme validation shortcut                     |
+| `pnpm run validate`                                      | Runs the full monorepo validation suite                     |
 
 Generated variants come from scripts in `scripts/`. Avoid hand-editing generated VSIX files or build artifacts.
 
@@ -114,3 +151,7 @@ If this theme makes your editor a nicer place to work, you can support ongoing m
 ## License
 
 MIT. See the repository [LICENSE](../../LICENSE).
+
+## Resources
+
+[Project overview](https://github.com/santi020k/santi020k-theme/blob/main/README.md) · [Contributing](https://github.com/santi020k/santi020k-theme/blob/main/CONTRIBUTING.md) · [License](https://github.com/santi020k/santi020k-theme/blob/main/LICENSE)

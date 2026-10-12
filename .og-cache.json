@@ -1,107 +1,227 @@
 {
-  "cacheKey": "preset-v4",
+  "cacheKey": "preset-v6",
   "entries": {
     "apps/website/public/og-image.png": {
-      "digest": "27cfcc06555a268cf2525229614230c637019354e9171cfe387bf308a83e4d10",
-      "fingerprint": "e2b175b4e1ef0f2754f2593cca5e4ee3c7e9a6718054494480b667ba5e78acc6",
+      "digest": "36763c33a1dee731f4f85737a95117a6d0424d7915798f0ed8a8db4af0ee4702",
+      "fingerprint": "18f67e8609f84854be56d226f8e206a0c09057bc11452c4ccb095b4269f78d7e",
       "output": "apps/website/public/og-image.png"
     },
     "apps/website/public/og-image.svg": {
-      "digest": "15f6f81e5ca6a708cc73229cfac18ef4e67710333dc5c7063796c86254f822d3",
-      "fingerprint": "d6c33f9b7046c30c64a1919f54d9f7c87a58dae04a0cd87b99e3c69c0e4a1a67",
+      "digest": "9bdb85dd5daf91ab34c735d3a3c0955cf494af594937202020706990561c4a21",
+      "fingerprint": "a9cc4dd7c0ca48570d44a4744bc40657d03ab5fe6370d10585406cb757b34e66",
       "output": "apps/website/public/og-image.svg"
     },
     "apps/vscode-website/public/og-image.png": {
-      "digest": "4fc41f6ea0bdb573d50064f5021cf01e2d8e4dbea82c36aeef50e81dbe543940",
-      "fingerprint": "0c29cc1fcb254807374e24fef72a67f1e98de2bb4d948f279d4cd06d8f1f582a",
+      "digest": "8ed60159afde05393f34ef4cea8aa004da7d22be54a284e1ced75a6ce13f48d7",
+      "fingerprint": "1e2d5eac12ab7c791652d6cd5e46b8e223c7e318e2cf156732225f7704aa7e98",
       "output": "apps/vscode-website/public/og-image.png"
     },
     "apps/vscode-website/public/og-image.svg": {
-      "digest": "9e9ed60cab59c24d5761951b57f6affe1791a55629c5b64ff29f76434d93f1b3",
-      "fingerprint": "99ffd4e1f92aaa1e97b91443aabd774f41bf61bb58f046fd1860ffe6a0e02a84",
+      "digest": "2a955e809c337c92657942ca7f0624325959801bc1a68975509dab6f3a5c7836",
+      "fingerprint": "b447942a4cc13816c2ce3837ed0f02ce22f9b3e3b7cab468a33d0003b8d50fd6",
       "output": "apps/vscode-website/public/og-image.svg"
     },
     "apps/chrome-website/public/og-image.png": {
-      "digest": "9a77599b3f007fe4fb3e872b986f1ad1d4f4faf4c39d8efe3ead28121296a17e",
-      "fingerprint": "353ab41ad8f006c9a894257813a7fe37175c73bf223e56cc4105a4875f06487d",
+      "digest": "a71bc93785da499757d9f4f1f7989bb806ae0117c06d8e5a2eebbf172e2f4646",
+      "fingerprint": "c1e6b943d2f00ca6838feffc26580c2e3795e8c8d48bd9eaaedf77406af3d4b2",
       "output": "apps/chrome-website/public/og-image.png"
     },
     "apps/chrome-website/public/og-image.svg": {
-      "digest": "7da744aef1ef7b8e01d266562fb029554c011e9fcef89c77f58173d304aef938",
-      "fingerprint": "31a2dfb37ab42e33bb0da49c284875865ef39faae9f36f31754a97135792d5c4",
+      "digest": "14ff66f63cd8c0b8c86d48e4e3820fccff04282311986c834672e0d657357c51",
+      "fingerprint": "0a11861a5a4ef63d9108892b4ddabc069318b0d91b3eccd68546eacfaed9cfce",
       "output": "apps/chrome-website/public/og-image.svg"
     },
     "apps/zed-website/public/og-image.png": {
-      "digest": "dc3f890d482b561b05e7a9f897a287b85529ace3f0de058308575c84912f1e15",
-      "fingerprint": "8141655b0f6169babe6a3381af37f5d998bff205f1d08f4275490f586584530a",
+      "digest": "f6983f9b75b4c99361304e8b2a455b757ccbf0a6eb9aa750eb63caf5425365d7",
+      "fingerprint": "5062242b74013e8d088535b14ccd61c48e1000f5c8da4e3e6703ff4af99ee704",
       "output": "apps/zed-website/public/og-image.png"
     },
     "apps/zed-website/public/og-image.svg": {
-      "digest": "23e266918df3f0dbc897415432545d07744ed46600d88d2e6b716945cbdc9444",
-      "fingerprint": "ca69430627e3b1a81f98b8dd39dda6db445bee3bc18b1ae78db53884138cda87",
+      "digest": "ea6fed54620178800ecbf9e926df72764c8650603076bcdca74a5388431887c2",
+      "fingerprint": "799c0ddc3f8309858137bc9eee750732663de281710bc255f1548a2f091ecb88",
       "output": "apps/zed-website/public/og-image.svg"
     },
     "apps/codex-website/public/og-image.png": {
-      "digest": "3d0a203529b60b7bd18887653fc6447eaab3965d4e368aa83917820e514f2967",
-      "fingerprint": "fbf7134cef4fece00a643af60122a8dd9be755ba3277ab21ef551f23ab9f36c7",
+      "digest": "0a4ca4f76816a195dcbd4219342aeebe9290850dd324b9865ff29b1b03310681",
+      "fingerprint": "824de1a4fd3b3444e0b0a2bc6038fff2394a7762c7f9f58e137a4f840fa77c7b",
       "output": "apps/codex-website/public/og-image.png"
     },
     "apps/codex-website/public/og-image.svg": {
-      "digest": "307fed0dc62a16bd8afab495a3a2b2e36a93b25d9562fa1117b09ea44887dbab",
-      "fingerprint": "0eacf54116f33fde4792ea5b13eae61b9a36c4db485affcf785ca7bbcc2150d8",
+      "digest": "81482df3f90a491d1c6affef00ebd708bd794dd1befbc2b9d7f06e4fa1ab12a4",
+      "fingerprint": "f792f6286fecbe05be4bebadcce780f22a13d0cdd3d74bb0ed8af62955bbc10b",
       "output": "apps/codex-website/public/og-image.svg"
     },
+    "apps/website/public/og-raycast.png": {
+      "digest": "ca19e918cf766b7505acb48557cf8191efbe8b20c00d2318cfc9c1bed7d4af8e",
+      "fingerprint": "40c3cc899bc0269e2932ae18c8f52e80f42314a9c6f3e72b2a403a4c58c20911",
+      "output": "apps/website/public/og-raycast.png"
+    },
+    "apps/website/public/og-raycast.svg": {
+      "digest": "63fd284afc8830b005bd387f3993a21839fa99de27de91688c95295c0d95fa38",
+      "fingerprint": "5646ecaf007c3349044046b8d6da15a6743049b9b35213eef1aee65089bf8369",
+      "output": "apps/website/public/og-raycast.svg"
+    },
+    "apps/website/public/og-slack.png": {
+      "digest": "ac5d7d3f0021ea3ea86fa71636e591010e6e39d1a177c89d400c7b3e90320ea7",
+      "fingerprint": "61d7dc66cfbffc81161d98072046b0bddda6bbb95a9c4f1ecfa436d61b140934",
+      "output": "apps/website/public/og-slack.png"
+    },
+    "apps/website/public/og-slack.svg": {
+      "digest": "a33c56277c2eefcfff9b9be20ac1e3b08cf367a046a6889e07326d5f04f6f72f",
+      "fingerprint": "13aeed7d0b1ffb49eea6b12801ed3470568fc19ae7f61c8d0cae35441ff67be2",
+      "output": "apps/website/public/og-slack.svg"
+    },
+    "apps/website/public/og-jetbrains.png": {
+      "digest": "f01424388fc233badc92d3dd8db7975dca857103b8828d1a8eb75e96a5ba8ad8",
+      "fingerprint": "b41f0b438021b3916621d5e60b585241bbf0e5ebd2ee732fe3316d2693bae91c",
+      "output": "apps/website/public/og-jetbrains.png"
+    },
+    "apps/website/public/og-jetbrains.svg": {
+      "digest": "da4474094d784b2ad2287cd69d480d16584bc5b3968c567b88759466996c0cc3",
+      "fingerprint": "84d784aafd9f6edc255d901b3c83c11e2ea073125604ff433ad3161a73a34216",
+      "output": "apps/website/public/og-jetbrains.svg"
+    },
+    "apps/website/public/og-xcode.png": {
+      "digest": "6f92247ce3d686175226cd9d5c36be04914a24a4289ef39547d4b9d0d32dbb9f",
+      "fingerprint": "5ef605da3bd8c74b748c309f9a95d2557039412c009cd7772ab61f313052dbb3",
+      "output": "apps/website/public/og-xcode.png"
+    },
+    "apps/website/public/og-xcode.svg": {
+      "digest": "2e3485af19239f6ad7f301aaa9812a8e844a5239433502490ea55fe7eaf7db78",
+      "fingerprint": "a2b9d77abdd04ed79565863b484e738b4f6dee3209d148f31f806b99de263f97",
+      "output": "apps/website/public/og-xcode.svg"
+    },
+    "apps/website/public/og-obsidian.png": {
+      "digest": "29a1225df99a4fd98ab50f50b231476052213cfb12b2d842c5d965acb4f782d2",
+      "fingerprint": "268f329760057385f72b352d2102a1fd6fa1233c664c01bea8d02a88b0ef2a99",
+      "output": "apps/website/public/og-obsidian.png"
+    },
+    "apps/website/public/og-obsidian.svg": {
+      "digest": "c117bd2cfe99d672a5b7b109177ada552ae7c2a2eb99204484cf2c8c50a6a0c2",
+      "fingerprint": "39a6a15aab9c263cdaf0c4d1b7e58385d184caca70c5ab7c5b4e0c972cd1bc70",
+      "output": "apps/website/public/og-obsidian.svg"
+    },
+    "apps/website/public/og-neovim.png": {
+      "digest": "04361eb96d36bd4ab92627a4d6e0b5cd3d1c6f9d1dc92249ccaa9d0a982d8ec7",
+      "fingerprint": "e278bd2c00818e58ec1a4ee0344c0db38c7a85863b814e9447a606bf6992d74f",
+      "output": "apps/website/public/og-neovim.png"
+    },
+    "apps/website/public/og-neovim.svg": {
+      "digest": "2d243ea4f074e6c7a83b18736d1dc075eb7a9e99ac1b096dadce4a7145f8dfe8",
+      "fingerprint": "ef77b3b4d6200badd940438de054bd2ec2c3728ca7f45bf0aad53f1c26f9ca61",
+      "output": "apps/website/public/og-neovim.svg"
+    },
+    "apps/website/public/og-iphone.png": {
+      "digest": "3a847755a4e55c0bebc4344243d1cd6b3be1587a7d786e4afc4af2cf2baf1fad",
+      "fingerprint": "15d6d65517396723c1ef4fce6ed130d5aa62c2372b40f1c3822347eea59d7b49",
+      "output": "apps/website/public/og-iphone.png"
+    },
+    "apps/website/public/og-iphone.svg": {
+      "digest": "89b8a4593f413bf38dabce7370acfe14e6e437cc23e1700266d889a07c6b4774",
+      "fingerprint": "3be2e905fbc513453009673ff9e455dfd03c4893987fe9e654127770d38aebc7",
+      "output": "apps/website/public/og-iphone.svg"
+    },
+    "apps/website/public/og-appearance.png": {
+      "digest": "5419317380f1f3fbe7442aa0469fc1f7fa9ccff92d404f2c79c836e7a53ee533",
+      "fingerprint": "4fc01e4fb77b9b67672db036431920d37fb0d6466dff78dad5f4a73b8caa7840",
+      "output": "apps/website/public/og-appearance.png"
+    },
+    "apps/website/public/og-appearance.svg": {
+      "digest": "9e833404766355e011360376a858f444edbdea68b3e62b4b5ee291634fc03314",
+      "fingerprint": "cc32a3783306d0c38ed58e5011281ffd630a58c12bc2430ed208997171fe556d",
+      "output": "apps/website/public/og-appearance.svg"
+    },
+    "apps/website/public/og-design.png": {
+      "digest": "6fe79c2aeb7d513c19e5b85b544a078780b960a6aa3848f82b34bfd7c7a82e4d",
+      "fingerprint": "f7565854400a83a911719f8a9e16f397092290b5b4871cfa6ce62bc678e0fd19",
+      "output": "apps/website/public/og-design.png"
+    },
+    "apps/website/public/og-design.svg": {
+      "digest": "b6d7ab8eefa83d5e8f0724454608fca3243acd11cd86c61f3b4743662b137069",
+      "fingerprint": "f627d11aaa3e9ef105735fff3819ee766cc080c03472d4202a8add7f8970f20e",
+      "output": "apps/website/public/og-design.svg"
+    },
+    "apps/website/public/og-support.png": {
+      "digest": "5445abc57350ce5da3b9b0547b6dc3172a22d6dce09a6858981658abcc8d1550",
+      "fingerprint": "be4830cd6621f50a6e7a7209551824ca492934648b002ff78718008faec7d68f",
+      "output": "apps/website/public/og-support.png"
+    },
+    "apps/website/public/og-support.svg": {
+      "digest": "a6ea1362e4f26162cfa61286e1ae3a699bb6c43d8b1e3159665185bec0d806cc",
+      "fingerprint": "162ffca5dc47b6b9190e1cedf36c0414826bfd94954507102e4f0b49a4b42519",
+      "output": "apps/website/public/og-support.svg"
+    },
+    "apps/website/public/og-gallery.png": {
+      "digest": "a56ad11ee869ade41764d442b99271ac09538c9ab2a96e66fdd164eece070999",
+      "fingerprint": "b6f6ce47ff92ea2a0fa2f02f6131278d761dbe51dc5594b95ae447c81ac2a57a",
+      "output": "apps/website/public/og-gallery.png"
+    },
+    "apps/website/public/og-gallery.svg": {
+      "digest": "6b36f705af6ca696525fa5fe5f70271fd150730a70e283ba4bc2381bdfc5c663",
+      "fingerprint": "f8ba0e1c492cca9ddf15fbe7e8a20d50ce842e6e389973f63a687d30ecd8d074",
+      "output": "apps/website/public/og-gallery.svg"
+    },
+    "apps/website/public/og-archive.png": {
+      "digest": "5a1e7f23d3c7c06aeadf7d97d8653944f693a47402ff2cfca7cdb9563396ba36",
+      "fingerprint": "186eb9efe6dd330256fdfda997b483929998a369e78f198b42ccc2731acf38ce",
+      "output": "apps/website/public/og-archive.png"
+    },
+    "apps/website/public/og-archive.svg": {
+      "digest": "14c1b36da086a67a519565881a5d8ed80fed5b8b7cf2e8849074b307c62e2ba6",
+      "fingerprint": "93113cc9be47dcc3d9640a284112e930accc147979d846a14a7c0193dbcdf75f",
+      "output": "apps/website/public/og-archive.svg"
+    },
     "apps/terminal-website/public/og-image.png": {
-      "digest": "f887140fc04306202100c8f227ccd03dc85f4cde0cadeb114f5e53b7c56b1605",
-      "fingerprint": "0b5ef326eea36c9ce3923c6d19e7c6de413c39c5d4d71e4bda25d05b07d020d8",
+      "digest": "e7bf277a79f27147ac253e670dc752d9ab0d83f2ec3d5dc829ac21dbdd7dad00",
+      "fingerprint": "70891ed4f23b9e20235208d991d8c0626b18da2ecd6a285e7f3c14cbe2510594",
       "output": "apps/terminal-website/public/og-image.png"
     },
     "apps/terminal-website/public/og-image.svg": {
-      "digest": "e9c7c03cea5732ba5cf4d6578929e08e145f5745b705fa0314ac1b05417f6f81",
-      "fingerprint": "d00d27a800912fd3e0f71f317478ff5c3d0de66029cf67acb7c28f3e3b71c8e4",
+      "digest": "434ac4b19678382d8d591afce40001c5fed90e479bd98a57e9a6f33aa32a63c9",
+      "fingerprint": "8399be411ec63628416600573c82be7d6ba95dd4c50cee7d59299550a6c67eba",
       "output": "apps/terminal-website/public/og-image.svg"
     },
     "apps/terminal-website/public/og-zsh.png": {
-      "digest": "530e9f3fc15240d0b3021fbbaf1f48b7db8c7fe4fbac0928efe44f977783d21c",
-      "fingerprint": "d8916f5930f1d3c55c058b22d9164cb6bd4752ec9f35023602c49e18378ebcf7",
+      "digest": "ce43c719d3eec8242567a928c1e54b0f889ce5fdb168c89306ba6c3456bb5e5d",
+      "fingerprint": "27d4df032608e1713e8b2c12f8cd261a0eef3e15ca2f3c9122aaaa6da4cc1a11",
       "output": "apps/terminal-website/public/og-zsh.png"
     },
     "apps/terminal-website/public/og-zsh.svg": {
-      "digest": "8417c0dc5a463028ce4bb51c98f98db3f91ace9fe2510658f4c3158effeeadf0",
-      "fingerprint": "55b115de911141ad06514d79991e7e5b13ecc68ae2dcb3260301553b13b6f0ce",
+      "digest": "4c1605ff25fb815c17fb981f2a2b38ebc3290c6c7a94a0f0803ac082425e2fdc",
+      "fingerprint": "b5fe1ef266a3da2bb5ef59843586369515805f1cc135c168f4011aaf2367477c",
       "output": "apps/terminal-website/public/og-zsh.svg"
     },
     "apps/terminal-website/public/og-iterm2.png": {
-      "digest": "14706130fe795e7dd39766a63d597d4d095d5781342ddfe603594369e1fa1c10",
-      "fingerprint": "8916bf62d7cb7eca4d06dffadfec02d3256d875003997ef1f6ac3aafa2ea3826",
+      "digest": "c2ee291e2174e78e161900e51c0a9d41827db8902c3aa1c44898d89f36dbf326",
+      "fingerprint": "3b158dd7b3662a19126308eb14deeda9fe1748c15d6128a3fcdd6767b8e308b8",
       "output": "apps/terminal-website/public/og-iterm2.png"
     },
     "apps/terminal-website/public/og-iterm2.svg": {
-      "digest": "96dabae0066e49c59ab7cf540c83e6098d5cc21947dbcd1b43a6ab7b6d03b155",
-      "fingerprint": "cf8de365fdd67de7958db34d0d8bb3a70b6afa573df97d65fdd427f0089de0e6",
+      "digest": "b50add0a94a30242412eef7c5f5170b190b420f573469ab30e7087418b64f136",
+      "fingerprint": "7e99dc099aa25c1552032b235a17d4090038c66f6e4d7a2d63107a3cfe47bcd0",
       "output": "apps/terminal-website/public/og-iterm2.svg"
     },
     "apps/terminal-website/public/og-starship.png": {
-      "digest": "ec8580e2f930ec9609cffd0057be148dd845079f44e8867f064334b2ab36c774",
-      "fingerprint": "a1924dc008ed42d3acc2b086ff51692c44ffb7d2ecac4cb21a6c557eab44446a",
+      "digest": "583c73a44913db2b4a4e4a404d7ebc02412a1121f324235dba4774768ceba567",
+      "fingerprint": "09e217b05e1f43a59879eaa224706c82f4df65790a5837703d4bc99baac0d862",
       "output": "apps/terminal-website/public/og-starship.png"
     },
     "apps/terminal-website/public/og-starship.svg": {
-      "digest": "c5374310c6dfa98a7724ecf70ff502f24741c0f607bc3ea269a5f92dd1720bab",
-      "fingerprint": "3a3c28c6cc6efd1fba9726b2f79da71d7b9404bbae4bb2a4daa6748cf5eb50c8",
+      "digest": "e7306e8dc5f00d9b8bac28c733a4b280c26ed421c2946ff3ef4e3c5dd3e7ae01",
+      "fingerprint": "498be7bd31f29a8850e127a1163571bc1cfe1c8643b588870c447321cc07c31f",
       "output": "apps/terminal-website/public/og-starship.svg"
     },
     "apps/terminal-website/public/og-ports.png": {
-      "digest": "2fcbc0c1188b7841ea38f507ec21c1898c06e8a55eabb37b2d45f91f8156789f",
-      "fingerprint": "3590770d53e86c77b505afb0684a2ef2f534e435baa45a02010be588c044fa6b",
+      "digest": "acd752d2b95d6a41559659c6ea9f0b93852e4ad9c913d34e8fac2c0c2e6b29bb",
+      "fingerprint": "e9169ad6e7d2494d65a861ba928f0b13f0817324101ba28dfc650c88a96c4d2c",
       "output": "apps/terminal-website/public/og-ports.png"
     },
     "apps/terminal-website/public/og-ports.svg": {
-      "digest": "99afdbc33a0b9565b173c4944590e4e1d2fea2ea2483433c44587d5651fcddea",
-      "fingerprint": "65d9667b92c0dede42ea9d2af6ba4398ca9979733fcbb2e267a6485a81241180",
+      "digest": "e83a96ffd0141b9ad40cd8b9f8212080f5f8e19454752ecb5cb5d7f2d5690e2a",
+      "fingerprint": "dbf2f7efdf3327056976ff94a273fa5f79bfce6b791b7ca56483fced7920d59f",
       "output": "apps/terminal-website/public/og-ports.svg"
     }
   },
-  "generatorVersion": "1.1.1",
+  "generatorVersion": "1.2.0",
   "version": 3
 }

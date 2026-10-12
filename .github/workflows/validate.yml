@@ -2,10 +2,10 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, "release/v*"]
     types: [opened, synchronize, reopened, edited, labeled, unlabeled]
   push:
-    branches: [main]
+    branches: [main, "release/v*"]
   workflow_dispatch: {}
 
 permissions:
@@ -27,13 +27,13 @@ jobs:
           fetch-depth: 0
 
       - name: Set up pnpm workspace
-        uses: santi020k/quality/actions/setup-pnpm@eec1701b98bcc0b76d36af288ee78a0369cd84cc # v1
+        uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
         with:
           node-version: 22
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Audit workspace dependencies
-        run: pnpm audit --audit-level=moderate
+        run: pnpm run audit:dependencies
 
       - name: Validate pull request title
         if: github.event_name == 'pull_request'
@@ -51,5 +51,24 @@ jobs:
       - name: Install Zsh
         run: sudo apt-get update && sudo apt-get install --yes zsh
 
+      - name: Install native Neovim test runtime
+        run: |
+          curl --fail --location --retry 3 https://github.com/neovim/neovim/releases/download/v0.12.6/nvim-linux-x86_64.tar.gz --output "$RUNNER_TEMP/neovim.tar.gz"
+          printf '%s  %s\n' '474430d53e6264f6d6dd18db42d6dc9df3a1b56ca9e88a325bbf860e1a811d87' "$RUNNER_TEMP/neovim.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/neovim.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/nvim-linux-x86_64/bin" >> "$GITHUB_PATH"
+
       - name: Validate repository
+        env:
+          REQUIRE_NATIVE_NEOVIM: '1'
         run: pnpm run validate
+
+  appearance-wallpapers:
+    name: Native macOS wallpaper validation
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
+      - name: Validate appearance frames and source fingerprints
+        run: node scripts/build-appearance-wallpapers.mjs --check

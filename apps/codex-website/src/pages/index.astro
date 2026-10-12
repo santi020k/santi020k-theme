@@ -1,13 +1,19 @@
 ---
-import { Badge, ButtonLink, Card, CodeTabs, Eyebrow, Icon } from '@santi020k/lumen-astro'
+import '../styles.css'
+
+import { Badge, Card, CodeTabs, Eyebrow, Icon } from '@santi020k/lumen-astro'
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import { getSiteUrls } from '@santi020k/theme/site'
 
 import darkPreset from '../../../../packages/santi020k-codex-theme/themes/santi020k-dark.codex-theme.json'
 import lightPreset from '../../../../packages/santi020k-codex-theme/themes/santi020k-light.codex-theme.json'
 import favicon from '../../../../packages/theme/assets/favicons/favicon.svg'
+import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import PaletteGrid from '../../../website/src/components/PaletteGrid.astro'
+import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
+import { codexPalettes } from '../../../website/src/product-palettes'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
 const copyableLightTheme = `codex-theme-v1:${JSON.stringify(lightPreset)}`
@@ -39,19 +45,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 <!doctype html>
 <html lang="en">
   <head>
+    <PageTransitions page="codex" />
     <meta charset="UTF-8" />
-    <script>
-      (function () {
-        var saved = localStorage.getItem('theme')
-        var theme = saved
-
-        if (theme !== 'light' && theme !== 'dark') {
-          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-        }
-
-        document.documentElement.setAttribute('data-theme', theme)
-      })()
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Santi020k Codex Theme — Dark and Light Presets</title>
     <meta name="description" content="Copy Santi020k Dark or Light for Codex: two import-ready presets with calm violet focus, durable contrast, and exact one-line settings values." />
@@ -85,11 +80,11 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <body>
     <SharedHeader currentProduct="codex" productLinks={[{ href: '/codex/', label: 'Overview' }, { href: '/codex/#presets', label: 'Presets' }, { href: '/codex/#details', label: 'Details' }]} />
 
-    <main id="top">
+    <main id="top" class="documentation-page">
       <section class="site-shell hero">
         <div class="hero-copy">
           <Eyebrow class="eyebrow">Codex custom themes</Eyebrow>
-          <h1>Bring Santi020k focus to Codex.</h1>
+          <h1>More room for your next idea.</h1>
           <p class="lede">Two native, import-ready presets shaped by the same quiet violet system as the rest of the Santi020k theme family.</p>
           <div class="hero-meta" aria-label="Theme availability">
             <Badge variant="success"><span class="status-dot" aria-hidden="true"></span>Available now</Badge>
@@ -97,14 +92,12 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <span>No extension required</span>
           </div>
           <div class="actions">
-            <ButtonLink class="button button-primary" variant="primary" href="#presets" showArrow>Copy a preset</ButtonLink>
-            <ButtonLink class="button button-secondary" variant="secondary" href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-codex-theme" newTab>View source</ButtonLink>
+            <ProductAction href="#presets">Copy a preset</ProductAction>
+            <ProductAction href="https://github.com/santi020k/santi020k-theme/tree/main/packages/santi020k-codex-theme" newTab variant="secondary">View source</ProductAction>
           </div>
         </div>
 
-        <div class="theme-stage" aria-label="Santi020k dark and light Codex theme preview">
-          <div class="preview-orbit preview-orbit-one" aria-hidden="true"></div>
-          <div class="preview-orbit preview-orbit-two" aria-hidden="true"></div>
+        <figure class="theme-stage" aria-label="Illustrative dark and light Codex previews">
 
           <article class="theme-window theme-window-dark" style={darkStyle}>
             <div class="window-top"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>Codex</b><Badge variant="secondary">Dark</Badge></div>
@@ -125,7 +118,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <div class="window-status"><span><i class="status-added"></i> Ready to import</span><span>System fonts</span></div>
             </div>
           </article>
-        </div>
+          <figcaption>Illustrative preview · Dark and light presets</figcaption>
+        </figure>
       </section>
 
       <section id="presets" class="site-shell section presets-section">
@@ -157,20 +151,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <p class="section-lede">Both modes keep hierarchy quiet and focus obvious, while added and removed states remain easy to distinguish during review.</p>
         </div>
 
-        <div class="variant-grid">
-          <Card as="article" class="variant-card variant-dark" style={darkStyle}>
-            <div class="variant-card-header"><span><Icon name="moon" /> Santi020k Dark</span><code>{darkPreset.theme.surface}</code></div>
-            <div class="palette-strip" aria-label="Dark preset colors"><i class="palette-surface"></i><i class="palette-ink"></i><i class="palette-accent"></i><i class="palette-added"></i><i class="palette-removed"></i></div>
-            <p>Deep indigo-black surfaces, soft lavender text, and a vivid violet accent built for long sessions.</p>
-            <dl><div><dt>Contrast</dt><dd>{darkPreset.theme.contrast}</dd></div><div><dt>Code theme</dt><dd>{darkPreset.codeThemeId}</dd></div><div><dt>Fonts</dt><dd>System</dd></div></dl>
-          </Card>
-
-          <Card as="article" class="variant-card variant-light" style={lightStyle}>
-            <div class="variant-card-header"><span><Icon name="sun" /> Santi020k Light</span><code>{lightPreset.theme.surface}</code></div>
-            <div class="palette-strip" aria-label="Light preset colors"><i class="palette-surface"></i><i class="palette-ink"></i><i class="palette-accent"></i><i class="palette-added"></i><i class="palette-removed"></i></div>
-            <p>Purple-tinted white surfaces, grounded charcoal text, and a rich violet interaction color.</p>
-            <dl><div><dt>Contrast</dt><dd>{lightPreset.theme.contrast}</dd></div><div><dt>Code theme</dt><dd>{lightPreset.codeThemeId}</dd></div><div><dt>Fonts</dt><dd>System</dd></div></dl>
-          </Card>
+        <div class="palette-variants">
+          {codexPalettes.map(palette => (
+            <section class="palette-variant" aria-label={palette.name}>
+              <h3>{palette.name}</h3>
+              <p class="palette-variant-meta">Contrast {palette.contrast} · Code theme: {palette.codeTheme} · System fonts</p>
+              <PaletteGrid headingLevel={4} colors={palette.colors} label={`${palette.name} colors`} columns={3} />
+            </section>
+          ))}
         </div>
       </section>
 
@@ -180,8 +168,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <h2>Make Codex feel like part of the family.</h2>
         </div>
         <div class="actions">
-          <ButtonLink class="button button-primary" variant="primary" href="#presets">Copy a preset</ButtonLink>
-          <ButtonLink class="button button-secondary" variant="secondary" href={siteUrls.hub}>Explore every theme</ButtonLink>
+          <ProductAction href="#presets">Copy a preset</ProductAction>
+          <ProductAction href={siteUrls.hub} variant="secondary">Explore every theme</ProductAction>
         </div>
       </section>
     </main>

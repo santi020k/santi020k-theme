@@ -1,4 +1,38 @@
-# Santi020k Terminal Theme
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/README.md">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/docs/assets/readme/workspace-dark.svg">
+      <img src="https://raw.githubusercontent.com/santi020k/santi020k-theme/main/docs/assets/readme/workspace-light.svg" alt="Santi020k Theme — Calm contrast. A violet thread through your tools." width="1200" height="220">
+    </picture>
+  </a>
+</p>
+
+<h1 align="center">Terminal theme</h1>
+
+<p align="center">
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-13967e?style=flat-square" alt="License: MIT"></a>
+  <a href="https://github.com/santi020k/santi020k-theme/blob/main/packages/santi020k-terminal-theme/package.json"><img src="https://img.shields.io/badge/workspace-Private-6319be?style=flat-square" alt="Workspace: Private"></a>
+</p>
+
+<p align="center">
+  <a href="../../README.md">Project overview</a> ·
+  <a href="package.json">Package manifest</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="#resources">Resources</a>
+</p>
+
+<details>
+<summary>On this page</summary>
+
+- [Powerful Zsh setup](#powerful-zsh-setup)
+- [Homebrew releases](#homebrew-releases)
+- [Transparent iTerm2 profiles](#transparent-iterm2-profiles)
+- [Automatic light and dark mode](#automatic-light-and-dark-mode)
+- [Build and validate](#build-and-validate)
+- [Generated color presets](#generated-color-presets)
+- [Resources](#resources)
+
+</details>
 
 The terminal edition of Santi020k Theme combines matching terminal colors and a Powerline-style prompt:
 
@@ -12,11 +46,11 @@ Visit [terminal.santi020k.com](https://terminal.santi020k.com/) for previews and
 
 The default rich presets use Nerd Font icons and relaxed segment padding. Portable presets replace application icons with plain labels, while minimal presets remove runtime modules and use tighter spacing. For matching physical scale in iTerm2, use CaskaydiaCove Nerd Font at 15 pt with approximately 110% vertical spacing.
 
-| Preset | Dark | Light | Font requirement |
-| --- | --- | --- | --- |
-| Rich icons | `santi020k-dark.toml` | `santi020k-light.toml` | Nerd Font |
+| Preset          | Dark                           | Light                           | Font requirement       |
+| --------------- | ------------------------------ | ------------------------------- | ---------------------- |
+| Rich icons      | `santi020k-dark.toml`          | `santi020k-light.toml`          | Nerd Font              |
 | Portable labels | `santi020k-dark-portable.toml` | `santi020k-light-portable.toml` | Powerline-capable font |
-| Minimal | `santi020k-dark-minimal.toml` | `santi020k-light-minimal.toml` | Powerline-capable font |
+| Minimal         | `santi020k-dark-minimal.toml`  | `santi020k-light-minimal.toml`  | Powerline-capable font |
 
 ## Powerful Zsh setup
 
@@ -84,11 +118,15 @@ The shared dark and light palette is generated for iTerm2, Ghostty, Kitty, WezTe
 
 ## Generated color presets
 
-| Terminal | Directory |
-| --- | --- |
-| iTerm2 | `iterm2/` |
-| Ghostty | `ghostty/` |
-| Kitty | `kitty/` |
-| WezTerm | `wezterm/` |
+| Terminal         | Directory           |
+| ---------------- | ------------------- |
+| iTerm2           | `iterm2/`           |
+| Ghostty          | `ghostty/`          |
+| Kitty            | `kitty/`            |
+| WezTerm          | `wezterm/`          |
 | Windows Terminal | `windows-terminal/` |
-| Alacritty | `alacritty/` |
+| Alacritty        | `alacritty/`        |
+
+## Resources
+
+[Project overview](../../README.md) · [Contributing](../../CONTRIBUTING.md) · [License](../../LICENSE)

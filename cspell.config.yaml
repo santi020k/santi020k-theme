@@ -1,6 +1,33 @@
 version: "0.2"
 language: en
 words:
+  # Material description in the original image-generation prompts.
+  - photoreal
+  # Apple wallpaper tooling and setup terminology.
+  - automations
+  - HEIC
+  - CFURL
+  - ImageIO
+  - mczachurski
+  - wallpapper
+  # Native Neovim/Lua and Obsidian API identifiers.
+  - Condit
+  - Pmenu
+  - Sbar
+  - termguicolors
+  - stdpath
+  - undercurl
+  - nvim
+  - runtimepath
+  - enew
+  - lnum
+  - ipairs
+  - titlebar
+  # Standard WAI-ARIA attribute used by progressive dialog links.
+  - haspopup
+  # Image-generation tool and material terminology in the saved artwork prompts.
+  - imagegen
+  - microtexture
   # Native JetBrains and Xcode theme identifiers that cannot be renamed.
   - Darcula
   - DFDDE3
@@ -84,6 +111,7 @@ words:
   - esbuild
   - eslint
   - favicons
+  - fastify
   - fira
   - flex-shrink
   - flex-wrap
@@ -128,9 +156,11 @@ words:
   - inter
   - justify-content
   - justify-self
+  - katex
   - keybinding
   - keytar
   - knip
+  - jsdom
   - labelledby
   - lastmod
   - lede
@@ -234,6 +264,8 @@ words:
   - transition-property
   - transition-timing-function
   - tsconfck
+  - evenodd
+  - unstub
   - tspan
   - undici
   - unrs

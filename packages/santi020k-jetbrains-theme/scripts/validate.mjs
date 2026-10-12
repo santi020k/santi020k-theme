@@ -2,6 +2,7 @@ import { spawnSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
+import { contrastRatio } from '../../../scripts/lib/color-contrast.mjs'
 import pkg from '../package.json' with { type: 'json' }
 
 const root = resolve(import.meta.dirname, '..')
@@ -12,18 +13,6 @@ const bundledJar = '/Applications/Android Studio.app/Contents/jbr/Contents/Home/
 const jarExecutable = process.platform === 'darwin' && existsSync(bundledJar) ?
   bundledJar :
   'jar'
-
-const hexToRgb = color => color.match(/[\dA-F]{2}/gi).map(value => Number.parseInt(value, 16) / 255)
-
-const luminance = color => hexToRgb(color)
-  .map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4)
-  .reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0)
-
-const contrast = (foreground, background) => {
-  const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a)
-
-  return (values[0] + 0.05) / (values[1] + 0.05)
-}
 
 if (!pluginXml.includes('<id>com.santi020k.theme</id>')) throw new Error('JetBrains plugin ID is missing.')
 
@@ -42,7 +31,7 @@ for (const appearance of ['dark', 'light']) {
     if (!/^#[\dA-F]{6}$/i.test(theme.colors[role])) throw new Error(`Invalid JetBrains ${appearance} role: ${role}`)
   }
 
-  if (contrast(theme.colors.text, theme.colors.canvas) < 4.5) {
+  if (contrastRatio(theme.colors.text, theme.colors.canvas) < 4.5) {
     throw new Error(`JetBrains ${appearance} editor text must meet 4.5:1 contrast.`)
   }
 
