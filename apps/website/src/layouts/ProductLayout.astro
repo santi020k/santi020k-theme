@@ -21,7 +21,7 @@ interface Props {
 
 const { description, name, slug, title, pageKind = 'product', applicationCategory = 'DeveloperApplication' } = Astro.props
 const canonical = `https://theme.santi020k.com/${slug}/`
-const socialImage = 'https://theme.santi020k.com/og-image.png'
+const socialImage = `https://theme.santi020k.com/og-${slug === 'gallery/appearance' ? 'appearance' : slug}.png`
 
 const site = defineSite({
   locale: 'en_US',

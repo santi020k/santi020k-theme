@@ -1,5 +1,6 @@
 ---
 import { Breadcrumb, Collapsible, Link, Pagination, ScrollProgress } from '@santi020k/lumen-astro'
+import { breadcrumbSchema } from '@santi020k/og/schema'
 
 import DocsNavigation from '../components/DocsNavigation.astro'
 import { docsItems } from '../data/docs.js'
@@ -21,12 +22,35 @@ interface Props {
 
 const { title, description, path, eyebrow = 'Documentation', headings = [] }: Props = Astro.props
 const canonical = new URL(path, 'https://theme.santi020k.com').href
-const schema = { '@context': 'https://schema.org', '@type': 'TechArticle', headline: title, description, url: canonical }
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  url: canonical,
+  author: { '@type': 'Person', name: 'Santiago Molina', url: 'https://santi020k.com' }
+}
+
+const breadcrumb = breadcrumbSchema([
+  { name: 'Theme family', url: 'https://theme.santi020k.com/' },
+  { name: 'Terminal', url: 'https://theme.santi020k.com/terminal/' },
+  ...(path === '/terminal/docs/' ? [] : [{ name: 'Documentation', url: 'https://theme.santi020k.com/terminal/docs/' }]),
+  { name: title, url: canonical }
+])
+
+const socialImages: Record<string, { image: string, imageAlt: string }> = {
+  '/terminal/docs/zsh/': { image: 'og-zsh.png', imageAlt: 'Zsh Setup — Santi020k Theme' },
+  '/terminal/docs/starship/': { image: 'og-starship.png', imageAlt: 'Starship Prompt — Santi020k Theme' },
+  '/terminal/docs/terminal-colors/': { image: 'og-ports.png', imageAlt: 'Terminal Ports — Santi020k Theme' }
+}
+
+const socialImage = socialImages[path] ?? { image: 'og-image.png', imageAlt: 'Terminal Theme — Santi020k Theme' }
 const currentIndex = docsItems.findIndex(item => item.href === path)
 const previous = currentIndex > 0 ? docsItems[currentIndex - 1] : undefined
 const next = currentIndex >= 0 ? docsItems[currentIndex + 1] : undefined
 ---
-<SiteLayout title={`${title} — Santi020k Terminal docs`} {description} {canonical} {schema}>
+<SiteLayout title={`${title} — Santi020k Terminal docs`} {description} {canonical} {schema} {breadcrumb} {...socialImage}>
   <ScrollProgress aria-label="Documentation reading progress" />
   <div class="docs-shell shell">
     <aside class="docs-sidebar" aria-label="Terminal documentation">

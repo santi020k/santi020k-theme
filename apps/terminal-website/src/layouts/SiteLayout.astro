@@ -2,12 +2,14 @@
 import '../styles.css'
 
 import UIPrimitives from '@santi020k/lumen-astro/runtime'
+import type { JsonLdNode } from '@santi020k/og/schema'
 
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 
 interface Props {
+  breadcrumb?: JsonLdNode
   canonical: string
   description: string
   image?: string
@@ -22,7 +24,8 @@ const {
   canonical,
   image = 'og-image.png',
   imageAlt = 'Santi020k Terminal Theme preview',
-  schema
+  schema,
+  breadcrumb
 } = Astro.props
 
 const siteUrl = 'https://theme.santi020k.com/terminal/'
@@ -48,6 +51,7 @@ const structuredData = {
       url: 'https://santi020k.com/',
       sameAs: ['https://github.com/santi020k']
     },
+    ...(breadcrumb ? [breadcrumb] : []),
     {
       ...pageSchema,
       '@id': `${canonical}#page`,

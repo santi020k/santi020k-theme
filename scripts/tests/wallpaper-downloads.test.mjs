@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 
+import { createSitemap } from '../../apps/website/src/utils/sitemap.mjs'
 import { appearances, downloadHref, exportProfiles, previewHref, resolutions, wallpaperDesigns, wallpaperHref } from '../../artwork/wallpaper-catalog.mjs'
 
 const publicRoot = new URL('../../apps/website/public/', import.meta.url)
@@ -20,7 +21,7 @@ describe('Wallpaper detail and download contracts', () => {
   })
 
   it('provides unique pages, image sitemap entries, and distinct descriptive content', async () => {
-    const sitemap = await readFile(new URL('sitemap.xml', publicRoot), 'utf8')
+    const sitemap = createSitemap(['/pages/gallery/[slug].astro'])
 
     expect(new Set(wallpaperDesigns.map(design => design.slug)).size).toBe(wallpaperDesigns.length)
 

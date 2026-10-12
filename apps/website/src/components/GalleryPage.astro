@@ -23,7 +23,7 @@ const title = archive ? 'Classic Archive — Santi020k Theme' : 'Wallpaper Galle
 const description = archive ? 'Browse earlier Santi020k wallpapers, banners, and logos. Previous artwork and download links remain available in the Classic archive.' : 'Explore eight violet wallpaper designs for desktop and phone. Choose light or dark artwork, PNG, JPG, WEBP, quality, and screen resolution.'
 const assets = getGalleryAssets(archive)
 const designs = assets.flatMap(asset => asset.design ? [asset.design] : [])
-const socialImage = 'https://theme.santi020k.com/og-image.png'
+const socialImage = `https://theme.santi020k.com/og-${archive ? 'archive' : 'gallery'}.png`
 const imageAlt = 'Santi020k Theme wallpaper gallery and Classic archive'
 const categories = archive ? ['wallpapers', 'banners', 'logos'] : ['minimal', 'signature', 'sculpted']
 
