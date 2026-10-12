@@ -9,9 +9,11 @@ import darkPreset from '../../../../packages/santi020k-codex-theme/themes/santi0
 import lightPreset from '../../../../packages/santi020k-codex-theme/themes/santi020k-light.codex-theme.json'
 import favicon from '../../../../packages/theme/assets/favicons/favicon.svg'
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import PaletteGrid from '../../../website/src/components/PaletteGrid.astro'
 import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
+import { codexPalettes } from '../../../website/src/product-palettes'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
 const copyableLightTheme = `codex-theme-v1:${JSON.stringify(lightPreset)}`
@@ -149,20 +151,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <p class="section-lede">Both modes keep hierarchy quiet and focus obvious, while added and removed states remain easy to distinguish during review.</p>
         </div>
 
-        <div class="variant-grid">
-          <Card as="article" class="variant-card variant-dark" style={darkStyle}>
-            <div class="variant-card-header"><span><Icon name="moon" /> Santi020k Dark</span><code>{darkPreset.theme.surface}</code></div>
-            <div class="palette-strip" aria-label="Dark preset colors"><i class="palette-surface"></i><i class="palette-ink"></i><i class="palette-accent"></i><i class="palette-added"></i><i class="palette-removed"></i></div>
-            <p>Deep indigo-black surfaces, soft lavender text, and a vivid violet accent built for long sessions.</p>
-            <dl><div><dt>Contrast</dt><dd>{darkPreset.theme.contrast}</dd></div><div><dt>Code theme</dt><dd>{darkPreset.codeThemeId}</dd></div><div><dt>Fonts</dt><dd>System</dd></div></dl>
-          </Card>
-
-          <Card as="article" class="variant-card variant-light" style={lightStyle}>
-            <div class="variant-card-header"><span><Icon name="sun" /> Santi020k Light</span><code>{lightPreset.theme.surface}</code></div>
-            <div class="palette-strip" aria-label="Light preset colors"><i class="palette-surface"></i><i class="palette-ink"></i><i class="palette-accent"></i><i class="palette-added"></i><i class="palette-removed"></i></div>
-            <p>Purple-tinted white surfaces, grounded charcoal text, and a rich violet interaction color.</p>
-            <dl><div><dt>Contrast</dt><dd>{lightPreset.theme.contrast}</dd></div><div><dt>Code theme</dt><dd>{lightPreset.codeThemeId}</dd></div><div><dt>Fonts</dt><dd>System</dd></div></dl>
-          </Card>
+        <div class="palette-variants">
+          {codexPalettes.map(palette => (
+            <section class="palette-variant" aria-label={palette.name}>
+              <h3>{palette.name}</h3>
+              <p class="palette-variant-meta">Contrast {palette.contrast} · Code theme: {palette.codeTheme} · System fonts</p>
+              <PaletteGrid headingLevel={4} colors={palette.colors} label={`${palette.name} colors`} columns={3} />
+            </section>
+          ))}
         </div>
       </section>
 

@@ -8,9 +8,11 @@ import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import { getSiteUrls } from '@santi020k/theme/site'
 
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import PaletteGrid from '../../../website/src/components/PaletteGrid.astro'
 import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
+import { zedPalettes } from '../../../website/src/product-palettes'
 
 const siteUrls = getSiteUrls(import.meta.env.DEV)
 const installCommand = 'cp packages/santi020k-zed-theme/themes/santi020k.json ~/.config/zed/themes/santi020k.json'
@@ -144,28 +146,18 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         </div>
       </section>
 
-      <section id="variants" class="site-shell section-grid">
+      <section id="variants" class="site-shell section palette-section">
         <div>
           <p class="eyebrow">Variants</p>
           <h2>Pick the mode that matches your day.</h2>
         </div>
-        <div class="variant-stack">
-          <Card as="article" class="variant-card variant-dark">
-            <p>Dark</p>
-            <h3>Santi020k Dark</h3>
-            <div class="variant-meta">
-              <span class="variant-swatch">Canvas · #110c1d</span>
-              <span class="variant-swatch">Accent · violet focus</span>
-            </div>
-          </Card>
-          <Card as="article" class="variant-card variant-light">
-            <p>Light</p>
-            <h3>Santi020k Light</h3>
-            <div class="variant-meta">
-              <span class="variant-swatch">Canvas · #f8f6fd</span>
-              <span class="variant-swatch">Accent · rich purple</span>
-            </div>
-          </Card>
+        <div class="palette-variants">
+          {zedPalettes.map(palette => (
+            <section class="palette-variant" aria-label={palette.name}>
+              <h3>{palette.name}</h3>
+              <PaletteGrid headingLevel={4} colors={palette.colors} label={`${palette.name} colors`} />
+            </section>
+          ))}
         </div>
       </section>
 

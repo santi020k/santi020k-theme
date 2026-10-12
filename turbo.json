@@ -83,7 +83,10 @@
         "^build",
         "santi020k-terminal-theme#build",
         "santi020k-obsidian-theme#build",
-        "santi020k-neovim-theme#build"
+        "santi020k-neovim-theme#build",
+        "santi020k-chrome-theme#build",
+        "santi020k-codex-theme#build",
+        "santi020k-zed-theme#build"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
@@ -102,7 +105,10 @@
         "$TURBO_ROOT$/packages/santi020k-obsidian-theme/**",
         "$TURBO_ROOT$/packages/santi020k-neovim-theme/**",
         "$TURBO_ROOT$/docs/iphone-setup.md",
-        "$TURBO_ROOT$/LICENSE"
+        "$TURBO_ROOT$/LICENSE",
+        "$TURBO_ROOT$/apps/website/src/**",
+        "$TURBO_ROOT$/packages/santi020k-chrome-theme/manifest*.json",
+        "$TURBO_ROOT$/packages/santi020k-zed-theme/themes/**"
       ],
       "outputs": ["dist/**"],
       "outputLogs": "errors-only"
@@ -110,31 +116,41 @@
     "@santi020k/santi020k-vscode-theme-website#build": {
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/apps/website/src/components/**",
-        "$TURBO_ROOT$/apps/website/src/data/**",
-        "$TURBO_ROOT$/apps/website/src/utils/**"
+        "$TURBO_ROOT$/apps/website/src/**",
+        "$TURBO_ROOT$/packages/santi020k-chrome-theme/manifest*.json",
+        "$TURBO_ROOT$/packages/santi020k-zed-theme/themes/**",
+        "$TURBO_ROOT$/packages/santi020k-codex-theme/themes/**"
       ],
       "outputs": ["dist/**"],
       "outputLogs": "errors-only",
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build",
+        "santi020k-chrome-theme#build",
+        "santi020k-codex-theme#build",
+        "santi020k-zed-theme#build"
+      ]
     },
     "@santi020k/santi020k-chrome-theme-website#build": {
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/apps/website/src/components/**",
-        "$TURBO_ROOT$/apps/website/src/data/**",
-        "$TURBO_ROOT$/apps/website/src/utils/**"
+        "$TURBO_ROOT$/apps/website/src/**",
+        "$TURBO_ROOT$/packages/santi020k-chrome-theme/manifest*.json",
+        "$TURBO_ROOT$/packages/santi020k-zed-theme/themes/**",
+        "$TURBO_ROOT$/packages/santi020k-codex-theme/themes/**"
       ],
       "outputs": ["dist/**"],
       "outputLogs": "errors-only",
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build",
+        "santi020k-chrome-theme#build",
+        "santi020k-codex-theme#build",
+        "santi020k-zed-theme#build"
+      ]
     },
     "@santi020k/santi020k-terminal-theme-website#build": {
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/apps/website/src/components/**",
-        "$TURBO_ROOT$/apps/website/src/data/**",
-        "$TURBO_ROOT$/apps/website/src/utils/**"
+        "$TURBO_ROOT$/apps/website/src/**"
       ],
       "outputs": ["dist/**"],
       "outputLogs": "errors-only",
@@ -143,25 +159,36 @@
     "@santi020k/santi020k-zed-theme-website#build": {
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/apps/website/src/components/**",
-        "$TURBO_ROOT$/apps/website/src/data/**",
-        "$TURBO_ROOT$/apps/website/src/utils/**"
+        "$TURBO_ROOT$/apps/website/src/**",
+        "$TURBO_ROOT$/packages/santi020k-chrome-theme/manifest*.json",
+        "$TURBO_ROOT$/packages/santi020k-zed-theme/themes/**",
+        "$TURBO_ROOT$/packages/santi020k-codex-theme/themes/**"
       ],
       "outputs": ["dist/**"],
       "outputLogs": "errors-only",
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build",
+        "santi020k-chrome-theme#build",
+        "santi020k-codex-theme#build",
+        "santi020k-zed-theme#build"
+      ]
     },
     "@santi020k/santi020k-codex-theme-website#build": {
       "inputs": [
         "$TURBO_DEFAULT$",
         "$TURBO_ROOT$/packages/santi020k-codex-theme/themes/**",
-        "$TURBO_ROOT$/apps/website/src/components/**",
-        "$TURBO_ROOT$/apps/website/src/data/**",
-        "$TURBO_ROOT$/apps/website/src/utils/**"
+        "$TURBO_ROOT$/apps/website/src/**",
+        "$TURBO_ROOT$/packages/santi020k-chrome-theme/manifest*.json",
+        "$TURBO_ROOT$/packages/santi020k-zed-theme/themes/**"
       ],
       "outputs": ["dist/**"],
       "outputLogs": "errors-only",
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build",
+        "santi020k-chrome-theme#build",
+        "santi020k-codex-theme#build",
+        "santi020k-zed-theme#build"
+      ]
     },
     "santi020k-obsidian-theme#build": {
       "inputs": [

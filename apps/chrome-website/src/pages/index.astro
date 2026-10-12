@@ -6,10 +6,12 @@ import UIPrimitives from '@santi020k/lumen-astro/runtime'
 
 import chromePackage from '../../../../packages/santi020k-chrome-theme/package.json'
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
+import PaletteGrid from '../../../website/src/components/PaletteGrid.astro'
 import ProductAction from '../../../website/src/components/ProductAction.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
 import ThemeCardPreview from '../../../website/src/components/ThemeCardPreview.astro'
+import { chromePalette } from '../../../website/src/product-palettes'
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -181,29 +183,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             </div>
           </div>
         </div>
-
-        <div class="token-legend" aria-label="Color token legend">
-          <div class="token-item">
-            <span class="token-swatch" style="background:#0b0712"></span>
-            <div><strong>Frame</strong><span>#0b0712 — titleBar.activeBackground</span></div>
-          </div>
-          <div class="token-item">
-            <span class="token-swatch" style="background:#1c1528"></span>
-            <div><strong>Toolbar / tab strip</strong><span>#1c1528 — sideBar.background</span></div>
-          </div>
-          <div class="token-item">
-            <span class="token-swatch" style="background:#752df0"></span>
-            <div><strong>Active tab accent</strong><span>#752df0 — tab.activeBorder</span></div>
-          </div>
-          <div class="token-item">
-            <span class="token-swatch" style="background:#110c1d"></span>
-            <div><strong>NTP / omnibox</strong><span>#110c1d — editor.background</span></div>
-          </div>
-          <div class="token-item">
-            <span class="token-swatch" style="background:#945df4"></span>
-            <div><strong>Links / accents</strong><span>#945df4 — textLink.foreground</span></div>
-          </div>
-        </div>
       </section>
 
       <!-- ── Why section ────────────────────────────────────────────────────── -->
@@ -250,17 +229,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div>
           <p class="eyebrow">Palette</p>
           <h2>Violets for focus, depth for calm.</h2>
+          <p class="section-lede">Colors from the Chrome theme. Switch the page appearance to explore light and dark, and open any swatch for its color codes.</p>
         </div>
-        <div class="swatches" aria-label="Core theme colors">
-          <span style="--swatch: #0b0712">Frame</span>
-          <span style="--swatch: #1c1528">Toolbar</span>
-          <span style="--swatch: #110c1d">NTP / omnibox</span>
-          <span style="--swatch: #752df0">Tab accent</span>
-          <span style="--swatch: #945df4">Links</span>
-          <span style="--swatch: #b48df7">Section links</span>
-          <span style="--swatch: #dfdde3">Primary text</span>
-          <span style="--swatch: #8d8896; --swatch-text: var(--site-ink)">Muted text</span>
-        </div>
+        <PaletteGrid colors={chromePalette} label="Chrome theme palette" />
       </section>
 
       <!-- ── Install ────────────────────────────────────────────────────────── -->

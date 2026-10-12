@@ -1,5 +1,11 @@
 import { hexToRgb } from '@santi020k/theme'
 
+export type PaletteColor = {
+  name: string
+  description: string
+  label?: string
+} & ({ token: string, value?: never, lightValue?: never } | { token?: never, value: string, lightValue?: string })
+
 export const formatPaletteColor = (value: string) => {
   const hex = value.trim()
 

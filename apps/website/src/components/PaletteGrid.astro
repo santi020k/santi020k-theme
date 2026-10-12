@@ -1,0 +1,122 @@
+---
+import { Collapsible, Icon } from '@santi020k/lumen-astro'
+
+import { formatPaletteColor, type PaletteColor } from '../palette-colors'
+
+interface Props {
+  colors: readonly PaletteColor[]
+  label: string
+  columns?: 3 | 4
+  headingLevel?: 3 | 4
+}
+
+const { colors, label, columns = 4, headingLevel = 3 } = Astro.props
+const Heading = headingLevel === 4 ? 'h4' : 'h3'
+---
+
+<div class="palette-grid" data-columns={columns} role="group" aria-label={label}>
+  {colors.map(color => {
+    const formats = color.value ? formatPaletteColor(color.value) : null
+    const lightFormats = color.lightValue ? formatPaletteColor(color.lightValue) : null
+    const background = color.token !== undefined ? `var(${color.token})` : color.value
+
+    return (
+      <article class="palette-item" data-palette-token={color.token}>
+        <div class="palette-color" style={`--palette-color:${background};--palette-color-light:${color.lightValue ?? background}`} aria-hidden="true"></div>
+        <Heading class="palette-name">{color.name}</Heading>
+        {(color.label || color.token) && <code>{color.label ?? color.token}</code>}
+        <p>{color.description}</p>
+        <Collapsible class="palette-details" hidden={!formats}>
+          <summary aria-label={`${color.name} color codes`}>
+            Color codes <Icon name="chevron-down" decorative />
+          </summary>
+          <dl class="palette-values">
+            {(['hex', 'rgb', 'hsl'] as const).map(format => (
+              <div class:list={{ 'palette-hex': format === 'hex' }}>
+                <dt>{format.toUpperCase()}</dt>
+                <dd><code data-color-format={format}>
+                  <span data-palette-appearance={lightFormats ? 'dark' : undefined}>{formats?.[format]}</span>
+                  {lightFormats && <span data-palette-appearance="light">{lightFormats[format]}</span>}
+                </code></dd>
+              </div>
+            ))}
+          </dl>
+        </Collapsible>
+      </article>
+    )
+  })}
+</div>
+
+<script>
+  import { formatPaletteColor } from '../palette-colors'
+  import { bindPageLifecycle } from '../utils/page-lifecycle'
+
+  bindPageLifecycle('*', () => {
+    const swatches = document.querySelectorAll<HTMLElement>('[data-palette-token]')
+
+    if (!swatches.length) return
+
+    const updatePaletteValues = () => {
+      for (const swatch of swatches) {
+        const token = swatch.dataset.paletteToken
+        const details = swatch.querySelector<HTMLDetailsElement>('.palette-details')
+
+        if (!token || !details) continue
+
+        const formats = formatPaletteColor(getComputedStyle(swatch).getPropertyValue(token))
+
+        details.hidden = !formats
+
+        if (!formats) continue
+
+        for (const [format, value] of Object.entries(formats)) {
+          const output = details.querySelector(`[data-color-format="${format}"]`)
+
+          if (output) output.textContent = value
+        }
+      }
+    }
+
+    updatePaletteValues()
+
+    const observer = new MutationObserver(updatePaletteValues)
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
+    return () => observer.disconnect()
+  })
+</script>
+
+<style>
+  .palette-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; gap: var(--site-grid-gap); }
+  .palette-item { min-width: 0; }
+  .palette-color { height: 8rem; border: 1px solid var(--site-line); border-radius: var(--site-card-radius); }
+  .palette-item .palette-name { margin: 1.25rem 0 .5rem; font-size: 1rem; font-weight: 500; }
+  .palette-item code { font-size: .6875rem; overflow-wrap: anywhere; color: var(--site-ink-soft); }
+  .palette-item p { color: var(--site-ink-soft); font-size: .8125rem; line-height: 1.8; }
+  .palette-item :global(.palette-details) { overflow: visible; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+  .palette-details summary { display: inline-flex; align-items: center; gap: .5rem; min-height: var(--site-control-min-height); margin: 0; padding: 0; background: none; color: var(--site-ink-soft); font-size: .75rem; font-weight: 500; cursor: pointer; list-style: none; }
+  .palette-details summary::-webkit-details-marker { display: none; }
+  .palette-details summary::before, .palette-details summary::after { display: none; }
+  .palette-item :global(.palette-details[open]) summary { margin-bottom: 0; }
+  .palette-details summary:hover { background: none; color: var(--site-brand); }
+  .palette-details summary:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 4px; border-radius: .25rem; }
+  .palette-details summary :global(.ui-icon) { width: .875rem; height: .875rem; }
+  .palette-item :global(.palette-details[open]) summary :global(.ui-icon) { transform: rotate(180deg); }
+  .palette-values { margin: .25rem 0 0; padding-block: .75rem; border-top: 1px solid var(--section-divider); }
+  .palette-values > div { display: grid; grid-template-columns: 2rem minmax(0, 1fr); align-items: baseline; gap: .5rem; margin-top: .5rem; }
+  .palette-values > div:first-child { margin-top: 0; }
+  .palette-values dt { font-size: .5625rem; font-weight: 500; letter-spacing: .08em; color: var(--site-ink-soft); }
+  .palette-values dd { min-width: 0; margin: 0; }
+  .palette-values code { line-height: 1.65; user-select: all; }
+  .palette-hex code { font-size: .875rem; font-weight: 500; letter-spacing: .025em; color: var(--site-ink); }
+  @media (max-width: 1100px) { .palette-values > div { grid-template-columns: 1fr; gap: .125rem; } }
+
+  .palette-grid[data-columns="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .palette-color { background: var(--palette-color); }
+  [data-palette-appearance="light"] { display: none; }
+  :global(:root[data-theme="light"]) .palette-color { background: var(--palette-color-light); }
+  :global(:root[data-theme="light"]) [data-palette-appearance="dark"] { display: none; }
+  :global(:root[data-theme="light"]) [data-palette-appearance="light"] { display: inline; }
+  @media (max-width: 767px) { .palette-grid, .palette-grid[data-columns="3"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
