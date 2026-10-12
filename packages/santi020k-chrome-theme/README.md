@@ -49,7 +49,7 @@ Website: [chrome.santi020k.com](https://chrome.santi020k.com)
 Install from the Chrome Web Store:
 
 - [Santi020k Theme Dark](https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj)
-- [Santi020k Theme Light](https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci?utm_source=item-share-cb)
+- [Santi020k Theme Light](https://chromewebstore.google.com/detail/ekehaoadgcihpkajlnbpkankaginojci)
 
 ## Local Development
 

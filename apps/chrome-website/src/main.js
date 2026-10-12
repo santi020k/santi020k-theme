@@ -35,27 +35,6 @@ bindPageLifecycle('chrome', () => {
     onThemeChange: () => syncSiteThemeToggle(toggle)
   })
 
-  // Clipboard: copy the load-unpacked hint
-  const installBtn = document.querySelector('.button-copy-install')
-
-  if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('chrome://extensions')
-
-        const original = installBtn.innerHTML
-
-        installBtn.innerHTML = '<span class="command">Copied chrome://extensions!</span>'
-
-        setTimeout(() => {
-          installBtn.innerHTML = original
-        }, 2000)
-      } catch {
-      // clipboard not available — no-op
-      }
-    })
-  }
-
   const preview = document.querySelector('.browser-mockup')
   const previewControls = document.querySelectorAll('[data-preview-theme]')
 
