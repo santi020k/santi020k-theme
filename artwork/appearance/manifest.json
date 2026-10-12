@@ -1,0 +1,77 @@
+{
+  "generator": "e78ce3447d75513e19ccd0b10e5ea5490da8a77890bbba6b0a04663fec084994",
+  "entries": [
+    {
+      "slug": "halo",
+      "file": "halo.heic",
+      "sourceHashes": [
+        "9ff7538f55843649c33559d03a09ba053881d592becbc19de7cee1918765bd57",
+        "11b7344fc176ed90ce0a6e44bdded124eb7d0ce6e1a9501206c80c4ff0ac9df4"
+      ],
+      "sha256": "e57b82f5e982f6338432a8e4aea0d6cf0efb979aa4f6d0308ac55374a92bb592"
+    },
+    {
+      "slug": "contour",
+      "file": "contour.heic",
+      "sourceHashes": [
+        "77d37b6d99c2c736c13030a260a8a0cb9fd0afb17bdac27166d0425cee18e76f",
+        "d16deae19c8bcd91077d558923e95a275e03b633ad8e6b2630a1a12e8ebee83c"
+      ],
+      "sha256": "7da7ea4516b7a9be2a61b4252217addc1df50abf6b17766a1732f4427d43fae5"
+    },
+    {
+      "slug": "glass",
+      "file": "glass.heic",
+      "sourceHashes": [
+        "c7aae6d415c131cb8dedfa5f8aee6780d120bbb43368089c3242d8f730ddc30a",
+        "b415ba3007ed1df84183640242d671f39e76f7b6209b4b276bb7ad0c07f725f4"
+      ],
+      "sha256": "a7676770097890ffea36329e6114c1d1742c2731f2002c25ca120a1c97e0f275"
+    },
+    {
+      "slug": "satin",
+      "file": "satin.heic",
+      "sourceHashes": [
+        "5337e5fe17b5447da87215ebf7c8aebbcf7f17ae84423d0e2b63ec8a401e263a",
+        "7eaf411309b79050b295e6283dbc44e49c49f4192d8a11e8c26271f609ca7ba5"
+      ],
+      "sha256": "3e9ba2af4898ad5597f7020e9a19e75c14bd35f8779b709ffe3521319aa9c713"
+    },
+    {
+      "slug": "ceramic",
+      "file": "ceramic.heic",
+      "sourceHashes": [
+        "68e54ddcbcc2906f7f5377674d3ae421ff3e86b1e460fe42157a80fc9bc4045e",
+        "c97dfa44f9e9ecdd27139e3c25c6dd47933a8b2227bb9658e26cc260ac1ef063"
+      ],
+      "sha256": "ad3aa23e730dc3d9522c58c4e2d795cd0b23ec99cde1fa5ece25e81c5c7ae479"
+    },
+    {
+      "slug": "tide",
+      "file": "tide.heic",
+      "sourceHashes": [
+        "175b368121bb780d74a0b4927610652b6bd8fe0c4904b7e847a7387fabf7fb3b",
+        "fa30bb7a90fff781b8c9dc7cc6477a603d68b19d5273c2f51b49fe2ad5ae55d0"
+      ],
+      "sha256": "e567a847ec25bb3b421d5f2c7a6aac43ce4860b3bc9a67e26005921206b39cf9"
+    },
+    {
+      "slug": "dune",
+      "file": "dune.heic",
+      "sourceHashes": [
+        "9dca7de8d0dc6412821c2b8e1e759a791a71cf838068d333d79a72ef2104e303",
+        "e2b2fde22c72c65e1430308c40633c076003944ccb179a8ee1b3d4b0f65eda63"
+      ],
+      "sha256": "07f47379c685bada104c0636b6e68dbccfba7b64898872641fa6d2cb78941a07"
+    },
+    {
+      "slug": "veil",
+      "file": "veil.heic",
+      "sourceHashes": [
+        "083e96815dc84058250d2e61334d44577dd04b5f534e5aa3cdf21de149e37aa5",
+        "5ddb38a77c324328347604bc62ead77bb2eafe610dccd9dd2d425e4bb408ab7b"
+      ],
+      "sha256": "a07bf9d9d22add7b07106213b6c953c7ced6ef08fd93a9da2f0d789e4fa577b9"
+    }
+  ]
+}

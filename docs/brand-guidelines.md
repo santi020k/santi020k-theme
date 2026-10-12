@@ -500,3 +500,21 @@ Agent rules:
 - `packages/theme-core/README.md`
 - `apps/website/WEBSITE.md`
 - `packages/santi020k-chrome-theme/store/image-specs.md`
+
+### Appearance-aware wallpaper downloads
+
+`artwork/appearance/` contains generated two-frame macOS HEIC files for the eight paired designs.
+Light is frame 0 and dark is frame 1, identified by the Apple desktop appearance metadata. These
+are paired still images, not solar sequences or video screen savers. Preserve the original raster
+compositions and dimensions; do not paint or bake system UI into them.
+
+Generate with `pnpm run generate:appearance` on macOS. Commit the HEICs and manifest together.
+`pnpm run validate:appearance` decodes both frames using ImageIO, verifies their appearance mapping,
+compares sampled pixels against the sources, and checks file/source/generator fingerprints. The
+public repository runs this native check on a standard GitHub-hosted macOS runner. Linux website
+builds copy the checked-in files; they do not require an Apple encoder.
+
+The website's [appearance guide](https://theme.santi020k.com/gallery/appearance/) distinguishes
+Mac pairing from iPhone Shortcuts or Focus setup. Do not imply that downloading a static PNG, or
+choosing Auto icon appearance on iPhone, automatically switches the wallpaper. The iPhone guide
+in `docs/iphone-setup.md` is included in the downloadable setup pack.

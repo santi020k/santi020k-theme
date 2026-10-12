@@ -17,9 +17,10 @@ interface Props {
   slug: string
   name: string
   featured?: boolean
+  hero?: boolean
 }
 
-const { slug, name, featured = false } = Astro.props
+const { slug, name, featured = false, hero = false } = Astro.props
 const screenshots = slug === 'vscode' ? [vscodeDark, vscodeLight] : undefined
 let previewImages = screenshots
 
@@ -52,10 +53,10 @@ const editorSamples: Record<string, { filename: string, declaration: string, bod
 
 const sample = editorSamples[slug] ?? { filename: 'theme.ts', declaration: 'const workspace = {', body: '  theme: "santi020k"\n}' }
 const statusCaption = slug === 'xcode' ? 'Editor color theme' : 'Santi020k Theme'
-const captions: Record<string, string> = { iphone: 'Phone wallpaper artwork', vscode: 'Theme screenshot', obsidian: 'Obsidian screenshot' }
+const captions: Record<string, string> = { chrome: 'Chrome screenshot', iphone: 'Phone wallpaper artwork', vscode: 'Theme screenshot', obsidian: 'Obsidian screenshot' }
 const previewCaption = captions[slug] ?? 'Illustrative preview'
 ---
-<div class:list={['family-preview', `family-preview-${slug}`]} style={paletteStyle}>
+<div class:list={['family-preview', `family-preview-${slug}`, hero && 'family-preview-hero']} style={paletteStyle}>
   <div class="family-preview-stage" aria-hidden="true">
     {previewImages && (
       <div class="family-capture">
@@ -113,6 +114,20 @@ const previewCaption = captions[slug] ?? 'Illustrative preview'
 </div>
 
 <style>
+  .family-preview-hero .family-preview-stage { aspect-ratio: auto; min-height: 0; }
+  .family-preview-hero .family-window { font-size: clamp(10px, 1.1vw, 14px); border-radius: var(--site-card-radius); box-shadow: none; }
+  .family-preview-hero .family-title-bar { height: 42px; padding-inline: 18px; }
+  .family-preview-hero .family-launcher { padding: 22px; }
+  .family-preview-hero .family-search { padding-block: 10px 20px; }
+  .family-preview-hero .family-result { min-height: 56px; }
+  .family-preview-hero .family-result small, .family-preview-hero .family-messages small { font-size: .8em; }
+  .family-preview-hero .family-chat { min-height: 280px; }
+  .family-preview-hero .family-editor { min-height: 270px; }
+  .family-preview-hero .family-source { font-size: .9em; padding: 24px 14px; }
+  .family-preview-hero .family-tab { padding: 12px 14px; }
+  .family-preview-hero .family-status { font-size: .75em; padding: 8px 14px; }
+  .family-preview-hero .family-preview-caption { margin-top: 20px; }
+
   .family-preview-iphone .family-capture { width: auto; height: 230px; aspect-ratio: 1170 / 2532; justify-self: center; }
   .family-preview { font-weight: 400; --preview-bg: var(--preview-dark-bg); --preview-surface: var(--preview-dark-surface); --preview-ink: var(--preview-dark-ink); --preview-accent: var(--preview-dark-accent); --preview-line: var(--preview-dark-line); --preview-selection: var(--preview-dark-selection); --preview-success: var(--preview-dark-success); }
   :global([data-theme="light"]) .family-preview { --preview-bg: var(--preview-light-bg); --preview-surface: var(--preview-light-surface); --preview-ink: var(--preview-light-ink); --preview-accent: var(--preview-light-accent); --preview-line: var(--preview-light-line); --preview-selection: var(--preview-light-selection); --preview-success: var(--preview-light-success); }

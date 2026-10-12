@@ -7,6 +7,7 @@ import UIPrimitives from '@santi020k/lumen-astro/runtime'
 import PageTransitions from '../../../website/src/components/PageTransitions.astro'
 import SharedFooter from '../../../website/src/components/SharedFooter.astro'
 import SharedHeader from '../../../website/src/components/SharedHeader.astro'
+import ThemeCardPreview from '../../../website/src/components/ThemeCardPreview.astro'
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -82,9 +83,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div class="site-shell hero-inner">
           <div class="hero-copy">
             <p class="eyebrow">Chrome browser theme</p>
-            <h1>Browser chrome as calm as your editor.</h1>
+            <h1>A calmer view of the web.</h1>
             <p class="lede">
-              Every surface — tab strip, omnibox, New Tab page, incognito — maps directly to a VS Code token from the Santi020k dark palette. Deep violet, muted lavender, no neon.
+              Familiar violet from the first tab to the next idea. Light and dark themes bring the same quiet palette to your toolbar, tabs, and New Tab page.
             </p>
             <div class="actions" aria-label="Theme actions">
               <ButtonLink class="button button-primary" variant="primary" href="https://chromewebstore.google.com/detail/cljcifjjgolaplmemjcnjhkjfoneadgj" newTab>
@@ -106,6 +107,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               </Button>
             </div>
           </div>
+          <figure class="hero-preview" aria-label="Chrome theme screenshots"><ThemeCardPreview slug="chrome" name="Chrome" hero featured /></figure>
         </div>
       </section>
 

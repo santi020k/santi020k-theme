@@ -1,5 +1,7 @@
 ---
-import { ButtonLink, Card, Eyebrow, Icon } from '@santi020k/lumen-astro'
+import '../styles/ports.css'
+
+import { ButtonLink, Eyebrow, Icon } from '@santi020k/lumen-astro'
 
 import ProductLayout from '../layouts/ProductLayout.astro'
 
@@ -33,24 +35,24 @@ const mainAction = primaryAction ?? { href: '#install', label: `Install for ${na
 ---
 
 <ProductLayout {name} {slug} title={`Santi020k Theme — ${name}`} {description}>
-  <section class="site-shell simple-product-hero">
+  <section class="site-shell port-hero">
     <div>
       <Eyebrow class="eyebrow">{eyebrow}</Eyebrow>
       <h1>{title}</h1>
       <p class="lede">{description}</p>
-      <div class="product-status" aria-label="Theme status"><span>{availability}</span><span>Dark + light</span><span>Open source</span></div>
-      <div class="actions"><ButtonLink class="button button-primary" variant="primary" href={mainAction.href}>{mainAction.label}</ButtonLink><ButtonLink class="button button-secondary" variant="secondary" href={sourceUrl} newTab>View package source</ButtonLink></div>
+      <div class="port-meta" aria-label="Theme status"><span>{availability}</span><span>Dark + light</span><span>Open source</span></div>
+      <div class="port-actions"><ButtonLink class="port-button port-button-primary" variant="unstyled" href={mainAction.href}>{mainAction.label}</ButtonLink><ButtonLink class="port-button port-button-secondary" variant="unstyled" href={sourceUrl} newTab>View package source</ButtonLink></div>
     </div>
-    <figure class="simple-product-preview" aria-label={`${name} illustrative preview`}>
-      <ThemeCardPreview {slug} {name} />
+    <figure class="port-figure" aria-label={`${name} illustrative preview`}>
+      <ThemeCardPreview {slug} {name} hero />
     </figure>
   </section>
-  <section id="install" class="site-shell simple-product-section">
-    <div class="section-heading"><Eyebrow class="eyebrow">Install</Eyebrow><h2>Bring the palette into {name}.</h2></div>
-    <ol class="install-steps">{steps.map((step, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{step.title}</h3><p>{step.detail}</p></div></li>)}</ol>
+  <section id="install" class="site-shell port-section">
+    <div class="port-section-heading"><Eyebrow class="eyebrow">Install</Eyebrow><h2>Bring the palette into {name}.</h2></div>
+    <ol class="port-steps port-steps-wide">{steps.map(step => <li><div><h3>{step.title}</h3><p>{step.detail}</p></div></li>)}</ol>
   </section>
-  <section id="coverage" class="site-shell simple-product-section product-details">
+  <section id="coverage" class="site-shell port-section port-columns">
     <div><Eyebrow class="eyebrow">Coverage</Eyebrow><h2>Familiar colors. In every detail.</h2><p class="lede">The same violet accents and considered contrast, adapted to the parts of {name} you use every day.</p></div>
-    <Card><ul>{features.map(feature => <li><Icon name="check" /><span>{feature}</span></li>)}</ul></Card>
+    <ul class="port-features">{features.map(feature => <li><Icon name="check" /><span>{feature}</span></li>)}</ul>
   </section>
 </ProductLayout>

@@ -117,3 +117,6 @@ html:has(.wallpaper-dialog[open]) { overflow: hidden; }
 .asset-dialog-actions svg { width: 1rem; height: 1rem; }
 .asset-dialog .dialog-media { max-height: calc(100dvh - 220px); }
 .asset-dialog .dialog-media img { max-height: calc(100dvh - 250px); }
+
+.wallpaper-appearance-links { display: grid; gap: 4px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--section-divider); }
+.wallpaper-appearance-links a { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-height: var(--site-control-min-height); font-size: .75rem; font-weight: 500; }

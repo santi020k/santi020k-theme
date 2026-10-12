@@ -44,3 +44,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--site-accent); o
     transition: none;
   }
 }
+
+/* Product headlines keep a complete thought beside a useful preview. */
+.hero h1 { max-width: 15ch; font-size: clamp(2.75rem, 4.4vw, 4.5rem); font-weight: 500; line-height: 1.08; letter-spacing: var(--site-title-tracking); text-wrap: balance; }
+.hero .lede { font-weight: 400; font-size: var(--site-body-size); line-height: var(--site-body-line-height); }
+
+.hero { min-height: 0; padding-block: clamp(56px, 7vw, 100px); }
+.terminal, .terminal[data-terminal-theme="light"] { box-shadow: none; border-radius: var(--site-card-radius); }
+#components .tool-card { padding: 24px 0; border: 0; border-top: 1px solid var(--section-divider); border-radius: 0; background: none; box-shadow: none; }
+#components .tool-card:hover { transform: none; border-color: var(--site-brand); }
+#components .tool-card p { font-weight: 400; font-size: var(--site-body-size); line-height: var(--site-body-line-height); }
+#components .tool-card h3 { font-weight: 500; }

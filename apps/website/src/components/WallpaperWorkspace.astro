@@ -32,6 +32,7 @@ const variants = appearances.flatMap(appearance => devices.map(device => ({ appe
           <p class="wallpaper-selection" data-wallpaper-selection aria-live="polite">Dark · Desktop · 2560 × 1440 · WEBP · High quality</p>
         </form>
         <p class="wallpaper-export-note">All sizes are resized from AI-generated raster artwork. A 4K-size export fits a 4K screen; it does not add native detail.</p>
+        <div class="wallpaper-appearance-links"><Link href={`/downloads/appearance/${design.slug}.heic`} download>Mac light + dark HEIC <Icon name="download" /></Link><Link href="/gallery/appearance/">Automatic switching guide <Icon name="arrow-right" /></Link></div>
         {!modal && <noscript><p>Use the complete download list below to choose another version without JavaScript.</p></noscript>}
       </aside>
     </div>

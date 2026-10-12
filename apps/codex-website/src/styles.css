@@ -248,27 +248,6 @@ h2 {
   content: "";
 }
 
-.preview-orbit {
-  position: absolute;
-  z-index: -1;
-  border: 1px solid color-mix(in srgb, var(--site-brand) 28%, transparent);
-  border-radius: 999px;
-}
-
-.preview-orbit-one {
-  top: 0;
-  right: 7%;
-  width: 170px;
-  height: 170px;
-}
-
-.preview-orbit-two {
-  bottom: 0;
-  left: 0;
-  width: 100px;
-  height: 100px;
-}
-
 .theme-window {
   position: absolute;
   overflow: hidden;
@@ -855,3 +834,21 @@ h2 {
 
 /* Sculpted controls use solid surfaces rather than decorative depth. */
 .button, .button:hover, .button-copy-install, .button-copy-install:hover { box-shadow: none; }
+
+/* Product headlines keep a complete thought beside a useful preview. */
+.hero h1 { max-width: 15ch; font-size: clamp(2.75rem, 4.4vw, 4.5rem); font-weight: 500; line-height: 1.08; letter-spacing: var(--site-title-tracking); text-wrap: balance; }
+.hero .lede { font-weight: 400; font-size: var(--site-body-size); line-height: var(--site-body-line-height); }
+
+.theme-stage { display: grid; gap: 20px; min-height: 0; margin: 0; }
+.theme-stage::before { content: none; }
+.theme-stage .theme-window { position: static; width: 100%; transform: none; box-shadow: none; border-radius: var(--site-card-radius); }
+.theme-stage > figcaption { font-size: .75rem; color: var(--site-ink-soft); }
+.preset-panel { border: 0; border-radius: 0; padding: 0; background: none; box-shadow: none; }
+.steps { gap: 24px; border: 0; }
+.steps > div { padding: 24px 0; border-top: 1px solid var(--section-divider); }
+.steps > div + div { border-left: 0; }
+.steps strong { font-weight: 500; }
+.theme-tabs { margin: 16px 0 24px; }
+.preset-note { padding-inline: 0; }
+.variant-card { border-radius: var(--site-card-radius); box-shadow: none; }
+.variant-card-header > span { font-weight: 500; }

@@ -1,6 +1,13 @@
 version: "0.2"
 language: en
 words:
+  # Apple wallpaper tooling and setup terminology.
+  - automations
+  - HEIC
+  - CFURL
+  - ImageIO
+  - mczachurski
+  - wallpapper
   # Native Neovim/Lua and Obsidian API identifiers.
   - Condit
   - Pmenu

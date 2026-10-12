@@ -16,6 +16,8 @@ for (const product of siteAssets) {
   await cp(source, destination, { recursive: true, force: true })
 }
 
+await cp(resolve(root, 'artwork/appearance'), resolve(output, 'downloads/appearance'), { recursive: true, force: true })
+
 const terminalPackage = resolve(root, 'packages/santi020k-terminal-theme')
 const terminalOutput = resolve(output, 'terminal')
 

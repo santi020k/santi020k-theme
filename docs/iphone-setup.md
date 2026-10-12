@@ -17,14 +17,27 @@ Create a second wallpaper pair if you want both appearances. Selecting Auto for 
 
 The pack customizes wallpapers and supports native icon tinting. It does not recolor the inside of other apps, replace their actual icons, or install widgets. Use Obsidian's own theme settings for matching notes.
 
+## Switch light and dark automatically
+
+Save both wallpaper pairs first. In Shortcuts, create a Light wallpaper shortcut with the **Switch Between Wallpapers** action and select the saved light pair. Create a Dark wallpaper shortcut for the saved dark pair. You can also add **Set Appearance** to each shortcut if you want it to set the matching system appearance.
+
+Create a Time of Day automation at Sunrise to run the light shortcut, and another at Sunset to run the dark shortcut, repeating daily. Enable immediate or unattended running if your iOS version offers it, and test each shortcut manually. The Automation controls and permission labels vary by iOS version. Switching Dark Mode separately in Control Center does not trigger this schedule; run the matching shortcut to change both together.
+
+Alternatively, link each wallpaper to a Focus you already use and schedule that Focus. Review its notification settings because a Focus also affects notifications and status. A Mac HEIC file cannot install this pairing on iPhone.
+
+See the illustrated setup page at https://theme.santi020k.com/gallery/appearance/#iphone. Device-specific wallpaper selections must be configured on your phone; the ZIP cannot supply a preconfigured shortcut for them.
+
 ## Restore your previous setup
 
-Select your previous wallpaper pair from the Lock Screen gallery. Return Home Screen icon appearance to your preferred default. Keep your old wallpaper pair until you are happy with this one.
+Disable the wallpaper automations first if you created them. Select your previous wallpaper pair from the Lock Screen gallery. Return Home Screen icon appearance to your preferred default. Keep your old wallpaper pair until you are happy with this one.
 
 ## Sources and artwork
 
 - Apple: https://support.apple.com/guide/iphone/change-the-wallpaper-iph3d267104/ios
 - Apple: https://support.apple.com/guide/iphone/customize-apps-and-widgets-on-the-home-screen-iph385473442/ios
+- Apple Shortcuts actions: https://support.apple.com/101583
+- Apple automation triggers: https://support.apple.com/guide/shortcuts/apd932ff833f/ios
+- Apple Focus setup: https://support.apple.com/guide/iphone/iphd6288a67f/ios
 - Halo: https://theme.santi020k.com/gallery/halo/
 - Contour: https://theme.santi020k.com/gallery/contour/
 

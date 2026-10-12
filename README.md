@@ -163,3 +163,12 @@ Open Graph generation uses the published `@santi020k/og` 1.2.0 package. The shar
 ## Phone and editor additions
 
 The [iPhone setup guide](docs/iphone-setup.md) pairs existing Halo and Contour phone artwork. Obsidian and Neovim use generated native files and direct website download bundles. Run `pnpm run validate:obsidian` and `pnpm run validate:neovim` for focused checks. See [verification and distribution notes](docs/theme-expansion.md) for native validation and publication boundaries.
+
+### Light and dark wallpaper pairs
+
+All eight paired gallery designs include a paired macOS HEIC download. Visit the
+[appearance guide](https://theme.santi020k.com/gallery/appearance/) for Mac setup and iPhone
+Shortcuts instructions. iPhone switching uses locally saved wallpaper pairs; it is not installed
+by the Mac file. On macOS, regenerate with `pnpm run generate:appearance` and validate with
+`pnpm run validate:appearance`. Source artwork and generated-file fingerprints are recorded in
+`artwork/appearance/manifest.json`.

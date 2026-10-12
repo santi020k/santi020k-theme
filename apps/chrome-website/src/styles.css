@@ -254,7 +254,7 @@ h3 {
 /* Override hero text in light mode for better punch */
 .hero-inner .lede { color: rgba(223, 221, 227, 0.9); }
 :root[data-theme="light"] .hero-inner h1 { color: #1a0b33; }
-:root[data-theme="light"] .hero-inner .lede { color: #403850; font-weight: 500; }
+:root[data-theme="light"] .hero-inner .lede { color: var(--site-ink-soft); font-weight: 400; }
 
 .install-action { margin-top: 28px; }
 
@@ -1016,3 +1016,14 @@ h3 {
 
 /* Sculpted controls use solid surfaces rather than decorative depth. */
 .button, .button:hover, .button-copy-install, .button-copy-install:hover { box-shadow: none; }
+
+/* Product headlines keep a complete thought beside a useful preview. */
+.hero h1 { max-width: 15ch; font-size: clamp(2.75rem, 4.4vw, 4.5rem); font-weight: 500; line-height: 1.08; letter-spacing: var(--site-title-tracking); text-wrap: balance; }
+.hero .lede { font-weight: 400; font-size: var(--site-body-size); line-height: var(--site-body-line-height); }
+
+.hero-inner { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: clamp(32px, 5vw, 72px); }
+.hero-copy, .hero-preview { min-width: 0; }
+.hero-preview { margin: 0; }
+.why-card, .install-card { padding: 24px 0; border: 0; border-top: 1px solid var(--section-divider); border-radius: 0; background: none; box-shadow: none; }
+.install-step-badge { padding: 0; width: auto; height: auto; margin-bottom: 20px; background: none; border: 0; color: var(--site-brand); font: 500 .75rem/1.4 var(--santi020k-font-mono); }
+@media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } }

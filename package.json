@@ -67,7 +67,9 @@
     "pre-push": "pnpm run validate",
     "commit": "commitprompt",
     "validate:obsidian": "pnpm --filter santi020k-obsidian-theme run validate",
-    "validate:neovim": "pnpm --filter santi020k-neovim-theme run validate"
+    "validate:neovim": "pnpm --filter santi020k-neovim-theme run validate",
+    "generate:appearance": "node scripts/build-appearance-wallpapers.mjs",
+    "validate:appearance": "node scripts/build-appearance-wallpapers.mjs --check"
   },
   "devDependencies": {
     "@astrojs/check": "catalog:",
