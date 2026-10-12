@@ -60,12 +60,15 @@ bindPageLifecycle('hub', signal => {
   const assetDialog = document.querySelector('.asset-dialog')
   const dialogImage = assetDialog?.querySelector('img')
   const dialogTitle = assetDialog?.querySelector('h2')
+  const dialogPage = document.querySelector('.asset-dialog [data-asset-page]')
 
   for (const previewButton of document.querySelectorAll('[data-preview-src]')) {
     previewButton.addEventListener('click', () => {
       if (!assetDialog || !dialogImage || !dialogTitle) return
 
       dialogImage.src = previewButton.dataset.previewSrc
+
+      if (dialogPage) dialogPage.href = previewButton.dataset.previewSrc
 
       dialogImage.alt = previewButton.dataset.previewAlt
 

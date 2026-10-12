@@ -3,6 +3,8 @@ import { Button, Dialog, Icon, Link, ThemeToggle } from '@santi020k/lumen-astro'
 
 import { products } from '../data/products.js'
 
+import Brand from './Brand.astro'
+
 interface NavigationItem {
   href: string
   label: string
@@ -31,10 +33,7 @@ const isActive = (href: string) => {
 
 <div class="family-header-stack">
   <header class="family-header site-shell" aria-label="Site header">
-    <Link class="family-brand" href="/" aria-label="Santi020k Themes home">
-      <svg class="family-brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true" focusable="false"><rect width="80" height="80" rx="18" fill="currentColor" /><path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /><line x1="48" y1="52" x2="62" y2="52" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" /></svg>
-      <span>Santi020k <b>Themes</b></span>
-    </Link>
+    <Brand />
 
     <nav id="family-primary-navigation" class="family-primary-navigation" aria-label="Primary navigation">
       <Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>Home</Link>
@@ -71,7 +70,7 @@ const isActive = (href: string) => {
     </nav>
 
     <div class="family-header-actions">
-      <Button class="family-nav-toggle" variant="ghost" size="icon" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="family-mobile-navigation" aria-haspopup="dialog"><span class="family-nav-label">Menu</span><span class="family-nav-open-icon"><Icon name="layout-grid" /></span></Button>
+      <Button class="family-nav-toggle" variant="ghost" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="family-mobile-navigation" aria-haspopup="dialog"><span class="family-nav-label">Menu</span><span class="family-nav-open-icon"><Icon name="menu" /></span></Button>
       <ThemeToggle class="family-theme-toggle theme-toggle" aria-label="Toggle color theme" storageKey="theme" />
     </div>
   </header>
@@ -93,10 +92,10 @@ const isActive = (href: string) => {
 
 <Dialog id="family-mobile-navigation" class="family-mobile-navigation" layout="fullscreen" aria-labelledby="family-mobile-title">
   <div class="family-mobile-topbar">
-    <span class="family-mobile-wordmark">Santi020k <strong>Themes</strong></span>
+    <Brand />
     <div class="family-mobile-topbar-actions">
       <ThemeToggle class="family-mobile-appearance" aria-label="Toggle color theme" storageKey="theme" />
-      <Button class="family-mobile-close" variant="ghost" type="button" data-mobile-close autofocus>
+      <Button class="family-mobile-close" variant="ghost" type="button" aria-label="Close navigation" data-mobile-close autofocus>
         <span>Close</span><Icon name="x" />
       </Button>
     </div>
@@ -332,25 +331,6 @@ bindPageLifecycle('*', signal => {
     gap: 24px;
     align-items: center;
     margin-inline: auto;
-  }
-  .family-brand {
-    display: inline-flex;
-    gap: 11px;
-    align-items: center;
-    min-width: max-content;
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .family-brand b {
-    color: var(--site-brand);
-  }
-  .family-brand-mark {
-    width: 34px;
-    height: 34px;
-    flex: 0 0 34px;
-    border-radius: 8px;
-    color: var(--site-brand-solid);
-
   }
   .family-primary-navigation {
     display: flex;
@@ -639,15 +619,6 @@ bindPageLifecycle('*', signal => {
     align-items: center;
     gap: 8px;
   }
-  .family-mobile-wordmark {
-    font-size: .8rem;
-    font-weight: 500;
-    letter-spacing: -.02em;
-  }
-  .family-mobile-wordmark strong {
-    color: var(--site-brand);
-    font-weight: 500;
-  }
   .family-mobile-close {
     min-height: 48px;
     padding: 0 12px;
@@ -841,10 +812,7 @@ bindPageLifecycle('*', signal => {
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 12px;
     }
-    .family-brand {
-      min-width: 0;
-      gap: 8px;
-    }
+
     .family-primary-navigation {
       display: none;
     }
@@ -875,14 +843,7 @@ bindPageLifecycle('*', signal => {
     :global(html) {
       scroll-padding-top: var(--family-header-height, 150px);
     }
-    .family-brand span {
-      font-size: .78rem;
-      line-height: 1.35;
-    }
-    .family-brand b {
-      display: block;
-      font-weight: 500;
-    }
+    .family-theme-toggle { display: none; }
     .family-context-navigation {
       align-items: stretch;
       flex-direction: column;
@@ -892,6 +853,11 @@ bindPageLifecycle('*', signal => {
     .family-product-name {
       padding-inline: 10px;
     }
+  }
+  @media (max-width: 380px) {
+    .family-mobile-topbar { padding-inline: 16px; gap: 8px; }
+    .family-mobile-close span { display: none; }
+    .family-mobile-close { width: 44px; min-height: 44px; padding: 0; }
   }
   @keyframes menu-content-enter {
     from { opacity: 0; transform: translateY(12px); }

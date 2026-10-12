@@ -13,7 +13,7 @@ import ceramicWallpaper from '../../../../packages/theme/assets/wallpapers/signa
 import ceramicDownload from '../../../../packages/theme/assets/wallpapers/signature-v2/ceramic-light-desktop.webp?url'
 import satinWallpaper from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.webp'
 import satinDownload from '../../../../packages/theme/assets/wallpapers/signature-v2/satin-dark-desktop.webp?url'
-import heroArtwork from '../../public/hub-hero-art.png'
+import heroArtwork from '../assets/hub-hero-sculpted.webp'
 import PageTransitions from '../components/PageTransitions.astro'
 import SharedFooter from '../components/SharedFooter.astro'
 import SharedHeader from '../components/SharedHeader.astro'
@@ -140,8 +140,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           </div>
         </ScrollReveal>
         <figure class="home-hero-art">
-          <Image src={heroArtwork} alt="Violet editor and browser windows in an abstract Santi020k workspace" widths={[640, 960, 1440]} sizes="(max-width: 767px) 92vw, 48vw" loading="eager" fetchpriority="high" />
-          <figcaption><span>Santi020k Theme</span><span>A shared visual language</span></figcaption>
+          <Image src={heroArtwork} alt="Violet glass and pale ceramic forms around the Santi020k terminal prompt" widths={[640, 960, 1440]} sizes="(max-width: 767px) 92vw, 48vw" loading="eager" fetchpriority="high" />
+          <figcaption><span>Santi020k Theme</span><span>One palette. Many surfaces.</span></figcaption>
         </figure>
         <ul class="home-workspace-details" aria-label="Theme family at a glance">
           <li><span>{String(products.length).padStart(2, '0')}</span> tools, one workspace</li>

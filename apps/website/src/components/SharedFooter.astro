@@ -3,6 +3,8 @@ import { Icon, Link } from '@santi020k/lumen-astro'
 
 import { products } from '../data/products.js'
 
+import Brand from './Brand.astro'
+
 const editorSlugs = new Set(['vscode', 'zed', 'jetbrains', 'xcode', 'codex'])
 const editorThemes = products.filter(product => editorSlugs.has(product.slug))
 const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug))
@@ -10,10 +12,10 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
 
 <footer class="family-footer">
   <div class="site-shell family-footer-callout">
-    <div>
-      <p class="family-footer-eyebrow">The complete theme family</p>
-      <h2>Keep every workspace in the same calm rhythm.</h2>
-      <p>One violet system, carefully adapted for the tools you move through every day.</p>
+    <div class="family-footer-callout-copy">
+      <p class="family-footer-eyebrow">Make yourself at home</p>
+      <h2>A little more violet.<br />A little more you.</h2>
+      <p>Find a wallpaper to pair with your theme. Made for your desktop, your phone, and the spaces in between.</p>
     </div>
     <div class="family-footer-callout-actions">
       <Link class="family-footer-primary" href="/gallery/">Explore the gallery <Icon name="arrow-right" /></Link>
@@ -24,14 +26,9 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
 
   <div class="site-shell family-footer-grid">
     <div class="family-footer-brand">
-      <Link class="family-footer-logo" href="/" aria-label="Santi020k Themes home">
-        <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false"><rect width="80" height="80" rx="18" fill="currentColor" /><path d="M26 28 L40 40 L26 52" fill="none" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /><line x1="48" y1="52" x2="62" y2="52" stroke="var(--site-brand-mark-ink)" stroke-width="8" stroke-linecap="round" /></svg>
-        <span>Santi020k <b>Themes</b></span>
-      </Link>
-      <p>
-        A cohesive dark and light theme family for editors, terminals, browsers, launchers, and collaboration tools.
-      </p>
-      <span class="family-footer-open"><i aria-hidden="true"></i> Free and open source</span>
+      <Brand />
+      <p>Calm contrast for the tools you use every day.</p>
+      <Link class="family-footer-author" href="https://santi020k.com" newTab>Made by Santiago Molina <Icon name="arrow-up-right" /></Link>
     </div>
 
     <nav aria-label="Editor themes">
@@ -51,7 +48,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
   </div>
 
   <div class="site-shell family-footer-meta">
-    <span>© {new Date().getFullYear()} Santiago Molina</span>
+    <span>© {new Date().getFullYear()} Santiago Molina · Free &amp; open source</span>
     <span>Designed as one family · Built with <Link href="https://lumen.santi020k.com" newTab>Lumen</Link></span>
   </div>
 </footer>
@@ -81,6 +78,7 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     background: var(--site-surface-muted);
 
   }
+  .family-footer-callout-copy { display: block; min-width: 0; }
   .family-footer-callout h2 {
     max-width: 28ch;
     margin: 0;
@@ -123,11 +121,11 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     text-decoration: none;
   }
   .family-footer-callout-actions a:global(.family-footer-primary) {
-    border-color: var(--site-brand-solid);
-    background: var(--site-brand-solid);
-    color: #fff;
+    border-color: var(--site-ink);
+    background: var(--site-ink);
+    color: var(--theme-bg);
   }
-  .family-footer-callout-actions a:global(.family-footer-primary:hover) { background: var(--site-brand-hover); }
+  .family-footer-callout-actions a:global(.family-footer-primary:hover) { background: var(--site-ink-soft); }
   .family-footer-callout-actions a:global(.family-footer-secondary) {
     background: var(--btn-secondary-bg);
     color: var(--site-ink);
@@ -161,38 +159,10 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     margin: 0 auto;
     padding-block: 64px;
   }
-  .family-footer-brand { max-width: 390px; }
-  .family-footer-brand :global(.family-footer-logo) {
-    display: inline-flex;
-    gap: 11px;
-    align-items: center;
-    color: var(--site-ink);
-    font-weight: 600;
-  }
-  .family-footer-brand :global(.family-footer-logo) svg {
-    width: 36px;
-    height: 36px;
-    color: var(--site-brand-solid);
-  }
-  .family-footer-brand :global(.family-footer-logo) b { color: var(--site-brand); }
-  .family-footer-brand > p {
-    margin: 18px 0;
-    line-height: 1.7;
-  }
-  .family-footer-open {
-    display: inline-flex;
-    gap: 8px;
-    align-items: center;
-    font-size: .76rem;
-    font-weight: 500;
-  }
-  .family-footer-open i {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--site-success);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--site-success) 14%, transparent);
-  }
+  .family-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 310px; }
+  .family-footer-brand > p { margin: 0; max-width: 27ch; font-size: .9rem; line-height: 1.75; }
+  .family-footer-brand :global(.family-footer-author) { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: .75rem; font-weight: 500; }
+  .family-footer-author :global(svg) { width: 16px; height: 16px; }
   .family-footer nav {
     display: grid;
     align-content: start;
@@ -228,9 +198,10 @@ const workspaceThemes = products.filter(product => !editorSlugs.has(product.slug
     .family-footer-callout { grid-template-columns: 1fr; }
     .family-footer-callout-actions { justify-content: flex-start; }
     .family-footer-grid {
-      grid-template-columns: 1.2fr repeat(3, .7fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 30px;
     }
+    .family-footer-brand { grid-column: 1 / -1; }
   }
   @media (max-width: 700px) {
     .family-footer-callout { padding: 26px 22px 30px; }

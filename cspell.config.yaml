@@ -1,6 +1,8 @@
 version: "0.2"
 language: en
 words:
+  # Standard WAI-ARIA attribute used by progressive dialog links.
+  - haspopup
   # Image-generation tool and material terminology in the saved artwork prompts.
   - imagegen
   - microtexture
