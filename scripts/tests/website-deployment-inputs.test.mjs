@@ -5,8 +5,7 @@ import { expect, it } from 'vitest'
 it('deploys changes to every external consolidated website build input', () => {
   const root = new URL('../../', import.meta.url)
   const turbo = JSON.parse(readFileSync(new URL('turbo.json', root), 'utf8'))
-  const workflow = readFileSync(new URL('.github/workflows/deploy-websites.yml', root), 'utf8')
-  const paths = [...workflow.matchAll(/^ {6}- "([^"]+)"$/gmu)].map(match => match[1])
+  const paths = JSON.parse(readFileSync(new URL('.github/website-deployment-paths.json', root), 'utf8'))
   const websites = readdirSync(new URL('apps/', root)).filter(name => name.endsWith('-website'))
 
   const inputs = turbo.tasks['@santi020k/santi020k-theme-website#build'].inputs

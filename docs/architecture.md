@@ -219,7 +219,7 @@ Recommended workflow split:
 
 - `validate.yml`: root validation for PR confidence.
 - `release.yml`: Changesets and marketplace publishing for package/release changes only.
-- `deploy-websites.yml`: one Cloudflare Pages direct-upload deployment for `theme.santi020k.com` containing every product route.
+- `deploy-websites.yml`: one Cloudflare Pages direct-upload deployment for `theme.santi020k.com` containing every product route. Main CI calls it only after both required repository checks and native wallpaper validation succeed; manual deployments run those checks first.
 
 The public npm packages publish exclusively through npm Trusted Publishing from the GitHub-hosted
 `release.yml` workflow. The npm publisher records must match the `santi020k/santi020k-theme`
@@ -229,6 +229,13 @@ workspace package with pnpm so internal `workspace:` dependencies become registr
 publishes the resulting tarball with npm through OIDC; no long-lived `NPM_TOKEN` is used.
 
 Cloudflare deployment uses repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, plus the repository variable `CLOUDFLARE_PAGES_PROJECT_THEME_HUB`. Former product subdomains stay proxied and use the Bulk Redirect list in `cloudflare/legacy-website-redirects.csv`.
+The deployment workflow checks those required values before workspace setup. The pinned setup action
+installs frozen dependencies once; subsequent build, SEO, link, deployment, and redirect steps stop
+when their preceding checks fail.
+`.github/website-deployment-paths.json` defines the shared deployment inputs for CI change detection
+and the final freshness check. Main CI runs are preserved so a later documentation-only push cannot
+cancel a pending website change. Deployments queue without replacing each other and reject candidates
+whose website inputs have since changed on main, before setup and again immediately before upload.
 
 ## Naming
 
