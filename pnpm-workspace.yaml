@@ -32,7 +32,7 @@ catalog:
   husky: ^9.1.7
   jsdom: ^27.4.0
   knip: ^6.41.0
-  lint-staged: ^16.4.0
+  lint-staged: ^17.6.0
   ovsx: ^1.2.0
   oxlint: ~1.87.0
   sharp: ^0.35.5
