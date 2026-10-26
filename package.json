@@ -16,7 +16,7 @@
     "build:chrome-theme": "pnpm --filter santi020k-chrome-theme run build",
     "build:themes": "pnpm --filter santi020k-theme run build",
     "build:zed": "pnpm --filter santi020k-zed-theme run build",
-    "validate": "pnpm run check:brand-assets && pnpm run typecheck && pnpm run build && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run validate:chrome && pnpm run validate:terminal && pnpm run validate:zed && pnpm run validate:codex && pnpm run validate:raycast && pnpm run validate:slack && pnpm run validate:jetbrains && pnpm run validate:xcode && pnpm run validate:obsidian && pnpm run validate:neovim && pnpm run report:accessibility && pnpm run validate:seo && pnpm run test && pnpm run lint && pnpm run lint:knip && pnpm run validate:eslint-config && pnpm run package:extension",
+    "validate": "pnpm run test:ci && pnpm run check:dependency-security && pnpm run check:brand-assets && pnpm run typecheck && pnpm run build && pnpm run lint:spell && pnpm run validate:themes && pnpm run validate:marketplace && pnpm run validate:chrome && pnpm run validate:terminal && pnpm run validate:zed && pnpm run validate:codex && pnpm run validate:raycast && pnpm run validate:slack && pnpm run validate:jetbrains && pnpm run validate:xcode && pnpm run validate:obsidian && pnpm run validate:neovim && pnpm run report:accessibility && pnpm run validate:seo && pnpm run test && pnpm run lint && pnpm run lint:knip && pnpm run validate:eslint-config && pnpm run package:extension",
     "pretest": "pnpm run build:themes && node scripts/generate-wallpaper-downloads.mjs && node scripts/generate-banner-downloads.mjs && node scripts/build-theme-downloads.mjs",
     "test": "vitest run scripts/tests packages/*/tests apps/*/tests",
     "sync:website-version": "node apps/vscode-website/scripts/sync-website-version.mjs",
@@ -71,7 +71,10 @@
     "generate:appearance": "node scripts/build-appearance-wallpapers.mjs",
     "validate:appearance": "node scripts/build-appearance-wallpapers.mjs --check",
     "quality:check": "quality check --require-checks",
-    "audit:dependencies": "pnpm audit --audit-level=low"
+    "audit:dependencies": "node scripts/check-audit.mjs",
+    "test:ci": "node --test scripts/ci-scope.test.mjs",
+    "ci:check": "node scripts/check-ci.mjs",
+    "check:dependency-security": "node --test scripts/check-msal-backport.mjs scripts/check-audit.test.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "catalog:",

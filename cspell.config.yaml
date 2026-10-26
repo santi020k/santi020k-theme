@@ -1,6 +1,9 @@
 version: "0.2"
 language: en
 words:
+  # Microsoft authentication identifiers used by the verified security backport.
+  - MSAL
+  - msgraph
   # Material description in the original image-generation prompts.
   - photoreal
   # Apple wallpaper tooling and setup terminology.
