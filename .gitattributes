@@ -1,0 +1,2 @@
+# Preserve upstream patch context and the digest used by the security gate.
+patches/@azure__msal-node@6.0.1.patch -text -whitespace

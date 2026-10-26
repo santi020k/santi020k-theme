@@ -37,7 +37,7 @@ Run the full validation before opening a PR or publishing:
 pnpm run validate
 ```
 
-This checks types, theme output, accessibility, SEO, spelling, tests, lint, and package readiness; builds the consolidated website; and packages the VS Code extension locally. Run `pnpm audit --audit-level=low` to check the complete dependency graph without advisory exemptions.
+This checks types, theme output, accessibility, SEO, spelling, tests, lint, and package readiness; builds the consolidated website; and packages the VS Code extension locally. Run `pnpm run audit:dependencies` for the complete dependency gate. It retains the low-severity threshold and verifies the documented [MSAL security backport](docs/security-msal-backport.md) before classifying that exact upstream advisory; the raw audit still reports it.
 
 For a faster package metadata check, run:
 
@@ -77,7 +77,6 @@ The VS Code extension package lives in `packages/santi020k-theme`, the Chrome th
 
 Release preparation happens on `release/v<semver>` from current `main`. Preserve and inspect dirty work, branches, working trees, and stashes before consolidation. A patch release fixes behavior; a minor release adds coverage or capabilities.
 
-
 - Run `pnpm run validate`
 - Review the complete release diff independently and open a pull request into `main`
 - Wait for current required checks and resolve review findings before merging
@@ -89,3 +88,35 @@ Release preparation happens on `release/v<semver>` from current `main`. Preserve
 - Publishing and production website dispatches accept only `main`; release-branch pushes run CI without publishing
 - Verify tags, registry versions, downloadable artifacts, canonical routes, and sitemap after release; a passing workflow alone does not prove the published result
 - Published version tags and artifacts are immutable. Recover with a new patch release. For a website regression, revert the source change through a reviewed PR and rerun the deployment workflow; preserve the previous Pages deployment until the replacement passes smoke checks
+
+## Affected pull-request validation
+
+`pnpm run ci:check` keeps the existing full validation command for release branches,
+pushes, manual dispatches, shared files, unknown paths, and incomplete Git history.
+Only source, public assets, or tests in the existing website workspaces can select
+fewer checks. Git merge-base comparison includes both sides of renames; local
+`HEAD` also includes staged, unstaged, and untracked files.
+
+Website selection still runs every test, all type checks, the complete dependency
+build graph, repository lint/spelling/Knip, brand consistency, marketplace website
+version checks, accessibility reporting, and SEO validation. It skips independent
+theme-port validators and VSIX packaging. The selected list is derived from the
+canonical validation script, so new checks are retained; unrecognized command
+syntax falls back to full validation. Dependency auditing and native macOS wallpaper
+validation keep their existing mandatory CI jobs. `pnpm run ci:check --full`,
+release publishing, and the pre-push hook retain complete validation.
+
+A local macOS/Node 22 benchmark at release commit `697b0c1` measured the
+complete `ci:check` lane for a website edit. Two alternating warm-cache pairs
+reduced the median from **78.44s full to 53.07s affected (32.3%)**. The initial
+cold-cache pair was **96.56s full versus 141.12s affected**, so this run demonstrates
+no cold-cache improvement; host contention affected the measurements. Both modes
+used two Vitest workers, retained identical tests and timeouts, and used separate
+Turbo caches with remote caching disabled. Dependency installation, the separate
+audit job, and native macOS wallpaper validation are excluded. The earlier
+unbounded-worker attempt timed out under host contention and is not a passing
+benchmark. These are local lane timings, not a prediction of total GitHub CI time.
+
+If selection regresses, force full validation or revert the focused selection
+change through a reviewed PR. Never weaken release validation or replace a
+published version to recover.

@@ -61,7 +61,9 @@ jobs:
       - name: Validate repository
         env:
           REQUIRE_NATIVE_NEOVIM: '1'
-        run: pnpm run validate
+          CI_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          CI_HEAD_SHA: ${{ github.sha }}
+        run: pnpm run ci:check
 
   appearance-wallpapers:
     name: Native macOS wallpaper validation
