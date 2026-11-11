@@ -1,45 +1,7 @@
 name: Deploy Theme Website
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/deploy-websites.yml"
-      - "apps/website/**"
-      - "apps/vscode-website/**"
-      - "apps/chrome-website/**"
-      - "apps/codex-website/**"
-      - "apps/terminal-website/**"
-      - "apps/zed-website/**"
-      - "artwork/**"
-      - "packages/santi020k-chrome-theme/**"
-      - "packages/santi020k-codex-theme/**"
-      - "packages/santi020k-terminal-theme/**"
-      - "packages/santi020k-zed-theme/**"
-      - "packages/santi020k-raycast-theme/**"
-      - "packages/santi020k-slack-theme/**"
-      - "packages/santi020k-jetbrains-theme/**"
-      - "packages/santi020k-xcode-theme/**"
-      - "packages/santi020k-obsidian-theme/**"
-      - "packages/santi020k-neovim-theme/**"
-      - "packages/santi020k-theme/src/tokens/vscode/base-themes/**"
-      - "packages/santi020k-theme/scripts/validate-themes.mjs"
-      - "scripts/build-theme-downloads.mjs"
-      - "scripts/generate-wallpaper-downloads.mjs"
-      - "scripts/generate-banner-downloads.mjs"
-      - "scripts/lib/port-palette.mjs"
-      - "scripts/lib/color-contrast.mjs"
-      - "docs/iphone-setup.md"
-      - "packages/theme/**"
-      - "packages/theme-core/**"
-      - "scripts/sync-consolidated-site-assets.mjs"
-      - "cloudflare/**"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
-      - "turbo.json"
-      - "LICENSE"
+  workflow_call: {}
   workflow_dispatch: {}
 
 permissions:
@@ -48,10 +10,62 @@ permissions:
 concurrency:
   group: deploy-theme-website-${{ github.ref }}
   cancel-in-progress: false
+  queue: max
 
 jobs:
+  manual-validation:
+    name: Validate manual website deployment
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm workspace
+        uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
+        with:
+          node-version: 22
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Audit workspace dependencies
+        run: pnpm run audit:dependencies
+
+      - name: Install Zsh
+        run: sudo apt-get update && sudo apt-get install --yes zsh
+
+      - name: Install native Neovim test runtime
+        run: |
+          curl --fail --location --retry 3 https://github.com/neovim/neovim/releases/download/v0.12.6/nvim-linux-x86_64.tar.gz --output "$RUNNER_TEMP/neovim.tar.gz"
+          printf '%s  %s\n' '474430d53e6264f6d6dd18db42d6dc9df3a1b56ca9e88a325bbf860e1a811d87' "$RUNNER_TEMP/neovim.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/neovim.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/nvim-linux-x86_64/bin" >> "$GITHUB_PATH"
+
+      - name: Validate repository
+        env:
+          REQUIRE_NATIVE_NEOVIM: '1'
+        run: pnpm run validate
+
+  manual-appearance:
+    name: Validate manual website wallpaper assets
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
+      - name: Validate appearance frames and source fingerprints
+        run: node scripts/build-appearance-wallpapers.mjs --check
+
   deploy:
-    if: github.ref == 'refs/heads/main'
+    needs: [manual-validation, manual-appearance]
+    if: >-
+      !cancelled() && github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' ||
+       (github.event_name == 'workflow_dispatch' &&
+        needs.manual-validation.result == 'success' && needs.manual-appearance.result == 'success'))
     name: Deploy theme.santi020k.com
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -62,11 +76,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
 
-      - name: Set up pnpm workspace
-        uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
-        with:
-          node-version: 22
-          cache-dependency-path: pnpm-lock.yaml
+      - name: Verify current website inputs
+        run: |
+          git fetch --no-tags --depth=1 origin main
+          node .github/scripts/website-inputs.mjs "$GITHUB_SHA" FETCH_HEAD
 
       - name: Validate Cloudflare deployment config
         env:
@@ -78,8 +91,11 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
           test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_THEME_HUB repository variable"; exit 1; }
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Set up pnpm workspace
+        uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
+        with:
+          node-version: 22
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Build consolidated website
         run: pnpm run site:build
@@ -91,7 +107,10 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm exec wrangler pages deploy apps/website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}" --branch=main
+        run: |
+          git fetch --no-tags --depth=1 origin main
+          node .github/scripts/website-inputs.mjs "$GITHUB_SHA" FETCH_HEAD
+          pnpm exec wrangler pages deploy apps/website/dist --project-name="${{ vars.CLOUDFLARE_PAGES_PROJECT_THEME_HUB }}" --branch=main
 
       - name: Preserve legacy domain redirects
         env:
