@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "global_inputs": [
+    "quality-impact.json",
+    "quality.yml",
+    ".quality-version",
+    ".github/",
+    "scripts/",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "turbo.json",
+    "eslint.config.mjs",
+    "artwork/",
+    "packages/theme/",
+    "packages/theme-core/"
+  ],
+  "ignored_inputs": [],
+  "nodes": {
+    "themes": {
+      "inputs": [
+        "packages/santi020k-theme/"
+      ],
+      "command": "pnpm",
+      "args": [
+        "run",
+        "build:themes"
+      ]
+    },
+    "ports": {
+      "inputs": [
+        "packages/santi020k-chrome-theme/",
+        "packages/santi020k-codex-theme/",
+        "packages/santi020k-terminal-theme/",
+        "packages/santi020k-zed-theme/",
+        "packages/santi020k-raycast-theme/",
+        "packages/santi020k-slack-theme/",
+        "packages/santi020k-jetbrains-theme/",
+        "packages/santi020k-xcode-theme/",
+        "packages/santi020k-obsidian-theme/",
+        "packages/santi020k-neovim-theme/"
+      ],
+      "command": "pnpm",
+      "args": [
+        "exec",
+        "turbo",
+        "run",
+        "build",
+        "--filter=./packages/*"
+      ],
+      "depends_on": [
+        "themes"
+      ]
+    },
+    "website": {
+      "inputs": [
+        "apps/"
+      ],
+      "command": "pnpm",
+      "args": [
+        "run",
+        "site:build"
+      ],
+      "depends_on": [
+        "ports"
+      ]
+    },
+    "links": {
+      "inputs": [],
+      "command": "pnpm",
+      "args": [
+        "run",
+        "validate:links"
+      ],
+      "depends_on": [
+        "website"
+      ]
+    },
+    "security": {
+      "inputs": [],
+      "command": "pnpm",
+      "args": [
+        "run",
+        "audit:dependencies"
+      ],
+      "always": true
+    }
+  }
+}

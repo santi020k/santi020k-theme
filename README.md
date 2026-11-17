@@ -130,6 +130,8 @@ Use the Node minimum declared in [`package.json`](package.json) and pnpm `10.34.
 
 ## Documentation Map
 
+[Quality v2 rollout and deployment validation](docs/quality-v2-rollout.md) describes the v3.2.0 pipeline changes.
+
 - [`docs/architecture.md`](docs/architecture.md) explains the repo architecture.
 - [`packages/santi020k-theme/README.md`](packages/santi020k-theme/README.md) is the marketplace-facing VS Code extension README.
 - [`packages/santi020k-chrome-theme/README.md`](packages/santi020k-chrome-theme/README.md) covers Chrome theme development and Web Store packaging.

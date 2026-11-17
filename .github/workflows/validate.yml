@@ -16,8 +16,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  impact:
+    name: Quality v2 shadow plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install pinned Quality
+        run: |
+          curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/santi020k/quality/ff490e9efbd5fdfbdb1e6c404f1741d04c57f585/install.sh -o "$RUNNER_TEMP/install-quality.sh"
+          sh "$RUNNER_TEMP/install-quality.sh" santi020k/quality "v$(cat .quality-version)"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Test policy and deployment failure handling
+        run: node --test scripts/quality-impact.node-test.mjs
+      - name: Record conservative committed-source plan
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          args=(--full)
+          if [[ "$GITHUB_EVENT_NAME" == pull_request && -n "$BASE" && "$BRANCH" != release/* && "$BRANCH" != changeset-release/* ]]; then
+            args=(--base "$BASE" --head HEAD --comparison merge-base)
+          fi
+          quality impact plan "${args[@]}" --format json >> "$GITHUB_STEP_SUMMARY"
+
   validate:
-    name: Required checks
+    name: Repository validation
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -27,7 +54,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up pnpm workspace
-        uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
+        uses: santi020k/quality/actions/setup-pnpm@ff490e9efbd5fdfbdb1e6c404f1741d04c57f585 # v2.0.0
         with:
           node-version: 22
           cache-dependency-path: pnpm-lock.yaml
@@ -74,3 +101,19 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
       - name: Validate appearance frames and source fingerprints
         run: node scripts/build-appearance-wallpapers.mjs --check
+
+  gate:
+    name: Required checks
+    if: always()
+    needs: [validate, impact, appearance-wallpapers]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every validation boundary
+        env:
+          VALIDATION: ${{ needs.validate.result }}
+          IMPACT: ${{ needs.impact.result }}
+          APPEARANCE: ${{ needs.appearance-wallpapers.result }}
+        run: |
+          for result in "$VALIDATION" "$IMPACT" "$APPEARANCE"; do
+            [[ "$result" == success ]] || exit 1
+          done
