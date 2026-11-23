@@ -26,6 +26,7 @@ on:
       - "packages/santi020k-theme/src/tokens/vscode/base-themes/**"
       - "packages/santi020k-theme/scripts/validate-themes.mjs"
       - "scripts/build-theme-downloads.mjs"
+      - "scripts/deploy-legacy-pages.sh"
       - "scripts/generate-wallpaper-downloads.mjs"
       - "scripts/generate-banner-downloads.mjs"
       - "scripts/lib/port-palette.mjs"
@@ -63,7 +64,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
 
       - name: Set up pnpm workspace
-        uses: santi020k/quality/actions/setup-pnpm@ffa37774f75b2b8e761fe3d71e7046cdb6694a69 # v1
+        uses: santi020k/quality/actions/setup-pnpm@ff490e9efbd5fdfbdb1e6c404f1741d04c57f585 # v2.0.0
         with:
           node-version: 22
           cache-dependency-path: pnpm-lock.yaml
@@ -77,9 +78,6 @@ jobs:
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID secret"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN secret"; exit 1; }
           test -n "$PROJECT_NAME" || { echo "Missing CLOUDFLARE_PAGES_PROJECT_THEME_HUB repository variable"; exit 1; }
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
 
       - name: Build consolidated website
         run: pnpm run site:build
@@ -97,13 +95,4 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: |
-          for project in \
-            santi020k-vscode-theme \
-            santi020k-chrome-theme \
-            santi020k-terminal-theme \
-            santi020k-zed-theme \
-            santi020k-codex-theme
-          do
-            pnpm exec wrangler pages deploy "cloudflare/legacy-pages/$project" --project-name="$project" --branch=main
-          done
+        run: bash scripts/deploy-legacy-pages.sh

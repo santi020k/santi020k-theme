@@ -22,8 +22,15 @@ export const selectValidationScripts = command => {
   return scripts.filter(script => !independentThemeChecks.has(script))
 }
 
+// Native wallpaper validation needs a macOS runner, so it only runs when its inputs can change.
+const appearanceInputs = /^(?:artwork\/|scripts\/wallpapers\/|scripts\/build-appearance-wallpapers\.mjs$|scripts\/ci-scope\.mjs$|\.github\/workflows\/validate\.yml$)/u
+
+export const requiresAppearance = paths => paths.length === 0 || paths.some(path => appearanceInputs.test(path))
+
+const releaseBranch = env => /^(release\/|changeset-release\/)/u.test(env.GITHUB_HEAD_REF ?? '')
+
 const fullEvent = env => Boolean(env.GITHUB_EVENT_NAME && env.GITHUB_EVENT_NAME !== 'pull_request') ||
-  /^(release\/|changeset-release\/)/u.test(env.GITHUB_HEAD_REF ?? '')
+  releaseBranch(env)
 
 const readPaths = ({ cwd, base, head, env }) => {
   const git = args => execFileSync('git', args, {
@@ -52,8 +59,25 @@ export const planScope = ({ cwd = process.cwd(), base, head = 'HEAD', full = fal
   }
 }
 
+const comparesHistory = env => ['pull_request', 'push'].includes(env.GITHUB_EVENT_NAME ?? '') && !releaseBranch(env)
+
+/**
+ * Pull requests and pushes compare committed history. Release branches, manual runs,
+ * missing bases and unreadable history always keep the native check.
+ */
+export const planAppearance = ({ cwd = process.cwd(), base, head = 'HEAD', full = false, env = process.env } = {}) => {
+  if (full || !base || !comparesHistory(env)) return true
+
+  try {
+    return requiresAppearance(readPaths({ cwd, base, head, env }))
+  } catch {
+    return true
+  }
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const plan = planScope({ base: process.env.CI_BASE_SHA, head: process.env.CI_HEAD_SHA || 'HEAD', full: process.argv.includes('--full') })
+  const options = { base: process.env.CI_BASE_SHA, head: process.env.CI_HEAD_SHA || 'HEAD', full: process.argv.includes('--full') }
+  const plan = { ...planScope(options), appearance: planAppearance(options) }
 
   process.stdout.write(`${JSON.stringify(plan)}\n`)
 

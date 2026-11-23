@@ -7,6 +7,8 @@ const pkg = JSON.parse(readFileSync('package.json', 'utf8'))
 const extensionId = `${pkg.publisher}.${pkg.name}`
 const vsixPath = `${pkg.name}-${pkg.version}.vsix`
 const isCI = process.env.CI === 'true'
+// The root release script validates the workspace immediately before this step.
+const validated = process.argv.includes('--validated')
 
 const run = (command, args, options = {}) => {
   execFileSync(command, args, {
@@ -96,7 +98,11 @@ const shouldPublishOpenVsx = !openVsxVersions.has(pkg.version)
 if (!shouldPublishMarketplace && !shouldPublishOpenVsx) {
   console.log(`${extensionId}@${pkg.version} is already published to both registries.`)
 } else {
-  run('pnpm', ['--workspace-root', 'run', 'validate'], { cwd: repoRoot })
+  if (validated) {
+    console.log('Workspace validation already ran in this release; publishing its packaged VSIX.')
+  } else {
+    run('pnpm', ['--workspace-root', 'run', 'validate'], { cwd: repoRoot })
+  }
 
   if (!existsSync(vsixPath)) {
     throw new Error(`Expected packaged VSIX at ${vsixPath}`)

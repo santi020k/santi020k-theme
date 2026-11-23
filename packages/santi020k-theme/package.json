@@ -2,7 +2,7 @@
   "name": "santi020k-theme",
   "displayName": "Santi020k Theme",
   "description": "A coordinated dark, light, and high-contrast VS Code theme with muted violet accents, validated contrast, and semantic highlighting for long sessions.",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "packageManager": "pnpm@10.34.6",
   "publisher": "santi020k",
   "author": {
@@ -145,6 +145,7 @@
     "publish": "node scripts/publish-registries.mjs",
     "publish:pre": "pnpm --workspace-root run validate && vsce publish --pre-release",
     "release:tag": "node scripts/ensure-release-tag.mjs",
-    "release": "node scripts/publish-registries.mjs"
+    "release": "node scripts/publish-registries.mjs",
+    "release:validated": "node scripts/publish-registries.mjs --validated"
   }
 }

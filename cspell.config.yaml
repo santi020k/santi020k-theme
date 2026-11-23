@@ -1,6 +1,9 @@
 version: "0.2"
 language: en
 words:
+  # Dependency identifiers used by scoped security updates.
+  - emnapi
+  - minimatch
   # Microsoft authentication identifiers used by the verified security backport.
   - MSAL
   - msgraph
