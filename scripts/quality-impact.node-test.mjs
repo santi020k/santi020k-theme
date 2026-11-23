@@ -99,17 +99,38 @@ if [[ "$project" == "$FAIL_PROJECT" ]]; then exit 7; fi
 })
 
 
-test('required gate rejects every skipped or unsuccessful boundary', () => {
+test('required gate rejects every unsuccessful boundary and unplanned skips', () => {
   const workflow = readFileSync(new URL('../.github/workflows/validate.yml', import.meta.url), 'utf8')
   const script = workflow.split('      - name: Require every validation boundary')[1].split('        run: |\n')[1]
   const run = environment => spawnSync('bash', ['-e', '-c', script], { env: environment }).status
-  const success = { VALIDATION: 'success', IMPACT: 'success', APPEARANCE: 'success' }
+  const success = { VALIDATION: 'success', IMPACT: 'success', APPEARANCE: 'success', APPEARANCE_REQUIRED: 'true' }
 
   assert.equal(run(success), 0)
 
-  for (const name of Object.keys(success)) {
+  for (const name of ['VALIDATION', 'IMPACT', 'APPEARANCE']) {
     for (const result of ['skipped', 'failure', 'cancelled', '']) {
       assert.equal(run({ ...success, [name]: result }), 1)
     }
   }
+
+  // Only an explicit negative plan may skip the native job; a missing plan keeps it required.
+  for (const required of ['', 'true', 'unknown']) {
+    assert.equal(run({ ...success, APPEARANCE: 'skipped', APPEARANCE_REQUIRED: required }), 1)
+  }
+
+  const planned = { ...success, APPEARANCE_REQUIRED: 'false' }
+
+  assert.equal(run({ ...planned, APPEARANCE: 'skipped' }), 0)
+
+  assert.equal(run(planned), 0)
+
+  for (const result of ['failure', 'cancelled', '']) {
+    assert.equal(run({ ...planned, APPEARANCE: result }), 1)
+  }
+
+  for (const name of ['VALIDATION', 'IMPACT']) {
+    assert.equal(run({ ...planned, APPEARANCE: 'skipped', [name]: 'skipped' }), 1)
+  }
+
+  assert.match(workflow, /needs: impact\n {4}# [^\n]+\n {4}if: needs\.impact\.outputs\.appearance != 'false'\n/u)
 })

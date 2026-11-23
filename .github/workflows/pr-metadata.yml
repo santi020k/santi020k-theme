@@ -1,0 +1,39 @@
+name: PR metadata
+
+# Title and label edits re-check only pull request metadata. Opened and updated pull
+# requests run the same script inside the required CI workflow.
+on:
+  pull_request:
+    branches: [main, "release/v*"]
+    types: [edited, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: pr-metadata-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  metadata:
+    name: Pull request title and changeset
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm workspace
+        uses: santi020k/quality/actions/setup-pnpm@ff490e9efbd5fdfbdb1e6c404f1741d04c57f585 # v2.0.0
+        with:
+          node-version: 22
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Validate pull request title and changeset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: bash scripts/check-pr-metadata.sh

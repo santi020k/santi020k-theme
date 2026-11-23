@@ -3,9 +3,11 @@ name: CI
 on:
   pull_request:
     branches: [main, "release/v*"]
-    types: [opened, synchronize, reopened, edited, labeled, unlabeled]
+    # Title and label edits are handled by pr-metadata.yml without repeating this workflow.
+    types: [opened, synchronize, reopened]
   push:
-    branches: [main, "release/v*"]
+    # Release branches are validated through their pull requests.
+    branches: [main]
   workflow_dispatch: {}
 
 permissions:
@@ -20,11 +22,19 @@ jobs:
     name: Quality v2 shadow plan
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    outputs:
+      appearance: ${{ steps.scope.outputs.appearance }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Decide whether native appearance validation is required
+        id: scope
+        env:
+          CI_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          CI_HEAD_SHA: ${{ github.sha }}
+        run: node scripts/ci-scope.mjs
       - name: Install pinned Quality
         run: |
           curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/santi020k/quality/ff490e9efbd5fdfbdb1e6c404f1741d04c57f585/install.sh -o "$RUNNER_TEMP/install-quality.sh"
@@ -47,6 +57,9 @@ jobs:
     name: Repository validation
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
@@ -59,21 +72,13 @@ jobs:
           node-version: 22
           cache-dependency-path: pnpm-lock.yaml
 
-      - name: Audit workspace dependencies
-        run: pnpm run audit:dependencies
-
-      - name: Validate pull request title
+      # Reads the live title and labels, so re-running this job after an edit uses current values.
+      - name: Validate pull request title and changeset
         if: github.event_name == 'pull_request'
         env:
-          PR_TITLE: ${{ github.event.pull_request.title }}
-        run: printf '%s\n' "$PR_TITLE" | pnpm exec commitprompt validate --input -
-
-      - name: Require a changeset
-        if: >-
-          github.event_name == 'pull_request' &&
-          !contains(github.event.pull_request.labels.*.name, 'skip-changelog') &&
-          !startsWith(github.head_ref, 'changeset-release/')
-        run: pnpm changeset status --since=origin/main
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: bash scripts/check-pr-metadata.sh
 
       - name: Install Zsh
         run: sudo apt-get update && sudo apt-get install --yes zsh
@@ -92,8 +97,30 @@ jobs:
           CI_HEAD_SHA: ${{ github.sha }}
         run: pnpm run ci:check
 
+  dependency-audit:
+    # Advisory here; dependency-audit.yml fails on the same check every day.
+    name: Dependency audit (advisory)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
+
+      - name: Set up pnpm workspace
+        uses: santi020k/quality/actions/setup-pnpm@ff490e9efbd5fdfbdb1e6c404f1741d04c57f585 # v2.0.0
+        with:
+          node-version: 22
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Audit workspace dependencies
+        run: pnpm run audit:dependencies
+
   appearance-wallpapers:
     name: Native macOS wallpaper validation
+    needs: impact
+    # Skipped only when the plan positively reports that no wallpaper input changed.
+    if: needs.impact.outputs.appearance != 'false'
     runs-on: macos-latest
     timeout-minutes: 10
     steps:
@@ -113,7 +140,13 @@ jobs:
           VALIDATION: ${{ needs.validate.result }}
           IMPACT: ${{ needs.impact.result }}
           APPEARANCE: ${{ needs.appearance-wallpapers.result }}
+          APPEARANCE_REQUIRED: ${{ needs.impact.outputs.appearance }}
         run: |
-          for result in "$VALIDATION" "$IMPACT" "$APPEARANCE"; do
+          for result in "$VALIDATION" "$IMPACT"; do
             [[ "$result" == success ]] || exit 1
           done
+          if [[ "$APPEARANCE_REQUIRED" == false ]]; then
+            [[ "$APPEARANCE" == success || "$APPEARANCE" == skipped ]] || exit 1
+          else
+            [[ "$APPEARANCE" == success ]] || exit 1
+          fi
