@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.2.0
+
+### Minor Changes
+
+- Adopt Quality v2 impact planning and parallel deployment validation while preserving complete release qualification.
+
+### Patch Changes
+
+- Validate the workspace once per release publish and run native wallpaper validation only when its sources change.
+
+- Require live dependency auditing and pull request metadata in the release gate. Update affected build dependencies and require Node.js 22.23.4 for workspace development; published theme contracts are unchanged.
+
 ## 3.1.0
 
 ### Minor Changes

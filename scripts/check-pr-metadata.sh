@@ -10,7 +10,18 @@ metadata="$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json title,lab
 
 jq --raw-output '.title' <<<"$metadata" | pnpm exec commitprompt validate --input -
 
-if [[ "$(jq --raw-output '.headRefName' <<<"$metadata")" == changeset-release/* ]]; then
+branch="$(jq --raw-output '.headRefName' <<<"$metadata")"
+if [[ "$branch" == release/v* ]]; then
+  version="$(node -p "require('./packages/santi020k-theme/package.json').version")"
+  if [[ "$branch" != "release/v$version" ]]; then
+    echo 'Prepared release branch does not match the extension version.' >&2
+    exit 1
+  fi
+  echo 'Prepared release version matches; Changesets have already been consumed.'
+  exit 0
+fi
+
+if [[ "$branch" == changeset-release/* ]]; then
   echo 'Changesets release pull request; a changeset is not required.'
   exit 0
 fi

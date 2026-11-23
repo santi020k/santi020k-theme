@@ -103,11 +103,16 @@ test('required gate rejects every unsuccessful boundary and unplanned skips', ()
   const workflow = readFileSync(new URL('../.github/workflows/validate.yml', import.meta.url), 'utf8')
   const script = workflow.split('      - name: Require every validation boundary')[1].split('        run: |\n')[1]
   const run = environment => spawnSync('bash', ['-e', '-c', script], { env: environment }).status
-  const success = { VALIDATION: 'success', IMPACT: 'success', APPEARANCE: 'success', APPEARANCE_REQUIRED: 'true' }
+
+  assert.match(workflow, /needs: \[metadata, validate, impact, dependency-audit, appearance-wallpapers\]/u)
+
+  assert.doesNotMatch(workflow, /continue-on-error: true/u)
+
+  const success = { METADATA: 'success', AUDIT: 'success', VALIDATION: 'success', IMPACT: 'success', APPEARANCE: 'success', APPEARANCE_REQUIRED: 'true' }
 
   assert.equal(run(success), 0)
 
-  for (const name of ['VALIDATION', 'IMPACT', 'APPEARANCE']) {
+  for (const name of ['METADATA', 'AUDIT', 'VALIDATION', 'IMPACT', 'APPEARANCE']) {
     for (const result of ['skipped', 'failure', 'cancelled', '']) {
       assert.equal(run({ ...success, [name]: result }), 1)
     }
@@ -128,7 +133,7 @@ test('required gate rejects every unsuccessful boundary and unplanned skips', ()
     assert.equal(run({ ...planned, APPEARANCE: result }), 1)
   }
 
-  for (const name of ['VALIDATION', 'IMPACT']) {
+  for (const name of ['METADATA', 'AUDIT', 'VALIDATION', 'IMPACT']) {
     assert.equal(run({ ...planned, APPEARANCE: 'skipped', [name]: 'skipped' }), 1)
   }
 

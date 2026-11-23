@@ -3,8 +3,7 @@ name: CI
 on:
   pull_request:
     branches: [main, "release/v*"]
-    # Title and label edits are handled by pr-metadata.yml without repeating this workflow.
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, edited, labeled, unlabeled]
   push:
     # Release branches are validated through their pull requests.
     branches: [main]
@@ -18,6 +17,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  metadata:
+    name: Pull request title and changeset
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm workspace
+        uses: santi020k/quality/actions/setup-pnpm@ff490e9efbd5fdfbdb1e6c404f1741d04c57f585 # v2.0.0
+        with:
+          node-version: 22
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Validate pull request title and changeset
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: bash scripts/check-pr-metadata.sh
+
   impact:
     name: Quality v2 shadow plan
     runs-on: ubuntu-latest
@@ -55,6 +80,7 @@ jobs:
 
   validate:
     name: Repository validation
+    needs: metadata
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -71,14 +97,6 @@ jobs:
         with:
           node-version: 22
           cache-dependency-path: pnpm-lock.yaml
-
-      # Reads the live title and labels, so re-running this job after an edit uses current values.
-      - name: Validate pull request title and changeset
-        if: github.event_name == 'pull_request'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: bash scripts/check-pr-metadata.sh
 
       - name: Install Zsh
         run: sudo apt-get update && sudo apt-get install --yes zsh
@@ -98,11 +116,9 @@ jobs:
         run: pnpm run ci:check
 
   dependency-audit:
-    # Advisory here; dependency-audit.yml fails on the same check every day.
-    name: Dependency audit (advisory)
+    name: Dependency audit
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    continue-on-error: true
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.0
@@ -132,17 +148,19 @@ jobs:
   gate:
     name: Required checks
     if: always()
-    needs: [validate, impact, appearance-wallpapers]
+    needs: [metadata, validate, impact, dependency-audit, appearance-wallpapers]
     runs-on: ubuntu-latest
     steps:
       - name: Require every validation boundary
         env:
+          METADATA: ${{ needs.metadata.result }}
+          AUDIT: ${{ needs.dependency-audit.result }}
           VALIDATION: ${{ needs.validate.result }}
           IMPACT: ${{ needs.impact.result }}
           APPEARANCE: ${{ needs.appearance-wallpapers.result }}
           APPEARANCE_REQUIRED: ${{ needs.impact.outputs.appearance }}
         run: |
-          for result in "$VALIDATION" "$IMPACT"; do
+          for result in "$METADATA" "$AUDIT" "$VALIDATION" "$IMPACT"; do
             [[ "$result" == success ]] || exit 1
           done
           if [[ "$APPEARANCE_REQUIRED" == false ]]; then

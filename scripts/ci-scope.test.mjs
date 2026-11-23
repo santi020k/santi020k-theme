@@ -230,8 +230,29 @@ exit "$MOCK_CHANGESET_STATUS"`)
       assert.ok(!skipped.calls.includes(changeset))
     }
 
+    const version = JSON.parse(readFileSync(new URL('../packages/santi020k-theme/package.json', import.meta.url), 'utf8')).version
+    const prepared = run({ title, labels: [], headRefName: `release/v${version}` }, 1)
+
+    assert.equal(prepared.status, 0)
+
+    assert.ok(!prepared.calls.includes(changeset))
+
+    assert.notEqual(run({ title, labels: [], headRefName: 'release/v999.0.0' }, 1).status, 0)
+
     assert.notEqual(run({ title, labels: [], headRefName: 'ci/faster-pipelines' }, 0, { PR_NUMBER: '' }).status, 0)
   } finally {
     rmSync(cwd, { recursive: true, force: true })
   }
+})
+
+
+test('release audits freshly and validates once before publishing the packaged extension', () => {
+  const { scripts } = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
+  const steps = scripts.release.split(' && ')
+
+  assert.deepEqual(steps.slice(0, 3), ['pnpm run audit:dependencies', 'pnpm run validate', 'pnpm run publish:npm'])
+
+  assert.equal(steps.filter(step => step === 'pnpm run validate').length, 1)
+
+  assert.ok(steps.includes('pnpm --filter santi020k-theme run release:validated'))
 })
