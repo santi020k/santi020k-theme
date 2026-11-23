@@ -4,12 +4,11 @@ on:
   push:
     branches:
       - main
+    # Keep in sync with the publish inputs in "Detect Chrome publish changes".
     paths:
-      - "package.json"
       - "packages/theme/**"
       - "packages/theme-core/**"
       - "packages/santi020k-chrome-theme/**"
-      - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
   workflow_dispatch:
     inputs:
