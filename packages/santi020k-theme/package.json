@@ -145,6 +145,7 @@
     "publish": "node scripts/publish-registries.mjs",
     "publish:pre": "pnpm --workspace-root run validate && vsce publish --pre-release",
     "release:tag": "node scripts/ensure-release-tag.mjs",
-    "release": "node scripts/publish-registries.mjs"
+    "release": "node scripts/publish-registries.mjs",
+    "release:validated": "node scripts/publish-registries.mjs --validated"
   }
 }
